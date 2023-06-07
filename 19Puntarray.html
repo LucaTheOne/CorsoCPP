@@ -1,0 +1,523 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Puntatori ed Array CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Puntatori ed Array
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Analogia fra puntatori ed array
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Quando abbiamo trattato gli <FONT COLOR="Green"><B>array</B></FONT>,
+  avremmo dovuto fare le seguente riflessione: "Il <FONT COLOR="Red"><B>C++
+  </B></FONT>&eacute; un linguaggio <I><B>tipato</B></I> (ogni entit&agrave;
+  del linguaggio deve appartenere a un
+  <FONT COLOR="Green"><B>tipo</B></FONT>); e allora, cosa sono gli
+  <FONT COLOR="Green"><B>array</B></FONT> ?". </BIG>
+  <P ALIGN=Justify>
+  <BIG>La risposta &eacute;: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; "<FONT COLOR="Red"><B><BIG>Gli array sono dei
+  puntatori!</BIG></B></FONT>". </BIG>
+  <P ALIGN=Justify>
+  <BIG>Quando si <B>dichiara</B> un
+  <FONT COLOR="Green"><B>array</B></FONT>, in realt&agrave; si <B>dichiara</B>
+  un <FONT COLOR="Green"><B>puntatore</B></FONT>, con alcune caratteristiche
+  in pi&ugrave;: </BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la <B>dichiarazione</B> di un
+      <FONT COLOR="Green"><B>puntatore</B></FONT> comporta <B>allocazione di
+      memoria</B> per una variabile
+      <FONT COLOR="Green"><B>puntatore</B></FONT>, <U>ma non</U> per la <B>variabile
+      puntata</B>. </BIG>
+      <TABLE CELLPADDING="2">
+	<TR VALIGN="Top">
+	  <TD WIDTH="5%"><BIG>Es.:</BIG></TD>
+	  <TD WIDTH="20%"><BIG><FONT COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB></B></FONT>
+	    <FONT COLOR="Maroon"><B>lista</B></FONT><FONT COLOR="Blue"><B>;
+	    </B></FONT></BIG>&nbsp;</TD>
+	  <TD><BIG><B>alloca memoria</B> per la variabile
+	    <FONT COLOR="Green"><B>puntatore</B></FONT>
+	    <FONT COLOR="Maroon"><B>lista</B></FONT> ma non per la <B>variabile puntata</B>
+	    da <FONT COLOR="Maroon"><B>lista</B></FONT></BIG></TD>
+	</TR>
+      </TABLE>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la <B>dichiarazione</B> di un
+      <FONT COLOR="Green"><B>array</B></FONT> comporta <B>allocazione di memoria</B>
+      <U>non solo</U> per una variabile
+      <FONT COLOR="Green"><B>puntatore</B></FONT> (il <B>nome</B>
+      dell'<FONT COLOR="Green"><B>array</B></FONT>), <U>ma anche</U> per l'<B>area
+      puntata</B>, di cui viene predefinita la lunghezza; inoltre il
+      <FONT COLOR="Green"><B>puntatore</B></FONT> viene dichiarato
+      <FONT COLOR="Blue"><B>const</B></FONT> e <B>inizializzato</B> con
+      l'<FONT COLOR="Purple"><B>indirizzo</B></FONT> dell'<B>area puntata</B>
+      (cio&egrave; del primo <FONT COLOR="Green"><B>elemento</B></FONT>
+      dell'<FONT COLOR="Green"><B>array</B></FONT>). </BIG>
+      <TABLE CELLPADDING="2">
+	<TR VALIGN="Top">
+	  <TD><BIG>Es.: &nbsp; &nbsp; &nbsp; &nbsp;</BIG></TD>
+	  <TD><BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	    <FONT COLOR="Maroon"><B>lista</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+		COLOR="Maroon"><B>5</B></FONT><FONT COLOR="Blue"><B>];</B></FONT></BIG> &nbsp;</TD>
+	  <TD><OL>
+	      <LI>
+		<BIG><B>alloca memoria</B> per il
+		<FONT COLOR="Green"><B>puntatore</B></FONT>
+		<FONT COLOR="Green"><B>costante</B></FONT>
+		<FONT COLOR="Maroon"><B>lista</B></FONT>;</BIG>
+	      <LI>
+		<BIG><B>alloca memoria</B> per <FONT COLOR="Maroon"><B>5</B></FONT>
+		<B>valori</B> di <FONT COLOR="Green"><B>tipo</B></FONT>
+		<FONT COLOR="Blue"><B>int</B></FONT>;</BIG>
+	      <LI>
+		<BIG><B>inizializza</B> <FONT COLOR="Maroon"><B>lista</B></FONT> con
+		<FONT COLOR="Blue"><B>&amp;</B></FONT><FONT COLOR="Maroon"><B>lista</B></FONT><FONT
+		    COLOR="Blue"><B>[</B></FONT><FONT COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>]</B></FONT></BIG>
+	    </OL>
+	  </TD>
+	</TR>
+      </TABLE>
+      <P ALIGN=Justify>
+      <BIG>Il fatto che il <FONT COLOR="Green"><B>puntatore</B></FONT> venga assunto
+      <FONT COLOR="Blue"><B>const</B></FONT> comporta che l'<B>indirizzo</B>
+      dell'<FONT COLOR="Green"><B>array</B></FONT> non &eacute; modificabile e
+      quindi il <B>nome</B> dell'<FONT COLOR="Green"><B>array</B></FONT> non pu&ograve;
+      essere usato come <FONT COLOR="Green"><B>l-value</B></FONT> (mentre un normale
+      <FONT COLOR="Green"><B>puntatore</B></FONT> s&igrave;).</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Esiste un'altra differenza fra la <B>dichiarazione</B> di
+  un'<FONT COLOR="Green"><B>array</B></FONT> e quella di un
+  <FONT COLOR="Green"><B>puntatore</B></FONT>: in un
+  <FONT COLOR="Green"><B>array</B></FONT> l'<B>area puntata</B> pu&ograve;
+  essere <B>inizializzata</B> tramite la lista degli
+  <FONT COLOR="Green"><B>elementi</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT>, mentre in un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> ci&ograve; non &eacute; ammesso.
+  A questa regola fa eccezione il caso di un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Blue"><B>char</B></FONT> quando l'<B>area puntata </B>&eacute;
+  <B>inizializzata</B> mediante una
+  <FONT COLOR="Green"><B>stringa</B></FONT> <I><B>literal</B></I> (per
+  compatibilit&agrave; con vecchie versioni del linguaggio). </BIG>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD><BIG>Es.: &nbsp; &nbsp; &nbsp;</BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>char</B></FONT>
+	<FONT COLOR="Maroon"><B>saluto</B></FONT><FONT COLOR="Blue"><B>[</B></FONT>
+	<FONT COLOR="Blue"><B>]</B></FONT> <FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>"Ciao"</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG> <U>ammesso</U> - <FONT COLOR="Maroon"><B>saluto</B></FONT> &eacute;
+	<FONT COLOR="Blue"><B>const</B></FONT> </BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>char</B></FONT>
+	<FONT COLOR="Maroon"><B>saluto</B></FONT><FONT COLOR="Blue"><B>[</B></FONT>
+	<FONT COLOR="Blue"><B>]</B></FONT> <FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Blue"><B>{'</B></FONT><FONT COLOR="Maroon"><B>C</B></FONT><FONT
+	    COLOR="Blue"><B>','</B></FONT><FONT COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>','</B></FONT><FONT
+	    COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>','</B></FONT><FONT COLOR="Maroon"><B>o</B></FONT><FONT
+	    COLOR="Blue"><B>','\</B></FONT><FONT COLOR="Maroon"><B>0</B></FONT><FONT
+	    COLOR="Blue"><B>'</B></FONT>}<FONT COLOR="Blue"><B>;
+	&nbsp;</B></FONT></BIG></TD>
+      <TD><BIG><U>ammesso</U> - <FONT COLOR="Maroon"><B>saluto</B></FONT> &eacute;
+	<FONT COLOR="Blue"><B>const</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>char<SUB><BIG>*</BIG></SUB></B></FONT>
+	<FONT COLOR="Maroon"><B>saluto</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Blue"><B>{'</B></FONT><FONT COLOR="Maroon"><B>C</B></FONT><FONT
+	    COLOR="Blue"><B>','</B></FONT><FONT COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>','</B></FONT><FONT
+	    COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>','</B></FONT><FONT COLOR="Maroon"><B>o</B></FONT><FONT
+	    COLOR="Blue"><B>','\</B></FONT><FONT COLOR="Maroon"><B>0</B></FONT><FONT
+	    COLOR="Blue"><B>'</B></FONT>}<FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG><U>non ammesso</U></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>char<SUB><BIG>*</BIG></SUB></B></FONT>
+	<FONT COLOR="Maroon"><B>saluto</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>"Ciao"</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG><U>ammesso</U> !!! - <FONT COLOR="Maroon"><B>saluto</B></FONT> <U>non
+	&eacute;</U> <FONT COLOR="Blue"><B>const</B></FONT> !!! </BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>nell'ultimo caso, tuttavia, non &egrave; concesso modificare la
+  <FONT COLOR="Green"><B>stringa</B></FONT> (anche se &egrave; concesso modificare
+  il <FONT COLOR="Green"><B>puntatore</B></FONT>!): il programma da' errore
+  in fase di esecuzione!</BIG> <BIG>Per esempio, se poniamo:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Maroon"><B>saluto</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>2</B></FONT><FONT COLOR="Blue"><B>]</B></FONT>&nbsp;
+  <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Blue"><B>'</B></FONT><FONT COLOR="Maroon"><B>c</B></FONT><FONT
+      COLOR="Blue"><B>';</B></FONT><BR>
+  la <FONT COLOR="Green"><B>stringa</B></FONT> diventa correttamente
+  <FONT COLOR="Maroon"><B>"Cico"</B></FONT> se
+  <FONT COLOR="Maroon"><B>saluto</B></FONT> &egrave; stato <B>dichiarato</B>
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Blue"><B>char</B></FONT>, mentre risulta un errore di
+  "<I><B>access violation</B></I>" della memoria (?!) se
+  <FONT COLOR="Maroon"><B>saluto</B></FONT> &egrave; stato <B>dichiarato</B>
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Blue"><B>char</B></FONT>.</BIG> <BIG>Conclusioni: <U>non
+  inizializzare mai un <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Blue"><B>char</B></FONT>&nbsp;con una
+  <FONT COLOR="Green"><B>stringa</B></FONT> <I><B>literal</B></I></U>! (oppure
+  farlo solo se si &egrave; sicuri che la
+  <FONT COLOR="Green"><B>stringa</B></FONT> non verr&agrave; mai
+  modificata).</BIG> 
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p30/parray.cpp">[p30]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Combinazione fra operazioni di deref.
+e di incremento </BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Le operazioni di <FONT COLOR="Purple"><B>deref. </B></FONT>e di
+  <FONT COLOR="Purple"><B>incremento</B></FONT> (o
+  <FONT COLOR="Purple"><B>decremento</B></FONT>) possono applicarsi
+  contemporaneamente allo stesso <FONT COLOR="Green"><B>operando</B></FONT>
+  <FONT COLOR="Green"><B>puntatore</B></FONT>. <BR>
+  Es. : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><FONT COLOR="Maroon"><B>p</B></FONT><FONT
+      COLOR="Blue"><B>++</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>In questo caso l'<FONT COLOR="Purple"><B>incremento</B></FONT> opera
+  sul <FONT COLOR="Green"><B>puntatore</B></FONT> e non sulla <B>variabile
+  puntata</B> e, al solito, agisce prima della
+  <FONT COLOR="Purple"><B>deref.</B></FONT> se &eacute;
+  <I><B>prefisso</B></I>, oppure dopo la
+  <FONT COLOR="Purple"><B>deref.</B></FONT> se &eacute;
+  <I><B>suffisso</B></I>. Da notare che l'espressione nel suo complesso pu&ograve;
+  essere un <FONT COLOR="Green"><B>l-value</B></FONT>, mentre il semplice
+  <FONT COLOR="Purple"><B>incremento</B></FONT> (o
+  <FONT COLOR="Purple"><B>decremento</B></FONT>) di una variabile non lo &eacute;.
+  Infatti, un'istruzione del tipo:<BR>
+  <FONT COLOR="Blue"><B><SUB><BIG>
+  *</BIG></SUB></B></FONT><FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>++</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT> <FONT COLOR="Maroon"><B>c</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT> &nbsp; &nbsp; &nbsp; &nbsp; viene espansa
+  in :
+  &nbsp;&nbsp;&nbsp;<FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><FONT
+      COLOR="Maroon"><B>p</B></FONT> <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>c</B></FONT> <FONT COLOR="Blue"><B>;</B></FONT> &nbsp;
+  &nbsp; <FONT COLOR="Maroon"><B>p</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>+</B></FONT>1
+  <FONT COLOR="Blue"><B>;</B></FONT> <BR>
+  e quindi &eacute; accettabile perch&eacute; l'operazione di
+  <FONT COLOR="Purple"><B>deref.</B></FONT> pu&ograve; essere un
+  <FONT COLOR="Green"><B>l-value</B></FONT>, <BR>
+  mentre l'istruzione: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>++</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT> <FONT COLOR="Maroon"><B>c</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT> <BR>
+  &eacute; inaccettabile in quanto l'operazione di
+  <FONT COLOR="Purple"><B>incremento</B></FONT> non &eacute; un
+  <FONT COLOR="Green"><B>l-value</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Confronto fra operatore [ ] e deref.
+del puntatore "offsettato"</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Poich&eacute; il <B>nome</B> (usato da solo) di un
+  <FONT COLOR="Green"><B>array</B></FONT> ha il significato di
+  <FONT COLOR="Green"><B>puntatore</B></FONT> al primo
+  <FONT COLOR="Green"><B>elemento</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT>, ogni altro
+  <FONT COLOR="Green"><B>elemento</B></FONT> &eacute; accessibile tramite
+  un'<FONT COLOR="Green"><B>operazione</B></FONT> di
+  <FONT COLOR="Purple"><B>deref.</B></FONT> del
+  <FONT COLOR="Green"><B>puntatore</B></FONT>-<FONT COLOR="Green"><B>array</B></FONT>
+  "<I><B>offsettato</B></I>", cio&egrave; incrementato di una quantit&agrave;
+  pari all'<FONT COLOR="Green"><B>indice</B></FONT>
+  dell'<FONT COLOR="Green"><B>elemento</B></FONT>. Da questo e dalle note regole
+  di <B>aritmetica</B> dei <FONT COLOR="Green"><B>puntatori</B></FONT> consegue
+  che le espressioni (dato un <FONT COLOR="Green"><B>array</B></FONT>
+  <FONT COLOR="Maroon"><B>A</B></FONT>):</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>]</B></FONT> &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+  <FONT COLOR="Blue"><B><SUB><BIG>
+  *</BIG></SUB>(</B></FONT><FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>+</B></FONT><FONT
+      COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>)</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG><U>conducono ad identico risultato</U> e quindi sono perfettamente
+  intercambiabili e possono essere entrambe usate sia come
+  <FONT COLOR="Green"><B>r-value</B></FONT> che come
+  <FONT COLOR="Green"><B>l-value</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Funzioni con argomenti
+array</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Quando, nella <B>chiamata</B> di una
+  <FONT COLOR="Green"><B>funzione</B></FONT>, si passa come
+  <FONT COLOR="Purple"><B>argomento</B></FONT> un
+  <FONT COLOR="Green"><B>array</B></FONT> (senza
+  <FONT COLOR="Green"><B>indici</B></FONT>), in realt&agrave; si passa un
+  <FONT COLOR="Green"><B>puntatore</B></FONT>, cio&egrave; l'<B>indirizzo </B>del
+  primo <FONT COLOR="Green"><B>elemento</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT> e pertanto i singoli
+  <FONT COLOR="Green"><B>elementi</B></FONT> <U>sono direttamente modificabili
+  dall'interno della <FONT COLOR="Green"><B>funzione</B></FONT></U>. Questo
+  spiega l'apparente anomalia di comportamento degli
+  <FONT COLOR="Purple"><B>argomenti</B></FONT>
+  <FONT COLOR="Green"><B>array</B></FONT> (e in particolare delle
+  <FONT COLOR="Green"><B>stringhe</B></FONT>), a cui abbiamo accennato trattando
+  del passaggio degli <FONT COLOR="Purple"><B>argomenti</B></FONT> <I><B>by
+  value</B></I>. <BR>
+  </BIG>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD><BIG>Es. : &nbsp; </BIG></TD>
+      <TD><BIG>nel <B>programma chiamante</B>:</BIG> &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>int
+	</B></FONT><FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>[
+	]</B></FONT> <FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Blue"><B>{</B></FONT><FONT COLOR="Maroon"><B>0</B></FONT><FONT
+	    COLOR="Blue">,</FONT><FONT COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue">,</FONT><FONT
+	    COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>};</B></FONT> &nbsp;
+	&nbsp;<B>....</B>
+	<FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><B>....</B>
+	<FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue">,</FONT><B>....</B><FONT
+	    COLOR="Blue"><B>)</B></FONT> <FONT COLOR="Blue"><B>;</B></FONT></BIG>
+	<BIG><B>....</B> </BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG>nella <FONT COLOR="Green"><B>funzione</B></FONT>:</BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>void</B></FONT>
+	<FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><B>....</B><FONT
+	    COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>[ ]</B></FONT>
+	<FONT COLOR="Blue">,</FONT> <B>....</B><FONT COLOR="Blue"><B>) {</B></FONT>
+	<B>....</B><FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>1</B></FONT><FONT COLOR="Blue"><B>]</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>5</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+	<B>....</B><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>il secondo <FONT COLOR="Green"><B>elemento</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT>
+  <FONT COLOR="Maroon"><B>A</B></FONT> risulta modificato, perch&eacute; in
+  realt&agrave; nella <FONT COLOR="Green"><B>funzione</B></FONT> viene eseguita
+  l'operazione:
+  <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>(</B></FONT><FONT COLOR="Maroon"><B>A</B></FONT><FONT
+      COLOR="Blue"><B>+</B></FONT><FONT COLOR="Maroon"><B>1</B></FONT><FONT COLOR="Blue"><B>)=</B></FONT>
+  <FONT COLOR="Maroon"><B>5</B></FONT> (il <B>valore</B>
+  <FONT COLOR="Maroon"><B>5</B></FONT> viene inserito nella locazione di memoria
+  il cui <B>indirizzo</B> &eacute;
+  <FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>+</B></FONT><FONT
+      COLOR="Maroon"><B>1</B></FONT>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Nella <B>dichiarazione</B> (e nella <B>definizione</B>) della
+  <FONT COLOR="Green"><B>funzione</B></FONT>, un
+  <FONT COLOR="Purple"><B>argomento</B></FONT>
+  <FONT COLOR="Green"><B>array</B></FONT> pu&ograve; essere indifferentemente
+  <B>dichiarato</B> come <FONT COLOR="Green"><B>array</B></FONT> o come
+  <FONT COLOR="Green"><B>puntatore</B></FONT> (in questo caso non c'&egrave;
+  differenza perch&eacute; la memoria &eacute; gi&agrave; allocata nel
+  <B>programma chiamante</B>). Tornando all'esempio, la
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>funz</B></FONT> avrebbe potuto essere <B>definita</B>
+  nel seguente modo: <FONT COLOR="Blue"><B>void</B></FONT>
+  <FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><B>....</B><FONT
+      COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue">,</FONT>
+  <B>....</B><FONT COLOR="Blue"><B>)</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>Le due <B>dichiarazioni</B> sono perfettamente identiche; di solito
+  si preferisce la seconda per evidenziare il fatto che il <B>valore</B>
+  dell'<FONT COLOR="Purple"><B>argomento</B></FONT> &eacute; un
+  <B>indirizzo</B> (il <FONT COLOR="Green"><B>puntatore</B></FONT> creato per
+  <B>copia</B> non &eacute; mai assunto
+  <FONT COLOR="Blue"><B>const</B></FONT>, anche se
+  l'<FONT COLOR="Purple"><B>argomento</B></FONT> &eacute; dichiarato come
+  <FONT COLOR="Green"><B>array</B></FONT>: resta comunque valida la regola
+  che ogni modifica del suo <B>valore</B> fatta sulla <B>copia</B> non si
+  ripercuote sull'<B>originale</B>). </BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p31/copystr.cpp">[p31]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Funzioni con argomenti puntatori passati
+by reference</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Quando un <FONT COLOR="Purple"><B>argomento</B></FONT>
+  <FONT COLOR="Green"><B>puntatore</B></FONT> &eacute; <B>dichiarato</B> in
+  una <FONT COLOR="Green"><B>funzione</B></FONT> come
+  <FONT COLOR="Green"><B>riferimento</B></FONT>, <BR>
+  es. &nbsp; &nbsp; <FONT COLOR="Blue"><B>void</B></FONT>
+  <FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><B>....</B><FONT
+      COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB>&amp;
+  </B></FONT><FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue">,</FONT>
+  <B>....</B><FONT COLOR="Blue"><B>)</B></FONT>, <BR>
+  nel <B>programma chiamante</B> il corrispondente
+  <FONT COLOR="Purple"><B>argomento</B></FONT> non pu&ograve; essere
+  <B>dichiarato</B> come <FONT COLOR="Green"><B>array</B></FONT>, in quanto,
+  se cos&igrave; fosse, sarebbe <FONT COLOR="Blue"><B>const</B></FONT> e quindi
+  non <FONT COLOR="Green"><B>l-value</B></FONT> (ricordiamo che gli
+  <FONT COLOR="Purple"><B>argomenti</B></FONT> passati <I><B>by reference
+  </B></I><U>devono</U> essere degli
+  <FONT COLOR="Green"><B>l-value</B></FONT>, a meno che non siano essi stessi
+  dichiarati <FONT COLOR="Blue"><B>const</B></FONT> nella
+  <FONT COLOR="Green"><B>funzione</B></FONT>).</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Array di
+puntatori</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> (come in
+  <FONT COLOR="Red"><B>C</B></FONT>) i
+  <FONT COLOR="Green"><B>puntatori</B></FONT>, come qualsiasi altra variabile,
+  possono essere raggruppati in <FONT COLOR="Green"><B>array</B></FONT> e
+  <B>definiti</B> come nel seguente esempio: </BIG>
+  <P ALIGN=Justify>
+  <BIG><FONT COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>10</B></FONT><FONT COLOR="Blue"><B>];</B></FONT> &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp;(<B>definisce</B> un
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Maroon"><B>10</B></FONT>
+  <FONT COLOR="Green"><B>puntatori</B></FONT> a
+  <FONT COLOR="Blue"><B>int</B></FONT>) </BIG>
+  <P ALIGN=Justify>
+  <BIG>Come un <FONT COLOR="Green"><B>array</B></FONT> equivale a un
+  <FONT COLOR="Green"><B>puntatore</B></FONT>, cos&igrave; un
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>puntatori</B></FONT> equivale a un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>puntatore</B></FONT> (con in pi&ugrave; l'allocazione
+  della <B>memoria puntata</B>, come nel caso di
+  <FONT COLOR="Green"><B>array</B></FONT> generico). Se questo viene passato
+  come <FONT COLOR="Purple"><B>argomento</B></FONT> di una
+  <FONT COLOR="Green"><B>funzione</B></FONT>, nella stessa pu&ograve; essere
+  <B>dichiarato</B> indifferentemente come
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>puntatori</B></FONT> o come
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>puntatore</B></FONT>. <BR>
+  Continuando l'esempio precedente: </BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG><B>programma chiamante</B>: &nbsp; &nbsp; &nbsp; &nbsp;</BIG></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><B>....</B>
+	<FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue">,</FONT><B>....</B><FONT
+	    COLOR="Blue"><B>)</B></FONT> <FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD><BIG><B>dichiarazione</B> di
+	<FONT COLOR="Maroon"><B>funz</B></FONT>:</BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>void</B></FONT>
+	<FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><B>....</B><FONT
+	    COLOR="Blue"><B>int<SUB><BIG>**</BIG></SUB>
+	</B></FONT><FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue">,</FONT>
+	<B>....</B><FONT COLOR="Blue"><B>);</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Il caso pi&ugrave; frequente di
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>puntatori</B></FONT> &eacute; quello
+  dell'<FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>stringhe</B></FONT>, che consente anche
+  l'<B>inizializzazione</B> tramite l'elenco, non dei valori dei
+  <FONT COLOR="Green"><B>puntatori</B></FONT>, ma (atipicamente) delle stesse
+  <FONT COLOR="Green"><B>stringhe</B></FONT> che costituiscono
+  l'<FONT COLOR="Green"><B>array</B></FONT>. </BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.: </BIG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>char<SUB><BIG>*</BIG></SUB></B></FONT>
+	<FONT COLOR="Maroon"><B>colori</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>3</B></FONT><FONT COLOR="Blue"><B>] =
+	{"</B></FONT><FONT COLOR="Maroon"><B>Blu</B></FONT><FONT COLOR="Blue"><B>",
+	"</B></FONT><FONT COLOR="Maroon"><B>Rosso</B></FONT><FONT COLOR="Blue"><B>",
+	"</B></FONT><FONT COLOR="Maroon"><B>Verde</B></FONT><FONT COLOR="Blue"><B>"}
+	;</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Come appare nell'esempio, le
+  <FONT COLOR="Green"><B>stringhe</B></FONT> possono anche essere di differente
+  lunghezza; in memoria sono allocate consecutivamente e, per ciascuna di esse,
+  sono riservati tanti <FONT COLOR="Green"><B>bytes</B></FONT> quant'&eacute;
+  la rispettiva lunghezza (<I><B>terminatore</B></I> compreso). Da certi
+  compilatori la memoria allocata per ogni
+  <FONT COLOR="Green"><B>stringa</B></FONT> &eacute; arrotondata per eccesso
+  a un multiplo di un numero prefissato di
+  <FONT COLOR="Green"><B>bytes</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#elcomando"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

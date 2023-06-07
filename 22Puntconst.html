@@ -1,0 +1,465 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Puntatori e Costanti CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Puntatori e Costanti
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Puntatori a
+costante</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Nelle <B>definizioni</B> di una variabile
+  <FONT COLOR="Green"><B>puntatore</B></FONT>, lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Green"><B>di</B></FONT>
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>const</B></FONT> indica che deve essere considerata
+  <FONT COLOR="Green"><B>costante</B></FONT> <U>la <B>variabile
+  puntata</B></U><B> </B>(non il
+  <FONT COLOR="Green"><B>puntatore</B></FONT>!).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Es.: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>const</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>float<SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Maroon"><B>ptr</B></FONT>; <BR>
+  <B>definisce</B> il <FONT COLOR="Green"><B>puntatore</B></FONT>
+  <U>variabile</U> <FONT COLOR="Maroon"><B>ptr</B></FONT> a
+  <FONT COLOR="Green"><B><U>costante</U></B></FONT>
+  <FONT COLOR="Blue"><B>float</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>In realt&agrave; a un <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>costante</B></FONT> si pu&ograve; anche
+  <FONT COLOR="Purple"><B>assegnare</B></FONT> l'<B>indirizzo</B> di una variabile,
+  ma non &eacute; vero il contrario: l'<B>indirizzo</B> di una
+  <FONT COLOR="Green"><B>costante</B></FONT> pu&ograve; essere
+  <FONT COLOR="Purple"><B>assegnato</B></FONT> <U>solo</U> a un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>costante</B></FONT>. In altre parole il
+  <FONT COLOR="Red"><B>C++</B></FONT> accetta conversioni da
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a variabile a
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>costante</B></FONT>, ma non viceversa.</BIG>
+  <P ALIGN=Justify>
+  <BIG>L'operazione di <FONT COLOR="Purple"><B>deref. </B></FONT>di un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>costante</B></FONT> non &eacute; mai accettata come
+  <FONT COLOR="Green"><B>l-value</B></FONT>, anche se la <B>variabile puntata</B>
+  non &eacute; <FONT COLOR="Blue"><B>const</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD WIDTH="5%"><BIG>Es.: </BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>datov</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>50</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>(<FONT COLOR="Maroon"><B>datov</B></FONT> &eacute; una variabile
+	<FONT COLOR="Blue"><B>int</B></FONT>) </BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>const</B></FONT>
+	<FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>datoc</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>50</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>(<FONT COLOR="Maroon"><B>datoc</B></FONT> &eacute; una
+	<FONT COLOR="Green"><B>costante</B></FONT>
+	<FONT COLOR="Blue"><B>int</B></FONT>)</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB></B></FONT>
+	<FONT COLOR="Maroon"><B>ptv</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>(<FONT COLOR="Maroon"><B>ptv</B></FONT> &eacute; un
+	<FONT COLOR="Green"><B>puntatore</B></FONT> a variabile
+	<FONT COLOR="Blue"><B>int</B></FONT>) </BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>const</B></FONT>
+	<FONT COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB></B></FONT>
+	<FONT COLOR="Maroon"><B>ptc</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>(<FONT COLOR="Maroon"><B>ptc</B></FONT> &eacute; un
+	<FONT COLOR="Green"><B>puntatore</B></FONT> a
+	<FONT COLOR="Green"><B>costante</B></FONT>
+	<FONT COLOR="Blue"><B>int</B></FONT>)</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>ptc</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Blue"><B>&amp;</B></FONT><FONT COLOR="Maroon"><B>datov</B></FONT><FONT
+	    COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>(<U>valida</U>, in quanto le conversioni da
+	<FONT COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB></B></FONT> a
+	<FONT COLOR="Blue"><B>const</B></FONT>
+	<FONT COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB></B></FONT> sono ammesse)
+	</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>ptv</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Blue"><B>&amp;</B></FONT><FONT COLOR="Maroon"><B>datoc</B></FONT><FONT
+	    COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>(<U>non valida</U>, in quanto le conversioni da
+	<FONT COLOR="Blue"><B>const</B></FONT>
+	<FONT COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB></B></FONT> a
+	<FONT COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB></B></FONT> non sono
+	ammesse)</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><FONT COLOR="Maroon"><B>ptc</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>10</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>(<FONT COLOR="Purple"><B>deref.</B></FONT>
+	<FONT COLOR="Green"><B>l-value</B></FONT> <U>non valida</U>, anche se
+	<FONT COLOR="Maroon"><B>ptc</B></FONT> punta a una variabile) </BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD WIDTH="35%"><BIG><FONT COLOR="Maroon"><B>datov</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>10</B></FONT><FONT COLOR="Blue"><B>; &nbsp;cout
+	&lt;&lt;</B></FONT>
+	<FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><FONT COLOR="Maroon"><B>ptc</B></FONT><FONT
+	    COLOR="Blue"><B>; &nbsp;&nbsp;</B></FONT></BIG></TD>
+      <TD><BIG>(<FONT COLOR="Purple"><B>deref.</B></FONT>
+	<FONT COLOR="Green"><B>r-value</B></FONT> <U>valida</U>, scrive
+	<FONT COLOR="Maroon"><B>10</B></FONT>) </BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Puntatori
+costanti</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B>puntatori costanti </B></FONT>si
+  <B>definiscono</B> specificando l'<FONT COLOR="Green"><B>operatore di
+  dichiarazione</B> </FONT><FONT COLOR="Blue"><B><SUB><BIG>*
+  </BIG></SUB>const</B></FONT> (al posto di
+  <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT>)</BIG>
+  <P ALIGN=Justify>
+  <BIG>Es.: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>float<SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Blue"><B>const</B></FONT>
+  &nbsp;<FONT COLOR="Maroon"><B>ptr</B></FONT>;</BIG><BR>
+  <BIG><B>definisce</B> il <FONT COLOR="Green"><B>puntatore</B></FONT>
+  <FONT COLOR="Green"><B><U>costante</U></B></FONT>
+  <FONT COLOR="Maroon"><B>ptr</B></FONT> a <U>variabile</U>
+  <FONT COLOR="Blue"><B>float</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>Un <FONT COLOR="Green"><B>puntatore costante</B></FONT> segue la regola
+  di tutte le <FONT COLOR="Green"><B>costanti</B></FONT>: deve essere
+  <B>inizializzato</B>, <U>ma non pu&ograve; pi&ugrave; essere modificato</U>
+  (non &eacute; un <FONT COLOR="Green"><B>l-value</B></FONT>). Resta
+  <FONT COLOR="Green"><B>l-value</B></FONT>, invece, la
+  <FONT COLOR="Purple"><B>deref.</B></FONT> di un
+  <FONT COLOR="Green"><B>puntatore costante</B></FONT> che punta a una variabile.
+  </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD WIDTH="10%"><BIG>Es.:</BIG></TD>
+      <TD WIDTH="30%"><BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>dato1</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT
+	    COLOR="Maroon"><B>dato2</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>(<FONT COLOR="Maroon"><B>dato1</B></FONT> e
+	<FONT COLOR="Maroon"><B>dato2</B></FONT> sono due variabili
+	<FONT COLOR="Blue"><B>int</B></FONT>) </BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB></B></FONT>
+	<FONT COLOR="Blue"><B>const</B></FONT>
+	<FONT COLOR="Maroon"><B>ptr</B></FONT> <FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Blue"><B>&amp;</B></FONT><FONT COLOR="Maroon"><B>dato1</B></FONT><FONT
+	    COLOR="Blue"><B>;</B></FONT> </BIG></TD>
+      <TD><BIG>(<FONT COLOR="Maroon"><B>ptr</B></FONT> &eacute; un
+	<FONT COLOR="Green"><B>puntatore costante</B></FONT>, <B>inizializzato</B>
+	con l'<FONT COLOR="Purple"><B>indirizzo</B></FONT> di
+	<FONT COLOR="Maroon"><B>dato1</B></FONT>)</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><FONT COLOR="Maroon"><B>ptr</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>10</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>(<U>valida</U>, in quanto <FONT COLOR="Maroon"><B>ptr</B></FONT>
+	punta a una variabile) </BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>ptr</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Blue"><B>&amp;</B></FONT><FONT COLOR="Maroon"><B>dato2</B></FONT><FONT
+	    COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>(<U>non valida</U>, in quanto
+	<FONT COLOR="Maroon"><B>ptr</B></FONT> &eacute;
+	<FONT COLOR="Green"><B>costante</B></FONT>)</BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>&nbsp;<BR>
+  Casi tipici di <FONT COLOR="Green"><B>puntatori costanti</B></FONT> sono
+  gli <FONT COLOR="Green"><B>array</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Puntatori costanti a
+costante</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Ripetendo due volte <FONT COLOR="Blue"><B>const</B></FONT> (come
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Green"><B>di</B></FONT>
+  <FONT COLOR="Green"><B>tipo</B></FONT> e come
+  <FONT COLOR="Green"><B>operatore di dichiarazione</B></FONT>), si pu&ograve;
+  <B>definire</B> un <FONT COLOR="Green"><B>puntatore costante</B></FONT> a
+  <FONT COLOR="Green"><B>costante</B></FONT> (di uso piuttosto raro). </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD WIDTH="5%"><BIG>Es.:</BIG></TD>
+      <TD WIDTH="38%"><BIG><FONT COLOR="Blue"><B>const</B></FONT>
+	<FONT COLOR="Blue"><B>char</B></FONT>
+	<FONT COLOR="Maroon"><B>dato</B></FONT><FONT COLOR="Blue"><B>='</B></FONT><FONT
+	    COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>';</B></FONT></BIG></TD>
+      <TD><BIG>(<FONT COLOR="Maroon"><B>dato</B></FONT> &eacute; una
+	<FONT COLOR="Green"><B>costante</B></FONT>
+	<FONT COLOR="Blue"><B>char</B></FONT>, inizializzata con
+	<FONT COLOR="Blue"><B>'</B></FONT><FONT COLOR="Maroon"><B>A</B></FONT><FONT
+	    COLOR="Blue"><B>'</B></FONT>) </BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>const</B></FONT>
+	<FONT COLOR="Blue"><B>char<SUB><BIG>*</BIG></SUB></B></FONT>
+	<FONT COLOR="Blue"><B>const</B></FONT>
+	<FONT COLOR="Maroon"><B>ptr</B></FONT> <FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Blue"><B>&amp;</B></FONT><FONT COLOR="Maroon"><B>dato</B></FONT><FONT
+	    COLOR="Blue"><B>;</B></FONT> </BIG></TD>
+      <TD><BIG>(<FONT COLOR="Maroon"><B>ptr</B></FONT> &eacute; un
+	<FONT COLOR="Green"><B>puntatore costante</B></FONT> a
+	<FONT COLOR="Green"><B>costante</B></FONT> , <B>inizializzato</B> con
+	l'<FONT COLOR="Purple"><B>indirizzo</B></FONT> della
+	<FONT COLOR="Green"><B>costante</B></FONT>
+	<FONT COLOR="Maroon"><B>dato</B></FONT>) </BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>&nbsp; &nbsp; <BR>
+  Nel caso di un <FONT COLOR="Green"><B>puntatore costante</B></FONT> a
+  <FONT COLOR="Green"><B>costante</B></FONT>, non sono
+  <FONT COLOR="Green"><B>l-values</B></FONT> n&eacute; il
+  <FONT COLOR="Green"><B>puntatore</B></FONT> n&eacute; la sua
+  <FONT COLOR="Purple"><B>deref.</B></FONT></BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Funzioni con argomenti costanti trasmessi
+by value</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Le regole di ammissibilit&agrave; degli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> di una
+  <FONT COLOR="Green"><B>funzione</B></FONT>, dichiarati
+  <FONT COLOR="Blue"><B>const</B></FONT> (nella
+  <FONT COLOR="Green"><B>funzione</B></FONT> e/o nel <B>programma chiamante</B>)
+  e trasmessi <I><B>by value</B></I>, sono riconducibili alle regole generali
+  applicate a una normale <B>dichiarazione</B> con <B>inizializzazione</B>;
+  come &eacute; noto, infatti, la trasmissione <I><B>by value</B></I> comporta
+  una <U>creazione per <B>copia</B></U>, che equivale alla <B>dichiarazione</B>
+  dell'<FONT COLOR="Maroon"><B>argomento</B></FONT> come variabile
+  <FONT COLOR="Green"><B>locale</B></FONT> della
+  <FONT COLOR="Green"><B>funzione</B></FONT>, <B>inizializzata</B> con il valore
+  passato dal <B>programma chiamante</B>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Quindi un <FONT COLOR="Maroon"><B>argomento</B></FONT> pu&ograve; essere
+  dichiarato <FONT COLOR="Blue"><B>const</B></FONT> nel <B>programma
+  chiamante</B> e non nella <FONT COLOR="Green"><B>funzione</B></FONT> o viceversa,
+  senza limitazioni (in quanto la creazione per <B>copia</B> "separa i destini"
+  delle due variabili), salvo in un caso: <U>un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>costante</B></FONT> non pu&ograve; essere dichiarato
+  tale nel <B>programma chiamante</B> se non lo &eacute; anche nella
+  <FONT COLOR="Green"><B>funzione</B></FONT></U> (in quanto non sono ammesse
+  le conversioni da <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>costante</B></FONT> a
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a variabile). </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD WIDTH="10%"><BIG>Es.:</BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>void</B></FONT>
+	<FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(int<SUB><BIG>*</BIG></SUB>);
+	&nbsp; &nbsp;void</B></FONT> <FONT COLOR="Blue"><B>main() { const</B></FONT>
+	<FONT COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB></B></FONT>
+	<FONT COLOR="Maroon"><B>ptr</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+	<B>...
+	</B><FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Maroon"><B>ptr</B></FONT><FONT COLOR="Blue"><B>);</B></FONT> <B>...
+	</B><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG>(<U>errore</U> : l'<FONT COLOR="Maroon"><B>argomento</B></FONT>
+	&eacute; dichiarato <FONT COLOR="Green"><B>puntatore</B></FONT> a
+	<FONT COLOR="Green"><B>costante</B></FONT> nel
+	<FONT COLOR="Blue"><B>main</B></FONT> e
+	<FONT COLOR="Green"><B>puntatore</B></FONT> a variabile nella
+	<FONT COLOR="Green"><B>funzione</B></FONT>)</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>void</B></FONT>
+	<FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(const</B></FONT>
+	<FONT COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB></B>);</FONT>
+	<FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp;void</B></FONT>
+	<FONT COLOR="Blue"><B>main()
+	{int<SUB><BIG>*</BIG></SUB></B></FONT><FONT COLOR="Maroon"><B>ptr</B></FONT>;
+	<B>...
+	</B><FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Maroon"><B>ptr</B></FONT><FONT COLOR="Blue"><B>);</B></FONT> <B>...
+	</B><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG>( <B>ok! </B>)</BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp;<BIG><BR>
+  Da quest'ultimo esempio si capisce anche qual'&eacute; l'uso principale di
+  un <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>costante</B></FONT>: come
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> passato a una
+  <FONT COLOR="Green"><B>funzione</B></FONT>, se non si desidera che la
+  <B>variabile puntata</B> <U>subisca modifiche dall'interno della
+  <FONT COLOR="Green"><B>funzione</B></FONT> stessa</U> (tramite operazioni
+  di <FONT COLOR="Purple"><B>deref.</B></FONT>), anche se ci&ograve; &eacute;
+  possibile nel <B>programma chiamante</B>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Funzioni con argomenti costanti trasmessi
+by reference</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Sappiamo che, se un <FONT COLOR="Maroon"><B>argomento</B></FONT> &eacute;
+  passato a una <FONT COLOR="Green"><B>funzione</B></FONT> <I><B>by
+  reference</B></I>, <U>non ne viene costruita una copia</U>, ma il suo nome
+  nella <FONT COLOR="Green"><B>funzione</B></FONT> <U>&eacute; assunto come
+  <I><B>alias</B></I></U> del nome corrispondente nel <B>programma chiamante</B>
+  (cio&egrave; i due nomi si riferiscono alla stessa locazione di memoria).
+  Per questo motivo il controllo sui <FONT COLOR="Green"><B>tipi</B></FONT>
+  e pi&ugrave; rigoroso rispetto al caso di passaggio <I><B>by value</B></I>:
+  in particolare, qualsiasi sia
+  l'<FONT COLOR="Maroon"><B>argomento</B></FONT>
+  (<FONT COLOR="Green"><B>puntatore</B></FONT> o no), <U>non &eacute; ammesso</U>
+  dichiararlo <FONT COLOR="Blue"><B>const</B></FONT> nel <B>programma
+  chiamante</B> e non nella <FONT COLOR="Green"><B>funzione</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>La dichiarazione inversa (<FONT COLOR="Blue"><B>const</B></FONT> solo
+  nella <FONT COLOR="Green"><B>funzione</B></FONT>) &eacute; invece possibile,
+  in quanto corrisponde alla definizione di un <I><B>alias</B></I> <B>di sola
+  lettura</B>: l'<FONT COLOR="Maroon"><B>argomento</B></FONT>, pur essendo
+  modificabile nel <B>programma chiamante</B>, non lo &eacute; dall'interno
+  della <FONT COLOR="Green"><B>funzione</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Il passaggio <I><B>by reference</B></I> di
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> dichiarati
+  <FONT COLOR="Blue"><B>const</B></FONT> nella
+  <FONT COLOR="Green"><B>funzione</B></FONT> &eacute; in uso molto frequente
+  in <FONT COLOR="Red"><B>C++</B></FONT>, perch&eacute; combina insieme due
+  vantaggi: quello di proteggere i dati del programma da modifiche indesiderate
+  (come nel passaggio <I><B>by value</B></I>), e quello di una migliore efficienza;
+  infatti il passaggio <I><B>by reference</B></I>, non comportando la creazione
+  di nuove variabili, &eacute; pi&ugrave; veloce del passaggio <I><B>by
+  value</B></I>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Quando un <FONT COLOR="Maroon"><B>argomento</B></FONT> &eacute; passato
+  <I><B>by reference </B></I>ed &eacute; dichiarato
+  <FONT COLOR="Blue"><B>const</B></FONT> nella
+  <FONT COLOR="Green"><B>funzione</B></FONT>, non esiste pi&ugrave; la condizione
+  che nel <B>programma chiamante</B> il corrispondente
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> sia un
+  <FONT COLOR="Green"><B>l-value</B></FONT> (pu&ograve; anche essere il risultato
+  di un'<FONT COLOR="Green"><B>espressione</B></FONT>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Se si vuole dichiarare un
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>:
+  <FONT COLOR="Green"><B>puntatore</B></FONT>
+  <FONT COLOR="Green"><B>costante</B></FONT> passato <I><B>by
+  reference</B></I>, bisogna specificare entrambi gli
+  <FONT COLOR="Green"><B>operatori di
+  dichiarazione</B></FONT>&nbsp;<FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>const</B></FONT>
+  e <FONT COLOR="Blue"><B>&amp;</B></FONT> (nell'ordine)</BIG>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD WIDTH="10%"><BIG>Es.:</BIG></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(int<SUB><BIG>*</BIG></SUB>
+	const &amp;
+	</B></FONT><FONT COLOR="Maroon"><B>ptr</B></FONT><FONT COLOR="Blue"><B>);</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG>dichiara che l'<FONT COLOR="Maroon"><B>argomento</B></FONT>
+	<FONT COLOR="Maroon"><B>ptr</B></FONT> &eacute; un
+	<FONT COLOR="Green"><B>puntatore</B></FONT>
+	<FONT COLOR="Green"><B>costante</B></FONT> a variabile
+	<FONT COLOR="Blue"><B>int</B></FONT>, passato <I><B>by
+	reference</B></I></BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#astratti"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

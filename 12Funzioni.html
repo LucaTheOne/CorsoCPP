@@ -1,0 +1,1108 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Funzioni CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Funzioni
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Definizione di una
+funzione</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Una <FONT COLOR="Green"><B>funzione</B></FONT> &egrave; cos&igrave;
+  <B>definita</B>:</BIG>
+  <P ALIGN=Justify>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD><BIG><FONT COLOR="Green"><B><BIG>tipo</BIG></B></FONT><BIG>
+	  <B>nome</B><FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>argomenti</B></FONT><FONT
+	      COLOR="Blue"><B>)</B></FONT></BIG></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B><BIG>{</BIG></B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <BIG><B>... istruzioni ...</B>
+	  (dette: <FONT COLOR="Green"><B>codice di implementazione</B></FONT> della
+	  <FONT COLOR="Green"><B>funzione</B></FONT>)</BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B><BIG>}</BIG></B></FONT></BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG> (notare che la prima istruzione &egrave; <U>senza punto e virgola</U>,
+  in quanto &eacute; completata dall'<FONT COLOR="Green"><B>ambito
+  </B></FONT>che segue)</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Green"><B><BIG>tipo</BIG></B></FONT>: il
+      <FONT COLOR="Green"><B>tipo</B></FONT> del <B>valore di ritorno </B>della
+      <FONT COLOR="Green"><B>funzione</B></FONT> (con eventuali
+      <FONT COLOR="Green"><B>specificatori</B></FONT> e/o
+      <FONT COLOR="Green"><B>qualificatori</B></FONT>), detto anche
+      <FONT COLOR="Green"><B>tipo</B></FONT> della
+      <FONT COLOR="Green"><B>funzione</B></FONT>; se la
+      <FONT COLOR="Green"><B>funzione</B></FONT> non ha <B>valore di ritorno</B>,
+      <U>bisogna</U> specificare <FONT COLOR="Blue"><B>void</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><B><BIG>nome</BIG></B>:
+      l'<FONT COLOR="Green"><B>identificatore</B></FONT> della
+      <FONT COLOR="Green"><B>funzione</B></FONT>; segue le regole generali di specifica
+      degli
+      </BIG><FONT COLOR="Green"><BIG><B>identificatori</B></BIG></FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><BIG><FONT COLOR="Maroon"><B>argomenti</B></FONT></BIG>: lista degli
+      <FONT COLOR="Maroon"><B>argomenti</B></FONT> passati dal <B>programma
+      chiamante</B>; se non vi sono
+      <FONT COLOR="Maroon"><B>argomenti</B></FONT>, si pu&ograve; specificare
+      <FONT COLOR="Blue"><B>void</B></FONT> (o, pi&ugrave; comodamente, non scrivere
+      nulla fra le parentesi)</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Gli <FONT COLOR="Maroon"><B>argomenti</B></FONT> vanno specificati insieme
+  al loro <FONT COLOR="Green"><B>tipo</B></FONT> (come nelle
+  <B>dichiarazioni</B> delle variabili) e, se pi&ugrave; d'uno, separati con
+  delle virgole. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Es. &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>char</B></FONT>
+  <FONT COLOR="Maroon"><B>MiaFunz</B></FONT><FONT COLOR="Blue"><B>(int
+  </B></FONT><FONT COLOR="Maroon"><B>dato</B></FONT><FONT COLOR="Blue"><B>,
+  float
+  </B></FONT><FONT COLOR="Maroon"><B>valore</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+  </BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG>la <FONT COLOR="Green"><B>funzione</B></FONT>
+	<FONT COLOR="Maroon"><B>MiaFunz</B></FONT> riceve dal <B>programma
+	chiamante</B> gli
+	<FONT COLOR="Maroon"><B>argomenti</B></FONT>:<FONT COLOR="Maroon"><B> <BR>
+	dato</B></FONT> (di <FONT COLOR="Green"><B>tipo</B></FONT>
+	<FONT COLOR="Blue"><B>int</B></FONT>), e
+	<FONT COLOR="Maroon"><B>valore</B></FONT> (di
+	<FONT COLOR="Green"><B>tipo</B></FONT>
+	<FONT COLOR="Blue"><B>float</B></FONT>), e
+	<FONT COLOR="Green"><B>ritorna</B></FONT> un risultato di
+	<FONT COLOR="Green"><B>tipo</B></FONT>
+	<FONT COLOR="Blue"><B>char</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Dichiarazione di una
+funzione</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Se in un file di <I><B>codice sorgente</B></I> una
+  <FONT COLOR="Green"><B>funzione</B></FONT> &eacute; <B>chiamata</B>
+  <U>prima</U> di essere <B>definita</B>, <U>bisogna</U> <B>dichiararla</B>
+  <U>prima</U> di <B>chiamarla</B>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>La <B>dichiarazione</B> di una
+  <FONT COLOR="Green"><B>funzione</B></FONT> (detta anche
+  <I><B>prototipo</B></I>) &eacute; un'unica istruzione, formalmente identica
+  alla prima riga della sua <B>definizione</B>, salvo il fatto che <U>deve
+  terminare con un punto e virgola</U>. Tornando all'esempio precedente la
+  dichiarazione della funzione <FONT COLOR="Maroon"><B>MiaFunz</B></FONT>
+  &eacute;:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>char</B></FONT>
+  <FONT COLOR="Maroon"><B>MiaFunz</B></FONT><FONT COLOR="Blue"><B>(int
+  </B></FONT><FONT COLOR="Maroon"><B>dato</B></FONT><FONT COLOR="Blue"><B>,
+  float
+  </B></FONT><FONT COLOR="Maroon"><B>valore</B></FONT><FONT COLOR="Blue"><B>);</B></FONT>
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>Nella <B>dichiarazione</B> di una
+  <FONT COLOR="Green"><B>funzione</B></FONT> i nomi degli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> sono fittizi e non &eacute;
+  necessario che coincidano con quelli dalla <B>definizione</B> (non &eacute;
+  neppure necessario specificarli); invece i
+  <FONT COLOR="Green"><B>tipi</B></FONT> sono <U>obbligatori</U>: devono coincidere
+  ed essere nello stesso ordine di quelli della <B>definizione</B>. Es., un'altra
+  <B>dichiarazione</B> valida della funzione
+  <FONT COLOR="Maroon"><B>MiaFunz</B></FONT> &eacute;: </BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>char</B></FONT>
+  <FONT COLOR="Maroon"><B>MiaFunz</B></FONT><FONT COLOR="Blue"><B>(int,
+  float);</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <FONT COLOR="Red"><B><U>NOTA IMPORTANTE</U></B></FONT><BR>
+  <BIG>La tendenza dei programmatori in <FONT COLOR="Red"><B>C++</B></FONT>
+  &eacute; di <U>separare</U> le <B>dichiarazioni</B> dalle altre istruzioni
+  di programma: le prime, che possono riguardare non solo
+  <FONT COLOR="Green"><B>funzioni</B></FONT>, ma anche
+  <FONT COLOR="Green"><B>costanti</B></FONT> <I><B>predefinite</B></I> o
+  <B>definizioni</B> di <FONT COLOR="Green"><B>tipi</B></FONT>
+  <I><B>astratti</B></I>, sono sistemate in <FONT COLOR="Red"><B>header-files
+  </B></FONT>(con estensione del nome <FONT COLOR="Blue"><B>.h</B></FONT>),
+  le seconde in <FONT COLOR="Red"><B>implementation-files </B></FONT>(con
+  estensione <FONT COLOR="Blue"><B>.c</B></FONT>,
+  <FONT COLOR="Blue"><B>.cpp</B></FONT> o
+  <FONT COLOR="Blue"><B>.cxx</B></FONT>); ogni
+  <FONT COLOR="Red"><B>implementation-file</B></FONT> che contiene riferimenti
+  a <FONT COLOR="Green"><B>funzioni</B></FONT> (o altro) <B>dichiarate</B>
+  in <FONT COLOR="Red"><B>header-files</B></FONT>, deve <B>includere</B>
+  quest'ultimi mediante la <FONT COLOR="Green"><B>direttiva</B></FONT>
+  <FONT COLOR="Blue"><B>#include</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p19/prototipi.h">[p19]</A>
+<A HREF="p19/chiamante.cpp">[p19]</A>
+<A HREF="p19/funzioni.cpp">[p19]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Istruzione
+return</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Nel <FONT COLOR="Green"><B>codice di implementazione</B></FONT> di una
+  <FONT COLOR="Green"><B>funzione </B></FONT>l'istruzione di <B>ritorno</B>
+  al <B>programma chiamante</B> &eacute;: </BIG>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center" WIDTH="80%">
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B><BIG>return</BIG></B></FONT><BIG>
+	  <FONT COLOR="Maroon"><B>espressione</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></BIG></TD>
+      </TR>
+      <TR>
+	<TD><P ALIGN=Justify>
+	  <BIG>il valore calcolato
+	  dell'<FONT COLOR="Maroon"><B>espressione</B></FONT> viene restituito al
+	  <B>programma chiamante</B> come <B>valore di ritorno </B>della
+	  <FONT COLOR="Green"><B>funzione</B></FONT> (se il suo
+	  <FONT COLOR="Green"><B>tipo</B></FONT> non coincide con quello
+	  <B>dichiarato</B> della <FONT COLOR="Green"><B>funzione</B></FONT>, il
+	  compilatore segnala un errore, oppure, quando pu&ograve;, esegue una
+	  <I><B>conversione implicita</B></I>, con <I><B>warning</B></I> se c'&eacute;
+	  pericolo di <I><B>loss of data</B></I>) </BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>Non &eacute; necessario che tale istruzione sia fisicamente l'ultima
+  (e non &eacute; neppure necessario che ve ne sia una sola: dipende dalla
+  presenza delle <FONT COLOR="Green"><B>istruzioni di controllo</B></FONT>,
+  che possono interrompere l'esecuzione della
+  <FONT COLOR="Green"><B>funzione</B></FONT> in punti diversi). Se la
+  <FONT COLOR="Green"><B>funzione</B></FONT> non ha <B>valore di ritorno</B>
+  (<FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>void</B></FONT>), bisogna specificare
+  <FONT COLOR="Blue"><B>return;</B></FONT> (da solo). Questa istruzione pu&ograve;
+  essere omessa quando <U>il punto di ritorno coincide con la fine fisica della
+  <FONT COLOR="Green"><B>funzione</B></FONT></U>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Comunicazioni fra programma chiamante
+e funzione</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Da programma chiamante a
+funzione</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La <B>chiamata</B> di una <FONT COLOR="Green"><B>funzione</B></FONT>
+  non di <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>void</B></FONT> pu&ograve; essere inserita come
+  <FONT COLOR="Green"><B>operando</B></FONT> in qualsiasi
+  <FONT COLOR="Maroon"><B>espressione</B></FONT> o come
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> nella <B>chiamata</B> di un'altra
+  <FONT COLOR="Green"><B>funzione</B></FONT> (in questo caso il compilatore
+  controlla che il <FONT COLOR="Green"><B>tipo</B></FONT> della
+  <FONT COLOR="Green"><B>funzione</B></FONT> sia ammissibile): la
+  <B>chiamata</B> viene eseguita <U>con precedenza</U> rispetto alle altre
+  operazioni e al suo posto viene sostituito il <B>valore di ritorno</B> restituito
+  dalla <FONT COLOR="Green"><B>funzione</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Il <B>valore di ritorno</B> pu&ograve; non essere utilizzato dal
+  <B>programma chiamante</B>, come se la
+  <FONT COLOR="Green"><B>funzione</B></FONT> fosse di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>void</B></FONT>; in questi casi (cio&egrave; se la
+  <FONT COLOR="Green"><B>funzione</B></FONT> &egrave; di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>void</B></FONT>, oppure il <B>valore di ritorno</B>
+  non interessa), la <B>chiamata</B> non pu&ograve; essere inserita in una
+  <FONT COLOR="Maroon"><B>espressione</B></FONT>, ma deve assumere la forma
+  di un'istruzione a se stante. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Quando esegue la <B>chiamata</B> di una
+  <FONT COLOR="Green"><B>funzione</B></FONT>, il programma <U>costruisce una
+  copia</U> di ogni <FONT COLOR="Maroon"><B>argomento</B></FONT>, creando delle
+  variabili <FONT COLOR="Green"><B>locali</B></FONT>
+  nell'<FONT COLOR="Green"><B>ambito</B></FONT> della
+  <FONT COLOR="Green"><B>funzione</B></FONT> (passaggio degli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> <B><U>per valore</U></B>). Ci&ograve;
+  significa che tutte le modifiche, fatte dalla
+  <FONT COLOR="Green"><B>funzione</B></FONT> al valore di un
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>, <U>hanno effetto soltanto
+  nell'ambito della <FONT COLOR="Green"><B>funzione</B></FONT> stessa</U>.
+  </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.</BIG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Green"><B>funzione</B></FONT>:</BIG> &nbsp;</TD>
+      <TD><BIG><B><FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">(int</FONT>
+	<FONT COLOR="Maroon">a</FONT><FONT COLOR="Blue">) &nbsp; {</FONT> .....
+	<FONT COLOR="Maroon">a</FONT> <FONT COLOR="Blue">=</FONT>
+	<FONT COLOR="Maroon">a</FONT>+<FONT COLOR="Maroon">1</FONT><FONT COLOR="Blue">;</FONT>
+	.... <FONT COLOR="Blue">}</FONT></B></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><B>prog. chiamante</B>: </BIG>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG><B><FONT COLOR="Blue">int</FONT></B>
+	<B><FONT COLOR="Maroon">b</FONT> <FONT COLOR="Blue">=</FONT>
+	<FONT COLOR="Maroon">0</FONT> ......
+	<FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">(</FONT><FONT COLOR="Maroon">b</FONT><FONT
+	    COLOR="Blue">);</FONT> ..... </B></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>il programma, prima di chiamare
+  <B><FONT COLOR="Maroon">funz</FONT></B>, <U>copia</U> il valore della propria
+  variabile <B><FONT COLOR="Maroon">b</FONT></B> nell'argomento
+  <B><FONT COLOR="Maroon">a</FONT></B>, che diventa una variabile
+  <FONT COLOR="Green"><B>locale</B></FONT>
+  nell'<FONT COLOR="Green"><B>ambito</B></FONT> di
+  <B><FONT COLOR="Maroon">funz</FONT></B>; per cui
+  <B><FONT COLOR="Maroon">a</FONT></B> "muore" appena il controllo ritorna
+  al programma e il valore di <B><FONT COLOR="Maroon">b</FONT></B> <U>resta
+  invariato</U>, qualunque modifica abbia subito
+  <B><FONT COLOR="Maroon">a</FONT></B> durante l'esecuzione di
+  <B><FONT COLOR="Maroon">funz</FONT></B>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>A questa regola fa eccezione (per motivi che vedremo in seguito) il
+  caso in cui gli <FONT COLOR="Maroon"><B>argomenti</B></FONT> sono <B>nomi</B>
+  di <FONT COLOR="Green"><B>array</B></FONT> (e quindi in particolare di
+  <FONT COLOR="Green"><B>stringhe</B></FONT>). Per trasmettere <U>un intero
+  <FONT COLOR="Green"><B>array</B></FONT></U> a una
+  <FONT COLOR="Green"><B>funzione</B></FONT> (nel caso di singoli
+  <FONT COLOR="Green"><B>elementi</B></FONT> non ci sarebbe eccezione alla
+  regola generale) bisogna inserire nella chiamata il nome
+  dell'<FONT COLOR="Green"><B>array</B></FONT> (senza parentesi quadre) e,
+  corrispondentemente nella <FONT COLOR="Green"><B>funzione</B></FONT> la
+  <B>dichiarazione</B> di una variabile seguita dalla coppia di parentesi quadre.
+  Non serve specificare la <FONT COLOR="Green"><B>dimensione</B></FONT> in
+  quanto la stessa &eacute; gi&agrave; stata dichiarata nel <B>programma
+  chiamante</B> (tuttavia, se l'<FONT COLOR="Green"><B>array</B></FONT> &eacute;
+  <I><B>multidimensionale</B></I> l'unico
+  <FONT COLOR="Green"><B>indice</B></FONT> che si pu&ograve; omettere &eacute;
+  quello all'estrema sinistra). In questa situazione, <U>tutte le modifiche
+  fatte ai singoli elementi dell'<FONT COLOR="Green"><B>array</B></FONT> vengono
+  riprodotte sull'<FONT COLOR="Green"><B>array</B></FONT> del <B>programma
+  chiamante</B></U>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Da funzione a programma
+chiamante</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Quando il controllo torna da una
+  <FONT COLOR="Green"><B>funzione</B></FONT> al <B>programma chiamante</B>,
+  tramite l'istruzione: <FONT COLOR="Blue"><B>return
+  </B></FONT><FONT COLOR="Maroon"><B>espressione</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>,
+  il programma <U>costruisce una copia</U> del valore calcolato
+  dell'<FONT COLOR="Maroon"><B>espressione</B></FONT> (che "muore" appena termina
+  la <FONT COLOR="Green"><B>funzione</B></FONT>), creando un valore
+  <FONT COLOR="Green"><B>locale</B></FONT>
+  nell'<FONT COLOR="Green"><B>ambito</B></FONT> del <B>programma chiamante</B>.
+  </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.</BIG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;</TD>
+      <TD><BIG>nel <B>programma chiamante</B>: &nbsp; &nbsp;</BIG></TD>
+      <TD><BIG><B>..... <FONT COLOR="Blue">int</FONT> <FONT COLOR="Maroon">a
+	</FONT><FONT COLOR="Blue">=</FONT>
+	<FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">();</FONT> .......
+	</B></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG>nella <FONT COLOR="Green"><B>funzione</B></FONT>: </BIG></TD>
+      <TD><BIG><B><FONT COLOR="Blue">int</FONT>
+	<FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">()</FONT></B>
+	<B><FONT COLOR="Blue">{</FONT> ...... <FONT COLOR="Blue">return</FONT>
+	<FONT COLOR="Maroon">b</FONT><FONT COLOR="Blue">;</FONT> ....
+	<FONT COLOR="Blue">}</FONT></B></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG><B><FONT COLOR="Maroon">funz</FONT></B> restituisce al programma non
+  la variabile <B><FONT COLOR="Maroon">b</FONT></B> (che, in quanto
+  <FONT COLOR="Green"><B>locale</B></FONT> in
+  <B><FONT COLOR="Maroon">funz</FONT></B> muore appena
+  <B><FONT COLOR="Maroon">funz</FONT></B> termina), <U>ma una sua copia</U>,
+  che sopravvive a <B><FONT COLOR="Maroon">funz</FONT></B> e diventa un valore
+  <FONT COLOR="Green"><B>locale</B></FONT> (<I><B>temporaneo</B></I>, cio&egrave;
+  non identificato da un <B>nome</B>) del <B>programma chiamante</B>,
+  <FONT COLOR="Purple"><B>assegnato</B></FONT> alla variabile
+  <B><FONT COLOR="Maroon">a</FONT></B>.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p20/media.cpp">[p20]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Argomenti di
+default</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> &eacute; consentito
+  "<B>inizializzare</B>" un <FONT COLOR="Maroon"><B>argomento</B></FONT>: come
+  conseguenza, se nella <B>chiamata</B>
+  l'<FONT COLOR="Maroon"><B>argomento</B></FONT> &eacute; omesso, il suo valore
+  &eacute; assunto, di <I><B>default</B></I>, uguale alla
+  <FONT COLOR="Green"><B>costante</B></FONT> (o variabile
+  <FONT COLOR="Green"><B>globale</B></FONT>) usata per
+  l'<B>inizializzazione</B>. Questa <U>deve essere fatta un'unica volta</U>
+  (e quindi in generale nel <B>prototipo</B> della
+  <FONT COLOR="Green"><B>funzione</B></FONT>, ma non nella sua
+  <B>definizione</B>). Es.</BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG><B>prototipo</B>: </BIG></TD>
+      <TD><BIG><B><FONT COLOR="Blue">void</FONT>
+	<FONT COLOR="Maroon">scrive</FONT><FONT COLOR="Blue">(char [ ] =
+	</FONT><FONT COLOR="Maroon">"Messaggio di
+	saluto"</FONT><FONT COLOR="Blue">);</FONT></B></BIG></TD>
+    </TR>
+    <TR>
+      <TD><BIG><B>chiamata</B>: </BIG></TD>
+      <TD><BIG><B><FONT COLOR="Maroon">scrive</FONT><FONT COLOR="Blue">();</FONT>
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</B>equivale a:
+	<B><FONT COLOR="Maroon">scrive</FONT><FONT COLOR="Blue">(</FONT><FONT COLOR="Maroon">"Messaggio
+	di saluto"</FONT><FONT COLOR="Blue">);</FONT></B></BIG></TD>
+    </TR>
+    <TR>
+      <TD><BIG><B>definizione</B>: &nbsp; &nbsp;</BIG></TD>
+      <TD><BIG><B><FONT COLOR="Blue">void</FONT>
+	<FONT COLOR="Maroon">scrive</FONT><FONT COLOR="Blue">(char
+	</FONT><FONT COLOR="Maroon">ave</FONT><FONT COLOR="Blue">[ ] )</FONT></B>
+	<B><FONT COLOR="Blue">&nbsp;{</FONT> ............ <FONT COLOR="Blue">}</FONT>
+	</B></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Se una <FONT COLOR="Green"><B>funzione</B></FONT> ha diversi
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>, di cui alcuni
+  <I><B>required</B></I> (da specificare) e altri di <I><B>default</B></I>,
+  quelli <I><B>required</B></I> devono precedere <U>tutti</U> quelli di
+  <I><B>default</B></I>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Funzioni con
+overload</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>A differenza dal <FONT COLOR="Red"><B>C</B></FONT>, il
+  <FONT COLOR="Red"><B>C++</B></FONT> consente l'esistenza di <U>pi&ugrave;
+  <FONT COLOR="Green"><B>funzioni</B></FONT> con lo stesso <B>nome</B></U>,
+  che sono chiamate: "<FONT COLOR="Green"><B>funzioni</B></FONT> con
+  <FONT COLOR="Green"><B>overload</B></FONT>". Il compilatore distingue una
+  <FONT COLOR="Green"><B>funzione</B></FONT> dall'altra in base alla <U>lista
+  degli <FONT COLOR="Maroon"><B>argomenti</B></FONT></U>: due
+  <FONT COLOR="Green"><B>funzioni</B></FONT> con
+  <FONT COLOR="Green"><B>overload</B></FONT> devono differire per il
+  <B>numero</B> e/o per il <FONT COLOR="Green"><B>tipo</B></FONT> dei loro
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Es. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <B><FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">(int);</FONT></B> e
+  <B><FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">(float);</FONT></B>
+  &nbsp; &nbsp; &nbsp; &nbsp; verranno chiamate con lo stesso <B>nome</B>
+  <FONT COLOR="Maroon"><B>funz</B></FONT>, ma sono in realt&agrave; due
+  <FONT COLOR="Green"><B>funzioni</B></FONT> diverse, in quanto la prima ha
+  un <FONT COLOR="Maroon"><B>argomento</B></FONT>
+  <B><FONT COLOR="Blue">int</FONT></B>, la seconda un
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>
+  <B><FONT COLOR="Blue">float</FONT></B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Non sono ammesse <FONT COLOR="Green"><B>funzioni</B></FONT> con
+  <FONT COLOR="Green"><B>overload</B></FONT> che differiscano solo per il
+  <FONT COLOR="Green"><B>tipo</B></FONT> del <B>valore di ritorno </B>; n&eacute;
+  sono ammesse <FONT COLOR="Green"><B>funzioni</B></FONT> che differiscano
+  solo per <FONT COLOR="Maroon"><B>argomenti</B></FONT> di
+  <I><B>default</B></I>.</BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es. </BIG>&nbsp; &nbsp; &nbsp;</TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><B><FONT COLOR="Blue">void</FONT></B>
+	<B><FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">(int);</FONT></B> &nbsp;
+	e <B><FONT COLOR="Blue">&nbsp; &nbsp;int</FONT>
+	<FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">(int);</FONT></B></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD COLSPAN=2><P ALIGN=Justify>
+	<BIG>non sono accettate, in quanto generano <U>ambiguit&agrave;</U>: infatti,
+	in una <B>chiamata</B> tipo
+	<B><FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">(</FONT><FONT COLOR="Maroon">n</FONT><FONT
+	    COLOR="Blue">)</FONT></B>, il programma non saprebbe se trasferirsi alla
+	prima oppure alla seconda <FONT COLOR="Green"><B>funzione</B></FONT> (non
+	dimentichiamo che il <B>valore di ritorno</B> <U>pu&ograve; non essere
+	utilizzato</U>). </BIG></TD>
+    </TR>
+  </TABLE>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.</BIG> &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><B><FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">(int);</FONT></B>
+	&nbsp; e &nbsp;
+	&nbsp;<B><FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">(int</FONT></B><FONT
+	    COLOR="Blue"><B>,</B></FONT>
+	<B><FONT COLOR="Blue">double</FONT></B><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>0.0</B></FONT><B><FONT COLOR="Blue">);</FONT></B></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD COLSPAN=2><P ALIGN=Justify>
+	<BIG>non sono accettate, in quanto generano <U>ambiguit&agrave;</U>: infatti,
+	in una <B>chiamata</B> tipo
+	<B><FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">(</FONT><FONT COLOR="Maroon">n</FONT><FONT
+	    COLOR="Blue">)</FONT></B>, il programma non saprebbe se trasferirsi alla
+	prima <FONT COLOR="Green"><B>funzione</B></FONT> (che ha un solo
+	<FONT COLOR="Maroon"><B>argomento</B></FONT>), oppure alla seconda (che ha
+	due <FONT COLOR="Maroon"><B>argomenti</B></FONT>, ma il secondo pu&ograve;
+	essere omesso per <I><B>default</B></I>). </BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>La tecnica dell'<FONT COLOR="Green"><B>overload</B></FONT>, comune sia
+  alle <FONT COLOR="Green"><B>funzioni</B></FONT> che agli
+  <FONT COLOR="Green"><B>operatori</B></FONT>, &eacute; molto usata in
+  <FONT COLOR="Red"><B>C++</B></FONT>, perch&eacute; permette di programmare
+  in modo <U>semplice ed efficiente</U>:
+  <FONT COLOR="Green"><B>funzioni</B></FONT> che eseguono operazioni
+  concettualmente simili possono essere chiamate con lo stesso <B>nome</B>,
+  anche se lavorano su dati diversi. <BR>
+  Es., per calcolare il <B>valore assoluto</B> di un numero, qualunque sia
+  il suo <FONT COLOR="Green"><B>tipo</B></FONT>, si potrebbe usare sempre una
+  <FONT COLOR="Green"><B>funzione</B></FONT> con lo stesso <B>nome</B> (per
+  esempio <FONT COLOR="Maroon"><B>abs</B></FONT>).</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p21/absolute.cpp">[p21]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Funzioni
+inline</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> esiste la possibilit&agrave;
+  di chiedere al compilatore di espandere ogni <B>chiamata</B> di una
+  <FONT COLOR="Green"><B>funzione</B></FONT> con il
+  <FONT COLOR="Green"><B>codice di implementazione</B></FONT> della
+  <FONT COLOR="Green"><B>funzione</B></FONT> stessa. Questo si ottiene premettendo
+  alla <B>definizione</B> di una <FONT COLOR="Green"><B>funzione</B></FONT>
+  lo <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>inline</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.</BIG> &nbsp; &nbsp;</TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>inline</B></FONT>
+	<FONT COLOR="Blue"><B>double</B></FONT>
+	<FONT COLOR="Maroon"><B>cubo</B></FONT><FONT COLOR="Blue"><B>(double</B></FONT>
+	<FONT COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B>) &nbsp; { return
+	</B></FONT><FONT COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><FONT
+	    COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><FONT
+	    COLOR="Maroon"><B>x</B></FONT> <FONT COLOR="Blue"><B>; }</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD COLSPAN=2><P ALIGN=Justify>
+	<BIG>ogni volta che il compilatore trova nel programma la <B>chiamata</B>:
+	<FONT COLOR="Maroon"><B>cubo</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Purple"><B>espressione</B></FONT><FONT COLOR="Blue"><B>);
+	</B></FONT>la trasforma nell'istruzione :
+	<FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Purple"><B>espressione</B></FONT><FONT
+	    COLOR="Blue"><B>)</B></FONT>
+	<FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT>
+	<FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Purple"><B>espressione</B></FONT><FONT
+	    COLOR="Blue"><B>)</B></FONT>
+	<FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>
+	(</B></FONT><FONT COLOR="Purple"><B>espressione</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+	<FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>L'uso dello <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>inline</B></FONT> &eacute; molto comune, in quanto
+  permette <U>di eliminare il sovraccarico di lavoro dovuto alla gestione della
+  comunicazione fra programma e
+  <FONT COLOR="Green"><B>funzione</B></FONT></U>. Se per&ograve; il numero
+  di <B>chiamate</B> della <FONT COLOR="Green"><B>funzione</B></FONT> &eacute;
+  molto elevato ed &eacute; in punti diversi del programma, il vantaggio potrebbe
+  essere annullato dall'eccessivo accrescimento della lunghezza del programma
+  (il vantaggio invece &eacute; evidente quando vi sono poche chiamate ma inserite
+  in <I><B>cicli</B></I> <FONT COLOR="Blue"><B>while</B></FONT> o
+  <FONT COLOR="Blue"><B>for</B></FONT>: in questo caso lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>inline</B></FONT> fa crescere di poco la dimensione
+  del programma, ma il numero delle <B>chiamate</B> in esecuzione pu&ograve;
+  essere molto elevato). </BIG>
+  <P ALIGN=Justify>
+  <BIG>In ogni caso il compilatore si riserva il diritto di accettare o rifiutare
+  lo <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>inline</B></FONT>: in pratica, una
+  <FONT COLOR="Green"><B>funzione</B></FONT> che consista di pi&ugrave; di
+  4 o 5 righe di istruzioni viene compilata come
+  <FONT COLOR="Green"><B>funzione</B></FONT> separata, indipendentemente dalla
+  presenza o meno dello <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>inline</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Trasmissione dei parametri tramite l'area
+stack</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Cenni sulle liste</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In qualsiasi linguaggio di programmazione le
+  <FONT COLOR="Green"><B>liste</B></FONT> di dati possono essere accessibili
+  in vari modi (per esempio in modo <I><B>randomatico</B></I>), ma esistono
+  <U>due particolari</U> categorie di
+  <FONT COLOR="Green"><B>liste</B></FONT> caratterizzate da metodi di accesso
+  ben definiti e utilizzate in numerose circostanze: </BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>le <FONT COLOR="Green"><B>liste</B></FONT> di tipo
+      <FONT COLOR="Purple"><B><I>queue</I></B></FONT> (<B>coda</B>), accessibili
+      con il metodo <I><B>FIFO</B></I> (<I><B>first in-first out</B></I>): il primo
+      dato che entra nella <FONT COLOR="Green"><B>lista</B></FONT> &egrave; il
+      primo a essere servito; tipiche <FONT COLOR="Purple"><B>queues</B></FONT>
+      sono le code davanti agli sportelli, le code di stampa (priorit&agrave; a
+      parte) ecc... </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>le <FONT COLOR="Green"><B>liste</B></FONT> di tipo
+      <FONT COLOR="Purple"><I><B>stack</B></I></FONT> (<B>pila</B>), accessibili
+      con il metodo <I><B>LIFO</B></I> (<I><B>last in-first out</B></I>): l'ultimo
+      dato che entra nella <FONT COLOR="Green"><B>lista</B></FONT> &egrave; il
+      primo a essere servito. </BIG>
+  </UL>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Uso dell'area stack</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Nella trasmissione dei parametri fra <B>programma chiamante</B> e
+  <FONT COLOR="Green"><B>funzione</B></FONT> vengono utilizzate
+  <FONT COLOR="Green"><B>liste</B></FONT> di tipo
+  <FONT COLOR="Purple"><B>stack</B></FONT>: quando una
+  <FONT COLOR="Green"><B>funzione</B></FONT> <FONT COLOR="Maroon"><B>A
+  </B></FONT><B>chiama</B> una <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>B</B></FONT>, sistema in un'<U>area di memoria</U>,
+  detta appunto <FONT COLOR="Purple"><B>stack</B></FONT>, un
+  <I><B>pacchetto</B></I> di dati, comprendenti: </BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>l'area di memoria per tutte le variabili
+      <FONT COLOR="Green"><B>automatiche</B></FONT> di
+      <FONT COLOR="Maroon"><B>B</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la lista degli <FONT COLOR="Maroon"><B>argomenti</B></FONT> di
+      <FONT COLOR="Maroon"><B>B</B></FONT> in cui copia i valori trasmessi da
+      <FONT COLOR="Maroon"><B>A</B></FONT></BIG>;
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>l'<B>indirizzo di rientro </B>in
+      <FONT COLOR="Maroon"><B>A</B></FONT> (cio&egrave; il punto di
+      <FONT COLOR="Maroon"><B>A</B></FONT> in cui il &nbsp;programma deve tornare
+      una volta completata l'esecuzione di
+      <FONT COLOR="Maroon"><B>B</B></FONT>, trasferendovi l'eventuale <B>valore
+      di ritorno</B>).</BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <BIG> La <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>B</B></FONT> utilizza tale
+  <I><B>pacchetto</B></I> e, se a sua volta chiama un'altra
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>C</B></FONT>, sistema nell'area
+  <FONT COLOR="Purple"><B>stack</B></FONT> un altro
+  <I><B>pacchetto</B></I>, "<B>impilato</B>" sopra il precedente, come nel
+  seguente schema (tralasciamo le aree riservate alle variabili
+  <FONT COLOR="Green"><B>automatiche</B></FONT>): </BIG>
+  <P>
+  <CENTER>
+    <TABLE BORDER CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TH><BIG>Area <FONT COLOR="Purple"><B>stack</B></FONT></BIG></TH>
+	<TH><BIG>Commenti</BIG></TH>
+      </TR>
+      <TR>
+	<TD><BIG><B>Indirizzo di</B> <B>rientro</B> in
+	  <FONT COLOR="Maroon"><B>B</B></FONT></BIG><BR>
+	  <BIG><FONT COLOR="Maroon"><B>Argomento</B></FONT> <B>1</B> passato a
+	  <FONT COLOR="Maroon"><B>C<BR>
+	  Argomento</B></FONT> <B>2</B> passato a
+	  <FONT COLOR="Maroon"><B>C</B></FONT></BIG></TD>
+	<TD>&nbsp; &nbsp; &nbsp; <BIG>La
+	  <FONT COLOR="Green"><B>funzione</B></FONT>
+	  <FONT COLOR="Maroon"><B>B</B></FONT> <B>chiama</B> la
+	  <FONT COLOR="Green"><B>funzione</B></FONT>
+	  <FONT COLOR="Maroon"><B>C</B></FONT> con <B>due</B>
+	  <FONT COLOR="Maroon"><B>argomenti</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><B>Indirizzo di</B> <B>rientro</B> in
+	  <FONT COLOR="Maroon"><B>A</B></FONT></BIG><BR>
+	  <BIG><FONT COLOR="Maroon"><B>Argomento</B></FONT> <B>1</B> passato a
+	  <FONT COLOR="Maroon"><B>B<BR>
+	  Argomento</B></FONT> <B>2</B> passato a
+	  <FONT COLOR="Maroon"><B>B</B></FONT><BR>
+	  <FONT COLOR="Maroon"><B>Argomento</B></FONT> <B>3</B> passato a
+	  <FONT COLOR="Maroon"><B>B</B></FONT></BIG></TD>
+	<TD>&nbsp; &nbsp; &nbsp; <BIG>La
+	  <FONT COLOR="Green"><B>funzione</B></FONT>
+	  <FONT COLOR="Maroon"><B>A</B></FONT> <B>chiama</B> la
+	  <FONT COLOR="Green"><B>funzione</B></FONT>
+	  <FONT COLOR="Maroon"><B>B</B></FONT> con <B>tre</B>
+	  <FONT COLOR="Maroon"><B>argomenti</B></FONT></BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG> Quando il controllo deve tornare da
+  <FONT COLOR="Maroon"><B>C</B></FONT> a
+  <FONT COLOR="Maroon"><B>B</B></FONT>, il programma fa riferimento <U>all'ultimo
+  <I><B>pacchetto</B></I> entrato nello
+  <FONT COLOR="Purple"><B>stack</B></FONT></U> per conoscere l'<B>indirizzo
+  di rientro</B> in <FONT COLOR="Maroon"><B>B</B></FONT> e, eseguita tale
+  operazione, <U>rimuove</U> lo stesso <I><B>pacchetto</B></I> dallo
+  <FONT COLOR="Purple"><B>stack</B></FONT> (cancellando di conseguenza anche
+  le variabili <FONT COLOR="Green"><B>automatiche</B></FONT> di
+  <FONT COLOR="Maroon"><B>C</B></FONT>). <BR>
+  La stessa cosa succede quando il controllo rientra da
+  <FONT COLOR="Maroon"><B>B</B></FONT> in
+  <FONT COLOR="Maroon"><B>A</B></FONT>; dopodich&eacute; lo
+  <FONT COLOR="Purple"><B>stack</B></FONT> rimane vuoto. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Ricorsivit&agrave; delle
+funzioni</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Tornando all'esempio precedente, la trasmissione dei parametri attraverso
+  lo <FONT COLOR="Purple"><B>stack</B></FONT> garantisce che il meccanismo
+  funzioni <U>comunque</U>, sia che <FONT COLOR="Maroon"><B>A</B></FONT>,
+  <FONT COLOR="Maroon"><B>B</B></FONT> e
+  <FONT COLOR="Maroon"><B>C</B></FONT> siano
+  <FONT COLOR="Green"><B>funzioni</B></FONT> diverse, sia che si tratti della
+  <U>stessa <FONT COLOR="Green"><B>funzione</B></FONT></U> (ogni volta va a
+  cercare nello <FONT COLOR="Purple"><B>stack</B></FONT> l'<B>indirizzo di
+  rientro </B>nel programma chiamante e quindi non cambia nulla se tale
+  <B>indirizzo</B> si trova all'interno della stessa
+  <FONT COLOR="Green"><B>funzione</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Ne consegue che in <FONT COLOR="Red"><B>C++</B></FONT> (come in
+  <FONT COLOR="Red"><B>C</B></FONT>) <U>le
+  <FONT COLOR="Green"><B>funzioni</B></FONT> possono chiamare se stesse</U>
+  (<I><B>ricorsivit&agrave;</B></I> delle
+  <FONT COLOR="Green"><B>funzioni</B></FONT>). Ovviamente tali
+  <FONT COLOR="Green"><B>funzioni</B></FONT> devono sempre contenere
+  un'<B>istruzione di controllo</B> che, se si verificano certe condizioni,
+  ha il compito di interrompere la successione delle <B>chiamate</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Esempio tipico di una <FONT COLOR="Green"><B>funzione</B></FONT> chiamata
+  ricorsivamente &egrave; quello del calcolo del <I><B>fattoriale</B></I> di
+  un numero intero: </BIG>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD><BIG><B><FONT COLOR="Blue">int</FONT>
+	  <FONT COLOR="Maroon">fact</FONT><FONT COLOR="Blue">(int</FONT>
+	  <FONT COLOR="Maroon">n</FONT><FONT COLOR="Blue">)</FONT></B>
+	  <FONT COLOR="Blue"><B>{</B></FONT> </BIG></TD>
+	<TD>&nbsp; &nbsp;</TD>
+	<TD></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>if (
+	  </B></FONT><FONT COLOR="Maroon"><B>n</B></FONT>
+	  <FONT COLOR="Blue"><B>&lt;=</B></FONT>
+	  <FONT COLOR="Maroon"><B>1</B></FONT> <FONT COLOR="Blue"><B>)
+	  return</B></FONT>
+	  <FONT COLOR="Maroon"><B>1</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	<TD></TD>
+	<TD><BIG><B>&lt;----- istr. di controllo</B></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>return</B></FONT>
+	  <FONT COLOR="Maroon"><B>n</B></FONT>
+	  <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT>
+	  <B><FONT COLOR="Maroon">fact</FONT><FONT COLOR="Blue">(</FONT></B><FONT COLOR="Maroon"><B>n</B></FONT><FONT
+	      COLOR="Blue"><B>-</B></FONT><FONT COLOR="Maroon"><B>1</B></FONT><FONT COLOR="Blue"><B>);
+	  &nbsp; &nbsp;}</B></FONT></BIG></TD>
+	<TD></TD>
+	<TD></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Right>
+  <FORM ACTION="factor.pps">
+    <BIG> 
+    <INPUT TYPE=submit VALUE="Fattoriale in pps"></BIG>
+  </FORM>
+  <P ALIGN=Justify>
+  <BIG>alternativamente, cio&egrave; senza usare la
+  <I><B>ricorsivit&agrave;</B></I>, si produce codice meno compatto:</BIG>
+  <P>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD><BIG><B><FONT COLOR="Blue">int</FONT>
+	  <FONT COLOR="Maroon">fact</FONT><FONT COLOR="Blue">(int</FONT>
+	  <FONT COLOR="Maroon">n</FONT><FONT COLOR="Blue">)</FONT></B> &nbsp;
+	  <FONT COLOR="Blue"><B>{</B></FONT> </BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><B><FONT COLOR="Blue">int</FONT></B> <FONT COLOR="Maroon"><B>i
+	  </B></FONT><FONT COLOR="Blue"><B>=</B></FONT>
+	  <FONT COLOR="Maroon"><B>2</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+	  <FONT COLOR="Maroon"><B>m</B></FONT> <FONT COLOR="Blue"><B>=
+	  </B></FONT><FONT COLOR="Maroon"><B>1</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>while (</B></FONT> <FONT COLOR="Maroon"><B>i
+	  </B></FONT><FONT COLOR="Blue"><B>&lt;=</B></FONT>
+	  <B><FONT COLOR="Maroon">n</FONT></B> <B><FONT COLOR="Blue">)</FONT></B>
+	  <FONT COLOR="Maroon"><B>m</B></FONT>
+	  <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>=</B></FONT>
+	  <FONT COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>++
+	  ;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>return
+	  </B></FONT><FONT COLOR="Maroon"><B>m</B></FONT><FONT COLOR="Blue"><B>; &nbsp;
+	  &nbsp; &nbsp; &nbsp; &nbsp;}</B></FONT></BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p22/inverter.cpp">[p22]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Funzioni con numero variabile di
+argomenti</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> (come in
+  <FONT COLOR="Red"><B>C</B></FONT>), tramite accesso allo
+  <FONT COLOR="Purple"><B>stack</B></FONT>, &egrave; possibile gestire
+  <FONT COLOR="Green"><B>funzioni</B></FONT> con <U>numero variabile di
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT></U>. Caso tipico &eacute; la
+  nota <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Blue"><B>printf</B></FONT>, che ha un solo
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> <I><B>fisso</B></I> (la
+  <I><B>control-string</B></I>), seguito eventualmente dagli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> <I><B>opzionali</B></I> (i dati
+  da scrivere), il cui numero &egrave; determinato in fase di esecuzione,
+  esaminando il contenuto della stessa
+  <I><B>control-string</B></I>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Le <FONT COLOR="Green"><B>funzioni</B></FONT> con numero variabile di
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> vanno <B>dichiarate</B> e
+  <B>definite</B> con <U>tre puntini</U> (<I><B>ellipsis</B></I>) al posto
+  della lista degli <FONT COLOR="Maroon"><B>argomenti</B></FONT>
+  <I><B>opzionali</B></I>, che devono sempre seguire quelli
+  <I><B>fissi</B></I> (deve sempre esistere almeno un
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>
+  <I><B>fisso</B></I>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Es.: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="Maroon"><B>funzvar</B></FONT><FONT COLOR="Blue"><B>(int</B></FONT>
+  <FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>, float</B></FONT>
+  <FONT COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B>, ...)
+  </B></FONT><BR>
+  gli <FONT COLOR="Maroon"><B>argomenti</B></FONT> <I><B>fissi</B></I> della
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>funzvar</B></FONT> sono due:
+  <FONT COLOR="Maroon"><B>a</B></FONT> e
+  <FONT COLOR="Maroon"><B>b</B></FONT>; a questi possono seguire altri
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> (in numero qualsiasi). Normalmente
+  gli <FONT COLOR="Maroon"><B>argomenti</B></FONT> <I><B>fissi</B></I> contengono
+  l'informazione (come nella <FONT COLOR="Blue"><B>printf</B></FONT>)
+  sull'effettivo numero di <FONT COLOR="Maroon"><B>argomenti</B></FONT> usati
+  in una <B>chiamata</B>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>funzione</B></FONT> pu&ograve; accedere al
+  suo <I><B>pacchetto</B></I> di <B>chiamata</B>, contenuto nello
+  <FONT COLOR="Purple"><B>stack</B></FONT>, per mezzo di alcune
+  <FONT COLOR="Green"><B>funzioni</B></FONT> <FONT COLOR="Green"><B>di
+  libreria</B></FONT>, i cui <B>prototipi</B> si trovano
+  nell'<I><B>header-file</B></I> <FONT COLOR="Blue"><B>&lt;stdarg.h&gt;
+  </B></FONT>; per memorizzare i valori degli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> <I><B>opzionali</B></I> trasmessi
+  dal <B>programma chiamante</B>,<B> </B>la <FONT COLOR="Green"><B>funzione
+  </B></FONT>deve procedere nel seguente modo:</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>anzitutto deve <B>definire</B> una variabile, di
+      <FONT COLOR="Green"><B>tipo</B></FONT> (<I><B>astratto</B></I>)
+      <FONT COLOR="Blue"><B>va_list</B></FONT> (creato in
+      <FONT COLOR="Blue"><B>&lt;stdarg.h&gt;</B></FONT>), che serve per accedere
+      alle singole voci dello <FONT COLOR="Purple"><B>stack</B></FONT><BR>
+      Es. : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; <FONT COLOR="Blue"><B>va_list</B></FONT>
+      <FONT COLOR="Maroon"><B>marker
+      </B></FONT><FONT COLOR="Blue"><B>;</B></FONT> </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>poi deve <B>chiamare</B> la
+      <FONT COLOR="Green"><B>funzione</B></FONT> <FONT COLOR="Green"><B>di
+      libreria</B></FONT> <FONT COLOR="Blue"><B>va_start</B></FONT>, per posizionarsi
+      nello <FONT COLOR="Purple"><B>stack</B></FONT> sull'inizio degli
+      <FONT COLOR="Maroon"><B>argomenti</B></FONT> <I><B>opzionali</B></I>. <BR>
+      Es. : <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      va_start(</B></FONT><FONT COLOR="Maroon"><B>marker</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT
+	  COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B>) ;</B></FONT> &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; dove <FONT COLOR="Maroon"><B>b</B></FONT> &eacute;
+      l'ultimo degli <FONT COLOR="Maroon"><B>argomenti</B></FONT>
+      <I><B>fissi</B></I>; </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>poi, per ogni <FONT COLOR="Maroon"><B>argomento</B></FONT>
+      <I><B>opzionale</B></I> che si aspetta di trovare, deve <B>chiamare</B> la
+      <FONT COLOR="Green"><B>funzione</B></FONT> <FONT COLOR="Green"><B>di
+      libreria</B></FONT> <FONT COLOR="Blue"><B>va_arg</B> </FONT><BR>
+      Es. : <FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c</B></FONT>
+      <FONT COLOR="Blue"><B>=</B></FONT>
+      <FONT COLOR="Blue"><B>va_arg(</B></FONT><FONT COLOR="Maroon"><B>marker</B></FONT><FONT
+	  COLOR="Blue"><B>,int) ;<BR>
+      </B></FONT> (notare che il secondo argomento di
+      <FONT COLOR="Blue"><B>va_arg</B></FONT> definisce il
+      <FONT COLOR="Green"><B>tipo</B></FONT> dell'<FONT COLOR="Maroon"><B>argomento
+      </B></FONT><I><B>opzionale</B></I>, il cui valore sar&agrave; trasferito
+      in <FONT COLOR="Maroon"><B>c</B></FONT>).</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>infine deve <B>chiamare</B> la
+      <FONT COLOR="Green"><B>funzione</B></FONT> <FONT COLOR="Green"><B>di
+      libreria</B></FONT> <FONT COLOR="Blue"><B>va_end</B></FONT> per chiudere
+      le operazioni <FONT COLOR="Blue"> </FONT><BR>
+      Es. : <FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      </B></FONT><FONT COLOR="Blue"><B>va_end(</B></FONT><FONT COLOR="Maroon"><B>marker</B></FONT><FONT
+	  COLOR="Blue"><B>) ;</B></FONT> <FONT COLOR="Blue"><B><BR>
+      </B></FONT></BIG>
+  </OL>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p23/printina.cpp">[p23]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Cenni sulla Run Time
+Library</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>La libreria standard del
+C</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Red"><B>Run Time Library</B></FONT> &egrave; la
+  <FONT COLOR="Green"><B>libreria standard</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT>, usata anche dal
+  <FONT COLOR="Red"><B>C++</B></FONT>, e contiene diverse centinaia di
+  <FONT COLOR="Green"><B>funzioni</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Red"><B>codice di implementazione</B></FONT> delle
+  <FONT COLOR="Green"><B>funzioni di libreria</B></FONT> &egrave; fornito in
+  forma <U>gi&agrave; compilata</U> e risiede in files <I><B>binari</B></I>
+  (<FONT COLOR="Blue"><B>.obj </B></FONT>o
+  <FONT COLOR="Blue"><B>.lib</B></FONT>), mentre i <B>prototipi</B> sono
+  disponibili in <U>formato sorgente</U> e si trovano distribuiti in vari
+  <FONT COLOR="Red"><B>header-files</B></FONT>
+  (<FONT COLOR="Blue"><B>.h</B></FONT>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Red"><B>linker</B></FONT>, lanciato da un ambiente di
+  sviluppo, accede in genere automaticamente ai codici binari della libreria.
+  Il compilatore, invece, richiede che tutte le
+  <FONT COLOR="Green"><B>funzioni</B></FONT> usate in ogni file sorgente di
+  un'applicazione siano espressamente <B>dichiarate</B>, tramite
+  <B>inclusione</B> dei corrispondenti
+  <FONT COLOR="Red"><B>header-files</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Principali categorie di funzioni della
+Run-time library </B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Elenchiamo le principali categorie in cui possono essere classificate
+  le <FONT COLOR="Green"><B>funzioni</B></FONT> della <FONT COLOR="Red"><B>Run
+  Time Library</B></FONT>. Per informazioni sulle
+  <FONT COLOR="Green"><B>funzioni</B></FONT> individualmente consultare
+  l'<I><B>help</B></I> dell'ambiente di sviluppo disponibile.</BIG>
+  <P ALIGN=Justify>
+  <CENTER>
+    <TABLE BORDER CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TH><BIG>Categorie</BIG></TH>
+	<TH><FONT COLOR="Red"><BIG>Header-files</BIG></FONT></TH>
+      </TR>
+      <TR>
+	<TD><BIG>Operazioni di Input/Output</BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B>&lt;io.h&gt;</B></FONT> ,
+	  <FONT COLOR="Blue"><B>&lt;stdio.h&gt;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG>Funzioni matematiche e statistiche</BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B>&lt;math.h&gt;</B></FONT> ,
+	  <FONT COLOR="Blue"><B>&lt;stdlib.h&gt;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG>Attributi del carattere</BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B>&lt;ctype.h&gt;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG>Conversioni numeri-stringhe</BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B>&lt;stdlib.h&gt;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG>Gestione e manipolazione stringhe</BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B>&lt;string.h&gt;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG>Gestione dell'ambiente</BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B>&lt;direct.h&gt;</B></FONT> ,
+	  <FONT COLOR="Blue"><B>&lt;stdlib.h&gt;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG>Gestione degli errori</BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B>&lt;stdio.h&gt;</B></FONT> ,
+	  <FONT COLOR="Blue"><B>&lt;stdlib.h&gt;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG>Ricerca e ordinamento dati</BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B>&lt;search.h&gt;</B></FONT> ,
+	  <FONT COLOR="Blue"><B>&lt;stdlib.h&gt;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG>Gestione della data e dell'ora</BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B>&lt;time.h&gt;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG>Gest. numero variabile di argomenti</BIG> &nbsp; &nbsp; &nbsp;</TD>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B>&lt;stdarg.h&gt;</B></FONT></BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#riferimenti"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

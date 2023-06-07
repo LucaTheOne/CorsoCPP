@@ -1,0 +1,2659 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Overload degli operatori CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Overload degli
+operatori
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Estendibilit&agrave; del
+C++</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In tutti i linguaggi, gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> sono dei simboli convenzionali
+  che rendono pi&ugrave; agevole la presentazione e lo sviluppo di concetti
+  di uso frequente. Per esempio, la notazione:<FONT COLOR="Maroon"><B><BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  a</B></FONT><FONT COLOR="Blue"><B>+</B></FONT><FONT COLOR="Maroon"><B>b</B></FONT><FONT
+      COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><FONT COLOR="Maroon"><B>c</B></FONT><BR>
+  risulta pi&ugrave; agevole della frase:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"moltiplica
+  <FONT COLOR="Maroon"><B>b</B></FONT> per
+  <FONT COLOR="Maroon"><B>c</B></FONT> aggiungi il risultato ad
+  <FONT COLOR="Maroon"><B>a</B></FONT>"</BIG>
+  <P ALIGN=Justify>
+  <BIG>L'utilizzo di una notazione concisa per le operazioni di uso comune
+  &egrave; di importanza fondamentale.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Red"><B>C++</B></FONT> supporta, come ogni altro linguaggio,
+  un insieme di <FONT COLOR="Green"><B>operazioni</B></FONT> per i suoi
+  <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>nativi</B></I>. Tuttavia la
+  maggior parte dei concetti utilizzati comunemente non sono facilmente
+  rappresentabili per mezzo di <FONT COLOR="Green"><B>tipi</B></FONT>
+  <I><B>nativi</B></I>, e bisogna spesso fare ricorso ai
+  <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>astratti</B></I>. Per esempio,
+  i numeri complessi, le matrici, i segnali, le stringhe di caratteri, le
+  aggregazioni di dati, le code, le liste ecc... sono tutte entit&agrave; che
+  meglio si prestano a essere rappresentate mediante le
+  <FONT COLOR="Green"><B>classi</B></FONT>. E' pertanto necessario che anche
+  le <FONT COLOR="Green"><B>operazioni</B></FONT> fra queste entit&agrave;
+  possano essere descritte tramite simboli convenzionali, in alternativa alla
+  <B>chiamata</B> di <FONT COLOR="Green"><B>funzioni</B></FONT> &nbsp;specifiche
+  (come avviene negli altri linguaggi), che non permetterebbero quella notazione
+  concisa che, come si &egrave; detto, &egrave; di importanza fondamentale
+  per una programmazione pi&ugrave; semplice e chiara. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Red"><B>C++</B></FONT> consente di soddisfare questa
+  esigenza tramite
+  l'<FONT COLOR="Green"><B><BIG>overload</BIG></B></FONT><BIG> </BIG>degli<BIG>
+  <FONT COLOR="Green"><B>operatori</B></FONT></BIG>: il programmatore ha la
+  possibilit&agrave; di creare nuove
+  <FONT COLOR="Green"><B>funzioni</B></FONT> che ridefiniscono il significato
+  dei simboli delle <FONT COLOR="Green"><B>operazioni</B></FONT>, rendendo
+  queste applicabili anche ai <FONT COLOR="Green"><B>tipi</B></FONT>
+  <I><B>astratti</B></I> (<B><FONT COLOR="Red">estendibilit&agrave;</FONT>
+  </B>del <FONT COLOR="Red"><B>C++</B></FONT>). La caratteristica determinante
+  per il reale vantaggio di questa tecnica, &egrave; che, a differenza dalle
+  normali <FONT COLOR="Green"><B>funzioni</B></FONT>, quelle che ridefiniscono
+  gli <FONT COLOR="Green"><B>operatori</B></FONT> possono essere
+  <B>chiamate</B> mediante il solo simbolo
+  dell'<FONT COLOR="Green"><B>operazione</B></FONT> (con gli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> della
+  <FONT COLOR="Green"><B>funzione</B></FONT> che diventano
+  <FONT COLOR="Green"><B>operandi</B></FONT>): in definitiva la <B>chiamata</B>
+  della &nbsp;<FONT COLOR="Green"><B>funzione</B></FONT> "scompare" dal codice
+  del programma e al suo posto si pu&ograve; inserire una "semplice e concisa"
+  <FONT COLOR="Green"><B>operazione</B></FONT>. Per esempio, se viene creata
+  una <FONT COLOR="Green"><B>funzione</B></FONT> che ridefinisce la
+  <FONT COLOR="Purple"><B>somma</B></FONT>
+  (<FONT COLOR="Blue"><B>+</B></FONT>) fra due
+  <FONT COLOR="Green"><B>oggetti</B></FONT>,
+  <FONT COLOR="Maroon"><B>a</B></FONT> e
+  <FONT COLOR="Maroon"><B>b</B></FONT>,
+  <FONT COLOR="Green"><B>istanze</B></FONT> di una certa
+  <FONT COLOR="Green"><B>classe</B></FONT>, in luogo della <B>chiamata</B>
+  della <FONT COLOR="Green"><B>funzione</B></FONT> si pu&ograve; semplicemente
+  scrivere:
+  <FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>+</B></FONT><FONT
+      COLOR="Maroon"><B>b</B></FONT>. Se si pensa che
+  un'<FONT COLOR="Green"><B>espressione</B></FONT> pu&ograve; essere costituita
+  da parecchie <FONT COLOR="Green"><B>operazioni</B></FONT> insieme, il vantaggio
+  di questa tecnica per la concisione e la leggibilit&agrave; del codice risulta
+  evidente (in alternativa a ripetute <B>chiamate</B> di
+  <FONT COLOR="Green"><B>funzioni</B></FONT>, "innestate" l'una nell'altra).
+  Per esempio, tornando all'<FONT COLOR="Green"><B>espressione</B></FONT> iniziale,
+  costituita da <U>solo</U> due
+  <FONT COLOR="Green"><B>operazioni</B></FONT>:<BR>
+  </BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Green"><B>operatori</B></FONT></BIG> <BIG>in</BIG>
+	<BIG><FONT COLOR="Green"><B>overload</B></FONT></BIG> <BIG>:</BIG></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>+</B></FONT><FONT
+	    COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><FONT
+	    COLOR="Maroon"><B>c</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><B>chiamata</B> di <FONT COLOR="Green"><B>funzioni</B></FONT>
+	&nbsp;specifiche :</BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>somma</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>moltiplica</B></FONT><FONT
+	    COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT
+	    COLOR="Maroon"><B>c</B></FONT><FONT COLOR="Blue"><B>))</B></FONT> </BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Ridefinizione degli
+operatori</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Per ottenere l'<FONT COLOR="Green"><B>overload</B></FONT> di un
+  <FONT COLOR="Green"><B>operatore</B></FONT> bisogna creare una
+  <FONT COLOR="Green"><B>funzione</B></FONT> il cui <B>nome</B> (che
+  eccezionalmente <U>non segue</U> le regole generali di specifica degli
+  <FONT COLOR="Green"><B>identificatori</B></FONT>) deve essere costituito
+  dalla <I><B>parola-chiave
+  </B></I><FONT COLOR="Blue"><B>operator</B></FONT> seguita, con o senza
+  <I><B>blanks</B></I> in mezzo, dal simbolo
+  dell'<FONT COLOR="Green"><B>operatore</B></FONT> (es.:
+  <FONT COLOR="Blue"><B>operator+</B></FONT>). Gli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> della
+  <FONT COLOR="Green"><B>funzione</B></FONT> devono corrispondere agli
+  <FONT COLOR="Green"><B>operandi</B></FONT>
+  dell'<FONT COLOR="Green"><B>operatore</B></FONT>. Ne consegue che per gli
+  <FONT COLOR="Green"><B>operatori</B></FONT>
+  <FONT COLOR="Green"><B>unari</B></FONT> &egrave; necessario un solo
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>, per quelli
+  <FONT COLOR="Green"><B>binari</B></FONT> ce ne vogliono due (e nello stesso
+  ordine, cio&egrave; il primo <FONT COLOR="Maroon"><B>argomento</B></FONT>
+  deve corrispondere al <FONT COLOR="Green"><B>left-operand</B></FONT> e il
+  secondo <FONT COLOR="Maroon"><B>argomento</B></FONT> al
+  <FONT COLOR="Green"><B>right-operand</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Non &egrave; concesso "inventare" nuovi simboli, ma si possono solo
+  utilizzare i simboli degli <FONT COLOR="Green"><B>operatori</B></FONT> esistenti.
+  In pi&ugrave;, le regole di <FONT COLOR="Purple"><B>precedenza</B></FONT>
+  e <FONT COLOR="Purple"><B>associativit&agrave;
+  </B></FONT><U>restano&nbsp;legate al simbolo e non al suo significato</U>,
+  come pure resta legata al simbolo la categoria
+  dell'<FONT COLOR="Green"><B>operatore</B></FONT>
+  (<FONT COLOR="Green"><B>unario</B></FONT> o
+  <FONT COLOR="Green"><B>binario</B></FONT>). Per esempio, un
+  <FONT COLOR="Green"><B>operatore</B></FONT> in
+  <FONT COLOR="Green"><B>overload</B></FONT> associato al simbolo della
+  <FONT COLOR="Purple"><B>divisione</B></FONT>
+  (<FONT COLOR="Blue"><B>/</B></FONT>) non pu&ograve; mai essere
+  definito<FONT COLOR="Green"><B> unario</B></FONT> e ha sempre la
+  <FONT COLOR="Purple"><B>precedenza</B></FONT>
+  sull'<FONT COLOR="Green"><B>operatore</B></FONT> &nbsp;associato al simbolo
+  <FONT COLOR="Blue"><B>+</B></FONT>, qualunque sia il significato di
+  entrambi.</BIG>
+  <P ALIGN=Justify>
+  <BIG>E' possibile avere <FONT COLOR="Green"><B>overload</B></FONT> di quasi
+  tutti gli <FONT COLOR="Green"><B>operatori</B></FONT> esistenti, salvo:
+  <FONT COLOR="Blue"><B>?:</B></FONT>,
+  <FONT COLOR="Blue"><B>sizeof</B></FONT>,
+  <FONT COLOR="Blue"><B>typeid</B></FONT> e pochi altri, fra cui quelli (come
+  <FONT COLOR="Blue"><B>::</B></FONT> e <FONT COLOR="Blue"><B>.</B></FONT>)
+  che hanno come <FONT COLOR="Green"><B>operandi</B></FONT> <B>nomi</B> non
+  "parametrizzabili" (come i <B>nomi</B> delle
+  <FONT COLOR="Green"><B>classi</B></FONT> o dei
+  <FONT COLOR="Green"><B>membri</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Come per le <FONT COLOR="Green"><B>funzioni</B></FONT> in
+  <FONT COLOR="Green"><B>overload</B></FONT>, nel caso dello stesso
+  <FONT COLOR="Green"><B>operatore</B></FONT> ridefinito pi&ugrave; volte con
+  <FONT COLOR="Green"><B>tipi</B></FONT> diversi, il
+  <FONT COLOR="Red"><B>C++</B></FONT> risolve l'ambiguit&agrave; in base al
+  <B>contesto</B> degli <FONT COLOR="Green"><B>operandi</B></FONT>, riconoscendone
+  il <FONT COLOR="Green"><B>tipo</B></FONT> e decidendo di conseguenza quale
+  <FONT COLOR="Green"><B>operatore</B></FONT> applicare.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Torniamo ora alla <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>point</B></FONT> e vediamo un esempio di possibile
+  <FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>somma</B></FONT> (il nostro intento &egrave; di ottenere
+  la somma "<I><B>vettoriale</B></I>" fra due punti); supponiamo che la
+  <FONT COLOR="Green"><B>classe</B></FONT> sia provvista di un
+  <FONT COLOR="Green"><B>costruttore</B></FONT> con due
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>:</BIG><BR>
+  &nbsp; &nbsp;<BR>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Green"><B>operazione </B></FONT>:</BIG></TD>
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>&nbsp;=</B></FONT>
+	<FONT COLOR="Maroon"><B>p1</B></FONT><FONT COLOR="Blue"><B>+</B></FONT><FONT
+	    COLOR="Maroon"><B>p2</B></FONT><FONT COLOR="Blue"><B> ;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Green"><B>funzione</B></FONT></BIG>
+	<BIG><FONT COLOR="Purple"><B>somma </B></FONT>:</BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>point</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>operator+(const
+	</B></FONT><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>&amp;
+	</B></FONT><FONT COLOR="Maroon"><B>p1</B></FONT><FONT COLOR="Blue"><B>, const
+	</B></FONT><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>&amp;
+	</B></FONT><FONT COLOR="Maroon"><B>p2</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	</B></FONT><FONT COLOR="#cc0000"><B>point</B></FONT>
+	<FONT COLOR="Maroon"><B>ptemp</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Maroon"><B>0.0</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>0.0</B></FONT><FONT
+	    COLOR="Blue"><B>);</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	</B></FONT><FONT COLOR="Maroon"><B>ptemp</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>x</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>p1</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>x</B></FONT>
+	<FONT COLOR="Blue"><B>+</B></FONT>&nbsp;<FONT COLOR="Maroon"><B>p2</B></FONT><FONT
+	    COLOR="Blue"><B>.</B></FONT><FONT COLOR="Maroon"><B>x</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	</B></FONT><FONT COLOR="Maroon"><B>ptemp</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>y</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>p1</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>y</B></FONT>
+	<FONT COLOR="Blue"><B>+</B></FONT>&nbsp;<FONT COLOR="Maroon"><B>p2</B></FONT><FONT
+	    COLOR="Blue"><B>.</B></FONT><FONT COLOR="Maroon"><B>y</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	return</B></FONT> <FONT COLOR="Maroon"><B>ptemp</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <B><FONT COLOR="Red"><BIG>Notare</BIG></FONT></B><BIG>:</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la <FONT COLOR="Green"><B>funzione</B></FONT> ha un <B>valore di
+      ritorno</B> di <FONT COLOR="Green"><B>tipo</B></FONT>
+      <FONT COLOR="#cc0000"><B>point</B></FONT>; </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>gli
+      <FONT COLOR="Maroon"><B>argomenti</B></FONT>-<FONT COLOR="Green"><B>operandi</B></FONT>
+      sono passati <I><B>by reference</B></I> e <B>dichiarati</B>
+      <FONT COLOR="Blue"><B>const</B></FONT>, per maggiore sicurezza
+      (<FONT COLOR="Blue"><B>const</B></FONT>) e rapidit&agrave; di esecuzione
+      (passaggio <I><B>by reference</B></I>);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>nella <FONT COLOR="Green"><B>funzione</B></FONT> &egrave;
+      <B>definito</B> un <FONT COLOR="Green"><B>oggetto automatico</B></FONT>
+      (<FONT COLOR="Maroon"><B>ptemp</B></FONT>), <B>inizializzato</B> compatibilmente
+      con il <FONT COLOR="Green"><B>costruttore</B></FONT> disponibile (vedere
+      il problema della <B>inizializzazione</B> degli
+      <FONT COLOR="Green"><B>oggetti</B></FONT> <I><B>temporanei</B></I> nel capitolo
+      precedente);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>in <FONT COLOR="Maroon"><B>ptemp</B></FONT> i due
+      <FONT COLOR="Green"><B>operandi</B></FONT> sono sommati
+      <FONT COLOR="Green"><B>membro</B></FONT> a
+      <FONT COLOR="Green"><B>membro</B></FONT> (la
+      <FONT COLOR="Purple"><B>somma</B></FONT> &egrave; ammessa in quanto fra due
+      <FONT COLOR="Green"><B>tipi</B></FONT>
+      <FONT COLOR="Blue"><B>double</B></FONT>);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>in uscita <FONT COLOR="Maroon"><B>ptemp</B></FONT>&nbsp;(essendo un
+      <FONT COLOR="Green"><B>oggetto automatico</B></FONT>) "muore", ma una sua
+      <B>copia</B> &egrave; passata <I><B>by value</B></I> al <B>chiamante</B>,
+      dove &egrave; successivamente
+      <FONT COLOR="Purple"><B>assegnata</B></FONT> a
+      <FONT COLOR="Maroon"><B>p</B></FONT></BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <B><FONT COLOR="Red"><BIG>Nota ulteriore</BIG></FONT></B><BIG>:</BIG>
+  <BIG>&egrave; ammessa anche la <B>chiamata</B> della
+  <FONT COLOR="Green"><B>funzione</B></FONT> nella forma tradizionale:<BR>
+  <FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; p</B></FONT><FONT COLOR="Blue"><B>&nbsp;=</B></FONT>
+  <FONT COLOR="Blue"><B>operator+(</B></FONT><FONT COLOR="Maroon"><B>p1</B></FONT><FONT
+      COLOR="Blue"><B>,
+  </B></FONT><FONT COLOR="Maroon"><B>p2</B></FONT><FONT COLOR="Blue"><B>)
+  ;</B></FONT><BR>
+  ma in questo caso si vanificherebbero i vantaggi offerti dalla notazione
+  simbolica delle <FONT COLOR="Green"><B>operazioni</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Metodi della classe o funzioni
+esterne?</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Finora abbiamo parlato delle
+  <FONT COLOR="Green"><B>funzioni</B></FONT> che ridefiniscono gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> in
+  <FONT COLOR="Green"><B>overload</B></FONT>, senza preoccuparci di <U>dove</U>
+  tali <FONT COLOR="Green"><B>funzioni</B></FONT> debbano essere
+  <B>definite</B>. Quando esse accedono a
+  <FONT COLOR="Green"><B>membri</B></FONT> <B>privati</B> della
+  <FONT COLOR="Green"><B>classe</B></FONT>, possono appartenere soltanto a
+  una delle seguenti tre categorie:</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>sono <B>metodi</B> <B>pubblici</B> non
+      <FONT COLOR="Green"><B>statici</B></FONT> della
+      <FONT COLOR="Green"><B>classe</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>sono <B>metodi</B> <B>pubblici</B>
+      <FONT COLOR="Green"><B>statici</B></FONT> della
+      <FONT COLOR="Green"><B>classe</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>sono <FONT COLOR="Green"><B>funzioni</B></FONT>
+      <FONT COLOR="Blue"><B>friend</B></FONT> della
+      <FONT COLOR="Green"><B>classe</B></FONT>. </BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <BIG>Escludiamo subito che siano <B>metodi</B>
+  <FONT COLOR="Green"><B>statici</B></FONT>, non perch&egrave; non sia permesso,
+  ma perch&egrave; non sarebbe conveniente, in quanto un <B>metodo</B>
+  <FONT COLOR="Green"><B>statico</B></FONT> pu&ograve; essere <B>chiamato</B>
+  <U>solo se</U> il suo <B>nome</B> &egrave; <B>qualificato</B> con il
+  <B>nome</B> della <FONT COLOR="Green"><B>classe</B></FONT> di appartenenza,<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;es.: &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>&nbsp;=</B></FONT>
+  <FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>::operator+(</B></FONT><FONT
+      COLOR="Maroon"><B>p1</B></FONT><FONT COLOR="Blue"><B>,
+  </B></FONT><FONT COLOR="Maroon"><B>p2</B></FONT><FONT COLOR="Blue"><B>)
+  ;</B></FONT><BR>
+  e quindi non esiste il modo di utilizzarlo nella rappresentazione simbolica
+  di un'<FONT COLOR="Green"><B>operazione</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Restano pertanto a disposizione solo i <B>metodi</B> non
+  <FONT COLOR="Green"><B>statici</B></FONT> e le
+  <FONT COLOR="Green"><B>funzioni</B></FONT>
+  <FONT COLOR="Blue"><B>friend</B></FONT> (o esterne, se non accedono a
+  <FONT COLOR="Green"><B>membri</B></FONT> <B>privati</B>).&nbsp;La scelta
+  pi&ugrave; appropriata dipende dal contesto degli
+  &nbsp;<FONT COLOR="Green"><B>operandi</B></FONT> e dal tipo di
+  <FONT COLOR="Green"><B>operazione</B></FONT>. In generale conviene che sia
+  un <B>metodo</B> quando l'<FONT COLOR="Green"><B>operatore</B></FONT> &egrave;
+  <FONT COLOR="Green"><B>unario</B></FONT>, oppure (e in questo caso &egrave;
+  <U>obbligatorio</U>) quando il primo
+  &nbsp;<FONT COLOR="Green"><B>operando</B></FONT> &egrave;
+  <FONT COLOR="Green"><B>oggetto</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT> e la
+  <FONT COLOR="Green"><B>funzione</B></FONT> lo restituisce come
+  &nbsp;<FONT COLOR="Green"><B>l-value</B></FONT>, come accade per esempio
+  per gli <FONT COLOR="Green"><B>overload</B></FONT> degli
+  <FONT COLOR="Green"><B>operatori</B></FONT> di
+  <FONT COLOR="Purple"><B>assegnazione</B></FONT>
+  (<FONT COLOR="Blue"><B>=</B></FONT>) e in <FONT COLOR="Purple"><B>notazione
+  compatta</B></FONT> (<FONT COLOR="Blue"><B>+=</B></FONT> ecc...). Viceversa,
+  non ha molto senso che sia un <B>metodo</B>
+  l'<FONT COLOR="Green"><B>overload</B></FONT>
+  dell'<FONT COLOR="Purple"><B>addizione</B></FONT> (che abbiamo visto come
+  esempio nella sezione precedente), il quale <U>opera su due
+  <FONT COLOR="Green"><B>oggetti</B></FONT></U> e restituisce un risultato
+  da memorizzare in un terzo.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La miglior progettazione degli
+  <FONT COLOR="Green"><B>operatori</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT> consiste nell'individuare un insieme
+  ben definito di <B>metodi</B> per le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> che si applicano su un unico
+  <FONT COLOR="Green"><B>oggetto</B></FONT> o che modificano il loro primo
+  <FONT COLOR="Green"><B>operando</B></FONT>, e usare
+  <FONT COLOR="Green"><B>funzioni</B></FONT> esterne (o
+  <FONT COLOR="Blue"><B>friend)</B></FONT> per le altre
+  <FONT COLOR="Green"><B>operazioni</B></FONT>; il codice di queste
+  <FONT COLOR="Green"><B>funzioni</B></FONT> risulta per&ograve; facilitato,
+  in quanto pu&ograve; utilizzare gli stessi
+  <FONT COLOR="Green"><B>operatori</B></FONT> gi&agrave; definiti come
+  <B>metodi</B> (vedremo pi&ugrave; avanti un'alternativa
+  dell'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>+</B></FONT> come
+  <FONT COLOR="Green"><B>funzione</B></FONT> esterna, che usa
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>+=</B></FONT> implementato come
+  <B>metodo</B>).</BIG><B><FONT COLOR="Red"><BR>
+  <BIG>NOTA</BIG></FONT></B><BIG>: nei
+  <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>astratti</B></I>, l'esistenza
+  degli <FONT COLOR="Green"><B>operatori</B></FONT> in
+  <FONT COLOR="Green"><B>overload</B></FONT>
+  <FONT COLOR="Blue"><B>+</B></FONT> e <FONT COLOR="Blue"><B>=</B></FONT> <U>non
+  implica che sia automaticamente definito</U> anche
+  l'<FONT COLOR="Green"><B>operatore</B></FONT> in
+  <FONT COLOR="Green"><B>overload</B></FONT>
+  <FONT COLOR="Blue"><B>+=</B></FONT></BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Il ruolo del puntatore nascosto
+this</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>E' chiaro a tutti <U>perch&egrave;</U>
+  un'<FONT COLOR="Green"><B>operazione</B></FONT> che si applica su un unico
+  <FONT COLOR="Green"><B>oggetto</B></FONT> o che modifica il primo
+  <FONT COLOR="Green"><B>operando</B></FONT> &egrave; preferibile che sia
+  implementata come <B>metodo</B> della
+  <FONT COLOR="Green"><B>classe</B></FONT>? Perch&egrave;, in quanto
+  <B>metodo</B> non
+  <FONT COLOR="Green"><B>statico</B></FONT>,&nbsp;<U>pu&ograve; sfruttare la
+  presenza del <FONT COLOR="Green"><B>puntatore</B></FONT>
+  <B><I>nascosto</I></B> <FONT COLOR="Blue"><B>this</B></FONT></U>, che, come
+  sappiamo, punta allo stesso <FONT COLOR="Green"><B>oggetto</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>&nbsp;in cui il <B>metodo</B> &egrave;
+  <I><B>incapsulato</B></I> e viene automaticamente inserito dal
+  <FONT COLOR="Red"><B>C++</B></FONT> come primo
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> della
+  <FONT COLOR="Green"><B>funzione.</B></FONT> <BR>
+  Ne consegue che:</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>un <FONT COLOR="Green"><B>operatore</B></FONT> in
+      <FONT COLOR="Green"><B>overload</B></FONT> <U>pu&ograve;</U> essere implementato
+      come <B>metodo</B> di una <FONT COLOR="Green"><B>classe</B></FONT> <U>solo
+      se</U> il primo <FONT COLOR="Green"><B>operando</B></FONT> &egrave; un
+      <FONT COLOR="Green"><B>oggetto</B></FONT> della stessa
+      <FONT COLOR="Green"><B>classe</B></FONT>; in caso contrario <U>deve</U> essere
+      una <FONT COLOR="Green"><B>funzione</B></FONT> esterna (<B>dichiarata</B>
+      <FONT COLOR="Blue"><B>friend </B></FONT>se accede a
+      <FONT COLOR="Green"><B>membri</B></FONT>
+      <B>privati</B>)<FONT COLOR="Blue"><B>&nbsp;</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>nella <B>definizione</B> del <B>metodo</B> il numero degli
+      <FONT COLOR="Maroon"><B>argomenti</B></FONT> <U>deve essere ridotto di
+      un'unit&agrave;</U> rispetto al numero di
+      <FONT COLOR="Green"><B>operandi</B></FONT>; in pratica, se
+      l'<FONT COLOR="Green"><B>operatore</B></FONT> &egrave;
+      <FONT COLOR="Green"><B>binario</B></FONT>, ci deve essere un solo
+      <FONT COLOR="Maroon"><B>argomento</B></FONT> (quello corrispondente al secondo
+      <FONT COLOR="Green"><B>operando</B></FONT>), se
+      l'<FONT COLOR="Green"><B>operatore</B></FONT> &egrave;
+      <FONT COLOR="Green"><B>unario</B></FONT>, la
+      <FONT COLOR="Green"><B>funzione</B></FONT> non deve avere
+      <FONT COLOR="Maroon"><B>argomenti</B></FONT>.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>se il risultato dell'operazione &egrave;
+      l'<FONT COLOR="Green"><B>oggetto</B></FONT> stesso l'istruzione di ritorno
+      deve essere: <FONT COLOR="Blue"><B><BR>
+      return</B></FONT>
+      <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this;</B></FONT></BIG>
+  </OL>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp; <BIG><BR>
+  Vediamo ora, a titolo di esempio, una possibile implementazione di
+  <FONT COLOR="Green"><B>overload</B></FONT>
+  dell'<FONT COLOR="Green"><B>operatore</B></FONT> in
+  <FONT COLOR="Purple"><B>notazione compatta</B></FONT>
+  <FONT COLOR="Blue"><B>+=</B></FONT> della nostra
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>point</B></FONT>:</BIG><BR>
+  &nbsp; &nbsp;<BR>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Green"><B>operazione </B></FONT>:</BIG></TD>
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>&nbsp;+=</B></FONT>
+	<FONT COLOR="Maroon"><B>p1</B></FONT><FONT COLOR="Blue"><B>
+	;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><B>definizione metodo </B>:</BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>&amp;</B></FONT></BIG>
+	<BIG><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>::operator+=(const
+	</B></FONT><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>&amp;
+	</B></FONT><FONT COLOR="Maroon"><B>p1</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	</B></FONT><FONT COLOR="Maroon"><B>x</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>+=</B></FONT>
+	<FONT COLOR="Maroon"><B>p1</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>x</B></FONT> </BIG>
+	<BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	</B></FONT><FONT COLOR="Maroon"><B>y</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>+=</B></FONT>
+	<FONT COLOR="Maroon"><B>p1</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>y</B></FONT> <FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	return</B></FONT>
+	<FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <B><FONT COLOR="Red"><BIG>Notare</BIG></FONT></B><BIG>:</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la <FONT COLOR="Green"><B>funzione</B></FONT> ha un un solo
+      <FONT COLOR="Maroon"><B>argomento</B></FONT>, che corrisponde al secondo
+      <FONT COLOR="Green"><B>operando</B></FONT>
+      <FONT COLOR="Maroon"><B>p1</B></FONT>, in quanto il primo
+      <FONT COLOR="Green"><B>operando</B></FONT>
+      <FONT COLOR="Maroon"><B>p</B></FONT> &egrave;
+      l'<FONT COLOR="Green"><B>oggetto</B></FONT> stesso, trasmesso per mezzo del
+      <FONT COLOR="Green"><B>puntatore</B></FONT> <B><I>nascosto</I></B>
+      <FONT COLOR="Blue"><B>this</B></FONT>; </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la <FONT COLOR="Green"><B>funzione</B></FONT> &egrave; un <B>metodo</B>
+      della <FONT COLOR="Green"><B>classe</B></FONT>, e quindi i
+      <FONT COLOR="Green"><B>membri</B></FONT>
+      dell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+      <FONT COLOR="Maroon"><B>p</B></FONT>&nbsp;sono indicati solo con il loro
+      <B>nome</B> (il compilatore aggiunge
+      <FONT COLOR="Blue"><B>this-&gt;</B></FONT> davanti a ognuno di essi);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>nel codice della <FONT COLOR="Green"><B>funzione</B></FONT>
+      l'<FONT COLOR="Green"><B>operatore</B></FONT>
+      <FONT COLOR="Blue"><B>+=</B></FONT> &egrave; "conosciuto", in quanto agisce
+      sui <FONT COLOR="Green"><B>membri</B></FONT> della
+      <FONT COLOR="Green"><B>classe</B></FONT>, che sono di
+      <FONT COLOR="Green"><B>tipo</B></FONT>
+      <FONT COLOR="Blue"><B>double</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la <FONT COLOR="Green"><B>funzione</B></FONT> ritorna
+      l'<FONT COLOR="Green"><B>oggetto</B></FONT> stesso <FONT COLOR="Maroon"><B>p
+      </B></FONT>(<FONT COLOR="Purple"><B>deref. </B></FONT>di
+      <FONT COLOR="Blue"><B>this</B></FONT>), <I><B>by reference</B></I> (cio&egrave;
+      come &nbsp;<FONT COLOR="Green"><B>l-value</B></FONT>), modificato
+      dall'<FONT COLOR="Green"><B>operazione</B></FONT> (non esistono problemi
+      di <I><B>lifetime</B></I> in questo caso, essendo
+      l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+      <FONT COLOR="Maroon"><B>p</B></FONT> <B>definito</B> nel
+      <B>chiamante</B>);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la <B>chiamata</B> della <FONT COLOR="Green"><B>funzione</B></FONT>
+      nella forma tradizionale sarebbe:<BR>
+      <FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp;p</B></FONT><FONT COLOR="Blue"><B>.operator+=(</B></FONT><FONT COLOR="Maroon"><B>p1</B></FONT><FONT
+	  COLOR="Blue"><B>) ;</B></FONT> <BR>
+      tradotta dal compilatore in:<BR>
+      <FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp;</B></FONT><FONT COLOR="Blue"><B>operator+=(&amp;</B></FONT><FONT COLOR="Maroon"><B>p</B></FONT><FONT
+	  COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>p1</B></FONT><FONT COLOR="Blue"><B>)
+      ;</B></FONT></BIG>
+  </OL>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp;<BIG><BR>
+  Adesso che abbiamo definito l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>+=</B></FONT> come <B>metodo</B> della
+  <FONT COLOR="Green"><B>classe</B></FONT>, l'implementazione
+  dell'<FONT COLOR="Green"><B>operatore</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>+</B></FONT>, che invece preferiamo sia una
+  <FONT COLOR="Green"><B>funzione</B></FONT> esterna, pu&ograve; essere fatta
+  in modo pi&ugrave; semplice (non occorre che sia <B>dichiarata</B>
+  <FONT COLOR="Blue"><B>friend </B></FONT>in quanto non accede a
+  <FONT COLOR="Green"><B>membri</B></FONT> <B>privati</B>):</BIG><BR>
+  &nbsp; &nbsp;<BR>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Green"><B>operazione </B></FONT>:</BIG></TD>
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>&nbsp;=</B></FONT>
+	<FONT COLOR="Maroon"><B>p1</B></FONT><FONT COLOR="Blue"><B>+</B></FONT><FONT
+	    COLOR="Maroon"><B>p2</B></FONT><FONT COLOR="Blue"><B> ;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Green"><B>funzione</B></FONT></BIG>
+	<BIG><FONT COLOR="Purple"><B>somma </B></FONT>:</BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>point</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>operator+(const
+	</B></FONT><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>&amp;
+	</B></FONT><FONT COLOR="Maroon"><B>p1</B></FONT><FONT COLOR="Blue"><B>, const
+	</B></FONT><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>&amp;
+	</B></FONT><FONT COLOR="Maroon"><B>p2</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	</B></FONT><FONT COLOR="#cc0000"><B>point</B></FONT>
+	<FONT COLOR="Maroon"><B>ptemp
+	</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>
+	p1</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG> &nbsp;<BIG>(uso il
+	<FONT COLOR="Green"><B>costruttore</B></FONT> di <B>copia</B>)</BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	return</B></FONT> <FONT COLOR="Maroon"><B>ptemp</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>+=</B></FONT>&nbsp;<FONT COLOR="Maroon"><B>p2</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p54/piumeno.cpp">[p54]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Overload degli operatori di flusso di
+I/O</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Un caso particolare rappresenta
+  l'<FONT COLOR="Green"><B>overload</B></FONT> dell'<B>I/O</B>, cio&egrave;
+  degli <FONT COLOR="Green"><B>operatori</B></FONT> di
+  <FONT COLOR="Purple"><B>flusso</B></FONT>
+  "<FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>"
+  (<FONT COLOR="Purple"><B>inserimento</B></FONT>) e
+  "<FONT COLOR="Blue"><B>&gt;&gt;</B></FONT>"
+  (<FONT COLOR="Purple"><B>estrazione</B></FONT>).</BIG> <BIG>Notiamo che questi
+  <U>sono gi&agrave;</U> degli <FONT COLOR="Green"><B>operatori</B></FONT>
+  in <FONT COLOR="Green"><B>overload</B></FONT>, in quanto il significato
+  originario dei simboli <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT> e
+  <FONT COLOR="Blue"><B>&gt;&gt;</B></FONT> &egrave; quello di
+  <FONT COLOR="Green"><B>operatori</B></FONT> di
+  <FONT COLOR="Purple"><B>scorrimento di bit</B></FONT> (se gli
+  <FONT COLOR="Green"><B>operandi</B></FONT> sono
+  &nbsp;<FONT COLOR="Green"><B>interi</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Se invece il <FONT COLOR="Green"><B>left-operand</B></FONT> non &egrave;
+  un <FONT COLOR="Green"><B>intero</B></FONT>, ma
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>cout</B></FONT>, abbiamo visto che
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue">&lt;&lt;</FONT> definisce
+  un'<FONT COLOR="Green"><B>operazione</B></FONT> di <B>output</B>, che &egrave;
+  eseguita "<B>inserendo</B>" in <FONT COLOR="Blue"><B>cout</B></FONT> il dato
+  da scrivere (costituito dal
+  <FONT COLOR="Green"><B>right-operand</B></FONT>), il quale a sua volta pu&ograve;
+  essere di qualunque <FONT COLOR="Green"><B>tipo</B></FONT>
+  <I><B>nativo</B></I> o del corrispondente
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Green"><B>puntatore</B></FONT> (quest'ultimo &egrave; scritto
+  come numero <FONT COLOR="Green"><B>intero</B></FONT> in forma
+  <B>esadecimale</B>, salvo il <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>char</B></FONT>
+  <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT>, che &egrave;
+  interpretato come <FONT COLOR="Green"><B>stringa</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il nostro scopo &egrave; ora quello di creare un ulteriore
+  <FONT COLOR="Green"><B>overload</B></FONT> di
+  <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>, in modo che anche un
+  <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>astratto</B></I> possa essere
+  ammesso come &nbsp;<FONT COLOR="Green"><B>right-operand</B></FONT>; per esempio
+  potremmo volere che l'<FONT COLOR="Green"><B>operazione</B></FONT>:
+  <FONT COLOR="Blue"><B><BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cout</B></FONT>
+  <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>
+  <FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>;</B></FONT> &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(dove
+  <FONT COLOR="Maroon"><B>a</B></FONT> &egrave;
+  un'<FONT COLOR="Green"><B>istanza</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>) <BR>
+  generi su video una tabella dei valori assunti dai
+  <FONT COLOR="Green"><B>membri</B></FONT> di
+  <FONT COLOR="Maroon"><B>a</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Per fare questo dobbiamo anzitutto sapere che
+  <FONT COLOR="Blue"><B>cout</B></FONT>,
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT> generato all'inizio dell'esecuzione
+  del programma, &eacute; un'<FONT COLOR="Green"><B>istanza</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>ostream</B></FONT>, che viene detta
+  "<FONT COLOR="Green"><B>classe</B></FONT> di
+  <FONT COLOR="Purple"><B>flusso</B></FONT> di <B>output</B>" (e
+  <B>dichiarata</B> in
+  <FONT COLOR="Blue"><B>&lt;iostream.h&gt;</B></FONT>). <BR>
+  Inoltre il primo <FONT COLOR="Maroon"><B>argomento</B></FONT> passato alla
+  <FONT COLOR="Green"><B>funzione</B></FONT> dovr&agrave; essere lo stesso
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>cout</B></FONT> (in quanto &eacute; il
+  <FONT COLOR="Green"><B>left-operand</B></FONT>
+  dell'<FONT COLOR="Green"><B>operazione</B></FONT>), mentre il secondo
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>, corrispondente al
+  <FONT COLOR="Green"><B>right-operand</B></FONT>, dovr&agrave; essere
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Maroon"><B>a</B></FONT> da trasferire in <B>output</B>.<BR>
+  Infine la <FONT COLOR="Green"><B>funzione</B></FONT> dovr&agrave; restituire
+  <I><B>by-reference</B></I> lo stesso primo
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> (cio&egrave; sempre
+  <FONT COLOR="Blue"><B>cout</B></FONT>), per permettere l'associazione di
+  ulteriori <FONT COLOR="Green"><B>operazioni</B></FONT> nella stessa istruzione.
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>Pertanto la <FONT COLOR="Green"><B>funzione</B></FONT> per
+  l'<FONT COLOR="Green"><B>overload</B></FONT> di
+  <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT> dovr&agrave; essere cos&igrave;
+  <B>definita</B>: </BIG><BR>
+  &nbsp; &nbsp;
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>ostream&amp;</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>operator&lt;&lt;(ostream&amp;
+	</B></FONT><FONT COLOR="Maroon"><B>out</B></FONT><FONT COLOR="Blue"><B>,
+	const
+	</B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&amp;
+	</B></FONT><FONT COLOR="Maroon"><B>a)</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG>&nbsp; &nbsp; <B>&nbsp;........
+	</B><FONT COLOR="Maroon"><B>out</B></FONT>
+	<FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>
+	<FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>ma</B></FONT><FONT COLOR="Blue"><B>;
+	&nbsp;</B></FONT>(<FONT COLOR="Maroon"><B>ma</B></FONT> &egrave; un
+	<FONT COLOR="Green"><B>membro</B></FONT> di
+	<FONT COLOR="#cc0000"><B>A</B></FONT> di
+	<FONT COLOR="Green"><B>tipo</B></FONT> <I><B>nativo</B></I>)</BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG>&nbsp; &nbsp; <B>&nbsp;........
+	</B><FONT COLOR="Blue"><B>return</B></FONT>
+	<FONT COLOR="Maroon"><B>out</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P>
+  <B><FONT COLOR="Red"><BIG>Notare</BIG></FONT></B><BIG>:</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>il primo <FONT COLOR="Maroon"><B>argomento</B></FONT> della
+      <FONT COLOR="Green"><B>funzione</B></FONT> appartiene a
+      <FONT COLOR="Blue"><B>ostream</B></FONT> e non ad
+      <FONT COLOR="#cc0000"><B>A</B></FONT>, e quindi la
+      <FONT COLOR="Green"><B>funzione</B></FONT> <U>non pu&ograve; essere un
+      <B>metodo</B></U> di <FONT COLOR="#cc0000"><B>A</B></FONT>, ma deve essere
+      <B>dichiarata</B> come <FONT COLOR="Green"><B>funzione</B></FONT>
+      <FONT COLOR="Blue"><B>friend</B></FONT> nella <B>definizione</B> di
+      <FONT COLOR="#cc0000"><B>A</B></FONT>; viceversa, gli
+      <FONT COLOR="Green"><B>overload</B></FONT>
+      dell'<FONT COLOR="Green"><B>operatore</B></FONT>
+      <FONT COLOR="Blue">&lt;&lt;</FONT> con
+      <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>nativi</B></I> (e loro
+      <FONT COLOR="Green"><B>puntatori</B></FONT>) sono <B>definiti</B> nella stessa
+      <FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="Blue"><B>ostream</B></FONT>, e quindi sono <B>metodi</B> di
+      quella <FONT COLOR="Green"><B>classe</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>il <B>valore di ritorno </B>della
+      <FONT COLOR="Green"><B>funzione</B></FONT> &egrave; trasmesso
+      <I><B>by-reference</B></I>, in quanto deve essere un
+      <FONT COLOR="Green"><B>l-value </B></FONT>di successive
+      <FONT COLOR="Green"><B>operazioni</B></FONT>
+      <I><B>impilate</B></I>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>poich&egrave; nel <B>chiamante</B> il primo
+      <FONT COLOR="Maroon"><B>argomento</B></FONT> &egrave;
+      l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+      <FONT COLOR="Blue"><B>cout</B></FONT>, il ritorno
+      <I><B>by-reference</B></I> dello stesso
+      &nbsp;<FONT COLOR="Green"><B>oggetto</B></FONT> non rischia mai di creare
+      problemi di <I><B>lifetime</B></I>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>per i motivi suddetti, e per
+      l'<FONT COLOR="Purple"><B>associativit&agrave;
+      </B></FONT>dell'<FONT COLOR="Green"><B>operatore</B></FONT>
+      <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>, che procede da sinistra a destra,
+      si possono <I><B>impilare</B></I> pi&ugrave;
+      <FONT COLOR="Green"><B>operazioni</B></FONT> di <B>output</B> in una stessa
+      istruzione. Esempio:</BIG><BR>
+      &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp;<BIG><FONT COLOR="Blue"><B>cout</B></FONT>
+      <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>
+      <FONT COLOR="Maroon"><B>a1</B></FONT>
+      <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>
+      <FONT COLOR="Maroon"><B>a2</B></FONT>
+      <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>
+      <FONT COLOR="Maroon"><B>a3</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><BR>
+      dove <FONT COLOR="Maroon"><B>a1</B></FONT>,
+      <FONT COLOR="Maroon"><B>a2</B></FONT> e
+      <FONT COLOR="Maroon"><B>a3</B></FONT> sono tutte
+      <FONT COLOR="Green"><B>istanze</B></FONT> di
+      <FONT COLOR="#cc0000"><B>A</B></FONT></BIG>
+  </OL>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp; <BIG></BIG>
+  <P ALIGN=Justify>
+  <BIG>Analogamente, si pu&ograve; definire un
+  <FONT COLOR="Green"><B>overload</B></FONT>
+  dell'<FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>estrazione</B></FONT>
+  "<FONT COLOR="Blue"><B>&gt;&gt;</B></FONT>" per le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <B>input</B> (per esempio,
+  <FONT COLOR="Blue"><B>cin</B></FONT>
+  <FONT COLOR="Blue"><B>&gt;&gt;</B></FONT>
+  <FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>),
+  tramite la <FONT COLOR="Green"><B>funzione</B></FONT>: <BR>
+  &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>istream&amp;</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>operator&gt;&gt;(istream&amp;
+  </B></FONT><FONT COLOR="Maroon"><B>inp</B></FONT><FONT COLOR="Blue"><B>,
+  A&amp; </B></FONT><FONT COLOR="Maroon"><B>a)</B></FONT> <BR>
+  dove <FONT COLOR="Blue"><B>istream</B></FONT> &egrave; la
+  <FONT COLOR="Green"><B>classe</B></FONT> di
+  <FONT COLOR="Purple"><B>flusso</B></FONT> di <B>input</B> (anch'essa dichiarata
+  in <FONT COLOR="Blue"><B>&lt;iostream.h&gt;</B></FONT>), a cui appartiene
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT>
+  <FONT COLOR="Blue"><B>cin</B></FONT>. Notare che in questo caso il secondo
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> (cio&egrave;
+  <FONT COLOR="Maroon"><B>a</B></FONT>), sempre passato
+  <I><B>by-reference</B></I>,&nbsp;<U>non &egrave; <B>dichiarato</B>
+  <FONT COLOR="Blue"><B>const</B></FONT></U>, in quanto
+  l'<FONT COLOR="Green"><B>operazione</B></FONT> lo deve modificare.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p55/inpout.cpp">[p55]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatori binari e
+conversioni</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Analogamente a quanto visto negli esempi finora riportati, si possono
+  definire gli <FONT COLOR="Green"><B>overload</B></FONT> dei seguenti
+  <FONT COLOR="Green"><B>operatori</B></FONT>
+  <FONT COLOR="Green"><B>binari</B></FONT> :</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Purple"><B>matematici</B></FONT> (<FONT COLOR="Blue"><B>+
+      &nbsp;-
+      </B></FONT><B><FONT COLOR="Blue"><SUB><BIG>*</BIG></SUB></FONT></B>
+      &nbsp;<FONT COLOR="Blue"><B>/ &nbsp;%</B></FONT>);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Purple"><B>a livello del bit</B></FONT>
+      (<FONT COLOR="Blue"><B>&lt;&lt; &nbsp;&gt;&gt; &nbsp;&amp; &nbsp;|
+      &nbsp;^</B></FONT>)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Purple"><B>in notazione compatta</B></FONT>
+      (<FONT COLOR="Blue"><B>+= &nbsp;-=
+      </B></FONT><B><FONT COLOR="Blue"><SUB><BIG>*</BIG></SUB></FONT></B><FONT
+	  COLOR="Blue"><B>=</B></FONT> &nbsp;<FONT COLOR="Blue"><B>/ = &nbsp;%=
+      &nbsp;&lt;&lt;= &nbsp;&gt;&gt; = &nbsp;&amp;= &nbsp;| =
+      &nbsp;^=</B></FONT>)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Purple"><B>relazionali</B></FONT> (<FONT COLOR="Blue"><B>==
+      &nbsp;!= &nbsp;&lt; &nbsp;&lt;= &nbsp;&gt; &gt;=</B></FONT>);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Purple"><B>logici
+      </B></FONT>(<FONT COLOR="Blue"><B>&amp;&amp; &nbsp;||</B></FONT>)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>di</BIG> <BIG><FONT COLOR="Purple"><B>serializzazione </B></FONT>(
+      <FONT COLOR="Blue"><B>, </B></FONT>)</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>e di altri che tratteremo separatamente (per una maggiore leggibilit&agrave;
+  del programma, si consiglia, anche se non &egrave; obbligatorio, che gli
+  <FONT COLOR="Green"><B>overload</B></FONT> di questi
+  <FONT COLOR="Green"><B>operatori</B></FONT> mantengano comunque qualche
+  "somiglianza" con il loro significato originario).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Tutti gli <FONT COLOR="Green"><B>operatori</B></FONT> sopra riportati
+  avranno ovviamente almeno un
+  <FONT COLOR="Green"><B>operando</B></FONT>&nbsp;che &egrave;
+  <FONT COLOR="Green"><B>oggetto d</B></FONT>ella
+  <FONT COLOR="Green"><B>classe</B></FONT>, non importa se
+  <FONT COLOR="Green"><B>left</B></FONT> o
+  <FONT COLOR="Green"><B>right</B></FONT> (a parte gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> <FONT COLOR="Purple"><B>in notazione
+  compatta</B></FONT>, per i quali l'<FONT COLOR="Green"><B>oggetto
+  d</B></FONT>ella <FONT COLOR="Green"><B>classe</B></FONT> deve essere
+  &nbsp;sempre <FONT COLOR="Green"><B>left</B></FONT>). L'altro
+  <FONT COLOR="Green"><B>operando</B></FONT> pu&ograve; essere un altro
+  <FONT COLOR="Green"><B>oggetto</B></FONT> della stessa
+  <FONT COLOR="Green"><B>classe</B></FONT> (come nell'esempio della
+  <FONT COLOR="Purple"><B>somma</B></FONT> che abbiamo visto prima), oppure
+  un <FONT COLOR="Green"><B>oggetto</B></FONT> di qualsiasi altro
+  <FONT COLOR="Green"><B>tipo</B></FONT>, <I><B>nativo</B></I> o
+  <I><B>astratto</B></I>. Pertanto possono esistere parecchi
+  <FONT COLOR="Green"><B>overload</B></FONT> dello stesso
+  <FONT COLOR="Green"><B>operatore</B></FONT>, ciascuno con un
+  <FONT COLOR="Green"><B>operando</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT> diverso. Non solo, ma se si vuole
+  salvaguardare la propriet&agrave; "commutativa" di certe
+  <FONT COLOR="Green"><B>operazioni</B></FONT>&nbsp;(<FONT COLOR="Blue"><B>+</B></FONT>
+  &nbsp;<B><FONT COLOR="Blue"><SUB><BIG>*</BIG></SUB></FONT></B>
+  &nbsp;<FONT COLOR="Blue"><B>&amp; &nbsp;|</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>^ &nbsp;==</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>!=</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>&amp;&amp; &nbsp;||</B></FONT>), o la "simmetria"
+  di altre (<FONT COLOR="Blue"><B>&lt;</B></FONT> con
+  &nbsp;<FONT COLOR="Blue"><B>&gt;=</B></FONT> e
+  <FONT COLOR="Blue"><B>&gt;</B></FONT> con
+  <FONT COLOR="Blue"><B>&lt;=</B></FONT>), occorrono, per ognuna di esse,
+  <U>due</U> <FONT COLOR="Green"><B>funzioni</B></FONT>, delle quali per giunta
+  una pu&ograve; essere <B>metodo</B> e l'altra no.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Ne consegue che, se gli <FONT COLOR="Green"><B>operatori</B></FONT>
+  da applicare in <FONT COLOR="Green"><B>overload</B></FONT> a una certa
+  <FONT COLOR="Green"><B>classe</B></FONT> non sono progettati attentamente,
+  si rischia di generare una pletora di
+  <FONT COLOR="Green"><B>funzioni</B></FONT>, con varianti spesso molto piccole
+  da una all'altra. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Red"><B>C++</B></FONT> offre una soluzione a questo
+  problema, che &egrave; molto semplice ed efficace: il numero di
+  <FONT COLOR="Green"><B>funzioni</B></FONT> pu&ograve; essere minimizzato
+  utilizzando i <FONT COLOR="Green"><B>costruttori</B></FONT> con un
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>, che, come abbiamo visto,
+  definiscono anche una conversione <I><B>implicita</B></I> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>: se "attrezziamo" la
+  <FONT COLOR="Green"><B>classe</B></FONT> con un insieme opportuno di
+  <FONT COLOR="Green"><B>costruttori</B></FONT> con un
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>, possiamo ottenere che tutti
+  i <FONT COLOR="Green"><B>tipi</B></FONT> coinvolti nelle
+  <FONT COLOR="Green"><B>operazioni</B></FONT> siano convertiti
+  <I><B>implicitamente</B></I> nel <FONT COLOR="Green"><B>tipo</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT> e che ogni
+  <FONT COLOR="Green"><B>operazione</B></FONT> sia perci&ograve; implementata
+  da una sola <FONT COLOR="Green"><B>funzione</B></FONT>, quella che opera
+  su due <FONT COLOR="Green"><B>oggetti</B></FONT> della stessa
+  <FONT COLOR="Green"><B>classe</B></FONT>. Notare che la conversione
+  <I><B>implicita</B></I> <U>viene eseguita indipendentemente dalla posizione
+  dell'<FONT COLOR="Green"><B>operando</B></FONT></U>, e ci&ograve; permette
+  in particolare che ogni <FONT COLOR="Green"><B>operazione</B></FONT>
+  "commutativa" sia definibile con una sola
+  <FONT COLOR="Green"><B>funzione</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Riprendendo la nostra <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>point</B></FONT>, vogliamo per esempio definire
+  un operazione di <FONT COLOR="Purple"><B>somma</B></FONT> fra un vettore
+  <FONT COLOR="Maroon"><B>p</B></FONT>,
+  <FONT COLOR="Green"><B>oggetto</B></FONT> di
+  <FONT COLOR="#cc0000"><B>point</B></FONT>, e un valore
+  <FONT COLOR="Maroon"><B>s</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>&nbsp;<FONT COLOR="Blue"><B>double</B></FONT>
+  (detto: "scalare"), in modo tale che lo scalare venga sommato a ogni componente
+  del vettore. Se <B>definiamo</B> il
+  <FONT COLOR="Green"><B>costruttore</B></FONT>:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;
+  &nbsp;<FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+      COLOR="Maroon"><B>point</B></FONT><FONT COLOR="Blue"><B>(double
+  </B></FONT><FONT COLOR="Maroon"><B>d</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>:</B></FONT>
+  &nbsp;<FONT COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>d</B></FONT><FONT COLOR="Blue"><B>), &nbsp;
+  </B></FONT><FONT COLOR="Maroon"><B>y</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>d</B></FONT><FONT COLOR="Blue"><B>)
+  </B></FONT>&nbsp;<FONT COLOR="Blue"><B>{</B></FONT>
+  <FONT COLOR="Blue"><B>}</B></FONT> <BR>
+  otterremo che entrambe le
+  <FONT COLOR="Green"><B>operazioni</B></FONT>:<BR>
+  <FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;p</B></FONT>
+  <FONT COLOR="Blue"><B>+</B></FONT>
+  <FONT COLOR="Maroon"><B>s</B></FONT>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  e <FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;s</B></FONT> <FONT COLOR="Blue"><B>+</B></FONT>
+  <FONT COLOR="Maroon"><B>p</B></FONT><BR>
+  comportino la conversione <I><B>implicita</B></I> di
+  <FONT COLOR="Maroon"><B>s</B></FONT> da
+  <FONT COLOR="Green"><B>tipo</B></FONT>&nbsp;<FONT COLOR="Blue"><B>double</B></FONT>
+  a
+  <FONT COLOR="Green"><B>tipo</B></FONT>&nbsp;&nbsp;<FONT COLOR="#cc0000"><B>point</B></FONT>,
+  e si trasformino nell'unica <FONT COLOR="Green"><B>operazione</B></FONT>
+  di <FONT COLOR="Purple"><B>somma</B></FONT> fra due
+  <FONT COLOR="Green"><B>oggetti</B></FONT> di
+  <FONT COLOR="#cc0000"><B>point</B></FONT>&nbsp;(della quale abbiamo gi&agrave;
+  visto un esempio di implementazione).</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p56/implicit.cpp">[p56]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatori unari e casting a tipo
+nativo</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Si possono definire gli <FONT COLOR="Green"><B>overload</B></FONT> dei
+  seguenti <FONT COLOR="Green"><B>operatori unari</B></FONT> :</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Purple"><B>incremento e decremento (suffisso)
+      </B></FONT>(<FONT COLOR="Blue"><B>++ &nbsp; &nbsp;- - </B></FONT>);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Purple"><B>incremento e decremento (prefisso)
+      </B></FONT>(<FONT COLOR="Blue"><B>++ &nbsp; &nbsp;- - </B></FONT>);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Purple"><B>segni algebrici</B></FONT>
+      (<FONT COLOR="Blue"><B>+ &nbsp;-</B></FONT>)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Purple"><B>complemento a 1 e NOT
+      </B></FONT>(~<FONT COLOR="Blue"><B> &nbsp;!</B></FONT>);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Purple"><B>indirizzo e deref.
+      </B></FONT>(<FONT COLOR="Blue"><B>&amp;
+      &nbsp;<SUB><BIG>*</BIG></SUB></B></FONT>)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Purple"><B>casting</B></FONT></BIG>
+      <BIG>(<FONT COLOR="Blue"><B>
+      (</B></FONT><FONT COLOR="Green"><B>tipo</B></FONT><FONT COLOR="Blue"><B>)
+      </B></FONT>)</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Gli <FONT COLOR="Green"><B>operatori unari</B></FONT> <U>devono</U>
+  avere come unico <FONT COLOR="Green"><B>operando</B></FONT> un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT> in cui sono <B>definiti</B> e quindi
+  <U>possono convenientemente essere definiti come <B>metodi</B> della stessa
+  <FONT COLOR="Green"><B>classe</B></FONT></U>, nel qual caso le
+  <FONT COLOR="Green"><B>funzioni</B></FONT> che li implementano devono essere
+  <U>senza <FONT COLOR="Maroon"><B>argomenti</B></FONT></U>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Tutti gli <FONT COLOR="Green"><B>operatori</B></FONT> sopra menzionati
+  sono <I><B>prefissi</B></I>
+  dell'<FONT COLOR="Green"><B>operando</B></FONT>, salvo gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> di
+  <FONT COLOR="Purple"><B>incremento</B></FONT> e
+  <FONT COLOR="Purple"><B>decremento</B></FONT> che possono essere sia
+  <I><B>prefissi</B></I> che <I><B>suffissi</B></I>. Per distinguerli, &egrave;
+  applicata la seguente convenzione: se la
+  <FONT COLOR="Green"><B>funzione</B></FONT> &egrave; senza
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>, si tratta di un
+  <I><B>prefisso</B></I>, se la <FONT COLOR="Green"><B>funzione</B></FONT>
+  contiene un <FONT COLOR="Maroon"><B>argomento</B></FONT> fittizio di tipo
+  <FONT COLOR="Blue"><B>int</B></FONT> (che il sistema non usa in quanto
+  l'<FONT COLOR="Green"><B>operatore</B></FONT> &egrave;
+  <FONT COLOR="Green"><B>unario</B></FONT>) si tratta di un
+  <I><B>suffisso</B></I>. Inoltre, per i <I><B>prefissi</B></I>, il <B>valore
+  di ritorno</B> deve essere passato <I><B>by reference</B></I>, mentre per
+  i <I><B>suffissi</B></I> deve essere passato <I><B>by value</B></I> (questo
+  perch&eacute; i <I><B>prefissi</B></I> possono essere degli
+  <FONT COLOR="Green"><B>l-values</B></FONT> mentre i
+  <I><B>suffissi</B></I> no). Infine, gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> <I><B>suffissi</B></I> devono
+  essere progettati con particolare attenzione, se si vuole conservare la loro
+  propriet&agrave; di eseguire un'operazione "posticipata", nonostanza la
+  <FONT COLOR="Purple"><B>precedenza</B></FONT> alta. Per &nbsp;esempio, un
+  <FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>incremento</B></FONT> <I><B>suffisso </B></I>di una
+  generica <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, potrebbe essere implementato cos&igrave;
+  (supponiamo che il corrispondente
+  <FONT COLOR="Green"><B>operatore</B></FONT> <I><B>prefisso</B></I> sia gi&agrave;
+  stato definito):</BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>A</B></FONT></BIG>
+	<BIG><FONT COLOR="#cc0000"><B>&nbsp;A</B></FONT><FONT COLOR="Blue"><B>::operator++(int)</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp;
+	<BIG><FONT COLOR="#cc0000"><B>A</B></FONT> <FONT COLOR="Maroon"><B>temp
+	</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>
+	</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this;</B></FONT></BIG>
+	&nbsp;</TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp;
+	<BIG><FONT COLOR="Blue"><B>++<SUB><BIG>*</BIG></SUB>this</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp;
+	<BIG><FONT COLOR="Blue"><B>return</B></FONT>
+	<FONT COLOR="Maroon"><B>temp</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>come si pu&ograve; notare,
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> &egrave; correttamente
+  <FONT COLOR="Purple"><B>incrementato</B></FONT>, ma al <B>chiamante</B> non
+  torna l'<FONT COLOR="Green"><B>oggetto</B></FONT> stesso, bens&igrave; una
+  sua <B>copia</B> precedente (<FONT COLOR="Maroon"><B>temp</B></FONT>); in
+  questo modo, non &egrave; l'<FONT COLOR="Green"><B>oggetto</B></FONT>, ma
+  la sua <B>copia</B> precedente ad essere utilizzata come
+  <FONT COLOR="Green"><B>operando</B></FONT> nelle eventuali successive
+  <FONT COLOR="Green"><B>operazioni</B></FONT>
+  dell'<FONT COLOR="Green"><B>espressione</B></FONT> di cui fa parte; solo
+  dopo che l'intera <FONT COLOR="Green"><B>espressione</B></FONT> &egrave;
+  stata eseguita, un nuovo accesso al <B>nome</B>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT> ritrover&agrave;
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Purple"><B>incrementato</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp; <BR>
+  <BIG>Un caso a parte &egrave; quello
+  dell'<FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>casting</B></FONT>. Come abbiamo visto, la conversione
+  di <FONT COLOR="Green"><B>tipo</B></FONT> pu&ograve; essere eseguita usando
+  un <FONT COLOR="Green"><B>costruttore</B></FONT> con un
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>: questo consente conversioni,
+  anche <I><B>implicite</B></I>, da <FONT COLOR="Green"><B>tipi</B></FONT>
+  <I><B>nativi</B></I> a <FONT COLOR="Green"><B>tipi</B></FONT>
+  <I><B>astratti</B></I> (o fra <FONT COLOR="Green"><B>tipi</B></FONT>
+  <I><B>astratti</B></I>), ma non pu&ograve; essere utilizzato per conversioni
+  da &nbsp;<FONT COLOR="Green"><B>tipi</B></FONT> <I><B>astratti</B></I> &nbsp;a
+  <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>nativi</B></I>, in quanto i
+  <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>nativi</B></I> non hanno
+  <FONT COLOR="Green"><B>costruttori</B></FONT> con un
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>. A questo scopo occore invece
+  definire esplicitamente un <FONT COLOR="Green"><B>overload</B></FONT>
+  dell'<FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>casting</B></FONT>, che deve essere espresso nella
+  seguente forma (esempio di <FONT COLOR="Purple"><B>casting</B></FONT> da
+  una <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> a
+  <FONT COLOR="Blue"><B>double</B></FONT>):<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::operator
+  double( )</B></FONT></BIG><BR>
+  <BIG>notare che il <FONT COLOR="Green"><B>tipo</B></FONT> di ritorno non
+  deve essere specificato in quanto il <FONT COLOR="Red"><B>C++</B></FONT>
+  lo riconosce gi&agrave; dal <B>nome</B> della
+  <FONT COLOR="Green"><B>funzione</B></FONT>; notare anche che esiste uno spazio
+  (obbligatorio) fra le parole <FONT COLOR="Blue"><B>operator</B></FONT> e
+  <FONT COLOR="Blue"><B>double</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La conversione pu&ograve; essere eseguita
+  <I><B>implicitamente</B></I> o <I><B>esplicitamente</B></I>, in
+  <I><B>C-style</B></I> o in <I><B>function-style</B></I>. Se &egrave; eseguita
+  <I><B>implicitamente</B></I>, pu&ograve; verificarsi
+  un'<I><B>ambiguit&agrave;</B></I> nel caso sia definita anche la conversione
+  in senso inverso. Esempio:</BIG><BR>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>A</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Maroon"><B>a</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG> &nbsp;
+	&nbsp;<BIG><FONT COLOR="Blue"><B>double</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Maroon"><B>d</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD>&nbsp;</TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>a</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>+</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>d</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>deve convertire un <FONT COLOR="Green"><B>tipo</B></FONT>
+	<FONT COLOR="#cc0000"><B>A</B></FONT> in
+	<FONT COLOR="Blue"><B>double</B></FONT> o un
+	<FONT COLOR="Blue"><B>double</B></FONT> in
+	<FONT COLOR="#cc0000"><B>A</B></FONT> ? </BIG></TD>
+    </TR>
+  </TABLE>
+  <P>
+  <BIG>Nell'esempio sopra riportato si &egrave; supposto che:</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la</BIG> &nbsp;<BIG><FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="#cc0000"><B>A</B></FONT> abbia un <B>metodo</B> che definisce
+      un <FONT COLOR="Green"><B>overload</B></FONT>
+      dell'<FONT COLOR="Green"><B>operatore</B></FONT> di
+      <FONT COLOR="Purple"><B>casting</B></FONT> da
+      <FONT COLOR="#cc0000"><B>A</B></FONT> a
+      <FONT COLOR="Blue"><B>double</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la</BIG> &nbsp;<BIG><FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="#cc0000"><B>A</B></FONT> abbia un
+      <FONT COLOR="Green"><B>costruttore</B></FONT> con un
+      <FONT COLOR="Maroon"><B>argomento</B></FONT>
+      <FONT COLOR="Blue"><B>double</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>esista una <FONT COLOR="Green"><B>funzione</B></FONT> esterna che definisce
+      un <FONT COLOR="Green"><B>overload</B></FONT>
+      dell'<FONT COLOR="Green"><B>operatore</B></FONT> di
+      <FONT COLOR="Purple"><B>somma</B></FONT> fra due
+      <FONT COLOR="Green"><B>oggetti</B></FONT> di
+      <FONT COLOR="#cc0000"><B>A</B></FONT>.</BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <BIG>in queste condizioni il compilatore segnala un errore di
+  <I><B>ambiguit&agrave;</B></I>, perch&egrave; non sa quale delle due conversioni
+  <I><B>implicite</B></I> selezionare. In ogni caso, quando si tratta di
+  <FONT COLOR="Green"><B>operatori</B></FONT> in
+  <FONT COLOR="Green"><B>overload</B></FONT>, il
+  <FONT COLOR="Red"><B>C++</B></FONT> <U>non fa preferenza fra i <B>metodi</B>
+  della <FONT COLOR="Green"><B>classe</B></FONT> e le altre
+  <FONT COLOR="Green"><B>funzioni</B></FONT> </U>.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p57/modulo.cpp">[p57]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatori in
+namespace</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo visto che, per una migliore organizzazione degli
+  <FONT COLOR="Green"><B>operatori</B></FONT> in
+  <FONT COLOR="Green"><B>overload</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT>, &egrave; preferibile utilizzare
+  in maggioranza <FONT COLOR="Green"><B>funzioni</B></FONT> &nbsp;non
+  <B>metodi</B> (se si tratta di
+  <FONT COLOR="Green"><B>operatori</B></FONT>
+  <FONT COLOR="Green"><B>binari</B></FONT>), che si appoggino a un insieme
+  limitato di <B>metodi</B> della <FONT COLOR="Green"><B>classe</B></FONT>.
+  Non ci siamo mai chiesti, per&ograve;, in quale
+  <FONT COLOR="Green"><B>ambito</B></FONT> sia conveniente che tali
+  <FONT COLOR="Green"><B>funzioni</B></FONT> vengano <B>definite</B> e, per
+  semplicit&agrave;, negli esempi (ed esercizi) finora riportati abbiamo sempre
+  <B>definito</B> le <FONT COLOR="Green"><B>funzioni</B></FONT> nel
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Questo non &egrave;, tuttavia, il modo pi&ugrave; corretto di procedere.
+  Come abbiamo detto pi&ugrave; volte, un affollamento eccessivo del
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT> pu&ograve; essere fonte di confusione
+  e di errori, specialmente in programmi di grosse dimensioni e con diversi
+  programmatori che lavorano ad un unico progetto. </BIG>
+  <P ALIGN=Justify>
+  <BIG>E' pertanto preferibile "racchiudere" la
+  <FONT COLOR="Green"><B>classe</B></FONT> e le
+  <FONT COLOR="Green"><B>funzioni</B></FONT> esterne che implementano gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT> in un
+  <FONT COLOR="Blue"><B>namespace</B></FONT> definito con un <B>nome</B>. In
+  questo modo non si "inquina" il
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT> e, nel contempo, si pu&ograve;
+  mantenere la notazione simbolica nella <B>chiamata</B> delle
+  <FONT COLOR="Green"><B>operazioni</B></FONT>. Infatti, a differenza dai
+  <B>metodi</B> <FONT COLOR="Green"><B>statici</B></FONT>, che devono essere
+  sempre <B>qualificati</B> con il <B>nome</B> della
+  <FONT COLOR="Green"><B>classe</B></FONT>, una
+  <FONT COLOR="Green"><B>funzione</B></FONT> appartenente a un
+  <FONT COLOR="Blue"><B>namespace</B></FONT> non ha bisogno di essere
+  <B>qualificata</B> con il <B>nome</B> del
+  <FONT COLOR="Blue"><B>namespace</B></FONT>, se appartiene allo stesso
+  <FONT COLOR="Blue"><B>namespace</B></FONT> almeno uno dei suoi
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>In generale, data una generica
+  <FONT COLOR="Green"><B>operazione</B></FONT> (usiamo
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Purple"><B>@</B></FONT>, che in realt&agrave; non esiste, proprio
+  per indicare un'<FONT COLOR="Green"><B>operazione</B></FONT>
+  qualsiasi):</BIG><BR>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>a
+	</B></FONT><FONT COLOR="Purple"><B>@</B></FONT>
+	<FONT COLOR="Maroon"><B>b</B></FONT></BIG></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG>(dove <FONT COLOR="Maroon"><B>a</B></FONT> &egrave;
+	un'<FONT COLOR="Green"><B>istanza</B></FONT> di una
+	<FONT COLOR="Green"><B>classe</B></FONT>
+	<FONT COLOR="#cc0000"><B>A</B></FONT> &nbsp;e
+	<FONT COLOR="Maroon"><B>&nbsp;b</B></FONT> &egrave; un'
+	<FONT COLOR="Green"><B>istanza</B></FONT> di una
+	<FONT COLOR="Green"><B>classe</B></FONT>
+	<FONT COLOR="#cc0000"><B>B</B></FONT>) </BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>il compilatore esegue la ricerca della
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Blue"><B>operator</B></FONT><FONT COLOR="Purple"><B>@</B></FONT>
+  &nbsp;nel seguente modo:</BIG>
+  <UL>
+    <LI>
+      <BIG>cerca
+      <FONT COLOR="Blue"><B>operator</B></FONT><FONT COLOR="Purple"><B>@</B></FONT>
+      come <B>metodo</B> della <FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="#cc0000"><B>A</B></FONT>;</BIG>
+    <LI>
+      <BIG>cerca una <B>definizione</B> di
+      <FONT COLOR="Blue"><B>operator</B></FONT><FONT COLOR="Purple"><B>@</B></FONT>
+      nell'<FONT COLOR="Green"><B>ambito</B></FONT> della <B>chiamata</B> (o in
+      <FONT COLOR="Green"><B>ambiti</B></FONT> superiori, fino al
+      <FONT COLOR="Blue"><B>namespace</B></FONT>
+      <FONT COLOR="Green"><B>globale</B></FONT>);</BIG>
+    <LI>
+      <BIG>se la <FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="#cc0000"><B>A</B></FONT> &egrave; <B>definita</B> in un
+      <FONT COLOR="Blue"><B>namespace</B></FONT>
+      <FONT COLOR="#cc0000"><B>M</B></FONT>, cerca una <B>definizione</B> di
+      <FONT COLOR="Blue"><B>operator</B></FONT><FONT COLOR="Purple"><B>@</B></FONT>
+      &nbsp;in <FONT COLOR="#cc0000"><B>M</B></FONT>;</BIG>
+    <LI>
+      <BIG>se la <FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="#cc0000"><B>B</B></FONT> &egrave; <B>definita</B> in un
+      <FONT COLOR="Blue"><B>namespace</B></FONT>
+      <FONT COLOR="#cc0000"><B>N</B></FONT>, cerca una <B>definizione</B> di
+      <FONT COLOR="Blue"><B>operator</B></FONT><FONT COLOR="Purple"><B>@</B></FONT>
+      &nbsp;in <FONT COLOR="#cc0000"><B>N</B></FONT></BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Non sono fissati criteri di preferenza: se sono trovate pi&ugrave;
+  <B>definizioni</B> di
+  <FONT COLOR="Blue"><B>operator</B></FONT><FONT COLOR="Purple"><B>@</B></FONT>,
+  il compilatore, se pu&ograve;, sceglie la "migliore" (per esempio, quella
+  in cui i <FONT COLOR="Green"><B>tipi</B></FONT> degli
+  <FONT COLOR="Green"><B>operandi</B></FONT> corrispondono esattamente, rispetto
+  ad altre in cui la corrispondenza &egrave; ottenuta dopo una conversione
+  <I><B>implicita</B></I>), altrimenti segnala
+  l'<I><B>ambiguit&agrave;</B></I>.&nbsp;</BIG>
+  <P ALIGN=Justify>
+  <BIG>Nel caso che
+  <FONT COLOR="Blue"><B>operator</B></FONT><FONT COLOR="Purple"><B>@</B></FONT>
+  sia trovata nel <FONT COLOR="Blue"><B>namespace</B></FONT> in cui &egrave;
+  <B>definita</B> una delle due <FONT COLOR="Green"><B>classi</B></FONT>, la
+  <FONT COLOR="Green"><B>funzione</B></FONT> deve essere comunque
+  <B>dichiarata</B> <FONT COLOR="Blue"><B>friend</B></FONT> in <U>entrambe</U>
+  le <FONT COLOR="Green"><B>classi</B></FONT> (se in entrambe accede a
+  <FONT COLOR="Green"><B>membri</B></FONT> <B>privati</B>); ci&ograve; potrebbe
+  far sorgere un problema di <I><B>dipendenza circolare</B></I>, problema che
+  peraltro si risolve mediante <B>dichiarazione</B>
+  <I><B>anticipata</B></I> di una delle
+  <FONT COLOR="Green"><B>classi</B></FONT> (per fortuna un
+  <FONT COLOR="Blue"><B>namespace</B></FONT> si pu&ograve; spezzare in pi&ugrave;
+  parti!)</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p58/rttr.h">[p58]</A><A HREF="p58/rttr.cpp">[p58]</A>
+<A HREF="p58/rttrmain.cpp">[p58]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Oggetti-array e array
+associativi</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<P ALIGN=Justify>
+<BIG>Tratteremo ora di alcuni <FONT COLOR="Green"><B>overload </B></FONT>di
+<FONT COLOR="Green"><B>operatori</B></FONT>
+<FONT COLOR="Green"><B>binari</B></FONT>, da implementare obbligatoriamente
+come <B>metodi</B>, in quanto il loro primo
+&nbsp;<FONT COLOR="Green"><B>operando</B></FONT> &egrave;
+<FONT COLOR="Green"><B>oggetto</B></FONT> della
+<FONT COLOR="Green"><B>classe</B></FONT> e
+<FONT COLOR="Green"><B>l-value</B></FONT> modificabile. Fermo restando il
+fatto che la ridefinizione del significato di un
+<FONT COLOR="Green"><B>operatore</B></FONT> in
+<FONT COLOR="Green"><B>overload</B></FONT> &egrave; assolutamente libera,
+questi <FONT COLOR="Green"><B>operatori</B></FONT> vengono comunemente ridefiniti
+con significati specifici.</BIG>
+<P>
+&nbsp; &nbsp; &nbsp; <BR>
+<FONT COLOR="Green"><BIG><B>Oggetti-array</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Il primo <FONT COLOR="Green"><B>overload</B></FONT> che esaminiamo &egrave;
+  quello dell'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Purple"><B>indice</B></FONT>
+  <FONT COLOR="Blue"><B>[]</B></FONT>, che potrebbe servire, per esempio, se
+  un <FONT COLOR="Green"><B>membro</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT> &egrave; un
+  <FONT COLOR="Green"><B>array</B></FONT>. In tal caso, rinunciando, per non
+  avere ambiguit&agrave;, a trattare
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>oggetti</B></FONT>, ma solo il
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Green"><B>array</B></FONT> di ogni
+  <FONT COLOR="Green"><B>oggetto</B></FONT>,
+  l'<FONT COLOR="Green"><B>overload</B></FONT>
+  dell'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Purple"><B>indice</B></FONT>&nbsp;potrebbe essere definito come
+  &nbsp;nel seguente esempio: <BR>
+  data una <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT></BIG> <BIG>: &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; <FONT COLOR="Blue"><B>class</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> &nbsp;<FONT COLOR="Blue"><B>{ int
+  </B></FONT><FONT COLOR="Maroon"><B>m</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>10</B></FONT><FONT COLOR="Blue"><B>] ;
+  &nbsp;</B></FONT><B>........</B> <FONT COLOR="Blue"><B>}</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT><BR>
+  e una sua <FONT COLOR="Green"><B>istanza</B></FONT>
+  <FONT COLOR="Maroon"><B>a</B></FONT>, vogliamo che
+  l'<FONT COLOR="Green"><B>operazione</B></FONT>:
+  <FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>]</B></FONT> non indichi
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> di
+  <FONT COLOR="Purple"><B>indice</B></FONT>
+  <FONT COLOR="Maroon"><B>i</B></FONT> di un
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>oggetti</B></FONT>
+  <FONT COLOR="Maroon"><B>a</B></FONT> (come sarebbe senza
+  <FONT COLOR="Green"><B>overload</B></FONT> di
+  <FONT COLOR="Blue"><B>[]</B></FONT>), ma
+  l'<FONT COLOR="Green"><B>elemento</B></FONT> di
+  <FONT COLOR="Purple"><B>indice</B></FONT>
+  <FONT COLOR="Maroon"><B>i</B></FONT> del
+  <FONT COLOR="Green"><B>membro-array</B></FONT>
+  <FONT COLOR="Maroon"><B>m</B></FONT>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Maroon"><B>a</B></FONT>. Per ottenere questo, basta
+  <B>definire</B> in <FONT COLOR="#cc0000"><B>A</B></FONT> il seguente
+  <B>metodo</B>: </BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>int&amp;</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::operator[] (const
+  int&amp;
+  </B></FONT><FONT COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>) {
+  return
+  </B></FONT><FONT COLOR="Maroon"><B>m</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>]; }</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>da notare che il <B>valore di ritorno</B> &egrave; un
+  <FONT COLOR="Green"><B>riferimento</B></FONT>, e questo fa s&igrave; che
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>[]</B></FONT> funzioni come un
+  <FONT COLOR="Green"><B>l-value</B></FONT>, rendendo possibili, non solo
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di
+  <FONT COLOR="Purple"><B>estrazione</B></FONT>, come: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Maroon"><B>num</B></FONT> <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>];</B></FONT> <BR>
+  ma anche <FONT COLOR="Green"><B>operazioni</B></FONT> di
+  <FONT COLOR="Purple"><B>inserimento</B></FONT>, come: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>]</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>num</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><BR>
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>Gli <FONT COLOR="Green"><B>oggetti</B></FONT> costituiti da un solo
+  <FONT COLOR="Green"><B>membro-array</B></FONT> (o in cui il
+  <FONT COLOR="Green"><B>membro-array</B></FONT> &egrave; predominante) sono
+  talvolta detti: <FONT COLOR="Green"><B>oggetti-array</B></FONT>. Rispetto
+  ai normali <FONT COLOR="Green"><B>array</B></FONT>, presentano il vantaggio
+  di poter disporre delle funzionalit&agrave; in pi&ugrave; offerte dalla
+  <FONT COLOR="Green"><B>classe</B></FONT> di appartenenza; per esempio possono
+  controllare il valore dell'<FONT COLOR="Purple"><B>indice</B></FONT>, sollevando
+  <FONT COLOR="Green"><B>eccezione</B></FONT> in caso di
+  <I><B>overflow</B></I>, oppure modificare la
+  <FONT COLOR="Green"><B>dimensione</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT> (se il
+  <FONT COLOR="Green"><B>membro-array</B></FONT> &egrave; <B>dichiarato</B>
+  come <FONT COLOR="Green"><B>puntatore</B></FONT>) ecc...</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p59/oggarr.h">[p59]</A><A HREF="p59/oggarr.cpp">[p59]</A>
+<A HREF="p59/oggarrmain.cpp">[p59]</A></BIG></BIG>
+<P>
+&nbsp; &nbsp; &nbsp; <BR>
+<FONT COLOR="Green"><BIG><B>Array associativi</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>L' <FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Purple"><B>indice</B></FONT> ha un campo di applicazione molto
+  pi&ugrave; vasto e generalizzato di un normale
+  <FONT COLOR="Green"><B>array</B></FONT>. Infatti non esiste nessuna regola
+  che obblighi il secondo <FONT COLOR="Green"><B>operando</B></FONT> a essere
+  un <FONT COLOR="Green"><B>intero</B></FONT>, come &egrave;
+  l'<FONT COLOR="Purple"><B>indice</B></FONT> di un
+  <FONT COLOR="Green"><B>array</B></FONT>; al contrario, lo si pu&ograve;
+  <B>definire</B> di un qualsiasi <FONT COLOR="Green"><B>tipo</B></FONT>, anche
+  <I><B>astratto</B></I>, e ci&ograve; permette di stabilire una corrispondenza
+  (o, come talvolta si dice, un'<I><B>associazione</B></I>) fra
+  <FONT COLOR="Green"><B>oggetti</B></FONT> di due
+  <FONT COLOR="Green"><B>classi</B></FONT>. Un
+  <FONT COLOR="Green"><B>array</B></FONT> <I><B>associativo</B></I>, spesso
+  chiamato <I><B>mappa</B></I> o anche <I><B>dizionario</B></I>, <U>memorizza
+  coppie di valori</U>: dato un valore, la <I><B>chiave</B></I>, si pu&ograve;
+  accedere all'altro, il valore <I><B>mappato</B></I>. La
+  <FONT COLOR="Green"><B>funzione</B></FONT> che implementa
+  l'<FONT COLOR="Green"><B>overload</B></FONT> dell'
+  <FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Purple"><B>indice</B></FONT> fornisce l'<I><B>algoritmo di
+  mappatura</B></I>, che <I><B>associa</B></I> un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT> (primo
+  <FONT COLOR="Green"><B>operando</B></FONT>) a ogni valore della
+  <I><B>chiave</B></I> (secondo
+  <FONT COLOR="Green"><B>operando</B></FONT>).</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Oggetti-funzione</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Anche l'<FONT COLOR="Green"><B>operatore</B></FONT> di <B>chiamata</B>
+  di una &nbsp;<FONT COLOR="Green"><B>funzione</B></FONT> pu&ograve; essere
+  ridefinito. In questo caso il primo
+  <FONT COLOR="Green"><B>operando</B></FONT> deve essere un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT> (<I><B>nascosto</B></I> da
+  <FONT COLOR="Blue"><B>this</B></FONT>) e il secondo
+  <FONT COLOR="Green"><B>operando</B></FONT> &egrave; una <B>lista</B> di
+  <FONT COLOR="Green"><B>espressioni</B></FONT>, che viene
+  <FONT COLOR="Purple"><B>valutata</B></FONT> e trattata secondo le normali
+  regole di passaggio degli <FONT COLOR="Maroon"><B>argomenti</B></FONT> di
+  una <FONT COLOR="Green"><B>funzione</B></FONT>. Il <B>metodo</B> che implementa
+  l'<FONT COLOR="Green"><B>overload</B></FONT> di questo
+  <FONT COLOR="Green"><B>operatore</B></FONT> deve essere <B>definito</B> nel
+  seguente modo (supponiamo che il <B>nome</B> della
+  &nbsp;<FONT COLOR="Green"><B>classe</B></FONT> sia
+  <FONT COLOR="#cc0000"><B>A</B></FONT>):</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Green"><B>tipo </B></FONT>del <B>valore di
+  ritorno</B><FONT COLOR="Green"><B>&nbsp;</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::operator()
+  (</B></FONT><B>lista</B> di
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT><FONT COLOR="Blue"><B>) {
+  &nbsp;</B></FONT><B>........</B>
+  <FONT COLOR="Blue"><B>}</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>L'uso pi&ugrave; frequente
+  dell'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>()</B></FONT> si ha quando si vuole fornire la normale
+  sintassi della <B>chiamata</B> di una
+  &nbsp;<FONT COLOR="Green"><B>funzione</B></FONT> a
+  <FONT COLOR="Green"><B>oggetti</B></FONT> che in qualche modo si comportano
+  come <FONT COLOR="Green"><B>funzioni</B></FONT> (cio&egrave; che utilizzano
+  in modo predominante un loro <B>metodo</B>). Tali
+  <FONT COLOR="Green"><B>oggetti</B></FONT> sono spesso chiamati
+  <FONT COLOR="Green"><B>oggetti-funzione</B></FONT>. Rispetto a una normale
+  <FONT COLOR="Green"><B>funzione</B></FONT>, un
+  <FONT COLOR="Green"><B>oggetto-funzione</B></FONT>&nbsp;ha il vantaggio di
+  potersi "appoggiare" a una <FONT COLOR="Green"><B>classe</B></FONT>, e quindi
+  di utilizzare le informazioni gi&agrave; memorizzate nei suoi
+  <FONT COLOR="Green"><B>membri</B></FONT>, senza bisogno di dover trasmettere
+  ogni volta queste informazioni come
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> aggiuntivi nella
+  <B>chiamata</B>.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p60/frttr.h">[p60]</A><A HREF="p60/frttr.cpp">[p60]</A>
+<A HREF="p60/frttrmain.cpp">[p60]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Puntatori
+intelligenti</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo detto all'inizio che non tutti gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> possono essere ridefiniti in
+  <FONT COLOR="Green"><B>overload</B></FONT> e in particolare non &egrave;
+  ammesso ridefinire quegli <FONT COLOR="Green"><B>operatori</B></FONT> i cui
+  <FONT COLOR="Green"><B>operandi</B></FONT> sono <B>nomi</B> non
+  "parametrizzabili"; citiamo, a questo proposito,
+  l'<FONT COLOR="Green"><B>operatore</B></FONT> di
+  <B><FONT COLOR="Purple">risoluzione di visibilit&agrave;</FONT></B>
+  (<B><FONT COLOR="Blue">::</FONT></B>), in cui il
+  <FONT COLOR="Green"><B>left-operand</B></FONT> &egrave; il <B>nome</B> di
+  una <FONT COLOR="Green"><B>classe</B></FONT> o di un
+  <FONT COLOR="Blue"><B>namespace</B></FONT>, e gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> di
+  <B><FONT COLOR="Purple">selezione di un membro</FONT></B>
+  (<B><FONT COLOR="Blue">.</FONT></B> e
+  <B><FONT COLOR="Blue">-&gt;</FONT></B>), in cui il
+  <FONT COLOR="Green"><B>right-operand</B></FONT> &egrave; il <B>nome</B> di
+  un <FONT COLOR="Green"><B>membro</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>A questa regola fa eccezione
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <B><FONT COLOR="Blue">-&gt;</FONT></B>, che <U>pu&ograve; essere
+  ridefinito</U>; ma, proprio perch&egrave; il suo<FONT COLOR="Green"><B>
+  right-operand</B></FONT> non pu&ograve; essere trasmesso come
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> di una
+  <FONT COLOR="Green"><B>funzione</B></FONT>,
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <B><FONT COLOR="Blue">-&gt;</FONT></B> in
+  <FONT COLOR="Green"><B>overload</B></FONT> &egrave; "declassato" da
+  <FONT COLOR="Green"><B>operatore binario </B></FONT>a
+  <FONT COLOR="Green"><B>operatore unario</B></FONT> <I><B>suffisso</B></I>
+  e mantiene, come unico <FONT COLOR="Green"><B>operando</B></FONT>, il suo
+  originario <FONT COLOR="Green"><B>left-operand</B></FONT>, cio&egrave;
+  l'<FONT COLOR="Purple"><B>indirizzo</B></FONT> di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>. La
+  <FONT COLOR="Green"><B>funzione</B></FONT> che implementa questo (strano)
+  <FONT COLOR="Green"><B>overload</B></FONT> deve essere un <B>metodo</B> di
+  una <FONT COLOR="Green"><B>classe</B></FONT>, dal che si deduce che gli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> di tale
+  <FONT COLOR="Green"><B>classe</B></FONT> possono essere usati come
+  <FONT COLOR="Green"><B>puntatori</B></FONT> per accedere ai
+  <FONT COLOR="Green"><B>membri</B></FONT> di un'altra
+  <FONT COLOR="Green"><B>classe</B></FONT>. Per esempio, data una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>Ptr_to_A</B></FONT>:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>class</B></FONT>
+  <FONT COLOR="#cc0000"><B>Ptr_to_A</B></FONT> &nbsp;<FONT COLOR="Blue"><B>{
+  &nbsp;</B></FONT><B>........</B> &nbsp;<FONT COLOR="Blue"><B>public:
+  </B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>
+  operator-&gt;( ); </B></FONT>&nbsp;<B>........</B>
+  <FONT COLOR="Blue"><B>}</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>le sue <FONT COLOR="Green"><B>istanze</B></FONT> possono essere utilizzate
+  per accedere a <FONT COLOR="Green"><B>istanze</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, in una maniera molto simile a quella
+  in cui sono utilizzati i normali
+  <FONT COLOR="Green"><B>puntatori</B></FONT>.&nbsp;</BIG>
+  <P ALIGN=Justify>
+  <BIG>Se il <B>metodo</B> viene <B>chiamato</B> come una normale
+  <FONT COLOR="Green"><B>funzione</B></FONT>, il suo <B>valore di ritorno</B>
+  pu&ograve; essere usato come <FONT COLOR="Green"><B>puntatore</B></FONT>
+  ad un <FONT COLOR="Green"><B>oggetto</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT>; se invece si adotta la notazione simbolica
+  dell'<FONT COLOR="Green"><B>operazione</B></FONT>, le regole di
+  <I><B>sintassi</B></I> pretendono che il <U><B>nome</B> di un
+  <FONT COLOR="Green"><B>membro</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> venga comunque aggiunto</U>. Per chiarire,
+  continuiamo nell'esempio precedente:</BIG><BR>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>Ptr_to_A</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>
+	;</B></FONT></BIG></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>pa
+	</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>&nbsp;p</B></FONT><B><FONT
+	    COLOR="Blue">.</FONT></B><FONT COLOR="Blue"><B>operator-&gt;(
+	);</B></FONT></BIG> &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><B>OK</B></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>pa
+	</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>&nbsp;p</B></FONT><FONT
+	    COLOR="Blue"><B>-&gt;;</B></FONT></BIG></TD>
+      <TD><BIG><B>errore</B> di <I><B>sintassi</B></I> </BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>int</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>num
+	</B></FONT><FONT COLOR="Blue"><B>=</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>-&gt;</B></FONT><FONT
+	    COLOR="Maroon"><B>ma</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG><B>OK</B></BIG> <BIG>(<FONT COLOR="Maroon"><B>ma</B></FONT> &egrave;
+	un <FONT COLOR="Green"><B>membro</B></FONT> di
+	<FONT COLOR="#cc0000"><B>A</B></FONT> di
+	<FONT COLOR="Green"><B>tipo</B></FONT>
+	<FONT COLOR="Blue"><B>int</B></FONT>)</BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>-&gt;</B></FONT><FONT
+	    COLOR="Maroon"><B>ma</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>=</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>7</B></FONT><FONT COLOR="Blue"><B>
+	;</B></FONT></BIG></TD>
+      <TD><BIG><B>OK</B></BIG> <BIG>(pu&ograve; anche essere un
+	<FONT COLOR="Green"><B>l-value</B></FONT>)</BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp;<BIG><BR>
+  L'<FONT COLOR="Green"><B>overload</B></FONT> di
+  <FONT COLOR="Blue"><B>-&gt;</B></FONT> &egrave; utile principalmente per
+  creare <FONT COLOR="Green"><B>puntatori</B></FONT> "<B>intelligenti</B>",
+  cio&egrave; <FONT COLOR="Green"><B>oggetti</B></FONT> che si comportano come
+  <FONT COLOR="Green"><B>puntatori</B></FONT>, ma con il vantaggio di poter
+  disporre delle funzionalit&agrave; in pi&ugrave; offerte dalla
+  <FONT COLOR="Green"><B>classe</B></FONT> di appartenenza (esattamente come
+  gli <FONT COLOR="Green"><B>oggetti-array</B></FONT> e gli
+  <FONT COLOR="Green"><B>oggetti-funzione</B></FONT>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>C'&egrave; da sottolineare infine che, come di regola, la definizione
+  dell' <FONT COLOR="Green"><B>overload</B></FONT> di
+  <FONT COLOR="Blue"><B>-&gt;</B></FONT> non implica che siano automaticamente
+  definite le <FONT COLOR="Green"><B>operazioni</B></FONT> equivalenti. Infatti,
+  mentre per i normali <FONT COLOR="Green"><B>puntatori</B></FONT> valgono
+  le seguenti uguaglianze: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>-&gt;</B></FONT><FONT
+      COLOR="Maroon"><B>ma</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>=</B></FONT></BIG>
+  &nbsp;<BIG><FONT COLOR="Blue"><B>(<SUB><BIG>*</BIG></SUB></B></FONT><FONT
+      COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>)</B></FONT><B><FONT
+      COLOR="Blue">.</FONT></B><FONT COLOR="Maroon"><B>ma</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>]</B></FONT><B><FONT
+      COLOR="Blue">.</FONT></B><FONT COLOR="Maroon"><B>ma</B></FONT><BR>
+  le stesse continuano a valere per gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> in
+  <FONT COLOR="Green"><B>overload</B></FONT> solo se <U>tutti</U> gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> sono definiti in modo tale da
+  produrre volutamente tale risultato.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p61/pintel.h">[p61]</A><A HREF="p61/pintel.cpp">[p61]</A>
+<A HREF="p61/pintelmain.cpp">[p61]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatore di
+assegnazione</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo lasciato per ultimo di questo gruppo
+  l'<FONT COLOR="Green"><B>overload</B></FONT>
+  dell'<FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>assegnazione</B></FONT>
+  (<FONT COLOR="Blue"><B><BIG>=</BIG></B></FONT>), non perch&egrave; fosse
+  il meno importante (anzi ...), ma semplicemente perch&egrave;, negli esempi
+  (e negli esercizi) finora riportati, <U>non ne abbiamo avuto bisogno</U>.
+  Infatti, come gi&agrave; per il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> senza
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> e per il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di <B>copia</B>, il
+  <FONT COLOR="Red"><B>C++</B></FONT> fornisce un
+  <FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>assegnazione</B></FONT> di <I><B>default</B></I>,
+  che <B>copia</B> <U><FONT COLOR="Green"><B>membro
+  </B></FONT>a<FONT COLOR="Green"><B>
+  membro</B></FONT></U>&nbsp;l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Green"><B>right-operand</B></FONT>&nbsp;nell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Green"><B>left-operand</B></FONT>.</BIG>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD><FONT COLOR="Red"><BIG><B>Nota &nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Justify>
+	<BIG>In alcune circostanze si potrebbe non desiderare che un
+	<FONT COLOR="Green"><B>oggetto</B></FONT> venga <B>costruito</B> per
+	<B>copia</B> o <FONT COLOR="Purple"><B>assegnato</B></FONT></BIG>.
+	<BIG>Ma,</BIG> <BIG>se non si definiscono
+	<FONT COLOR="Green"><B>overload</B></FONT>, il
+	<FONT COLOR="Red"><B>C++</B></FONT> inserir&agrave; quelli di
+	<I><B>default</B></I>, e se invece li si definiscono, il programma li user&agrave;
+	direttamente. Come fare allora? La soluzione &egrave; semplice: definire
+	degli <FONT COLOR="Green"><B>overload</B></FONT> fittizi e collocarli nella
+	sezione <B>privata</B> della <FONT COLOR="Green"><B>classe</B></FONT>; in
+	questo modo gli <FONT COLOR="Green"><B>overload</B></FONT> &nbsp;ridefiniti
+	"nasconderanno" quelli di <I><B>default</B></I>, ma a loro volta saranno
+	inaccessibili in quanto <B>metodi</B> non <B>pubblici</B>.</BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Purple"><B>assegnazione</B></FONT> mediante <B>copia</B>
+  <FONT COLOR="Green"><B>membro </B></FONT>a<FONT COLOR="Green"><B>
+  membro</B></FONT> pu&ograve; essere esattamente ci&ograve; che si vuole nella
+  maggioranza dei casi, e quindi non ha senso ridefinire
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>. Ma, se la
+  <FONT COLOR="Green"><B>classe</B></FONT> possiede
+  <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>puntatori</B></FONT>, la semplice <B>copia</B> di
+  un <FONT COLOR="Green"><B>puntatore</B></FONT> pu&ograve; generare due
+  problemi:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>dopo la <B>copia</B>, l'<B>area</B> precedentemente <B>puntata</B> dal
+      <FONT COLOR="Green"><B>membro</B></FONT>&nbsp;<FONT COLOR="Green"><B>puntatore</B></FONT>
+      del <FONT COLOR="Green"><B>left-operand</B></FONT> resta ancora, cio&egrave;
+      occupa spazio, ma non &egrave; pi&ugrave; accessibile (errore di <I><B>memory
+      leak</B></I>); </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>il fatto che due <FONT COLOR="Green"><B>oggetti</B></FONT> puntino alla
+      stessa <B>area</B> &egrave; pericoloso, perch&eacute;, se viene chiamato
+      il <FONT COLOR="Green"><B>distruttore</B></FONT> di uno dei due
+      <FONT COLOR="Green"><B>oggetti</B></FONT>, il
+      <FONT COLOR="Green"><B>membro</B></FONT>
+      <FONT COLOR="Green"><B>puntatore</B></FONT> dell'altro, che esiste ancora,
+      <U>punta a un'<B>area</B> che non esiste pi&ugrave;</U> (errore di
+      <I><B>dangling references</B></I>).</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Come si pu&ograve; notare, il secondo problema &egrave; identico a quello
+  che si presenterebbe usando il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di <B>copia</B> di
+  <I><B>default</B></I>, mentre il primo &egrave; specifico
+  dell'<FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>assegnazione</B></FONT> (in quanto la <B>copia</B>
+  viene eseguita su un <FONT COLOR="Green"><B>oggetto</B></FONT> gi&agrave;
+  esistente). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Anche in questo caso, &egrave; perci&ograve; necessario che
+  l'<FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>assegnazione</B></FONT> esegua la <B>copia</B>, non
+  del <FONT COLOR="Green"><B>puntatore</B></FONT>, <U>ma dell'<B>area
+  puntata</B></U>. Per evidenziare analogie e differenze, riprendiamo l'esempio
+  del <FONT COLOR="Green"><B>costruttore</B></FONT> di <B>copia</B> del capitolo
+  precedente (complicandolo un po', cio&egrave; supponendo che l'<B>area
+  puntata</B> sia un <FONT COLOR="Green"><B>array</B></FONT> con
+  <FONT COLOR="Green"><B>dimensioni</B></FONT> definite in un ulteriore
+  <FONT COLOR="Green"><B>membro</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>), e gli affianchiamo un esempio
+  di corretto <B>metodo</B> di implementazione
+  dell'<FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>assegnazione</B></FONT>:</BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD WIDTH="30%"></TD>
+      <TH><BIG>COSTRUTTORE DI COPIA</BIG></TH>
+      <TH><BIG>OPERATORE DI ASSEGNAZIONE</BIG></TH>
+    </TR>
+    <TR>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Green"><BIG><B>operazioni :</B></BIG></FONT> &nbsp;</TD>
+      <TD><P ALIGN=Left>
+	<BIG><FONT COLOR="#cc0000"><B>A</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>a1
+	</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG>
+	&nbsp;<BIG><B>........</B> <FONT COLOR="#cc0000"><B>A</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>a2
+	</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>&nbsp;a1
+	</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><P ALIGN=Left>
+	<BIG><FONT COLOR="#cc0000"><B>A</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>a1
+	</B></FONT><FONT COLOR="Blue"><B>,</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>a2
+	</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG>
+	&nbsp;<BIG><B>........</B> <FONT COLOR="Maroon"><B>a2
+	</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>&nbsp;a1
+	</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+	    COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>(const
+	</B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&amp;
+	</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&amp;</B></FONT></BIG>
+	<BIG><FONT COLOR="#cc0000"><B>A</B></FONT><B><FONT COLOR="Blue">::</FONT></B><FONT
+	    COLOR="Blue"><B>operator=(const
+	</B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&amp;
+	</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD ROWSPAN="9" VALIGN="Top"><TABLE BORDER CELLPADDING="2">
+	  <TR>
+	    <TH><BIG>CLASSE</BIG></TH>
+	  </TR>
+	  <TR>
+	    <TD><BIG><FONT COLOR="Blue"><B>class
+	      </B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT></BIG>
+	      <BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+	  </TR>
+	  <TR>
+	    <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp;
+	      &nbsp;int</B></FONT></BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT>
+	      <BIG><FONT COLOR="Maroon"><B>pa</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	  </TR>
+	  <TR>
+	    <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp;
+	      &nbsp;int</B></FONT></BIG>
+	      <BIG><FONT COLOR="Maroon"><B>dim</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	  </TR>
+	  <TR>
+	    <TD><BIG><FONT COLOR="Blue"><B>public:</B></FONT></BIG></TD>
+	  </TR>
+	  <TR>
+	    <TD><BIG><FONT COLOR="Blue"><B>&nbsp;
+	      &nbsp;</B></FONT><FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>(
+	      );</B></FONT></BIG></TD>
+	  </TR>
+	  <TR>
+	    <TD><BIG><FONT COLOR="Blue"><B>&nbsp;
+	      &nbsp;</B></FONT><FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>(const
+	      </B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&amp;);</B></FONT></BIG></TD>
+	  </TR>
+	  <TR>
+	    <TD><BIG><FONT COLOR="Blue"><B>&nbsp;
+	      &nbsp;</B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&amp;</B></FONT></BIG>
+	      <BIG><FONT COLOR="Blue"><B>operator= <BR>
+	      &nbsp; &nbsp; &nbsp; (const
+	      </B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&amp;);</B></FONT></BIG></TD>
+	  </TR>
+	  <TR>
+	    <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp;</B></FONT><B>........
+	      </B></BIG>&nbsp;<BIG><FONT COLOR="Blue"><B>};</B></FONT></BIG></TD>
+	  </TR>
+	</TABLE>
+      </TD>
+      <TD><BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp;
+	</B></FONT><FONT COLOR="Maroon"><B>dim</B></FONT><FONT COLOR="Blue"><B> =
+	</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>dim</B></FONT><FONT COLOR="Blue"><B> ;</B></FONT></BIG></TD>
+      <TD>&nbsp; &nbsp;<BIG><FONT COLOR="Blue"><B>if (this ==
+	&amp;</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>)
+	return
+	</B></FONT></BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><BIG><FONT
+	    COLOR="Blue"><B>this;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp;
+	</B></FONT><FONT COLOR="Maroon"><B>pa</B></FONT><FONT COLOR="Blue"><B> =
+	new int
+	[</B></FONT><FONT COLOR="Maroon"><B>dim</B></FONT><FONT COLOR="Blue"><B>]
+	;</B></FONT></BIG></TD>
+      <TD>&nbsp; &nbsp;<BIG><FONT COLOR="Blue"><B>if
+	(</B></FONT><FONT COLOR="Maroon"><B>dim</B></FONT><FONT COLOR="Blue"><B>
+	!=
+	</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>dim</B></FONT><FONT COLOR="Blue"><B>) </B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD>&nbsp; &nbsp;<BIG><FONT COLOR="Blue"><B>for(int
+	</B></FONT><FONT COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>;
+	</B></FONT><FONT COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>
+	&lt;</B></FONT><FONT COLOR="Maroon"><B>
+	dim</B></FONT><FONT COLOR="Blue"><B>;
+	</B></FONT><FONT COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>++)
+	<BR>
+	</B></FONT></BIG><FONT COLOR="Blue"><B><SUB><BIG>&nbsp; &nbsp; &nbsp;
+	&nbsp;*</BIG></SUB></B></FONT><BIG><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Maroon"><B>pa</B></FONT><FONT COLOR="Blue"><B>+</B></FONT><FONT COLOR="Maroon"><B>i</B></FONT><FONT
+	    COLOR="Blue"><B>) =
+	</B></FONT></BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><BIG><FONT
+	    COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>pa</B></FONT><FONT COLOR="Blue"><B>+</B></FONT><FONT COLOR="Maroon"><B>i</B></FONT><FONT
+	    COLOR="Blue"><B>) </B></FONT><FONT COLOR="Maroon"><B>
+	</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; {</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD><P ALIGN=Left>
+	<BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+      <TD><P ALIGN=Left>
+	&nbsp; &nbsp;<BIG><FONT COLOR="Blue"><B> &nbsp; delete []
+	</B></FONT><FONT COLOR="Maroon"><B>pa</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD>&nbsp; &nbsp;<BIG><FONT COLOR="Blue"><B> &nbsp;
+	</B></FONT><FONT COLOR="Maroon"><B>dim</B></FONT><FONT COLOR="Blue"><B> =
+	</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>dim</B></FONT><FONT COLOR="Blue"><B> ;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp;<BIG><FONT COLOR="Blue"><B> &nbsp;
+	</B></FONT><FONT COLOR="Maroon"><B>pa</B></FONT><FONT COLOR="Blue"><B> =
+	new int
+	[</B></FONT><FONT COLOR="Maroon"><B>dim</B></FONT><FONT COLOR="Blue"><B>]
+	;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; }</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp;<BIG><FONT COLOR="Blue"><B>for(int
+	</B></FONT><FONT COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>;
+	</B></FONT><FONT COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>
+	&lt;</B></FONT><FONT COLOR="Maroon"><B>
+	dim</B></FONT><FONT COLOR="Blue"><B>;
+	</B></FONT><FONT COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>++)
+	<BR>
+	&nbsp; &nbsp; &nbsp;
+	&nbsp;</B></FONT></BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><BIG><FONT
+	    COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>pa</B></FONT><FONT COLOR="Blue"><B>+</B></FONT><FONT
+	    COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>) =
+	</B></FONT></BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><BIG><FONT
+	    COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>pa</B></FONT><FONT COLOR="Blue"><B>+</B></FONT><FONT COLOR="Maroon"><B>i</B></FONT><FONT
+	    COLOR="Blue"><B>) </B></FONT><FONT COLOR="Maroon"><B>
+	</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TH></TH>
+      <TD></TD>
+      <TD>&nbsp; &nbsp;<BIG><FONT COLOR="Blue"><B>return
+	</B></FONT></BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><BIG><FONT
+	    COLOR="Blue"><B>this;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TH></TH>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P>
+  <B><FONT COLOR="Red"><BIG>Notare</BIG></FONT></B><BIG>:</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la prima istruzione: <FONT COLOR="Blue"><B>if (this ==
+      &amp;</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>)
+      return
+      </B></FONT></BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><BIG><FONT
+	  COLOR="Blue"><B>this;</B></FONT> serve a proteggersi dalla cosidetta
+      <FONT COLOR="Purple"><B>auto-assegnazione</B></FONT>
+      (<FONT COLOR="Maroon"><B>a1
+      </B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>&nbsp;a1</B></FONT>);
+      in questo caso la <FONT COLOR="Green"><B>funzione</B></FONT> deve restituire
+      l'<FONT COLOR="Green"><B>oggetto</B></FONT> stesso senza fare altro;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>il <B>metodo</B> che implementa
+      l'<FONT COLOR="Green"><B>operatore</B></FONT> di
+      <FONT COLOR="Purple"><B>assegnazione</B></FONT> &egrave; un po' pi&ugrave;
+      complicato del <FONT COLOR="Green"><B>costruttore</B></FONT> di <B>copia</B>,
+      in quanto deve <FONT COLOR="Purple"><B>deallocare</B></FONT> (con
+      <FONT COLOR="Blue"><B>delete</B></FONT>) l'<B>area</B> precedentemente
+      <B>puntata</B> dal <FONT COLOR="Green"><B>membro</B></FONT>
+      <FONT COLOR="Maroon"><B>pa</B></FONT> di
+      <FONT COLOR="Maroon"><B>a2</B></FONT> prima di
+      <FONT COLOR="Purple"><B>allocare</B></FONT> &nbsp;(con
+      <FONT COLOR="Blue"><B>new</B></FONT>) la nuova <B>area</B>;</BIG>
+      <BIG>tuttavia, se le <B>aree puntate</B> dai
+      <FONT COLOR="Green"><B>membri</B></FONT>&nbsp;<FONT COLOR="Maroon"><B>pa</B></FONT>
+      di <FONT COLOR="Maroon"><B>a2</B></FONT> e
+      <FONT COLOR="Maroon"><B>a1</B></FONT> sono di uguali dimensioni, non &egrave;
+      necessario <FONT COLOR="Purple"><B>deallocare</B></FONT> e
+      <FONT COLOR="Purple"><B>riallocare</B></FONT>, ma si pu&ograve; semplicemente
+      riutilizzare l'<B>area</B> gi&agrave; esistente&nbsp;di
+      &nbsp;<FONT COLOR="Maroon"><B>a2</B></FONT> per copiarvi i nuovi dati;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>entrambi i <B>metodi</B> eseguono la <B>copia</B> (tramite un ciclo
+      <FONT COLOR="Blue"><B>for</B></FONT>) dell'<U><B>area puntata</B> e non del
+      <FONT COLOR="Green"><B>puntatore</B></FONT></U>, come avverrebbe se si lasciasse
+      fare ai <B>metodi</B> di <I><B>default</B></I>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la <FONT COLOR="Green"><B>classe</B></FONT> dovr&agrave; contenere altri
+      <B>metodi</B> (o altri <FONT COLOR="Green"><B>costruttori</B></FONT>) che
+      si occupano dell'<FONT COLOR="Purple"><B>allocazione</B></FONT> iniziale
+      dell'<B>area</B> e dell'inserimento dei dati; per semplicit&agrave; li abbiamo
+      omessi.</BIG>
+  </OL>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p62/assegna.cpp">[p62]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Ottimizzazione delle
+copie</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Tanto per ribadire il vecchio detto che "<I>non &egrave; saggio chi
+  non si contraddice mai</I>", ci contraddiciamo subito: a volte pu&ograve;
+  essere preferibile <B>copiare</B> i
+  <FONT COLOR="Green"><B>puntatori</B></FONT>&nbsp;&nbsp;e non le <B>aree
+  puntate</B>! Anzi, in certi casi pu&ograve; essere utile creare <I><B>ad-hoc
+  </B></I>un <FONT COLOR="Green"><B>puntatore</B></FONT> a un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> (apparentemente non necessario),
+  proprio allo scopo di <B>copiare</B> il
+  <FONT COLOR="Green"><B>puntatore</B></FONT> al posto
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT>.&nbsp;</BIG>
+  <P ALIGN=Justify>
+  <BIG>Supponiamo, per esempio, che un certo
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Maroon"><B>a1</B></FONT> sia di "grosse dimensioni" e che, a
+  un certo punto del programma, <FONT COLOR="Maroon"><B>a1</B></FONT> debba
+  essere <FONT COLOR="Purple"><B>assegnato</B></FONT> a un altro
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Maroon"><B>a2</B></FONT>, oppure un altro
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Maroon"><B>a2</B></FONT> debba essere <B>costruito</B> e
+  <B>inizializzato</B> con <FONT COLOR="Maroon"><B>a1</B></FONT>. In entrambi
+  i casi sappiamo che <FONT COLOR="Maroon"><B>a1</B></FONT> viene
+  <B>copiato</B> in <FONT COLOR="Maroon"><B>a2</B></FONT>. Ma la <B>copia</B>
+  di un "grosso" <FONT COLOR="Green"><B>oggetto</B></FONT> pu&ograve; essere
+  particolarmente onerosa, specie se effettuata parecchie volte nel programma.
+  Aggiungasi il fatto che spesso vengono <B>creati</B> e immediatamente
+  <B>distrutti</B> <FONT COLOR="Green"><B>oggetti</B></FONT>
+  <I><B>temporanei</B></I>, che moltiplicano il numero delle <B>copie</B>,
+  come si evince dal seguente esempio:<BR>
+  <FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; a2
+  </B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>&nbsp;f</B></FONT><FONT
+      COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>a1</B></FONT><FONT COLOR="Blue"><B>);<BR>
+  </B></FONT>in questa istruzione vengono eseguite ben 3 <B>copie</B>!</BIG>
+  <P ALIGN=Justify>
+  <BIG>Ci chiediamo a questo punto: ma se, nel corso del programma,
+  <FONT COLOR="Maroon"><B>a1</B></FONT> e
+  <FONT COLOR="Maroon"><B>a2</B></FONT> non vengono modificati, che senso ha
+  eseguire <U>materialmente</U> la <B>copia</B>? Solo la modifica di almeno
+  uno dei due creerebbe di fatto due
+  <FONT COLOR="Green"><B>oggetti</B></FONT> distinti, ma finch&egrave; ci&ograve;
+  non avviene, la duplicazione "prematura" sarebbe un'operazione inutilmente
+  costosa. In base a questo ragionamento, se si riuscisse a creare un meccanismo,
+  che, di fronte a una richiesta di <B>copia</B>, si limiti a "prenotarla",
+  ma ne rimandi l'esecuzione al momento dell'eventuale modifica di uno dei
+  due <FONT COLOR="Green"><B>oggetti</B></FONT> (<I><B>copy on write</B></I>),
+  &nbsp;si otterrebbe lo scopo di <B>ottimizzare</B> il numero di <B>copie</B>,
+  eliminando tutte quelle che, alla fine, sarebbero risultate inutili.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Puntualmente, &egrave; il <FONT COLOR="Red"><B>C++</B></FONT> che mette
+  a disposizione questo meccanismo. L'idea base &egrave; quella di "svuotare"
+  la <FONT COLOR="Green"><B>classe</B></FONT> (che chiamiamo
+  &nbsp;<FONT COLOR="#cc0000"><B>A</B></FONT>) di tutti i suoi
+  <FONT COLOR="Green"><B>dati-membro</B></FONT>, lasciandovi solo i
+  <B>metodi</B> (compresi gli eventuali <B>metodi</B> che implementano gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> in
+  <FONT COLOR="Green"><B>overload</B></FONT>) e al loro posto inserire un unico
+  <FONT COLOR="Green"><B>membro</B></FONT>,
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a un'altra
+  <FONT COLOR="Green"><B>classe</B></FONT> (che chiamiamo
+  &nbsp;<FONT COLOR="#cc0000"><B>Arep</B></FONT>). Questa seconda
+  <FONT COLOR="Green"><B>classe</B></FONT>, che viene preferibilmente definita
+  come <FONT COLOR="Green"><B>struttura</B></FONT>, &egrave; detta
+  "<B>rappresentazione</B>" della <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, e in essa vengono inseriti tutti i
+  <FONT COLOR="Green"><B>dati-membro</B></FONT> che&nbsp;avrebbero dovuto essere
+  di <FONT COLOR="#cc0000"><B>A</B></FONT>. In questa situazione, si dice che
+  <FONT COLOR="#cc0000"><B>A</B></FONT> &egrave; implementata come
+  <I><B>handle</B></I> (<B>aggancio</B>) alla sua <B>rappresentazione</B>,
+  ma &egrave; <U>la stessa <B>rappresentazione</B> (cio&egrave; la
+  <FONT COLOR="Green"><B>struttura</B></FONT>
+  <FONT COLOR="#cc0000"><B>Arep</B></FONT>) che contiene realmente i
+  dati</U>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Pi&ugrave; <FONT COLOR="Green"><B>oggetti</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> possono "condividere" la stessa
+  <B>rappresentazione</B> (cio&egrave; puntare allo stesso di
+  <FONT COLOR="Green"><B>oggetto</B></FONT> di
+  <FONT COLOR="#cc0000"><B>Arep</B></FONT>). Per tenere memoria di ci&ograve;,
+  <FONT COLOR="#cc0000"><B>Arep</B></FONT> deve contenere un ulteriore
+  <FONT COLOR="Green"><B>membro</B></FONT>, di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT>, in cui contare il numero di
+  <FONT COLOR="Green"><B>oggetti </B></FONT>di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> <B>agganciati</B>; questo numero,
+  <B>inizializzato</B> con <FONT COLOR="Maroon"><B>1</B></FONT>, viene
+  <B>incrementato</B> ogni volta che &egrave; "prenotata" una <B>copia</B>,
+  e <B>decrementato</B> ogni volta che uno degli <FONT COLOR="Green"><B>oggetti
+  </B></FONT>di <FONT COLOR="#cc0000"><B>A</B></FONT> <B>agganciati</B> subisce
+  una modifica: nel primo caso, la <B>copia</B> viene eseguita solo fra i
+  <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>puntatori</B></FONT> dei due
+  <FONT COLOR="Green"><B>oggetti</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> (in modo che puntino allo stesso
+  <FONT COLOR="Green"><B>oggetto</B></FONT> di
+  <FONT COLOR="#cc0000"><B>Arep</B></FONT>); nel secondo caso, uno speciale
+  <B>metodo</B> di <FONT COLOR="#cc0000"><B>Arep</B></FONT> fa s&igrave; che
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> di
+  <FONT COLOR="#cc0000"><B>Arep</B></FONT> "si cloni", cio&egrave; crei un
+  nuovo <FONT COLOR="Green"><B>oggetto</B></FONT> copia di se stesso, su questo
+  esegua le modifiche richeste, e infine ne
+  <FONT COLOR="Purple"><B>assegni</B></FONT> l'indirizzo al
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Green"><B>puntatore</B></FONT>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> da cui &egrave; provenuta la richiesta
+  di modifica. Ovviamente spetta ai <B>metodi</B> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> individuare quali operazioni comportino
+  la modifica di un suo <FONT COLOR="Green"><B>oggetto</B></FONT> e attivare
+  le azioni conseguenti che abbiamo descritto.</BIG> <BIG>Per concludere, il
+  <FONT COLOR="Green"><B>distruttore</B></FONT> di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> deve <B>decrementare</B> il contatore
+  di <B>agganci</B> nel corrispondente
+  <FONT COLOR="Green"><B>oggetto</B></FONT> di
+  <FONT COLOR="#cc0000"><B>Arep</B></FONT>, e poi procedere alla
+  <B>distruzione</B> di detto <FONT COLOR="Green"><B>oggetto</B></FONT> <U>solo
+  se il contatore &egrave; diventato zero</U>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Da notare che una <B>rappresentazione</B> &egrave; sempre creata nella
+  memoria <FONT COLOR="Purple"><B>heap</B></FONT> e quindi non ha problemi
+  di <I><B>lifetime</B></I>, anche se gli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> che l'<B>agganciano</B> sono
+  <FONT COLOR="Green"><B>automatici</B></FONT>: questo &egrave; particolarmente
+  utile, per esempio, nel passaggio <I><B>by value</B></I> degli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> e del <B>valore di ritorno</B>
+  fra <B>chiamante</B> e <FONT COLOR="Green"><B>funzione</B></FONT> (e viceversa):
+  la <B>copia</B> viene eseguita solo apparentemente, in quanto permane la
+  stessa unica <B>rappresentazione</B>, <U>che sopravvive anche in
+  <FONT COLOR="Green"><B>ambiti di visibilit&agrave;</B></FONT> diversi da
+  quello in cui &egrave; stata creata</U></BIG>. <BIG>Per esempio, tornando
+  alla nostra istruzione:</BIG><BR>
+  <BIG><FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; a2
+  </B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>&nbsp;f</B></FONT><FONT
+      COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>a1</B></FONT><FONT COLOR="Blue"><B>);<BR>
+  </B></FONT>almeno 2 delle 3 <B>copie</B> previste non vengono eseguite, in
+  quanto l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Maroon"><B>a2</B></FONT>&nbsp;si <B>aggancia</B> direttamente
+  alla <B>rappresentazione</B> creata
+  dall'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Green"><B>locale</B></FONT> di
+  <FONT COLOR="Maroon"><B>f</B></FONT>, passato come <B>valore di ritorno</B>
+  (prima <B>copia</B> "risparmiata") e successivamente
+  <FONT COLOR="Purple"><B>assegnato</B></FONT> ad
+  <FONT COLOR="Maroon"><B>a2</B></FONT> (seconda <B>copia</B> "risparmiata");
+  per quello che riguarda la terza <B>copia</B> (passaggio di
+  <FONT COLOR="Maroon"><B>a1</B></FONT> dal <B>chiamante</B> alla
+  <FONT COLOR="Green"><B>funzione</B></FONT>), questa &egrave; realmente eseguita
+  solo se il valore <FONT COLOR="Green"><B>locale</B></FONT> di
+  <FONT COLOR="Maroon"><B>a1</B></FONT> &egrave; modificato in
+  <FONT COLOR="Maroon"><B>f</B></FONT>, altrimenti entrambi gli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> continuano a puntare alla stessa
+  <B>rappresentazione</B> creata nel <B>chiamante</B>, fino a quando
+  <FONT COLOR="Maroon"><B>f</B></FONT> termina e quindi
+  l'<FONT COLOR="Maroon"><B>a1</B></FONT>
+  <FONT COLOR="Green"><B>locale</B></FONT> "muore" senza che la <B>copia</B>
+  sia mai stata eseguita.</BIG>
+  <P ALIGN=Justify>
+  <BIG>E' preferibile che <FONT COLOR="#cc0000"><B>Arep</B></FONT> sia una
+  <FONT COLOR="Green"><B>struttura</B></FONT> perch&egrave; cos&igrave; tutti
+  i suoi <FONT COLOR="Green"><B>membri</B></FONT> sono <B>pubblici</B> di
+  <I><B>default</B></I>. D'altra parte una <B>rappresentazione</B> di una
+  <FONT COLOR="Green"><B>classe</B></FONT> deve essere accessibile solo dalla
+  <FONT COLOR="Green"><B>classe</B></FONT> stessa. Pertanto
+  <FONT COLOR="#cc0000"><B>Arep</B></FONT> deve essere <B>pubblica</B> per
+  <FONT COLOR="#cc0000"><B>A</B></FONT> e <B>privata</B> per il "mondo esterno".
+  Per ottenere questo, bisogna <B>definire</B>
+  <FONT COLOR="#cc0000"><B>Arep</B></FONT> "dentro"
+  <FONT COLOR="#cc0000"><B>A</B></FONT>
+  (<FONT COLOR="Green"><B>struttura-membro</B></FONT> o
+  <FONT COLOR="Green"><B>struttura</B></FONT> <I><B>annidata</B></I>), nella
+  sua sezione <B>privata</B> (in questo modo non pu&ograve; essere
+  <FONT COLOR="Green"><B>istanziata</B></FONT> se non da un <B>metodo</B> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT>). Pi&ugrave; elegantemente si pu&ograve;
+  inserire in <FONT COLOR="#cc0000"><B>A</B></FONT> la semplice
+  <B>dichiarazione</B> di <FONT COLOR="#cc0000"><B>Arep</B></FONT> e collocare
+  esternamente la sua <B>definizione</B>; in questo caso, per&ograve;, il suo
+  <B>nome</B> deve essere <B>qualificato</B>:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>struct
+  </B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+      COLOR="#cc0000"><B>Arep</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>{</B></FONT> <B>........
+  </B></BIG>&nbsp;<BIG><FONT COLOR="Blue"><B>};</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>Nell'esercizio che riportiamo come esempio tentiamo una "rudimentale"
+  implementazione di una <FONT COLOR="Green"><B>classe
+  </B></FONT>"<FONT COLOR="Green"><B>stringa</B></FONT>", al solo scopo di
+  fornire ulteriori chiarimenti su quanto detto (l'esercizio &egrave;
+  eccezionalmente molto commentato). Non va utilizzato nella pratica, in quanto
+  la <FONT COLOR="Red"><B>Libreria Standard </B></FONT>fornisce una
+  <FONT COLOR="Green"><B>classe</B></FONT> per la gestione delle
+  <FONT COLOR="Green"><B>stringhe</B></FONT> molto pi&ugrave; completa.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p63/stringa.h">[p63]</A><A HREF="p63/stringa.cpp">[p63]</A>
+<A HREF="p63/stringamain.cpp">[p63]</A></BIG></BIG>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp; &nbsp;<BIG><BR>
+  Nel prossimo esercizio consideriamo i tempi delle <B>copie</B> di
+  <FONT COLOR="Green"><B>oggetti</B></FONT> del
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  "<FONT COLOR="Green"><B>stringa</B></FONT>" implementato come nell'esercizio
+  precedente (cio&egrave; come <I><B>handle</B></I> a una
+  <B>rappresentazione</B>), e li confrontiamo con i tempi ottenuti
+  <B>copiando</B> le <FONT COLOR="Green"><B>stringhe</B></FONT>
+  direttamente.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p64/stringa.h">[p64]</A><A HREF="p64/stringa.cpp">[p64]</A>
+<A HREF="p64/malacopia.cpp">[p64]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Espressioni-operazione</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Quando si ha a che fare con
+  <FONT COLOR="Green"><B>espressioni</B></FONT> che contengono varie
+  <FONT COLOR="Green"><B>operazioni</B></FONT>, sappiamo che ogni
+  <FONT COLOR="Green"><B>operazione</B></FONT> crea un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> <I><B>temporaneo</B></I>, che &egrave;
+  usato come <FONT COLOR="Green"><B>operando</B></FONT> per
+  l'<FONT COLOR="Green"><B>operazione</B></FONT> successiva, secondo l'ordine
+  fissato dai criteri di <FONT COLOR="Purple"><B>precedenza</B></FONT> e
+  <FONT COLOR="Purple"><B>associativit&agrave; </B></FONT>fra gli
+  <FONT COLOR="Green"><B>operatori</B></FONT>.&nbsp;Quando tutte le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di
+  un'<FONT COLOR="Green"><B>espressione</B></FONT> sono state eseguite (cio&egrave;,
+  come si dice, l'<FONT COLOR="Green"><B>espressione</B></FONT> &egrave; stata
+  <FONT COLOR="Purple"><B>valutata</B></FONT>), tutti gli
+  <FONT COLOR="Green"><B>oggetti</B></FONT>
+  <I><B>temporanei</B></I>&nbsp;creati durante la
+  <FONT COLOR="Purple"><B>valutazione</B></FONT>
+  dell'<FONT COLOR="Green"><B>espressione</B></FONT> vengono <B>distrutti</B>.
+  Pertanto ogni <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <I><B>temporaneo</B></I> vien <B>costruito</B>, passato come
+  <FONT COLOR="Green"><B>operando</B></FONT>, e alla fine, <B>distrutto</B>,
+  <U>senza svolgere altra funzione</U>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Normalmente ogni <FONT COLOR="Green"><B>operazione</B></FONT> viene
+  eseguita mediante <B>chiamata</B> della
+  <FONT COLOR="Green"><B>funzione</B></FONT> che implementa
+  l'<FONT COLOR="Green"><B>overload</B></FONT> del corrispondente
+  <FONT COLOR="Green"><B>operatore</B></FONT>: questa
+  <FONT COLOR="Green"><B>funzione</B></FONT> di solito costruisce un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Green"><B>locale</B></FONT>, che poi <B>ritorna</B> per
+  <B>copia</B> al <B>chiamante</B> (salvo i casi in cui
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> del &nbsp;<B>valore di ritorno</B>
+  coincida con uno degli <FONT COLOR="Green"><B>operandi</B></FONT>, il passaggio
+  non pu&ograve; essere eseguito <I><B>by reference</B></I>, perch&egrave;
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Green"><B>locale</B></FONT> passato non sopravvive alla
+  <FONT COLOR="Green"><B>funzione</B></FONT>). E quindi, in ogni
+  <FONT COLOR="Green"><B>operazione</B></FONT>, viene non solo <B>costruito</B>
+  ma anche <B>copiato</B> un <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <I><B>temporaneo</B></I>!</BIG>
+  <P ALIGN=Justify>
+  <BIG>Se gli <FONT COLOR="Green"><B>oggetti</B></FONT> coinvolti nelle
+  <FONT COLOR="Green"><B>operazioni</B></FONT> sono di "grosse dimensioni"
+  (e soprattutto se le <FONT COLOR="Green"><B>operazioni</B></FONT> sono molte),
+  il costo computazionale per la <B>costruzione</B> e la <B>copia</B> degli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> <I><B>temporanei</B></I>&nbsp;
+  potrebbe essere troppo elevato, e quindi bisogna trovare il modo di ottimizzare
+  le prestazioni del programma minimizzando tale costo. In pratica bisogna
+  ridurre al minimo:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>il numero degli <FONT COLOR="Green"><B>oggetti</B></FONT>
+      <I><B>temporanei</B></I>&nbsp; creati;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>il numero di <B>copie</B>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>il numero di <I><B>cicli</B></I> di
+      <FONT COLOR="Green"><B>operazioni</B></FONT> <I><B>native</B></I> in cui
+      ogni <FONT COLOR="Green"><B>operazione</B></FONT> viene tradotta</BIG>.
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>La tecnica, anche in questo caso, consiste nella semplice "impostazione"
+  di ogni <FONT COLOR="Green"><B>operazione</B></FONT> (senza eseguirla), tramite
+  un &nbsp;<I><B>handle</B></I> a una
+  <FONT COLOR="Green"><B>struttura</B></FONT>, che funge da "rappresentazione"
+  dell'<FONT COLOR="Green"><B>operazione</B></FONT> stessa; solo alla fine,
+  l'intera <FONT COLOR="Green"><B>espressione</B></FONT> viene eseguita tutta
+  in una volta, senza creazione di
+  <FONT COLOR="Green"><B>oggetti</B></FONT> <I><B>temporanei</B></I>, con il
+  minimo numero possibile di <I><B>cicli</B></I>, e senza <B>copie</B> di
+  passaggio. Questa tecnica sostanzialmente tratta
+  &nbsp;un'<FONT COLOR="Green"><B>espressione</B></FONT> come unica
+  <FONT COLOR="Green"><B>operazione</B></FONT>, <U>traducendo
+  <FONT COLOR="Maroon"><B>n </B></FONT><FONT COLOR="Green"><B>operatori
+  binari</B></FONT> in un solo <FONT COLOR="Green"><B>operatore</B></FONT>
+  con <FONT COLOR="Maroon"><B>n+1</B></FONT>
+  <FONT COLOR="Green"><B>operandi</B></FONT></U>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Supponiamo, per esempio, di avere la seguente
+  <FONT COLOR="Green"><B>espressione</B></FONT>:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B> =
+  </B></FONT><FONT COLOR="Maroon"><B>b
+  </B></FONT></BIG><FONT COLOR="Blue"><B><SUB><BIG>*
+  </BIG></SUB></B></FONT><BIG><FONT COLOR="Maroon"><B>c
+  </B></FONT><FONT COLOR="Blue"><B>+&nbsp;</B></FONT><FONT COLOR="Maroon"><B>d
+  </B></FONT><FONT COLOR="Blue"><B>;</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>e supponiamo per semplicit&agrave; (anche se non &egrave; obbligatorio)
+  che gli <FONT COLOR="Green"><B>oggetti</B></FONT>:
+  <FONT COLOR="Maroon"><B>a</B></FONT>,
+  <FONT COLOR="Maroon"><B>b</B></FONT>,
+  <FONT COLOR="Maroon"><B>c</B></FONT> e
+  <FONT COLOR="Maroon"><B>d</B></FONT> appartengano tutti alla stessa
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>.</BIG> <BIG>Siamo in presenza di tre
+  <FONT COLOR="Green"><B>operazioni binarie</B></FONT> (che, nell'ordine di
+  esecuzione sono: <FONT COLOR="Purple"><B>moltiplicazione</B></FONT>,
+  <FONT COLOR="Purple"><B>somma</B></FONT> e
+  <FONT COLOR="Purple"><B>assegnazione</B></FONT>), ma vogliamo, per l'occasione,
+  trasformarle in un'unica <FONT COLOR="Green"><B>operazione</B></FONT>
+  "<FONT COLOR="Green"><B>quaternaria</B></FONT>" che esegua, in un sol colpo,
+  l'intera <FONT COLOR="Green"><B>espressione</B></FONT>. Per ottenere questo,
+  procediamo nel seguente modo:</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>definiamo un <FONT COLOR="Green"><B>overload</B></FONT> della
+      <FONT COLOR="Purple"><B>moltiplicazione</B></FONT> fra due
+      <FONT COLOR="Green"><B>oggetti</B></FONT> di
+      <FONT COLOR="#cc0000"><B>A</B></FONT>, che, anzich&egrave; eseguire
+      l'<FONT COLOR="Green"><B>operazione</B></FONT>, si limita a
+      <FONT COLOR="Green"><B>istanziare</B></FONT> una
+      <FONT COLOR="Green"><B>struttura</B></FONT> di appoggio (che chiamiamo
+      <FONT COLOR="#cc0000"><B>M</B></FONT>), la quale non fa altro che memorizzare
+      i <FONT COLOR="Green"><B>riferimenti</B></FONT> ai due
+      <FONT COLOR="Green"><B>operandi</B></FONT> (in altre parole, il suo
+      <FONT COLOR="Green"><B>costruttore</B></FONT> <B>inizializza</B> due suoi
+      <FONT COLOR="Green"><B>membri</B></FONT>, <B>dichiarati</B> come
+      <FONT COLOR="Green"><B>riferimenti</B></FONT> ad
+      <FONT COLOR="#cc0000"><B>A</B></FONT>, come <I><B>alias</B></I> di
+      <FONT COLOR="Maroon"><B>b</B></FONT> e
+      <FONT COLOR="Maroon"><B>c</B></FONT>); a sua volta,
+      <FONT COLOR="#cc0000"><B>M</B></FONT> contiene un <B>metodo</B> di
+      <FONT COLOR="Purple"><B>casting</B></FONT> ad
+      <FONT COLOR="#cc0000"><B>A</B></FONT>, che esegue materialmente la
+      <FONT COLOR="Purple"><B>moltiplicazione</B></FONT>, ma che viene
+      <B>chiamato</B> solo se l'<FONT COLOR="Green"><B>operazione</B></FONT> rientra
+      in &nbsp;un altro contesto (ricordiamo che, nella scelta
+      dell'<FONT COLOR="Green"><B>overload</B></FONT> pi&ugrave; appropriato, il
+      compilatore cerca <U>prima</U> fra quelli in cui i
+      <FONT COLOR="Green"><B>tipi</B></FONT> degli
+      <FONT COLOR="Green"><B>operandi</B></FONT> coincidono esattamente, e
+      <U>poi</U> fra quelli in cui la coincidenza si ha tramite una conversione
+      di <FONT COLOR="Green"><B>tipo</B></FONT>);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>definiamo un <FONT COLOR="Green"><B>overload</B></FONT> della
+      <FONT COLOR="Purple"><B>somma</B></FONT> fra un
+      <FONT COLOR="Green"><B>oggetto</B></FONT> di
+      <FONT COLOR="#cc0000"><B>M</B></FONT> e un
+      <FONT COLOR="Green"><B>oggetto</B></FONT> di
+      <FONT COLOR="#cc0000"><B>A</B></FONT>, che, anche in questo caso, si limita
+      a <FONT COLOR="Green"><B>istanziare</B></FONT> una
+      <FONT COLOR="Green"><B>struttura</B></FONT> di appoggio (che chiamiamo
+      <FONT COLOR="#cc0000"><B>MS</B></FONT>), la quale, esattamente come
+      <FONT COLOR="#cc0000"><B>M</B></FONT>, memorizza i
+      <FONT COLOR="Green"><B>riferimenti</B></FONT> ai due
+      <FONT COLOR="Green"><B>operandi</B></FONT> e contiene un <B>metodo</B> di
+      <FONT COLOR="Purple"><B>casting</B></FONT> ad
+      <FONT COLOR="#cc0000"><B>A</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>infine, definiamo un <FONT COLOR="Green"><B>overload</B></FONT> del
+      <FONT COLOR="Green"><B>costruttore</B></FONT> e
+      dell'<FONT COLOR="Green"><B>operatore</B></FONT> di
+      <FONT COLOR="Purple"><B>assegnazione</B></FONT> di
+      <FONT COLOR="#cc0000"><B>A</B></FONT>, entrambi con un
+      <FONT COLOR="Green"><B>oggetto</B></FONT> di
+      <FONT COLOR="#cc0000"><B>MS</B></FONT> come
+      <FONT COLOR="Maroon"><B>argomento</B></FONT>, ed entrambi che <B>chiamano</B>
+      un <B>metodo</B> <B>privato</B> di <FONT COLOR="#cc0000"><B>A</B></FONT>,
+      il quale &egrave; proprio quello deputato ad eseguire, in modo ottimizzato,
+      l'intera <FONT COLOR="Green"><B>operazione</B></FONT>. &nbsp;</BIG>
+  </OL>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p65/matr.h">[p65]</A><A HREF="p65/matr.cpp">[p65]</A>
+<A HREF="p65/matrmain.cpp">[p65]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#eredita"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

@@ -1,0 +1,2691 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Le operazioni di input-ouput in CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Le operazioni
+di input-ouput in C++
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>La gerarchia di classi
+stream</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Red"><B>Libreria Standard del C++</B></FONT> mette a
+  disposizione, per l'esecuzione delle
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di
+  <I><B>input-output</B></I>, un insieme di
+  <FONT COLOR="Green"><B>classi</B></FONT>,
+  </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT> <BIG>e
+  <FONT COLOR="Green"><B>oggetti globali</B></FONT> (tutti <B>definiti</B>,
+  come sempre, nel <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="Blue"><B>std</B></FONT>). Fra questi, conosciamo gi&agrave;
+  gli <FONT COLOR="Green"><B>oggetti</B></FONT>
+  <FONT COLOR="Blue"><B>cin</B></FONT>,
+  <FONT COLOR="Blue"><B>cout</B></FONT> e
+  <FONT COLOR="Blue"><B>cerr</B></FONT> (a cui bisogna aggiungere, per completezza,
+  <FONT COLOR="Blue"><B>clog</B></FONT>, che differisce
+  <FONT COLOR="Blue"><B>cerr</B></FONT> da in quanto opera con
+  <I><B>output</B></I> <I><B>bufferizzato</B></I>), collegati ai dispositivi
+  <I><B>standard</B></I> <FONT COLOR="Blue"><B>stdin</B></FONT>,
+  <FONT COLOR="Blue"><B>stdout</B></FONT> e
+  <FONT COLOR="Blue"><B>stderr</B></FONT>; e conosciamo anche l'esistenza di
+  varie </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT> <BIG>che
+  implementano gli
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT> <BIG>degli
+  <FONT COLOR="Green"><B>operatori</B></FONT> di
+  <FONT COLOR="Purple"><B>flusso</B></FONT>
+  "<FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>"
+  (<FONT COLOR="Purple"><B>inserimento</B></FONT>) e
+  "<FONT COLOR="Blue"><B>&gt;&gt;</B></FONT>"
+  (<FONT COLOR="Purple"><B>estrazione</B></FONT>), rispettivemente per la
+  <B>scrittura</B> dei dati su <FONT COLOR="Blue"><B>cout</B></FONT> o
+  <FONT COLOR="Blue"><B>cerr</B></FONT>, e per la <B>lettura</B> dei dati da
+  <FONT COLOR="Blue"><B>cin</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Tutte le funzionalit&agrave; di <B>I/O</B> del
+  <FONT COLOR="Red"><B>C++</B></FONT>&nbsp;sono <B>definite</B> in una decina
+  di <I><B>header-files</B></I>. Il principale &egrave;
+  <FONT COLOR="Blue"><B>&lt;iostream&gt;</B></FONT>, che va sempre incluso.
+  Alcuni altri sono inclusi dallo stesso
+  <FONT COLOR="Blue"><B>&lt;iostream&gt;</B></FONT>, per cui citeremo di volta
+  in volta solo quelli necessari.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Alcune <FONT COLOR="Green"><B>classi</B></FONT> della
+  <FONT COLOR="Red"><B>Libreria</B></FONT> gestiscono
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <B>I/O</B> "ad alto livello",
+  cio&egrave; indipendenti dal dispositivo, che pu&ograve; essere un'unit&agrave;
+  esterna (come i dispositivi <I><B>standard</B></I> a noi noti), un
+  <I><B>file</B></I>, o anche un'area di memoria (in particolare una
+  <FONT COLOR="Green"><B>stringa</B></FONT>); queste
+  <FONT COLOR="Green"><B>classi</B></FONT> sono strutturate in un'organizzazione
+  <I><B>gerarchica</B></I>:&nbsp;da un'unica <FONT COLOR="Green"><B>classe
+  base</B></FONT> discendono, per
+  <FONT COLOR="Green"><B>eredit&agrave;</B></FONT>, tutte le altre. Ogni loro
+  <FONT COLOR="Green"><B>istanza</B></FONT> &egrave; detta genericamente
+  "<FONT COLOR="Green"><B>stream</B></FONT>"
+  (<FONT COLOR="Purple"><B>flusso</B></FONT>). Il concetto di
+  <FONT COLOR="Green"><B>stream</B></FONT> &egrave;
+  un'<I><B>astrazione</B></I>, che rappresenta un "qualcosa" da o verso cui
+  "<FONT COLOR="Purple"><B>fluisce</B></FONT>" una
+  <FONT COLOR="Green"><B>sequenza</B></FONT> di <B><I>bytes</I></B>; in sostanza
+  un <FONT COLOR="Green"><B>oggetto stream</B></FONT> pu&ograve; essere
+  interpretato come un "file intelligente" (con <B>propriet&agrave;</B> e
+  <B>metodi</B>, come tutti gli <FONT COLOR="Green"><B>oggetti</B></FONT>),
+  che agisce come "sorgente" da cui
+  <FONT COLOR="Purple"><B>estrarre</B></FONT> (<I><B>input</B></I>), o
+  "destinazione" in cui <FONT COLOR="Purple"><B>inserire</B></FONT>
+  (<I><B>output</B></I>) i dati. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Un altro concetto importante &egrave; quello della <B>"posizione</B>
+  <B>corrente"</B> in un <FONT COLOR="Green"><B>oggetto stream
+  </B></FONT>(<I><B>file position indicator</B></I>), che coincide con
+  l'<FONT COLOR="Green"><B>indice</B></FONT> (paragonando lo
+  <FONT COLOR="Green"><B>stream</B></FONT> a un
+  <FONT COLOR="Green"><B>array</B></FONT>) del prossimo <I><B>byte</B></I>
+  che deve essere <B>letto</B> o <B>scritto</B>. Ogni
+  <FONT COLOR="Green"><B>operazione</B></FONT> di <B>I/O</B> modifica la
+  <B>posizione</B> <B>corrente</B>, la quale pu&ograve; essere anche ricavata
+  o impostata direttamente usando particolari <B>metodi</B> (come vedremo).
+  A questo proposito precisiamo che la parola
+  "<FONT COLOR="Purple"><B>inserimento</B></FONT>", usata come sinonimo di
+  <FONT COLOR="Green"><B>operazione</B></FONT> di <B>scrittura</B>, ha diverso
+  significato in base al valore della <B>posizione</B> <B>corrente</B>: se
+  questa &egrave; interna allo <FONT COLOR="Green"><B>stream</B></FONT>, i
+  dati non vengono "inseriti", ma sovrascritti; se invece la <B>posizione</B>
+  <B>corrente</B> &egrave; alla <I><B>fine</B></I> dello
+  <FONT COLOR="Green"><B>stream</B></FONT> (cio&egrave; una posizione oltre
+  l'ultimo <I><B>byte</B></I>), i nuovi dati vengono effettivamente
+  inseriti.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La <I><B>gerarchia</B></I> di
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>stream</B></FONT> &egrave; illustrata dalla seguente
+  figura:</BIG>
+  <CENTER>
+    <IMG SRC="IO1.gif" BORDER=0>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>Tutte le <FONT COLOR="Green"><B>classi</B></FONT> della
+  <I><B>gerarchia</B></I>, salvo <FONT COLOR="Blue"><B>ios_base</B></FONT>,
+  sono <FONT COLOR="Green"><B>specializzazioni</B></FONT> di
+  <FONT COLOR="Blue"><B>template</B></FONT>: il <B>nome</B> di ognuna &egrave;
+  in realt&agrave; un <I><B>sinonimo</B></I> del <B>nome</B> (con prefisso
+  <FONT COLOR="Blue"><B>basic_</B></FONT>) di una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT>
+  <FONT COLOR="Green"><B>specializzata</B></FONT> con
+  <I><B>argomento</B></I>
+  <FONT COLOR="Blue"><B>&lt;char&gt;</B></FONT>. Per esempio: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>ifstream</B></FONT> &egrave; un
+  <I><B>sinonimo</B></I> di:
+  <FONT COLOR="Blue"><B>basic_ifstream&lt;char&gt;</B></FONT> <BR>
+  ma, come gi&agrave; detto a proposito della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT>, noi siamo interessati solo al
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>char</B></FONT> e quindi tratteremo direttamente delle
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>specializzate</B></FONT> e non dei
+  <FONT COLOR="Blue"><B>template</B></FONT> da cui provengono.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Le classi ios_base e ios</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> della <I><B>gerarchia</B></I>,
+  <FONT COLOR="Blue"><B>ios_base</B></FONT>, contiene <B>propriet&agrave;</B>
+  e <B>metodi</B> che sono comuni sia alle
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <I><B>input</B></I> che a
+  quelle di <I><B>output</B></I> e non dipendono da <I><B>parametri</B></I>
+  di <FONT COLOR="Blue"><B>template</B></FONT>. Le stesse caratteristiche sono
+  presenti nella sua <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT>,
+  <FONT COLOR="Blue"><B>ios</B></FONT>, con la differenza che questa &egrave;
+  una <FONT COLOR="Green"><B>specializzazione</B></FONT> con
+  <I><B>argomento</B></I> <FONT COLOR="Blue"><B>char</B></FONT> di <BR>
+  &nbsp; &nbsp; &nbsp; <FONT COLOR="Blue"><B>template &lt;class
+  </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT
+      COLOR="Blue"><B>&gt; class basic_ios</B></FONT>, <BR>
+  le cui funzionalit&agrave; dipendono dal <I><B>parametro
+  </B></I></BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG>. Dal
+  nostro punto di vista, per&ograve;, non ci sono <I><B>parametri</B></I> di
+  <FONT COLOR="Blue"><B>template</B></FONT>&nbsp;(assumendo sempre
+  </BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT>=<BIG><FONT COLOR="Blue"><B>char</B></FONT>),
+  e quindi le due <FONT COLOR="Green"><B>classi</B></FONT> si possono considerare
+  insieme come se fossero un'unica
+  <FONT COLOR="Green"><B>classe</B></FONT>. Entrambe forniscono strumenti di
+  uso generale per le <FONT COLOR="Green"><B>operazioni</B></FONT> di
+  <B>I/O</B>, come ad esempio le
+  </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT><BIG> di controllo
+  degli <FONT COLOR="Black"><B>errori</B></FONT>, i <I><B>flags</B></I> per
+  l'impostazione dei <B>formati</B> di <B>lettura</B> e/o <B>scrittura</B>,
+  i <I><B>modi</B></I> di apertura dei <I><B>files</B></I> ecc... (molti di
+  questi <FONT COLOR="Green"><B>dati-membro</B></FONT> sono
+  <FONT COLOR="Green"><B>enumeratori</B></FONT> costituiti da un singolo bit
+  in una posizione specifica, e si possono combinare insieme con
+  <FONT COLOR="Purple"><B>operazioni logiche bit a bit</B></FONT>). Entrambe
+  le <FONT COLOR="Green"><B>classi</B></FONT>, inoltre, <B>dichiarano</B> i
+  &nbsp;loro <FONT COLOR="Green"><B>costruttori</B></FONT> nella sezione
+  <B>protetta</B>, e quindi non &egrave; possibile
+  <FONT COLOR="Green"><B>istanziarle</B></FONT> direttamente; si devono invece
+  utilizzare le <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>derivate</B></FONT> da
+  <FONT COLOR="Blue"><B>ios</B></FONT>, a partire da
+  <FONT COLOR="Blue"><B>istream</B></FONT> (per l'<I><B>input</B></I>) e
+  <FONT COLOR="Blue"><B>ostream</B></FONT> (per l'<I><B>output</B></I>), che
+  contengono, per <FONT COLOR="Green"><B>eredit&agrave;</B></FONT>, anche i
+  <FONT COLOR="Green"><B>membri</B></FONT> <B>definiti</B> in
+  <FONT COLOR="Blue"><B>ios</B></FONT> e
+  <FONT COLOR="Blue"><B>ios_base</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Le classi istream, ostream e
+iostream</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>istream</B></FONT>,
+  <FONT COLOR="Green"><B>derivata</B></FONT> diretta di
+  <FONT COLOR="Blue"><B>ios</B></FONT>, contiene le funzionalit&agrave; necessarie
+  per le <FONT COLOR="Green"><B>operazioni</B></FONT> di
+  <I><B>input</B></I>; in particolare la
+  <FONT COLOR="Green"><B>classe</B></FONT> <B>definisce</B> un
+  </BIG><FONT COLOR="Green"><BIG><B>overload</B></BIG></FONT>
+  <BIG>dell'<FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>flusso</B></FONT>
+  "<FONT COLOR="Blue"><B>&gt;&gt;</B></FONT>"
+  (<FONT COLOR="Purple"><B>estrazione</B></FONT>), che determina il trasferimento
+  di dati da un <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>istream</B></FONT> alla memoria. Sebbene non sia escluso
+  che si possano <B>costruire</B> delle sue
+  <FONT COLOR="Green"><B>istanze</B></FONT> nel programma, anche la
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>istream</B></FONT>, come gi&agrave; la sua
+  <FONT COLOR="Green"><B>genitrice</B></FONT>
+  <FONT COLOR="Blue"><B>ios</B></FONT>, serve quasi esclusivamente per fornire
+  <B>propriet&agrave;</B> e <B>metodi</B> alle
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>derivate</B></FONT>. Alla
+  <FONT COLOR="Green"><B>classe</B></FONT> <FONT COLOR="Blue"><B>istream
+  </B></FONT>appartiene, come sappiamo, l'<FONT COLOR="Green"><B>oggetto globale
+  </B></FONT><FONT COLOR="Blue"><B>cin</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>ostream</B></FONT>,
+  <FONT COLOR="Green"><B>derivata</B></FONT> diretta di
+  <FONT COLOR="Blue"><B>ios</B></FONT>, contiene le funzionalit&agrave; necessarie
+  per le <FONT COLOR="Green"><B>operazioni</B></FONT> di
+  <I><B>output</B></I>; in particolare la
+  <FONT COLOR="Green"><B>classe</B></FONT> <B>definisce</B> un
+  </BIG><FONT COLOR="Green"><BIG><B>overload</B></BIG></FONT>
+  <BIG>dell'<FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>flusso</B></FONT>
+  "<FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>"
+  (<FONT COLOR="Purple"><B>inserimento</B></FONT>), che determina il trasferimento
+  di dati dalla memoria a un <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>ostream</B></FONT>. Come
+  <FONT COLOR="Blue"><B>istream</B></FONT>,
+  <FONT COLOR="Blue"><B>ostream</B></FONT> serve pi&ugrave; che altro a fornire
+  <B>propriet&agrave;</B> e <B>metodi</B> alle sue
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>derivate</B></FONT>.</BIG> <BIG>Alla
+  <FONT COLOR="Green"><B>classe</B></FONT> <FONT COLOR="Blue"><B>ostream
+  </B></FONT>appartengono, come sappiamo, gli
+  <FONT COLOR="Green"><B>oggetti</B></FONT>
+  <FONT COLOR="Green"><B>globali</B></FONT>
+  <FONT COLOR="Blue"><B>cout</B></FONT>,
+  <FONT COLOR="Blue"><B>cerr</B></FONT> e
+  <FONT COLOR="Blue"><B>clog</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>iostream</B></FONT>,
+  <FONT COLOR="Green"><B>deriva</B></FONT>, per
+  <FONT COLOR="Green"><B>eredit&agrave; multipla</B></FONT>, da
+  <FONT COLOR="Blue"><B>istream</B></FONT> e
+  <FONT COLOR="Blue"><B>ostream</B></FONT>, e ne riunisce le funzionalit&agrave;,
+  senza aggiungere nulla.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Le classi ifstream, ofstream e
+fstream</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Le
+  </BIG><FONT COLOR="Green"><BIG><B>classi</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>ifstream</B></FONT>,
+  <FONT COLOR="Blue"><B>ofstream</B></FONT> e
+  <FONT COLOR="Blue"><B>fstream</B></FONT> servono per eseguire
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <B>I/O</B> su
+  <I><B>file</B></I> e <FONT COLOR="Green"><B>derivano</B></FONT> rispettivamente
+  da <FONT COLOR="Blue"><B>istream</B></FONT>,
+  <FONT COLOR="Blue"><B>ostream</B></FONT> e
+  <FONT COLOR="Blue"><B>iostream</B></FONT>, a cui aggiungono poche
+  <FONT COLOR="Green"><B>funzioni-membro</B></FONT> (praticamente la
+  <FONT COLOR="Blue"><B>open</B></FONT>, la
+  <FONT COLOR="Blue"><B>close</B></FONT> e qualche altra di minore importanza).
+  Per utilizzarle bisogna includere l'<I><B>header-file</B></I>
+  <FONT COLOR="Blue"><B>&lt;fstream&gt;</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>ifstream</B></FONT> serve per le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <I><B>input</B></I>. Normalmente
+  i suoi <FONT COLOR="Green"><B>oggetti</B></FONT> sono associati a
+  <I><B>files</B></I> di <U>sola lettura</U>, che possono essere sia in
+  <I><B>modo</B></I> <B>testo</B> che in <I><B>modo</B></I> <B>binario</B>,
+  ad accesso generalmente <B>sequenziale</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>ofstream</B></FONT> serve per le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <I><B>output</B></I>. Normalmente
+  i suoi <FONT COLOR="Green"><B>oggetti</B></FONT> sono associati a
+  <I><B>files</B></I> di <U>sola scrittura</U>, che possono essere sia in
+  <I><B>modo</B></I> <B>testo</B> che in <I><B>modo</B></I> <B>binario</B>,
+  ad <I><B>accesso</B></I> generalmente <B>sequenziale</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Infine la <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>fstream</B></FONT> serve per le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> sia di <I><B>input</B></I> che
+  di <I><B>output</B></I>. E' particolarmente indicata per operare su
+  <I><B>files</B></I> <B>binari</B> ad <I><B>accesso</B></I>
+  <B>casuale</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Qualunque <FONT COLOR="Green"><B>classe</B></FONT> si usi, le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <B>I/O</B> si eseguono
+  utilizzando gli <FONT COLOR="Green"><B>operatori</B></FONT> di
+  <FONT COLOR="Purple"><B>flusso</B></FONT> e ponendo
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> associato al
+  <I><B>file</B></I> come <FONT COLOR="Green"><B>left-operand</B></FONT> (al
+  posto di <FONT COLOR="Blue"><B>cin</B></FONT> o
+  <FONT COLOR="Blue"><B>cout</B></FONT>). In <B>lettura</B>, se il risultato
+  dell'<FONT COLOR="Green"><B>operazione </B></FONT>&egrave;
+  <FONT COLOR="Blue"><B>NULL</B></FONT> (e quindi
+  <FONT COLOR="Blue"><B>false</B></FONT>, se convertito in
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>bool</B></FONT>), vuol dire di solito che si &egrave;
+  raggiunta la <I><B>fine</B></I> del <I><B>file</B></I>
+  (<B><I>eof</I></B>); questo permette di inserire la <B>lettura</B> di un
+  <I><B>file</B></I> in un <I><B>ciclo</B></I>
+  <FONT COLOR="Blue"><B>while</B></FONT>, in cui la stessa
+  <FONT COLOR="Green"><B>operazione</B></FONT> di <B>lettura</B> funge da
+  <FONT COLOR="Maroon"><B>condizione</B></FONT> per il proseguimento del
+  <I><B>ciclo</B></I>. <BR>
+  Sono anche disponibili <FONT COLOR="Green"><B>funzioni-membro</B></FONT>
+  (<B>definite</B> nelle <FONT COLOR="Green"><B>classi genitrici</B></FONT>
+  <FONT COLOR="Blue"><B>istream</B></FONT> e
+  <FONT COLOR="Blue"><B>ostream</B></FONT>) per la <B>lettura</B> e/o
+  <B>scrittura</B> dei dati, il posizionamento nel <I><B>file</B></I>, la gestione
+  degli <FONT COLOR="Black"><B>errori</B></FONT>, la definizione dei
+  <B>formati</B> ecc..., come vedremo in dettaglio prossimamente.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Le classi istringstream, ostringstream e
+stringstream</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Le
+  </BIG><FONT COLOR="Green"><BIG><B>classi</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>istringstream</B></FONT>,
+  <FONT COLOR="Blue"><B>ostringstream</B></FONT> e
+  <FONT COLOR="Blue"><B>stringstream</B></FONT> servono per eseguire
+  <I><B>pseudo</B></I> <FONT COLOR="Green"><B>operazioni</B></FONT> di
+  <B>I/O</B> su <FONT COLOR="Green"><B>stringa</B></FONT> (come la
+  </BIG><FONT COLOR="Green"><BIG><B>funzione</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>sprintf</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT>) e
+  <FONT COLOR="Green"><B>derivano</B></FONT> rispettivamente da
+  <FONT COLOR="Blue"><B>istream</B></FONT>,
+  <FONT COLOR="Blue"><B>ostream</B></FONT> e
+  <FONT COLOR="Blue"><B>iostream</B></FONT>, a cui aggiungono poche
+  <FONT COLOR="Green"><B>funzioni-membro</B></FONT>. Per utilizzarle bisogna
+  includere l'<I><B>header-file</B></I>
+  <FONT COLOR="Blue"><B>&lt;sstream&gt;</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>istringstream</B></FONT> serve per le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <I><B>input</B></I>. Un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>istringstream</B></FONT> &egrave; sostanzialmente una
+  <FONT COLOR="Green"><B>stringa</B></FONT>, dalla quale per&ograve; si possono
+  <FONT COLOR="Purple"><B>estrarre</B></FONT> dati, come se fosse un dispositivo
+  periferico o un <I><B>file</B></I>. Analogamente ai <I><B>files</B></I>,
+  se il risultato di un'<FONT COLOR="Green"><B>operazione</B></FONT> di
+  <FONT COLOR="Purple"><B>estrazione</B></FONT> &egrave;
+  <FONT COLOR="Blue"><B>NULL</B></FONT>, significa che si &egrave; raggiunta
+  la <I><B>fine</B></I> della <FONT COLOR="Green"><B>stringa</B></FONT>
+  (<B><I>eos</I></B>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>ostringstream</B></FONT> serve per le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <I><B>output</B></I>. Un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>ostringstream</B></FONT> &egrave; sostanzialmente una
+  <FONT COLOR="Green"><B>stringa</B></FONT>, nella quale per&ograve; si possono
+  <FONT COLOR="Purple"><B>inserire</B></FONT> dati, come se fosse un dispositivo
+  periferico o un <I><B>file</B></I>. Le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di
+  <FONT COLOR="Purple"><B>inserimento</B></FONT> possono anche modificare la
+  <FONT COLOR="Green"><B>dimensione</B></FONT> della
+  <FONT COLOR="Green"><B>stringa</B></FONT>, e quindi non &egrave; necessario
+  effettuare controlli sul <I><B>range</B></I>. Questo fatto pu&ograve; essere
+  di grande utilit&agrave; perch&egrave; permette di espandere una
+  <FONT COLOR="Green"><B>stringa</B></FONT> liberamente, in base alle
+  necessit&agrave; (per esempio, per preparare un <I><B>output</B></I>
+  "<I><B>formattato</B></I>").</BIG>
+  <P ALIGN=Justify>
+  <BIG>Infine la <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>stringstream</B></FONT> serve sia per le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <I><B>input</B></I> che di
+  <I><B>output</B></I>.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Tipi definiti nella Libreria</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Red"><B>Libreria </B></FONT>di <B>I/O definisce</B>
+  alcuni </BIG><FONT COLOR="Green"><BIG><B>tipi</B></BIG></FONT> <BIG>specifici
+  (molti dei quali sono in realt&agrave; <I><B>sinonimi</B></I>, creati con
+  <FONT COLOR="Blue"><B>typedef</B></FONT>, di altri
+  </BIG><FONT COLOR="Green"><BIG><B>tipi</B></BIG></FONT><BIG>, che a loro
+  volta dipendono dall'implementazione). I principali sono (per ognuno di essi
+  indichiamo, fra parentesi tonde,
+  l'<FONT COLOR="Green"><B>ambito</B></FONT> o la
+  <FONT COLOR="Green"><B>classe</B></FONT> in cui &egrave; <B>definito</B>,
+  e, fra parentesi quadre, "normalmente implementato come ..."):</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>streamsize</B></FONT></BIG> &nbsp;
+      <BIG>(<FONT COLOR="Blue"><B>namespace</B></FONT>
+      <FONT COLOR="Blue"><B>std</B></FONT>)</BIG> &nbsp; <BIG>[<I><B>sinonimo
+      </B></I>di <FONT COLOR="Blue"><B>int</B></FONT>]</BIG><BR>
+      <BIG>indica un numero di <I><B>bytes</B></I> consecutivi in un
+      <FONT COLOR="Green"><B>oggetto stream</B></FONT>; questo
+      <FONT COLOR="Green"><B>tipo</B></FONT> (come pure i successivi) &egrave;
+      utilizzato come <FONT COLOR="Maroon"><B>argomento</B></FONT> in varie
+      <FONT COLOR="Green"><B>funzioni</B></FONT> di <B>I/O</B></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>streamoff</B></FONT></BIG> &nbsp;
+      &nbsp;<BIG>(<FONT COLOR="Blue"><B>namespace</B></FONT>
+      <FONT COLOR="Blue"><B>std</B></FONT>)</BIG> &nbsp; <BIG>[<I><B>sinonimo
+      </B></I>di <FONT COLOR="Blue"><B>long</B></FONT>]</BIG><BR>
+      <BIG>indica lo spostamento in <I><B>byte</B></I> da una certa
+      <B>posizione</B> in un <FONT COLOR="Green"><B>oggetto
+      stream</B></FONT></BIG> <BIG>a un'altra</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>fmtflags</B></FONT></BIG> &nbsp; &nbsp; &nbsp;
+      <BIG>(<FONT COLOR="Blue"><B>ios_base</B></FONT>)</BIG> &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp;
+      <BIG>[</BIG><FONT COLOR="Green"><BIG><B>tipo
+      enumerato</B></BIG></FONT><BIG>]</BIG><BR>
+      <BIG>i suoi
+      </BIG><FONT COLOR="Green"><BIG><B>enumeratori</B></BIG></FONT> <BIG>controllano
+      l'impostazione del <B>formato</B> di <B>lettura</B> o <B>scrittura</B> (vedere
+      pi&ugrave; avanti)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>iostate</B></FONT></BIG> &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp;<BIG>(<FONT COLOR="Blue"><B>ios_base</B></FONT>)</BIG> &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <BIG>[</BIG><FONT COLOR="Green"><BIG><B>tipo
+      enumerato</B></BIG></FONT><BIG>]</BIG><BR>
+      <BIG>i suoi
+      </BIG><FONT COLOR="Green"><BIG><B>enumeratori</B></BIG></FONT> <BIG>controllano
+      lo <B>stato</B> dell'<FONT COLOR="Green"><B>oggetto stream</B></FONT> dopo
+      un'<FONT COLOR="Green"><B>operazione </B></FONT>(vedere pi&ugrave;
+      avanti)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>openmode</B></FONT></BIG>
+      &nbsp;<BIG>(<FONT COLOR="Blue"><B>ios_base</B></FONT>)</BIG> &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <BIG>[</BIG><FONT COLOR="Green"><BIG><B>tipo
+      enumerato</B></BIG></FONT><BIG>]</BIG><BR>
+      <BIG>i suoi
+      </BIG><FONT COLOR="Green"><BIG><B>enumeratori</B></BIG></FONT> <BIG>controllano
+      il <B>modo</B> di <B>apertura</B> di un <I><B>file </B></I>(vedere prossimo
+      paragrafo)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>seekdir &nbsp;&nbsp; &nbsp;</B></FONT></BIG>
+      &nbsp;<BIG>(<FONT COLOR="Blue"><B>ios_base</B></FONT>)</BIG> &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <BIG>[</BIG><FONT COLOR="Green"><BIG><B>tipo
+      enumerato</B></BIG></FONT><BIG>]</BIG><BR>
+      <BIG>i suoi
+      </BIG><FONT COLOR="Green"><BIG><B>enumeratori</B></BIG></FONT> <BIG>si
+      riferiscono a particolari <B>posizioni</B>
+      nell'<FONT COLOR="Green"><B>oggetto stream</B></FONT>, e sono:<BR>
+      &nbsp; &nbsp; <FONT COLOR="Blue"><B>ios_base::beg</B></FONT>
+      &nbsp;(<B>posizione</B> <I><B>iniziale</B></I>)</BIG><BR>
+      <BIG>&nbsp; &nbsp; <FONT COLOR="Blue"><B>ios_base::cur</B></FONT></BIG> &nbsp;
+      <BIG>(<B>posizione</B> <B>corrente</B>)</BIG><BR>
+      <BIG>&nbsp; &nbsp; <FONT COLOR="Blue"><B>ios_base::end</B></FONT>
+      &nbsp;(<B>posizione</B> <I><B>finale</B></I>)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>pos_type&nbsp; &nbsp;</B></FONT></BIG>
+      &nbsp;<BIG>(<FONT COLOR="Blue"><B>ios</B></FONT>)</BIG> &nbsp; &nbsp;&nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+      <BIG>[<I><B>sinonimo </B></I>di
+      <FONT COLOR="Blue"><B>long</B></FONT>]</BIG><BR>
+      <BIG>&egrave; il <FONT COLOR="Green"><B>tipo</B></FONT> della
+      <B>posizione</B> <B>corrente</B> nell'<FONT COLOR="Green"><B>oggetto
+      stream</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>off_type&nbsp; &nbsp;</B></FONT></BIG>
+      &nbsp;<BIG>(<FONT COLOR="Blue"><B>ios</B></FONT>)</BIG> &nbsp; &nbsp;&nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+      <BIG>[<I><B>sinonimo </B></I>di
+      <FONT COLOR="Blue"><B>long</B></FONT>]<BR>
+      &egrave; sostanzialmente un <I><B>sinonimo </B></I>di
+      <FONT COLOR="Blue"><B>streamoff</B></FONT>, con la sola differenza che &egrave;
+      <B>definito</B> nella
+      <FONT COLOR="Green"><B>classe</B></FONT>&nbsp;<FONT COLOR="Blue"><B>ios</B></FONT>
+      anzich&egrave; nel <FONT COLOR="Blue"><B>namespace</B></FONT>
+      <FONT COLOR="Blue"><B>std</B></FONT></BIG>
+  </UL>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Modi di apertura di un file</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Relativamente alle <FONT COLOR="Green"><B>operazioni</B></FONT> di
+  <B>I/O</B> su <I><B>file</B></I>, bisogna precisare anzitutto che la
+  <B>costruzione</B> di un <FONT COLOR="Green"><B>oggetto stream</B></FONT>
+  e l'<B>apertura</B> del <I><B>file</B></I> associato
+  all'<FONT COLOR="Green"><B>oggetto</B></FONT> sono due
+  <FONT COLOR="Green"><B>operazioni</B></FONT> logicamente e cronologicamente
+  distinte (anche se esiste un
+  <FONT COLOR="Green"><B>costruttore</B></FONT> che fa entrambe le cose, come
+  vedremo). Di solito si usa <U>prima</U> il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di <I><B>default</B></I>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT> (che non fa nulla) &nbsp;e
+  <U>poi</U> un suo particolare <B>metodo</B> (la
+  </BIG><FONT COLOR="Green"><BIG><B>funzione</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>open</B></FONT>) che gli associa un
+  <I><B>file</B></I> e lo <B>apre</B>. Questo permette di <B>chiudere</B> il
+  <I><B>file</B></I> (tramite un altro <B>metodo</B>, la
+  </BIG><FONT COLOR="Green"><BIG><B>funzione</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>close</B></FONT>) prima che
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> sia <B>distrutto</B> e quindi
+  riutilizzare l'<FONT COLOR="Green"><B>oggetto</B></FONT> stesso associandogli
+  un altro <I><B>file</B></I>. Non possono coesistere due
+  <I><B>files</B></I> <B>aperti</B> sullo stesso
+  <FONT COLOR="Green"><B>oggetto</B></FONT>. Un <I><B>file</B></I> ancora
+  <B>aperto</B> al momento della <B>distruzione</B>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT> viene <B>chiuso</B>
+  automaticamente.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Un <I><B>file</B></I> pu&ograve; essere <B>aperto</B> in diversi
+  <I><B>modi</B></I>, a seconda di come si impostano i &nbsp;seguenti
+  <I><B>flags</B></I> (che sono
+  </BIG><FONT COLOR="Green"><BIG><B>enumeratori</B></BIG></FONT> <BIG>del
+  </BIG><FONT COLOR="Green"><BIG><B>tipo enumerato</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>openmode</B></FONT>):</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ios_base::in</B></FONT><BR>
+      il <I><B>file</B></I> deve essere <B>aperto</B> in <B>lettura</B> </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ios_base::out</B></FONT><BR>
+      il <I><B>file</B></I> deve essere <B>aperto</B> in <B>scrittura</B> </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ios_base::ate</B></FONT><BR>
+      il <I><B>file</B></I> deve essere <B>aperto</B> con <B>posizione</B>
+      (inizialmente) sull'<I><B>eof</B></I> </BIG>&nbsp;<BIG>(significa "at the
+      end"); di <I><B>default</B></I> un <I><B>file</B></I> &egrave; aperto "at
+      the beginning"</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ios_base::app<BR>
+      </B></FONT>il <I><B>file</B></I> deve essere <B>aperto</B> con
+      <B>posizione</B> (permanentemente) sull'<I><B>eof</B></I> &nbsp;(cio&egrave;
+      i dati si potranno <B>scrivere</B> solo in fondo al
+      <I><B>file</B></I>)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ios_base::trunc</B></FONT><BR>
+      il <I><B>file</B></I> deve essere <B>aperto</B> con cancellazione del suo
+      contenuto preesistente; se il <I><B>file</B></I> non esiste, viene creato
+      (in tutti gli altri casi deve gi&agrave; esistere)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ios_base::binary</B></FONT><BR>
+      il <I><B>file</B></I> deve essere <B>aperto</B> in <I><B>modo</B></I>
+      "<B>binario</B>", cio&egrave; i dati devono essere <B>scritti</B> o
+      <B>letti</B> esattamente come sono; di <I><B>default</B></I> il
+      <I><B>file</B></I> &eacute; <B>aperto</B> in <I><B>modo</B></I>
+      "<B>testo</B>", nel qual caso, in <I><B>output</B></I>, ogni
+      <FONT COLOR="Green"><B>carattere</B></FONT> <I><B>newline</B></I>
+      <U>pu&ograve;</U> (dipende dall'implementazione!) essere trasformato nella
+      coppia di <FONT COLOR="Green"><B>caratteri</B></FONT>
+      <I><B>carriage-return</B></I><B>/</B><I><B>line-feed</B></I> (e viceversa
+      in <I><B>input</B></I>)</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Ogni <B>flag</B> &egrave; rappresentato in una voce memoria da 16 o
+  32 bit, &nbsp;con un solo bit diverso da zero e in una posizione diversa
+  da quella dei bit degli altri <I><B>flags</B></I>. Questo permette di combinare
+  insieme due <I><B>modi</B></I> con
+  un'<FONT COLOR="Green"><B>operazione</B></FONT> di <FONT COLOR="Purple"><B>OR
+  bit a bit</B></FONT>, oppure di verificare la presenza di un singolo
+  <I><B>modo</B></I> in una combinazione esistente, estraendolo con
+  un'<FONT COLOR="Green"><B>operazione</B></FONT> di
+  <FONT COLOR="Purple"><B>AND bit a bit</B></FONT>. Per esempio, la
+  combinazione:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>ios_base::in |
+  ios_base::out</B></FONT></BIG><BR>
+  <BIG>indica che il <I><B>file</B></I> pu&ograve; essere <B>aperto</B> sia
+  in <B>lettura</B> che in <B>scrittura</B>. Va precisato, tuttavia, che il
+  significato di alcune combinazioni dipende dall'implementazione e quindi
+  va verificato "sperimentalmente", consultando il manuale del proprio
+  sistema.</BIG> <BIG>Per esempio, nelle ultime versioni dello
+  <I><B>standard</B></I>, il <I><B>flag</B></I>
+  <FONT COLOR="Blue"><B>ios_base::out</B></FONT> non pu&ograve; mai stare da
+  solo, ma deve essere combinato con altri.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Per concludere, i <I><B>flags</B></I>
+  <FONT COLOR="Blue"><B>ios_base::in</B></FONT> e
+  <FONT COLOR="Blue"><B>ios_base::out</B></FONT> sono anche usati dai
+  <FONT COLOR="Green"><B>costruttori</B></FONT> delle
+  </BIG><FONT COLOR="Green"><BIG><B>classi</B></BIG></FONT> <BIG>che gestiscono
+  l'<B>I/O</B> su <FONT COLOR="Green"><B>stringa</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operazioni di
+output</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Nella <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>ostream</B></FONT> sono <B>definite</B> varie
+  <FONT COLOR="Green"><B>funzioni-membro</B></FONT> per l'esecuzione delle
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <I><B>output</B></I>. Queste
+  <FONT COLOR="Green"><B>funzioni</B></FONT> sono utilizzate direttamente per
+  la <B>scrittura</B> sui dispositivi <I><B>standard</B></I>
+  <FONT COLOR="Blue"><B>stdout</B></FONT> e
+  <FONT COLOR="Blue"><B>stderr</B></FONT> e sono
+  <FONT COLOR="Green"><B>ereditate</B></FONT> nelle
+  </BIG><FONT COLOR="Green"><BIG><B>classi</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>ofstream</B></FONT>,
+  &nbsp;<FONT COLOR="Blue"><B>fstream</B></FONT>,
+  <FONT COLOR="Blue"><B>ostringstream</B></FONT> e
+  <FONT COLOR="Blue"><B>stringstream</B></FONT> per la <B>scrittura</B> su
+  <I><B>file</B></I> e su
+  <FONT COLOR="Green"><B>stringa</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Metodi operator&lt;&lt;</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Alcuni <B>metodi</B> di <FONT COLOR="Blue"><B>ostream</B></FONT>
+  <B>definiscono</B> tutti i possibili
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT> <BIG>di
+  <FONT COLOR="Blue"><B>operator&lt;&lt;</B></FONT> con
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> di
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>
+  <I><B>nativo</B></I> (compresi i
+  </BIG><FONT COLOR="Green"><BIG><B>tipi</B></BIG></FONT> <BIG>ottenuti mediante
+  i <I><B>prefissi</B></I> <FONT COLOR="Blue"><B>short</B></FONT>,
+  <FONT COLOR="Blue"><B>long</B></FONT>,
+  <FONT COLOR="Blue"><B>signed</B></FONT>,
+  <FONT COLOR="Blue"><B>unsigned</B></FONT> e<FONT COLOR="Blue"><B>
+  const</B></FONT>). I dati in memoria vengono convertiti in
+  <FONT COLOR="Green"><B>stringhe</B></FONT> di
+  <FONT COLOR="Green"><B>caratteri</B></FONT> (in
+  <I><B>free-format</B></I>, o con un <B>formato</B> specifico, come vedremo)
+  e poi <FONT COLOR="Purple"><B>inseriti</B></FONT> in
+  <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT>. Per quello
+  che riguarda i <FONT COLOR="Green"><B>puntatori</B></FONT> (a qualunque
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>), &egrave;
+  <B>definito</B>
+  l'</BIG><FONT COLOR="Green"><BIG><B>overload</B></BIG></FONT><BIG> con
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>
+  <FONT COLOR="Blue"><B>void<SUB><BIG>*</BIG></SUB></B></FONT>, che
+  <B>scrive</B> il valore dell'<FONT COLOR="Green"><B>indirizzo</B></FONT>
+  in <B>formato</B> <I><B>esadecimale</B></I>. Fa eccezione il caso di
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>carattere</B></FONT>, per il quale &egrave;
+  <B>definito</B> un
+  </BIG><FONT COLOR="Green"><BIG><B>overload</B></BIG></FONT> <BIG>specifico
+  con <FONT COLOR="Maroon"><B>argomento</B></FONT>
+  <FONT COLOR="Blue"><B>char<SUB><BIG>*</BIG></SUB></B></FONT>: in questo caso
+  non viene <B>scritto</B> l'<FONT COLOR="Green"><B>indirizzo</B></FONT>, ma
+  il <FONT COLOR="Green"><B>carattere</B></FONT> puntato, e tutti i
+  <FONT COLOR="Green"><B>caratteri </B></FONT>successivi finch&egrave; non
+  si incontra il valore <FONT COLOR="Blue"><B>'\0'</B></FONT> (interpretato
+  come <I><B>terminatore</B></I> di una
+  <FONT COLOR="Green"><B>stringa</B></FONT>). Come ben sappiamo, &egrave; anche
+  possibile <B>definire</B> ulteriori
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT> <BIG>di
+  <FONT COLOR="Blue"><B>operator&lt;&lt;</B></FONT>, con
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>definito dall'utente</B></I>;
+  questa volta, per&ograve;, le <FONT COLOR="Green"><B>funzioni</B></FONT>
+  non possono essere <B>metodi</B> di
+  <FONT COLOR="Blue"><B>ostream</B></FONT>, ma
+  <FONT COLOR="Green"><B>funzioni</B></FONT> esterne: nella risoluzione di
+  una <B>chiamata</B>, il <FONT COLOR="Red"><B>compilatore</B></FONT> si
+  comporter&agrave; in ogni caso correttamente, in quanto cercher&agrave;,
+  non <U>prima</U> fra i <B>metodi</B> e <U>poi</U> fra le
+  <FONT COLOR="Green"><B>funzioni</B></FONT> esterne (che hanno lo stesso livello
+  di preferenza), ma sempre <U>prima</U> fra le
+  <FONT COLOR="Green"><B>funzioni</B></FONT> (<B>metodi</B> o no) in cui
+  l'<FONT COLOR="Maroon"><B>argomento</B></FONT> corrisponde esattamente e
+  <U>poi</U> fra quelle in cui la corrispondenza &egrave; ottenuta tramite
+  conversione <I><B>implicita</B></I> di
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT> <BIG>(questo succede
+  in particolare anche quando il nostro
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT> <BIG>&egrave;
+  convertibile <I><B>implicitamente</B></I> in un
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT>
+  <BIG><I><B>nativo</B></I> e quindi selezionerebbe un <B>metodo</B> se questo
+  avesse la precedenza). Questa regola offre un grande vantaggio, perch&egrave;
+  permette di scrivere ulteriori
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT> <BIG>di
+  <FONT COLOR="Blue"><B>operator&lt;&lt;</B></FONT> senza bisogno di modificare
+  la <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>ostream</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Altre funzioni-membro di
+ostream</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Oltre a <FONT COLOR="Blue"><B>operator&lt;&lt;</B></FONT>, sono
+  <B>definiti</B> in <FONT COLOR="Blue"><B>ostream</B></FONT> i seguenti
+  <B>metodi</B> (citiamo i pi&ugrave; importanti):</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ostream&amp; ostream::put(char
+      </B></FONT><FONT COLOR="Maroon"><B>c</B></FONT><FONT COLOR="Blue"><B>)</B></FONT><BR>
+      <FONT COLOR="Purple"><B>inserisce</B></FONT> il
+      <FONT COLOR="Green"><B>carattere</B></FONT> <FONT COLOR="Maroon"><B>c
+      </B></FONT>nella <B>posizione</B> <B>corrente </B>di
+      <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT>; <B>ritorna</B>
+      <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ostream&amp;
+      ostream::write(char<SUB><BIG>*</BIG></SUB>
+      </B></FONT><FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>, streamsize
+      </B></FONT><FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>)</B></FONT><BR>
+      <FONT COLOR="Purple"><B>inserisce</B></FONT> nella <B>posizione</B> <B>corrente
+      </B>di
+      <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT> una
+      <FONT COLOR="Green"><B>sequenza</B></FONT> di
+      <FONT COLOR="Maroon"><B>n</B></FONT> <I><B>bytes</B></I>, a partire dal
+      <I><B>byte</B></I> puntato da <FONT COLOR="Maroon"><B>p</B></FONT>;
+      <B>ritorna</B>
+      <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT>. A differenza
+      di <FONT COLOR="Blue"><B>operator&lt;&lt;</B></FONT>, <B>scrive</B> i dati
+      <B>binari</B> cos&igrave; come sono in memoria, senza prima convertirli in
+      <FONT COLOR="Green"><B>stringhe</B></FONT> di
+      <FONT COLOR="Green"><B>caratteri</B></FONT>.<FONT COLOR="Red"><B><BR>
+      NOTA:</B></FONT> questo <B>metodo</B> &egrave; particolarmente indicato per
+      <B>scrivere</B> dati di qualsiasi
+      </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT>
+      <BIG><I><B>nativo</B></I> (per esempio dati <B>binari</B> su
+      <I><B>file</B></I>), operando una conversione di
+      </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT>
+      <BIG><FONT COLOR="Green"><B>puntatore</B></FONT> nella <B>chiamata</B>. Per
+      esempio, supponendo che <FONT COLOR="Maroon"><B>out</B></FONT> sia il
+      <B>nome</B> dell'<FONT COLOR="Green"><B>oggetto stream</B></FONT> e
+      <FONT COLOR="Maroon"><B>val</B></FONT> un valore
+      </BIG><FONT COLOR="Green"><BIG><B>intero</B></BIG></FONT><BIG> o
+      <B><I>floating</I></B>, si pu&ograve; scrivere
+      <FONT COLOR="Maroon"><B>val</B></FONT> in
+      <FONT COLOR="Maroon"><B>out</B></FONT> con la <B>chiamata</B>:<BR>
+      <FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      out</B></FONT><FONT COLOR="Blue"><B>.write((char<SUB><BIG>*</BIG></SUB>)&amp;</B></FONT><FONT
+	  COLOR="Maroon"><B>val</B></FONT><FONT COLOR="Blue"><B>,sizeof(</B></FONT><FONT
+	  COLOR="Maroon"><B>val</B></FONT><FONT COLOR="Blue"><B>));<BR>
+      </B></FONT>notare il <FONT COLOR="Purple"><B>casting</B></FONT>, che reintepreta
+      l'<FONT COLOR="Purple"><B>indirizzo</B></FONT> di
+      <FONT COLOR="Maroon"><B>val</B></FONT> come
+      <FONT COLOR="Purple"><B>indirizzo</B></FONT> di una
+      <FONT COLOR="Green"><B>sequenza</B></FONT> di
+      <FONT COLOR="Blue"><B>sizeof(</B></FONT><FONT COLOR="Maroon"><B>val</B></FONT><FONT
+	  COLOR="Blue"><B>)</B></FONT> <I><B>bytes</B></I>. Nel caso invece che il
+      </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT> <BIG>sia
+      <I><B>definito dall'utente</B></I>, il discorso &egrave; un po' pi&ugrave;
+      complicato: la soluzione pi&ugrave; "elegante" &egrave; quella della cosidetta
+      "<I><B>serializzazione</B></I>", che consiste nel creare (nella
+      <FONT COLOR="Green"><B>classe</B></FONT>
+      dell'<FONT COLOR="Green"><B>oggetto</B></FONT> da scrivere) un <B>metodo</B>
+      specifico, che scriva in successione i diversi
+      <FONT COLOR="Green"><B>membri</B></FONT>
+      dell'<FONT COLOR="Green"><B>oggetto</B></FONT>.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>pos_type ostream::tellp()</B></FONT><BR>
+      <B>ritorna</B> la <B>posizione</B> <B>corrente</B></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ostream&amp; ostream::seekp(pos_type
+      </B></FONT><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>)</B></FONT><BR>
+      sposta la <B>posizione</B> <B>corrente</B> in
+      <FONT COLOR="Maroon"><B>pos</B></FONT>; <B>ritorna</B>
+      <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT>; questo
+      <B>metodo</B> (come il suo
+      </BIG><FONT COLOR="Green"><BIG><B>overload</B></BIG></FONT> <BIG>che segue)
+      si usa principalmente quando l'<I><B>output</B></I> &egrave; su
+      <I><B>file</B></I> ad <I><B>accesso</B></I> <B>casuale</B></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ostream&amp; ostream::seekp(off_type
+      </B></FONT><FONT COLOR="Maroon"><B>off</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT
+	  COLOR="Maroon"><B>
+      </B></FONT><FONT COLOR="Blue"><B>ios_base::seekdir</B></FONT>
+      <FONT COLOR="Maroon"><B>seek</B></FONT><FONT COLOR="Blue"><B>)</B></FONT><BR>
+      sposta la <B>posizione</B> <B>corrente</B> di
+      <FONT COLOR="Maroon"><B>off</B></FONT> <I><B>bytes</B></I> a partire dal
+      valore indicato dall'</BIG><FONT COLOR="Green"><BIG><B>enumeratore
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>seek</B></FONT>; <B>ritorna</B>
+      <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT>;
+      <FONT COLOR="Maroon"><B>off</B></FONT> pu&ograve; anche essere negativo
+      (<U>deve esserlo</U> quando <FONT COLOR="Maroon"><B>seek</B></FONT> coincide
+      con <FONT COLOR="Blue"><B>ios_base::end</B></FONT> e <U>deve non esserlo</U>
+      quando <FONT COLOR="Maroon"><B>seek</B></FONT> coincide con
+      <FONT COLOR="Blue"><B>ios_base::beg</B></FONT>); in ogni caso se
+      l'<FONT COLOR="Green"><B>operazione</B></FONT> tende a spostare la
+      <B>posizione</B> <B>corrente</B> fuori dal <I><B>range</B></I>, la
+      <FONT COLOR="Blue"><B>seekp</B></FONT> non viene eseguita e la
+      <B>posizione</B> <B>corrente</B> resta invariata; la <B>posizione</B>
+      corrispondente alla <I><B>fine</B></I> dello
+      <FONT COLOR="Green"><B>stream</B></FONT> (cio&egrave; <I><B>eof</B></I> o
+      <I><B>eos)</B></I> &egrave; considerata ancora nel
+      <I><B>range</B></I>.</BIG>
+  </UL>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Funzioni virtuali di output</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Le <FONT COLOR="Green"><B>funzioni-membro</B></FONT> di
+  <FONT COLOR="Blue"><B>ostream</B></FONT> <U>non</U> sono
+  <FONT COLOR="Green"><B>virtuali</B></FONT>, per motivi di efficienza, dato
+  che in un programma le <FONT COLOR="Green"><B>operazioni</B></FONT> di
+  <B>I/O</B> sono in genere molto frequenti. Tuttavia si pu&ograve; essere
+  talvolta nella necessit&agrave; di mandare in <I><B>output</B></I> un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> di <FONT COLOR="Green"><B>tipo
+  polimorfo</B></FONT>, lasciando alla fase di
+  <FONT COLOR="Red"><B>esecuzione</B></FONT> del programma la scelta del
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT> <BIG>"concreto" fra
+  quelli <FONT COLOR="Green"><B>derivati</B></FONT> da un'unica
+  <FONT COLOR="Green"><B>classe base astratta</B></FONT>. Per ottenere questo
+  risultato, bisogna procedere nel seguente modo (supponiamo di chiamare
+  <FONT COLOR="Maroon"><B>My_base </B></FONT>la <FONT COLOR="Green"><B>classe
+  base astratta</B></FONT>):</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><B>dichiarare</B> in <FONT COLOR="Maroon"><B>My_base</B></FONT> la
+      <FONT COLOR="Green"><B>funzione virtuale pura</B></FONT> (che chiamiamo
+      <FONT COLOR="Maroon"><B>ins)</B></FONT>:<BR>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <FONT COLOR="Blue"><B>virtual ostream&amp;
+      </B></FONT><FONT COLOR="Maroon"><B>ins</B></FONT><FONT COLOR="Blue"><B>(ostream&amp;
+      </B></FONT><FONT COLOR="Maroon"><B>out</B></FONT><FONT COLOR="Blue"><B>)
+      const = 0; &nbsp;//</B></FONT> <B>scrive</B>
+      <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT> su
+      <FONT COLOR="Maroon"><B>out</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><B>ridefinire</B> <FONT COLOR="Maroon"><B>ins</B></FONT> in tutte le
+      <FONT COLOR="Green"><B>classi derivate </B></FONT>da
+      <FONT COLOR="Maroon"><B>My_base</B></FONT>, in modo che ogni
+      </BIG><FONT COLOR="Green"><BIG><B>funzione</B></BIG></FONT> <BIG>svolga
+      l'<FONT COLOR="Green"><B>operazione</B></FONT> di <B>scrittura</B> appropriata
+      per la sua <FONT COLOR="Green"><B>classe</B></FONT> </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><B>definire</B> il seguente
+      </BIG><FONT COLOR="Green"><BIG><B>overload</B></BIG></FONT> <BIG>di
+      <FONT COLOR="Blue"><B>operator&lt;&lt;</B></FONT> (ovviamente come
+      <FONT COLOR="Green"><B>funzione</B></FONT> esterna): <BR>
+      &nbsp; &nbsp; &nbsp;
+      &nbsp;<FONT COLOR="Blue"><B>ostream&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>operator&lt;&lt;(ostream&amp;
+      </B></FONT><FONT COLOR="Maroon"><B>out</B></FONT><FONT COLOR="Blue"><B>,
+      const
+      </B></FONT><FONT COLOR="Maroon"><B>My_base</B></FONT><FONT COLOR="Blue"><B>&amp;
+      </B></FONT><FONT COLOR="Maroon"><B>ogg</B></FONT><FONT COLOR="Blue"><B>)</B></FONT><BR>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<FONT COLOR="Blue"><B>{&nbsp;
+      &nbsp;return
+      </B></FONT><FONT COLOR="Maroon"><B>ogg</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	  COLOR="Maroon"><B>ins</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>out</B></FONT><FONT
+	  COLOR="Blue"><B>);&nbsp; &nbsp;}</B></FONT></BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <BIG>Ci&ograve; assicura che
+  <FONT COLOR="Blue"><B>operator&lt;&lt;</B></FONT> utilizzi, tramite la
+  <FONT COLOR="Green"><B>funzione virtuale</B></FONT>
+  <FONT COLOR="Maroon"><B>ins</B></FONT>, la giusta
+  <FONT COLOR="Green"><B>operazione</B></FONT> di <I><B>output</B></I> in
+  istruzioni del tipo: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<FONT COLOR="Blue"><B>cout &lt;&lt;
+  </B></FONT><FONT COLOR="Maroon"><B>r</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><BR>
+  quando <FONT COLOR="Maroon"><B>r </B></FONT>&egrave; <B>definito</B> come
+  <FONT COLOR="Green"><B>riferimento</B></FONT> a
+  <FONT COLOR="Maroon"><B>My_base</B></FONT>. Questa tecnica &egrave; di
+  utilit&agrave; generale per fornire
+  <FONT COLOR="Green"><B>operazioni</B></FONT> che si comportano come
+  <FONT COLOR="Green"><B>funzioni</B></FONT>
+  <FONT COLOR="Green"><B>virtuali</B></FONT>, ma con la selezione
+  <B>dinamica</B> basata sul <U>secondo</U>
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Metodi specifici per l'output su
+file</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Nella <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>ofstream</B></FONT>,
+  <FONT COLOR="Green"><B>derivata</B></FONT> di
+  <FONT COLOR="Blue"><B>ostream</B></FONT> (e anche nella
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>fstream</B></FONT>,
+  <FONT COLOR="Green"><B>derivata</B></FONT> di
+  <FONT COLOR="Blue"><B>iostream</B></FONT>, per le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> comuni
+  all'<I><B>output</B></I> e all'<I><B>input</B></I>), sono <B>definiti</B>
+  alcuni <B>metodi</B> che, insieme a quelli
+  <FONT COLOR="Green"><B>ereditati</B></FONT> dalla
+  <FONT COLOR="Green"><B>classe base</B></FONT>, servono per la
+  <B>scrittura</B> su <I><B>file</B></I>. Il pi&ugrave; importante di questi
+  &egrave; il <B>metodo</B> <FONT COLOR="Blue"><B>open</B></FONT>:</BIG>
+  <P ALIGN=Justify>
+  <BIG>&nbsp; &nbsp;<FONT COLOR="Blue"><B>void ofstream::open(const
+  char<SUB><BIG>*</BIG></SUB>
+  </B></FONT><FONT COLOR="Maroon"><B>filename</B></FONT><FONT COLOR="Blue"><B>,
+  ios_base::openmode
+  </B></FONT><FONT COLOR="Maroon"><B>mode</B></FONT><FONT COLOR="Blue"><B>
+  =
+  </B></FONT><FONT COLOR="Black"><B>....</B></FONT><FONT COLOR="Blue"><B>)</B></FONT><BR>
+  &nbsp; <FONT COLOR="Blue"><B>&nbsp;void &nbsp; fstream::open(const
+  char<SUB><BIG>*</BIG></SUB>
+  </B></FONT><FONT COLOR="Maroon"><B>filename</B></FONT><FONT COLOR="Blue"><B>,
+  ios_base::openmode
+  </B></FONT><FONT COLOR="Maroon"><B>mode</B></FONT><FONT COLOR="Blue"><B>
+  =
+  </B></FONT><FONT COLOR="Black"><B>....</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>che ha due <FONT COLOR="Maroon"><B>argomenti</B></FONT>: il primo,
+  <FONT COLOR="Maroon"><B>filename</B></FONT>, &egrave; il <B>nome</B> del
+  <I><B>file</B></I> da <B>aprire</B> (nota: &egrave; una
+  <FONT COLOR="Green"><B>stringa</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT>, non un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT>!), il secondo,
+  <FONT COLOR="Maroon"><B>mode</B></FONT>, rappresenta il
+  <I><B>modo</B></I> di <B>apertura</B> del <I><B>file</B></I> ed &egrave;
+  di <I><B>default</B></I>, con valore che dipende dalla
+  <FONT COLOR="Green"><B>classe</B></FONT> e precisamente:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>in <FONT COLOR="Blue"><B>ofstream</B></FONT> (sola
+      <B>scrittura</B>):<BR>
+      <FONT COLOR="Maroon"><B>mode</B></FONT><FONT COLOR="Blue"><B>
+      =</B></FONT></BIG> <BIG><FONT COLOR="Blue"><B>ios_base::out |
+      ios_base::trunc</B></FONT></BIG><BR>
+      <BIG>(notare: se il <I><B>file</B></I> esiste, viene "troncato", se non esiste
+      viene creato)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>in <FONT COLOR="Blue"><B>fstream</B></FONT> (<B>lettura</B> e
+      <B>scrittura</B>):<BR>
+      <FONT COLOR="Maroon"><B>mode</B></FONT><FONT COLOR="Blue"><B>
+      =</B></FONT></BIG> <BIG><FONT COLOR="Blue"><B>ios_base::out |
+      ios_base::in</B></FONT></BIG><BR>
+      <BIG>(notare: il <I><B>file</B></I> deve esistere)</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Se si verifica un errore, non appaiono messaggi, ma nessuna delle successive
+  <FONT COLOR="Green"><B>operazioni</B></FONT> sul <I><B>file</B></I> viene
+  eseguita. Ci si pu&ograve; accorgere dell'errore interrogando lo <B>stato</B>
+  dell'<FONT COLOR="Green"><B>oggetto </B></FONT>(come vedremo)</BIG>.
+  <P ALIGN=Justify>
+  <BIG>Fra gli altri <B>metodi</B> <B>definiti</B> in<FONT COLOR="Blue"><B>
+  ofstream</B></FONT> citiamo: </BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>void ofstream::close()</B></FONT></BIG><BR>
+      <BIG>chiude il <I><B>file</B></I> senza <B>distruggere</B>
+      l'<FONT COLOR="Green"><B>oggetto
+      </B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT>,
+      a cui si pu&ograve; cos&igrave; associare un altro <I><B>file</B></I> (oppure
+      di nuovo lo stesso, per esempio con <I><B>modi</B></I> di <B>apertura</B>
+      diversi)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Green"><B>costruttore</B></FONT> di
+      <I><B>default</B></I> <BR>
+      <B>crea</B> l'<FONT COLOR="Green"><B>oggetto</B></FONT> senza aprire nessun
+      <I><B>file</B></I>; deve ovviamente essere seguito da una
+      <FONT COLOR="Blue"><B>open</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Green"><B>costruttore</B></FONT> con esattamente gli stessi
+      <FONT COLOR="Maroon"><B>argomenti</B></FONT> della <FONT COLOR="Blue"><B>open
+      </B></FONT>(compresi i
+      <I><B>defaults</B></I>)<FONT COLOR="Blue"><B><BR>
+      </B></FONT>riunisce insieme le
+      <FONT COLOR="Green"><B>operazioni</B></FONT> del
+      <FONT COLOR="Green"><B>costruttore</B></FONT> di <I><B>default</B></I> e
+      della <FONT COLOR="Blue"><B>open</B></FONT> (a cui &egrave; ovviamente
+      alternativo); anche se generalmente il <I><B>file</B></I> resta <B>aperto</B>
+      fino alla &nbsp;distruzione
+      dell'<FONT COLOR="Green"><B>oggetto</B></FONT>, la "prima" <B>apertura</B>
+      tramite <FONT COLOR="Green"><B>costruttore</B></FONT> al posto della
+      <FONT COLOR="Blue"><B>open</B></FONT> non preclude la possibilit&agrave;
+      che il <I><B>file</B></I> venga <B>chiuso</B> "anticipatamente" (con la
+      <FONT COLOR="Blue"><B>close</B></FONT>) e che poi venga associato
+      all'<FONT COLOR="Green"><B>oggetto</B></FONT> un altro <I><B>file
+      </B></I>(con una successiva
+      <FONT COLOR="Blue"><B>open</B></FONT>)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>bool ofstream::isopen()<BR>
+      </B></FONT><B>ritorna</B> <FONT COLOR="Blue"><B>true</B></FONT> se esiste
+      un <I><B>file</B></I> <B>aperto</B> associato
+      all'<FONT COLOR="Green"><B>oggetto</B></FONT></BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>fstream</B></FONT> <B>definisce</B> esattamente gli
+  stessi <B>metodi</B> di <FONT COLOR="Blue"><B>ofstream</B></FONT> (l'unica
+  differenza &egrave; nel <I><B>modo</B></I> di <B>apertura</B> di
+  <I><B>default</B></I> del <I><B>file</B></I>, dato dal secondo
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> del
+  <FONT COLOR="Green"><B>costruttore</B></FONT> come nella
+  <FONT COLOR="Blue"><B>open</B></FONT> corrispondente)</BIG>.
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Metodi specifici per l'output su
+stringa</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Nella <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>ostringstream</B></FONT>,
+  <FONT COLOR="Green"><B>derivata</B></FONT> di
+  <FONT COLOR="Blue"><B>ostream</B></FONT> (e anche nella
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>stringstream</B></FONT>,
+  <FONT COLOR="Green"><B>derivata</B></FONT> di
+  <FONT COLOR="Blue"><B>iostream</B></FONT>, per le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> comuni
+  all'<I><B>output</B></I> e all'<I><B>input</B></I>), sono <B>definiti</B>
+  alcuni <B>metodi</B> che, insieme a quelli
+  <FONT COLOR="Green"><B>ereditati</B></FONT> dalla
+  <FONT COLOR="Green"><B>classe base</B></FONT>, servono per la
+  <B>scrittura</B> su
+  </BIG><FONT COLOR="Green"><BIG><B>stringa</B></BIG></FONT><BIG>. I pi&ugrave;
+  importanti sono:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ostringstream::ostringstream(ios_base::openmode
+      </B></FONT><FONT COLOR="Maroon"><B>mode</B></FONT><FONT COLOR="Blue"><B>
+      = ios_base::out)</B></FONT><BR>
+      <FONT COLOR="Green"><B>costruttore</B></FONT> di <I><B>default</B></I> (con
+      un <FONT COLOR="Maroon"><B>argomento</B></FONT> di <I><B>default</B></I>
+      )</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ostringstream::ostringstream(const string&amp;
+      </B></FONT><FONT COLOR="Maroon"><B>str</B></FONT><FONT COLOR="Blue"><B>,
+      ios_base</B></FONT> ..come sopra..<FONT COLOR="Blue"><B> )</B></FONT><BR>
+      <FONT COLOR="Green"><B>costruttore</B></FONT> per <B>copia</B> da un
+      <FONT COLOR="Green"><B>oggetto</B></FONT>
+      &nbsp;<FONT COLOR="Blue"><B>string</B></FONT> (con il secondo
+      <FONT COLOR="Maroon"><B>argomento</B></FONT> di <I><B>default</B></I> )</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string ostringstream::str()</B></FONT><BR>
+      crea una <B>copia</B> di
+      <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT> e la
+      <B>ritorna</B> convertita in un <FONT COLOR="Green"><B>oggetto</B></FONT>
+      <FONT COLOR="Blue"><B>string</B></FONT>. Questo <B>metodo</B> &egrave; molto
+      utile, in quanto gli <FONT COLOR="Green"><B>oggetti</B></FONT> di
+      <FONT COLOR="Blue"><B>ostringstream</B></FONT> (e delle altre
+      <FONT COLOR="Green"><B>classi</B></FONT> della <I><B>gerarchia</B></I>
+      <FONT COLOR="Green"><B>stream</B></FONT>) &nbsp;<U>non possiedono</U> le
+      funzionalit&agrave; delle <FONT COLOR="Green"><B>stringhe</B></FONT>; per
+      poterli utilizzare come <FONT COLOR="Green"><B>stringhe</B></FONT> &egrave;
+      prima necessario convertirli in <FONT COLOR="Green"><B>oggetti</B></FONT>
+      <FONT COLOR="Blue"><B>string</B></FONT>.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>void ostringstream::str(const string&amp;
+      </B></FONT><FONT COLOR="Maroon"><B>str</B></FONT><FONT COLOR="Blue"><B>)</B></FONT><BR>
+      questo secondo
+      </BIG><FONT COLOR="Green"><BIG><B>overload</B></BIG></FONT><BIG> di
+      <FONT COLOR="Blue"><B>str</B></FONT> esegue
+      l'<FONT COLOR="Green"><B>operazione</B></FONT> inversa del precedente:
+      sostituisce in
+      <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT> una <B>copia</B>
+      di un <FONT COLOR="Green"><B>oggetto</B></FONT>
+      <FONT COLOR="Blue"><B>string</B></FONT></BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>stringstream</B></FONT> <B>definisce</B> esattamente
+  gli stessi <B>metodi</B> di
+  <FONT COLOR="Blue"><B>ostringstream</B></FONT>, con la differenza che
+  l'<FONT COLOR="Maroon"><B>argomento</B></FONT> di <I><B>default</B></I> dei
+  <FONT COLOR="Green"><B>costruttori</B></FONT>
+  (<FONT COLOR="Maroon"><B>mode</B></FONT>) &egrave;:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Maroon"><B>mode</B></FONT><FONT COLOR="Blue"><B>
+  =</B></FONT></BIG> <BIG><FONT COLOR="Blue"><B>ios_base::out |
+  ios_base::in</B></FONT></BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operazioni di
+input</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Nella <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>istream</B></FONT> sono <B>definite</B> varie
+  <FONT COLOR="Green"><B>funzioni-membro</B></FONT> per l'esecuzione delle
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <I><B>input</B></I>. Queste
+  <FONT COLOR="Green"><B>funzioni</B></FONT> sono utilizzate direttamente per
+  la <B>lettura</B> dal dispositivo <I><B>standard</B></I>
+  <FONT COLOR="Blue"><B>stdin</B></FONT> e sono
+  <FONT COLOR="Green"><B>ereditate</B></FONT> nelle
+  </BIG><FONT COLOR="Green"><BIG><B>classi</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>ifstream</B></FONT>,
+  &nbsp;<FONT COLOR="Blue"><B>fstream</B></FONT>,
+  <FONT COLOR="Blue"><B>istringstream</B></FONT> e
+  <FONT COLOR="Blue"><B>stringstream</B></FONT> per la <B>lettura</B> da
+  <I><B>file</B></I> e da
+  <FONT COLOR="Green"><B>stringa</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Metodi operator&gt;&gt;</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Alcuni <B>metodi</B> di <FONT COLOR="Blue"><B>istream</B></FONT>
+  <B>definiscono</B> tutti i possibili
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT> <BIG>di
+  <FONT COLOR="Blue"><B>operator&gt;&gt;</B></FONT> con
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> di
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>
+  <I><B>nativo</B></I> (compresi i
+  </BIG><FONT COLOR="Green"><BIG><B>tipi</B></BIG></FONT> <BIG>ottenuti mediante
+  i <I><B>prefissi</B></I> <FONT COLOR="Blue"><B>short</B></FONT>,
+  <FONT COLOR="Blue"><B>long</B></FONT>,
+  <FONT COLOR="Blue"><B>signed</B></FONT> e<FONT COLOR="Blue"><B>
+  unsigned</B></FONT>). Da<FONT COLOR="Blue"><B><SUB><BIG>
+  *</BIG></SUB>this</B></FONT> vengono <FONT COLOR="Purple"><B>estratte
+  </B></FONT><FONT COLOR="Green"><B>stringhe</B></FONT> di
+  <FONT COLOR="Green"><B>caratteri</B></FONT>, che sono interpretate secondo
+  un certo <B>formato</B> e poi convertite nel
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT> <BIG>rappresentato
+  dall'<FONT COLOR="Maroon"><B>argomento</B></FONT>, in cui vengono infine
+  memorizzate. Ognuna di queste <FONT COLOR="Green"><B>stringhe</B></FONT>
+  (che chiamiamo "<I><B>stringhe di input</B></I>") &egrave; delimitata da
+  uno o pi&ugrave; "<I><B>spazi bianchi</B></I>" (cos&igrave; sono definiti
+  i <FONT COLOR="Green"><B>caratteri</B></FONT>:
+  <FONT COLOR="Olive"><B>spazio</B></FONT>,
+  <FONT COLOR="Olive"><B>tabulazione</B></FONT>, <FONT COLOR="Olive"><B>fine
+  riga</B></FONT>, <FONT COLOR="Olive"><B>fine pagina</B></FONT> e
+  <FONT COLOR="Olive"><B>ritorno carrello</B></FONT>); tutti gli <I><B>spazi
+  bianchi</B></I> che precedono e seguono una <I><B>stringa di input</B></I>
+  vengono "scartati", cio&egrave; eliminati dallo <FONT COLOR="Green"><B>stream
+  </B></FONT>e non trasferiti in memoria (anche quando
+  l'<FONT COLOR="Maroon"><B>argomento</B></FONT> &egrave; di
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>char</B></FONT>, nel qual caso non viene
+  <FONT COLOR="Purple"><B>estratta</B></FONT> una
+  <FONT COLOR="Green"><B>stringa</B></FONT>, ma un singolo
+  <FONT COLOR="Green"><B>carattere</B></FONT>, pur sempre tuttavia dopo avere
+  "scartato" tutti gli eventuali <I><B>spazi bianchi</B></I> che lo precedono).
+  Pertanto ogni singola esecuzione di
+  <FONT COLOR="Blue"><B>operator&gt;&gt;</B></FONT> converte e trasferisce
+  in memoria una e una sola <I><B>stringa di input</B></I> alla volta, qualunque
+  sia la dimensione dello <FONT COLOR="Green"><B>stream</B></FONT>. I
+  <FONT COLOR="Green"><B>caratteri</B></FONT> della <I><B>stringa di
+  input</B></I>, inoltre, devono essere <U>tutti validi</U>, in relazione al
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT> <BIG>dell'
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>. Per esempio, se il dato da
+  <B>leggere</B> &egrave; di
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>int</B></FONT> e la <I><B>stringa di input</B></I>
+  contiene un "punto", questa viene troncata in modo da lasciare il "punto"
+  come primo <FONT COLOR="Green"><B>carattere</B></FONT> della prossima
+  <I><B>stringa di input</B></I> da
+  <FONT COLOR="Purple"><B>estrarre</B></FONT> (vedere la gestione degli errori
+  nella prossima sezione). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Per quello che riguarda i
+  <FONT COLOR="Green"><B>puntatori</B></FONT> (a qualunque
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>), &egrave;
+  <B>definito</B> un
+  </BIG><FONT COLOR="Green"><BIG><B>overload</B></BIG></FONT><BIG> di
+  <FONT COLOR="Blue"><B>operator&gt;&gt;</B></FONT> con
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>
+  <FONT COLOR="Blue"><B>void<SUB><BIG>*</BIG></SUB></B></FONT>, che converte
+  la <I><B>stringa di input</B></I> in un numero
+  <FONT COLOR="Green"><B>intero</B></FONT> e lo memorizza
+  nell'<FONT COLOR="Maroon"><B>argomento</B></FONT> (la cosa ha per&ograve;
+  scarso interesse, in quanto non si possono mai
+  <FONT COLOR="Purple"><B>assegnare</B></FONT> <B>valori</B> agli
+  <FONT COLOR="Green"><B>indirizzi</B></FONT>). E' importante invece il caso
+  di <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>carattere</B></FONT>, per il quale &egrave;
+  <B>definito</B> un
+  </BIG><FONT COLOR="Green"><BIG><B>overload</B></BIG></FONT> <BIG>specifico
+  con <FONT COLOR="Maroon"><B>argomento</B></FONT>
+  <FONT COLOR="Blue"><B>char<SUB><BIG>*</BIG></SUB></B></FONT>: in questo caso
+  la <I><B>stringa di input</B></I> non viene convertita, ma trasferita cos&igrave;
+  com'&egrave; nell'area di memoria puntata
+  dall'<FONT COLOR="Maroon"><B>argomento</B></FONT>; alla fine viene aggiunto
+  automaticamente il <FONT COLOR="Green"><B>carattere
+  </B></FONT><FONT COLOR="Blue"><B>'\0'</B></FONT> come
+  <I><B>terminatore</B></I> della <FONT COLOR="Green"><B>stringa</B></FONT>
+  memorizzata. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Per ci&ograve; che concerne la <B>definizione</B> di ulteriori
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT> <BIG>di
+  <FONT COLOR="Blue"><B>operator&gt;&gt;</B></FONT> con
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>definito dall'utente</B></I>,
+  e la scelta fra i <B>metodi</B> e le
+  <FONT COLOR="Green"><B>funzioni</B></FONT> esterne, vedere le considerazioni
+  fatte a proposito di
+  <FONT COLOR="Blue"><B>operator&lt;&lt;</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Altre funzioni-membro di
+istream</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La principale differenza fra gli
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT> <BIG>di
+  <FONT COLOR="Blue"><B>operator&gt;&gt;</B></FONT> e gli altri
+  &nbsp;<B>metodi</B> di <FONT COLOR="Blue"><B>istream</B></FONT> che eseguono
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <B>lettura</B> consiste nel
+  fatto che i primi <FONT COLOR="Purple"><B>estraggono</B></FONT>
+  <I><B>stringhe di input</B></I>, senza <I><B>spazi bianchi</B></I> e interpretate
+  secondo un certo <B>formato</B> (<I><B>formatted input functions</B></I>),
+  mentre gli altri <B>metodi</B>
+  <FONT COLOR="Purple"><B>estraggono</B></FONT> singoli <I><B>bytes</B></I>
+  (o <FONT COLOR="Green"><B>sequenze</B></FONT> di <I><B>bytes</B></I>) senza
+  applicare nessun <B>formato</B> (<I><B>unformatted input functions</B></I>)
+  e senza escludere gli <I><B>spazi bianchi</B></I>. Vediamone i
+  principali:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>int istream::get()</B></FONT></BIG><BR>
+      <BIG><FONT COLOR="Purple"><B>estrae</B></FONT> un <I><B>byte</B></I> e lo
+      <B>ritorna</B> al <B>chiamante</B>. <FONT COLOR="Red"><B>Nota</B></FONT>:
+      il <B>valore di ritorno</B> &egrave; sempre <B>positivo</B> (in quanto &egrave;
+      <B>definito</B> <FONT COLOR="Blue"><B>int</B></FONT> e contiene un solo
+      <B><I>byte</I></B>, cio&egrave; al massimo il numero <B>255</B>; pertanto
+      un <B>valore di ritorno</B> <B>negativo</B> indica convenzionalmente che
+      si &egrave; verificato un errore, oppure che la <B>posizione</B>
+      <B>corrente</B> era gi&agrave; sulla <I><B>fine</B></I> dello
+      <FONT COLOR="Green"><B>stream</B></FONT> (cio&egrave; su
+      <I><B>eof</B></I> o <I><B>eos)</B></I></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>istream&amp; istream::get(char&amp;
+      </B></FONT><FONT COLOR="Maroon"><B>c</B></FONT><FONT COLOR="Blue"><B>)</B></FONT><BR>
+      <FONT COLOR="Purple"><B>estrae</B></FONT> un <I><B>byte</B></I> e lo memorizza
+      in <FONT COLOR="Maroon"><B>c</B></FONT>; <B>ritorna</B>
+      <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>istream&amp;
+      istream::get(char<SUB><BIG>*</BIG></SUB>
+      </B></FONT><FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>, streamsize
+      </B></FONT><FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>, char
+      </B></FONT><FONT COLOR="Maroon"><B>delim</B></FONT><FONT COLOR="Blue"><B>='\n')</B></FONT><BR>
+      <FONT COLOR="Purple"><B>estrae</B></FONT> <FONT COLOR="Maroon"><B>n-1
+      </B></FONT><I><B>bytes</B></I> e li memorizza nell'area puntata da
+      <FONT COLOR="Maroon"><B>p</B></FONT> (facendo seguire il
+      <FONT COLOR="Green"><B>carattere
+      </B></FONT><FONT COLOR="Blue"><B>'\0'</B></FONT> come
+      <I><B>terminatore</B></I> della <FONT COLOR="Green"><B>stringa</B></FONT>
+      memorizzata); <B>ritorna</B>
+      <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT>; il processo
+      di <FONT COLOR="Purple"><B>estrazione</B></FONT> pu&ograve; essere interrotto
+      in anticipo, per uno dei seguenti motivi:</BIG>
+      <OL>
+	<LI>
+	  <P ALIGN=Justify>
+	  <BIG>&egrave; stata raggiunta la <I><B>fine</B></I> dello
+	  <FONT COLOR="Green"><B>stream</B></FONT>;</BIG>
+	<LI>
+	  <P ALIGN=Justify>
+	  <BIG>&egrave; stato incontrato il
+	  <FONT COLOR="Green"><B>carattere</B></FONT>
+	  <FONT COLOR="Maroon"><B>delim</B></FONT>; in questo caso
+	  <FONT COLOR="Maroon"><B>delim</B></FONT> non viene
+	  <FONT COLOR="Purple"><B>estratto</B></FONT> e la <B>posizione</B>
+	  <B>corrente</B> si attesta sullo stesso
+	  <FONT COLOR="Maroon"><B>delim</B></FONT></BIG>
+      </OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>istream&amp;
+      istream::getline(char<SUB><BIG>*</BIG></SUB>
+      </B></FONT><FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>, streamsize
+      </B></FONT><FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>, char
+      </B></FONT><FONT COLOR="Maroon"><B>delim</B></FONT><FONT COLOR="Blue"><B>='\n')</B></FONT></BIG><BR>
+      <BIG>&egrave; identica alla <FONT COLOR="Blue"><B>get</B></FONT> precedente,
+      con due differenze:</BIG>
+      <OL>
+	<LI>
+	  <P ALIGN=Justify>
+	  <BIG>se incontra il <FONT COLOR="Green"><B>carattere</B></FONT>
+	  <FONT COLOR="Maroon"><B>delim</B></FONT> non lo
+	  <FONT COLOR="Purple"><B>estrae</B></FONT> (come nella
+	  <FONT COLOR="Blue"><B>get</B></FONT>), ma la <B>posizione</B> <B>corrente</B>
+	  si attesta <U>dopo</U> <FONT COLOR="Maroon"><B>delim</B></FONT> (cio&egrave;
+	  <FONT COLOR="Maroon"><B>delim</B></FONT> viene "saltato")</BIG>
+	<LI>
+	  <P ALIGN=Justify>
+	  <BIG>se completa l'<FONT COLOR="Purple"><B>estrazione</B></FONT> di
+	  <FONT COLOR="Maroon"><B>n-1 </B></FONT><I><B>bytes</B></I> senza incontrare
+	  <FONT COLOR="Maroon"><B>delim</B></FONT>, viene impostata una condizione
+	  di errore; in pratica ci&ograve; vuol dire che
+	  l'<FONT COLOR="Maroon"><B>argomento n</B></FONT>&nbsp;serve per imporre la
+	  condizione:<BR>
+	  <B>&nbsp; &nbsp; &nbsp;posizione</B> di
+	  <FONT COLOR="Maroon"><B>delim</B></FONT> - <B>posizione</B> <B>corrente</B>
+	  &lt; <FONT COLOR="Maroon"><B>n</B></FONT></BIG>
+      </OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>istream&amp;
+      istream::read(char<SUB><BIG>*</BIG></SUB>
+      </B></FONT><FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>, streamsize
+      </B></FONT><FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG><BR>
+      <BIG>differisce dalle
+      </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT> <BIG>precedenti
+      per il fatto che non ha <I><B>delimitatori</B></I> (a parte la
+      <I><B>fine</B></I> dello <FONT COLOR="Green"><B>stream</B></FONT>) e
+      <FONT COLOR="Purple"><B>estrae</B></FONT> <FONT COLOR="Maroon"><B>n
+      </B></FONT><I><B>bytes</B></I> (senza aggiungere il
+      <FONT COLOR="Green"><B>carattere
+      </B></FONT><FONT COLOR="Blue"><B>'\0'</B></FONT> in fondo); e quindi non
+      <B>legge</B><FONT COLOR="Green"><B> stringhe</B></FONT> di
+      <FONT COLOR="Green"><B>caratteri</B></FONT>, ma dati <B>binari</B> di qualsiasi
+      </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT> <BIG>(vedere la
+      <FONT COLOR="Red"><B>NOTA</B></FONT> a proposito del metodo
+      <FONT COLOR="Blue"><B>write</B></FONT>&nbsp;di
+      <FONT COLOR="Blue"><B>ostream</B></FONT>)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>streamsize</B></FONT></BIG>
+      <BIG><FONT COLOR="Blue"><B>istream::readsome(char<SUB><BIG>*</BIG></SUB>
+      </B></FONT><FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>, streamsize
+      </B></FONT><FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG><BR>
+      <BIG>come la <FONT COLOR="Blue"><B>read</B></FONT>, salvo il fatto che
+      <B>ritorna</B> il numero di <I><B>bytes</B></I> effettivamente
+      <B>letti</B></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>istream&amp; istream::ignore(streamsize
+      </B></FONT><FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	  COLOR="Maroon"><B>1</B></FONT><FONT COLOR="Blue"><B>, int
+      </B></FONT><FONT COLOR="Maroon"><B>delim</B></FONT><FONT COLOR="Blue"><B>=EOF)</B></FONT><BR>
+      "salta" i prossimi <FONT COLOR="Maroon"><B>n</B></FONT>
+      <I><B>bytes</B></I>, oppure i prossimi <I><B>bytes</B></I> fino a
+      <FONT COLOR="Maroon"><B>delim</B></FONT> (compreso); il
+      <B><I>default</I></B> di <FONT COLOR="Maroon"><B>delim</B></FONT>
+      (<FONT COLOR="Blue"><B>EOF</B></FONT>) &egrave; una
+      <FONT COLOR="Green"><B>costante predefinita</B></FONT> che indica la
+      <I><B>fine</B></I> dello <FONT COLOR="Green"><B>stream</B></FONT> (normalmente
+      implementata con il <B>valore</B> <FONT COLOR="Maroon"><B>-1</B></FONT>);
+      <FONT COLOR="Blue"><B>ignore</B></FONT> serve soprattutto per "saltare"
+      <FONT COLOR="Green"><B>caratteri</B></FONT> invalidi nella <B>lettura</B>
+      <I><B>formattata</B></I> da una <I><B>stringa di input</B></I></BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>I <B>metodi</B> di interrogazione e modifica diretta della <B>posizione
+  corrente</B> sono: <FONT COLOR="Blue"><B>tellg</B></FONT> e
+  <FONT COLOR="Blue"><B>seekg</B></FONT> (in <B>2</B>
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT><BIG>): hanno
+  gli stessi <FONT COLOR="Maroon"><B>argomenti</B></FONT> e svolgono le stesse
+  <FONT COLOR="Green"><B>operazioni</B></FONT> dei corrispondenti
+  <FONT COLOR="Blue"><B>tellp</B></FONT> e
+  <FONT COLOR="Blue"><B>seekp</B></FONT> <B>definiti</B> in
+  <FONT COLOR="Blue"><B>ostream</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Metodi specifici per input da file e da
+stringa</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Nelle <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Blue"><B>ifstream </B></FONT>e
+  <FONT COLOR="Blue"><B>istringstream</B></FONT>,
+  <FONT COLOR="Green"><B>derivate</B></FONT> di
+  <FONT COLOR="Blue"><B>istream</B></FONT>, sono <B>definiti</B> esattamente
+  gli stessi <B>metodi</B> che si trovano rispettivamente in
+  <FONT COLOR="Blue"><B>ofstream</B></FONT> e
+  <FONT COLOR="Blue"><B>ostringstream</B></FONT>. L'unica differenza sta nel
+  <I><B>default</B></I> dell'<FONT COLOR="Maroon"><B>argomento</B></FONT>
+  <FONT COLOR="Maroon"><B>mode</B></FONT> della
+  <FONT COLOR="Blue"><B>open</B></FONT> e dei
+  <FONT COLOR="Green"><B>costruttori</B></FONT>, che in questo caso
+  &egrave;:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Maroon"><B>mode</B></FONT><FONT COLOR="Blue"><B>
+  =</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>ios_base::in</B></FONT></BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Stato dell'oggetto stream e gestione
+degli errori</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>A ogni <FONT COLOR="Green"><B>oggetto stream</B></FONT> &egrave; associato
+  uno "<B>stato</B>", impostando e controllando il quale &egrave; possibile
+  gestire gli errori e le condizioni anomale nelle
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di
+  <I><B>input-output</B></I>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Lo <B>stato</B> dell'<FONT COLOR="Green"><B>oggetto</B></FONT> &egrave;
+  rappresentato da un insieme di <I><B>flags</B></I> (che sono
+  </BIG><FONT COLOR="Green"><BIG><B>enumeratori</B></BIG></FONT> <BIG>del
+  </BIG><FONT COLOR="Green"><BIG><B>tipo enumerato</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>iostate</B></FONT>, <B>definito</B> nella
+  <FONT COLOR="Green"><B>classe
+  </B></FONT><FONT COLOR="Blue"><B>ios_base</B></FONT>), ciascuno dei quali
+  (come gli
+  </BIG><FONT COLOR="Green"><BIG><B>enumeratori</B></BIG></FONT> <BIG>del
+  </BIG><FONT COLOR="Green"><BIG><B>tipo </B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>openmode</B></FONT>) pu&ograve; essere combinato
+  con gli altri con un'<FONT COLOR="Green"><B>operazione</B></FONT> di
+  <FONT COLOR="Purple"><B>OR bit a bit</B></FONT> e separato dagli altri con
+  un'<FONT COLOR="Green"><B>operazione</B></FONT> di
+  <FONT COLOR="Purple"><B>AND bit a bit</B></FONT>. I <I><B>flags</B></I> sono
+  i seguenti:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ios_base::goodbit</B></FONT><BR>
+      finora tutto bene e la <B>posizione corrente</B> non &egrave; sulla
+      <I><B>fine</B></I> dello <FONT COLOR="Green"><B>stream</B></FONT>; nessun
+      bit &egrave; "settato" (valore <B>0</B>)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ios_base::failbit</B></FONT><BR>
+      si &egrave; verificato un <B>errore</B> di <B>I/O</B>, oppure si &egrave;
+      tentato di eseguire un'<FONT COLOR="Green"><B>operazione</B></FONT> non
+      consentita (per esempio la <FONT COLOR="Blue"><B>open</B></FONT> di un
+      <I><B>file</B></I> che non esiste)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ios_base::badbit</B></FONT><BR>
+      si &egrave; verificato un <B>errore</B> di <B>I/O</B> irrecuperabile</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ios_base::eofbit</B></FONT><BR>
+      la <B>posizione corrente</B> &egrave; sulla <I><B>fine</B></I> dello
+      <FONT COLOR="Green"><B>stream</B></FONT>; un successivo tentativo di
+      <B>lettura</B> imposta <U>anche</U>
+      <FONT COLOR="Blue"><B>failbit</B></FONT></BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>ios</B></FONT>,</BIG>
+  <BIG><FONT COLOR="Green"><B>derivata</B></FONT> di
+  <FONT COLOR="Blue"><B>ios_base</B></FONT>, fornisce alcuni <B>metodi</B>
+  per la gestione e il controllo dello <B>stato</B>:</BIG>
+  <UL>
+    <LI>
+      <BIG><FONT COLOR="Blue"><B>ios_base::iostate</B></FONT></BIG>
+      <BIG><FONT COLOR="Blue"><B>ios::rdstate() const<BR>
+      </B></FONT><B>ritorna</B> lo <B>stato</B> che risulta dall'ultima
+      <FONT COLOR="Green"><B>operazione</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>void</B></FONT></BIG>
+      <BIG><FONT COLOR="Blue"><B>ios::clear(iostate
+      </B></FONT><FONT COLOR="Maroon"><B>st</B></FONT><FONT COLOR="Blue"><B>=goodbit)</B></FONT><BR>
+      imposta lo <B>stato</B> con <FONT COLOR="Maroon"><B>st</B></FONT> (cancellando
+      il valore precedente); <B>chiamando</B> <FONT COLOR="Blue"><B>clear()
+      </B></FONT>senza <FONT COLOR="Maroon"><B>argomenti</B></FONT> si imposta
+      <FONT COLOR="Blue"><B>goodbit</B></FONT>, cio&egrave; si "resettano" i
+      <I><B>flags</B></I> di <B>errore</B></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>void</B></FONT></BIG>
+      <BIG><FONT COLOR="Blue"><B>ios::setstate(iostate
+      </B></FONT><FONT COLOR="Maroon"><B>st</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG><BR>
+      <BIG>aggiunge il <I><B>flag</B></I> <FONT COLOR="Maroon"><B>st</B></FONT>
+      allo <B>stato</B> corrente, eseguendo l'istruzione:<BR>
+      <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;clear(rdstate() |
+      &nbsp;</B></FONT><FONT COLOR="Maroon"><B>st</B></FONT><FONT COLOR="Blue"><B>
+      );</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>bool</B></FONT></BIG>
+      &nbsp;<BIG><FONT COLOR="Blue"><B>ios::good() const</B></FONT></BIG><BR>
+      <BIG><B>ritorna</B></BIG> &nbsp;<BIG><FONT COLOR="Blue"><B>rdstate() ==
+      goodbit</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>bool</B></FONT></BIG>
+      &nbsp;<BIG><FONT COLOR="Blue"><B>ios::fail() const<BR>
+      </B></FONT><B>ritorna</B></BIG>
+      &nbsp;<BIG><FONT COLOR="Blue"><B>bool(rdstate() &amp;
+      failbit)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>bool</B></FONT></BIG>
+      &nbsp;<BIG><FONT COLOR="Blue"><B>ios::bad() const<BR>
+      </B></FONT><B>ritorna</B></BIG>
+      &nbsp;<BIG><FONT COLOR="Blue"><B>bool(rdstate() &amp;
+      badbit)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>bool</B></FONT></BIG>
+      &nbsp;<BIG><FONT COLOR="Blue"><B>ios::eof() const<BR>
+      </B></FONT><B>ritorna</B></BIG>
+      &nbsp;<BIG><FONT COLOR="Blue"><B>bool(rdstate() &amp;
+      eofbit)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>ios::operator void<SUB><BIG>*</BIG></SUB>()
+      const<BR>
+      </B></FONT><B>ritorna</B></BIG> &nbsp;<BIG><FONT COLOR="Blue"><B>NULL
+      </B></FONT>se <FONT COLOR="Blue"><B>fail() |</B></FONT>
+      <FONT COLOR="Blue"><B>bad()</B></FONT> &egrave;
+      <FONT COLOR="Blue"><B>true</B></FONT>; altrimenti <B>ritorna</B></BIG>
+      <BIG><FONT COLOR="Blue"><B>this</B></FONT></BIG> <BIG>(che per&ograve;, essendo
+      convertito in un <FONT COLOR="Green"><B>puntatore</B></FONT> a
+      <FONT COLOR="Blue"><B>void</B></FONT>, non pu&ograve; essere
+      <FONT COLOR="Purple"><B>dereferenziato</B></FONT>)<BR>
+      <FONT COLOR="Red"><B>NOTA:</B></FONT> questo (strano) <B>metodo</B> necessita
+      di un chiarimento: &eacute; noto che il
+      <FONT COLOR="Purple"><B>casting</B></FONT> a
+      <FONT COLOR="Green"><B>puntatore</B></FONT> a
+      <FONT COLOR="Blue"><B>void</B></FONT> non &eacute; mai necessario, in quanto
+      un <FONT COLOR="Green"><B>puntatore</B></FONT> a
+      <FONT COLOR="Blue"><B>void</B></FONT> pu&ograve; puntare a qualsiasi tipo
+      di <FONT COLOR="Green"><B>oggetto</B></FONT>; quindi anche il semplice
+      <B><U>nome</U></B> dell'<FONT COLOR="Green"><B>oggetto</B></FONT> pu&ograve;
+      essere reinterpretato come suo <FONT COLOR="Purple"><B>casting</B></FONT>
+      a <FONT COLOR="Green"><B>puntatore</B></FONT> a
+      <FONT COLOR="Blue"><B>void</B></FONT> (!!!). In pratica il
+      <FONT COLOR="Red"><B>compilatore</B></FONT>, quando incontra
+      l'<FONT COLOR="Green"><B>oggetto</B></FONT> come
+      <FONT COLOR="Green"><B>operando</B></FONT> in una posizione che non gli compete,
+      prima di segnalare l'errore cerca se nella
+      <FONT COLOR="Green"><B>classe</B></FONT> a cui appartiene
+      l'<FONT COLOR="Green"><B>oggetto </B></FONT>&eacute; <B>definito</B> un
+      <FONT COLOR="Green"><B>overload</B></FONT> del
+      <FONT COLOR="Purple"><B>casting</B></FONT> a
+      <FONT COLOR="Green"><B>puntatore</B></FONT> a
+      <FONT COLOR="Blue"><B>void</B></FONT> e, se lo trova, lo applica. Nel nostro
+      caso il <B>metodo</B> <B>ritorna</B> normalmente
+      <FONT COLOR="Blue"><B>this</B></FONT> e quindi un espressione del
+      tipo:</BIG><BR>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <BIG><FONT COLOR="Blue"><B>cout
+      &lt;&lt; cout;<BR>
+      </B></FONT></BIG> <BIG><B>scrive</B> in
+      <FONT COLOR="Blue"><B>cout</B></FONT> il suo
+      <FONT COLOR="Purple"><B>indirizzo</B></FONT>! Se per&ograve; si &egrave;
+      verificata una condizione di <B>errore</B>, il <B>metodo</B> <B>ritorna</B>
+      <FONT COLOR="Blue"><B>NULL</B></FONT> e cio&egrave;
+      <FONT COLOR="Blue"><B>false</B></FONT>, se il <B>nome</B>
+      dell'<FONT COLOR="Green"><B>oggetto</B></FONT> &egrave; inserito in
+      un'espressione logica; questo spiega perch&egrave;
+      un'<FONT COLOR="Green"><B>operazione</B></FONT> di <B>lettura</B> pu&ograve;
+      funzionare anche come <FONT COLOR="Green"><B>istruzione di
+      controllo</B></FONT> in un <I><B>ciclo</B></I> o in un costrutto
+      <FONT COLOR="Blue"><B>if</B></FONT>, come nell'esempio che segue:<BR>
+      <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp;while ( cin &gt;&gt; </B></FONT><FONT COLOR="Black"><B>....
+      </B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG><BR>
+      <BIG>infatti l'<FONT COLOR="Green"><B>operazione
+      </B></FONT><FONT COLOR="Blue"><B>&gt;&gt;</B></FONT> <B>ritorna</B>
+      <FONT COLOR="Blue"><B>cin</B></FONT>, che viene convertito da
+      <FONT COLOR="Blue"><B>operator
+      void<SUB><BIG>*</BIG></SUB></B></FONT>: questo a sua volta <B>ritorna</B>
+      l'<FONT COLOR="Purple"><B>indirizzo</B></FONT> di
+      <FONT COLOR="Blue"><B>cin</B></FONT> finch&egrave; non ci sono <B>errori</B>
+      (e quindi <FONT COLOR="Blue"><B>true</B></FONT>, essendo un
+      <FONT COLOR="Purple"><B>indirizzo</B></FONT> sempre diverso da zero) e il
+      <I><B>ciclo</B></I> prosegue; ma quando il programma tenta di leggere la
+      <I><B>fine</B></I> dello <FONT COLOR="Green"><B>stream</B></FONT>, si imposta
+      il <I><B>flag</B></I> <FONT COLOR="Blue"><B>failbit</B></FONT> e quindi
+      <FONT COLOR="Blue"><B>operator void<SUB><BIG>*</BIG></SUB></B></FONT>
+      <B>ritorna</B> <FONT COLOR="Blue"><B>NULL</B></FONT> interrompendo il
+      <I><B>ciclo</B></I>.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>bool ios::operator !()
+      const</B></FONT></BIG><BR>
+      <BIG><B>ritorna</B></BIG> &nbsp;<BIG><FONT COLOR="Blue"><B>bool(fail()
+      |</B></FONT> <FONT COLOR="Blue"><B>bad())</B></FONT></BIG><BR>
+      <BIG><FONT COLOR="Red"><B>NOTA:</B></FONT> le espressioni:</BIG> &nbsp;
+      <BIG><FONT COLOR="Blue"><B>if(cin)
+      &nbsp;</B></FONT>e<FONT COLOR="Blue"><B>&nbsp; if(!!cin)</B></FONT></BIG>
+      &nbsp; <BIG>sono equivalenti (!), <BR>
+      mentre le espressioni:</BIG> &nbsp; &nbsp;
+      <BIG><FONT COLOR="Blue"><B>if(cin)</B></FONT>
+      &nbsp;e<FONT COLOR="Blue"><B>&nbsp; if(cin.good())</B></FONT></BIG> &nbsp;
+      <BIG>non sono equivalenti, in quanto la prima non controlla il
+      <I><B>flag</B></I> <FONT COLOR="Blue"><B>eofbit</B></FONT></BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Quando &egrave; impostato un qualunque <I><B>flag</B></I> diverso da
+  <FONT COLOR="Blue"><B>goodbit</B></FONT>, nessuna
+  <FONT COLOR="Green"><B>funzione</B></FONT> non
+  <FONT COLOR="Blue"><B>const</B></FONT> <B>definita</B>
+  nell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Green"><B>stream</B></FONT> pu&ograve; essere eseguita (senza
+  messaggi di errore: semplicemente le successive istruzioni con
+  <FONT COLOR="Green"><B>operazioni </B></FONT>di <B>I/O</B> non hanno alcun
+  effetto); tuttavia lo <B>stato</B> pu&ograve; essere "resettato"
+  <B>chiamando</B> la <FONT COLOR="Blue"><B>clear </B></FONT>(successivamente,
+  per&ograve;, bisogna rimuovere la causa dell'errore se si vuole che le
+  <FONT COLOR="Green"><B>operazioni </B></FONT>di <B>I/O</B> riprendano a essere
+  regolarmente eseguite).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Se, durante un'<FONT COLOR="Green"><B>operazione</B></FONT> di
+  <B>lettura</B> <I><B>formattata</B></I> da una <I><B>stringa di
+  input</B></I>, si incontra un <FONT COLOR="Green"><B>carattere</B></FONT>
+  non ammissibile in relazione al
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT> <BIG>di dato da
+  <B>leggere</B>, abbiamo gi&agrave; detto che la <I><B>stringa di
+  input</B></I> viene "spezzata" in due: la prima, su cui viene normalmente
+  eseguita la &nbsp;<B>lettura</B>, termina lasciando fuori il
+  <FONT COLOR="Green"><B>carattere</B></FONT> invalido; la seconda comincia
+  con il <FONT COLOR="Green"><B>carattere</B></FONT> invalido (che, se &egrave;
+  tale anche in relazione al
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT> <BIG>del successivo
+  dato da <B>leggere</B>, deve essere "saltato" <B>chiamando</B> la
+  <FONT COLOR="Blue"><B>ignore</B></FONT>). Per quanto riguarda lo
+  <B>stato</B>, il comportamento &egrave; diverso a seconda che il
+  <FONT COLOR="Green"><B>carattere</B></FONT> invalido sia o meno il
+  <U>primo</U> <FONT COLOR="Green"><B>carattere</B></FONT> della <I><B>stringa
+  di input</B></I>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>se <U>non &egrave;</U> il primo, lo <B>stato</B> resta definito dal
+      <I><B>flag</B></I> <FONT COLOR="Blue"><B>goodbit</B></FONT>&nbsp;(per la
+      successiva <FONT COLOR="Green"><B>operazione</B></FONT> si pu&ograve;
+      <B>chiamare</B> la <FONT COLOR="Blue"><B>ignore</B></FONT> senza la
+      <FONT COLOR="Blue"><B>clear</B></FONT>);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>se <U>&egrave;</U> il primo, &egrave; impostato il
+      <I><B>flag</B></I> <FONT COLOR="Blue"><B>failbit</B></FONT> (bisogna
+      <B>chiamare</B> la <FONT COLOR="Blue"><B>clear</B></FONT> <U>prima</U> della
+      <FONT COLOR="Blue"><B>ignore</B></FONT> se si vuole che questa abbia
+      effetto)&nbsp;</BIG>
+  </UL>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Errori gestiti dalle eccezioni</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Per una gestione corretta degli <B>errori</B>, sarebbe opportuno controllare
+  lo <B>stato</B> dopo <U>ogni</U>
+  <FONT COLOR="Green"><B>operazione</B></FONT> di <B>I/O</B>. Se per&ograve;
+  le <FONT COLOR="Green"><B>operazioni</B></FONT> sono molte, la cosa non risulta
+  molto comoda, anche in considerazione del fatto che gli <B>errori</B> sono
+  in generale poco frequenti. In particolare le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <I><B>output</B></I> sono
+  controllate assai raramente (bench&egrave; ogni tanto anche loro falliscano):
+  di solito si verifica che, dopo una
+  <FONT COLOR="Blue"><B>open</B></FONT>, il <I><B>file</B></I> sia stato
+  <B>aperto</B> correttamente, e niente di pi&ugrave;. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Diverso &egrave; il discorso se si riferisce alle
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <I><B>input</B></I>: qui
+  i possibili <B>errori</B> sono vari e diversi: <B>formati</B> sbagliati,
+  errori umani nella immissione dei dati ecc..., senza contare il fatto che
+  bisogna sempre controllare il raggiungimento della <I><B>fine</B></I> dello
+  <FONT COLOR="Green"><B>stream</B></FONT>. Pertanto l'esame dello <B>stato</B>
+  dopo un'<FONT COLOR="Green"><B>operazione</B></FONT> di <B>lettura</B> &egrave;
+  quasi sempre necessario.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Tuttavia, come alternativa alla disseminazione di istruzioni
+  <FONT COLOR="Blue"><B>if</B></FONT> e
+  <FONT COLOR="Blue"><B>switch</B></FONT> nel programma, &egrave; possibile
+  gestire gli <B>errori</B> di <I><B>input-output </B></I>anche mediante le
+  </BIG><FONT COLOR="Green"><BIG><B>eccezioni</B></BIG></FONT><BIG>. A questo
+  scopo &egrave; <B>definito</B> nella
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>ios_base</B></FONT> un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> del
+  </BIG><FONT COLOR="Green"><BIG><B>tipo enumerato</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>iostate</B></FONT> (<I><B>exception mask</B></I>),
+  che contiene un insieme di <I><B>flags</B></I> di <B>stato</B>: quando
+  un'<FONT COLOR="Green"><B>operazione</B></FONT> di <B>I/O</B> imposta uno
+  di questi <I><B>flags</B></I>, viene generata
+  un'</BIG><FONT COLOR="Green"><BIG><B>eccezione</B></BIG></FONT> <BIG>di
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>ios_base::failure</B></FONT>
+  (<FONT COLOR="Blue"><B>failure</B></FONT> &egrave; una
+  <FONT COLOR="Green"><B>classe</B></FONT> "annidata" in
+  <FONT COLOR="Blue"><B>ios_base</B></FONT>) che pu&ograve; essere
+  <B>catturata</B> e gestita da un <I><B>blocco</B></I>
+  <FONT COLOR="Blue"><B>catch</B></FONT>:<BR>
+  <B><FONT COLOR="Blue">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;catch(ios_base::failure) &nbsp;{ </FONT>.....
+  <FONT COLOR="Blue">}</FONT></B></BIG>
+  <P ALIGN=Justify>
+  <BIG>Di <I><B>default</B></I>&nbsp;l'<I><B>exception mask</B></I> &egrave;
+  vuoto (cio&egrave; di <I><B>default</B></I> gli errori di <B>I/O</B> non
+  generano
+  </BIG><FONT COLOR="Green"><BIG><B>eccezioni</B></BIG></FONT><BIG>), ma &egrave;
+  possibile cambiarne il contenuto chiamando il <B>metodo</B>
+  <FONT COLOR="Blue"><B>exceptions</B></FONT> di
+  <FONT COLOR="Blue"><B>ios</B></FONT>:<BR>
+  <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  void</B></FONT></BIG> <BIG><FONT COLOR="Blue"><B>ios::exceptions(iostate
+  </B></FONT><FONT COLOR="Maroon"><B>em</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+  &nbsp;che imposta l'<I><B>exception mask</B></I> con
+  <FONT COLOR="Maroon"><B>em</B></FONT>. <BR>
+  Esiste anche un <FONT COLOR="Green"><B>overload</B></FONT> di
+  <FONT COLOR="Blue"><B>exceptions</B></FONT> senza
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> che <B>ritorna</B>
+  l'<I><B>exception mask</B></I> corrente:<BR>
+  <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  </B></FONT><B><FONT COLOR="Blue">ios_base::</FONT></B><FONT COLOR="Blue"><B>iostate</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>ios::exceptions() const</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>Con i due <FONT COLOR="Green"><B>overloads</B></FONT> di
+  <FONT COLOR="Blue"><B>exceptions</B></FONT> &egrave; possibile circoscrivere
+  l'uso delle
+  </BIG><FONT COLOR="Green"><BIG><B>eccezioni</B></BIG></FONT> <BIG>in aree
+  precise del programma; per esempio:</BIG>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG><B><FONT COLOR="Blue">ios_base::</FONT></B><FONT COLOR="Blue"><B>iostate</B></FONT><FONT
+	    COLOR="Maroon"><B>&nbsp;em</B></FONT><FONT COLOR="Blue"><B>&nbsp;=&nbsp;cin.exceptions();
+	</B></FONT></BIG></TD>
+      <TD>&nbsp;</TD>
+      <TD><BIG>salva l'<I><B>exception mask</B></I> corrente (no
+	</BIG><FONT COLOR="Green"><BIG><B>eccezioni</B></BIG></FONT><BIG>) in
+	<FONT COLOR="Maroon"><B>em</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>cin.exceptions(</B></FONT><B><FONT COLOR="Blue">ios_base::badbit|ios_base::failbit</FONT></B><FONT
+	    COLOR="Blue"><B>);</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG>imposta l'<I><B>exception mask</B></I> con<B><FONT COLOR="Blue">
+	badbit</FONT></B> e <B><FONT COLOR="Blue">failbit</FONT></B></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG><B><FONT COLOR="Blue">try</FONT></B><FONT COLOR="Blue"><B>&nbsp;&nbsp;</B></FONT><B><FONT
+	    COLOR="Blue">{</FONT></B><FONT COLOR="Blue"><B>&nbsp;</B></FONT><B>...</B><FONT
+	    COLOR="Blue"><B>&nbsp;</B></FONT><B><FONT COLOR="Blue">cin</FONT></B><FONT
+	    COLOR="Blue"><B>&nbsp;</B></FONT><B><FONT COLOR="Blue">&gt;&gt;</FONT></B><FONT
+	    COLOR="Blue"><B>&nbsp;</B></FONT><B>...<FONT COLOR="Blue">}</FONT></B></BIG></TD>
+      <TD></TD>
+      <TD><BIG><I><B>blocco</B></I></BIG> <BIG>delle istruzioni di <B>I/O</B> che
+	possono generare
+	</BIG><FONT COLOR="Green"><BIG><B>eccezioni</B></BIG></FONT></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG><B><FONT COLOR="Blue">catch(ios_base::failure) &nbsp;{ </FONT>.....
+	<FONT COLOR="Blue">}</FONT></B></BIG></TD>
+      <TD></TD>
+      <TD><BIG><I><B>blocco</B></I></BIG> <BIG>di gestione delle
+	</BIG><FONT COLOR="Green"><BIG><B>eccezioni</B></BIG></FONT></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>cin.exceptions(</B></FONT><FONT COLOR="Maroon"><B>em</B></FONT><FONT
+	    COLOR="Blue"><B>);</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG>ripristina l'<I><B>exception mask</B></I> precedente (no
+	</BIG><FONT COLOR="Green"><BIG><B>eccezioni</B></BIG></FONT><BIG>)</BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p88/misure.h">[p88]</A><A HREF="p88/misure.cpp">[p88]</A>
+<A HREF="p88/misurewrite.cpp">[p88]</A><A HREF="p89/misureread.cpp">[p89]</A></BIG></BIG>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Formattazione e manipolatori di
+formato</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo detto che le <FONT COLOR="Green"><B>funzioni</B></FONT>
+  <FONT COLOR="Blue"><B>operator&gt;&gt;</B></FONT> (in
+  <FONT COLOR="Blue"><B>istream</B></FONT>) e
+  <FONT COLOR="Blue"><B>operator&lt;&lt;</B></FONT> (in
+  <FONT COLOR="Blue"><B>ostream</B></FONT>) si distinguono da tutti gli altri
+  <B>metodi</B> delle loro <FONT COLOR="Green"><B>classi</B></FONT> per il
+  fatto che eseguono <FONT COLOR="Green"><B>operazioni</B></FONT> di <B>I/O</B>
+  <I><B>formattate</B></I>: in particolare
+  <FONT COLOR="Blue"><B>operator&gt;&gt;</B></FONT> converte una <I><B>stringa
+  di input</B></I> (delimitata da <I><B>spazi bianchi</B></I>) nel dato da
+  memorizzare, mentre
+  &nbsp;<FONT COLOR="Blue"><B>operator&lt;&lt;</B></FONT> converte il dato
+  da scrivere in una <FONT COLOR="Green"><B>stringa</B></FONT>, secondo un
+  certo <B>formato</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Se non si modificano i <I><B>defaults</B></I>, i <B>formati</B>, sia
+  di <B>lettura</B> che <B>scrittura</B>, sono predefiniti e obbediscono a
+  determinate regole; per esempio: in <I><B>output</B></I> non sono introdotti
+  <I><B>spazi bianchi</B></I> (<I><B>free-format</B></I>), i numeri sono in
+  <FONT COLOR="Green"><B>base</B></FONT> <B><I>decimale</I></B> (salvo gli
+  <FONT COLOR="Green"><B>indirizzi</B></FONT>, che sono in
+  <B><I>esadecimale</I></B>), i dati <I><B>floating</B></I> sono scritti con
+  al pi&ugrave; sei cifre significative ecc... In tutti gli esempi e gli esercizi
+  visti finora si sono sempre usati (salvo raro casi) i <B>formati</B>
+  predefiniti.</BIG>
+  <P ALIGN=Justify>
+  <BIG>A volte per&ograve; il programma ha bisogno di utilizzare <B>formati</B>
+  particolari, per esempio per incolonnare i dati, oppure per scrivere i numeri
+  con una <FONT COLOR="Green"><B>base</B></FONT> diversa, o in notazione
+  <I><B>scientifica</B></I> ecc... E quindi, come gi&agrave; in
+  <FONT COLOR="Red"><B>C</B></FONT> con gli
+  <FONT COLOR="Green"><B>specificatori di formato</B></FONT> (che abbiamo visto
+  all'inizio di questo corso), cos&igrave; anche in
+  <FONT COLOR="Red"><B>C++</B></FONT> con altri strumenti, &egrave; possibile
+  impostare, nelle <FONT COLOR="Green"><B>operazioni</B></FONT> di <B>I/O</B>,
+  <B>formati</B> diversi da quello predefinito. A questo scopo &egrave;
+  <B>definito</B> nella <FONT COLOR="Green"><B>classe
+  </B></FONT><FONT COLOR="Blue"><B>ios_base</B></FONT> il
+  </BIG><FONT COLOR="Green"><BIG><B>tipo enumerato</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>fmtflags</B></FONT>, i cui
+  </BIG><FONT COLOR="Green"><BIG><B>enumeratori</B></BIG></FONT> <BIG>(detti
+  <I><B>format flags</B></I>) controllano il <B>formato</B>, sia di
+  <B>lettura</B> che di <B>scrittura</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>I <I><B>format flags</B></I> sono all'incirca una ventina. Ciascuno
+  di loro imposta una particolare opzione, che pu&ograve; essere combinata
+  con altre (con le solite <FONT COLOR="Green"><B>operazioni</B></FONT>
+  <FONT COLOR="Purple"><B>bit a bit</B></FONT>). Come gi&agrave; per la gestione
+  dello <B>stato</B>, esistono anche vari <B>metodi</B> (definiti in
+  <FONT COLOR="Blue"><B>ios_base</B></FONT> e in
+  <FONT COLOR="Blue"><B>ios</B></FONT>) che permettono di impostare un insieme
+  di <I><B>format flags</B></I>, di "resettarli", di combinarli con altri gi&agrave;
+  impostati ecc...Non ci dilungheremo su questo argomento, perch&egrave;, "dal
+  punto di vista dell'utente", &egrave; molto pi&ugrave; comodo e rapido gestire
+  il <B>formato</B> tramite i cosidetti
+  "<FONT COLOR="Green"><B>manipolatori</B></FONT>", i quali possono utilizzare
+  i <I><B>format flags</B></I> per modificare il <B>formato</B> nelle stesse
+  istruzioni in cui i dati sono <B>letti</B> o <B>scritti</B>. In generale
+  ogni <FONT COLOR="Green"><B>manipolatore</B></FONT> aggiunge (o rimuove)
+  un'opzione. L'effetto di un
+  <FONT COLOR="Green"><B>manipolatore</B></FONT> su un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Green"><B>stream</B></FONT> &egrave; <U>permanente</U> (salvo
+  in un caso, che vedremo), fino a un eventuale
+  <FONT COLOR="Green"><B>manipolatore</B></FONT> che lo contraddice o fino
+  alla <B>distruzione</B>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Manipolatori senza argomenti</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B>manipolatori</B></FONT> sono
+  </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT>
+  <BIG><U>esterne</U> alle <FONT COLOR="Green"><B>classi</B></FONT>, definite
+  direttamente in <FONT COLOR="Blue"><B>std</B></FONT> e raggruppate in alcuni
+  <I><B>header-files</B></I> (tutti inclusi da
+  <FONT COLOR="Blue"><B>&lt;iostream&gt;</B></FONT>). Per capire come "lavorano",
+  bisogna anzitutto sapere che le <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Blue"><B>istream</B></FONT> e
+  <FONT COLOR="Blue"><B>ostream</B></FONT> forniscono un ulteriore
+  <FONT COLOR="Green"><B>overload</B></FONT>
+  dell'<FONT COLOR="Green"><B>operatore </B></FONT>di
+  <FONT COLOR="Purple"><B>flusso</B></FONT>, con un
+  </BIG><FONT COLOR="Green"><BIG><B>puntatore a funzione</B></BIG></FONT>
+  <BIG>come <FONT COLOR="Green"><B>operando </B></FONT>(prendiamo il caso di
+  <FONT COLOR="Blue"><B>ostream</B></FONT>, che &egrave; il pi&ugrave;
+  interessante, ma teniamo presente che quanto si dir&agrave; vale anche per
+  <FONT COLOR="Blue"><B>istream</B></FONT>): </BIG>
+  <P ALIGN=Center>
+  <BIG><B><FONT COLOR="Blue">ostream&amp;
+  ostream::operator&lt;&lt;(ostream&amp;
+  (<SUB><BIG>*</BIG></SUB></FONT><FONT COLOR="Maroon">pf</FONT><FONT COLOR="Blue">)(ostream&amp;))</FONT>
+  <BR>
+  <FONT COLOR="Blue">{&nbsp;&nbsp;return</FONT>
+  <FONT COLOR="Maroon">pf</FONT><FONT COLOR="Blue">(<SUB><BIG>*</BIG></SUB>this);&nbsp;&nbsp;}</FONT></B></BIG>
+  <P ALIGN=Justify>
+  <BIG>vediamo ora come il <FONT COLOR="Red"><B>C++</B></FONT> risolve
+  un'istruzione del tipo:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <FONT COLOR="Blue"><B>cout
+  &lt;&lt;
+  </B></FONT><FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+  <BR>
+  (dove <FONT COLOR="Maroon"><B>fun</B></FONT> &egrave; una
+  </BIG><FONT COLOR="Green"><BIG><B>funzione</B></BIG></FONT> <BIG>che abbia
+  (guarda caso) <B>valore di ritorno</B> di
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>ostream</B></FONT> e un
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> di
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>ostream</B></FONT> ):</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>trova che l'<FONT COLOR="Green"><B>overload</B></FONT> di
+      <FONT COLOR="Blue"><B>operator&lt;&lt;</B></FONT> con
+      <FONT COLOR="Green"><B>operando</B></FONT>
+      </BIG><FONT COLOR="Green"><BIG><B>puntatore a funzione</B></BIG></FONT>
+      <BIG><FONT COLOR="Maroon"><B>pf</B></FONT> &egrave; proprio quello "giusto"
+      e sostituisce <FONT COLOR="Maroon"><B>fun</B></FONT> a
+      <FONT COLOR="Maroon"><B>pf</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>in <FONT COLOR="Blue"><B>operator&lt;&lt;</B></FONT> esegue
+      <FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(cout)</B></FONT>
+      e <B>ritorna</B> il <B>valore di ritorno</B> di
+      <FONT COLOR="Maroon"><B>fun</B></FONT></BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <BIG>supponiamo ora che <FONT COLOR="Maroon"><B>fun</B></FONT> <B>chiami</B>
+  un <B>metodo</B> della <FONT COLOR="Green"><B>classe</B></FONT> del suo
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> e <B>ritorni</B> <I><B>by
+  reference</B></I> l'<FONT COLOR="Maroon"><B>argomento</B></FONT> stesso
+  (cio&egrave; <FONT COLOR="Blue"><B>cout</B></FONT>, nel nostro esempio);
+  supponiamo inoltre che il <B>metodo</B> <B>chiamato</B> da
+  <FONT COLOR="Maroon"><B>fun</B></FONT> imposti o rimuova un <I><B>format
+  flag</B></I>. Ne consegue che l'istruzione di cui sopra ha l'effetto di
+  modificare il <B>formato</B> (e quindi
+  <FONT COLOR="Maroon"><B>fun</B></FONT> &egrave; un
+  <FONT COLOR="Green"><B>manipolatore</B></FONT>); inoltre, per il fatto che
+  <FONT COLOR="Maroon"><B>fun</B></FONT> <B>ritorna</B>
+  <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT>, si pu&ograve;
+  inserire il suo <B>nome</B> (senza
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> e senza parentesi) all'interno
+  di una sequenza di <FONT COLOR="Green"><B>operazioni</B></FONT> di
+  <FONT COLOR="Purple"><B>flusso</B></FONT>; per esempio (anticipiamo che
+  <FONT COLOR="Blue"><B>hex</B></FONT> &egrave; un
+  <FONT COLOR="Green"><B>manipolatore</B></FONT>):<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; <FONT COLOR="Blue"><B>cout &lt;&lt; hex
+  &lt;&lt;
+  </B></FONT><FONT COLOR="Maroon"><B>1234</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><BR>
+  fa s&igrave; che il numero <FONT COLOR="Maroon"><B>1234</B></FONT> (e tutti
+  i successivi, fino a disposizione contraria) venga scritto in
+  <I><B>esadecimale</B></I>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Alcuni <FONT COLOR="Green"><B>manipolatori</B></FONT> sono in due versioni:
+  quella con un certo <B>nome</B> imposta un <I><B>format flag</B></I>, quella
+  con lo stesso <B>nome</B> e con <I><B>prefisso</B></I>
+  <FONT COLOR="Blue"><B>no</B></FONT> lo rimuove; di solito la versione con
+  <I><B>prefisso</B></I> <FONT COLOR="Blue"><B>no</B></FONT> &egrave; di
+  <I><B>default</B></I>. I principali
+  <FONT COLOR="Green"><B>manipolatori</B></FONT> sono i seguenti:</BIG>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD>&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>dec</B></FONT></BIG></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG><FONT COLOR="Green"><B>interi</B></FONT> in
+	<FONT COLOR="Green"><B>base</B></FONT> <B><I>decimale</I></B>
+	(<I><B>default</B></I>)</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>hex</B></FONT></BIG></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG><FONT COLOR="Green"><B>interi</B></FONT> in
+	<FONT COLOR="Green"><B>base</B></FONT> <B><I>esadecimale</I></B> </BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>oct</B></FONT></BIG></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG><FONT COLOR="Green"><B>interi</B></FONT> in
+	<FONT COLOR="Green"><B>base</B></FONT> <B><I>ottale</I></B></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>fixed</B></FONT></BIG></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG>per i numeri <I><B>floating</B></I> corrisponde allo
+	<FONT COLOR="Green"><B>specificatore</B></FONT>
+	<FONT COLOR="Blue"><B>%f</B></FONT> del
+	<FONT COLOR="Red"><B>C</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>scientific</B></FONT></BIG></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG>per i numeri <I><B>floating</B></I> corrisponde allo
+	<FONT COLOR="Green"><B>specificatore</B></FONT>
+	<FONT COLOR="Blue"><B>%e</B></FONT> del
+	<FONT COLOR="Red"><B>C</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>left</B></FONT></BIG></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG>allinea a sinistra in un <I><B>campo</B></I> di larghezza prefissata
+	(vedere pi&ugrave; avanti)</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>right</B></FONT></BIG></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG>allinea a destra in un <I><B>campo</B></I> di larghezza prefissata
+	(<I><B>default</B></I>)</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG>[<FONT COLOR="Blue"><B>no</B></FONT>]<FONT COLOR="Blue"><B>boolalpha</B></FONT></BIG></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG>rappresenta un valore <FONT COLOR="Green"><B>booleano</B></FONT>
+	con <FONT COLOR="Blue"><B>true</B></FONT> e
+	<FONT COLOR="Blue"><B>false</B></FONT> anzich&egrave; con <B>1</B> e
+	<B>0</B></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG>[<FONT COLOR="Blue"><B>no</B></FONT>]<FONT COLOR="Blue"><B>showbase</B></FONT></BIG></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG>aggiunge il <I><B>prefisso</B></I> <B>0</B> per i numeri
+	<B><I>ottali</I></B> e <B>0x</B> per i numeri
+	<B><I>esadecimali</I></B></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG>[<FONT COLOR="Blue"><B>no</B></FONT>]<FONT COLOR="Blue"><B>showpoint</B></FONT></BIG></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG>mostra comunque il punto decimale nei numeri
+	<I><B>floating</B></I></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG>[<FONT COLOR="Blue"><B>no</B></FONT>]<FONT COLOR="Blue"><B>showpos</B></FONT></BIG></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG>scrive il segno <FONT COLOR="Blue"><B>+</B></FONT> davanti ai numeri
+	positivi</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG>[<FONT COLOR="Blue"><B>no</B></FONT>]<FONT COLOR="Blue"><B>uppercase</B></FONT></BIG></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG>scrive lettere maiuscole nelle notazioni
+	<I><B>esadecimale</B></I> (X) e <I><B>esponenziale</B></I></BIG>
+	<BIG>(E)</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG>[<FONT COLOR="Blue"><B>no</B></FONT>]<FONT COLOR="Blue"><B>skipws</B></FONT></BIG></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG>ignora gli <I><B>spazi bianchi</B></I> (il <I><B>default</B></I>
+	&egrave; <FONT COLOR="Blue"><B>skipws</B></FONT>)</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>flush</B></FONT></BIG></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG>scarica il <FONT COLOR="Olive"><B>buffer</B></FONT> di
+	<I><B>output</B></I> </BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>ends</B></FONT></BIG></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG>scrive <FONT COLOR="Blue"><B>'\0'</B></FONT> e scarica il
+	<FONT COLOR="Olive"><B>buffer</B></FONT> di <I><B>output</B></I></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>endl</B></FONT></BIG></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG>scrive <FONT COLOR="Blue"><B>'\n'</B></FONT> e scarica il
+	<FONT COLOR="Olive"><B>buffer</B></FONT> di <I><B>output</B></I></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>gli ultimi tre <FONT COLOR="Green"><B>manipolatori</B></FONT> non modificano
+  il <B>formato</B> ma eseguono
+  un'<FONT COLOR="Green"><B>operazione</B></FONT> (e quindi il loro effetto
+  non &egrave; permanente, come negli altri casi)</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Manipolatori con argomenti</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo visto che un <FONT COLOR="Green"><B>manipolatore</B></FONT>
+  &egrave; una
+  </BIG><FONT COLOR="Green"><BIG><B>funzione</B></BIG></FONT> <BIG>che viene
+  eseguita al posto di un </BIG><FONT COLOR="Green"><BIG><B>puntatore a
+  funzione</B></BIG></FONT> <BIG>e quindi il suo <B>nome</B> va specificato,
+  come <FONT COLOR="Green"><B>operando</B></FONT> in
+  un'<FONT COLOR="Green"><B>operazione</B></FONT> di
+  <FONT COLOR="Purple"><B>flusso</B></FONT>, senza parentesi e senza
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>. Esistono tuttavia
+  <FONT COLOR="Green"><B>manipolatori</B></FONT> che accettano un
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>, cio&egrave; che vanno specificati
+  con un <B>valore</B> fra parentesi. In questi casi (consideriamo al solito
+  solo l'<I><B>output</B></I>) l'<FONT COLOR="Green"><B>overload</B></FONT>
+  di <FONT COLOR="Blue"><B>operator&lt;&lt;</B></FONT> non deve avere come
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> un
+  </BIG><FONT COLOR="Green"><BIG><B>puntatore a
+  funzione</B></BIG></FONT><BIG>, ma un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> di un
+  <FONT COLOR="Green"><B>tipo</B></FONT> specifico, restituito come <B>valore
+  di ritorno</B> dalla
+  </BIG><FONT COLOR="Green"><BIG><B>funzione</B></BIG></FONT> <BIG>che appare
+  come <FONT COLOR="Green"><B>operando</B></FONT> e <B>inizializzato</B> con
+  il <B>valore</B> del suo <FONT COLOR="Maroon"><B>argomento</B></FONT>. Chiariamo
+  quanto detto con un esempio; questa volta l'istruzione &egrave;: </BIG><BR>
+  <BIG> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <FONT COLOR="Blue"><B>cout
+  &lt;&lt;
+  </B></FONT><FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B>) &lt;&lt;
+  <FONT COLOR="Black">.... </FONT>;</B></FONT> <BR>
+  dove supponiamo che l'<FONT COLOR="Maroon"><B>argomento x</B></FONT> sia
+  di <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT>.</BIG> <BIG>La
+  </BIG><FONT COLOR="Green"><BIG><B>funzione</B></BIG></FONT>
+  <BIG><FONT COLOR="Maroon"><B>fun</B></FONT> (eseguita con precedenza) non
+  deve fare altro che restituire un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>&nbsp;(chiamiamo
+  <FONT COLOR="#cc0000"><B>_fun</B></FONT> il suo
+  <FONT COLOR="Green"><B>tipo</B></FONT>) <B>inizializzato</B> con
+  <FONT COLOR="Maroon"><B>x</B></FONT>, cio&egrave;:<BR>
+  <FONT COLOR="#cc0000"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  _fun</B></FONT>
+  <FONT COLOR="Maroon"><B>&nbsp;fun</B></FONT><B><FONT COLOR="Blue">(</FONT></B><FONT
+      COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B>)</B></FONT><B><FONT
+      COLOR="Blue"> &nbsp;{&nbsp;&nbsp;return
+  </FONT></B><FONT COLOR="#cc0000"><B>_fun</B></FONT><B><FONT COLOR="Blue">(</FONT></B><FONT
+      COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B>)</B></FONT><B><FONT
+      COLOR="Blue">;&nbsp;&nbsp;}</FONT></B><BR>
+  a sua volta la <FONT COLOR="Green"><B>classe</B></FONT> (o meglio, la
+  <FONT COLOR="Green"><B>struttura</B></FONT>)
+  <FONT COLOR="#cc0000"><B>_fun</B></FONT> deve essere costituita dai seguenti
+  <FONT COLOR="Green"><B>membri</B></FONT>:</BIG><BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<BIG><FONT COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="Maroon"><B>i</B></FONT><B><FONT COLOR="Blue">;</FONT></B></BIG><BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <BIG><FONT COLOR="#cc0000"><B>_fun</B></FONT><B><FONT COLOR="Blue">(</FONT></B><FONT
+      COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B>) :
+  </B></FONT><FONT COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+  <B><FONT COLOR="Blue">{</FONT></B> <B><FONT COLOR="Blue">}<BR>
+  </FONT></B></BIG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <BIG>(il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> usa
+  l'<FONT COLOR="Maroon"><B>argomento</B></FONT>
+  <FONT COLOR="Maroon"><B>x</B></FONT> per <B>inizializzare</B> il
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Maroon"><B>i</B></FONT>)</BIG><BR>
+  <BIG>L'informazione fornita
+  dall'<FONT COLOR="Maroon"><B>argomento</B></FONT>
+  <FONT COLOR="Maroon"><B>x</B></FONT> del
+  <FONT COLOR="Green"><B>manipolatore</B></FONT>
+  <FONT COLOR="Maroon"><B>fun</B></FONT> &egrave; perci&ograve; memorizzata
+  nel <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Maroon"><B>i</B></FONT> della
+  <FONT COLOR="Green"><B>struttura</B></FONT>
+  <FONT COLOR="#cc0000"><B>_fun</B></FONT>. Ormai il problema &egrave; risolto,
+  basta avere un <FONT COLOR="Green"><B>overload</B></FONT> di
+  <FONT COLOR="Blue"><B>operator&lt;&lt;</B></FONT> (che questa volta supponiamo
+  sia una </BIG><FONT COLOR="Green"><BIG><B>funzione</B></BIG></FONT>
+  <BIG>esterna) con <FONT COLOR="Green"><B>right-operand </B></FONT>di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="#cc0000"><B>_fun</B></FONT>:</BIG><BR>
+  <BIG><B><FONT COLOR="Blue">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;ostream&amp; operator&lt;&lt;(ostream&amp;
+  </FONT></B><FONT COLOR="Maroon"><B>os</B></FONT><B><FONT COLOR="Blue">,
+  </FONT></B><FONT COLOR="#cc0000"><B>_fun</B></FONT><B><FONT COLOR="Blue">&amp;
+  </FONT></B><FONT COLOR="Maroon"><B>f</B></FONT><B><FONT COLOR="Blue">)</FONT>
+  </B></BIG><BR>
+  <BIG>che <B>chiami</B>, per l'impostazione del <B>formato</B>, un opportuno
+  <B>metodo</B> di <FONT COLOR="Maroon"><B>os</B></FONT>, utilizzando
+  l'informazione trasmessa nel <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Maroon"><B>i</B></FONT>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Maroon"><B>f</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Nelle precedenti versioni dello standard</BIG> <BIG>esisteva una sola
+  <FONT COLOR="Green"><B>struttura</B></FONT>, di nome
+  <B><FONT COLOR="Blue">smanip</FONT></B>, e un solo
+  <FONT COLOR="Green"><B>overload</B></FONT> di
+  <FONT COLOR="Blue"><B>operator&lt;&lt;</B></FONT> (con
+  <FONT COLOR="Green"><B>right-operand </B></FONT>di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <B><FONT COLOR="Blue">smanip</FONT></B>) per tutti i
+  </BIG><FONT COLOR="Green"><BIG><B>manipolatori con
+  argomenti</B></BIG></FONT><BIG>; la
+  <FONT COLOR="Green"><B>struttura</B></FONT>
+  <B><FONT COLOR="Blue">smanip</FONT></B> conteneva, come ulteriore
+  <FONT COLOR="Green"><B>membro</B></FONT>, un
+  </BIG><FONT COLOR="Green"><BIG><B>puntatore a
+  funzione</B></BIG></FONT><BIG>, </BIG> <BIG>da sostituire ogni volta con
+  il <FONT COLOR="Green"><B>manipolatore</B></FONT> appropriato. A partire
+  dal <FONT COLOR="Red"><B>compilatore gcc 3.2</B></FONT>
+  <B><FONT COLOR="Blue">smanip</FONT></B> &egrave;
+  "<I><B>deprecated</B></I>" e al suo posto ci sono tante
+  <FONT COLOR="Green"><B>strutture</B></FONT> (e tanti
+  <FONT COLOR="Green"><B>overloads</B></FONT> di
+  <FONT COLOR="Blue"><B>operator&lt;&lt;</B></FONT>) quanti sono i
+  </BIG><FONT COLOR="Green"><BIG><B>manipolatori</B></BIG></FONT> <BIG>(in
+  realt&agrave; questo non &egrave; un problema, perch&egrave; i
+  </BIG><FONT COLOR="Green"><BIG><B>manipolatori con
+  argomenti</B></BIG></FONT> &nbsp;<BIG>sono pochi); in compenso ogni
+  <FONT COLOR="Green"><B>operazione</B></FONT> &egrave; molto pi&ugrave; veloce,
+  in quanto <B>chiama</B> la sua
+  </BIG><FONT COLOR="Green"><BIG><B>funzione</B></BIG></FONT> <BIG>direttamente,
+  senza passare attraverso i </BIG><FONT COLOR="Green"><BIG><B>puntatore a
+  funzione</B></BIG></FONT><BIG>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>I </BIG><FONT COLOR="Green"><BIG><B>manipolatori con
+  argomenti</B></BIG></FONT><BIG>, forniti dalla
+  <FONT COLOR="Red"><B>Libreria</B></FONT>, sono <B>definiti</B> in
+  <FONT COLOR="Blue"><B>&lt;iomanip&gt;</B></FONT> (che deve essere incluso
+  insieme a <FONT COLOR="Blue"><B>&lt;iostream&gt;</B></FONT>) e sono <B>5</B>:
+  <B><FONT COLOR="Blue">setw</FONT></B>,
+  <B><FONT COLOR="Blue">setfill</FONT></B>,
+  <B><FONT COLOR="Blue">setprecision</FONT></B>,
+  <B><FONT COLOR="Blue">setiosflag</FONT></B> e
+  <B><FONT COLOR="Blue">resetiosflag</FONT></B>; tralasciamo gli ultimi due,
+  i quali hanno come <FONT COLOR="Maroon"><B>argomento</B></FONT> direttamente
+  un <I><B>format flag</B></I> (o una combinazione di <I><B>format
+  flag</B></I>s), coerentemente con il fatto che abbiamo deciso di non descrivere
+  singolarmente i <I><B>format flag</B></I>s e i <B>metodi</B> che li gesticono
+  (le stesse <FONT COLOR="Green"><B>operazioni</B></FONT> si fanno pi&ugrave;
+  comodamente ed "elegantemente" usando gli altri
+  </BIG><FONT COLOR="Green"><BIG><B>manipolatori</B></BIG></FONT><BIG>). Procediamo
+  invece con la descrizione dei primi tre:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><B><FONT COLOR="Blue">setw(int
+      </FONT></B><FONT COLOR="Maroon"><B>w</B></FONT><B><FONT COLOR="Blue">) <BR>
+      </FONT></B>specifica che nella prossima
+      <FONT COLOR="Green"><B>operazione</B></FONT> di <I><B>output</B></I> il dato
+      dovr&agrave; essere <B>scritto</B> in un <I><B>campo</B></I> con un numero
+      <U>minimo</U> di <FONT COLOR="Green"><B>caratteri</B></FONT>
+      <FONT COLOR="Maroon"><B>w</B></FONT>: se il numero effettivo &egrave; superiore,
+      tutti i <FONT COLOR="Green"><B>caratteri</B></FONT> vengono scritti normalmente,
+      se &egrave; inferiore, il dato &egrave; scritto all'interno del
+      <I><B>campo</B></I> e allineato di <B><I>default</I></B> a destra (oppure
+      a sinistra se &egrave; stato specificato il
+      </BIG><FONT COLOR="Green"><BIG><B>manipolatore</B></BIG></FONT>
+      <BIG><FONT COLOR="Blue"><B>left</B></FONT>); nella posizione che compete
+      ai <FONT COLOR="Green"><B>caratteri</B></FONT> rimanenti, viene
+      <B>scritto</B> il cosidetto "<FONT COLOR="Green"><B>carattere</B></FONT>
+      di riempimento", che di <I><B>default</B></I> &egrave; uno
+      <FONT COLOR="Olive"><B>spazio</B></FONT> (codice <B>32</B>), ma che pu&ograve;
+      anche essere modificato con <B><FONT COLOR="Blue">setfill</FONT></B>. Il
+      </BIG><FONT COLOR="Green"><BIG><B>manipolatore</B></BIG></FONT>
+      <BIG><B><FONT COLOR="Blue">setw</FONT></B> <U>&egrave; l'unico che non ha
+      effetto permanente</U>, ma modifica il <B>formato</B> solo relativamente
+      alla prossima <FONT COLOR="Green"><B>operazione</B></FONT> (dalla successiva
+      il <B>formato</B> torner&agrave; com'era prima di
+      <B><FONT COLOR="Blue">setw</FONT></B>)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><B><FONT COLOR="Blue">setfill(char
+      </FONT></B><FONT COLOR="Maroon"><B>c</B></FONT><B><FONT COLOR="Blue">)</FONT></B><BR>
+      stabilisce che il "<FONT COLOR="Green"><B>carattere</B></FONT> di riempimento"
+      d'ora in poi sar&agrave; <FONT COLOR="Maroon"><B>c</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><B><FONT COLOR="Blue">setprecision(int
+      </FONT></B><FONT COLOR="Maroon"><B>p</B></FONT><B><FONT COLOR="Blue">)</FONT></B><BR>
+      (<FONT COLOR="Maroon"><B>p</B></FONT> deve essere non negativo, altrimenti
+      il </BIG><FONT COLOR="Green"><BIG><B>manipolatore</B></BIG></FONT> <BIG>non
+      ha effetto)<BR>
+      influenza esclusivamente l'<I><B>output</B></I> di numeri
+      <I><B>floating</B></I> e il suo effetto &egrave; diverso, a seconda di come
+      &egrave; impostato il <I><B>formato</B></I> <I><B>floating</B></I>; questo
+      pu&ograve; assumere tre diverse configurazioni:</BIG>
+      <OL>
+	<LI>
+	  <P ALIGN=Justify>
+	  <BIG><I><B>fixed</B></I>: &egrave; impostato dal
+	  </BIG><FONT COLOR="Green"><BIG><B>manipolatore</B></BIG></FONT>
+	  <BIG><FONT COLOR="Blue"><B>fixed</B></FONT>; utilizza la rappresentazione:
+	  <BR>
+	  &nbsp; &nbsp; &nbsp; &nbsp;[parte
+	  intera]<FONT COLOR="Blue"><B>.</B></FONT>[parte decimale]<BR>
+	  (corrisponde allo <FONT COLOR="Green"><B>specificatore di formato</B></FONT>
+	  <FONT COLOR="Blue"><B>%f</B></FONT> del
+	  <FONT COLOR="Red"><B>C</B></FONT>); <FONT COLOR="Maroon"><B>p</B></FONT>
+	  indica il numero <U>esatto</U> di cifre della <U>parte decimale</U> (compresi
+	  eventuali zeri a destra); l'ultima cifra decimale &egrave; arrotondata; se
+	  <FONT COLOR="Maroon"><B>p</B></FONT> &egrave; zero, &egrave; arrotondata
+	  la cifra delle unit&agrave; e il punto decimale non &egrave; scritto</BIG>
+	  <BIG>(a meno che non sia stato specificato il
+	  </BIG><FONT COLOR="Green"><BIG><B>manipolatore</B></BIG></FONT>
+	  <BIG><FONT COLOR="Blue"><B>showpoint</B></FONT>)</BIG>
+	<LI>
+	  <P ALIGN=Justify>
+	  <BIG><I><B>scientific</B></I>: &egrave; impostato dal
+	  </BIG><FONT COLOR="Green"><BIG><B>manipolatore</B></BIG></FONT>
+	  <BIG><FONT COLOR="Blue"><B>scientific</B></FONT>; utilizza la rappresentazione:
+	  <BR>
+	  &nbsp; &nbsp; &nbsp; &nbsp;[cifra
+	  intera]<FONT COLOR="Blue"><B>.</B></FONT>[parte
+	  decimale]<FONT COLOR="Blue"><B>e</B></FONT>[esponente]<BR>
+	  (corrisponde allo <FONT COLOR="Green"><B>specificatore di formato</B></FONT>
+	  <FONT COLOR="Blue"><B>%e</B></FONT> del
+	  <FONT COLOR="Red"><B>C</B></FONT>); come <I><B>fixed</B></I>,
+	  <FONT COLOR="Maroon"><B>p</B></FONT> indica il numero <U>esatto</U> di cifre
+	  della <U>parte decimale</U> e l'ultima cifra decimale &egrave; arrotondata;
+	  scrive <FONT COLOR="Blue"><B>E</B></FONT> al posto di
+	  <FONT COLOR="Blue"><B>e</B></FONT> se &egrave; stato specificato il
+	  </BIG><FONT COLOR="Green"><BIG><B>manipolatore</B></BIG></FONT>
+	  <BIG><FONT COLOR="Blue"><B>uppercase</B></FONT>; l'esponente &egrave; costituito
+	  dal segno, seguito da &nbsp;<B>2</B> o <B>3</B> (dipende dall'implementazione)
+	  cifre intere</BIG>
+	<LI>
+	  <P ALIGN=Justify>
+	  <BIG><I><B>general</B></I>: &egrave; impostato di <I><B>default</B></I>;
+	  sceglie, fra le rappresentazioni di <I><B>fixed</B></I> e di
+	  <I><B>scientific</B></I>, quella pi&ugrave; conveniente (corrisponde allo
+	  <FONT COLOR="Green"><B>specificatore di formato</B></FONT>
+	  <FONT COLOR="Blue"><B>%g</B></FONT> del
+	  <FONT COLOR="Red"><B>C</B></FONT>); <FONT COLOR="Maroon"><B>p</B></FONT>
+	  indica il numero <U>massimo</U> di cifre <U>significative</U>; l'ultima cifra
+	  significativa &egrave; arrotondata; gli zeri non significativi della parte
+	  decimale non sono scritti; se il numero &egrave; arrotondato a intero non
+	  &egrave; scritto neppure il punto decimale (a meno che non sia stato specificato
+	  il </BIG><FONT COLOR="Green"><BIG><B>manipolatore</B></BIG></FONT>
+	  <BIG><FONT COLOR="Blue"><B>showpoint</B></FONT>)</BIG>.<B><FONT COLOR="Red"><BR>
+	  <BIG>NOTA</BIG></FONT></B><BIG>: questo &egrave; l'unico caso in cui non
+	  esiste un
+	  </BIG><FONT COLOR="Green"><BIG><B>manipolatore</B></BIG></FONT> <BIG>per
+	  ripristinare il <I><B>default</B></I>. Per tornare al
+	  <I><B>formato</B></I> <I><B>general</B></I> dopo che &egrave; stato impostato
+	  <I><B>fixed</B></I> o <I><B>scientific</B></I>, bisogna usare il
+	  <B>metodo</B> <FONT COLOR="Blue"><B>setf</B></FONT> (<B>definito</B> in
+	  <FONT COLOR="Blue"><B>ios_base</B></FONT>), nel seguente modo (supponiamo
+	  per esempio che l'<FONT COLOR="Green"><B>oggetto stream</B></FONT> sia
+	  <FONT COLOR="Blue"><B>cout</B></FONT>):<BR>
+	  &nbsp; &nbsp; &nbsp; &nbsp;
+	  &nbsp;<FONT COLOR="Blue"><B>cout.setf(ios_base::fmtflags(</B></FONT><FONT
+	      COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>),ios_base::floatfield);</B></FONT>
+	  </BIG>
+      </OL>
+  </UL>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Manipolatori definiti
+dall'utente</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Applicando gli schemi riportati negli esempi di
+  </BIG><FONT COLOR="Green"><BIG><B>manipolatori</B></BIG></FONT> <BIG>con
+  e senza <FONT COLOR="Maroon"><B>argomenti</B></FONT>, un programmatore pu&ograve;
+  definire nuovi
+  </BIG><FONT COLOR="Green"><BIG><B>manipolatori</B></BIG></FONT><BIG>, per
+  il suo uso specifico.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Nell'esercizio che segue &egrave; definito un
+  </BIG><FONT COLOR="Green"><BIG><B>manipolatore</B></BIG></FONT><BIG>, chiamato
+  <FONT COLOR="Maroon"><B>format</B></FONT> (con <B>2</B>
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>!), che permette la
+  <B>scrittura</B> di un dato, di <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>double</B></FONT>, specificando insieme, in un'unica
+  <FONT COLOR="Green"><B>stringa</B></FONT>, il <I><B>formato</B></I>
+  <I><B>floating</B></I>, il <I><B>campo</B></I> e la
+  <I><B>precisione</B></I>. Il
+  </BIG><FONT COLOR="Green"><BIG><B>manipolatore</B></BIG></FONT> <BIG>deve
+  essere usato nel modo seguente (supponiamo al solito che
+  l'<FONT COLOR="Green"><B>oggetto stream</B></FONT> sia
+  <FONT COLOR="Blue"><B>cout</B></FONT>):<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>cout &lt;&lt;
+  </B></FONT><FONT COLOR="Maroon"><B>format</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>dato</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT
+      COLOR="Maroon"><B>xw.p</B></FONT><FONT COLOR="Blue"><B>);</B></FONT></BIG><BR>
+  <BIG>dove: <FONT COLOR="Maroon"><B>dato</B></FONT> &egrave; il nostro dato
+  <FONT COLOR="Blue"><B>double</B></FONT> da scrivere;
+  <FONT COLOR="Maroon"><B>xw.p</B></FONT> &egrave; una
+  <FONT COLOR="Green"><B>stringa</B></FONT>, e in particolare:
+  <FONT COLOR="Maroon"><B>x</B></FONT> indica il <I><B>formato</B></I>
+  <I><B>floating</B></I>, che pu&ograve; assumere i valori
+  <FONT COLOR="Blue"><B>f</B></FONT>, <FONT COLOR="Blue"><B>e</B></FONT> o
+  <FONT COLOR="Blue"><B>g</B></FONT> (con il significato dei corrispondenti
+  <FONT COLOR="Green"><B>specificatori di formato</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT>); <FONT COLOR="Maroon"><B>w</B></FONT>
+  &egrave; l'<FONT COLOR="Maroon"><B>argomento</B></FONT> di
+  <B><FONT COLOR="Blue">setw </FONT></B>e pu&ograve; essere preceduto dal segno
+  <FONT COLOR="Blue"><B>- </B></FONT>per indicare l'allineamento a sinistra;
+  <FONT COLOR="Maroon"><B>p</B></FONT> &egrave;
+  l'<FONT COLOR="Maroon"><B>argomento</B></FONT> di
+  <B><FONT COLOR="Blue">setprecision</FONT></B></BIG>
+  <P ALIGN=Justify>
+  <BIG>Le altre <FONT COLOR="Green"><B>operazioni</B></FONT> di
+  <B>scrittura</B>, eseguite sullo stesso <FONT COLOR="Green"><B>oggetto
+  stream</B></FONT> senza <FONT COLOR="Maroon"><B>format</B></FONT>, non vengono
+  influenzate dalle modifiche al <B>formato</B> apportate da
+  <FONT COLOR="Maroon"><B>format</B></FONT>. Per esempio:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>cout &lt;&lt;
+  </B></FONT><FONT COLOR="Maroon"><B>format</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>dato1</B></FONT><FONT COLOR="Blue"><B>,f</B></FONT><FONT
+      COLOR="Maroon"><B>7</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT COLOR="Maroon"><B>3</B></FONT><FONT
+      COLOR="Blue"><B>) &lt;&lt;
+  </B></FONT><FONT COLOR="Maroon"><B>dato2</B></FONT><FONT COLOR="Blue"><B>&nbsp;;</B></FONT><BR>
+  <B>scrive</B> <FONT COLOR="Maroon"><B>dato1</B></FONT> con il <B>formato</B>
+  <FONT COLOR="Blue"><B>f</B></FONT><FONT COLOR="Maroon"><B>7</B></FONT><FONT
+      COLOR="Blue"><B>.</B></FONT><FONT COLOR="Maroon"><B>3</B></FONT> e
+  <FONT COLOR="Maroon"><B>dato2</B></FONT> con il <B>formato</B> precedentemente
+  impostato. L'indipendenza fra i due <B>formati</B> viene realizzata in
+  realt&agrave; con un "trucco": i dati gestiti da
+  <FONT COLOR="Maroon"><B>format</B></FONT> non sono <B>scritti</B> direttamente
+  su <FONT COLOR="Blue"><B>cout</B></FONT>, ma su un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>ostringstream</B></FONT>, cio&egrave; su una
+  <FONT COLOR="Green"><B>stringa</B></FONT>, trasferita successivamente su
+  <FONT COLOR="Blue"><B>cout</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>In considerazione del fatto che a volte si deve scrivere una serie di
+  dati, tutti con lo stesso <B>formato</B> (per esempio per produrre una tabella
+  allineata sulle colonne), si &egrave; pensato anche a due
+  <FONT COLOR="Green"><B>overloads</B></FONT> di
+  <FONT COLOR="Maroon"><B>format</B></FONT> con un solo
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>cout &lt;&lt;
+  </B></FONT><FONT COLOR="Maroon"><B>format</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>xw.p</B></FONT><FONT COLOR="Blue"><B>);</B></FONT> &nbsp;
+  e &nbsp; <FONT COLOR="Blue"><B>cout &lt;&lt;
+  </B></FONT><FONT COLOR="Maroon"><B>format</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>dato</B></FONT><FONT COLOR="Blue"><B>);</B></FONT><BR>
+  il primo imposta il <B>formato</B> senza scrivere nulla; il secondo
+  <B>scrive</B> <FONT COLOR="Maroon"><B>dato</B></FONT> utilizzando il
+  <B>formato</B> precedentemente impostato. Per rendere possibile questa opzione,
+  le informazioni sul <B>formato</B> sono memorizzate in
+  <FONT COLOR="Green"><B>membri statici</B></FONT> della
+  <FONT COLOR="Green"><B>struttura</B></FONT> di appoggio.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il
+  </BIG><FONT COLOR="Green"><BIG><B>manipolatore</B></BIG></FONT>
+  <BIG><FONT COLOR="Maroon"><B>format</B></FONT> pu&ograve; essere utile in
+  alcune circostanze, in quanto la disomogeneit&agrave; di comportamento fra
+  <B><FONT COLOR="Blue">setw</FONT></B> (effetto "una tantum") e gli altri
+  </BIG><FONT COLOR="Green"><BIG><B>manipolatori</B></BIG></FONT> <BIG>(effetto
+  permanente) potrebbe talvolta risultare "fastidiosa".</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p90/manip.h">[p90]</A><A HREF="p90/manip.cpp">[p90]</A>
+<A HREF="p90/manipmain.cpp">[p90]</A></BIG></BIG>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Cenni sulla
+bufferizzazione</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo, in varie circostanze, accennato alla presenza di un
+  <FONT COLOR="Olive"><B>buffer</B></FONT> nelle
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <B>I/O</B>. In effetti il
+  trasferimento dei dati fra l'<FONT COLOR="Green"><B>oggetto stream
+  </B></FONT> e il dispositivo esterno non avviene quasi mai direttamente,
+  ma attraverso un'area di memoria in cui i dati vengono accumulati prima di
+  essere trasferiti. Caso tipico &egrave; la gestione
+  dell'<I><B>input</B></I> da tastiera (vedere:
+  </BIG><FONT COLOR="Red"><B><BIG><U>Introduzione all'I/O sui dispositivi standard
+  </U></BIG></B></FONT><BIG> -
+  </BIG><FONT COLOR="Blue"><B><BIG>Memorizzazione dei dati introdotti da
+  tastiera</BIG></B></FONT><BIG>). In generale la presenza del
+  <FONT COLOR="Olive"><B>buffer</B></FONT> serve per migliorare l'efficienza
+  delle operazioni, riducendo i "tempi morti" &nbsp;fra <B>I/O</B> e calcolo
+  effettivo. D'altra parte, questo fa s&igrave; che il programma non venga
+  esattamente eseguito "in tempo reale", nel senso che l'esecuzione
+  dell'<FONT COLOR="Green"><B>operazione</B></FONT> non &egrave; sincrona con
+  il risultato. Abbiamo g&agrave; visto cosa succede con il
+  <FONT COLOR="Olive"><B>buffer</B></FONT> di <I><B>input</B></I> da tastiera;
+  vediamo ora un esempio degli effetti introdotti dalla presenza del
+  <FONT COLOR="Olive"><B>buffer</B></FONT> di
+  <I><B>output</B></I>:</BIG><B><FONT COLOR="Blue"><BR>
+  <BIG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; long
+  </BIG></FONT><FONT COLOR="Maroon"><BIG>tm</BIG></FONT></B><BIG>
+  <FONT COLOR="Blue"><B>=
+  time(NULL)+</B></FONT><FONT COLOR="Maroon"><B>5</B></FONT><FONT COLOR="Blue"><B>
+  ;<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cout &lt;&lt;
+  </B></FONT><FONT COLOR="Maroon"><B>"Aspetta 5 secondi ...."</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT> <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <FONT COLOR="Blue"><B>while
+  ( time(NULL)</B></FONT> <FONT COLOR="Blue"><B>&lt;</B></FONT>
+  </BIG><B><FONT COLOR="Maroon"><BIG>tm</BIG></FONT></B><BIG>
+  <FONT COLOR="Blue"><B>) ;</B></FONT><BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <FONT COLOR="Blue"><B>cout
+  &lt;&lt; </B></FONT><FONT COLOR="Maroon"><B>" .... ecco fatto!"</B></FONT>
+  <FONT COLOR="Blue"><B>&lt;&lt; endl ;</B></FONT> <BR>
+  in realt&agrave;, a causa del <FONT COLOR="Olive"><B>buffer</B></FONT>,
+  <U>prima</U> passano 5 secondi e <U>poi</U> le due scritte appaiono
+  contemporaneamente. Per ottenere il risultato voluto, bisogna modificare
+  la seconda istruzione in:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <FONT COLOR="Blue"><B>cout
+  &lt;&lt; </B></FONT><FONT COLOR="Maroon"><B>"Aspetta 5 secondi
+  ...."</B></FONT> <FONT COLOR="Blue"><B>&nbsp;&lt;&lt; flush
+  ;</B></FONT></BIG><BR>
+  <BIG>in quanto, come sappiamo, il
+  <FONT COLOR="Green"><B>manipolatore</B></FONT>
+  <FONT COLOR="Blue"><B>flush</B></FONT> scarica immediatamente il
+  <FONT COLOR="Olive"><B>buffer</B></FONT> di <I><B>output</B></I>. Lo stesso
+  &egrave; scaricato automaticamente quando si passa da
+  un'<FONT COLOR="Green"><B>operazione</B></FONT> di <I><B>output</B></I> a
+  un'<FONT COLOR="Green"><B>operazione</B></FONT> di <I><B>input</B></I> (in
+  altri termini, si dice che gli <FONT COLOR="Green"><B>oggetti
+  stream</B></FONT> <FONT COLOR="Blue"><B>cout</B></FONT> e
+  <FONT COLOR="Blue"><B>cin</B></FONT> sono "collegati").</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Cenni sulla gerarchia stream
+buffer</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Red"><B>Libreria Standard </B></FONT>mette a disposizione
+  un'altra <I><B>gerarchia</B></I> di
+  <FONT COLOR="Green"><B>classi</B></FONT>, detta
+  "</BIG><FONT COLOR="Green"><BIG><B>stream buffer</B></BIG></FONT><BIG>",
+  costituita da &nbsp;una <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>, che si chiama
+  <FONT COLOR="Blue"><B>streambuf</B></FONT>, e dalle sue
+  <FONT COLOR="Green"><B>derivate</B></FONT>,
+  <FONT COLOR="Blue"><B>filebuf</B></FONT> (per le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <B>I/O</B> su
+  <I><B>file</B></I>) e <FONT COLOR="Blue"><B>stringbuf</B></FONT> (per le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <B>I/O</B> su
+  <FONT COLOR="Green"><B>stringa</B></FONT>). A ogni
+  <FONT COLOR="Green"><B>oggetto</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT> della <I><B>gerarchia</B></I>
+  </BIG><FONT COLOR="Green"><BIG><B>stream</B></BIG></FONT> <BIG>&eacute;
+  <I><B>attached</B></I> (associato) un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT> della <I><B>gerarchia</B></I>
+  </BIG><FONT COLOR="Green"><BIG><B>stream buffer </B></BIG></FONT><BIG>(o
+  sua <FONT COLOR="Green"><B>derivata</B></FONT> fornita dall'utente): le due
+  <FONT COLOR="Green"><B>classi</B></FONT> lavorano insieme, la prima per le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di <B>I/O</B> ad "alto livello"
+  (per esempio la <I><B>formattazione</B></I>), la seconda per l'accesso al
+  <FONT COLOR="Olive"><B>buffer</B></FONT> di <B>I/O</B> e in generale per
+  l'<B>I/O</B> di "basso livello". In entrambe le
+  <FONT COLOR="Green"><B>classi</B></FONT> esistono
+  <FONT COLOR="Green"><B>membri</B></FONT> che gestiscono il collegamento fra
+  i due <FONT COLOR="Green"><B>oggetti</B></FONT> (per esempio il <B>metodo</B>
+  <FONT COLOR="Blue"><B>rdbuf() </B></FONT>di
+  <B><FONT COLOR="Blue">ios</FONT></B> restituisce
+  l'<FONT COLOR="Purple"><B>indirizzo</B></FONT>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT> di
+  <FONT COLOR="Blue"><B>streambuf</B></FONT> associato e il <B>metodo</B>
+  <FONT COLOR="Blue"><B>in_avail() </B></FONT>di
+  <FONT COLOR="Blue"><B>streambuf</B></FONT> restituisce il numero di
+  <FONT COLOR="Green"><B>caratteri</B></FONT> ancora presenti nel
+  <FONT COLOR="Olive"><B>buffer</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Di solito il programmatore non ha bisogno di lavorare direttamente con
+  gli <FONT COLOR="Green"><B>oggetti</B></FONT> di
+  <FONT COLOR="Blue"><B>streambuf</B></FONT> e pu&ograve; quasi sempre ignorarne
+  l'esistenza. Tuttavia qualche volta pu&ograve; essere necessario accedere
+  al <FONT COLOR="Olive"><B>buffer</B></FONT> di <B>I/O</B>, per esempio se
+  si deve operare con particolari dispositivi e interfacce che richiedono software
+  di <B>I/O</B> a basso livello: spesso in questi casi &egrave; necessario
+  "progettare" una <FONT COLOR="Olive"><B>bufferizzazione </B></FONT>specifica,
+  e conviene farlo <FONT COLOR="Green"><B>derivando</B></FONT> una nuova
+  <FONT COLOR="Green"><B>classe</B></FONT> dalla
+  <I><B>gerarchia</B></I>&nbsp;</BIG><FONT COLOR="Green"><BIG><B>stream
+  buffer</B></BIG></FONT><BIG>, piuttosto che dalla
+  <I><B>gerarchia</B></I>&nbsp;</BIG><FONT COLOR="Green"><BIG><B>stream</B></BIG></FONT><BIG>,
+  e associando gli <FONT COLOR="Green"><B>oggetti</B></FONT> della nuova
+  <FONT COLOR="Green"><B>classe</B></FONT> a quelli delle
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  </BIG><FONT COLOR="Green"><BIG><B>stream</B></BIG></FONT><BIG> gi&agrave;
+  presenti nella <FONT COLOR="Red"><B>Libreria</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Non ci dilungheremo oltre su questo argomento. Torniamo invece alle
+  <FONT COLOR="Green"><B>classi</B></FONT> della
+  <I><B>gerarchia</B></I>&nbsp;</BIG><FONT COLOR="Green"><BIG><B>stream</B></BIG></FONT><BIG>
+  e completiamo il discorso fornendo ulteriori ragguagli sulle
+  </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT><BIG>&nbsp;che
+  gestitscono il &nbsp;<FONT COLOR="Olive"><B>buffer</B></FONT> di <B>I/O</B>.
+  Precisiamo anzitutto che la stessa <B>posizione</B> <B>corrente</B> "si muove"
+  in realt&agrave; sul <FONT COLOR="Olive"><B>buffer</B></FONT> e non direttamente
+  sull'<FONT COLOR="Green"><B>oggetto </B></FONT>(anche se il valore assoluto
+  della <B>posizione</B> &egrave; riferito all'inizio
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT>), e quindi alcuni
+  <B>metodi</B> di gestione della <B>posizione</B> <B>corrente</B>, che abbiamo
+  gi&agrave; visto (<FONT COLOR="Blue"><B>tellp</B></FONT>,
+  <FONT COLOR="Blue"><B>seekp</B></FONT>,
+  <FONT COLOR="Blue"><B>tellg</B></FONT> e
+  <FONT COLOR="Blue"><B>seekg</B></FONT>), operano effettivamente sul
+  <FONT COLOR="Olive"><B>buffer</B></FONT>. Inoltre, tutte le volte che si
+  &egrave; parlato di <FONT COLOR="Green"><B>caratteri</B></FONT> "rimossi"
+  da un <FONT COLOR="Green"><B>oggetto</B></FONT>
+  </BIG><FONT COLOR="Green"><BIG><B>stream</B></BIG></FONT> <BIG>(per esempio
+  con il metodo <FONT COLOR="Blue"><B>ignore</B></FONT>), in realt&agrave;
+  si intendeva dire che erano "rimossi" dal
+  <FONT COLOR="Olive"><B>buffer</B></FONT>, non fisicamente
+  dall'<FONT COLOR="Green"><B>oggetto</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Gestione del buffer di output</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo gi&agrave; visto visto praticamente "tutto" e cio&egrave; i
+  <B>metodi</B> (di
+  <FONT COLOR="Blue"><B>ostream</B></FONT>)<FONT COLOR="Blue"><B>
+  tellp</B></FONT> (ricava la <B>posizione</B> <B>corrente</B>) e
+  <FONT COLOR="Blue"><B>seekp</B></FONT> (imposta la <B>posizione</B>
+  <B>corrente</B>), e i <FONT COLOR="Green"><B>manipolatori</B></FONT>
+  <FONT COLOR="Blue"><B>flush</B></FONT>,
+  <FONT COLOR="Blue"><B>ends</B></FONT> e
+  <FONT COLOR="Blue"><B>endl</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Gestione del buffer di input</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Oltre ai <B>metodi</B> di <FONT COLOR="Blue"><B>istream</B></FONT>,
+  <FONT COLOR="Blue"><B>tellg</B></FONT> e
+  <FONT COLOR="Blue"><B>seekg</B></FONT>, gi&agrave; visti, consideriamo i
+  seguenti:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>istream&amp;</B></FONT></BIG>
+      <BIG><FONT COLOR="Blue"><B>istream::putback(char
+      </B></FONT><FONT COLOR="Maroon"><B>c</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG><BR>
+      <BIG>inserisce <FONT COLOR="Maroon"><B>c</B></FONT> nel
+      <FONT COLOR="Olive"><B>buffer</B></FONT> prima della <B>posizione</B>
+      <B>corrente</B> e arretra la <B>posizione</B> <B>corrente</B> di <B>1</B>;
+      l'<FONT COLOR="Green"><B>operazione</B></FONT> &egrave; valida solo se &egrave;
+      preceduta da almeno una normale <B>lettura</B> (cio&egrave; non si pu&ograve;
+      inserire un <FONT COLOR="Green"><B>carattere</B></FONT> prima
+      dell'<I><B>inizio</B></I>
+      dell'<FONT COLOR="Green"><B>oggetto</B></FONT>); <B>ritorna</B>
+      <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>istream&amp;</B></FONT></BIG>
+      <BIG><FONT COLOR="Blue"><B>istream::unget()</B></FONT><BR>
+      come <FONT COLOR="Blue"><B>putback</B></FONT>, con la differenza che rimette
+      nel <FONT COLOR="Olive"><B>buffer</B></FONT> l'ultimo
+      <FONT COLOR="Green"><B>carattere</B></FONT> letto</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>int istream::peek()</B></FONT><BR>
+      <B>ritorna</B> il prossimo <FONT COLOR="Green"><B>carattere</B></FONT> da
+      <B>leggere</B> (senza toglierlo dal
+      <FONT COLOR="Olive"><B>buffer</B></FONT> e senza spostare la <B>posizione</B>
+      <B>corrente</B>); questo <B>metodo</B> (come anche i precedenti) pu&ograve;
+      essere usato per riconoscere il <FONT COLOR="Green"><B>tipo</B></FONT> del
+      prossimo dato prima di <B>leggerlo</B> effettivamente (vedere esercizio).</BIG>
+  </UL>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp;<BIG><BIG><A HREF="p91/rientra.cpp">[p91]</A></BIG></BIG>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#concludi"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

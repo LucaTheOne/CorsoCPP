@@ -1,0 +1,11 @@
+	using mini_graphics::Point;
+	using mini_graphics::Shape;
+	using mini_graphics::ASC_Screen;
+	using mini_graphics::ASC_Dot;
+	using mini_graphics::ASC_Line;
+	using mini_graphics::ASC_Triangle;
+	using mini_graphics::ASC_Rect;
+	using mini_graphics::ASC_Square;
+	using mini_graphics::ASC_Circle;
+	using mini_graphics::Shape_Error;
+	using mini_graphics::Screen_Error;

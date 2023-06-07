@@ -1,0 +1,638 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Direttive al Preprocessore CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Direttive al
+Preprocessore
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Cos'&eacute; il preprocessore
+?</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> (come in
+  <FONT COLOR="Red"><B>C</B></FONT>), prima che il
+  <FONT COLOR="Red"><B>compilatore</B></FONT> inizi a lavorare, viene attivato
+  un programma, detto <FONT COLOR="Red"><B>preprocessore</B></FONT>, che ricerca
+  nel <FONT COLOR="Red"><B>file sorgente</B></FONT> speciali istruzioni, chiamate
+  <FONT COLOR="Green"><B>direttive</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Una <FONT COLOR="Green"><B>direttiva</B></FONT> inizia sempre con il
+  carattere <FONT COLOR="Blue"><B># </B></FONT>(<U>a colonna 1</U>) e occupa
+  una sola riga (non ha un <I><B>terminatore</B></I>, in quanto finisce alla
+  fine della riga; riconosce per&ograve; i
+  <FONT COLOR="Green"><B>commenti</B></FONT>, introdotti da
+  <FONT COLOR="Blue"><B>// </B></FONT>o da
+  <FONT COLOR="Blue"><B>/<SUB><BIG>*</BIG></SUB></B></FONT>, e la continuazione
+  alla riga successiva, definita da <FONT COLOR="Blue"><B>\</B></FONT>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Red"><B>preprocessore</B></FONT> crea una copia del
+  <FONT COLOR="Red"><B>file sorgente</B></FONT> (da far leggere al
+  <FONT COLOR="Red"><B>compilatore</B></FONT>) e, ogni volta che incontra una
+  <FONT COLOR="Green"><B>direttiva</B></FONT>, la esegue sostituendola con
+  il risultato dell'operazione. Pertanto il
+  <FONT COLOR="Red"><B>preprocessore</B></FONT>, eseguendo le
+  <FONT COLOR="Green"><B>direttive</B></FONT>, <U>non produce codice binario</U>,
+  ma <U>codice sorgente</U> per il
+  <FONT COLOR="Red"><B>compilatore</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Ogni <FONT COLOR="Red"><B>file sorgente</B></FONT>, dopo la trasformazione
+  operata dal <FONT COLOR="Red"><B>preprocessore</B></FONT>, prende il nome
+  di <FONT COLOR="Red"><B><I>translation unit</I></B></FONT>. Ogni
+  <FONT COLOR="Red"><B>translation unit</B></FONT> viene poi
+  <FONT COLOR="Red"><B>compilata</B></FONT> separatamente, con la creazione
+  del corrispondente <FONT COLOR="Red"><B>file oggetto</B></FONT>, in codice
+  binario. Spetta al <FONT COLOR="Red"><B>linker</B></FONT>, infine, collegare
+  tutti i <FONT COLOR="Red"><B>files oggetto</B></FONT>, generando un unico
+  <FONT COLOR="Red"><B>programma eseguibile</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Nel linguaggio esistono molte
+  <FONT COLOR="Green"><B>direttive</B></FONT> (alcune delle quali dipendono
+  dal sistema operativo). In questo corso tratteremo soltanto delle seguenti:
+  <FONT COLOR="Blue"><B>#include</B></FONT>&nbsp;,
+  <FONT COLOR="Blue"><B>#define</B></FONT>&nbsp;,
+  <FONT COLOR="Blue"><B>#undef</B></FONT>&nbsp; e
+  <FONT COLOR="Green"><B>direttive</B></FONT>
+  <FONT COLOR="Purple"><B>condizionali</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Direttiva
+#include</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Ci &eacute; gi&agrave; noto il significato della
+  <FONT COLOR="Green"><B>direttiva</B></FONT>
+  <FONT COLOR="Blue"><B>#include</B></FONT>: </BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>#include
+  &lt;</B></FONT><FONT COLOR="Maroon"><B>filename</B></FONT><FONT COLOR="Blue"><B>&gt;</B></FONT>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;oppure
+  <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; #include
+  "</B></FONT><FONT COLOR="Maroon"><B>filename</B></FONT><FONT COLOR="Blue"><B>"</B></FONT>
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>che determina l'inserimento, nel punto in cui si trova la
+  <FONT COLOR="Green"><B>direttiva</B></FONT>, dell'intero contenuto del file
+  con nome <FONT COLOR="Maroon"><B>filename</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Se si usano le parentesi angolari, si intende che
+  <FONT COLOR="Maroon"><B>filename</B></FONT> vada cercato nella
+  <I><B>directory di default</B></I> del linguaggio; se invece si usano le
+  virgolette, il file si trova nella <I><B>directory</B></I> del programma.
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>direttiva</B></FONT>
+  <FONT COLOR="Blue"><B>#include</B></FONT> viene usata quasi esclusivamente
+  per inserire gli <FONT COLOR="Red"><B>header-files</B></FONT>
+  (<FONT COLOR="Blue"><B>.h</B></FONT>) ed &eacute; particolarmente utile quando
+  in uno stesso programma ci sono pi&ugrave;
+  <FONT COLOR="Red"><B>implementation-files</B></FONT> che includono lo stesso
+  <FONT COLOR="Red"><B>header-file</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Direttiva #define di una
+costante</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Quando il <FONT COLOR="Red"><B>preprocessore</B></FONT> incontra la
+  seguente <FONT COLOR="Green"><B>direttiva</B></FONT>: </BIG>
+  <P ALIGN=Center>
+  <FONT COLOR="Blue"><BIG><B>#define</B> &nbsp;
+  </BIG></FONT><B><FONT COLOR="Green"><BIG>identificatore</BIG></FONT></B><BIG>
+  &nbsp; <FONT COLOR="Maroon"><B>valore</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>dove,
+  </BIG><B><FONT COLOR="Green"><BIG>identificatore</BIG></FONT></B> <BIG>&egrave;
+  un <B>nome</B> simbolico (che segue le regole generali di specifica di tutti
+  gli altri
+  </BIG><B><FONT COLOR="Green"><BIG>identificatori</BIG></FONT></B><BIG>) e
+  <FONT COLOR="Maroon"><B>valore</B></FONT> &eacute;
+  un'<FONT COLOR="Maroon"><B>espressione</B></FONT> qualsiasi, delimitata a
+  sinistra da <I><B>blanks</B></I> o <I><B>tabs</B></I> e a destra da
+  <I><B>blanks</B></I>, <I><B>tabs</B></I> o <I><B>new-line</B></I> (i
+  <I><B>blanks</B></I> e <I><B>tabs</B></I> interni fanno parte di
+  <FONT COLOR="Maroon"><B>valore</B></FONT>), sostituisce
+  </BIG><B><FONT COLOR="Green"><BIG>identificatore</BIG></FONT></B><BIG> con
+  <FONT COLOR="Maroon"><B>valore</B></FONT> in tutto il file (<U>da quel punto
+  in poi</U>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Es. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;</BIG><FONT COLOR="Blue"><BIG><B>#define</B></BIG></FONT><BIG>
+  <FONT COLOR="Green"><B>bla</B></FONT> <FONT COLOR="Maroon"><B>frase qualsiasi
+  anche con "virgolette"</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>sostituisce (da quel punto in poi) in tutto il file la parola
+  <FONT COLOR="Green"><B>bla</B></FONT> con la frase:
+  <FONT COLOR="Maroon"><B>frase qualsiasi anche con "virgolette"</B></FONT>
+  (la "stranezza" dell'esempio riportato ha lo scopo di dimostrare che la
+  sostituzione &eacute; assolutamente <U>fedele e cieca</U>, qualunque sia
+  il contenuto dell'<FONT COLOR="Maroon"><B>espressione</B></FONT> che viene
+  sostituita
+  all'</BIG><B><FONT COLOR="Green"><BIG>identificatore</BIG></FONT></B><BIG>;
+  il compito di "segnalare gli errori" viene lasciato al
+  <FONT COLOR="Red"><B>compilatore</B></FONT>!) </BIG>
+  <P ALIGN=Justify>
+  <BIG>In generale la <FONT COLOR="Green"><B>direttiva</B></FONT>
+  </BIG><FONT COLOR="Blue"><BIG><B>#define</B></BIG></FONT><BIG> serve per
+  <U>assegnare un nome a una costante</U> (che viene detta
+  "<FONT COLOR="Green"><B>costante predefinita</B></FONT>"). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Es. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;</BIG><FONT COLOR="Blue"><BIG><B>#define</B></BIG></FONT><BIG>
+  <FONT COLOR="Green"><B>ID_START</B></FONT>
+  <FONT COLOR="Maroon"><B>3457</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>da questo punto in poi, ogni volta che il programma deve usare il numero
+  <FONT COLOR="Maroon"><B>3457</B></FONT>, si pu&ograve; specificare in sua
+  vece <FONT COLOR="Green"><B>ID_START</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>Esistono principalmente due vantaggi nell'uso di
+  </BIG><FONT COLOR="Blue"><BIG><B>#define</B></BIG></FONT><BIG>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>se il programmatore decide di cambiare valore a una costante, &eacute;
+      sufficiente che lo faccia in un solo punto del programma;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>molto spesso i <B>nomi</B> sono pi&ugrave; significativi e mnemonici
+      dei <B>numeri</B> (oppure pi&ugrave; brevi delle
+      <FONT COLOR="Green"><B>stringhe</B></FONT>, se rappresentano
+      <FONT COLOR="Green"><B>costanti stringa</B></FONT>) e perci&ograve; l'uso
+      delle <FONT COLOR="Green"><B>costanti predefinite</B></FONT> permette una
+      maggiore leggibilit&agrave; del codice e una maggiore efficienza nella
+      programmazione. </BIG>
+  </UL>
+  <P ALIGN=Justify>
+  &nbsp; <BR>
+  <BIG>In pratica la <FONT COLOR="Green"><B>direttiva</B></FONT>
+  </BIG><FONT COLOR="Blue"><BIG><B>#define</B></BIG></FONT><BIG> produce gli
+  stessi risultati dello <FONT COLOR="Green"><B>specificatore di
+  tipo</B></FONT> <FONT COLOR="Blue"><B>const</B></FONT>; al posto della
+  <FONT COLOR="Green"><B>direttiva</B></FONT> dell'esempio precedente si sarebbe
+  potuto scrivere la <B>dichiarazione</B>: </BIG>
+  <P ALIGN=Center>
+  <FONT COLOR="Blue"><BIG><B>const &nbsp;int &nbsp;</B></BIG></FONT><BIG>
+  <FONT COLOR="Green"><B>ID_START
+  &nbsp;</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>=</B></BIG></FONT><BIG><FONT
+      COLOR="Green"><B>&nbsp;</B></FONT>
+  <FONT COLOR="Maroon"><B>3457</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+  </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Confronto fra la direttiva #define e
+lo specificatore const</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Vantaggi nell'uso di
+  </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BIG>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>il <FONT COLOR="Green"><B>tipo</B></FONT> della
+      <FONT COLOR="Green"><B>costante</B></FONT> &eacute; <B>dichiarato</B>; un
+      eventuale errore di dichiarazione viene segnalato immediatamente</BIG>;
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la <FONT COLOR="Green"><B>costante</B></FONT> &eacute; riconosciuta,
+      e quindi analizzabile, nelle operazioni di <I><B>debug</B></I>. </BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Vantaggi nell'uso di
+  </BIG><FONT COLOR="Blue"><BIG><B>#define</B></BIG></FONT><BIG>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG> una <FONT COLOR="Green"><B>costante predefinita</B></FONT> a volte
+      &egrave; pi&ugrave; comoda e immediata (&egrave; una questione sostanzialmente
+      "estetica"!) e pu&ograve; essere usata anche per altri scopi (per esempio
+      per sostituire o mascherare <B>nomi</B>). </BIG>
+  </UL>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Direttiva #define di una
+macro</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Quando il <FONT COLOR="Red"><B>preprocessore</B></FONT> incontra la
+  seguente <FONT COLOR="Green"><B>direttiva</B></FONT>: </BIG>
+  <P ALIGN=Center>
+  <BIG><B><FONT COLOR="Blue">#define &nbsp;
+  </FONT><FONT COLOR="Green">identificatore</FONT><FONT COLOR="Blue">(</FONT><FONT
+      COLOR="Maroon">argomenti</FONT><FONT COLOR="Blue">)</FONT> &nbsp;
+  <FONT COLOR="Maroon">espressione</FONT></B></BIG>
+  <P ALIGN=Justify>
+  <BIG>riconosce una <FONT COLOR="Green"><B>macro</B></FONT>, che distingue
+  dalla <B>definizione</B> di una
+  <FONT COLOR="Green"><B>costante</B></FONT> per la presenza della <U>parentesi
+  tonda</U> subito dopo <B><FONT COLOR="Green">identificatore</FONT></B> (senza
+  <I><B>blanks</B></I> in mezzo). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Una <FONT COLOR="Green"><B>macro</B></FONT> &eacute; molto simile a
+  una <FONT COLOR="Green"><B>funzione</B></FONT>. Il suo uso &eacute; chiarito
+  dal seguente esempio: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <B><FONT COLOR="Blue">#define</FONT></B> &nbsp;
+  <FONT COLOR="Green"><B>Max(a,b)</B></FONT> &nbsp; <FONT COLOR="Maroon"><B>a
+  &gt; b ? a : b</B></FONT> <BR>
+  tutte le volte che il <FONT COLOR="Red"><B>preprocessore</B></FONT> trova
+  nel programma una <B>chiamata</B> della
+  <FONT COLOR="Green"><B>macro</B></FONT>, per esempio
+  <FONT COLOR="Green"><B>Max(x,y)</B></FONT>, la espande, sostituendola con:
+  <FONT COLOR="Maroon"><B>x &gt; y ? x : y</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>Come nel caso di <B>definizione</B> di una
+  <FONT COLOR="Green"><B>costante</B></FONT>, anche per una
+  <FONT COLOR="Green"><B>macro</B></FONT> la sostituzione avviene in modo
+  assolutamente <U>fedele</U>: a parte i nomi degli
+  <B><FONT COLOR="Maroon">argomenti</FONT></B>, che sono ricopiati dalla
+  <B>chiamata</B> e non dalla <B>definizione</B>, tutti gli altri simboli usati
+  nella <B>definizione</B> sono riprodotti senza alcuna modifica (per esempio
+  il punto e virgola di fine istruzione viene messo solo se compare anche nella
+  <B>definizione</B>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Nella <B>chiamata</B> di una <FONT COLOR="Green"><B>macro</B></FONT>
+  si possono mettere, al posto degli
+  <B><FONT COLOR="Maroon">argomenti</FONT></B>, anche delle
+  <B><FONT COLOR="Maroon">espressioni</FONT></B> (come nelle <B>chiamate</B>
+  di <FONT COLOR="Green"><B>funzioni</B></FONT>); sar&agrave; compito, come
+  al solito, del <FONT COLOR="Red"><B>compilatore</B></FONT> controllare che
+  l'espressione risultante sia accettabile. Riprendendo l'esempio precedente,
+  la seguente <B>chiamata</B>: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Green"><B>Max(x+1,y)</B></FONT> &nbsp; &nbsp; &nbsp;espansa
+  in &nbsp; &nbsp; &nbsp;<FONT COLOR="Maroon"><B>x+1 &gt; y ? x+1 :
+  y</B></FONT> <BR>
+  sar&agrave; <U>accettata</U> dal
+  <FONT COLOR="Red"><B>compilatore</B></FONT>, in istruzioni del tipo : <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Maroon"><B>c</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Green"><B>Max(x+1,y)</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+  <BR>
+  ma <U>rigettata</U> in istruzioni come: <BR>
+  <FONT COLOR="Green"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp;Max(x+1,y)</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>c</B></FONT><FONT COLOR="Blue"><B>;<BR>
+  </B></FONT>in quanto, in questo caso, gli
+  <FONT COLOR="Green"><B>operandi</B></FONT> di un
+  <FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Purple"><B>condizionale</B></FONT> devono essere
+  <FONT COLOR="Green"><B>l-values</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>In altri casi, la sostituzione "cieca" pu&ograve; causare errori che
+  lo stesso <FONT COLOR="Red"><B>compilatore</B></FONT> non &eacute; in grado
+  di riconoscere. <BR>
+  Es. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <B><FONT COLOR="Blue">#define</FONT></B>
+  &nbsp;<FONT COLOR="Green"><B>quadrato(x)</B></FONT> &nbsp;
+  <FONT COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><FONT
+      COLOR="Maroon"><B>x</B></FONT> <BR>
+  la <B>chiamata</B>: &nbsp; &nbsp;<FONT COLOR="Green"><B>quadrato(2+3)
+  </B></FONT>&nbsp; viene espansa in &nbsp;
+  <FONT COLOR="Maroon"><B>2+3</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><FONT
+      COLOR="Maroon"><B>2+3</B></FONT> &nbsp; con risultato, evidentemente, errato.
+  <BR>
+  Per evitare tale errore si sarebbe dovuto scrivere: &nbsp; &nbsp;
+  <B><FONT COLOR="Blue">#define</FONT></B>
+  &nbsp;<FONT COLOR="Green"><B>quadrato(x)</B></FONT> &nbsp;
+  <FONT COLOR="Maroon"><B>(x)</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><FONT
+      COLOR="Maroon"><B>(x)</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>Agli effetti pratici (purch&eacute; si usino le dovute attenzioni!),
+  la <B>definizione</B> di una <FONT COLOR="Green"><B>macro</B></FONT> produce
+  gli stessi risultati dello
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>inline</B></FONT> di una
+  <FONT COLOR="Green"><B>funzione</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Confronto fra la direttiva #define e
+lo specificatore inline</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Vantaggi nell'uso di
+  </BIG><FONT COLOR="Blue"><BIG><B>inline</B></BIG></FONT><BIG>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>il <FONT COLOR="Green"><B>tipo</B></FONT> della
+      <FONT COLOR="Green"><B>funzione</B></FONT> &eacute; <B>dichiarato</B> e
+      controllato </BIG>;
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la <FONT COLOR="Green"><B>funzione</B></FONT> &eacute; riconosciuta,
+      e quindi analizzabile, nelle operazioni di
+      <I><B>debug</B></I></BIG>;<BIG> </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>l'espansione di una <FONT COLOR="Green"><B>funzione</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>inline</B></BIG></FONT><BIG> &eacute; fatta
+      non in modo "cieco", ma in modo "intelligente" (<U>vantaggio decisivo!</U>).
+      </BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Vantaggi nell'uso di
+  </BIG><FONT COLOR="Blue"><BIG><B>#define</B></BIG></FONT><BIG>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG> Una <FONT COLOR="Green"><B>macro</B></FONT> e pi&ugrave; immediata
+      e pi&ugrave; semplice da scrivere di una
+      <FONT COLOR="Green"><B>funzione</B></FONT>.</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Le <FONT COLOR="Green"><B>macro</B></FONT>, usatissime in
+  <FONT COLOR="Red"><B>C</B></FONT>, sono raramente utilizzate in
+  <FONT COLOR="Red"><B>C++</B></FONT>, se non per
+  <FONT COLOR="Green"><B>funzioni</B></FONT> molto brevi e adoperate a livello
+  <FONT COLOR="Green"><B>locale</B></FONT> (cio&egrave; nello stesso modulo
+  in cui sono <B>definite</B>). Un uso pi&ugrave; frequente delle
+  <FONT COLOR="Green"><B>macro</B></FONT> si ha quando non corrispondono a
+  <FONT COLOR="Green"><B>funzioni</B></FONT> ma a espressioni "parametrizzate"
+  molto lunghe che compaiono pi&ugrave; volte nel programma.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Direttive
+condizionali</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Red"><B>preprocessore</B></FONT> dispone di un suo
+  mini-linguaggio di <B>controllo</B>, che consiste nelle seguenti
+  <FONT COLOR="Green"><B>direttive</B></FONT>
+  <FONT COLOR="Purple"><B>condizionali</B></FONT>: </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><B><FONT COLOR="Blue"><BIG>#if
+	</BIG></FONT><FONT COLOR="Maroon"><BIG>espressione1</BIG></FONT></B></TD>
+      <TD><BIG>&nbsp; &nbsp; &nbsp;oppure &nbsp; &nbsp;</BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>#if
+	defined(</B></FONT><FONT COLOR="Green"><B>identificatore1</B></FONT><FONT
+	    COLOR="Blue"><B>)</B></FONT> &nbsp; &nbsp;oppure ... </BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>#if
+	!defined(</B></FONT><FONT COLOR="Green"><B>identificatore1</B></FONT><FONT
+	    COLOR="Blue"><B>)</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD COLSPAN=3><P ALIGN=Center>
+	<BIG>...... <B>blocco</B> di <FONT COLOR="Green"><B>direttive</B></FONT>
+	e/o <B>istruzioni</B> ........ </BIG></TD>
+    </TR>
+    <TR>
+      <TD><B><FONT COLOR="Blue"><BIG>#elif
+	</BIG></FONT><FONT COLOR="Maroon"><BIG>espressione2</BIG></FONT></B></TD>
+      <TD><BIG>&nbsp; &nbsp; &nbsp;oppure</BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>#elif
+	defined(</B></FONT><FONT COLOR="Green"><B>identificatore2</B></FONT><FONT
+	    COLOR="Blue"><B>)</B></FONT> &nbsp; oppure ... </BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>#elif
+	!defined(</B></FONT><FONT COLOR="Green"><B>identificatore2</B></FONT><FONT
+	    COLOR="Blue"><B>)</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD COLSPAN=3><P ALIGN=Center>
+	<BIG>...... <B>blocco</B> di <FONT COLOR="Green"><B>direttive</B></FONT>
+	e/o <B>istruzioni</B> ........ </BIG></TD>
+    </TR>
+    <TR>
+      <TD><BIG><FONT COLOR="Blue"><B>#else</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD COLSPAN=3><P ALIGN=Center>
+	<BIG>...... <B>blocco</B> di <FONT COLOR="Green"><B>direttive</B></FONT>
+	e/o <B>istruzioni</B> ........ </BIG></TD>
+    </TR>
+    <TR>
+      <TD><BIG><FONT COLOR="Blue"><B>#endif </B></FONT></BIG></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+  </TABLE>
+  <P>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG>dove: </BIG>&nbsp; &nbsp; &nbsp;</TD>
+      <TD><P ALIGN=Justify>
+	<B><FONT COLOR="Maroon"><BIG>espressione</BIG></FONT></B><BIG> &eacute; un
+	espressione logica che pu&ograve; contenere solo
+	<FONT COLOR="Green"><B>identificatori</B></FONT> di
+	<FONT COLOR="Green"><B>costanti predefinite</B></FONT> o
+	<FONT COLOR="Green"><B>costanti</B></FONT> <I><B>literals</B></I>, <U>ma
+	non</U> variabili e neppure variabili <B>dichiarate</B>
+	<FONT COLOR="Blue"><B>const</B></FONT>, che il
+	<FONT COLOR="Red"><B>preprocessore</B></FONT> non riconosce</BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="Blue"><B>defined(</B></FONT><FONT COLOR="Green"><B>identificatore</B></FONT><FONT
+	    COLOR="Blue"><B>)</B></FONT> restituisce <B>vero</B> se
+	<FONT COLOR="Green"><B>identificatore</B></FONT> &eacute; <B>definito</B>
+	(cio&egrave; se &eacute; stata eseguita la
+	<FONT COLOR="Green"><B>direttiva</B></FONT>: <FONT COLOR="Blue"><B>#define
+	</B></FONT><FONT COLOR="Green"><B>identificatore</B></FONT>); al posto di
+	<FONT COLOR="Blue"><B>#if
+	defined(</B></FONT><FONT COLOR="Green"><B>identificatore</B></FONT><FONT
+	    COLOR="Blue"><B>) </B></FONT>si pu&ograve; usare la forma:
+	<FONT COLOR="Blue"><B>#ifdef
+	</B></FONT><FONT COLOR="Green"><B>identificatore</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="Blue"><B>!defined(</B></FONT><FONT COLOR="Green"><B>identificatore</B></FONT><FONT
+	    COLOR="Blue"><B>) </B></FONT>restituisce <B>vero</B> se
+	<FONT COLOR="Green"><B>identificatore</B></FONT> <U>non &eacute;
+	</U><B>definito</B>; al posto di <FONT COLOR="Blue"><B>#if
+	!defined(</B></FONT><FONT COLOR="Green"><B>identificatore</B></FONT><FONT
+	    COLOR="Blue"><B>) </B></FONT>si pu&ograve; usare la forma:
+	<FONT COLOR="Blue"><B>#ifndef
+	</B></FONT><FONT COLOR="Green"><B>identificatore</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><P ALIGN=Justify>
+	<B><FONT COLOR="Blue"><BIG>#elif</BIG></FONT></B> <BIG>sta per <B>else if
+	</B>ed &eacute; opzionale (possono esserci pi&ugrave; <B>blocchi</B> consecutivi,
+	ciascuno introdotto da un
+	</BIG><B><FONT COLOR="Blue"><BIG>#elif</BIG></FONT></B><BIG>)</BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="Blue"><B>#else</B></FONT> &eacute; opzionale (se esiste,
+	deve introdurre l'ultimo <B>blocco</B> prima di
+	<FONT COLOR="Blue"><B>#endif</B></FONT>)</BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="Blue"><B>#endif</B></FONT> (obbligatorio) termina la sequenza
+	iniziata con un <FONT COLOR="Blue"><B>#if</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD COLSPAN=2><P ALIGN=Justify>
+	<BIG>non &eacute; necessario racchiudere i <B>blocchi</B> fra parentesi graffe,
+	perch&eacute; ogni <B>blocco</B> &eacute; <B>terminato</B> da
+	</BIG><B><FONT COLOR="Blue"><BIG>#elif</BIG></FONT></B><BIG>, o da
+	<FONT COLOR="Blue"><B>#else</B></FONT>, o da
+	<FONT COLOR="Blue"><B>#endif</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Red"><B>preprocessore</B></FONT> identifica il
+  <B>blocco</B> (se esiste) che corrisponde alla prima condizione risultata
+  <B>vera</B>, oppure il <B>blocco</B> relativo alla direttiva
+  <FONT COLOR="Blue"><B>#else</B></FONT> (se esiste) nel caso che tutte le
+  condizioni precedenti siano risultate <B>false</B>. Tale <B>blocco</B> pu&ograve;
+  contenere sia istruzioni di programma che altre
+  <FONT COLOR="Green"><B>direttive</B></FONT>, comprese
+  <FONT COLOR="Green"><B>direttive</B></FONT>
+  <FONT COLOR="Purple"><B>condizionali</B></FONT> (possono esistere pi&ugrave;
+  <B>blocchi</B> <FONT COLOR="Blue"><B>#if</B></FONT> "innestati"): il
+  <FONT COLOR="Red"><B>preprocessore</B></FONT> esegue le
+  <FONT COLOR="Green"><B>direttive</B></FONT> e presenta al
+  <FONT COLOR="Red"><B>compilatore</B></FONT> le istruzioni che si trovano
+  nel <B>blocco</B> selezionato, scartando sia
+  <FONT COLOR="Green"><B>direttive</B></FONT> che istruzioni contenute negli
+  altri <B>blocchi</B> della sequenza <FONT COLOR="Blue"><B>#if</B></FONT>
+  ... <FONT COLOR="Blue"><B>#endif</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Direttiva
+#undef</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>direttiva</B></FONT>: </BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>#undef &nbsp;
+  </B></FONT><FONT COLOR="Green"><B>identificatore</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>indica al <FONT COLOR="Red"><B>preprocessore</B></FONT> di disattivare
+  l'<FONT COLOR="Green"><B>identificatore</B></FONT> specificato, cio&egrave;
+  rimuovere la corrispondenza fra
+  l'<FONT COLOR="Green"><B>identificatore</B></FONT> e una
+  <FONT COLOR="Maroon"><B>costante</B></FONT>, precedentemente stabilita con
+  la <FONT COLOR="Green"><B>direttiva</B></FONT>: </BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>#define
+  </B></FONT><FONT COLOR="Green"><B>identificatore</B></FONT>
+  <FONT COLOR="Maroon"><B>costante</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>Nelle istruzioni successive alla
+  <FONT COLOR="Green"><B>direttiva</B></FONT>
+  <FONT COLOR="Blue"><B>#undef</B></FONT>, lo stesso <B>nome</B> potr&agrave;
+  essere adibito ad altri usi. </BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es. </BIG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>#ifdef</B></FONT>
+	<FONT COLOR="Maroon"><B>EOF</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>#undef</B></FONT>
+	<FONT COLOR="Maroon"><B>EOF</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>#endif</B></FONT> </BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>char</B></FONT>
+	<FONT COLOR="Maroon"><B>EOF</B></FONT><FONT COLOR="Blue"><B>[] =</B></FONT>
+	<FONT COLOR="Maroon"><B>"Ente Opere
+	Filantropiche"</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p25/dirett.cpp">[p25]</A></BIG></BIG>
+<P ALIGN=Center>
+<A HREF="01Indice.html#visualcpp"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

@@ -1,0 +1,32 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="Generator" content="Microsoft FrontPage 4.0" />
+<title>myfuncs.cpp.html</title>
+</head>
+<body><?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<pre>
+<span style='color=#000000'></span><span style='color:#008000'>#include&quot;myfuncs.h&quot;
+
+</span><span style='color:#000000'><b>using</b> <b>namespace</b> std;
+
+</span><span style='color:#800000'>double</span><span style='color:#000000'> div(</span><span style='color:#800000'>double</span><span style='color:#000000'> a, </span><span style='color:#800000'>double</span><span style='color:#000000'> b) {
+   <b>if</b>(b!=</span><span style='color:#0000ff'>0</span><span style='color:#000000'>) {
+    <b>return</b> a/b;
+  } <b>else</b> {
+    <b>throw</b>(ErrMsg(</span><span style='color:#ff0000'>&quot;double div(double,double)&quot;</span><span style='color:#000000'>,</span><span style='color:#ff0000'>&quot;Division by zero.&quot;</span><span style='color:#000000'>));
+  }
+}
+
+</span><span style='color:#800000'>double</span><span style='color:#000000'> log(</span><span style='color:#800000'>double</span><span style='color:#000000'> a) {
+   <b>if</b>(a&gt;</span><span style='color:#0000ff'>0</span><span style='color:#000000'>) {
+    <b>return</b> log10(a);
+  } <b>else</b> {
+    <b>throw</b>(ErrMsg(</span><span style='color:#ff0000'>&quot;double log(double)&quot;</span><span style='color:#000000'>,</span><span style='color:#ff0000'>&quot;Invalid argument.&quot;</span><span style='color:#000000'>));
+  }
+}
+
+
+</span></pre></body></html>

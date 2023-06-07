@@ -1,0 +1,1169 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Tipi definiti dall'utente CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Tipi definiti
+dall'utente
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Justify>
+<BIG>Il termine "<FONT COLOR="Green"><B>tipo</B></FONT>
+<I><B>astratto</B></I>", usato in contrapposizione ai
+<FONT COLOR="Green"><B>tipi</B></FONT> <I><B>nativi</B></I> del linguaggio,
+non &eacute; molto appropriato: il <FONT COLOR="Red"><B>C++</B></FONT> consente
+al programmatore di <B>definire</B> nuovi
+<FONT COLOR="Green"><B>tipi</B></FONT>, estendendo cos&igrave; le capacit&agrave;
+effettive del linguaggio; ma, una volta definiti, questi
+<FONT COLOR="Green"><B>tipi</B></FONT> sono molto "concreti" e sono trattati
+esattamente come i <FONT COLOR="Green"><B>tipi</B></FONT>
+<I><B>nativi</B></I>. Per questo motivo, la tendenza "moderna" &egrave; di
+identificare i <FONT COLOR="Green"><B>tipi</B></FONT> non
+<I><B>nativi</B></I> con il termine: "<I><B>tipi definiti
+dall'utente</B></I>" e di confinare l'aggettivo "<I><B>astratto</B></I>"
+a una precisa sottocategoria di questi (di cui parleremo pi&ugrave; avanti).
+Tuttavia noi continueremo, per comodit&agrave;, a usare la "vecchia"
+terminologia.</BIG>
+<P ALIGN=Justify>
+<BIG>In questo capitolo parleremo dei
+<FONT COLOR="Green"><B>tipi</B></FONT> <I><B>astratti</B></I> comuni sia
+al <FONT COLOR="Red"><B>C</B></FONT> che al
+<FONT COLOR="Red"><B>C++</B></FONT>, usando per&ograve; la nomenclatura
+(<FONT COLOR="Green"><B>oggetti</B></FONT>,
+<FONT COLOR="Green"><B>istanze</B></FONT> ecc...) del
+<FONT COLOR="Red"><B>C++</B></FONT>.</BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Concetti di oggetto e
+istanza</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Il termine <FONT COLOR="Green"><B><BIG>oggetto</BIG></B></FONT> &eacute;
+  sostanzialmente sinonimo del termine <B>variabile</B>. Bench&eacute; questo
+  termine si usi soprattutto in relazione a
+  <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>astratti</B></I> (come
+  <FONT COLOR="Green"><B>strutture</B></FONT> o
+  <FONT COLOR="Green"><B>classi</B></FONT>), noi possiamo generalizzare il
+  concetto, definendo <FONT COLOR="Green"><B>oggetto</B></FONT> una variabile
+  di qualunque <FONT COLOR="Green"><B>tipo</B></FONT>, non solo formalmente
+  definita, ma anche <U>gi&agrave; creata e operante</U>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>E' noto infatti che l'istruzione di <B>definizione</B> di una variabile
+  non si limita a dichiarare il suo <FONT COLOR="Green"><B>tipo</B></FONT>,
+  ma <U>crea fisicamente la variabile stessa</U>, allocando la memoria necessaria
+  (nella terminologia <FONT COLOR="Red"><B>C++</B></FONT> si dice che la variabile
+  viene "<B>costruita</B>"): pertanto la <B>definizione</B> di una variabile
+  comporta la "<B>costruzione</B>" di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Il termine <FONT COLOR="Green"><B><BIG>istanza</BIG></B></FONT> &eacute;
+  quasi simile al termine <FONT COLOR="Green"><B>oggetto</B></FONT>; se ne
+  differenzia in quanto sottolinea l'appartenenza
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT> a un dato
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  (<FONT COLOR="Green"><B>istanza</B></FONT> di ... "qualcosa"). Per esempio,
+  la <B>dichiarazione/definizione</B>:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>int</B></FONT>
+  &nbsp;<FONT COLOR="Maroon"><B>ivar</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT> <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <U><B>costruisce</B>
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Maroon"><B>ivar</B></FONT>,
+  <FONT COLOR="Green"><B>istanza</B></FONT> del
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT></U>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Esiste anche il verbo: <FONT COLOR="Green"><B>istanziare</B></FONT>
+  (o <FONT COLOR="Green"><B>instanziare</B></FONT>) un certo
+  <FONT COLOR="Green"><B>tipo</B></FONT>, che significa creare
+  un'<FONT COLOR="Green"><B>istanza</B></FONT> di quel
+  <FONT COLOR="Green"><B>tipo</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Typedef</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>L'istruzione introdotta dalla <I><B>parola-chiave</B></I>
+  <FONT COLOR="Blue"><B>typedef</B></FONT> <B>definisce</B> un sinonimo di
+  un <FONT COLOR="Green"><B>tipo</B></FONT> esistente, cio&egrave; <U>non crea
+  un nuovo <FONT COLOR="Green"><B>tipo</B></FONT></U>, ma <U>un nuovo
+  <FONT COLOR="Green"><B>identificatore</B></FONT></U> di un
+  <FONT COLOR="Green"><B>tipo</B></FONT> (<I><B>nativo</B></I> o
+  <I><B>astratto</B></I>) precedentemente definito. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Es.: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>typedef</B></FONT> <FONT COLOR="Blue"><B>unsigned long
+  int<SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="#cc0000"><B>pul</B></FONT><FONT COLOR="Maroon"><B>
+  </B></FONT><FONT COLOR="Blue"><B>; </B></FONT><BR>
+  <B>definisce</B> il nuovo
+  <FONT COLOR="Green"><B>identificatore</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="#cc0000"><B>pul</B></FONT>, che potr&agrave; essere usato, nelle
+  successive <B>dichiarazioni</B> (all'interno dello stesso
+  <FONT COLOR="Green"><B>ambito</B></FONT>), per <B>costruire</B>
+  <FONT COLOR="Green"><B>oggetti</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a <FONT COLOR="Blue"><B>unsigned
+  long</B></FONT>: </BIG>
+  <TABLE CELLPADDING="2" WIDTH="100%">
+    <TR>
+      <TD WIDTH="25%"><BIG><FONT COLOR="Blue"><B>unsigned long</B></FONT>
+	<FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>;</B></FONT> </BIG></TD>
+      <TD WIDTH="25%"><BIG><FONT COLOR="#cc0000"><B>pul</B></FONT>
+	<FONT COLOR="Maroon"><B>ogg1</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Blue"><B>&amp;</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT
+	    COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD WIDTH="25%"><BIG><FONT COLOR="#cc0000"><B>pul</B></FONT>
+	<FONT COLOR="Maroon"><B>parray</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>100</B></FONT><FONT COLOR="Blue"><B>];</B></FONT></BIG></TD>
+      <TD><BIG>&nbsp;ecc... </BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp;<BR>
+  <BIG>L'uso di <FONT COLOR="Blue"><B>typedef</B></FONT> permette di semplificare
+  <B>dichiarazioni</B> lunghe di variabili dello stesso
+  <FONT COLOR="Green"><B>tipo</B></FONT>. Per esempio, supponiamo di dover
+  <B>dichiarare</B> molti <FONT COLOR="Green"><B>array</B></FONT>, tutti dello
+  stesso <FONT COLOR="Green"><B>tipo</B></FONT> e della stessa
+  <FONT COLOR="Green"><B>dimensione</B></FONT>:</BIG>
+  <TABLE CELLPADDING="2" WIDTH="100%">
+    <TR>
+      <TD WIDTH="25%"><BIG><FONT COLOR="Blue"><B>double</B></FONT>
+	<FONT COLOR="Maroon"><B>a1</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>100</B></FONT><FONT COLOR="Blue"><B>];</B></FONT> </BIG></TD>
+      <TD WIDTH="25%"><BIG><FONT COLOR="Blue"><B>double</B></FONT>
+	<FONT COLOR="Maroon"><B>a2</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>100</B></FONT><FONT COLOR="Blue"><B>];</B></FONT></BIG></TD>
+      <TD WIDTH="25%"><BIG><FONT COLOR="Blue"><B>double</B></FONT>
+	<FONT COLOR="Maroon"><B>a3</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>100</B></FONT><FONT COLOR="Blue"><B>];</B></FONT></BIG></TD>
+      <TD><BIG>&nbsp;ecc... </BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG> usando <FONT COLOR="Blue"><B>typedef</B></FONT> la semplificazione
+  &eacute; evidente: </BIG>
+  <TABLE CELLPADDING="2" WIDTH="100%">
+    <TR>
+      <TD WIDTH="40%"><BIG><FONT COLOR="Blue"><B>typedef</B></FONT>
+	<FONT COLOR="Blue"><B>double</B></FONT>
+	<FONT COLOR="#cc0000"><B>a</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>100</B></FONT><FONT COLOR="Blue"><B>];</B></FONT> </BIG></TD>
+      <TD WIDTH="15%"><BIG> <FONT COLOR="#cc0000"><B>a</B></FONT>
+	<FONT COLOR="Maroon"><B>a1</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD WIDTH="15%"><BIG> <FONT COLOR="#cc0000"><B>a</B></FONT>
+	<FONT COLOR="Maroon"><B>a2</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD WIDTH="15%"><BIG> <FONT COLOR="#cc0000"><B>a</B></FONT>
+	<FONT COLOR="Maroon"><B>a3</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>&nbsp;ecc... </BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Un caso in cui si evidenzia in modo eclatante l'utilit&agrave; di
+  <FONT COLOR="Blue"><B>typedef</B></FONT> &egrave; quello in cui si devono
+  <B>dichiarare</B> pi&ugrave; <FONT COLOR="Green"><B>funzioni</B></FONT> con
+  lo stesso <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>funzione</B></FONT> come
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>.<BR>
+  Es.: <FONT COLOR="Blue"><B>typedef</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>bool</B></FONT>
+  <FONT COLOR="Blue"><B>(<SUB><BIG>*</BIG></SUB></B></FONT><FONT COLOR="#cc0000"><B>tpfunz</B></FONT>)<FONT
+      COLOR="Blue"><B>(const int&amp;, int&amp;, const
+  char<SUB><BIG>*</BIG></SUB>, int&amp;,
+  char<SUB><BIG>*</BIG></SUB>&amp;, int&amp;);<BR>
+  </B></FONT> in questo caso <FONT COLOR="#cc0000"><B>tpfunz</B></FONT> &egrave;
+  il <U>nome di un <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>funzione</B></FONT></U>&nbsp;e pu&ograve; essere
+  sostituito nelle <B>dichiarazioni</B> delle
+  <FONT COLOR="Green"><B>funzioni</B></FONT> <B>chiamanti</B> al posto dell'intera
+  stringa di cui sopra:<BR>
+  &nbsp; &nbsp;<FONT COLOR="Blue"><B>void</B></FONT>
+  <FONT COLOR="Maroon"><B>fsel1</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="#cc0000"><B>tpfunz</B></FONT><FONT COLOR="Blue"><B>);</B></FONT>&nbsp;
+  &nbsp; &nbsp;<FONT COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="Maroon"><B>fsel2</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="#cc0000"><B>tpfunz</B></FONT><FONT COLOR="Blue"><B>);</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B> double</B></FONT>
+  <FONT COLOR="Maroon"><B>fsel3</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="#cc0000"><B>tpfunz</B></FONT><FONT COLOR="Blue"><B>);</B></FONT>
+  &nbsp;&nbsp; &nbsp;ecc....</BIG><BR>
+  <BIG>infine, nelle <B>definizioni</B> delle <B>funzioni chiamanti </B>bisogna
+  specificare un <FONT COLOR="Maroon"><B>argomento</B></FONT> di
+  "<FONT COLOR="Green"><B>tipo</B></FONT>"
+  <FONT COLOR="#cc0000"><B>tpfunz</B></FONT> e usare questo per le
+  <B>chiamate</B>. Es:</BIG><BR>
+  <BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp;void</B></FONT>
+  <FONT COLOR="Maroon"><B>fsel1</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="#cc0000"><B>tpfunz</B></FONT><FONT COLOR="Blue"><B>
+  </B></FONT><FONT COLOR="Maroon"><B>pfunz</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+  &nbsp;<BIG><FONT COLOR="Blue"><B>{ </B></FONT><B>...
+  </B><FONT COLOR="Blue"><B>if(</B></FONT><FONT COLOR="Maroon"><B>pfunz</B></FONT><FONT
+      COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>4,a,"Ciao",b,pc,m</B></FONT><FONT
+      COLOR="Blue"><B>)) </B></FONT><B>....</B></BIG><B>
+  </B><BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG><BR>
+  Un altro utilizzo di <FONT COLOR="Blue"><B>typedef</B></FONT> &egrave; quello
+  di confinare in unico luogo i riferimenti diretti a un
+  <FONT COLOR="Green"><B>tipo</B></FONT>. Per esempio, se il programma lavora
+  in una macchina in cui il <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT> corrisponde a 32 bit e noi poniamo:<BR>
+  &nbsp; &nbsp; &nbsp;<FONT COLOR="Blue"><B>typedef</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="#cc0000"><B>int32</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><BR>
+  avendo cura poi di attribuire il tipo
+  <FONT COLOR="#cc0000"><B>int32</B></FONT> a tutte le variabili
+  <FONT COLOR="Green"><B>intere</B></FONT> che vogliamo a 32 bit, possiamo
+  portare il programma su una macchina a 16 bit ridefinendo solamente
+  <FONT COLOR="#cc0000"><B>int32</B></FONT> :<BR>
+  &nbsp; &nbsp; <FONT COLOR="Blue"><B>typedef</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>long</B></FONT>
+  <FONT COLOR="#cc0000"><B>int32</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p36/pfunz.cpp">[p36]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Strutture</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Come gli <FONT COLOR="Green"><B>array</B></FONT>, in
+  <FONT COLOR="Red"><B>C++</B></FONT> (e in
+  <FONT COLOR="Red"><B>C</B></FONT>) le
+  <FONT COLOR="Green"><B>strutture</B></FONT> sono <U>gruppi di dati</U>; a
+  differenza dagli <FONT COLOR="Green"><B>array</B></FONT>, i singoli componenti
+  di una <FONT COLOR="Green"><B>struttura</B></FONT> <U>possono essere di
+  <FONT COLOR="Green"><B>tipo</B></FONT> diverso</U>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Esempio di <B>definizione</B> di una
+  <FONT COLOR="Green"><B>struttura</B></FONT>: </BIG>
+  <P ALIGN=Justify>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD COLSPAN=2><BIG><FONT COLOR="Blue"><B>struct</B></FONT>
+	  <FONT COLOR="#cc0000"><B>anagrafico</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG>&nbsp; &nbsp; &nbsp; &nbsp;
+	  &nbsp;</TD>
+	<TD></TD>
+      </TR>
+      <TR>
+	<TD></TD>
+	<TD><BIG><FONT COLOR="Blue"><B>char</B></FONT>
+	  <FONT COLOR="Maroon"><B>nome</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	      COLOR="Maroon"><B>20</B></FONT><FONT COLOR="Blue"><B>];</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD></TD>
+	<TD><BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	  <FONT COLOR="Maroon"><B>anni</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD></TD>
+	<TD><BIG><FONT COLOR="Blue"><B>char</B></FONT>
+	  <FONT COLOR="Maroon"><B>indirizzo</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	      COLOR="Maroon"><B>30</B></FONT><FONT COLOR="Blue"><B>];</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG> <FONT COLOR="Blue"><B>}</B></FONT>
+	  <FONT COLOR="Blue"><B>;</B></FONT> </BIG></TD>
+	<TD></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>Dopo la <I><B>parola-chiave</B></I>
+  <FONT COLOR="Blue"><B>struct</B></FONT> segue
+  l'<FONT COLOR="Green"><B>identificatore</B></FONT> della
+  <FONT COLOR="Green"><B>struttura</B></FONT>, detto anche <B>marcatore</B>
+  o <I><B>tag</B></I>, e, fra parentesi graffe, l'elenco dei componenti della
+  <FONT COLOR="Green"><B>struttura</B></FONT>, detti
+  <FONT COLOR="Green"><B>membri</B></FONT>; ogni
+  <FONT COLOR="Green"><B>membro</B></FONT> &eacute; <B>dichiarato</B> come
+  una normale variabile (&egrave; una semplice <B>dichiarazione</B>, non una
+  <B>definizione</B>, e pertanto <U>non comporta la <B>creazione</B>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT> corrispondente</U>) e pu&ograve;
+  essere di qualunque <FONT COLOR="Green"><B>tipo</B></FONT> (anche
+  <FONT COLOR="Green"><B>array</B></FONT> o
+  <FONT COLOR="Green"><B>puntatore</B></FONT> o una stessa
+  <FONT COLOR="Green"><B>struttura</B></FONT>). Dopo la parentesi graffa di
+  chiusura, &egrave; obbligatoria la presenza del punto e virgola (diversamente
+  dai <FONT COLOR="Green"><B>blocchi</B></FONT> delle
+  <FONT COLOR="Green"><B>funzioni</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT>&nbsp;(e <U>non</U>
+  in<FONT COLOR="Red"><B> C</B></FONT>) la <U><B>definizione</B> di una
+  <FONT COLOR="Green"><B>struttura</B></FONT> comporta la <B>creazione</B>
+  di un nuovo <FONT COLOR="Green"><B>tipo</B></FONT></U>, il cui <B>nome</B>
+  coincide con il <I><B>tag</B></I> della
+  <FONT COLOR="Green"><B>struttura</B></FONT>. Pertanto, riprendendo l'esempio,
+  <FONT COLOR="#cc0000"><B>anagrafico</B></FONT> &egrave; a pieno titolo un
+  <FONT COLOR="Green"><B>tipo</B></FONT> (come
+  <FONT COLOR="Blue"><B>int</B></FONT> o
+  <FONT COLOR="Blue"><B>double</B></FONT>), con la sola differenza che si tratta
+  di un <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>astratto</B></I>, non
+  <I><B>nativo</B></I> del linguaggio.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Per questo motivo l'enunciato di una
+  <FONT COLOR="Green"><B>struttura</B></FONT> &egrave; una <B>definizione</B>
+  e non una semplice <B>dichiarazione</B>: crea
+  un'<I><B>entit&agrave;</B></I> (il nuovo
+  <FONT COLOR="Green"><B>tipo</B></FONT>) e ne descrive il contenuto. Ma,
+  diversamente dalle <B>definizioni</B> delle variabili, non alloca memoria,
+  cio&egrave; non <B>crea</B> <FONT COLOR="Green"><B>oggetti</B></FONT>.
+  Perch&egrave; ci&ograve; avvenga, il nuovo
+  <FONT COLOR="Green"><B>tipo</B></FONT> deve essere
+  <FONT COLOR="Green"><B>istanziato</B></FONT>, esattamente come succede per
+  i <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>nativi</B></I>. Riprendendo
+  l'esempio, l'istruzione di <B>definizione</B>:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="#cc0000"><B>anagrafico</B></FONT>
+  &nbsp;&nbsp;<FONT COLOR="Maroon"><B>ana1</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>ana2</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>ana3</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>;</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG><B>costruisce</B> gli <FONT COLOR="Green"><B>oggetti</B></FONT>
+  <FONT COLOR="Maroon"><B>ana1</B></FONT>,
+  <FONT COLOR="Maroon"><B>ana2</B></FONT> e
+  <FONT COLOR="Maroon"><B>ana3</B></FONT>,
+  <FONT COLOR="Green"><B>istanze</B></FONT> del
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="#cc0000"><B>anagrafico</B></FONT>.</BIG> <BIG>Solo adesso viene
+  allocata memoria, per ogni <FONT COLOR="Green"><B>oggetto</B></FONT> in
+  quantit&agrave; pari alla somma delle memorie che competono ai singoli
+  <FONT COLOR="Green"><B>membri</B></FONT> della
+  <FONT COLOR="Green"><B>struttura</B></FONT></BIG>
+  <BIG>(l'<FONT COLOR="Green"><B>operazione</B></FONT>
+  <FONT COLOR="Blue"><B>sizeof(</B></FONT><FONT COLOR="#cc0000"><B>anagrafico</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT>, oppure
+  <FONT COLOR="Blue"><B>sizeof(</B></FONT><FONT COLOR="Maroon"><B>ana1</B></FONT><FONT
+      COLOR="Blue"><B>) </B></FONT>ecc..., restituisce il numero dei <B>bytes</B>
+  allocati ad ogni <FONT COLOR="Green"><B>istanza </B></FONT>di
+  <FONT COLOR="#cc0000"><B>anagrafico</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>La collocazione ideale &nbsp;della <B>definizione</B> di una
+  <FONT COLOR="Green"><B>struttura</B></FONT> &eacute; in un
+  <I><B>header-file</B></I>: conviene infatti separarla dalle sue
+  <FONT COLOR="Green"><B>istanze</B></FONT>, in quanto la <B>definizione</B>
+  deve essere (di solito) accessibile dappertutto, mentre le
+  <FONT COLOR="Green"><B>istanze</B></FONT> sono normalmente
+  <FONT COLOR="Green"><B>locali</B></FONT> e quindi limitate dal loro
+  <FONT COLOR="Green"><B>ambito di visibilit&agrave;</B></FONT>. Potrebbe
+  per&ograve; sorgere un problema: se un programma &egrave; suddiviso in pi&ugrave;
+  <FONT COLOR="Red"><B>files sorgente</B></FONT> e tutti includono lo stesso
+  <I><B>header-file</B></I> contenente la <B>definizione</B> di una
+  <FONT COLOR="Green"><B>struttura</B></FONT>, dopo l'azione del
+  <FONT COLOR="Red"><B>preprocessore</B></FONT> risulteranno diverse
+  <FONT COLOR="Red"><B><I>translation unit</I></B></FONT> con la stessa
+  <B>definizione</B> e quindi sembrerebbe violata la "<I><B>regola della
+  definizione unica</B></I>" (o <I><B>ODR</B></I>, dall'inglese
+  <I><B>one-definition-rule</B></I>). In realt&agrave;, per la
+  <B>definizione</B> dei <FONT COLOR="Green"><B>tipi</B></FONT>
+  <I><B>astratti</B></I> (e di altre entit&agrave; del linguaggio, come i
+  <FONT COLOR="Blue"><B>template</B></FONT>, che vedremo pi&ugrave; avanti),
+  la <I><B>ODR</B></I> si esprime in modo meno restrittivo rispetto al caso
+  della <B>definizione</B> di variabili e
+  <FONT COLOR="Green"><B>funzioni</B></FONT> (non
+  <FONT COLOR="Green"><B>inline</B></FONT>): in questi casi, due
+  <B>definizioni</B> sono ancora ritenute esemplari della stessa, <U>unica</U>,
+  <B>definizione</B>, <U>se e solo se</U>:</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>appaiono in differenti <FONT COLOR="Red"><B><I>translation
+      units</I></B></FONT> ,</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>sono identiche nei rispettivi elementi lessicali,</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>il significato dei rispettivi elementi lessicali &egrave; lo stesso
+      in entrambe le <FONT COLOR="Red"><B><I>translation
+      units</I></B></FONT></BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <BIG>e tali condizioni sono senz'altro verificate se due
+  <FONT COLOR="Red"><B>files sorgente</B></FONT> includono lo stesso
+  <I><B>header-file</B></I>&nbsp;(purch&egrave; in uno dei due non si alteri
+  il significato dei nomi con <FONT COLOR="Blue"><B>typedef</B></FONT> o
+  <FONT COLOR="Blue"><B>#define </B></FONT>!).</BIG>
+  <P ALIGN=Justify>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatore &nbsp;&nbsp;.
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La grande utilit&agrave; delle
+  <FONT COLOR="Green"><B>strutture</B></FONT> consiste nel fatto che i
+  <B>nomi</B> delle sue <FONT COLOR="Green"><B>istanze</B></FONT> possono essere
+  usati direttamente come <FONT COLOR="Green"><B>operandi</B></FONT> in molte
+  operazioni o come <FONT COLOR="Maroon"><B>argomenti</B></FONT> nelle
+  <B>chiamate</B> di <FONT COLOR="Green"><B>funzioni</B></FONT>, consentendo
+  un notevole risparmio, soprattutto quando il numero di
+  <FONT COLOR="Green"><B>membri</B></FONT> &eacute; elevato. </BIG>
+  <P ALIGN=Justify>
+  <BIG>In alcune operazioni, tuttavia, &eacute; necessario accedere a un
+  <FONT COLOR="Green"><B>membro</B></FONT> individualmente. Ci&ograve; &eacute;
+  possibile grazie all'<U><FONT COLOR="Green"><B>operatore binario</B></FONT>
+  <FONT COLOR="Blue"><B>&nbsp;&nbsp;.&nbsp;&nbsp;</B></FONT> di
+  <FONT COLOR="Purple"><B>accesso al singolo membro</B></FONT></U>: questo
+  <FONT COLOR="Green"><B>operatore</B></FONT> ha come
+  <FONT COLOR="Green"><B>left-operand </B></FONT>il nome
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT> e come
+  <FONT COLOR="Green"><B>right-operand </B></FONT>quello del
+  <FONT COLOR="Green"><B>membro</B></FONT>. <BR>
+  Es.: &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Maroon"><B>ana2</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+      COLOR="Maroon"><B>indirizzo</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>Come altri <FONT COLOR="Green"><B>operatori</B></FONT> che svolgono
+  compiti analoghi (per esempio
+  l'<FONT COLOR="Green"><B>operatore</B></FONT> <FONT COLOR="Blue"><B>[
+  ]</B></FONT> di <FONT COLOR="Purple"><B>accesso al singolo elemento di un
+  array</B></FONT>), anche l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>.</B></FONT> pu&ograve; restituire sia un
+  <FONT COLOR="Green"><B>r-value</B></FONT> (<B>lettura</B> di un dato) che
+  un <FONT COLOR="Green"><B>l-value</B></FONT> (<B>inserimento</B> di un dato).
+  </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD WIDTH="8%"><BIG>Es.:</BIG></TD>
+      <TD WIDTH="25%"><BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>a</B></FONT> <FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>ana1</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>anni</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG><B>inizializza</B> <FONT COLOR="Maroon"><B>a</B></FONT> con il valore
+	del <FONT COLOR="Green"><B>membro</B></FONT>
+	<FONT COLOR="Maroon"><B>anni</B></FONT>
+	dell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+	<FONT COLOR="Maroon"><B>ana1</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>ana3</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>anni</B></FONT> <FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>27</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG><B>inserisce</B> <FONT COLOR="Maroon"><B>27</B></FONT> nel
+	<FONT COLOR="Green"><B>membro</B></FONT>
+	<FONT COLOR="Maroon"><B>anni</B></FONT>
+	dell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+	<FONT COLOR="Maroon"><B>ana3</B></FONT> </BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Puntatori a strutture - Operatore -&gt;
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Come tutti i <FONT COLOR="Green"><B>tipi</B></FONT> del
+  <FONT COLOR="Red"><B>C++</B></FONT> (e del
+  <FONT COLOR="Red"><B>C</B></FONT>), anche i
+  <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>astratti</B></I>, e in particolare
+  le <FONT COLOR="Green"><B>strutture</B></FONT>, hanno i propri
+  <FONT COLOR="Green"><B>puntatori</B></FONT>. Per esempio (notare le differenze):
+  </BIG>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<BIG><FONT COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Maroon"><B>p_anni
+  </B></FONT><FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Blue"><B>&amp;</B></FONT><FONT COLOR="Maroon"><B>ana1</B></FONT><FONT
+      COLOR="Blue"><B>.</B></FONT><FONT COLOR="Maroon"><B>anni</B></FONT><FONT
+      COLOR="Blue"><B>;</B></FONT> <BR>
+  <FONT COLOR="#cc0000"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp;
+  &nbsp;anagrafico</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Maroon"><B>p_anag</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Blue"><B>&amp;</B></FONT><FONT COLOR="Maroon"><B>ana1</B></FONT><FONT
+      COLOR="Blue"><B>;</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>nel primo caso <B>definisce</B> un normale
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Blue"><B>int</B></FONT>, che <B>inizializza</B> con
+  l'<FONT COLOR="Purple"><B>indirizzo</B></FONT> del
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Maroon"><B>anni</B></FONT>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Maroon"><B>ana1</B></FONT>; nel secondo caso <B>definisce</B>
+  un <FONT COLOR="Green"><B>puntatore</B></FONT> al
+  <FONT COLOR="Green"><B>tipo-struttura</B></FONT>
+  <FONT COLOR="#cc0000"><B>anagrafico</B></FONT>, che <B>inizializza</B> con
+  l'<FONT COLOR="Purple"><B>indirizzo</B></FONT>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Maroon"><B>ana1</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Per accedere a un <FONT COLOR="Green"><B>membro</B></FONT> di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  (<FONT COLOR="Green"><B>istanza</B></FONT> di una
+  <FONT COLOR="Green"><B>struttura</B></FONT>) di cui &eacute; dato il
+  <FONT COLOR="Green"><B>puntatore</B></FONT>, bisogna eseguire
+  un'<FONT COLOR="Green"><B>operazione </B></FONT>di
+  <FONT COLOR="Purple"><B>deref.</B></FONT> . Riprendendo l'esempio precedente,
+  si potrebbe pensare che la forma corretta
+  dell'<FONT COLOR="Green"><B>operazione </B></FONT>sia: <BR>
+  <FONT COLOR="Blue"><B><SUB><BIG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp;
+  &nbsp;*</BIG></SUB></B></FONT><FONT COLOR="Maroon"><B>p_anag</B></FONT><FONT
+      COLOR="Blue"><B>.</B></FONT><FONT COLOR="Maroon"><B>anni</B></FONT> <BR>
+  <U>e invece non lo &eacute;</U>, in quanto
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>.</B></FONT> ha la precedenza
+  sull'<FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>deref.</B></FONT> e quindi il compilatore darebbe
+  messaggio di errore, interpretando
+  <FONT COLOR="Maroon"><B>p_anag</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+      COLOR="Maroon"><B>anni</B></FONT> come un <B>indirizzo</B> da
+  <FONT COLOR="Purple"><B>dereferenziare </B></FONT>(l'interpretazione sarebbe
+  giusta se esistesse un <FONT COLOR="Green"><B>oggetto</B></FONT> di nome
+  <FONT COLOR="Maroon"><B>p_anag</B></FONT> con un
+  <FONT COLOR="Green"><B>membro</B></FONT> di nome
+  <FONT COLOR="Maroon"><B>anni</B></FONT> definito
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Blue"><B>int</B></FONT>, e invece esiste un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> di nome
+  <FONT COLOR="Maroon"><B>p_anag</B></FONT> a un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> con un
+  <FONT COLOR="Green"><B>membro</B></FONT> di nome
+  <FONT COLOR="Maroon"><B>anni</B></FONT> definito
+  <FONT COLOR="Blue"><B>int</B></FONT>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Perch&eacute; il risultato sia corretto bisognerebbe inserire la
+  <FONT COLOR="Purple"><B>deref.</B></FONT> del
+  <FONT COLOR="Green"><B>puntatore</B></FONT> fra parentesi, cio&egrave;: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>(<SUB><BIG>*</BIG></SUB></B></FONT><FONT COLOR="Maroon"><B>p_anag</B></FONT><FONT
+      COLOR="Blue"><B>).</B></FONT><FONT COLOR="Maroon"><B>anni</B></FONT> <BR>
+  il <FONT COLOR="Red"><B>C++</B></FONT> (come il
+  <FONT COLOR="Red"><B>C</B></FONT>) consente di evitare questa "fatica" mettendo
+  a disposizione un altro <FONT COLOR="Green"><B>operatore</B></FONT>, che
+  restituisce un identico risultato: <BR>
+  <FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;p_anag</B></FONT><FONT COLOR="Blue"><B>-&gt;</B></FONT><FONT COLOR="Maroon"><B>anni</B></FONT>
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>In generale l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>-&gt;</B></FONT> permette di accedere a un
+  <FONT COLOR="Green"><B>membro</B></FONT> (indicato dal
+  <FONT COLOR="Green"><B>right-operand</B></FONT>) di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>,
+  <FONT COLOR="Green"><B>istanza</B></FONT> di una
+  <FONT COLOR="Green"><B>struttura</B></FONT>, il cui <B>indirizzo</B> &eacute;
+  dato nel <FONT COLOR="Green"><B>left-operand </B></FONT>(ovviamente anche
+  questo <FONT COLOR="Green"><B>operatore</B></FONT> pu&ograve; restituire
+  sia un <FONT COLOR="Green"><B>r-value</B></FONT> che un
+  <FONT COLOR="Green"><B>l-value</B></FONT>). </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Unioni</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Le <FONT COLOR="Green"><B>unioni</B></FONT> sono identiche alle
+  <FONT COLOR="Green"><B>strutture</B></FONT> (sono introdotte dalla
+  <I><B>parola-chiave</B></I> <FONT COLOR="Blue"><B>union</B></FONT> al posto
+  di <FONT COLOR="Blue"><B>struct</B></FONT>), eccetto nel fatto che i
+  <FONT COLOR="Green"><B>membri</B></FONT> di ogni loro
+  <FONT COLOR="Green"><B>istanza</B></FONT> <U>occupano la stessa area di
+  memoria</U>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>In pratica un'<FONT COLOR="Green"><B>unione</B></FONT> consente di
+  utilizzare un solo <FONT COLOR="Green"><B>membro</B></FONT> per ogni
+  <FONT COLOR="Green"><B>oggetto</B></FONT> (anche se i
+  <FONT COLOR="Green"><B>membri</B></FONT> definiti sono pi&ugrave; d'uno)
+  e servono quando pu&ograve; essere comodo selezionare ogni volta il
+  <FONT COLOR="Green"><B>membro</B></FONT> pi&ugrave; appropriato, in base
+  alle necessit&agrave;. </BIG>
+  <P ALIGN=Justify>
+  <BIG>L'occupazione di memoria &nbsp;di
+  un'<FONT COLOR="Green"><B>unione</B></FONT> coincide con quella del
+  <FONT COLOR="Green"><B>membro</B></FONT> di dimensioni maggiori.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Array di
+strutture</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo visto negli esempi che i
+  <FONT COLOR="Green"><B>membri</B></FONT> di una
+  <FONT COLOR="Green"><B>struttura</B></FONT> possono essere
+  <FONT COLOR="Green"><B>array</B></FONT>. Anche le
+  <FONT COLOR="Green"><B>istanze</B></FONT> di una
+  <FONT COLOR="Green"><B>struttura</B></FONT> possono essere
+  <FONT COLOR="Green"><B>array</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.:</BIG> &nbsp;</TD>
+      <TD><BIG><B>definizione</B>:</BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>struct</B></FONT>
+	<FONT COLOR="#cc0000"><B>tipo_stud</B></FONT>
+	<FONT COLOR="Blue"><B>{</B></FONT> <FONT COLOR="Blue"><B>char</B></FONT>
+	<FONT COLOR="Maroon"><B>nome</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>20</B></FONT><FONT COLOR="Blue"><B>];</B></FONT>
+	<FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>voto</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>50</B></FONT><FONT COLOR="Blue"><B>];}</B></FONT>
+	<FONT COLOR="Blue"><B>;</B></FONT> </BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><B>costruzione</B> <FONT COLOR="Green"><B>oggetti</B></FONT>: &nbsp;
+	&nbsp;</BIG></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>tipo_stud</B></FONT>
+	<FONT COLOR="Maroon"><B>studente</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>40</B></FONT><FONT COLOR="Blue"><B>];</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><B>accesso</B>:</BIG></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>studente</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>5</B></FONT><FONT COLOR="Blue"><B>].</B></FONT><FONT COLOR="Maroon"><B>voto</B></FONT><FONT
+	    COLOR="Blue"><B>[</B></FONT><FONT COLOR="Maroon"><B>10</B></FONT><FONT COLOR="Blue"><B>]</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>30</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD COLSPAN=2><BIG>(lo <FONT COLOR="Maroon"><B>studente</B></FONT>
+	n.<FONT COLOR="Maroon"><B>5</B></FONT> ha preso
+	<FONT COLOR="Maroon"><B>30</B></FONT> nella prova
+	n.<FONT COLOR="Maroon"><B>10</B></FONT> !)</BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Dichiarazione di strutture e membri
+di tipo struttura</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B>membri</B></FONT> di una
+  <FONT COLOR="Green"><B>struttura</B></FONT> possono essere a loro volta di
+  <FONT COLOR="Green"><B>tipo</B></FONT>&nbsp;
+  <FONT COLOR="Green"><B>struttura</B></FONT>. Esiste per&ograve; il problema
+  di fare riconoscere tale <FONT COLOR="Green"><B>struttura</B></FONT> al
+  compilatore. Le soluzione pi&ugrave; semplice &egrave; <B>definire</B> la
+  <FONT COLOR="Green"><B>struttura </B></FONT>a cui appartiene il
+  <FONT COLOR="Green"><B>membro</B></FONT> <U>prima</U> della
+  <FONT COLOR="Green"><B>struttura</B></FONT> che contiene il
+  <FONT COLOR="Green"><B>membro</B></FONT> (cos&igrave; il compilatore &eacute;
+  in grado di riconoscerne il <FONT COLOR="Green"><B>tipo</B></FONT>). Tuttavia
+  capita non di rado che la stessa
+  <FONT COLOR="Green"><B>struttura</B></FONT> a cui appartiene il
+  <FONT COLOR="Green"><B>membro</B></FONT> contenga informazioni che la collegano
+  alla <FONT COLOR="Green"><B>struttura</B></FONT> principale: in questi casi
+  viene a determinarsi la cosidetta "<I><B>dipendenza circolare</B></I>",
+  apparentemente senza soluzione.</BIG>
+  <P ALIGN=Justify>
+  <BIG>In realt&agrave; il <FONT COLOR="Red"><B>C++</B></FONT> offre una soluzione
+  semplicissima: <B>dichiarare</B> la
+  <FONT COLOR="Green"><B>struttura</B></FONT> <U>prima</U> di <B>definirla</B>!
+  La <B>dichiarazione</B> di una
+  <FONT COLOR="Green"><B>struttura</B></FONT> consiste in una istruzione in
+  cui appaiono esclusivamente la <I><B>parola-chiave
+  </B></I><FONT COLOR="Blue"><B>struct</B></FONT> e
+  l'<FONT COLOR="Green"><B>identificatore</B></FONT> della
+  <FONT COLOR="Green"><B>struttura</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Es.: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>struct</B></FONT> <FONT COLOR="#cc0000"><B>&nbsp; &nbsp;
+  data </B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>chiaramente si tratta di una
+  <B>dichiarazione</B>-<B>non</B>-<B>definizione</B> (questo &egrave; il terzo
+  caso che incontriamo, dopo le <B>dichiarazioni</B> di variabili con le
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>extern</B></FONT> e le <B>dichiarazioni</B> di
+  <FONT COLOR="Green"><B>funzioni</B></FONT>), nel senso che non rende ancora
+  la <FONT COLOR="Green"><B>struttura</B></FONT> utilizzabile, ma &egrave;
+  sufficiente affinch&egrave; il compilatore accetti
+  <FONT COLOR="#cc0000"><B>data</B></FONT> <U>come
+  <FONT COLOR="Green"><B>tipo</B></FONT> di una
+  <FONT COLOR="Green"><B>struttura</B></FONT> <B>definita</B>
+  successivamente</U>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Allora il problema &egrave; risolto ? <U>No !</U> Perch&egrave; no ?
+  Perch&egrave; il compilatore ha un'altra esigenza oltre quella di riconoscere
+  i <FONT COLOR="Green"><B>tipi</B></FONT>: <U>deve essere anche in grado di
+  calcolare le dimensioni di una
+  <FONT COLOR="Green"><B>struttura</B></FONT></U> e non lo pu&ograve; fare
+  se questa contiene <FONT COLOR="Green"><B>membri</B></FONT> di
+  <FONT COLOR="Green"><B>strutture</B></FONT> non <B>definite</B>.</BIG>
+  <BIG>Solo nel caso che i <FONT COLOR="Green"><B>membri</B></FONT> in questione
+  siano <FONT COLOR="Green"><B>puntatori</B></FONT> questo problema non sussiste,
+  in quanto le dimensioni di un <FONT COLOR="Green"><B>puntatore</B></FONT>
+  sono fisse e indipendenti dal <FONT COLOR="Green"><B>tipo</B></FONT> della
+  <B>variabile puntata</B>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Pertanto, <U>la <I><B>dipendenza circolare</B></I> fra
+  <FONT COLOR="Green"><B>membri</B></FONT> di
+  <FONT COLOR="Green"><B>strutture</B></FONT> diverse pu&ograve; essere spezzata
+  solo se almeno in una <FONT COLOR="Green"><B>struttura</B></FONT> i
+  <FONT COLOR="Green"><B>membri</B></FONT>&nbsp; coinvolti sono
+  <FONT COLOR="Green"><B>puntatori</B></FONT></U>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Per</BIG> <BIG>esempio, una sequenza corretta potrebbe essere: </BIG>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD><BIG><FONT COLOR="Blue"><B>struct</B></FONT>
+	<FONT COLOR="#cc0000"><B>&nbsp; &nbsp;data
+	</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD>&nbsp;</TD>
+      <TD WIDTH="60%"><BIG><B>dichiarazione</B> anticipata della</BIG>
+	<BIG><FONT COLOR="Green"><B>struttura</B></FONT></BIG>
+	<BIG><FONT COLOR="#cc0000"><B>data</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><FONT COLOR="Blue"><B>struct</B></FONT>
+	<FONT COLOR="#cc0000"><B>persona</B></FONT>
+	<FONT COLOR="Blue"><B>{</B></FONT> <FONT COLOR="Blue"><B>char</B></FONT>
+	<FONT COLOR="Maroon"><B>nome</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>20</B></FONT><FONT COLOR="Blue"><B>];</B></FONT>
+	<FONT COLOR="#cc0000"><B>data</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><FONT
+	    COLOR="#cc0000"><B>
+	</B></FONT><FONT COLOR="Maroon"><B>pnascita</B></FONT><FONT COLOR="Blue"><B>;}</B></FONT>
+	<FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG><B>definizione</B> della
+	<FONT COLOR="Green"><B>struttura</B></FONT> principale
+	<FONT COLOR="#cc0000"><B>persona</B></FONT> con un
+	<FONT COLOR="Green"><B>membro</B></FONT> <FONT COLOR="Green"><B>puntatore
+	&nbsp;</B></FONT>a
+	&nbsp;<FONT COLOR="#cc0000"><B>data</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><FONT COLOR="Blue"><B>struct</B></FONT>
+	<FONT COLOR="#cc0000"><B>data
+	</B></FONT><FONT COLOR="Blue"><B>{</B></FONT>
+	<FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>giorno</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+	<FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>mese</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+	<FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>anno</B></FONT><FONT COLOR="Blue"><B>;
+	</B></FONT><FONT COLOR="#cc0000"><B>persona</B></FONT>
+	<FONT COLOR="Maroon"><B>caio</B></FONT><FONT COLOR="Blue"><B>; }</B></FONT>
+	<FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG><B>definizione</B></BIG> <BIG>della</BIG>
+	<BIG><FONT COLOR="Green"><B>struttura</B></FONT></BIG>
+	<BIG><FONT COLOR="#cc0000"><B>data</B></FONT></BIG> <BIG>con un
+	<FONT COLOR="Green"><B>membro</B></FONT> di
+	<FONT COLOR="Green"><B>tipo</B></FONT>
+	<FONT COLOR="#cc0000"><B>persona</B></FONT> </BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG> in questo modo il <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Maroon"><B>pnascita</B></FONT> della
+  <FONT COLOR="Green"><B>struttura</B></FONT>
+  <FONT COLOR="#cc0000"><B>persona</B></FONT> &egrave; riconosciuto come
+  <FONT COLOR="Green"><B>puntatore</B></FONT>&nbsp; al
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="#cc0000"><B>data</B></FONT> prima ancora che la
+  <FONT COLOR="Green"><B>struttura</B></FONT>
+  <FONT COLOR="#cc0000"><B>data</B></FONT> sia <B>definita</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Con lo stesso ragionamento si pu&ograve; dimostrare che &egrave; possibile
+  <B>dichiarare</B> dei <FONT COLOR="Green"><B>membri</B></FONT> di una
+  <FONT COLOR="Green"><B>struttura</B></FONT> come
+  <FONT COLOR="Green"><B>puntatori</B></FONT> <U>alla
+  </U><FONT COLOR="Green"><B><U>struttura</U></B></FONT><U> stessa</U> (per
+  esempio, quando si devono costruire delle&nbsp;<I><B>liste
+  concatenate</B></I>). In questo caso, poi, la <B>dichiarazione</B> anticipata
+  non serve in quanto il compilatore conosce gi&agrave; il <B>nome</B> della
+  <FONT COLOR="Green"><B>struttura</B></FONT> che appare all'inizio della sua
+  <B>definizione</B>.</BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD><FONT COLOR="Red"><BIG><B>Nota:</B></BIG></FONT> &nbsp;</TD>
+      <TD><P ALIGN=Justify>
+	<BIG>La <I><B>dipendenza circolare</B></I> si pu&ograve; avere anche fra
+	le <FONT COLOR="Green"><B>funzioni</B></FONT> (una
+	<FONT COLOR="Green"><B>funzione</B></FONT>
+	<FONT COLOR="Maroon"><B>A</B></FONT> che chiama una
+	<FONT COLOR="Green"><B>funzione</B></FONT>
+	<FONT COLOR="Maroon"><B>B</B></FONT> che chiama una
+	<FONT COLOR="Green"><B>funzione</B></FONT>
+	<FONT COLOR="Maroon"><B>C</B></FONT> &nbsp;che a sua volta chiama la
+	<FONT COLOR="Green"><B>funzione</B></FONT>
+	<FONT COLOR="Maroon"><B>A</B></FONT>). Ma in questi casi le
+	<B>dichiarazioni</B> contengono gi&agrave; tutte le informazioni necessarie
+	e quindi il problema si risolve semplicemente <B>dichiarando</B>
+	<FONT COLOR="Maroon"><B>A</B></FONT> <U>prima</U> di <B>definire</B>
+	(nell'ordine) <FONT COLOR="Maroon"><B>C</B></FONT>,
+	<FONT COLOR="Maroon"><B>B</B></FONT> e la stessa
+	<FONT COLOR="Maroon"><B>A</B></FONT>.</BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  &nbsp;<BR>
+  <BIG>Per accedere a un <FONT COLOR="Green"><B>membro</B></FONT> di una la
+  <FONT COLOR="Green"><B>struttura </B></FONT>al cui
+  <FONT COLOR="Green"><B>tipo</B></FONT> appartiene il
+  <FONT COLOR="Green"><B>membro</B></FONT> di un certo
+  <FONT COLOR="Green"><B>oggetto</B></FONT>, &eacute; necessario ripetere due
+  volte l'operazione con l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>.</B></FONT></BIG> <BIG>(e/o con
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>-&gt;</B></FONT> se il
+  <FONT COLOR="Green"><B>membro</B></FONT>&nbsp;&egrave; un
+  <FONT COLOR="Green"><B>puntatore</B></FONT>). Seguitando con lo stesso esempio
+  :</BIG><BR>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD WIDTH="30%"><BIG><B>costruzione</B>
+	<FONT COLOR="Green"><B>oggetto</B></FONT>: &nbsp; &nbsp;</BIG></TD>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="#cc0000"><B>persona</B></FONT>
+	<FONT COLOR="Maroon"><B>tizio</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG>
+	<BIG>(da qualche altra parte bisogna anche creare un
+	<FONT COLOR="Green"><B>oggetto</B></FONT> di
+	<FONT COLOR="Green"><B>tipo</B></FONT>
+	<FONT COLOR="#cc0000"><B>data</B></FONT> e
+	<FONT COLOR="Purple"><B>assegnare</B></FONT> il suo
+	<FONT COLOR="Purple"><B>indirizzo</B></FONT> a
+	<FONT COLOR="Maroon"><B>tizio</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>pnascita</B></FONT>)</BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><B>accesso</B>:</BIG></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>tizio</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>pnascita</B></FONT><FONT COLOR="Blue"><B>-&gt;</B></FONT><FONT
+	    COLOR="Maroon"><B>anno</B></FONT> <FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>1957</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>come si pu&ograve; notare dall'esempio, il numero
+  <FONT COLOR="Maroon"><B>1957</B></FONT> &eacute; stato inserito nel
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Maroon"><B>anno</B></FONT>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT> il cui <B>indirizzo</B> si
+  trova nel <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Green"><B>puntatore</B></FONT>
+  <FONT COLOR="Maroon"><B>pnascita</B></FONT>
+  dell'<FONT COLOR="Green"><B>istanza
+  </B></FONT><FONT COLOR="Maroon"><B>tizio</B></FONT> della
+  <FONT COLOR="Green"><B>struttura</B></FONT>
+  <FONT COLOR="#cc0000"><B>persona</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p37/ident.h">[p37]</A><A HREF="p37/ident.cpp">[p37]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Strutture di tipo bit
+field</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Le <FONT COLOR="Green"><B>strutture</B></FONT> di tipo
+  <FONT COLOR="Green"><B>bit field </B></FONT>permettono di riservare ad ogni
+  <FONT COLOR="Green"><B>membro</B></FONT> un determinato numero di bit di
+  memoria, consentendo notevoli risparmi; il
+  <FONT COLOR="Green"><B>tipo</B></FONT> di ogni
+  <FONT COLOR="Green"><B>membro</B></FONT> deve essere
+  <FONT COLOR="Blue"><B>unsigned int</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Es.: &nbsp; &nbsp; &nbsp; <FONT COLOR="Blue"><B>struct</B></FONT>
+  <FONT COLOR="#cc0000"><B>&nbsp;bit</B></FONT> <FONT COLOR="Blue"><B>&nbsp;
+  {</B></FONT> <FONT COLOR="Blue"><B>unsigned int</B></FONT>
+  <FONT COLOR="Maroon"><B>ma</B></FONT><FONT COLOR="Blue"><B>:</B></FONT><FONT
+      COLOR="Maroon"><B>2</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>&nbsp;<FONT
+      COLOR="Blue"><B>unsigned int</B></FONT>
+  <FONT COLOR="Maroon"><B>mb</B></FONT><FONT COLOR="Blue"><B>:</B></FONT><FONT
+      COLOR="Maroon"><B>1</B></FONT><FONT COLOR="Blue"><B>; }</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>la presenza dei <U>due punti</U>, seguita dal numero di bit riservati,
+  identifica la <B>definizione</B> di una
+  <FONT COLOR="Green"><B>struttura</B></FONT> di tipo
+  <FONT COLOR="Green"><B>bit field</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Tipi
+enumerati</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Con la <I><B>parola-chiave</B></I>
+  <FONT COLOR="Blue"><B>enum</B></FONT> si <B>definiscono</B> i
+  <FONT COLOR="Green"><B>tipi enumerati</B></FONT>, le cui
+  <FONT COLOR="Green"><B>istanze</B></FONT> <U>possono assumere solo i valori
+  specificati in un elenco</U>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Es.: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>enum</B></FONT>
+  <FONT COLOR="#cc0000"><B>feriale</B></FONT>
+  <FONT COLOR="Blue"><B>{</B></FONT>
+  <FONT COLOR="Maroon"><B>Lun</B></FONT><FONT COLOR="Blue"><B>,
+  </B></FONT><FONT COLOR="Maroon"><B>Mar</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>Mer</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>Gio</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>Ven</B></FONT> <FONT COLOR="Blue"><B>}</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>dove: <FONT COLOR="#cc0000"><B>feriale</B></FONT> &egrave; il nome del
+  <FONT COLOR="Green"><B>tipo enumerato</B></FONT> e le
+  <FONT COLOR="Green"><B>costanti</B></FONT> fra parentesi graffe sono i
+  <B>valori</B> possibili (detti
+  <FONT COLOR="Green"><B>enumeratori</B></FONT>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>In realt&agrave; agli <FONT COLOR="Green"><B>enumeratori</B></FONT>
+  sono assegnati <U>numeri interi</U>, a partire da
+  <FONT COLOR="Maroon"><B>0</B></FONT> e con incrementi di
+  <FONT COLOR="Maroon"><B>1</B></FONT>, come se si usassero le
+  <FONT COLOR="Green"><B>direttive</B></FONT>: <FONT COLOR="Blue"><B><BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; #define</B></FONT>
+  <FONT COLOR="Maroon"><B>Lun</B></FONT>
+  <FONT COLOR="Maroon"><B>0</B></FONT> <FONT COLOR="Blue"><B>&nbsp; &nbsp;
+  &nbsp; &nbsp; #define</B></FONT> <FONT COLOR="Maroon"><B>Mar</B></FONT>
+  <FONT COLOR="Maroon"><B>1</B></FONT> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ecc...
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>Volendo assegnare numeri diversi (comunque sempre interi), bisogna
+  specificarlo. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Es.: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>enum</B></FONT>
+  <FONT COLOR="#cc0000"><B>dati</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>{</B></FONT>
+  <FONT COLOR="Maroon"><B>primo</B></FONT><FONT COLOR="Blue"><B>,
+  </B></FONT><FONT COLOR="Maroon"><B>secondo</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+      COLOR="Maroon"><B>12</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>terzo }</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG> in questo caso alla <FONT COLOR="Green"><B>costante</B></FONT>
+  <FONT COLOR="Maroon"><B>primo</B></FONT> &egrave; assegnato
+  <FONT COLOR="Maroon"><B>0</B></FONT>, a
+  <FONT COLOR="Maroon"><B>secondo</B></FONT> &egrave; assegnato
+  <FONT COLOR="Maroon"><B>12</B></FONT> e a
+  <FONT COLOR="Maroon"><B>terzo</B></FONT> &egrave; assegnato
+  <FONT COLOR="Maroon"><B>13</B></FONT>. Comunque l'uso degli
+  <FONT COLOR="Green"><B>enumeratori</B></FONT>, anzich&egrave; quello diretto
+  delle <FONT COLOR="Green"><B>costanti</B></FONT> numeriche corrispondenti,
+  &egrave; utile in quanto permette di scrivere codice pi&ugrave; chiaro ed
+  pi&ugrave; esplicativo di ci&ograve; che si vuole fare. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Analogamente al <I><B>tag</B></I> di una
+  <FONT COLOR="Green"><B>struttura</B></FONT>, il <B>nome</B> di un
+  <FONT COLOR="Green"><B>tipo enumerato</B></FONT> &eacute; assunto, in
+  <FONT COLOR="Red"><B>C++</B></FONT> come un nuovo
+  <FONT COLOR="Green"><B>tipo</B></FONT> del linguaggio. <BR>
+  Es.: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="#cc0000"><B>feriale</B></FONT>
+  <FONT COLOR="Maroon"><B>oggi</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT> <FONT COLOR="Maroon"><B>Mar</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT></BIG><BR>
+  <BIG><B>costruisce</B> l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Maroon"><B>oggi</B></FONT>,
+  <FONT COLOR="Green"><B>istanza</B></FONT> del <FONT COLOR="Green"><B>tipo
+  enumerato&nbsp;</B></FONT>
+  <FONT COLOR="#cc0000"><B>feriale</B></FONT><FONT COLOR="Blue"><B>
+  </B></FONT>e lo <B>inizializza</B> con il <B>valore</B>
+  dell'<FONT COLOR="Green"><B>enumeratore</B></FONT>
+  <FONT COLOR="Maroon"><B>Mar</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Un <FONT COLOR="Green"><B>oggetto</B></FONT> di
+  <FONT COLOR="Green"><B>tipo enumerato</B></FONT> pu&ograve; assumere
+  <B>valori</B> anche diversi da quelli specificati nella <B>definizione</B>.
+  L'intervallo di validit&agrave; (detto
+  <FONT COLOR="Green"><B>dominio</B></FONT>) di un <FONT COLOR="Green"><B>tipo
+  enumerato</B></FONT> contiene tutti i <B>valori</B> dei propri
+  <FONT COLOR="Green"><B>enumeratori</B></FONT> arrotondati alla minima potenza
+  di <B>2</B> maggiore o uguale al massimo enumeratore meno <B>1</B>. Il
+  <FONT COLOR="Green"><B>dominio</B></FONT> comincia da <B>0</B> se il minimio
+  <FONT COLOR="Green"><B>enumeratore</B></FONT> non &egrave; negativo; altrimenti
+  &egrave; il valore maggiore tra le potenze di due negative minori o uguali
+  del minimo <FONT COLOR="Green"><B>enumeratore</B></FONT> (si uguagliano poi
+  minimo e massimo scegliendo il pi&ugrave; grande in valore assoluto). In
+  ogni caso il <FONT COLOR="Green"><B>dominio</B></FONT> non pu&ograve; superare
+  il <I><B>range</B></I> del <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT>. </BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.:</BIG> &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>enum</B></FONT>
+	<FONT COLOR="#cc0000"><B>en1</B></FONT>
+	<FONT COLOR="Blue"><B>{</B></FONT>
+	<FONT COLOR="Maroon"><B>bello</B></FONT><FONT COLOR="Blue"><B>,
+	</B></FONT><FONT COLOR="Maroon"><B>brutto</B></FONT>
+	<FONT COLOR="Blue"><B>}</B></FONT> <FONT COLOR="Blue"><B>;</B></FONT>
+	</BIG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Green"><B>dominio</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Maroon"><B>0:1</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>enum</B></FONT>
+	<FONT COLOR="#cc0000"><B>en2</B></FONT>
+	<FONT COLOR="Blue"><B>{</B></FONT>
+	<FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>3</B></FONT><FONT COLOR="Blue"><B>,
+	</B></FONT><FONT COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>10</B></FONT> <FONT COLOR="Blue"><B>}</B></FONT>
+	<FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG><FONT COLOR="Green"><B>dominio</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Maroon"><B>0:15</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>enum</B></FONT>
+	<FONT COLOR="#cc0000"><B>en3</B></FONT>
+	<FONT COLOR="Blue"><B>{</B></FONT>
+	<FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>-38</B></FONT><FONT COLOR="Blue"><B>,
+	</B></FONT><FONT COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>850</B></FONT> <FONT COLOR="Blue"><B>}</B></FONT>
+	<FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG><FONT COLOR="Green"><B>dominio</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Maroon"><B>-1024:1023</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P>
+  <BIG>come si pu&ograve; notare, il numero complessivo degli
+  <FONT COLOR="Green"><B>enumeratori</B></FONT> possibili &egrave; sempre una
+  potenza di <B>2</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Per <B>inizializzare </B>un<B>
+  </B><FONT COLOR="Green"><B>oggetto</B></FONT> di <FONT COLOR="Green"><B>tipo
+  enumerato</B></FONT> con un <B>valore</B>
+  <FONT COLOR="Green"><B>intero</B></FONT> (anche diverso dalle
+  <FONT COLOR="Green"><B>costanti</B></FONT> incluse nella <B>definizione</B>,
+  purch&egrave; compreso nel <FONT COLOR="Green"><B>dominio</B></FONT>) &egrave;
+  obbligatorio il <FONT COLOR="Purple"><B>casting</B></FONT>.<BR>
+  </BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.:</BIG> &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>en2</B></FONT>
+	<FONT COLOR="Maroon"><B>oggetto1</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="#cc0000"><B>en2</B></FONT><FONT
+	    COLOR="Blue"><B>)</B></FONT><FONT COLOR="Maroon"><B>14</B></FONT>
+	<FONT COLOR="Blue"><B>;</B></FONT></BIG> &nbsp; &nbsp;</TD>
+      <TD><BIG>OK, <FONT COLOR="Maroon"><B>14</B></FONT> &egrave; compreso nel
+	<FONT COLOR="Green"><B>dominio</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>en2</B></FONT>
+	<FONT COLOR="Maroon"><B>oggetto2</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="#cc0000"><B>en2</B></FONT><FONT
+	    COLOR="Blue"><B>)</B></FONT><FONT COLOR="Maroon"><B>20</B></FONT>
+	<FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>risultato indefinito, <FONT COLOR="Maroon"><B>20</B></FONT> non
+	&egrave; compreso nel <FONT COLOR="Green"><B>dominio</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>en2</B></FONT>
+	<FONT COLOR="Maroon"><B>oggetto3</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT> <FONT COLOR="Maroon"><B>3</B></FONT>
+	<FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>errore: conversione <B>implicita</B> non ammessa</BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp;<BR>
+  <BIG>Gli <FONT COLOR="Green"><B>enumeratori</B></FONT> sono ammessi nelle
+  <FONT COLOR="Green"><B>operazioni</B></FONT> fra numeri
+  <FONT COLOR="Green"><B>interi</B></FONT> e, in questi casi, sono converititi
+  <B>implicitamente</B> in <FONT COLOR="Blue"><B>int</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#alldin"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

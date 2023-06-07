@@ -1,0 +1,1263 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Polimorfismo CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Polimorfismo
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Late binding e
+polimorfismo</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo gi&agrave; sentito parlare di <I><B>late binding</B></I> trattando
+  dei <FONT COLOR="Green"><B>puntatori</B></FONT> a
+  <FONT COLOR="Green"><B>funzione</B></FONT>: l'<I><B>aggancio</B></I> fra
+  il <B>programma chiamante</B> e la
+  <FONT COLOR="Green"><B>funzione</B></FONT> <B>chiamata</B> &eacute;
+  <I><B>ritardato</B></I> dal momento dalla
+  <FONT COLOR="Red"><B>compilazione</B></FONT> a quello
+  dell'<FONT COLOR="Red"><B>esecuzione</B></FONT>, perch&eacute; solo in quella
+  fase il <FONT COLOR="Red"><B>C++</B></FONT> pu&ograve; conoscere la
+  <FONT COLOR="Green"><B>funzione</B></FONT> selezionata, in base ai dati che
+  condizionano il flusso del programma. La scelta, tuttavia, avviene all'interno
+  di un insieme ben definito di <FONT COLOR="Green"><B>funzioni</B></FONT>,
+  diverse l'una dall'altra non solo nel contenuto ma anche nel
+  <B><U>nome</U></B>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Conosciamo anche il significato di
+  <FONT COLOR="Green"><B>polimorfismo</B></FONT>:
+  <FONT COLOR="Green"><B>funzioni-membro</B></FONT> con lo <U>stesso
+  <B>nome</B></U> e gli <U>stessi
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT></U>, ma appartenenti a
+  <FONT COLOR="Green"><B>oggetti</B></FONT> di
+  <FONT COLOR="Green"><B>classi</B></FONT> diverse. Nella terminologia del
+  <FONT COLOR="Red"><B>C++</B></FONT>,
+  <FONT COLOR="Green"><B>polimorfismo</B></FONT> significa: mandare agli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> lo stesso
+  <I><B>messaggio</B></I> ed ottenere da essi comportamenti diversi, sul modello
+  della vita reale, in cui termini simili determinano azioni diverse, in base
+  al contesto in cui vengono utilizzati. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Tuttavia il <FONT COLOR="Green"><B>polimorfismo</B></FONT> che abbiamo
+  esaminato finora &eacute; solo apparente: il <FONT COLOR="Green"><B>puntatore
+  </B></FONT>"<B><I>nascosto</I></B>"
+  <FONT COLOR="Blue"><B>this</B></FONT>, introdotto dal compilatore,
+  <U>differenzia gli <FONT COLOR="Maroon"><B>argomenti</B></FONT> delle
+  <FONT COLOR="Green"><B>funzioni</B></FONT></U>, e quindi non si tratta realmente
+  di <FONT COLOR="Green"><B>polimorfismo</B></FONT>, ma soltanto di
+  <FONT COLOR="Green"><B>overload</B></FONT>, cio&egrave; di un meccanismo
+  che, come sappiamo, permette al <FONT COLOR="Red"><B>C++</B></FONT> di
+  riconoscere e selezionare la <FONT COLOR="Green"><B>funzione</B></FONT> gi&agrave;
+  in fase di <FONT COLOR="Red"><B>compilazione</B></FONT> (<I><B>early
+  binding</B></I>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il "vero" <FONT COLOR="Green"><B>polimorfismo</B></FONT>, nella pienezza
+  del suo significato "filosofico", <U>deve</U> essere associato al <I><B>late
+  binding</B></I>: la differenziazione di comportamento degli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> in risposta allo stesso
+  <I><B>messaggio</B></I> non deve essere statica e predefinita, ma
+  <U>dinamica</U>, cio&egrave; deve essere determinata dal contesto del programma
+  in fase di <FONT COLOR="Red"><B>esecuzione</B></FONT>. Vedremo che ci&ograve;
+  &eacute; realizzabile solo nell'ambito di una stessa famiglia di
+  <FONT COLOR="Green"><B>classi</B></FONT>, e quindi il "vero"
+  <FONT COLOR="Green"><B>polimorfismo</B></FONT> non pu&ograve; prescindere
+  dall'<FONT COLOR="Green"><B>eredit&agrave; </B></FONT>e si applica a
+  <FONT COLOR="Green"><B>funzioni-membro</B></FONT>, con <U>lo stesso
+  <B>nome</B> e gli stessi
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT></U>, che appartengono sia alla
+  <FONT COLOR="Green"><B>classe base</B></FONT> che alle sue
+  <FONT COLOR="Green"><B>derivate</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Ambiguit&agrave; dei puntatori alla
+classe base</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Prendiamo il caso di due <FONT COLOR="Green"><B>classi</B></FONT>, di
+  nome <FONT COLOR="#cc0000"><B>A</B></FONT> e
+  <FONT COLOR="#cc0000"><B>B</B></FONT>, dove
+  <FONT COLOR="#cc0000"><B>A</B></FONT> &eacute; la
+  <FONT COLOR="Green"><B>classe base</B></FONT> e
+  <FONT COLOR="#cc0000"><B>B</B></FONT> una sua
+  <FONT COLOR="Green"><B>derivata</B></FONT>. Consideriamo due
+  <FONT COLOR="Green"><B>istanze</B></FONT>,
+  <FONT COLOR="Maroon"><B>a</B></FONT> e
+  <FONT COLOR="Maroon"><B>b</B></FONT>, rispettivamente di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> e di
+  <FONT COLOR="#cc0000"><B>B</B></FONT>. Supponiamo inoltre che entrambe le
+  <FONT COLOR="Green"><B>classi</B></FONT> contengano una
+  <FONT COLOR="Green"><B>funzione-membro</B></FONT>, di nome
+  <FONT COLOR="Maroon"><B>display</B></FONT><FONT COLOR="Blue"><B>()</B></FONT>,
+  non <FONT COLOR="Green"><B>ereditata</B></FONT> da
+  <FONT COLOR="#cc0000"><B>A</B></FONT> a
+  <FONT COLOR="#cc0000"><B>B</B></FONT>, ma <B>ridefinita</B> in
+  <FONT COLOR="#cc0000"><B>B</B></FONT> (traducendo letteralmente il termine
+  inglese "<I><B>overridden</B></I>", si suole dire, in questi casi, che la
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>display</B></FONT><FONT COLOR="Blue"><B>()</B></FONT>
+  di <FONT COLOR="#cc0000"><B>A</B></FONT> &eacute;
+  "<I><B>scavalcata</B></I>" nella <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>B</B></FONT>, ma &egrave; un termine "orrendo",
+  che non useremo mai). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Sappiamo che, per la regola della <B>dominanza</B>, ogni volta il
+  compilatore seleziona la <FONT COLOR="Green"><B>funzione</B></FONT> che
+  appartiene alla stessa <FONT COLOR="Green"><B>classe</B></FONT> a cui appartiene
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> (cio&egrave; la
+  <FONT COLOR="Green"><B>classe</B></FONT> indicata nell'istruzione
+  di&nbsp;<B>definizione</B>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT>), e quindi:</BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>display</B></FONT><FONT COLOR="Blue"><B>()</B></FONT> </BIG></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG>seleziona la <FONT COLOR="Green"><B>funzione-membro</B></FONT> di
+	<FONT COLOR="#cc0000"><B>A</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>display</B></FONT><FONT COLOR="Blue"><B>()</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG>seleziona la <FONT COLOR="Green"><B>funzione-membro</B></FONT> di
+	<FONT COLOR="#cc0000"><B>B</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Supponiamo ora di <B>definire</B> un
+  <FONT COLOR="Green"><B>puntatore</B></FONT>
+  <FONT COLOR="Maroon"><B>ptr</B></FONT> alla
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> e di &nbsp;<B>inizializzarlo</B> con
+  l'<FONT COLOR="Purple"><B>indirizzo</B></FONT>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Maroon"><B>a</B></FONT>: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Maroon"><B>ptr </B></FONT><FONT COLOR="Blue"><B>=
+  &amp;</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>;
+  </B></FONT><BR>
+  anche in questo caso la <FONT COLOR="Green"><B>funzione</B></FONT> pu&ograve;
+  essere selezionata senza ambiguit&agrave; e quindi l'istruzione:<BR>
+  <FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp;
+  ptr</B></FONT><FONT COLOR="Blue"><B>-&gt;</B></FONT><FONT COLOR="Maroon"><B>display</B></FONT><FONT
+      COLOR="Blue"><B>()</B></FONT> <BR>
+  accede alla <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>display</B></FONT><FONT COLOR="Blue"><B>()</B></FONT>
+  della <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo visto, tuttavia, che a un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> <B>definito</B> per una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>, possono essere
+  <FONT COLOR="Purple"><B>assegnati</B></FONT>
+  <FONT COLOR="Purple"><B>indirizzi</B></FONT> di
+  <FONT COLOR="Green"><B>oggetti</B></FONT> di
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>derivate</B></FONT>, e quindi il seguente codice &eacute;
+  valido: <BR>
+  <FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp;
+  </B></FONT><FONT COLOR="Blue"><B>if(</B></FONT><B>.......</B><FONT COLOR="Blue"><B>)</B></FONT>
+  &nbsp; <FONT COLOR="Maroon"><B>ptr</B></FONT> <FONT COLOR="Blue"><B>=
+  &amp;</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>;
+  <BR>
+  </B></FONT><FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; </B></FONT><FONT COLOR="Blue"><B>else</B></FONT>
+  <FONT COLOR="Maroon"><B>ptr</B></FONT> <FONT COLOR="Blue"><B>=
+  &amp;</B></FONT><FONT COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+  <BR>
+  in questo caso, dinanzi all'eventuale istruzione:
+  <FONT COLOR="Maroon"><B><BR>
+  &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;ptr</B></FONT><FONT COLOR="Blue"><B>-&gt;</B></FONT><FONT COLOR="Maroon"><B>display</B></FONT><FONT
+      COLOR="Blue"><B>()</B></FONT> <BR>
+  come si regola il compilatore, visto che
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> a cui punta
+  <FONT COLOR="Maroon"><B>ptr</B></FONT> &eacute; determinato in fase di
+  <FONT COLOR="Red"><B>esecuzione</B></FONT>? Di <I><B>default</B></I>, vale
+  ancora la regola della <B>dominanza</B> e quindi, essendo
+  <FONT COLOR="Maroon"><B>ptr</B></FONT> <B>definito</B> come
+  <FONT COLOR="Green"><B>puntatore</B></FONT> alla
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, viene selezionata la
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>display</B></FONT><FONT COLOR="Blue"><B>()</B></FONT>
+  della <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, anche se in
+  <FONT COLOR="Red"><B>esecuzione</B></FONT>
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> puntato dovesse appartenere alla
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>B</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Funzioni
+virtuali</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Negli esempi esaminati finora, la
+  <FONT COLOR="Green"><B>funzione-membro</B></FONT>
+  <FONT COLOR="Maroon"><B>display</B></FONT><FONT COLOR="Blue"><B>()</B></FONT>
+  &eacute; selezionata in fase di
+  <FONT COLOR="Red"><B><U>compilazione</U></B></FONT> (<I><B>early
+  binding</B></I>); ci&ograve; avviene anche nell'ultimo caso, sebbene
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> associato alla
+  <FONT COLOR="Green"><B>funzione</B></FONT> sia determinato solo in fase di
+  <FONT COLOR="Red"><B>esecuzione</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Se per&ograve;, nella <B>definizione</B> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, la
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>display</B></FONT><FONT COLOR="Blue"><B>()</B></FONT>
+  &eacute; <B>dichiarata</B> con lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  "<FONT COLOR="Blue"><B>virtual</B></FONT>", il
+  <FONT COLOR="Red"><B>C++</B></FONT> rinvia la scelta della
+  <FONT COLOR="Green"><B>funzione</B></FONT> appropriata alla fase di
+  <FONT COLOR="Red"><B><U>esecuzione</U></B></FONT> (<I><B>late
+  binding</B></I>). In questo modo si realizza il
+  <FONT COLOR="Green"><B>polimorfismo</B></FONT>: <U>lo stesso
+  <I><B>messaggio</B></I> (<FONT COLOR="Maroon"><B>display</B></FONT>), inviato
+  a <FONT COLOR="Green"><B>oggetti</B></FONT> di
+  <FONT COLOR="Green"><B>classi</B></FONT> diverse, induce a diversi
+  <I><B>comportamenti</B></I>, in funzione dei dati del programma</U>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Un <FONT COLOR="Green"><B>tipo</B></FONT> dotato di
+  <FONT COLOR="Green"><B>funzioni virtuali</B></FONT> &egrave; detto:
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Green"><B>polimorfo</B></FONT>. Per ottenere un comportamento
+  <FONT COLOR="Green"><B>polimorfo</B></FONT> in
+  <FONT COLOR="Red"><B>C++</B></FONT>, bisogna esclusivamente operare all'interno
+  di una <I><B>gerarchia</B></I> di
+  <FONT COLOR="Green"><B>classi</B></FONT> e alle seguenti condizioni: </BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la <B>dichiarazione</B> delle
+      <FONT COLOR="Green"><B>funzioni-membro</B></FONT> della
+      <FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="Green"><B>base</B></FONT> (interessate al
+      <FONT COLOR="Green"><B>polimorfismo</B></FONT>) deve essere specificata con
+      la <I><B>parola-chiave</B></I> <FONT COLOR="Blue"><B>virtual</B></FONT>;
+      non &egrave; obbligatorio (ma neppure vietato) ripetere la stessa
+      <I><B>parola-chiave</B></I> nelle <B>dichiarazioni</B> delle
+      <FONT COLOR="Green"><B>funzioni-membro</B></FONT> delle
+      <FONT COLOR="Green"><B>classi</B></FONT>
+      <FONT COLOR="Green"><B>derivate</B></FONT> (di solito lo si fa per migliorare
+      la leggibilit&agrave; del programma);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>una <FONT COLOR="Green"><B>funzione</B></FONT> <B>dichiarata</B>
+      <FONT COLOR="Blue"><B>virtual</B></FONT> deve essere sempre anche
+      <B>definita</B> (senza <FONT COLOR="Blue"><B>virtual</B></FONT>) nella
+      <FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="Green"><B>base</B></FONT> (al contrario delle normali
+      <FONT COLOR="Green"><B>funzioni</B></FONT> che possono essere
+      <B>dichiarate</B> senza essere <B>definite</B>, quando non si usano); invece,
+      una <FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="Green"><B>derivata</B></FONT> non ha l'obbligo di
+      <B>ridichiarare</B> (e <B>ridefinire</B>) <U>tutte</U> le
+      <FONT COLOR="Green"><B>funzioni virtuali</B></FONT> &nbsp;della
+      <FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="Green"><B>base</B></FONT>, ma solo quelle che le servono (quelle
+      non <B>ridefinite</B> vengono
+      <FONT COLOR="Green"><B>ereditate</B></FONT>);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>gli <FONT COLOR="Green"><B>oggetti</B></FONT> devono essere manipolati
+      soltanto attraverso <FONT COLOR="Green"><B>puntatori</B></FONT> (o
+      <FONT COLOR="Green"><B>riferimenti</B></FONT>); quando invece si accede a
+      un <FONT COLOR="Green"><B>oggetto</B></FONT> direttamente, il suo
+      <FONT COLOR="Green"><B>tipo</B></FONT> &egrave; gi&agrave; noto al
+      <FONT COLOR="Red"><B>compilatore</B></FONT> e quindi il
+      <FONT COLOR="Green"><B>polimorfismo</B></FONT> in
+      <FONT COLOR="Red"><B>esecuzione</B></FONT> non si attua.</BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <BIG>Si pu&ograve; anche aggirare la
+  <FONT COLOR="Green"><B>virtualizzazione</B></FONT>, <B>qualificando</B> il
+  <B>nome</B> della <FONT COLOR="Green"><B>funzione</B></FONT> con il solito
+  <FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>risoluzione della visibilit&agrave;</B></FONT>. Esempio:
+  <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Maroon"><B>ptr</B></FONT><FONT COLOR="Blue"><B>-&gt;</B></FONT><FONT
+      COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT COLOR="Maroon"><B>display</B></FONT><FONT
+      COLOR="Blue"><B>();</B></FONT><BR>
+  in questo caso esegue la <FONT COLOR="Green"><B>funzione</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, anche se questa &egrave; stata
+  <B>dichiarata</B> <FONT COLOR="Blue"><B>virtual</B></FONT> e
+  <FONT COLOR="Maroon"><B>ptr</B></FONT> punta a un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Tabelle delle funzioni
+virtuali</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Riprendiamo l'esempio precedente, aggiungendo una nuova
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> da
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, che chiamiamo
+  <FONT COLOR="#cc0000"><B>C</B></FONT>; questa
+  <FONT COLOR="Green"><B>classe</B></FONT> non <B>ridefinisce</B> la
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>display</B></FONT><FONT COLOR="Blue"><B>()</B></FONT>
+  ma la <FONT COLOR="Green"><B>eredita</B></FONT> da
+  <FONT COLOR="#cc0000"><B>A</B></FONT> (come appare nella seguente tabella,
+  dove il termine fra parentesi quadre &egrave; facoltativo): </BIG>
+  <P ALIGN=Justify>
+  <CENTER>
+    <TABLE BORDER CELLSPACING="5" CELLPADDING="5" ALIGN="Center">
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>class</B></FONT>
+	  <FONT COLOR="#cc0000"><B>A</B></FONT>
+	  </BIG><FONT COLOR="Blue"><BIG><B>{</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp;</TD>
+	<TD><BIG><FONT COLOR="Blue"><B>class</B></FONT>
+	  <FONT COLOR="#cc0000"><B>B</B></FONT> <FONT COLOR="Blue"><B>:
+	  public</B></FONT> <FONT COLOR="#cc0000"><B>A</B></FONT>
+	  </BIG><FONT COLOR="Blue"><BIG><B>{</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp;</TD>
+	<TD><BIG><FONT COLOR="Blue"><B>class</B></FONT>
+	  <FONT COLOR="#cc0000"><B>C</B></FONT> <FONT COLOR="Blue"><B>:
+	  public</B></FONT> <FONT COLOR="#cc0000"><B>A</B></FONT>
+	  </BIG><FONT COLOR="Blue"><BIG><B>{</B></BIG></FONT></TD>
+      </TR>
+      <TR>
+	<TD><BIG><B>........</B></BIG>
+	  &nbsp;<BIG>&nbsp;<FONT COLOR="Blue"><B>public:</B></FONT></BIG>
+	  &nbsp;<BIG><B>......</B></BIG></TD>
+	<TD>&nbsp; &nbsp;</TD>
+	<TD><BIG><B>.........</B></BIG>
+	  &nbsp;<BIG>&nbsp;<FONT COLOR="Blue"><B>public:</B></FONT></BIG>
+	  <BIG><B>......</B></BIG></TD>
+	<TD>&nbsp; &nbsp;</TD>
+	<TD><BIG><B>..............</B></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>virtual</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>void
+	  &nbsp;</B></FONT><FONT COLOR="Maroon"><B>display</B></FONT><FONT COLOR="Blue"><B>();</B></FONT></BIG></TD>
+	<TD>&nbsp; &nbsp;</TD>
+	<TD><BIG><B>[<FONT COLOR="Blue">virtual</FONT>]</B></BIG>
+	  <BIG><FONT COLOR="Blue"><B>void
+	  &nbsp;</B></FONT><FONT COLOR="Maroon"><B>display</B></FONT><FONT COLOR="Blue"><B>();</B></FONT></BIG></TD>
+	<TD>&nbsp; &nbsp;</TD>
+	<TD><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	<TD>&nbsp; &nbsp;</TD>
+	<TD><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	<TD>&nbsp; &nbsp;</TD>
+	<TD>&nbsp; &nbsp;</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>Se ora <FONT COLOR="Purple"><B>assegniamo</B></FONT> a
+  <FONT COLOR="Maroon"><B>ptr</B></FONT>
+  l'<FONT COLOR="Purple"><B>indirizzo</B></FONT> di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> che, in base al flusso dei dati
+  in <FONT COLOR="Red"><B>esecuzione</B></FONT>, pu&ograve; essere
+  indifferentemente di <FONT COLOR="#cc0000"><B>A</B></FONT>, di
+  <FONT COLOR="#cc0000"><B>B</B></FONT> o di
+  <FONT COLOR="#cc0000"><B>C</B></FONT>, dinanzi a istruzioni del tipo: <BR>
+  &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Maroon"><B>ptr</B></FONT><FONT COLOR="Blue"><B>-&gt;</B></FONT><FONT
+      COLOR="Maroon"><B>display</B></FONT><FONT COLOR="Blue"><B>()</B></FONT> <BR>
+  il <FONT COLOR="Red"><B>C++</B></FONT> seleziona in
+  <FONT COLOR="Red"><B>esecuzione</B></FONT> la funzione giusta, cio&egrave;
+  quella di <FONT COLOR="#cc0000"><B>A</B></FONT> se
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> appartiene ad
+  <FONT COLOR="#cc0000"><B>A</B></FONT> o a
+  <FONT COLOR="#cc0000"><B>C</B></FONT>, quella di
+  <FONT COLOR="#cc0000"><B>B</B></FONT> se
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> appartiene a
+  <FONT COLOR="#cc0000"><B>B</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Infatti il <FONT COLOR="Red"><B>C++</B></FONT> prepara, in fase di
+  <FONT COLOR="Red"><B>compilazione</B></FONT>, delle tabelle, dette
+  "<I><B>Tabelle virtuali</B></I>"&nbsp;o
+  <FONT COLOR="Blue"><B>vtables</B></FONT>, una per la
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> e una per ciascuna
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT>, in cui sistema gli
+  <B>indirizzi</B> di tutte le <FONT COLOR="Green"><B>funzioni
+  </B></FONT><B>dichiarate</B> <FONT COLOR="Green"><B>virtuali</B></FONT> nella
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>; aggiunge inoltre un nuovo
+  <FONT COLOR="Green"><B>membro</B></FONT> in ogni
+  <FONT COLOR="Green"><B>classe</B></FONT>, detto
+  <FONT COLOR="Blue"><B>vptr</B></FONT>, che punta alla corrispondente
+  <FONT COLOR="Blue"><B>vtable</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Il seguente diagramma chiarisce quanto detto, nel caso del nostro esempio:
+  </BIG>
+  <CENTER>
+    <IMG SRC="Polim1.gif" BORDER=0>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>In questo modo, in fase di
+  <FONT COLOR="Red"><B>esecuzione</B></FONT> il
+  <FONT COLOR="Red"><B>C++</B></FONT> pu&ograve; risalire,
+  dall'<B>indirizzo</B> contenuto nel
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Blue"><B>vptr</B></FONT>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT> puntato da
+  <FONT COLOR="Maroon"><B>ptr</B></FONT>
+  (<FONT COLOR="Blue"><B>vptr</B></FONT> &egrave; un
+  <FONT COLOR="Green"><B>dato-membro</B></FONT> e quindi &egrave;
+  <U>realmente</U> replicato in ogni
+  <FONT COLOR="Green"><B>oggetto</B></FONT>), all'<B>indirizzo</B> della corretta
+  <FONT COLOR="Green"><B>funzione</B></FONT> da selezionare. </BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Costruttori e distruttori
+virtuali</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B>distruttori</B></FONT> possono essere
+  <FONT COLOR="Green"><B>virtualizzati</B></FONT>, anzi, in certe condizioni
+  &egrave; praticamente indispensabile che lo siano, se si vuole assicurare
+  una corretta ripulitura della memoria. Infatti, proseguendo con il nostro
+  esempio e supponendo stavolta che gli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> siano allocati nell'area
+  <FONT COLOR="Purple"><B>heap</B></FONT>,
+  l'istruzione:<FONT COLOR="Blue"><B><BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;delete</B></FONT>
+  <FONT COLOR="Maroon"><B>ptr</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><BR>
+  assicura che sia invocato il
+  <FONT COLOR="Green"><B>distruttore</B></FONT>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT> realmente puntato da
+  <FONT COLOR="Maroon"><B>ptr</B></FONT> <U>solo se il
+  <FONT COLOR="Green"><B>distruttore</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> &egrave; stato <B>dichiarato</B>
+  <FONT COLOR="Blue"><B>virtual</B></FONT></U>; altrimenti chiamerebbe comunque
+  il <FONT COLOR="Green"><B>distruttore</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, anche quando, in
+  <FONT COLOR="Red"><B>esecuzione</B></FONT>, &egrave; stato
+  <FONT COLOR="Purple"><B>assegnato</B></FONT> a
+  <FONT COLOR="Maroon"><B>ptr</B></FONT>
+  l'<FONT COLOR="Purple"><B>indirizzo</B></FONT> di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Viceversa i <FONT COLOR="Green"><B>costruttori</B></FONT> non possono
+  essere <FONT COLOR="Green"><B>virtualizzati</B></FONT>, per il semplice motivo
+  che, quando &egrave; invocato un
+  <FONT COLOR="Green"><B>costruttore</B></FONT>,
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> non esiste ancora e quindi non
+  pu&ograve; neppure esistere un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> con il suo <B>indirizzo</B>.
+  In altre parole, la nozione di
+  "<FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>costruttore</B></FONT>" &egrave; una contraddizione
+  in termini.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Tuttavia &egrave; possibile aggirare questo ostacolo
+  <FONT COLOR="Green"><B>virtualizzando</B></FONT>, non il
+  <FONT COLOR="Green"><B>costruttore</B></FONT>, ma un altro <B>metodo</B>
+  della <FONT COLOR="Green"><B>classe</B></FONT>, <B>definito</B> in modo che
+  crei un nuovo <FONT COLOR="Green"><B>oggetto</B></FONT> della stessa
+  <FONT COLOR="Green"><B>classe</B></FONT> (si deve comunque partire da un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> gi&agrave; esistente) e si comporti
+  quindi come un "<FONT COLOR="Green"><B>costruttore polimorfo"</B></FONT>,
+  in cui il <FONT COLOR="Green"><B>tipo</B></FONT> dell'
+  <FONT COLOR="Green"><B>oggetto</B></FONT> <B>costruito</B> &egrave; determinato
+  in fase di <FONT COLOR="Red"><B>esecuzione</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Vediamo ora un'applicazione pratica di quanto detto. Riprendendo il
+  nostro solito esempio, supponiamo che la
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> sia provvista di un <B>metodo
+  pubblico</B> cos&igrave; definito:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT></BIG>
+  <BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+      COLOR="Maroon"><B>clone</B></FONT><FONT COLOR="Blue"><B>( ) &nbsp;{ &nbsp;return
+  new
+  </B></FONT><FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>(<SUB><BIG>*</BIG></SUB>this);
+  }</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>come si pu&ograve; notare, la
+  <FONT COLOR="Green"><B>funzione-membro</B></FONT>
+  <FONT COLOR="Maroon"><B>clone</B></FONT>&nbsp;crea un nuovo
+  <FONT COLOR="Green"><B>oggetto</B></FONT> nell'area
+  <FONT COLOR="Purple"><B>heap</B></FONT>, invocando il
+  <FONT COLOR="Green"><B>costruttore di copia</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> (oppure quello di
+  <I><B>default</B></I> se la <FONT COLOR="Green"><B>classe</B></FONT> ne &egrave;
+  sprovvista) con <FONT COLOR="Maroon"><B>argomento</B></FONT>
+  <FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>this</B></FONT>, e ne restituisce
+  l'<B>indirizzo</B>. Ogni <FONT COLOR="Green"><B>oggetto</B></FONT> pu&ograve;
+  pertanto generare una <B>copia</B> di se stesso <B>chiamando</B> la
+  <FONT COLOR="Maroon"><B>clone</B></FONT>. Analogamente <B>definiamo</B> una
+  <FONT COLOR="Green"><B>funzione-membro</B></FONT>
+  <FONT COLOR="Maroon"><B>clone</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT>
+  <FONT COLOR="#cc0000"><B>B</B></FONT>:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT></BIG>
+  <BIG><FONT COLOR="#cc0000"><B>B</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+      COLOR="Maroon"><B>clone</B></FONT><FONT COLOR="Blue"><B>( ) &nbsp;{ &nbsp;return
+  new
+  </B></FONT><FONT COLOR="Maroon"><B>B</B></FONT><FONT COLOR="Blue"><B>(<SUB><BIG>*</BIG></SUB>this);
+  }</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>Se ora <FONT COLOR="Green"><B>virtualizziamo</B></FONT> la
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>clone</B></FONT>, inserendo nella <B>definizione</B>
+  della <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> la <B>dichiarazione</B>:<BR>
+  <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  virtual</B></FONT></BIG>
+  <BIG><FONT COLOR="#cc0000"><B>&nbsp;A</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>&nbsp;</B></FONT><FONT
+      COLOR="Maroon"><B>clone</B></FONT><FONT COLOR="Blue"><B>();</B></FONT><BR>
+  troviamo in <FONT COLOR="#cc0000"><B>B</B></FONT> la <B>ridefinizione</B>
+  di una <FONT COLOR="Green"><B>funzione virtuale</B></FONT>, in quanto sono
+  coincidenti il <B>nome</B> (<FONT COLOR="Maroon"><B>clone</B></FONT>), la
+  lista degli <FONT COLOR="Maroon"><B>argomenti</B></FONT>
+  (<FONT COLOR="Blue"><B>void</B></FONT>) e il
+  <FONT COLOR="Green"><B>tipo</B></FONT> del <B>valore di ritorno</B>
+  (<FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT>),
+  e quindi possiamo ottenere da tale
+  <FONT COLOR="Green"><B>funzione</B></FONT> un comportamento
+  <FONT COLOR="Green"><B>polimorfo</B></FONT>. In particolare l'istruzione:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Maroon"><B>pnew
+  </B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>
+  ptr</B></FONT><FONT COLOR="Blue"><B>-&gt;</B></FONT><FONT COLOR="Maroon"><B>clone</B></FONT><FONT
+      COLOR="Blue"><B>();</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>crea un nuovo <FONT COLOR="Green"><B>oggetto</B></FONT> nell'area
+  <FONT COLOR="Purple"><B>heap</B></FONT> e <B>inizializza</B>
+  <FONT COLOR="Maroon"><B>pnew</B></FONT> con l'indirizzo di tale
+  <FONT COLOR="Green"><B>oggetto</B></FONT>; il
+  <FONT COLOR="Green"><B>tipo</B></FONT> di questo nuovo
+  <FONT COLOR="Green"><B>oggetto</B></FONT> &egrave; per&ograve; deciso solo
+  in fase di <FONT COLOR="Red"><B>esecuzione</B></FONT> (comportamento
+  <FONT COLOR="Green"><B>polimorfo</B></FONT> della
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>clone</B></FONT>) e coincide con il
+  <FONT COLOR="Green"><B>tipo</B></FONT> puntato da
+  <FONT COLOR="Maroon"><B>ptr</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p70/virtuali.h">[p70]</A><A HREF="p70/virtuali.cpp">[p70]</A>
+<A HREF="p70/virtmain.cpp">[p70]</A></BIG></BIG>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Scelta fra velocit&agrave; e
+polimorfismo</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Il processo <I><B>early binding </B></I>&egrave; pi&ugrave; veloce del
+  <I><B>late binding</B></I>, in quanto impegna il
+  <FONT COLOR="Red"><B>C++</B></FONT> solo in
+  <FONT COLOR="Red"><B>compilazione</B></FONT> e non crea nuove
+  <I><B>tabelle</B></I> o nuovi
+  <FONT COLOR="Green"><B>puntatori</B></FONT>; per questo motivo la specifica
+  <FONT COLOR="Blue"><B>virtual</B></FONT> <U>non &egrave;</U> di
+  <I><B>default</B></I>. Tuttavia &egrave; spesso utile rinunciare a un po'
+  di velocit&agrave; in cambio di altri vantaggi, come il
+  <FONT COLOR="Green"><B>polimorfismo</B></FONT>, grazie al quale &egrave;
+  il <FONT COLOR="Red"><B>C++</B></FONT> e non il programmatore a doversi
+  preoccupare di selezionare ogni volta il <I><B>comportamento</B></I> appropriato
+  in risposta allo stesso <I><B>messaggio</B></I>.</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Classi
+astratte</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Nel capitolo "<I><B>Tipi definiti dall'utente</B></I>" abbiamo ammesso
+  di utilizzare una nomenclatura "vecchia" identificando &nbsp;indiscriminatamente
+  con il termine "<FONT COLOR="Green"><B>tipo</B></FONT>
+  <I><B>astratto</B></I>" qualunque <FONT COLOR="Green"><B>tipo</B></FONT>
+  non <I><B>nativo</B></I> del linguaggio. E' giunto il momento di precisare
+  meglio cosa si intenda in <FONT COLOR="Red"><B>C++</B></FONT> per
+  "<FONT COLOR="Green"><B>tipo</B></FONT> <I><B>astratto</B></I>".</BIG>
+  <P ALIGN=Justify>
+  <BIG>Una <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>, se definita con
+  <FONT COLOR="Green"><B>funzioni virtuali</B></FONT>, "spiega" cosa sono in
+  grado di fare gli <FONT COLOR="Green"><B>oggetti</B></FONT> delle sue
+  <FONT COLOR="Green"><B>classi derivate</B></FONT>. Nel nostro esempio, la
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> "spiega" che tutti gli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> del programma possono essere
+  visualizzati, ognuno attraverso la propria funzione
+  <FONT COLOR="Maroon"><B>display</B></FONT><FONT COLOR="Blue"><B>()</B></FONT>.
+  In sostanza la <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> fornisce, oltre alle
+  <FONT COLOR="Green"><B>funzioni</B></FONT>, anche uno "<I><B>schema di
+  comportamento</B></I>" per le <FONT COLOR="Green"><B>classi
+  derivate</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Estremizzando questo concetto, si pu&ograve; creare una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> con
+  <U><FONT COLOR="Green"><B>funzioni virtuali</B></FONT> senza codice</U>,
+  dette <FONT COLOR="Green"><B>funzioni virtuali pure</B></FONT>. Non avendo
+  codice, queste <FONT COLOR="Green"><B>funzioni</B></FONT> servono solo da
+  "<I><B>schema di comportamento</B></I>" per le <FONT COLOR="Green"><B>classi
+  derivate</B></FONT> e vanno <B>dichiarate</B> nel seguente modo:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>virtual</B></FONT></BIG>
+  &nbsp;<BIG><FONT COLOR="Blue"><B>void
+  &nbsp;</B></FONT><FONT COLOR="Maroon"><B>display</B></FONT><FONT COLOR="Blue"><B>()
+  = 0;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>(nota: questo &egrave; l'unico caso in
+  <FONT COLOR="Red"><B>C++</B></FONT> di una <B>dichiarazione</B> con
+  <B>inizializzazione</B>!) in questo esempio, si definisce che ogni
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> avr&agrave; una sua
+  <FONT COLOR="Green"><B>funzione</B></FONT> di <U>visualizzazione</U>,
+  <B>chiamata</B> sempre con lo stesso <B>nome</B>, e selezionata ogni volta
+  correttamente grazie al
+  <FONT COLOR="Green"><B>polimorfismo</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Una <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> con almeno una
+  <FONT COLOR="Green"><B>funzione virtuale pura</B></FONT> &egrave; detta
+  <FONT COLOR="Green"><B><BIG>classe</BIG></B></FONT><BIG>
+  <FONT COLOR="Green"><B>base</B></FONT>
+  <FONT COLOR="Green"><B>astratta</B></FONT></BIG>, perch&eacute; definisce
+  la struttura di una <I><B>gerarchia</B></I> di
+  <FONT COLOR="Green"><B>classi</B></FONT>, ma non pu&ograve; essere
+  <FONT COLOR="Green"><B>istanziata</B></FONT> direttamente.</BIG>
+  <P ALIGN=Justify>
+  <BIG>A differenza dalle normali <FONT COLOR="Green"><B>funzioni
+  virtuali</B></FONT>, le <FONT COLOR="Green"><B>funzioni virtuali
+  pure</B></FONT> devono essere <B>ridefinite</B> <U>tutte</U> nelle
+  <FONT COLOR="Green"><B>classi derivate</B></FONT> (anche con "corpo nullo",
+  quando non servono). Se una <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> non <B>ridefinisce</B> anche una
+  sola <FONT COLOR="Green"><B>funzione virtuale pura</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>, rimane una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>astratta</B></FONT> e non pu&ograve; ancora essere
+  <FONT COLOR="Green"><B>istanziata</B></FONT> (a questo punto, una sua eventuale
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT>, per diventare "concreta", &egrave;
+  sufficiente che <B>ridefinisca</B> l'unica <FONT COLOR="Green"><B>funzione
+  virtuale pura</B></FONT> rimasta). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Le <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>astratte</B></FONT> sono di importanza fondamentale
+  nella programmazione in <FONT COLOR="Red"><B>C++</B></FONT> ad alto livello,
+  <FONT COLOR="Green"><B>orientata a</B></FONT>
+  <FONT COLOR="Green"><B>oggetti</B></FONT>. Esse presentano agli utenti
+  &nbsp;delle <FONT COLOR="Red"><B>interfacce</B></FONT> "pure", senza il vincolo
+  degli aspetti implementativi, che sono invece forniti dalle loro
+  <FONT COLOR="Green"><B>classi derivate</B></FONT>. Una
+  <I><B>gerarchia</B></I> di <FONT COLOR="Green"><B>classi</B></FONT>, che
+  deriva da una o pi&ugrave; <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>astratte</B></FONT>, pu&ograve; essere costruita in
+  modo "incrementale", nel senso di permettere il "raffinamento" di un progetto,
+  aggiungendo via via nuove <FONT COLOR="Green"><B>classi</B></FONT> senza
+  la necessit&agrave; di modificare la parte preesistente. Gli utenti non sono
+  coinvolti, se non vogliono, in questo processo di "raffinamento incrementale",
+  in quanto vedono sempre la stessa
+  <FONT COLOR="Red"><B>interfaccia</B></FONT> e utilizzano sempre le stesse
+  <FONT COLOR="Green"><B>funzioni</B></FONT> (che, grazie al
+  <FONT COLOR="Green"><B>polimorfismo</B></FONT>, saranno sempre selezionate
+  sull'<FONT COLOR="Green"><B>oggetto</B></FONT> appropriato).</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Un rudimentale sistema di figure
+geometriche</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>A puro titolo esemplificativo dei concetti finora esposti, si &egrave;
+  tentato di progettare l'implementazione di un sistema (molto "rudimentale")
+  di figure geometriche piane. Abbiamo scelto 6 figure, a ciascuna delle quali
+  abbiamo fatto corrispondere una
+  <FONT COLOR="Green"><B>classe</B></FONT>:</BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG><B>punto</B></BIG></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Green"><B>classe</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="#cc0000"><B>Dot</B></FONT> </BIG></TD>
+    </TR>
+    <TR>
+      <TD><BIG><B>linea</B></BIG></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Green"><B>classe</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="#cc0000"><B>Line</B></FONT> </BIG></TD>
+    </TR>
+    <TR>
+      <TD><BIG><B>triangolo</B></BIG></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Green"><B>classe</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="#cc0000"><B>Triangle</B></FONT> </BIG></TD>
+    </TR>
+    <TR>
+      <TD><BIG><B>rettangolo</B></BIG></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Green"><B>classe</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="#cc0000"><B>Rect</B></FONT> </BIG></TD>
+    </TR>
+    <TR>
+      <TD><BIG><B>quadrato</B></BIG></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Green"><B>classe</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="#cc0000"><B>Square</B></FONT> </BIG></TD>
+    </TR>
+    <TR>
+      <TD><BIG><B>cerchio</B></BIG></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Green"><B>classe</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="#cc0000"><B>Circle</B></FONT> </BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Tutte queste <FONT COLOR="Green"><B>classi </B></FONT>fanno parte di
+  una <I><B>gerarchia</B></I>, al cui vertice si trova un'unica
+  <FONT COLOR="Green"><B>classe</B></FONT> <FONT COLOR="Green"><B>base
+  astratta</B></FONT>, di <B>nome</B>
+  <FONT COLOR="#cc0000"><B>Shape</B></FONT>, che contiene esclusivamente un
+  <FONT COLOR="Green"><B>distruttore</B></FONT>
+  <FONT COLOR="Green"><B>virtuale</B></FONT> (con "corpo nullo") e alcune
+  <FONT COLOR="Green"><B>funzioni virtuali pure</B></FONT>. La
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  &nbsp;<FONT COLOR="#cc0000"><B>Shape</B></FONT> presenta, quindi, una pura
+  <FONT COLOR="Red"><B>interfaccia</B></FONT>, non possedendo
+  <FONT COLOR="Green"><B>dati-membro</B></FONT> n&egrave;
+  <FONT COLOR="Green"><B>funzioni-membro</B></FONT> implementate, e non pu&ograve;
+  essere <FONT COLOR="Green"><B>istanziata</B></FONT> (il compilatore darebbe
+  errore).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Dalla <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>Shape</B></FONT>
+  <FONT COLOR="Green"><B>derivano</B></FONT> due
+  <FONT COLOR="Green"><B>classi</B></FONT>, anch'esse
+  <FONT COLOR="Green"><B>astratte</B></FONT>, di <B>nome</B>
+  <FONT COLOR="#cc0000"><B>Polygon</B></FONT> e
+  <FONT COLOR="#cc0000"><B>Regular</B></FONT> (per la precisione,
+  <FONT COLOR="#cc0000"><B>Polygon</B></FONT> non &egrave;
+  <FONT COLOR="Green"><B>astratta</B></FONT>, ma il suo
+  <FONT COLOR="Green"><B>costruttore</B></FONT> &egrave; inserito nella sezione
+  <B>protetta</B> e quindi non pu&ograve; essere
+  <FONT COLOR="Green"><B>istanziata</B></FONT> dall'esterno;
+  <FONT COLOR="#cc0000"><B>Regular</B></FONT>, invece, &egrave;
+  <FONT COLOR="Green"><B>astratta</B></FONT>, in quanto non <B>ridefinisce</B>
+  tutte le <FONT COLOR="Green"><B>funzioni virtuali pure</B></FONT> di
+  <FONT COLOR="#cc0000"><B>Shape</B></FONT>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Finalmente, le <FONT COLOR="Green"><B>classi</B></FONT> "concrete"
+  <FONT COLOR="Green"><B>derivano</B></FONT> tutte da
+  <FONT COLOR="#cc0000"><B>Polygon</B></FONT> e
+  <FONT COLOR="#cc0000"><B>Regular</B></FONT>:
+  <FONT COLOR="#cc0000"><B>Dot</B></FONT>,
+  <FONT COLOR="#cc0000"><B>Line</B></FONT>,
+  <FONT COLOR="#cc0000"><B>Triangle</B></FONT> e
+  <FONT COLOR="#cc0000"><B>Rect</B></FONT>
+  <FONT COLOR="Green"><B>derivano</B></FONT> da
+  <FONT COLOR="#cc0000"><B>Polygon</B></FONT>;
+  <FONT COLOR="#cc0000"><B>Circle</B></FONT>
+  <FONT COLOR="Green"><B>deriva</B></FONT> da
+  <FONT COLOR="#cc0000"><B>Regular</B></FONT>;
+  <FONT COLOR="#cc0000"><B>Square</B></FONT>
+  <FONT COLOR="Green"><B>deriva</B></FONT> da
+  <FONT COLOR="#cc0000"><B>Polygon</B></FONT> e
+  <FONT COLOR="#cc0000"><B>Regular</B></FONT>, per
+  <FONT COLOR="Green"><B>eredit&agrave;</B></FONT>
+  <FONT COLOR="Green"><B>multipla</B></FONT>. Si configura cos&igrave; il seguente
+  schema:</BIG>
+  <CENTER>
+    <IMG SRC="Polim2.gif" BORDER=0>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>A queste <FONT COLOR="Green"><B>classi</B></FONT> si aggiungono due
+  <FONT COLOR="Green"><B>strutture</B></FONT> di appoggio:
+  <FONT COLOR="#cc0000"><B>Point</B></FONT>, che fornisce le coordinate dei
+  punti sul piano, e <FONT COLOR="#cc0000"><B>Shape_Error</B></FONT>, per la
+  gestione delle <FONT COLOR="Green"><B>eccezioni</B></FONT>. Il tutto &egrave;
+  racchiuso in un unico <FONT COLOR="Blue"><B>namespace</B></FONT>, di
+  <B>nome</B> <FONT COLOR="#cc0000"><B>mini_graphics</B></FONT>, che contiene
+  anche alcune <FONT COLOR="Green"><B>costanti</B></FONT> e alcune
+  <FONT COLOR="Green"><B>funzioni</B></FONT> esterne alle
+  <FONT COLOR="Green"><B>classi</B></FONT>, fra cui due
+  <FONT COLOR="Green"><B>operatori</B></FONT> in
+  <FONT COLOR="Green"><B>overload</B></FONT> per la lettura e scrittura di
+  <FONT COLOR="Green"><B>oggetti</B></FONT> di
+  <FONT COLOR="#cc0000"><B>Point</B></FONT>. Il fatto che tutte le componenti
+  del sistema appartengano a un <FONT COLOR="Blue"><B>namespace</B></FONT>
+  permette di evitare i potenziali conflitti di <B>nomi</B>, in verit&agrave;
+  molto comuni, come <FONT COLOR="#cc0000"><B>Line</B></FONT> e
+  <FONT COLOR="#cc0000"><B>Rect</B></FONT>, con <B>nomi</B> uguali forniti
+  da altre librerie ed eventualmente messi a disposizione da queste tramite
+  <I><B>using-directives</B></I>. Volendo, l'utente provveder&agrave; ad inserire,
+  negli <FONT COLOR="Green"><B>ambiti locali</B></FONT> del
+  <FONT COLOR="Blue"><B>main</B></FONT> e delle sue
+  <FONT COLOR="Green"><B>funzioni</B></FONT>, le
+  <I><B>using-declarations</B></I> necessarie; a questo proposito viene fornito
+  un <I><B>header-file</B></I> contenente tutte le
+  <I><B>using-declarations</B></I> dei <B>nomi</B> del
+  <FONT COLOR="Blue"><B>namespace</B></FONT> che possono essere visti dall'utente.
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>Il sistema &egrave; accessibile dall'esterno <U>esclusivamente</U>
+  attraverso le <FONT COLOR="Green"><B>funzioni virtuali pure</B></FONT> di
+  <FONT COLOR="#cc0000"><B>Shape</B></FONT>, <B>ridefinite</B> nelle
+  <FONT COLOR="Green"><B>classi</B></FONT> "concrete"; per cui, <B>definito</B>
+  un <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="#cc0000"><B>Shape</B></FONT>, &egrave; possibile tramite questo
+  sfruttare il <FONT COLOR="Green"><B>polimorfismo</B></FONT> e <B>chiamare</B>
+  ogni volta la <FONT COLOR="Green"><B>funzione-membro</B></FONT>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT> "reale" selezionato in fase
+  di <FONT COLOR="Red"><B>esecuzione</B></FONT>. Non tutte le
+  <FONT COLOR="Green"><B>funzioni</B></FONT>, per&ograve;, sono compatibili
+  con tutti gli <FONT COLOR="Green"><B>oggetti</B></FONT> (per esempio una
+  <FONT COLOR="Green"><B>funzione</B></FONT> che fornisce due <B>punti</B>
+  pu&ograve; essere usata per definire una <B>linea</B> o un <B>rettangolo</B>,
+  ma non per definire un <B>triangolo</B>); d'altra parte, in ogni
+  <FONT COLOR="Green"><B>classe</B></FONT> "concreta", tutte le
+  <FONT COLOR="Green"><B>funzioni virtuali pure</B></FONT> vanno
+  <B>ridefinite</B>, e ci&ograve; ha costituito un problema, che poteva essere
+  risolto in due modi:</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>in ogni <FONT COLOR="Green"><B>classe</B></FONT>, <B>ridefinire</B>
+      con "corpo nullo" tutte le <FONT COLOR="Green"><B>funzioni</B></FONT>
+      incompatibili (ma in questo modo l'utente non sarebbe stato informato del
+      suo errore);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>oppure <B>ridefinire</B> tali
+      <FONT COLOR="Green"><B>funzioni</B></FONT> in modo da sollevare
+      un'<FONT COLOR="Green"><B>eccezione</B></FONT> (ed &egrave; quello che &egrave;
+      stato fatto): le <FONT COLOR="Green"><B>funzioni</B></FONT> di questo tipo
+      sono state collocate nelle <FONT COLOR="Green"><B>classi</B></FONT> "intermedie"
+      <FONT COLOR="#cc0000"><B>Polygon</B></FONT> e
+      <FONT COLOR="#cc0000"><B>Regular</B></FONT>, e quindi non hanno avuto bisogno
+      di essere <B>ridefinite</B> nelle
+      <FONT COLOR="Green"><B>classi</B></FONT> "concrete" (dove sono
+      <B>ridefinite</B> solo le <FONT COLOR="Green"><B>funzioni</B></FONT>
+      "compatibili").</BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <BIG>Le <FONT COLOR="Green"><B>funzioni virtuali </B></FONT>di
+  <FONT COLOR="#cc0000"><B>Shape</B></FONT> sono in tutto 11, divise in 4 gruppi
+  e precisamente:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Green"><B>funzioni</B></FONT>
+      <FONT COLOR="Maroon"><B>set</B></FONT> (con 5
+      <FONT COLOR="Green"><B>overloads</B></FONT>) per impostare i parametri
+      caratteristici di ogni figura (per esempio, le coordinate del
+      <I><B>bottom-left-corner</B></I> e del <I><B>top-right-corner </B></I>di
+      un <B>rettangolo</B>); all'inizo, i
+      <FONT COLOR="Green"><B>costruttori</B></FONT> (di <I><B>default</B></I>)
+      delle <FONT COLOR="Green"><B>classi</B></FONT> "concrete" generano figure
+      precostituite</BIG>;
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>4 <FONT COLOR="Green"><B>funzioni</B></FONT>
+      <FONT COLOR="Maroon"><B>get...</B></FONT> per estrarre informazioni dalle
+      figure (per esempio, le coordinate di un vertice di un <B>poligono</B>, oppure
+      la lunghezza del diametro di un <B>cerchio</B> ecc...)</BIG>;
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>una <FONT COLOR="Green"><B>funzione</B></FONT>
+      <FONT COLOR="Maroon"><B>display</B></FONT> per la visualizzazione (non grafica)
+      dei parametri di una figura (per esempio le coordinate dei punti estremi
+      di una <B>linea</B> o dei quattro vertici di un <B>quadrato</B> ecc...);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>una <FONT COLOR="Green"><B>funzione</B></FONT>
+      <FONT COLOR="Maroon"><B>copy_from</B></FONT> per copiare una figura da un'altra;
+      &nbsp;se si tenta la copia fra due figure diverse &egrave; sollevata
+      un'<FONT COLOR="Green"><B>eccezione</B></FONT>, salvo in questi casi:</BIG>
+      <OL>
+	<LI>
+	  <BIG>copia da <B>quadrato</B> a <B>rettangolo</B> (ammessa in quanto il
+	  <B>quadrato</B> &egrave; un caso particolare di <B>rettangolo</B>);</BIG>
+	<LI>
+	  <BIG>copia da <B>quadrato</B> a <B>cerchio</B> (ricava il <B>cerchio</B>
+	  <I><B>iscritto</B></I> al <B>quadrato</B>);</BIG>
+	<LI>
+	  <BIG>copia da <B>cerchio</B> a <B>quadrato</B> (ricava il <B>quadrato</B>
+	  <I><B>circoscritto</B></I> al <B>cerchio</B>)</BIG>
+      </OL>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>In effetti, si tratta di un sistema assolutamente "minimale". Ma il
+  nostro scopo non era quello di generare un prodotto finito, bens&igrave;
+  di mostrare "come si pone il primo mattone di una casa". Infatti (e questa
+  &egrave; la caratteristica principale della
+  <FONT COLOR="Green"><B>programmazione a oggetti</B></FONT> che sfrutta il
+  <FONT COLOR="Green"><B>polimorfismo</B></FONT>) il sistema si presta ad essere
+  agevolmente incrementato in maniera
+  <FONT COLOR="Red"><B>modulare</B></FONT>, in tre direzioni:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>si possono aggiungere nuove figure (e cio&egrave; nuove
+      <FONT COLOR="Green"><B>classi</B></FONT>) che &nbsp;<B>ridefiniscono</B>
+      le stesse <FONT COLOR="Green"><B>funzioni virtuali pure</B></FONT> di
+      <FONT COLOR="#cc0000"><B>Shape</B></FONT>, e quindi si pu&ograve; ampliare
+      la <I><B>gerarchia</B></I> senza modificare nulla dell'esistente;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>si possono aggiungere nuove funzionalit&agrave; (per esempio, trasformazioni
+      di coordinate, traslazioni, rotazioni, variazioni della scala ecc...); in
+      questo caso bisogna apportare qualche modifica al progetto, ma pur sempre
+      in maniera "incrementale";</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>si possono creare infine altre <I><B>gerarchie</B></I> di
+      <FONT COLOR="Green"><B>classi</B></FONT>, che eseguono operazioni
+      "specializzate", come per esempio la visualizzazione grafica delle figure
+      su un dato dispositivo (come vedremo nell'esercizio della prossima sezione);
+      il fatto importante &egrave; che l'introduzione delle nuove
+      <I><B>gerarchie</B></I> non comporta alcuna modifica della
+      <I><B>gerarchia</B></I> <FONT COLOR="#cc0000"><B>Shape</B></FONT>, ma si
+      limita a creare degli "agganci" ad essa, preservando il requisito fondamentale
+      di <B>minimizzare le dipendenze </B>fra i
+      <FONT COLOR="Red"><B>moduli</B></FONT>, che &egrave; alla base di una corretta
+      programmazione.</BIG> <BIG>Infatti, per come &egrave; stata progettata, la
+      <I><B>gerarchia</B></I> <FONT COLOR="#cc0000"><B>Shape</B></FONT> &egrave;
+      "<I><B>device-independent</B></I>"<I><B> </B></I>&egrave; pu&ograve; essere
+      visualizzata su qualunque dispositivo grafico.</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Particolare cura &egrave; stata dedicata alla gestione delle
+  <FONT COLOR="Green"><B>eccezioni</B></FONT>. Sono stati individuati quattro
+  tipi di errori possibili:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>errori di input nell'inserimento dei dati (per esempio, digitazione
+      di caratteri diversi quando sono richieste cifre numeriche);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>tentativi di generare figure geometriche "improprie" (per esempio un
+      <B>triangolo</B> con i tre vertici allineati);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>tentativi di eseguire
+      &nbsp;<FONT COLOR="Green"><B>funzioni</B></FONT> incompatibili con la figura
+      selezionata;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>tentativi di eseguire</BIG> <BIG>copie fra figure diverse (salvo nei
+      casi sopraelencati)</BIG>.
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Osserviamo, per concludere, che l'introduzione di una
+  <FONT COLOR="Green"><B>classe derivata</B></FONT> per
+  <FONT COLOR="Green"><B>eredit&agrave;</B></FONT>
+  <FONT COLOR="Green"><B>multipla</B></FONT>
+  (<FONT COLOR="#cc0000"><B>Square</B></FONT>) ha generato qualche piccolo
+  problema aggiuntivo e richiesto una particolare attenzione:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>anzitutto, per evitare la <I><B>replicazione</B></I> della
+      <FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="Green"><B>base</B></FONT>, si &egrave; dovuto inserire
+      <FONT COLOR="Blue"><B>virtual</B></FONT> nelle
+      <FONT COLOR="Green"><B>specifiche</B></FONT> di
+      <FONT COLOR="Green"><B>accesso</B></FONT> a
+      <FONT COLOR="#cc0000"><B>Shape</B></FONT> di
+      <FONT COLOR="#cc0000"><B>Polygon</B></FONT> e
+      <FONT COLOR="#cc0000"><B>Regular</B></FONT> (e quindi
+      <FONT COLOR="#cc0000"><B>Shape</B></FONT>, oltre a essere
+      <FONT COLOR="Green"><B>astratta</B></FONT> &egrave; anche
+      <FONT COLOR="Green"><B>virtuale</B></FONT> .... pi&ugrave; "irreale" di
+      cos&igrave;....!);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>in secondo luogo si sono dovute <B>rifedinire</B> in
+      <FONT COLOR="#cc0000"><B>Square</B></FONT> <U>tutte</U> le
+      <FONT COLOR="Green"><B>funzioni virtuali pure</B></FONT> di
+      <FONT COLOR="#cc0000"><B>Shape</B></FONT> (comprese quelle "incompatibili");
+      altrimenti, il "doppio percorso" da
+      <FONT COLOR="#cc0000"><B>Square</B></FONT> a
+      <FONT COLOR="#cc0000"><B>Shape</B></FONT> avrebbe generato messaggi di errore
+      per <I><B>ambiguit&agrave;</B></I> (infatti, se una
+      <FONT COLOR="Green"><B>funzione</B></FONT> non &egrave; <B>ridefinita</B>
+      &egrave; <FONT COLOR="Green"><B>ereditata</B></FONT>: ma allora, in questo
+      caso, sarebbe <FONT COLOR="Green"><B>ereditata</B></FONT> da
+      <FONT COLOR="#cc0000"><B>Polygon</B></FONT> o da
+      <FONT COLOR="#cc0000"><B>Regular</B></FONT>?).</BIG>
+  </UL>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p71/ShapeInterf.h">[p71]</A><A HREF="p71/ShapeImplem.cpp">[p71]</A>
+<A HREF="p71/Shape_using.h">[p71]</A><A HREF="p71/Shape_main.cpp">[p71]</A></BIG></BIG>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Un rudimentale sistema di visualizzazione
+delle figure</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Proseguendo nell'esempio precedente, costruiamo ora una nuova
+  <I><B>gerarchia</B></I> di <FONT COLOR="Green"><B>classi</B></FONT>, con
+  lo scopo di visualizzare su un dispositivo grafico le figure definite dalla
+  <I><B>gerarchia</B></I> <FONT COLOR="#cc0000"><B>Shape</B></FONT>. Non avendo
+  niente di meglio a disposizione, abbiamo scelto una ("rudimentalissima")
+  implementazione grafica costituita da caratteri ASCII, nella quale ogni punto
+  del piano immagine &egrave; rappresentato da un carattere
+  ("<I><B>big</B></I> <I><B>pixel</B></I>") e quindi "disegnare" un punto significa
+  collocare nella posizione corrispondente un carattere adeguato (per esempio
+  un asterisco). La bassissima risoluzione di un simile sistema "grafico"
+  produrr&agrave; figure sicuramente distorte e poco definite, ma che quello
+  che ci preme sottolineare non &egrave; l'efficacia del prodotto, bens&igrave;
+  il metodo utilizzato per la sua implementazione. Il lettore potr&agrave;
+  immaginarsi, al posto di questo sistema, una libreria grafica dotata delle
+  pi&ugrave; svariate funzionalit&agrave; e atta a lavorare su dispositivi
+  ad alta risoluzione; ma il "metodo" per implementare tale libreria, mettendola
+  in relazione con le figure di <FONT COLOR="#cc0000"><B>Shape</B></FONT>,
+  sarebbe esattamente lo stesso.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> della nostra nuova
+  <I><B>gerarchia</B></I> si chiama
+  <FONT COLOR="#cc0000"><B>ASC_Screen</B></FONT>: &egrave; una
+  <FONT COLOR="Green"><B>classe</B></FONT> <FONT COLOR="Green"><B>
+  astratta</B></FONT>, in quanto possiede una <FONT COLOR="Green"><B>funzione
+  virtuale pura</B></FONT>, di <B>nome</B>
+  <FONT COLOR="Maroon"><B>draw</B></FONT>, cos&igrave; <B>dichiarata</B>:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>virtual</B></FONT></BIG>
+  &nbsp;<BIG><FONT COLOR="Blue"><B>void
+  &nbsp;</B></FONT><FONT COLOR="Maroon"><B>draw</B></FONT><FONT COLOR="Blue"><B>()
+  = 0;</B></FONT><BR>
+  Tuttavia, a differenza da <FONT COLOR="#cc0000"><B>Shape</B></FONT> che presenta
+  una pura <FONT COLOR="Red"><B>interfaccia</B></FONT>,
+  <FONT COLOR="#cc0000"><B>ASC_Screen</B></FONT> deve fornire gli strumenti
+  per l'implementazione della grafica su un dispositivo "concreto" e quindi
+  &egrave; stata dotata di tutte le <B>propriet&agrave;</B> e i <B>metodi</B>
+  adeguati allo scopo. Poich&egrave; d'altra parte lo schermo &egrave; "unico"
+  indipendentemente dal numero degli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> (cio&egrave; delle figure) presenti,
+  tutti i <FONT COLOR="Green"><B>dati-membro </B></FONT>e le
+  <FONT COLOR="Green"><B>funzioni-membro</B></FONT> di
+  <FONT COLOR="#cc0000"><B>ASC_Screen</B></FONT> (fuorch&egrave;
+  <FONT COLOR="Maroon"><B>draw</B></FONT>) sono stati definiti
+  <FONT COLOR="Blue"><B>static</B></FONT>. Persino il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> e il
+  <FONT COLOR="Green"><B>distruttore</B></FONT> (che ovviamente non possono
+  essere definiti <FONT COLOR="Blue"><B>static</B></FONT>) si comportano in
+  realt&agrave; come <B>metodi</B>
+  <FONT COLOR="Green"><B>statici</B></FONT>: il primo alloca la memoria "grafica"
+  solo in occasione del <U>primo</U>
+  <FONT COLOR="Green"><B>oggetto</B></FONT> creato, il secondo libera tale
+  memoria solo quando <U>tutti</U> gli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> sono stati distrutti (per riconoscere
+  tali condizioni &egrave; usato un
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Green"><B>statico</B></FONT> "contatore" degli
+  <FONT COLOR="Green"><B>oggetti</B></FONT>, incrementato dal
+  <FONT COLOR="Green"><B>costruttore</B></FONT> e decrementato dal
+  <FONT COLOR="Green"><B>distruttore</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Alcuni <B>metodi</B> di
+  <FONT COLOR="#cc0000"><B>ASC_Screen</B></FONT> sono accessibili dall'utente
+  e quindi sono <B>pubblici</B>; altri sono <B>protetti</B>, in quanto accessibili
+  solo dalle <FONT COLOR="Green"><B>classi derivate</B></FONT>, e altri sono
+  <B>privati</B>, per solo uso interno. Tutti i
+  <FONT COLOR="Green"><B>dati-membro</B></FONT> sono <B>privati</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>ASC_Screen</B></FONT> ha quindi una duplice funzione:
+  quella di essere una <FONT COLOR="Green"><B>base</B></FONT>
+  <FONT COLOR="Green"><B>astratta</B></FONT> per gli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> delle sue
+  <FONT COLOR="Green"><B>classi derivate</B></FONT>, che <B>ridefiniscono</B>
+  la <FONT COLOR="Green"><B>funzione virtuale pura</B></FONT>
+  <FONT COLOR="Maroon"><B>draw</B></FONT> per eseguire i disegni; e quella
+  di fornire, a livello della <FONT COLOR="Green"><B>classe</B></FONT> e non
+  del singolo <FONT COLOR="Green"><B>oggetto</B></FONT>, tutte le
+  funzionalit&agrave; e i dati necessari per l'implementazione del sistema.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Ed &egrave; a questo punto che entra in gioco
+  l'<FONT COLOR="Green"><B>eredit&agrave;</B></FONT>
+  <FONT COLOR="Green"><B>multipla</B></FONT>, la quale permette una soluzione
+  semplice, pulita ed efficace al tempo stesso: ogni
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> da
+  <FONT COLOR="#cc0000"><B>ASC_Screen</B></FONT>, che rappresenta una figura
+  da graficare, <FONT COLOR="Green"><B>deriva</B></FONT> anche dalla corrispondente
+  <FONT COLOR="Green"><B>classe</B></FONT> di
+  <FONT COLOR="#cc0000"><B>Shape</B></FONT>: in questo modo, da una parte si
+  <FONT COLOR="Green"><B>ereditano</B></FONT> le caratteristiche generali di
+  una figura, che sono "<I><B>device-independent</B></I>", e dall'altra le
+  funzionalit&agrave; necessarie per il disegno della stessa figura su un
+  particolare <I><B>device</B></I>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Le <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>derivate</B></FONT> da
+  <FONT COLOR="#cc0000"><B>ASC_Screen</B></FONT> hanno gli stessi <B>nomi</B>
+  delle corrispondenti di <FONT COLOR="#cc0000"><B>Shape</B></FONT>, con il
+  prefisso <FONT COLOR="#cc0000"><B>ASC_</B></FONT> (e quindi:
+  <FONT COLOR="#cc0000"><B>ASC_Dot</B></FONT>,
+  <FONT COLOR="#cc0000"><B>ASC_Line</B></FONT>, ecc...). Ogni
+  <FONT COLOR="Green"><B>classe</B></FONT> possiede un unico
+  <FONT COLOR="Green"><B>membro</B></FONT>, che <B>ridefinisce</B> la
+  <FONT COLOR="Green"><B>funzione virtuale pura</B></FONT>
+  <FONT COLOR="Maroon"><B>draw</B></FONT>. Non serve nient'altro, in quanto
+  tutto il resto &egrave; <FONT COLOR="Green"><B>ereditato</B></FONT> dalle
+  rispettive <FONT COLOR="Green"><B>genitrici</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La situazione complessiva &egrave; adesso rappresentata dal seguente
+  disegno (la <I><B>gerarchia</B></I>
+  <FONT COLOR="#cc0000"><B>ASC_Screen</B></FONT> &egrave; "a testa in gi&ugrave;",
+  per ragioni di spazio):</BIG>
+  <CENTER>
+    <IMG SRC="Polim3.gif" BORDER=0>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>Nell'esercizio che segue viene visualizzato il disegno di una casa "in
+  stile infantile", in cui ogni componente (pareti, tetto, porte, finestre
+  ecc...) &egrave; costituito da una figura geometrica elementare. In tutto
+  sono definiti <FONT COLOR="Maroon"><B>24</B></FONT>
+  <FONT COLOR="Green"><B>oggetti</B></FONT> e due
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Maroon"><B>24</B></FONT>
+  <FONT COLOR="Green"><B>puntatori</B></FONT>, uno a
+  <FONT COLOR="#cc0000"><B>Shape</B></FONT> e l'altro a
+  <FONT COLOR="#cc0000"><B>ASC_Screen</B></FONT>.
+  L'<FONT COLOR="Purple"><B>indirizzo</B></FONT> di ogni
+  <FONT COLOR="Green"><B>oggetto</B></FONT> &egrave;
+  <FONT COLOR="Purple"><B>assegnato</B></FONT> al corrispondente
+  <FONT COLOR="Green"><B>puntatore</B></FONT> (in entrambi gli
+  <FONT COLOR="Green"><B>array</B></FONT>), cos&igrave; che &egrave; possibile,
+  per ogni figura, <B>chiamare</B> in modo
+  <FONT COLOR="Green"><B>polimorfo</B></FONT> sia le
+  <FONT COLOR="Green"><B>funzioni</B></FONT> di
+  <FONT COLOR="#cc0000"><B>Shape</B></FONT> che la
+  <FONT COLOR="Maroon"><B>draw</B></FONT> di
+  <FONT COLOR="#cc0000"><B>ASC_Screen</B></FONT>. Quest'ultima non esegue
+  materialmente la visualizzazione, ma si limita ad inserire degli asterischi
+  (nelle posizioni che definiscono il contorno della figura) in una matrice
+  <I><B>bidimensionale</B></I> di caratteri
+  (<FONT COLOR="Purple"><B>allocata</B></FONT> e <B>inizializzata</B> dal
+  <FONT COLOR="Green"><B>costruttore</B></FONT> del primo
+  <FONT COLOR="Green"><B>oggetto</B></FONT>); poich&egrave; ogni riga della
+  matrice &egrave; <I><B>terminata</B></I> con un <I><B>null</B></I>, si vengono
+  cos&igrave; a costituire tante <FONT COLOR="Green"><B>stringhe</B></FONT>
+  quante sono le righe. Alla fine, per visualizzare il tutto, il programma
+  pu&ograve; <B>chiamare</B> il <B>metodo pubblico</B>
+  <FONT COLOR="#cc0000"><B>ASC_Screen</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+      COLOR="Maroon"><B>OnScreen</B></FONT><FONT COLOR="Blue"><B>()</B></FONT>,
+  il quale non fa altro che scrivere le
+  <FONT COLOR="Green"><B>stringhe</B></FONT> sullo schermo, l'una sotto
+  l'altra.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il sistema &egrave; pure dotato ("sorprendentemente") di alcune
+  funzionalit&agrave; pi&ugrave; "avanzate", quali il
+  <I><B>clipping</B></I> (lo schermo funge da "finestra" che visualizza solo
+  una parte dell'immagine, se questa ha un'estensione maggiore), il
+  <I><B>moving</B></I> (possibilit&agrave; di spostare il centro della "finestra"
+  su un qualunque punto dell'immagine) e lo <I><B>zoomming</B></I>
+  (possibilit&agrave; di ingrandire o rimpicciolire l'immagine intorno al centro
+  della "finestra"). Tutte queste operazioni vengono eseguite chiamando degli
+  opportuni <B>metodi pubblici</B> di
+  <FONT COLOR="#cc0000"><B>ASC_Screen</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p72/ASCInterf.h">[p72]</A><A HREF="p72/ASCImplem.cpp">[p72]</A>
+<A HREF="p72/ASC_using.h">[p72]</A><A HREF="p72/ASC_main.cpp">[p72]</A></BIG></BIG>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#template"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

@@ -1,0 +1,9 @@
+	using mini_graphics::Point;
+	using mini_graphics::Shape;
+	using mini_graphics::Dot;
+	using mini_graphics::Line;
+	using mini_graphics::Triangle;
+	using mini_graphics::Rect;
+	using mini_graphics::Square;
+	using mini_graphics::Circle;
+	using mini_graphics::Shape_Error;

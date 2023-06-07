@@ -1,0 +1,160 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Elaborazione della riga di comando CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Elaborazione della
+riga di comando
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Esecuzione di un programma tramite riga
+di comando </BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Un caso tipico di utilizzo di
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>stringhe</B></FONT> si ha quando il
+  <FONT COLOR="Red"><B>sistema operativo</B></FONT><B> </B>passa a un
+  <B>programma</B> una serie di
+  <FONT COLOR="Maroon"><B>parametri</B></FONT>, elencati nella <B>riga di
+  comando</B>. </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.:</BIG> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><B>copy</B> &nbsp;<FONT COLOR="Maroon"><B>file1
+	&nbsp;file2</B></FONT></BIG> &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><B>copy</B> &eacute; il <B>programma</B> </BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>file1</B></FONT> e
+	<FONT COLOR="Maroon"><B>file2</B></FONT> sono i
+	<FONT COLOR="Maroon"><B>parametri</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Anche un programma scritto in <FONT COLOR="Red"><B>C++ </B></FONT>(e
+  trasformato dall'ambiente di sviluppo in un modulo eseguibile) pu&ograve;
+  essere lanciato da <FONT COLOR="Red"><B>sistema operativo</B></FONT> come
+  se fosse un <B>comando</B>, e pu&ograve; essere accompagnato da
+  <FONT COLOR="Maroon"><B>parametri</B></FONT>. Il
+  <FONT COLOR="Red"><B>C++</B></FONT> (come il
+  <FONT COLOR="Red"><B>C</B></FONT>) si incarica di trasformare tali
+  <FONT COLOR="Maroon"><B>parametri</B></FONT> in
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> trasmessi alla
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Blue"><B>main</B></FONT>, per modo che il <B>programma</B> possa
+  elaborarli. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Argomenti passati alla funzione
+main</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Finora abbia supposto che il <FONT COLOR="Blue"><B>main</B></FONT> fosse
+  una <FONT COLOR="Green"><B>funzione</B></FONT> priva di
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>. In realt&agrave; il
+  <FONT COLOR="Red"><B>sistema operativo</B></FONT> passa al
+  <FONT COLOR="Blue"><B>main</B></FONT> un certo numero di
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>, di cui, in questo caso, ci
+  interessano i primi due: </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>argc</B></FONT></BIG></TD>
+      <TD WIDTH="70%"><P ALIGN=Justify>
+	<BIG>numero di voci presenti nella <B>riga di comando</B> (compreso lo stesso
+	nome del <B>programma</B>) </BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>char<SUB><BIG>**</BIG></SUB></B></FONT>
+	<FONT COLOR="Maroon"><B>argv</B></FONT> &nbsp; &nbsp; &nbsp; &nbsp; </BIG></TD>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="Green"><B>array</B></FONT> di
+	<FONT COLOR="Green"><B>stringhe</B></FONT>, in cui ogni
+	<FONT COLOR="Green"><B>elemento</B></FONT> corrisponde a una voce della <B>riga
+	di comando</B> (in fondo viene aggiunta una
+	<FONT COLOR="Green"><B>stringa</B></FONT>
+	<FONT COLOR="Blue"><B>NULL</B></FONT>)</BIG></TD>
+    </TR>
+  </TABLE>
+  <P>
+  <BIG>Pertanto, se il <B>programma</B> deve utilizzare dei
+  <FONT COLOR="Maroon"><B>parametri</B></FONT>, il
+  <FONT COLOR="Blue"><B>main</B></FONT> va <B>definito</B> come segue:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="Blue"><B>main(int</B></FONT>
+  <FONT COLOR="Maroon"><B>argc</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Blue"><B>char<SUB><BIG>**</BIG></SUB></B></FONT>
+  <FONT COLOR="Maroon"><B>argv</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>Per esempio, se la <B>riga di comando</B> contiene: &nbsp; <B>copy</B>
+  &nbsp;<FONT COLOR="Maroon"><B>file1 &nbsp;file2</B></FONT></BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;</TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>argc</B></FONT> contiene il numero
+	<FONT COLOR="Maroon"><B>3</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>argv</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>]</B></FONT> contiene
+	la stringa "<B>copy</B>"</BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>argv</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>1</B></FONT><FONT COLOR="Blue"><B>]</B></FONT> contiene
+	la <FONT COLOR="Green"><B>stringa</B></FONT>
+	"<FONT COLOR="Maroon"><B>file1</B></FONT>" </BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>argv</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>2</B></FONT><FONT COLOR="Blue"><B>]</B></FONT> contiene
+	la <FONT COLOR="Green"><B>stringa</B></FONT>
+	"<FONT COLOR="Maroon"><B>file2</B></FONT>"</BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>argv</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>3</B></FONT><FONT COLOR="Blue"><B>]</B></FONT> contiene
+	<FONT COLOR="Blue"><B>NULL</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p32/comando.cpp">[p32]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#puntfunz"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

@@ -1,0 +1,597 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Eccezioni CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Eccezioni
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Segnalazione e gestione degli
+errori</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Il termine <FONT COLOR="Green"><B>eccezione</B></FONT> (dall'inglese
+  <I><B>exception</B></I>) deriva dall'ottimistica assunzione che nell'esecuzione
+  di un programma gli <B>errori</B> costituiscano una "circostanza eccezionale".
+  Anche condividendo tale ottimismo, il problema di come individuare gli errori
+  e di come gestirli una volta individuati deve essere sempre affrontato con
+  grande cura nella progettazione di un programma.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Anche in un programma "perfetto" gli <B>errori</B> in fase di esecuzione
+  possono sempre capitare, perch&egrave; sono commessi in larga parte da operatori
+  "umani" (quelli che usano il programma), e quindi &egrave; lo stesso programma
+  che deve essere in grado di prevederli e di eseguire le azioni di ripristino,
+  quando &egrave; possibile.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Quando un programma, specie se di grosse dimensioni, &egrave; composto
+  da <FONT COLOR="Red"><B>moduli</B></FONT> separati, e soprattutto se i
+  <FONT COLOR="Red"><B>moduli</B></FONT> provengono da librerie sviluppate
+  da altri programmatori, anche la gestione degli <B>errori</B> deve essere
+  tale da minimizzare le dipendenze fra un
+  <FONT COLOR="Red"><B>modulo</B></FONT> e l'altro. In generale, quando un
+  <FONT COLOR="Red"><B>modulo</B></FONT> verifica una condizione di
+  <B>errore</B>, deve limitarsi a segnalare tale condizione, in quanto l'azione
+  di ripristino dipende pi&ugrave; spesso dal
+  <FONT COLOR="Red"><B>modulo</B></FONT> che ha invocato l'operazione piuttosto
+  che da quello che ha riscontrato l'<B>errore</B> mentre cercava di eseguirla.
+  Separando i due momenti (la <I><B>rilevazione</B></I> dell'<B>errore</B>
+  e la sua <I><B>gestione</B></I>) si mantiene il massimo di indipendenza fra
+  i <FONT COLOR="Red"><B>moduli</B></FONT>:
+  l'<FONT COLOR="Red"><B>interfaccia</B></FONT> comune conterr&agrave; gli
+  strumenti necessari, attivati dal <FONT COLOR="Red"><B>modulo</B></FONT>
+  "rilevatore" e utilizzati dal <FONT COLOR="Red"><B>modulo</B></FONT>
+  "gestore"</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Red"><B>C++</B></FONT> mette a disposizione un meccanismo
+  semplice ma molto efficace di rilevazione e gestione degli <B>errori</B>:
+  l'idea base &egrave; che, quando una
+  <FONT COLOR="Green"><B>funzione</B></FONT> rileva un <B>errore</B> che non
+  &egrave; in grado di affrontare direttamente, l'esecuzione della
+  <FONT COLOR="Green"><B>funzione</B></FONT> termina, <U>ma il controllo non
+  ritorna al punto in cui la <FONT COLOR="Green"><B>funzione</B></FONT> &egrave;
+  stata <B>chiamata</B></U>, &nbsp;<U>bens&igrave; in un altro punto del
+  programma</U>, dove viene eseguita la procedura di gestione
+  dell'<B>errore</B>. In termini tecnici, la
+  <FONT COLOR="Green"><B>funzione</B></FONT>&nbsp;che rileva l'<B>errore</B>
+  "solleva" o "lancia" (<FONT COLOR="Blue"><B>throw</B></FONT>)
+  un'<FONT COLOR="Green"><B>eccezione</B></FONT> ("marcandola" in qualche modo,
+  come vedremo) e termina: l'area <FONT COLOR="Purple"><B>stack</B></FONT>
+  &egrave; ripercorsa all'indietro e cancellata (<I><B>stack</B></I>
+  <I><B>unwinding</B></I>) a&nbsp;vari livelli finch&egrave; il flusso del
+  programma non raggiunge il punto (se esiste) in cui
+  l'<FONT COLOR="Green"><B>eccezione</B></FONT> pu&ograve; essere riconosciuta
+  e "catturata" (<FONT COLOR="Blue"><B>catch</B></FONT>); in questo punto viene
+  eseguita la procedura di gestione dell'<B>errore</B>; se il punto non esiste
+  l'intero programma "abortisce".</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Il costrutto
+try</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La <I><B>parola-chiave</B></I> <FONT COLOR="Blue"><B>try</B></FONT>
+  introduce un <B>blocco</B> di istruzioni.</BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es. : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>try &nbsp; &nbsp;</B></FONT></BIG></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>m </B></FONT><FONT COLOR="Blue">=
+	</FONT><FONT COLOR="Maroon"><B>c</B></FONT><FONT COLOR="Blue">
+	/</FONT><FONT COLOR="Maroon"><B>
+	b</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>double</B></BIG></FONT>
+	<BIG><FONT COLOR="Maroon"><B>f </B></FONT><FONT COLOR="Blue">=</FONT>
+	<FONT COLOR="Maroon"><B>10.7</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>res
+	</B></FONT><FONT COLOR="Blue">=</FONT>
+	<FONT COLOR="Maroon"><B>fun</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(</B></BIG></FONT><BIG><FONT
+	    COLOR="Maroon"><B>f
+	</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,</B></BIG></FONT><BIG><FONT
+	    COLOR="Maroon"><B>m</B></FONT><FONT COLOR="Blue"><B>+</B></FONT><FONT COLOR="Maroon"><B>n</B></FONT></BIG><FONT
+	    COLOR="Blue"><BIG><B>)</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT></TD>
+      <TD></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Le istruzioni contenute in un <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT> sono "sotto controllo": in esecuzione,
+  qualcuna di esse potrebbe generare un <B>errore</B>. Nell'esempio, la
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>fun</B></FONT> potrebbe chiamare un'altra
+  <FONT COLOR="Green"><B>funzione</B></FONT> e questa un'altra ancora ecc...
+  , generando una serie di <B>pacchetti</B> che si accumula sullo
+  <FONT COLOR="Purple"><B>stack</B></FONT>. L'area dello
+  <FONT COLOR="Purple"><B>stack</B></FONT> che va da un un <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT> in su &egrave; detta: <I><B>exception
+  stack frame</B></I> e costituisce l'insieme di tutte le istruzioni
+  controllate.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>L'istruzione
+throw</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Dal punto di visto sintattico, l'istruzione
+  <FONT COLOR="Blue"><B>throw</B></FONT> &egrave; identica all'istruzione
+  <FONT COLOR="Blue"><B>return</B></FONT> di una
+  <FONT COLOR="Green"><B>funzione </B></FONT>(e si comporta all'incirca nello
+  stesso modo):</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B><BIG>throw</BIG></B></FONT><BIG>
+  <FONT COLOR="Maroon"><B>espressione</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></BIG>
+  <P ALIGN=Justify>
+  <BIG>Un'istruzione <FONT COLOR="Blue"><B>throw</B></FONT> pu&ograve; essere
+  collocata soltanto in un <I><B>exception stack frame</B></I> e segnala il
+  punto in cui si &egrave; ricontrato un <B>errore</B> (o, come si dice, &egrave;
+  "sollevata" un'<FONT COLOR="Green"><B>eccezione</B></FONT>). Il <B>valore</B>
+  calcolato dell'<FONT COLOR="Maroon"><B>espressione</B></FONT>, detto:
+  "<B>valore</B> dell'<FONT COLOR="Green"><B>eccezione</B></FONT>" (il cui
+  <FONT COLOR="Green"><B>tipo</B></FONT> &egrave; detto:
+  "<FONT COLOR="Green"><B>tipo</B></FONT>
+  dell'<FONT COLOR="Green"><B>eccezione</B></FONT>"), ripercorre "all'indietro"
+  l'<I><B>exception stack frame</B></I> (cancellandolo): se a un certo punto
+  del suo "cammino" l'<FONT COLOR="Green"><B>eccezione</B></FONT> viene "catturata"
+  (vedremo come), l'<B>errore</B> pu&ograve; essere gestito, altrimenti il
+  programma abortisce (ed &egrave; quello che succede in particolare se
+  l'istruzione <FONT COLOR="Blue"><B>throw</B></FONT> non &egrave; inserita
+  all'interno di un <I><B>exception stack frame</B></I>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>In pratica <FONT COLOR="Blue"><B>throw</B></FONT> si comporta come un
+  <FONT COLOR="Blue"><B>return</B></FONT> "multilivello". Il <B>valore</B>
+  dell'<FONT COLOR="Green"><B>eccezione</B></FONT> viene di solito utilizzato
+  per la descrizione dell'<B>errore</B> commesso (non &egrave; per&ograve;
+  obbligatorio utilizzarlo). Il suo <FONT COLOR="Green"><B>tipo</B></FONT>
+  &egrave; invece di importanza fondamentale in quanto (come vedremo) costituisce
+  la "marca" di riconoscimento
+  dell'<FONT COLOR="Green"><B>eccezione</B></FONT> e ne permette la
+  "cattura".</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Il gestore delle eccezioni: costrutto
+catch</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La <I><B>parola-chiave</B></I>
+  <FONT COLOR="Blue"><B>catch</B></FONT> introduce un <B>blocco</B> di istruzioni
+  che ha lo stesso formato sintattico della <B>definizione</B> di una
+  <FONT COLOR="Green"><B>funzione</B></FONT>, <U>con un solo
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> e senza <B>valore di
+  ritorno</B></U>.</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>catch</B></FONT>
+  </BIG><FONT COLOR="Blue"><BIG><B>(</B></BIG></FONT><BIG><FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>
+  </BIG><FONT COLOR="Blue"><BIG><B>)</B></BIG></FONT> &nbsp;
+  &nbsp;<BIG><FONT COLOR="Blue"><B>{</B></FONT> <B>.......... blocco di istruzioni
+  ..............
+  </B></BIG><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT>
+  <P ALIGN=Justify>
+  <BIG>Fisicamente un <B>blocco</B> <FONT COLOR="Blue"><B>catch</B></FONT>
+  deve seguire immediatamente un <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT>. Dal punto di vista della successione
+  logica delle operazioni, invece, un <B>blocco</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT> costituisce il punto terminale di
+  ritorno di un <I><B>exception stack frame</B></I>: questo viene costruito
+  (verso l'alto), a partire da un <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT>, fino a un'istruzione
+  <FONT COLOR="Blue"><B>throw</B></FONT>, da cui
+  l'<FONT COLOR="Green"><B>eccezione</B></FONT> "sollevata" ridiscende
+  (<I><B>stack</B></I> <I><B>unwinding</B></I>) fino al <B>blocco</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT> corrispondente al <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT> di partenza (oppure passa direttamente
+  dal <B>blocco</B> <FONT COLOR="Blue"><B>try</B></FONT> al <B>blocco</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT> se l'istruzione
+  <FONT COLOR="Blue"><B>throw</B></FONT> si trova gi&agrave; nel <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT> di partenza; in questo caso l'istruzione
+  <FONT COLOR="Blue"><B>throw</B></FONT> non si comporta come un
+  <FONT COLOR="Blue"><B>return</B></FONT>, ma piuttosto come un
+  <FONT COLOR="Blue"><B>goto</B></FONT>). A questo punto
+  l'<FONT COLOR="Green"><B>eccezione</B></FONT> pu&ograve; essere "catturata"
+  o meno: se &egrave; catturata, vengono eseguite le istruzioni del
+  <B>blocco</B> <FONT COLOR="Blue"><B>catch</B></FONT> (detto "<B>gestore</B>
+  dell'<FONT COLOR="Green"><B>eccezione</B></FONT>") e poi il flusso del programma
+  prosegue normalmente; se invece
+  l'<FONT COLOR="Green"><B>eccezione</B></FONT> non &egrave; catturata, il
+  programma abortisce. Se infine non vengono sollevate
+  <FONT COLOR="Green"><B>eccezioni</B></FONT>, cio&egrave; l'<I><B>exception
+  stack frame</B></I> non incontra istruzioni
+  <FONT COLOR="Blue"><B>throw</B></FONT>, il flusso del programma ridiscende
+  per vie normali tornando al <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT> da cui era partito, eseguito il quale
+  prosegue "saltando" il successivo <B>blocco</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Un'<FONT COLOR="Green"><B>eccezione</B></FONT> viene "catturata" se
+  il suo <FONT COLOR="Green"><B>tipo</B></FONT> coincide <U>esattamente</U>
+  con il <FONT COLOR="Green"><B>tipo</B></FONT>
+  dell'<FONT COLOR="Maroon"><B>argomento</B></FONT> di
+  <FONT COLOR="Blue"><B>catch</B></FONT>. Non sono ammesse conversioni di
+  <FONT COLOR="Green"><B>tipo</B></FONT>, neppure <I><B>implicite</B></I> (neanche
+  se i due <FONT COLOR="Green"><B>tipi</B></FONT> sono uguali in pratica, come
+  <FONT COLOR="Blue"><B>int</B></FONT> e
+  <FONT COLOR="Blue"><B>long</B></FONT> in una machina a 32 bit). Verificata
+  la coincidenza dei <FONT COLOR="Green"><B>tipi</B></FONT>, il <B>valore</B>
+  dell'<FONT COLOR="Green"><B>eccezione</B></FONT> viene trasferito
+  nell'<FONT COLOR="Maroon"><B>argomento</B></FONT> di
+  <FONT COLOR="Blue"><B>catch</B></FONT> (come se l'istruzione
+  <FONT COLOR="Blue"><B>throw</B></FONT> "chiamasse" la "funzione"
+  <FONT COLOR="Blue"><B>catch</B></FONT>); il trasferimento avviene normalmente
+  <U>per copia</U> (<I><B>by value</B></I>), a meno che
+  l'<FONT COLOR="Maroon"><B>argomento</B></FONT> di
+  <FONT COLOR="Blue"><B>catch</B></FONT> non sia un
+  <FONT COLOR="Green"><B>riferimento</B></FONT>, nel qual caso il passaggio
+  &egrave; <I><B>by reference</B></I>, che per&ograve; ha senso solo se
+  l'<FONT COLOR="Maroon"><B>espressione</B></FONT> di
+  <FONT COLOR="Blue"><B>throw</B></FONT> &egrave; un
+  <FONT COLOR="Green"><B>l-value</B></FONT> e se "sopravvive" alla distruzione
+  dello <FONT COLOR="Purple"><B>stack</B></FONT> (cio&egrave; &egrave; un
+  <FONT COLOR="Green"><B>oggetto globale</B></FONT>, o &egrave; <B>definito</B>
+  in un <FONT COLOR="Blue"><B>namespace</B></FONT>, oppure &egrave;
+  <FONT COLOR="Green"><B>locale</B></FONT> ma <B>dichiarato</B>
+  <FONT COLOR="Blue"><B>static</B></FONT>). E' possibile anche che
+  l'<FONT COLOR="Maroon"><B>argomento</B></FONT> di
+  <FONT COLOR="Blue"><B>catch</B></FONT> sia <B>dichiarato</B>
+  <FONT COLOR="Blue"><B>const</B></FONT>, nel qual caso valgono le stesse regole
+  e limitazioni che ci sono per il passaggio degli argomenti delle
+  <FONT COLOR="Green"><B>funzioni</B></FONT> (vedere il capitolo: <B>Puntatori
+  e costanti </B>- <B>Passaggio degli argomenti trasmessi <I>by value</I></B>
+  e <B><I>by reference</I></B>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Nel costrutto <FONT COLOR="Blue"><B>catch</B></FONT> la specifica
+  dell'<FONT COLOR="Maroon"><B>argomento</B></FONT> non &egrave; obbligatoria
+  (lo &egrave; solo se l'<FONT COLOR="Maroon"><B>argomento</B></FONT> viene
+  usato nel <B>blocco</B> di istruzioni). Il
+  <FONT COLOR="Green"><B>tipo</B></FONT>, invece, deve essere sempre specificato,
+  perch&egrave; serve per la "cattura"
+  dell'<FONT COLOR="Green"><B>eccezione</B></FONT>. A questo proposito &egrave;
+  utile aggiungere che la scelta del <FONT COLOR="Green"><B>tipo</B></FONT>
+  dell'<FONT COLOR="Green"><B>eccezione</B></FONT> &egrave; libera, ma, per
+  una migliore leggibilit&agrave; del programma e per evitare confusioni con
+  le altre <FONT COLOR="Green"><B>eccezioni</B></FONT> (in special modo con
+  quelle generate dalle librerie del sistema, fuori dal nostro controllo),
+  &egrave; vivamente consigliata la creazione di
+  <FONT COLOR="Green"><B>tipi</B></FONT> "ad hoc", preferibilmente uno per
+  ogni possibile <FONT COLOR="Green"><B>eccezione</B></FONT> e con attinenza
+  mnemonica fra il <B>nome</B> del <FONT COLOR="Green"><B>tipo</B></FONT> e
+  il significato dell'<B>errore</B> a cui &egrave; associato: quindi, evitare
+  l'uso di <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>nativi</B></I> (anche
+  se non sarebbe vietato), ma usare solo
+  <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>astratti</B></I> (per esempio
+  <FONT COLOR="Green"><B>strutture</B></FONT> con <B>nomi</B> "ad hoc").</BIG>
+  <P ALIGN=Justify>
+  <BIG>E' bene che il &nbsp;trattamento delle
+  <FONT COLOR="Green"><B>eccezioni</B></FONT> venga usato quando la
+  <I><B>rilevazione</B></I> e la <I><B>gestione</B></I> di un <B>errore</B>
+  devono avvenire in parti diverse del programma. Quando invece un errore pu&ograve;
+  essere trattato localmente &egrave; sufficiente servirsi dei normali controlli
+  del linguaggio (come i costrutti <FONT COLOR="Blue"><B>if</B></FONT> o
+  <FONT COLOR="Blue"><B>switch</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG><FONT COLOR="Red"><B>NOTA</B></FONT>: per completezza precisiamo che
+  un'<FONT COLOR="Green"><B>eccezione</B></FONT> pu&ograve; essere "catturata"
+  anche quando il suo <FONT COLOR="Green"><B>tipo</B></FONT> &egrave; di una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  "<FONT COLOR="Green"><B>derivata</B></FONT>" da quella a cui appartiene
+  l'<FONT COLOR="Maroon"><B>argomento</B></FONT> di
+  <FONT COLOR="Blue"><B>catch</B></FONT>, ma di questo parleremo quando tratteremo
+  delle <FONT COLOR="Green"><B>classi</B></FONT>
+  e&nbsp;dell'<FONT COLOR="Green"><B>eredit&agrave;</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p40/interfaccia.h">[p40]</A><A HREF="p40/stack.cpp">[p40]</A>
+<A HREF="p40/inveccez.cpp">[p40]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Riconoscimento di un'eccezione fra diverse
+alternative</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Finora abbiamo detto che a un <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT> deve sempre seguire <B>blocco</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT>. In realt&agrave; i <B>blocchi</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT> possono anche essere pi&ugrave; di
+  uno, disposti consecutivamente e con
+  <FONT COLOR="Green"><B>tipi</B></FONT> di
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> diversi. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Quando un'<FONT COLOR="Green"><B>eccezione</B></FONT>, discendendo lungo
+  l'<I><B>exception stack frame</B></I>, incontra una serie di <B>blocchi</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT>, il suo
+  <FONT COLOR="Green"><B>tipo</B></FONT> viene confrontato a uno a uno con
+  quelli dei <B>blocchi</B> <FONT COLOR="Blue"><B>catch</B></FONT> e, se si
+  verifica una coincidenza, l'<FONT COLOR="Green"><B>eccezione</B></FONT> viene
+  "catturata" e vengono eseguite le istruzioni del <B>blocco</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT> in cui la coincidenza &egrave; stata
+  trovata. Dopodich&egrave; il flusso del programma "salta" gli eventuali
+  <B>blocchi</B> <FONT COLOR="Blue"><B>catch</B></FONT> successivi e riprende
+  normalmente dalla prima istruzione dopo l'ultimo <B>blocco</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT> del gruppo. Il programma abortisce
+  se <U>nessun</U> <B>blocco</B> <FONT COLOR="Blue"><B>catch</B></FONT> cattura
+  l'<FONT COLOR="Green"><B>eccezione</B></FONT>. Se invece non vengono sollevate
+  <FONT COLOR="Green"><B>eccezioni</B></FONT>, il flusso del programma, eseguite
+  le istruzioni del <B>blocco</B> <FONT COLOR="Blue"><B>try</B></FONT>, "salta"
+  <U>tutti</U> i <B>blocchi</B> <FONT COLOR="Blue"><B>catch</B></FONT> del
+  gruppo.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Se un costrutto <FONT COLOR="Blue"><B>catch</B></FONT>, al posto del
+  &nbsp;<FONT COLOR="Green"><B>tipo</B></FONT> e
+  dell'<FONT COLOR="Maroon"><B>argomento</B></FONT>, presenta "tre puntini"
+  (<I><B>ellipsis</B></I>), significa che &egrave; in grado di catturare
+  <U>qualsiasi</U> <FONT COLOR="Green"><B>eccezione</B></FONT>, indipendentemente
+  dal suo <FONT COLOR="Green"><B>tipo</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>L'ordine in cui appaiono i diversi <B>blocchi</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT> associati a un <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT> &egrave; importante: infatti il confronto
+  con il <FONT COLOR="Green"><B>tipo</B></FONT>
+  dell'<FONT COLOR="Green"><B>eccezione</B></FONT> da catturare viene sempre
+  fatto a partire dal primo <B>blocco</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT> che segue il <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT> e procede nello stesso ordine: da ci&ograve;
+  consegue che l'eventuale <FONT COLOR="Blue"><B>catch</B></FONT> con
+  <I><B>ellipsis</B></I> <U>deve essere sempre l'ultimo</U> <B>blocco</B> del
+  gruppo. L'esempio che segue schematizza la situazione di un <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT> seguito da tre <B>blocchi</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT>, di cui l'ultimo con
+  <I><B>ellipsis</B></I>.</BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD WIDTH="30%"><BIG><FONT COLOR="Blue"><B>try</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Blue"><B>{</B></FONT> <B>blocco
+	</B><FONT COLOR="Blue"><B>try</B></FONT><B>
+	</B></BIG><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT></TD>
+      <TD><BIG>se non solleva <FONT COLOR="Green"><B>eccezioni</B></FONT>, esegue
+	<B>blocco </B><FONT COLOR="Blue"><B>try</B></FONT> e salta a
+	<FONT COLOR="Maroon"><B>istruzione</B></FONT>&nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><FONT COLOR="Blue"><B>catch</B></FONT>
+	</BIG><FONT COLOR="Blue"><BIG><B>(</B></BIG></FONT><BIG><FONT COLOR="Green"><B>tipo1</B></FONT></BIG><FONT
+	    COLOR="Blue"><BIG><B>)</B></BIG></FONT>
+	<BIG><FONT COLOR="Blue"><B>{</B></FONT>
+	<B>blocco1</B></BIG><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT></TD>
+      <TD><BIG><U>altrimenti</U>, se il <FONT COLOR="Green"><B>tipo</B></FONT>
+	dell'<FONT COLOR="Green"><B>eccezione</B></FONT></BIG> <BIG>coincide con
+	<FONT COLOR="Green"><B>tipo1</B></FONT>, cattura
+	l'<FONT COLOR="Green"><B>eccezione</B></FONT>, esegue <B>blocco1</B> e salta
+	a
+	&nbsp;</BIG><FONT COLOR="Maroon"><BIG><B>istruzione</B></BIG></FONT></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><FONT COLOR="Blue"><B>catch</B></FONT>
+	</BIG><FONT COLOR="Blue"><BIG><B>(</B></BIG></FONT><BIG><FONT COLOR="Green"><B>tipo2</B></FONT></BIG><FONT
+	    COLOR="Blue"><BIG><B>)</B></BIG></FONT>
+	<BIG><FONT COLOR="Blue"><B>{</B></FONT>
+	<B>blocco2</B></BIG><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT></TD>
+      <TD><BIG><U>altrimenti</U>, se il <FONT COLOR="Green"><B>tipo</B></FONT>
+	dell'<FONT COLOR="Green"><B>eccezione</B></FONT></BIG> <BIG>coincide con
+	<FONT COLOR="Green"><B>tipo2</B></FONT>, cattura
+	l'<FONT COLOR="Green"><B>eccezione</B></FONT>, esegue <B>blocco2</B> e salta
+	a
+	&nbsp;</BIG><FONT COLOR="Maroon"><BIG><B>istruzione</B></BIG></FONT></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><FONT COLOR="Blue"><B>catch</B></FONT>
+	</BIG><FONT COLOR="Blue"><BIG><B>(...)</B></BIG></FONT> &nbsp;
+	&nbsp;<BIG><FONT COLOR="Blue"><B>{</B></FONT><B>blocco3</B></BIG><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT></TD>
+      <TD><BIG><U>altrimenti</U>, cattura comunque
+	l'<FONT COLOR="Green"><B>eccezione</B></FONT>&nbsp;ed esegue
+	<B>blocco3</B></BIG><BR>
+	&nbsp;</TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><FONT COLOR="Maroon"><BIG><B>istruzione</B></BIG></FONT>
+	<BIG><B>.........</B></BIG></TD>
+      <TD><BIG>riprende il flusso normale del programma</BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Blocchi
+innestati</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Una sequenza di <B>blocchi</B>
+  <FONT COLOR="Blue"><B>try</B></FONT>....<FONT COLOR="Blue"><B>catch</B></FONT>
+  pu&ograve; essere a sua volta "<I><B>innestata</B></I>" in un <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT> o in un <B>blocco</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT> (o in una
+  <FONT COLOR="Green"><B>funzione</B></FONT> <B>chiamata</B>, direttamente
+  o indirettamente, da un <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT> o da un <B>blocco</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Se la nuova sequenza &egrave; interna a un <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT> (cio&egrave; nella fase "ascendente"
+  dell'<I><B>exception stack frame</B></I>) e successivamente viene sollevata
+  un'<FONT COLOR="Green"><B>eccezione</B></FONT>, il controllo per la cattura
+  dell'<FONT COLOR="Green"><B>eccezione</B></FONT> viene fatto anzitutto sui
+  <B>blocchi</B> <FONT COLOR="Blue"><B>catch</B></FONT> interni (che sono
+  incontrati prima nella fase di <I><B>stack unwinding</B></I>): se
+  l'<FONT COLOR="Green"><B>eccezione</B></FONT> &egrave; catturata, il problema
+  &egrave; risolto e anche tutti i <B>blocchi</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT> associati al <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT> esterno vengono "saltati"; se invece
+  nessun <B>blocco</B> interno cattura
+  l'<FONT COLOR="Green"><B>eccezione</B></FONT>, il programma non abortisce,
+  ma il controllo passa ai <B>blocchi</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT> associati al <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT> esterno.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Se la nuova sequenza &egrave; interna a un <B>blocco</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT> (cio&egrave; se
+  l'<FONT COLOR="Green"><B>eccezione</B></FONT> &egrave; <U>gi&agrave; stata
+  catturata</U>), si crea un nuovo <I><B>exception stack frame</B></I> a partire
+  da quel punto: pertanto, se &egrave; sollevata una nuova
+  <FONT COLOR="Green"><B>eccezione</B></FONT> e questa viene catturata, il
+  programma esegue il <B>blocco</B> <FONT COLOR="Blue"><B>catch</B></FONT>
+  interno che ha catturato la nuova
+  <FONT COLOR="Green"><B>eccezione</B></FONT> e poi completa l'esecuzione del
+  <B>blocco</B> <FONT COLOR="Blue"><B>catch</B></FONT> esterno che ha catturato
+  l'<FONT COLOR="Green"><B>eccezione</B></FONT> precedente; se invece la nuova
+  <FONT COLOR="Green"><B>eccezione</B></FONT> non &egrave; catturata, il programma
+  abortisce.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Anche l'istruzione <FONT COLOR="Blue"><B>throw</B></FONT> pu&ograve;
+  comparire in un <B>blocco</B> <FONT COLOR="Blue"><B>catch</B></FONT> o in
+  una <FONT COLOR="Green"><B>funzione</B></FONT> <B>chiamata</B>, direttamente
+  o indirettamente, da un <B>blocco</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT> (la sua collocazione "normale" sarebbe
+  invece in un <B>blocco</B> <FONT COLOR="Blue"><B>try</B></FONT> o in una
+  <FONT COLOR="Green"><B>funzione</B></FONT> <B>chiamata</B>, direttamente
+  o indirettamente, da un <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT>). In questo caso si dice che
+  l'<FONT COLOR="Green"><B>eccezione</B></FONT> &egrave;
+  "ri-sollevata</BIG>"<BIG>, ma non pu&ograve; essere gestita allo stesso livello
+  del <B>blocco</B> <FONT COLOR="Blue"><B>catch</B></FONT> da cui parte, in
+  quanto&nbsp;un <B>blocco</B> <FONT COLOR="Blue"><B>catch</B></FONT> non pu&ograve;
+  essere "chiamato" ricursivamente. Pertanto
+  un'<FONT COLOR="Green"><B>eccezione</B></FONT> sollevata dall'interno di
+  un <B>blocco</B> <FONT COLOR="Blue"><B>catch</B></FONT> non fa abortire il
+  programma solo se lo stesso <B>blocco</B>
+  <FONT COLOR="Blue"><B>catch</B></FONT> fa parte di una sequenza
+  <I><B>innestata</B></I> in un <B>blocco</B>
+  <FONT COLOR="Blue"><B>try</B></FONT> esterno (e saranno i corrispondenti
+  <B>blocchi</B> <FONT COLOR="Blue"><B>catch</B></FONT> a occuparsi della sua
+  cattura).<BR>
+  Un caso particolare di <FONT COLOR="Green"><B>eccezione</B></FONT> "ri-sollevata"
+  si ha quando l'istruzione <FONT COLOR="Blue"><B>throw</B></FONT> appare da
+  sola, senza essere seguita da
+  un'<FONT COLOR="Maroon"><B>espressione</B></FONT>; in questo caso il
+  <B>valore</B> e il <FONT COLOR="Green"><B>tipo</B></FONT>
+  dell'<FONT COLOR="Green"><B>eccezione</B></FONT> sono gli stessi del
+  <B>blocco</B> <FONT COLOR="Blue"><B>catch</B></FONT> in cui l'istruzione
+  <FONT COLOR="Blue"><B>throw</B></FONT> &egrave; inserita (cio&egrave; il
+  programma "ri-solleva" la stessa
+  <FONT COLOR="Green"><B>eccezione</B></FONT> che sta gestendo).</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p41/eccez.cpp">[p41]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Eccezioni che non sono
+errori</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Come abbiamo detto all'inizio, il concetto di
+  &nbsp;<FONT COLOR="Green"><B>eccezione</B></FONT> &egrave; di norma legato
+  a quello di <B>errore</B>. Tuttavia il meccanismo di gestione delle
+  <FONT COLOR="Green"><B>eccezioni</B></FONT> altro non &egrave; che un particolare
+  algoritmo di "controllo", meno strutturato e meno efficiente rispetto alle
+  strutture di controllo locali (quali <FONT COLOR="Blue"><B>if</B></FONT>,
+  <FONT COLOR="Blue"><B>switch</B></FONT>,
+  <FONT COLOR="Blue"><B>for</B></FONT> ecc...), che per&ograve; permette
+  operazioni, come i <FONT COLOR="Blue"><B>return</B></FONT> "multilivello",
+  che con le strutture tradizionali sarebbero pi&ugrave; difficili da ottenere
+  o porterebbero a un codice non in grado di mantenere un adeguato livello
+  di indipendenza fra i diversi <FONT COLOR="Red"><B>moduli</B></FONT> del
+  programma.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Quindi la convenienza o meno dell'utilizzo delle
+  <FONT COLOR="Green"><B>eccezioni</B></FONT> non si basa tanto sulla distinzione
+  fra <B>errori</B> o altre situazioni, quanto piuttosto sul fatto che le
+  &nbsp;due operazioni di "controllo" e "azione conseguente" siano localizzate
+  insieme (nel qual caso conviene usare le strutture tradizionali), oppure
+  siano separate in aree diverse dello
+  <FONT COLOR="Purple"><B>stack</B></FONT> (e allora &egrave; preferibile usare
+  le <FONT COLOR="Green"><B>eccezioni</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Per esempio, l'utilizzo delle
+  <FONT COLOR="Green"><B>eccezioni</B></FONT> come strutture di controllo potrebbe
+  essere una tecnica elegante per terminare funzioni di ricerca, soprattutto
+  se la ricerca avviene attraverso chiamate <I><B>ricorsive</B></I>, che "impilano"
+  un numero imprecisato di pacchetti sullo
+  <FONT COLOR="Purple"><B>stack</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Altre "correnti di pensiero", invece, suggersicono di mantenere strettamente
+  correlato il concetto di <FONT COLOR="Green"><B>eccezione</B></FONT> con
+  quello di <B>errore</B>, per evitare la generazione di codice ambiguo e poco
+  comprensibile (e quindi meno portabile e, in sostanza, "pi&ugrave;
+  costoso").</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p42/except.h">[p42]</A><A HREF="p42/ricors.cpp">[p42]</A>
+<A HREF="p42/depth.cpp">[p42]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#classi"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

@@ -1,0 +1,602 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Cominciamo dalla funzione printf CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U> Cominciamo dalla
+funzione "printf"
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Perch&eacute; una funzione di input-output
+del C ? &nbsp;</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La funzione <FONT COLOR="Blue"><B>printf</B></FONT> &egrave; importante
+  perch&eacute; utilizza gli <FONT COLOR="Green"><B>specificatori di
+  formato</B></FONT>, che definiscono il modo di scrivere i dati
+  (<I>formattazione</I>). Tali
+  <FONT COLOR="Green"><B>specificatori</B></FONT> sono usati, con le stesse
+  regole della <FONT COLOR="Blue"><B>printf</B></FONT>, da <U>tutte</U> le
+  funzioni (anche non di input-output), che eseguono conversioni di formato
+  sui dati</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operazioni della funzione printf
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La funzione <FONT COLOR="Blue"><B>printf</B></FONT> <I>formatta</I>
+  e scrive una serie di caratteri e valori sul <B><I>dispositivo standard di
+  output</I></B> (<FONT COLOR="Green"><B>stdout</B></FONT>), associato di
+  <I><B>default</B></I> allo <U>schermo del video</U>, e restituisce al programma
+  chiamante il numero di caratteri effettivamente scritti (oppure un numero
+  negativo in caso di errore).<BR>
+  Quando si usa la funzione <FONT COLOR="Blue"><B>printf</B></FONT> bisogna
+  prima includere il <I><B>file header</B></I>
+  <FONT COLOR="Blue">&lt;stdio.h&gt;</FONT></BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Argomenti della funzione printf
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La funzione <FONT COLOR="Blue"><B>printf</B></FONT> riceve dal programma
+  chiamante uno o pi&ugrave; <B><I>argomenti</I></B>. Solo il primo &egrave;
+  obbligatorio e deve essere una <FONT COLOR="Green"><B>stringa</B></FONT>,
+  che si chiama <I>control string</I> (stringa di controllo)</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Scrittura della control string sullo
+schermo </BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Quando <FONT COLOR="Blue"><B>printf</B></FONT> &egrave; chiamata con
+  un solo argomento, la <I>control string</I> viene trasferita sullo schermo,
+  <U>carattere per carattere</U> (compresi gli spazi bianchi), salvo quando
+  sono incontrati i seguenti caratteri particolari: </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2" ALIGN="Center" WIDTH="90%">
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>"</B></BIG></FONT></TD>
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG>(termina la <I>control string</I>)</BIG></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><B>%</B></FONT></TD>
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG>(introduce uno <FONT COLOR="Green"><B>specificatore di
+	formato</B></FONT> - da non usare in questo caso)</BIG></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><B>\</B></FONT></TD>
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG>(introduce una </BIG><FONT COLOR="Green"><BIG><B>sequenza di
+	escape</B></BIG></FONT><BIG>)</BIG></TD>
+    </TR>
+  </TABLE>
+  <P>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Sequenze di escape
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Il carattere </BIG><FONT COLOR="Blue"><B>\</B></FONT><BIG>
+  (<I><B>backslash</B></I>) non viene trasferito sullo schermo, ma utilizzato
+  in combinazione con i caratteri successivi (un solo carattere se si tratta
+  di una lettera, oppure una sequenza di cifre numeriche); l'insieme viene
+  detto: <I><B>escape sequence</B></I>, e viene interpretato come un unico
+  carattere.<BR>
+  Le <FONT COLOR="Green"><B>sequenze di escape</B></FONT> sono usate tipicamente
+  per specificare caratteri speciali che non hanno il loro equivalente stampabile
+  (come <I>newline</I>, <I>carriage return</I>, tabulazioni, suoni ecc...),
+  oppure caratteri, che da soli, hanno una funzione speciale, come le
+  <B><I>virgolette</I></B> o lo stesso <I><B>backslash</B></I> </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Principali sequenze di escape
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<P ALIGN=Justify>
+<TABLE CELLPADDING="2" ALIGN="Center" WIDTH="90%">
+  <TR>
+    <TD WIDTH="6%"><FONT COLOR="Blue"><BIG><B>\a</B></BIG></FONT></TD>
+    <TD WIDTH="38%"><BIG>suona il campanello (<I>bell</I>)</BIG></TD>
+    <TD WIDTH="12%">&nbsp; &nbsp;</TD>
+    <TD WIDTH="6%"><FONT COLOR="Blue"><BIG><B>\b</B></BIG></FONT></TD>
+    <TD WIDTH="38%"><BIG>carattere backspace</BIG></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="6%"><FONT COLOR="Blue"><BIG><B>\f</B></BIG></FONT></TD>
+    <TD WIDTH="38%"><BIG>salta pagina (<I>form-feed</I>)</BIG></TD>
+    <TD WIDTH="12%">&nbsp; &nbsp;</TD>
+    <TD WIDTH="6%"><FONT COLOR="Blue"><BIG><B>\n</B></BIG></FONT></TD>
+    <TD WIDTH="38%"><BIG>va a capo (<I>newline</I>)</BIG></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="6%"><FONT COLOR="Blue"><BIG><B>\r</B></BIG></FONT></TD>
+    <TD WIDTH="38%"><BIG>ritorno carrello (<I>carriage-return</I>)</BIG></TD>
+    <TD WIDTH="12%">&nbsp; &nbsp;</TD>
+    <TD WIDTH="6%"><FONT COLOR="Blue"><BIG><B>\t</B></BIG></FONT></TD>
+    <TD WIDTH="38%"><BIG>tabulazione orizzontale</BIG></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="6%"><FONT COLOR="Blue"><BIG><B>\\</B></BIG></FONT></TD>
+    <TD WIDTH="38%"><BIG>carattere <I>backslash</I></BIG></TD>
+    <TD WIDTH="12%">&nbsp; &nbsp;</TD>
+    <TD WIDTH="6%"><FONT COLOR="Blue"><BIG><B>\"</B></BIG></FONT></TD>
+    <TD WIDTH="38%"><BIG>carattere virgolette</BIG></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="6%"><FONT COLOR="Blue"><BIG><B>\</B></BIG></FONT><BIG><I>nnn</I></BIG></TD>
+    <TD COLSPAN=4><BIG>carattere con codice</BIG><FONT COLOR="Green"><BIG>
+      <B>ascii</B></BIG></FONT><BIG><B> </B><I>nnn</I> (tre cifre in
+      <B><I>ottale</I></B>)</BIG></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="6%"><FONT COLOR="Blue"><BIG><B>\</B></BIG></FONT><BIG><I>nn</I></BIG></TD>
+    <TD COLSPAN=4><BIG>carattere con codice</BIG><FONT COLOR="Green"><BIG>
+      <B>ascii</B></BIG></FONT><BIG><B> </B><I>nn</I> (due cifre in
+      <B><I>esadecimale</I></B>)</BIG></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="6%"><FONT COLOR="Blue"><BIG><B>%%</B></BIG></FONT></TD>
+    <TD COLSPAN=4><BIG>carattere "%" - <U>atipico</U>: &egrave; introdotto da
+      </BIG><FONT COLOR="Blue"><BIG><B>%</B></BIG></FONT><BIG> anzich&eacute; da
+      </BIG><FONT COLOR="Blue"><BIG><B>\</B></BIG></FONT><BIG> </BIG></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="6%"><FONT COLOR="Blue"><BIG><B>\</B></BIG></FONT></TD>
+    <TD COLSPAN=4><BIG>da solo alla fine della riga = continua la <I>control
+      string</I> nella riga successiva</BIG></TD>
+  </TR>
+</TABLE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>La funzione printf con pi&ugrave; argomenti
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Eventuali altri argomenti successivi alla <I>control string</I>, nella
+  chiamata a <FONT COLOR="Blue"><B>printf</B></FONT>, rappresentano i dati
+  da <I><B>formattare</B></I> e scrivere, e possono essere costituiti da
+  <FONT COLOR="Green"><B>costanti</B></FONT>,
+  <FONT COLOR="Green"><B>variabili</B></FONT>,
+  <FONT COLOR="Green"><B>espressioni</B></FONT>, o altre
+  <FONT COLOR="Green"><B>funzioni</B></FONT> (in questo caso in realt&agrave;
+  l'argomento &egrave; il <FONT COLOR="Green"><B>valore di ritorno</B></FONT>
+  della funzione, la quale viene eseguita <U>prima</U> della
+  <FONT COLOR="Blue"><B>printf</B></FONT>). Per il momento, dato che le
+  <FONT COLOR="Green"><B>variabili</B></FONT> non sono state ancora introdotte,
+  supponiamo che i dati siano costituiti da
+  <FONT COLOR="Green"><B>costanti</B></FONT> o da
+  <FONT COLOR="Green"><B>espressioni</B></FONT> fra
+  <FONT COLOR="Green"><B>costanti</B></FONT> </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Specificatori di formato
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Ad ogni argomento successivo alla <I>control string</I>, deve corrispondere,
+  all'interno della stessa <I>control string</I> e <U>nello stesso ordine</U>,
+  uno <FONT COLOR="Green"><B>specificatore di formato</B></FONT>, costituito
+  da un gruppo di caratteri introdotto dal carattere
+  "<FONT COLOR="Blue"><B>%</B></FONT>". Nella sua forma generale uno
+  <FONT COLOR="Green"><B>specificatore di formato</B></FONT> ha la seguente
+  sintassi:</BIG>
+  <P ALIGN=Center>
+  <BIG><B><FONT COLOR="Blue">%</FONT>[<FONT COLOR="Fuchsia">flags</FONT>][<FONT
+      COLOR="Fuchsia">width</FONT>][<FONT COLOR="Blue">.</FONT><FONT COLOR="Fuchsia">precision</FONT>]</B></BIG><FONT
+      COLOR="Fuchsia"><BIG><B>type</B></BIG></FONT>
+  <P ALIGN=Justify>
+  <BIG>dove i termini indicati con il colore
+  <FONT COLOR="Fuchsia"><B>fuchsia</B></FONT> costituiscono i <I>campi</I>
+  dello <FONT COLOR="Green"><B>specificatore</B></FONT> (senza spazi in mezzo),
+  e sono tutti <U>opzionali</U> salvo l'ultimo
+  (</BIG><FONT COLOR="Fuchsia"><BIG><B>type</B></BIG></FONT><BIG>), che determina
+  come deve essere interpretato il corrispondente argomento della
+  <FONT COLOR="Blue"><B>printf</B></FONT> (<FONT COLOR="Green"><B>numero
+  intero</B></FONT>, <FONT COLOR="Green"><B>numero
+  <I>floating</I></B></FONT>, <FONT COLOR="Green"><B>carattere</B></FONT>,
+  <FONT COLOR="Green"><B>stringa</B></FONT> ecc...). I <I>campi</I> opzionali
+  controllano invece il formato di scrittura. Se sono omessi, cio&egrave; lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT> assume la forma minima
+  <B><FONT COLOR="Blue">%</FONT></B></BIG><FONT COLOR="Fuchsia"><BIG><B>type</B></BIG></FONT><BIG>,
+  i dati sono scritti in <B><I>free-format</I></B> (cio&egrave; in modo da
+  occupare lo spazio strettamente necessario)</BIG>. <BIG>Per esempio, se a
+  un certo punto della <I>control string</I> compare lo specificatore
+  <FONT COLOR="Blue"><B>%d</B></FONT>, significa che in quella posizione deve
+  essere scritto, in <B><I>free-format</I></B>, il valore del corrispondente
+  argomento della <FONT COLOR="Blue"><B>printf</B></FONT>, espresso come
+  <FONT COLOR="Green"><B>numero intero decimale</B></FONT>, come nel caso della
+  seguente istruzione:<BR>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <B>printf("Ci sono %d iscritti a questo
+  corso!\nTemevo fossero solo %d!",3215+1,2);</B><BR>
+  che scrive su video la frase:<BR>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <B>Ci sono 3216 iscritti a questo
+  corso!<BR>
+  </B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <B>Temevo fossero solo 2!</B></BIG>
+</BLOCKQUOTE>
+<P ALIGN=Justify>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Principali specificatori di formato
+in free-format </BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In uno <FONT COLOR="Green"><B>specificatore di formato</B></FONT> il
+  <I>campo</I> obbligatorio
+  </BIG><FONT COLOR="Fuchsia"><BIG><B>type</B></BIG></FONT><BIG> pu&ograve;
+  assumere uno dei seguenti valori:</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Justify>
+<TABLE CELLPADDING="2" ALIGN="Center" WIDTH="80%">
+  <TR>
+    <TD WIDTH="20%"><FONT COLOR="Blue"><BIG><B>u,&nbsp; o,&nbsp; x
+      </B></BIG></FONT></TD>
+    <TD WIDTH="4%">&nbsp; &nbsp;</TD>
+    <TD WIDTH="76%"><BIG>valori <FONT COLOR="Green"><B>interi
+      assoluti</B></FONT>, basi: <FONT COLOR="Green"><B>decimale</B></FONT>,
+      <FONT COLOR="Green"><B>ottale</B></FONT>,
+      <FONT COLOR="Green"><B>esadecimale</B></FONT> </BIG></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="20%"><FONT COLOR="Blue"><BIG><B>X</B></BIG></FONT></TD>
+    <TD WIDTH="4%">&nbsp; &nbsp;</TD>
+    <TD WIDTH="76%"><BIG>come
+      </BIG><FONT COLOR="Blue"><BIG><B>x</B></BIG></FONT><BIG> ma con le cifre
+      letterali maiuscole</BIG></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="20%"><FONT COLOR="Blue"><BIG><B>d,&nbsp; i </B></BIG></FONT></TD>
+    <TD WIDTH="4%">&nbsp; &nbsp;</TD>
+    <TD WIDTH="76%"><BIG>valori <FONT COLOR="Green"><B>interi
+      relativi</B></FONT>, base
+      <FONT COLOR="Green"><B>decimale</B></FONT></BIG></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="20%"><FONT COLOR="Blue"><BIG><B>f,&nbsp; e </B></BIG></FONT></TD>
+    <TD WIDTH="4%">&nbsp; &nbsp;</TD>
+    <TD WIDTH="76%"><BIG>valori <FONT COLOR="Green"><B>floating</B></FONT>, notazione
+      <FONT COLOR="Green"><B>normale</B></FONT> o
+      <FONT COLOR="Green"><B>esponenziale</B></FONT></BIG></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="20%"><FONT COLOR="Blue"><BIG><B>g</B></BIG></FONT></TD>
+    <TD WIDTH="4%">&nbsp; &nbsp;</TD>
+    <TD WIDTH="76%"><BIG>come
+      </BIG><FONT COLOR="Blue"><BIG><B>f</B></BIG></FONT><BIG> o
+      </BIG><FONT COLOR="Blue"><BIG><B>e</B></BIG></FONT><BIG> (sceglie il pi&ugrave;
+      comodo)</BIG></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="20%"><FONT COLOR="Blue"><BIG><B>E,&nbsp; G </B></BIG></FONT></TD>
+    <TD WIDTH="4%">&nbsp; &nbsp;</TD>
+    <TD WIDTH="76%"><BIG>come
+      </BIG><FONT COLOR="Blue"><BIG><B>e</B></BIG></FONT><BIG> e
+      </BIG><FONT COLOR="Blue"><BIG><B>g</B></BIG></FONT><BIG> (scrive "<B>E</B>"
+      al posto di "<B>e</B>")</BIG></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="20%"><FONT COLOR="Blue"><BIG><B>c</B></BIG></FONT></TD>
+    <TD WIDTH="4%">&nbsp; &nbsp;</TD>
+    <TD WIDTH="76%"><FONT COLOR="Green"><BIG><B>carattere</B></BIG></FONT></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="20%"><FONT COLOR="Blue"><BIG><B>s</B></BIG></FONT></TD>
+    <TD WIDTH="4%">&nbsp; &nbsp;</TD>
+    <TD WIDTH="76%"><FONT COLOR="Green"><BIG><B>stringa
+      </B></BIG></FONT><BIG>di caratteri</BIG></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="20%"><FONT COLOR="Blue"><BIG><B>p</B></BIG></FONT></TD>
+    <TD WIDTH="4%">&nbsp; &nbsp;</TD>
+    <TD WIDTH="76%"><BIG>indirizzo di memoria (in
+      <FONT COLOR="Green"><B>esadecimale</B></FONT>)</BIG></TD>
+  </TR>
+</TABLE>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p02/FreeFormat.cpp">[p02]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Specificatori di formato con ampiezza
+di campo e precisione </BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Anzich&eacute; in <B><I>free-format</I></B>, si possono scrivere i dati
+  in formato definito, tramite gli specificatori numerici di <B><I>ampiezza
+  di campo </I></B>e <B><I>precisione</I></B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>In uno <FONT COLOR="Green"><B>specificatore di formato</B></FONT> il
+  <I>campo</I> opzionale
+  </BIG><FONT COLOR="Fuchsia"><BIG><B>width</B></BIG></FONT><BIG>, costituito
+  da un <U>numero intero positivo</U>, determina l'<B><I>ampiezza di
+  campo</I></B>, cio&egrave; il numero di caratteri <U>minimo</U> con cui deve
+  essere scritto il dato corrispondente. Se il numero di caratteri&nbsp;effettivo
+  &egrave; inferiore, il campo viene riempito (normalmente) a sinistra con
+  spazi bianchi; se invece il numero &egrave; superiore, il campo viene espanso
+  fino a raggiungere la lunghezza effettiva (in altre parole il dato viene
+  sempre scritto per intero, anche se il valore specificato in
+  </BIG><FONT COLOR="Fuchsia"><BIG><B>width</B></BIG></FONT> <BIG>&egrave;
+  insufficiente). Se al posto di un numero si specifica nel <I>campo</I>
+  </BIG><FONT COLOR="Fuchsia"><BIG><B>width </B></BIG></FONT><BIG>un
+  <U>asterisco</U>, il valore viene desunto in esecuzione dalla lista degli
+  argomenti della <FONT COLOR="Blue"><B>printf</B></FONT>; in questo caso il
+  valore dell'<B><I>ampiezza di campo</I></B> deve <U>precedere
+  immediatamente</U> il dato a cui lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT> in esame si riferisce</BIG>.
+  <P ALIGN=Justify>
+  <BIG>In uno <FONT COLOR="Green"><B>specificatore di formato</B></FONT> il
+  <I>campo</I> opzionale <B><FONT COLOR="Fuchsia">precision</FONT></B>, se
+  presente, deve essere sempre preceduto da un <U>punto</U> (che lo separa
+  dal <I>campo</I>
+  </BIG><FONT COLOR="Fuchsia"><BIG><B>width</B></BIG></FONT><BIG>), ed &egrave;
+  costituito da un <U>numero intero non negativo</U>, con significato che dipende
+  dal contenuto del <I>campo</I> obbligatorio
+  </BIG><FONT COLOR="Fuchsia"><BIG><B>type</B></BIG></FONT>, <BIG>come si evince
+  dalla seguente tabella:</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Justify>
+<TABLE BORDER CELLPADDING="2" ALIGN="Center" WIDTH="90%">
+  <TR>
+    <TH WIDTH="20%"><BIG>contenuto <I>campo &nbsp;</I>
+      <FONT COLOR="Fuchsia">type</FONT></BIG></TH>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TH WIDTH="45%"><BIG>significato <I>campo</I>
+      <FONT COLOR="Fuchsia">precision</FONT></BIG></TH>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TH WIDTH="31%"><BIG>default</BIG></TH>
+  </TR>
+  <TR VALIGN="Top">
+    <TD WIDTH="20%"><FONT COLOR="Blue"><B><BIG>d,i,u,o,x,X</BIG></B></FONT><BR>
+      <BIG> (valori <FONT COLOR="Green"><B>interi</B></FONT>)</BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="45%"><P ALIGN=Justify>
+      <BIG>La <B><I>precisione</I></B> specifica il minimo numero di cifre che
+      devono essere scritte. Se il numero di cifre effettive del dato corrispondente
+      &egrave; minore della <B><I>precisione</I></B>, vengono scritti degli zeri
+      sulla sinistra fino a completare il campo. Se invece il numero di cifre effettive
+      &egrave; superiore, il dato &egrave; comunque scritto per intero senza nessun
+      troncamento. Infine, se la <B><I>precisione</I></B> &egrave;
+      <FONT COLOR="Blue"><B>.0</B></FONT> (oppure semplicemente
+      <FONT COLOR="Blue"><B>.</B></FONT>) e il dato &egrave; zero, non viene scritto
+      nulla</BIG>.</TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="31%"><FONT COLOR="Blue"><BIG><B>1</B></BIG></FONT></TD>
+  </TR>
+  <TR VALIGN="Top">
+    <TD WIDTH="20%"><FONT COLOR="Blue"><B><BIG>f,e,E</BIG></B></FONT><BR>
+      <BIG> (valori <FONT COLOR="Green"><B>floating</B></FONT>)</BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="45%"><P ALIGN=Justify>
+      <BIG>La <B><I>precisione</I></B> specifica il numero di cifre che devono
+      essere scritte dopo il punto decimale. L'ultima cifra &egrave; arrotondata.
+      Se la <B><I>precisione</I></B> &egrave;
+      <FONT COLOR="Blue"><B>.0</B></FONT> (oppure semplicemente
+      <FONT COLOR="Blue"><B>.</B></FONT>), non &egrave; scritto neppure il punto
+      decimale (in questo caso &egrave; arrotondata la cifra intera delle
+      unit&agrave;).</BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="31%"><FONT COLOR="Blue"><BIG><B>6</B></BIG></FONT><BIG> cifre
+      decimali</BIG></TD>
+  </TR>
+  <TR VALIGN="Top">
+    <TD WIDTH="20%"><FONT COLOR="Blue"><B><BIG>g,G</BIG></B></FONT><BR>
+      <BIG> (valori <FONT COLOR="Green"><B>floating</B></FONT>)</BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="45%"><P ALIGN=Justify>
+      <BIG>La <B><I>precisione</I></B> specifica il <U>massimo</U> numero di cifre
+      <U>significative</U> che devono essere scritte. L'ultima cifra &egrave;
+      arrotondata. Gli zeri non significativi a destra non vengono scritti. </BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="31%"><FONT COLOR="Blue"><BIG><B>6</B></BIG></FONT><BIG> cifre
+      significative</BIG></TD>
+  </TR>
+  <TR VALIGN="Top">
+    <TD WIDTH="20%"><FONT COLOR="Blue"><B><BIG>c</BIG></B></FONT><BR>
+      <BIG> (<FONT COLOR="Green"><B>carattere</B></FONT>)</BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="45%"><P ALIGN=Justify>
+      <BIG>La <B><I>precisione</I></B> non ha effetto. </BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="31%"><BIG>&nbsp; &nbsp;</BIG></TD>
+  </TR>
+  <TR VALIGN="Top">
+    <TD WIDTH="20%"><FONT COLOR="Blue"><B><BIG>s</BIG></B></FONT><BR>
+      <BIG> (<FONT COLOR="Green"><B>stringa</B></FONT>)</BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="45%"><P ALIGN=Justify>
+      <BIG>La <B><I>precisione</I></B> specifica il <U>massimo</U> numero di caratteri
+      che devono essere scritti. I caratteri in eccesso non vengono scritti. </BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="31%"><BIG>La <FONT COLOR="Green"><B>stringa</B></FONT> &egrave;
+      scritta per intero</BIG></TD>
+  </TR>
+</TABLE>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Come per l'<B><I>ampiezza di campo</I></B>, anche per la
+  <B><I>precisione</I></B>, se al posto di un numero si specifica un
+  <U>asterisco</U>, il valore viene desunto in esecuzione dalla lista degli
+  argomenti della <FONT COLOR="Blue"><B>printf</B></FONT>; anche in questo
+  caso il valore della <B><I>precisione</I></B> deve <U>precedere
+  immediatamente</U> il dato a cui lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT> in esame si riferisce</BIG>.
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Altri campi degli specificatori di formato
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In uno <FONT COLOR="Green"><B>specificatore di formato</B></FONT> il
+  <I>campo</I> opzionale </BIG><FONT COLOR="Fuchsia"><BIG><B>flags
+  </B></BIG></FONT><BIG>&egrave; costituito da uno o pi&ugrave; caratteri,
+  ciascuno dei quali svolge una funzione particolare, come descritto dalla
+  seguente tabella: </BIG>
+</BLOCKQUOTE>
+<TABLE BORDER CELLPADDING="2" ALIGN="Center" WIDTH="90%">
+  <TR>
+    <TH WIDTH="10%"><BIG> <FONT COLOR="Fuchsia">flag</FONT></BIG></TH>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TH WIDTH="55%"><BIG>significato</BIG></TH>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TH WIDTH="31%"><BIG>default</BIG></TH>
+  </TR>
+  <TR VALIGN="Top">
+    <TD WIDTH="10%"><FONT COLOR="Blue"><B><BIG><BIG>-</BIG></BIG></B></FONT></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="55%"><P ALIGN=Justify>
+      <BIG>Allinea la scrittura a sinistra in un campo con ampiezza specificata
+      da <FONT COLOR="Fuchsia"><B>width</B></FONT>.</BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="31%"><BIG>Allineamento a destra</BIG></TD>
+  </TR>
+  <TR VALIGN="Top">
+    <TD WIDTH="10%"><FONT COLOR="Blue"><B><BIG><BIG>+</BIG></BIG></B></FONT></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="55%"><P ALIGN=Justify>
+      <BIG>Mette il segno (+ o &#150;) davanti al numero.</BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="31%"><BIG>Il segno appare solo se il numero &egrave; negativo</BIG></TD>
+  </TR>
+  <TR VALIGN="Top">
+    <TD WIDTH="10%"><B><BIG><I>spazio</I></BIG></B></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="55%"><P ALIGN=Justify>
+      <BIG>Mette uno spazio bianco davanti al numero, se questo &egrave;
+      positivo.</BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="31%"><BIG>Nessuno spazio davanti ai numeri positivi</BIG></TD>
+  </TR>
+  <TR VALIGN="Top">
+    <TD WIDTH="10%"><FONT COLOR="Blue"><B><BIG><BIG>0</BIG></BIG></B></FONT></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="55%"><P ALIGN=Justify>
+      <BIG>Aggiunge zeri sulla sinistra fino a raggiungere l'ampiezza specificata
+      da <FONT COLOR="Fuchsia"><B>width</B></FONT>. Se appaiono insieme
+      <FONT COLOR="Blue"><B>0</B></FONT> e <FONT COLOR="Blue"><B>-</B></FONT>,
+      <FONT COLOR="Blue"><B>0</B></FONT> &egrave; ignorato.</BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="31%"><BIG>Il campo specificato da
+      <FONT COLOR="Fuchsia"><B>width</B></FONT> &egrave; riempito da spazi
+      bianchi</BIG></TD>
+  </TR>
+  <TR VALIGN="Top">
+    <TD WIDTH="10%"><BIG><FONT COLOR="Blue"><B><BIG>#</BIG></B></FONT> (usato
+      con <FONT COLOR="Blue">o,x,X</FONT>)</BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="55%"><P ALIGN=Justify>
+      <BIG>Mette davanti a ogni valore diverso da zero i prefissi
+      <FONT COLOR="Blue">0</FONT>, <FONT COLOR="Blue">0x</FONT>, o
+      <FONT COLOR="Blue">0X</FONT>, rispettivamente.</BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="31%"><BIG>Nessun prefisso davanti ai numeri</BIG></TD>
+  </TR>
+  <TR VALIGN="Top">
+    <TD WIDTH="10%"><BIG><FONT COLOR="Blue"><B><BIG>#</BIG></B></FONT> (usato
+      con <FONT COLOR="Blue">e,E,f,g,G</FONT>)</BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="55%"><P ALIGN=Justify>
+      <BIG>Scrive sempre il punto decimale.</BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="31%"><BIG>Il punto decimale &egrave; scritto solo se &egrave;
+      seguito da altre cifre</BIG></TD>
+  </TR>
+  <TR VALIGN="Top">
+    <TD WIDTH="10%"><BIG><FONT COLOR="Blue"><B><BIG>#</BIG></B></FONT> (usato
+      con <FONT COLOR="Blue">g,G</FONT>)</BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="55%"><P ALIGN=Justify>
+      <BIG>Riempie tutto il campo con ampiezza specificata da
+      <FONT COLOR="Fuchsia"><B>width</B></FONT>, scrivendo anche gli zeri non
+      significativi.</BIG></TD>
+    <TD WIDTH="2%"><BIG>&nbsp; &nbsp;</BIG></TD>
+    <TD WIDTH="31%"><BIG>Gli zeri non significativi non vengono scritti</BIG></TD>
+  </TR>
+</TABLE>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p03/Videate.cpp">[p03]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#Tipi"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

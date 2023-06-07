@@ -1,0 +1,1167 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Tipi, Variabili, Costanti CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U> Tipi, Variabili,
+Costanti
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Tipi delle
+variabili</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<P>
+<FONT COLOR="Green"><BIG><B>Classificazione delle variabili in
+tipi</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Si dice che il <FONT COLOR="Red">C++</FONT> (come il
+  <FONT COLOR="Red">C</FONT>) &egrave; un linguaggio
+  "<FONT COLOR="Green"><B>tipato</B></FONT>", per il fatto che pretende che
+  di ogni variabile venga dichiarato il
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG> di
+  appartenenza</BIG>.
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Definizione di tipo di una
+variabile</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Il
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG> &egrave; un
+  termine di classificazione che raggruppa tutte quelle variabili che sono
+  memorizzate nello stesso modo e a cui si applica lo stesso insieme di
+  operazioni.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Controllo forte sui tipi</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Red">C++</FONT> esercita un forte controllo sui
+  </BIG><FONT COLOR="Green"><BIG><B>tipi</B></BIG></FONT><BIG> (<B><I>strong
+  type checking</I></B>), nel senso che regola e limita la conversione da un
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG> all'altro
+  (<FONT COLOR="Blue"><B>casting</B></FONT>) e controlla l'interazione fra
+  variabili di
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG> diverso.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Tipi intrinseci del
+linguaggio</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red">C++</FONT> esistono solo 5
+  </BIG><FONT COLOR="Green"><BIG><B>tipi</B></BIG></FONT><BIG>, detti
+  "<B><I>intrinseci</I></B> o "<B><I>nativi</I></B>" del linguaggio :</BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2" ALIGN="Center" WIDTH="85%">
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>int</B></BIG></FONT></TD>
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG>numero <FONT COLOR="Green"><B>intero</B></FONT> di 2 o 4
+	<FONT COLOR="Green"><B>byte</B></FONT> </BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><FONT COLOR="Blue"><BIG><B>char</B></BIG></FONT></TD>
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG>numero <FONT COLOR="Green"><B>intero</B></FONT> di 1
+	<FONT COLOR="Green"><B>byte</B></FONT> (interpretabile come codice
+	<B><I>ascii</I></B> di un carattere)</BIG></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>float</B></BIG></FONT></TD>
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG>numero in <FONT COLOR="Green"><B>virgola mobile</B></FONT> con 6-7
+	cifre significative (4 <FONT COLOR="Green"><B>byte</B></FONT> )</BIG></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>double</B></BIG></FONT></TD>
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG>numero in <FONT COLOR="Green"><B>virgola mobile</B></FONT> con 15-16
+	cifre significative (8 <FONT COLOR="Green"><B>byte</B></FONT> )</BIG></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>bool</B></BIG></FONT></TD>
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG>valore <FONT COLOR="Green"><B>booleano</B></FONT>:
+	</BIG><FONT COLOR="Blue"><BIG><B>true</B></BIG></FONT><BIG> o
+	</BIG><FONT COLOR="Blue"><BIG><B>false</B></BIG></FONT><BIG> (1
+	<FONT COLOR="Green"><B>byte</B></FONT> )</BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>In realt&agrave; il numero di
+  </BIG><FONT COLOR="Green"><BIG><B>tipi</B></BIG></FONT><BIG> possibili &egrave;
+  molto pi&ugrave; grande, sia perch&eacute; ogni tipo <B><I>nativo</I></B>
+  pu&ograve; essere specializzato mediante i
+  <FONT COLOR="Green"><B>qualificatori di tipo</B></FONT>, sia perch&eacute;
+  il <U>programma stesso pu&ograve; creare propri tipi personalizzati</U> (detti
+  "<FONT COLOR="Green"><B>tipi astratti</B></FONT>")</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Dichiarazione e definizione degli
+identificatori</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<P>
+<FONT COLOR="Green"><BIG><B>Cos'&egrave; un identificatore
+?</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Un
+  </BIG><FONT COLOR="Green"><BIG><B>identificatore</B></BIG></FONT><BIG> &egrave;
+  un <U>nome simbolico</U> che il programma assegna a un'entit&agrave; del
+  linguaggio, per modo che il compilatore sia in grado di riconoscere
+  quell'entit&agrave; ogni volta che incontra il nome che le &egrave; stato
+  assegnato.<BR>
+  Sono pertanto
+  </BIG><FONT COLOR="Green"><BIG><B>identificatori</B></BIG></FONT><BIG> i
+  nomi delle <FONT COLOR="Green"><B>variabili</B></FONT>, delle
+  <FONT COLOR="Green"><B>funzioni</B></FONT>, degli
+  <FONT COLOR="Green"><B>array</B></FONT>, dei <FONT COLOR="Green"><B>tipi
+  astratti</B></FONT>, delle <FONT COLOR="Green"><B>strutture</B></FONT>, delle
+  <FONT COLOR="Green"><B>classi</B> </FONT>ecc...<BR>
+  Ogni
+  </BIG><FONT COLOR="Green"><BIG><B>identificatore</B></BIG></FONT><BIG> consiste
+  di una sequenza di <B>lettere </B>(maiuscole o minuscole) e di <B>cifre
+  numeriche</B>, senza caratteri di altro tipo o spazi bianchi (a parte
+  l'<B><I>underscore </I></B>"<FONT COLOR="Blue"><B>_</B></FONT>", che &egrave;
+  considerato una lettera). Il primo carattere <U>deve essere una
+  lettera</U>.<BR>
+  Non sono validi gli
+  </BIG><FONT COLOR="Green"><BIG><B>identificatori</B></BIG></FONT><BIG> che
+  coincidono con le <I>parole-chiave </I>del linguaggio (come da Tabella sotto
+  riportata).<BR>
+  Esempi di
+  </BIG><FONT COLOR="Green"><BIG><B>identificatori</B></BIG></FONT><BIG> validi:
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT COLOR="Maroon"><B>hello</B></FONT>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT COLOR="Maroon"><B>deep_space9</B></FONT><B>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT COLOR="Maroon">a123</FONT></B>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT COLOR="Maroon"><B>_7bello</B></FONT><BR>
+  Esempi di
+  </BIG><FONT COLOR="Green"><BIG><B>identificatori</B></BIG></FONT><BIG> non
+  validi: </BIG>
+  <TABLE CELLPADDING="2" WIDTH="100%">
+    <TR>
+      <TD WIDTH="30%">&nbsp;</TD>
+      <TD WIDTH="70%"><TABLE CELLPADDING="2">
+	  <TR>
+	    <TD><FONT COLOR="Maroon"><BIG><B>un amico</B></BIG></FONT></TD>
+	    <TD>&nbsp;&nbsp;</TD>
+	    <TD>(<BIG>contiene uno spazio)</BIG></TD>
+	  </TR>
+	  <TR>
+	    <TD><FONT COLOR="Maroon"><BIG><B>un'amica</B></BIG></FONT></TD>
+	    <TD>&nbsp;&nbsp;</TD>
+	    <TD><BIG>(contiene un apostrofo)</BIG></TD>
+	  </TR>
+	  <TR>
+	    <TD><FONT COLOR="Maroon"><BIG><B>7bello</B></BIG></FONT></TD>
+	    <TD>&nbsp;&nbsp;</TD>
+	    <TD><BIG>(il primo carattere non &egrave; una lettera)</BIG></TD>
+	  </TR>
+	  <TR>
+	    <TD><FONT COLOR="Blue"><BIG><B>for</B></BIG></FONT></TD>
+	    <TD>&nbsp;&nbsp;</TD>
+	    <TD><BIG>(&egrave; una <I>parola-chiave</I> del
+	      <FONT COLOR="Red">C++</FONT>)</BIG></TD>
+	  </TR>
+	</TABLE>
+      </TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P>
+<BIG><B><FONT COLOR="Green">Tabella delle <I>parole-chiave</I> del</FONT>
+<FONT COLOR="Red">C++</FONT></B></BIG>
+<P ALIGN=Center>
+<BLOCKQUOTE>
+  <TABLE BORDER ALIGN="Center" CELLPADDING="2" WIDTH="90%">
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;auto</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;bool</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;break</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;case</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;catch</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;char</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;class</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;const</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;const_class</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;continue</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;default</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;delete</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;do</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;double</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;dynamic_cast</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;else</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;enum</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;explicit</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;extern</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;false</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;float</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;for</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;friend</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;goto</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;if</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;inline</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;int</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;long</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;main</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;mutable</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;namespace</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;new</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;operator</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;private</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;protected</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;public</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;register</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;reinterpret_class</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;return</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;short</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;signed</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;sizeof</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;static</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;static_cast</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;struct</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;switch</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;template</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;this</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;throw</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;true</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;try</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;typedef</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;typeid</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;typename</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;union</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;unsigned</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;using</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;virtual</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;void</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;volatile</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;wmain</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;while</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;</B></BIG></FONT></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>&nbsp;</B></BIG></FONT></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+<FONT COLOR="Green"><BIG><B>Dichiarazione obbligatoria degli
+identificatori</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <B><FONT COLOR="Red">C++</FONT></B> tutti gli
+  </BIG><FONT COLOR="Green"><BIG><B>identificatori</B></BIG></FONT><BIG> di
+  un programma devono essere <B>dichiarati</B> <U>prima</U> di essere utilizzati
+  (non necessariamente all'inizio del programma), cio&egrave; deve essere
+  specificato il loro <FONT COLOR="Green"><B>tipo</B></FONT>. Per
+  <B>dichiarare</B> un
+  </BIG><FONT COLOR="Green"><BIG><B>identificatore</B></BIG></FONT><BIG> bisogna
+  scrivere un'istruzione apposita in cui
+  l'</BIG><FONT COLOR="Green"><BIG><B>identificatore</B></BIG></FONT><BIG>
+  &egrave; preceduto dal <FONT COLOR="Green"><B>tipo</B></FONT> di appartenenza.
+  Es.</BIG>
+  <P ALIGN=Center>
+  <B><FONT COLOR="Blue"><BIG>int
+  </BIG></FONT></B><BIG><FONT COLOR="Maroon"><B>Variabile_Intera</B></FONT></BIG><FONT
+      COLOR="Blue"><BIG><B>;</B></BIG></FONT>
+  <P ALIGN=Justify>
+  <BIG><BR>
+  Pi&ugrave;
+  </BIG><FONT COLOR="Green"><BIG><B>identificatori</B></BIG></FONT><BIG> dello
+  stesso <FONT COLOR="Green"><B>tipo</B></FONT> possono essere
+  <B>dichiarati</B> nella stessa istruzione e separati l'uno dall'altro da
+  una virgola. Es.</BIG>
+  <P ALIGN=Center>
+  <B><FONT COLOR="Blue"><BIG>int
+  </BIG></FONT></B><BIG><FONT COLOR="Maroon"><B>ore, giorni,
+  mesi</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT><BIG> </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+<FONT COLOR="Green"><BIG><B>Definizione obbligatoria degli
+identificatori</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Un'istruzione di <B>dichiarazione</B> si limita ad informare il compilatore
+  del <B><FONT COLOR="Red">C++</FONT></B> che un certo
+  </BIG><FONT COLOR="Green"><BIG><B>identificatore</B></BIG></FONT>
+  <BIG>appartiene a un certo <FONT COLOR="Green"><B>tipo</B></FONT>, ma pu&ograve;
+  non essere considerata in fase di esecuzione del programma. Quando una
+  <B>dichiarazione</B> comporta anche un'<U>operazione eseguibile</U>, allora
+  si dice che &egrave; anche una <B>definizione</B>.<BR>
+  Per esempio,
+  l'istruzione:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <B><FONT COLOR="Blue">extern int
+  </FONT></B><FONT COLOR="Maroon"><B>error_number</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><BR>
+  &egrave; soltanto una <B>dichiarazione</B>, in quanto (come vedremo pi&ugrave;
+  avanti) con lo <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <B><FONT COLOR="Blue">extern</FONT></B> informa il compilatore (o meglio
+  il <I><B>linker</B></I>) che la variabile
+  <FONT COLOR="Maroon"><B>error_number</B></FONT> &egrave; <B>definita</B>
+  in un altro file del programma (e quindi l'istruzione serve solo ad identificare
+  il <FONT COLOR="Green"><B>tipo</B></FONT> della variabile e a permetterne
+  l'utilizzo);<BR>
+  mentre
+  l'istruzione:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <B><FONT COLOR="Blue">int
+  </FONT></B><FONT COLOR="Maroon"><B>error_number</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><BR>
+  &egrave; anche una <B>definizione</B>, in quanto non si limita ad informare
+  il compilatore che la variabile
+  <FONT COLOR="Maroon"><B>error_number</B></FONT> &egrave; di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <B><FONT COLOR="Blue">int</FONT></B>, ma <U>crea</U> la variabile stessa,
+  allocando un'apposita area di memoria.<BR>
+  Per meglio comprendere la differenza fra <B>dichiarazione</B> e
+  <B>definizione</B>, si considerino le seguenti regole:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>tutte le <B>definizioni</B> sono anche <B>dichiarazioni</B> (ma non
+      &egrave; vero il contrario);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>deve esserci <U>una ed una sola</U> <B>definizione</B> per ogni
+      </BIG><FONT COLOR="Green"><BIG><B>identificatore</B></BIG></FONT> <BIG>che
+      appare nel programma (o meglio, per ogni
+      </BIG><FONT COLOR="Green"><BIG><B>identificatore</B></BIG></FONT> <BIG>che
+      appare in uno stesso <FONT COLOR="Green"><B>ambito</B></FONT>, altrimenti
+      si tratta di
+      </BIG><FONT COLOR="Green"><BIG><B>identificatori</B></BIG></FONT> <BIG>diversi,
+      pur avendo lo stesso <B>nome</B>), mentre possono esserci pi&ugrave;
+      <B>dichiarazioni </B>(purch&egrave; non in contraddizione fra loro);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>un
+      </BIG><FONT COLOR="Green"><BIG><B>identificatore</B></BIG></FONT>
+      <BIG><U>deve</U> essere <B>dichiarato</B> <U>prima</U> del suo utilizzo,
+      ma <U>pu&ograve;</U> essere <B>definito</B> <U>dopo</U> (o altrove, come
+      abbiamo visto nell'esempio precedente);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la semplice <B>dichiarazione</B> (cio&egrave; senza
+      <FONT COLOR="Green"><B>specificatore</B></FONT>) di una variabile di
+      <FONT COLOR="Green"><B>tipo</B></FONT> <B><I>nativo</I></B> &egrave; sempre
+      anche una <B>definizione</B>, in quanto comporta l'allocazione di un'area
+      di memoria;</BIG>
+  </UL>
+</BLOCKQUOTE>
+<P ALIGN=Justify>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Qualificatori e specificatori di tipo
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<P>
+<FONT COLOR="Green"><BIG><B>Definizione di "qualificatore" e
+"specificatore"</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Un
+  </BIG><FONT COLOR="Green"><BIG><B>qualificatore</B></BIG></FONT>
+  <BIG><FONT COLOR="Green"><B>di tipo</B></FONT> &egrave; una
+  <I>parola-chiave</I> che, in una istruzione di <B>dichiarazione</B>, si premette
+  a un <FONT COLOR="Green"><B>tipo</B></FONT> <B><I>nativo</I></B>, per indicare
+  il modo in cui la variabile dichiarata deve essere immagazzinata in memoria.
+  Se il <FONT COLOR="Green"><B>tipo</B></FONT> &egrave; omesso, &egrave;
+  sottointeso <FONT COLOR="Blue"><B>int</B></FONT>.<BR>
+  Esistono 4
+  </BIG><FONT COLOR="Green"><BIG><B>qualificatori</B></BIG></FONT><BIG>:
+  <FONT COLOR="Blue"><B>short</B></FONT>,
+  <FONT COLOR="Blue"><B>long</B></FONT>,
+  <FONT COLOR="Blue"><B>signed</B></FONT>,
+  <FONT COLOR="Blue"><B>unsigned</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Uno
+  </BIG><FONT COLOR="Green"><BIG><B>specificatore</B></BIG></FONT> <BIG>&egrave;
+  una <I>parola-chiave</I> che, in una istruzione di <B>dichiarazione</B>,
+  si premette al <FONT COLOR="Green"><B>tipo</B></FONT> (che pu&ograve; essere
+  qualsiasi, anche non <B><I>nativo</I></B>) e all'eventuale
+  </BIG><FONT COLOR="Green"><BIG><B>qualificatore</B></BIG></FONT><BIG>, per
+  definire ulteriori caratteristiche dell'entit&agrave; dichiarata. Esistono
+  svariati tipi di
+  </BIG><FONT COLOR="Green"><BIG><B>specificatori</B></BIG></FONT><BIG>, con
+  funzioni diverse: li introdurremo via via durante il corso, quando sar&agrave;
+  necessario.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Qualificatori
+</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>short</B></FONT></BIG>
+<FONT COLOR="Green"><BIG><B>e
+</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>long</B></FONT></BIG>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>I
+  </BIG><FONT COLOR="Green"><BIG><B>qualificatori</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>short</B></FONT> e
+  <FONT COLOR="Blue"><B>long</B></FONT> si applicano al
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT>. Essi definiscono la dimensione della
+  memoria occupata dalle rispettive variabili di appartenenza. Purtroppo lo
+  standard non garantisce che tale dimensione rimanga inalterata trasportando
+  il programma da una piattaforma all'altra, in quanto essa dipende esclusivamente
+  dalla piattaforma utilizzata. Possiamo solo dire cos&igrave;: <U>a
+  tutt'oggi</U>, nelle implementazioni pi&ugrave; diffuse del
+  <B><FONT COLOR="Red">C++</FONT></B>&nbsp;, il
+  &nbsp;</BIG><FONT COLOR="Green"><BIG><B>qualificatore</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>short</B></FONT> definisce variabili di <U>16
+  bit</U> (2 <FONT COLOR="Green"><B>byte</B></FONT>) e il
+  </BIG><FONT COLOR="Green"><BIG><B>qualificatore</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>long</B></FONT> definisce variabili di <U>32 bit</U>
+  (4 <FONT COLOR="Green"><B>byte</B></FONT>), mentre il
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT> "puro" definisce variabili di <U>32
+  bit</U> (cio&egrave; <FONT COLOR="Blue"><B>long</B></FONT> e
+  &nbsp;<FONT COLOR="Blue"><B>int</B></FONT> sono equivalenti).<BR>
+  Vedremo fra poco che esiste un operatore che permette di conoscere la effettiva
+  occupazione di memoria dei diversi <FONT COLOR="Green"><B>tipi</B></FONT>
+  di variabili.<BR>
+  Per completezza aggiungiamo che il
+  &nbsp;</BIG><FONT COLOR="Green"><BIG><B>qualificatore</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>long</B></FONT> si pu&ograve; applicare anche
+  al <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>double</B></FONT> &nbsp;(la cosidetta "<B><I>precisione
+  estesa</I></B>"), ma, da prove fatte sulle macchine che generalmente usiamo,
+  &egrave; risultato che <U>conviene non applicarlo</U></BIG>!
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Qualificatori
+</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>signed</B></FONT></BIG>
+<FONT COLOR="Green"><BIG><B>e
+</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>unsigned</B></FONT></BIG>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>I
+  </BIG><FONT COLOR="Green"><BIG><B>qualificatori</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>signed</B></FONT> e
+  <FONT COLOR="Blue"><B>unsigned</B></FONT> si applicano ai
+  <FONT COLOR="Green"><B>tipi</B></FONT> "interi" <FONT COLOR="Blue"><B>int
+  </B></FONT>e <FONT COLOR="Blue"><B>char</B></FONT>. Essi determinano se le
+  rispettive variabili di appartenenza possono assumere o meno valori
+  negativi.<BR>
+  E' noto che i numeri interi negativi sono rappresentati in memoria mediante
+  l'algoritmo del "<I>complemento a 2</I>" (dato un numero
+  <FONT COLOR="Maroon"><B>N</B></FONT> rappresentato da una sequenza di bit,
+  <FONT COLOR="Maroon"><B>-N</B></FONT> si rappresenta invertendo tutti i bit
+  e aggiungendo &nbsp;<FONT COLOR="Maroon"><B>1</B></FONT>). E' pure noto che,
+  in un'area di memoria di <FONT COLOR="Maroon"><B>m</B></FONT> bit, esistono
+  <FONT COLOR="Maroon"><B>2<SUP>m</SUP></B></FONT> diverse possibili configurazioni
+  (cio&egrave; un numero intero pu&ograve; assumere
+  <FONT COLOR="Maroon"><B>2<SUP>m</SUP></B></FONT> valori). Pertanto un numero
+  con segno ha un <I>range</I> (intervallo) di variabilit&agrave; da
+  <FONT COLOR="Maroon"><B>-2<SUP>m-1</SUP></B></FONT> a
+  <FONT COLOR="Maroon"><B>+2<SUP>m-1</SUP>-1</B></FONT>, mentre un numero assoluto
+  va da <FONT COLOR="Maroon"><B>0</B></FONT> a
+  <FONT COLOR="Maroon"><B>+2<SUP>m</SUP>-1</B></FONT>.<BR>
+  Se il <FONT COLOR="Green"><B>tipo</B></FONT> &egrave;
+  <FONT COLOR="Blue"><B>int</B></FONT>, i
+  </BIG><FONT COLOR="Green"><BIG><B>qualificatori</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>signed</B></FONT> e
+  <FONT COLOR="Blue"><B>unsigned</B></FONT> possono essere combinati con
+  <FONT COLOR="Blue"><B>short</B></FONT> e
+  <FONT COLOR="Blue"><B>long</B></FONT>, dando luogo, insieme a
+  <FONT COLOR="Blue"><B>signed</B></FONT>
+  <FONT COLOR="Blue"><B>char</B></FONT> e
+  <FONT COLOR="Blue"><B>unsigned</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>char</B></FONT>, a 6 diversi
+  <FONT COLOR="Green"><B>tipi</B></FONT> interi possibili.<BR>
+  E i <FONT COLOR="Green"><B>tipi</B></FONT> <FONT COLOR="Blue"><B>int
+  </B></FONT>e <FONT COLOR="Blue"><B>char </B></FONT>"puri" ? Il
+  <FONT COLOR="Green"><B>tipo</B></FONT> <FONT COLOR="Blue"><B>int
+  </B></FONT>&egrave; sempre con segno (e quindi
+  &nbsp;<FONT COLOR="Blue"><B>signed</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT> e
+  <FONT COLOR="Blue"><B>int</B></FONT> sono equivalenti), mentre, per quello
+  che riguarda il <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>char</B></FONT>, ancora una volta dipende
+  dall'implementazione: "in generale" (ma non sempre) coincide con
+  <FONT COLOR="Blue"><B>signed</B></FONT>
+  <FONT COLOR="Blue"><B>char</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<IMG SRC="tipi1.gif">
+<P ALIGN=Center>
+<IMG SRC="tipi2.gif">
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>L'operatore
+sizeof</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>sizeof</B></FONT>(<FONT COLOR="Maroon"><B>operando</B></FONT>)
+  restituisce la lunghezza in <FONT COLOR="Green"><B>byte</B></FONT> di
+  </BIG><FONT COLOR="Green"><BIG><B>identificatori</B></BIG></FONT><BIG>
+  appartenenti a un dato <FONT COLOR="Green"><B>tipo</B></FONT>;
+  <FONT COLOR="Maroon"><B>operando</B></FONT> specifica il
+  <FONT COLOR="Green"><B>tipo</B></FONT> in esame o un qualunque
+  </BIG><FONT COLOR="Green"><BIG><B>identificatore</B></BIG></FONT><BIG> dichiarato
+  di quel <FONT COLOR="Green"><B>tipo</B></FONT>. Per esempio,
+  <FONT COLOR="Blue"><B>sizeof</B></FONT>(<FONT COLOR="Blue"><B>int</B></FONT>)
+  pu&ograve; essere usato per sapere se il
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT> &egrave; di 2 o di 4
+  <FONT COLOR="Green"><B>byte</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p04/size.cpp">[p04]</A></BIG></BIG>
+<P>
+<FONT COLOR="Green"><BIG><B>Confronto dei risultati fra diverse
+architetture</B></BIG></FONT>
+<P>
+&nbsp;
+<CENTER>
+  <TABLE BORDER CELLPADDING="2" ALIGN="Center">
+    <TR>
+      <TD></TD>
+      <TH COLSPAN=3><FONT COLOR="Green"><BIG>Lunghezza della voce di memoria in
+	byte</BIG></FONT></TH>
+    </TR>
+    <TR>
+      <TH><BIG><FONT COLOR="Green"><B>tipo</B></FONT></BIG></TH>
+      <TH><FONT COLOR="Red"><BIG>PC (32 bit)</BIG></FONT>
+	<P>
+	<FONT COLOR="Red"> <BIG>con Windows</BIG></FONT></TH>
+      <TH><FONT COLOR="Red"><BIG>PC (32 bit)</BIG></FONT>
+	<P>
+	<FONT COLOR="Red"> <BIG>con Linux</BIG></FONT></TH>
+      <TH><FONT COLOR="Red"><BIG>DEC ALPHA (64 bit)</BIG></FONT>
+	<P>
+	<FONT COLOR="Red"> <BIG>con Unix</BIG></FONT></TH>
+    </TR>
+    <TR>
+      <TD><BIG><FONT COLOR="Blue"><B>char</B></FONT></BIG></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>1&nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>1&nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>1&nbsp;</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><BIG><FONT COLOR="Blue"><B>short</B></FONT></BIG></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>2&nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>2&nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>2&nbsp;</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><BIG><FONT COLOR="Blue"><B>int</B></FONT></BIG></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>4&nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>4&nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>4&nbsp;</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><BIG><FONT COLOR="Blue"><B>long</B></FONT></BIG></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>4&nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>4&nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>8&nbsp;</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><BIG><FONT COLOR="Blue"><B>float</B></FONT></BIG></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>4&nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>4&nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>4&nbsp;</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><BIG><FONT COLOR="Blue"><B>double</B></FONT></BIG></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>8&nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>8&nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>8&nbsp;</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><BIG><FONT COLOR="Blue"><B>long double</B></FONT></BIG></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>8&nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>12&nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>16&nbsp;</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD><BIG><FONT COLOR="Blue"><B>bool</B></FONT></BIG></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>1&nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>1&nbsp;</B></BIG></FONT></TD>
+      <TD><P ALIGN=Right>
+	<FONT COLOR="Maroon"><BIG><B>1&nbsp;</B></BIG></FONT></TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<P>
+&nbsp;
+<P>
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Definizione con Inizializzazione
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo visto finora che ogni <B>dichiarazione </B>o <B>definizione</B>
+  di un <FONT COLOR="Green"><B>identificatore</B></FONT> consiste di tre
+  parti:</BIG>
+  <UL>
+    <LI>
+      <BIG>uno o pi&ugrave; <FONT COLOR="Green"><B>specificatori</B></FONT>
+      (opzionali);</BIG>
+    <LI>
+      <BIG>il <FONT COLOR="Green"><B>tipo</B></FONT> (eventualmente preceduto da
+      uno o pi&ugrave;
+      </BIG><FONT COLOR="Green"><BIG><B>qualificatori</B></BIG></FONT><BIG>);</BIG>
+    <LI>
+      <BIG>l'<FONT COLOR="Green"><B>identificatore</B></FONT>.</BIG>
+  </UL>
+  <CENTER>
+    <TABLE BORDER="2" CELLPADDING="2" ALIGN="Center" WIDTH="80%">
+      <TR>
+	<TD><P ALIGN=Justify>
+	  <FONT COLOR="Red"><BIG><B>NOTA</B></BIG></FONT><BR>
+	  <BIG>Per completezza aggiungiamo che a sua volta
+	  l'<FONT COLOR="Green"><B>identificatore</B></FONT> pu&ograve; essere preceduto
+	  (e/o seguito) da un "<FONT COLOR="Green"><B>operatore di
+	  dichiarazione</B></FONT>".<BR>
+	  I pi&ugrave; comuni <FONT COLOR="Green"><B>operatori di
+	  dichiarazione</B></FONT> sono: </BIG>
+	  <CENTER>
+	    <TABLE CELLPADDING="2" ALIGN="Center">
+	      <TR>
+		<TD><BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT></BIG></TD>
+		<TD>&nbsp;&nbsp;&nbsp;</TD>
+		<TD><FONT COLOR="Green"><BIG><B>puntatore</B></BIG></FONT></TD>
+		<TD>&nbsp;&nbsp;&nbsp;</TD>
+		<TD><BIG><I><B>prefisso</B></I></BIG></TD>
+	      </TR>
+	      <TR>
+		<TD><BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>const</B></FONT></BIG></TD>
+		<TD>&nbsp;&nbsp;&nbsp;</TD>
+		<TD><FONT COLOR="Green"><BIG><B>puntatore costante</B></BIG></FONT></TD>
+		<TD>&nbsp;&nbsp;&nbsp;</TD>
+		<TD><BIG><I><B>prefisso</B></I></BIG></TD>
+	      </TR>
+	      <TR>
+		<TD><BIG><FONT COLOR="Blue"><B>&amp;</B></FONT></BIG></TD>
+		<TD>&nbsp;&nbsp;&nbsp;</TD>
+		<TD><FONT COLOR="Green"><BIG><B>riferimento</B></BIG></FONT></TD>
+		<TD>&nbsp;&nbsp;&nbsp;</TD>
+		<TD><BIG><I><B>prefisso</B></I></BIG></TD>
+	      </TR>
+	      <TR>
+		<TD><BIG><FONT COLOR="Blue"><B>[]</B></FONT></BIG></TD>
+		<TD>&nbsp;&nbsp;&nbsp;</TD>
+		<TD><FONT COLOR="Green"><BIG><B>array</B></BIG></FONT></TD>
+		<TD>&nbsp;&nbsp;&nbsp;</TD>
+		<TD><BIG><I><B>suffisso</B></I></BIG></TD>
+	      </TR>
+	      <TR>
+		<TD><BIG><FONT COLOR="Blue"><B>( )</B></FONT></BIG></TD>
+		<TD>&nbsp;&nbsp;&nbsp;</TD>
+		<TD><FONT COLOR="Green"><BIG><B>funzione</B></BIG></FONT></TD>
+		<TD>&nbsp;&nbsp;&nbsp;</TD>
+		<TD><BIG><I><B>suffisso</B></I></BIG></TD>
+	      </TR>
+	    </TABLE>
+	  </CENTER>
+	  <P>
+	  <BIG>Ne parleremo al momento opportuno.</BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <BIG>Esiste una quarta parte, opzionale, che si chiama
+  <FONT COLOR="Green"><B>inizializzatore</B></FONT> (e che si pu&ograve; aggiungere
+  solo nel caso della <B>definizione</B> di una variabile): un
+  <FONT COLOR="Green"><B>inizializzatore</B></FONT> &egrave; un'espressione
+  che definisce il <B>valore iniziale</B> &nbsp;assunto dalla variabile, ed
+  &egrave; separato dal resto della <B>definizione</B>
+  dall'<FONT COLOR="Green"><B>operatore</B></FONT>
+  "<FONT COLOR="Blue"><B>=</B></FONT>".<BR>
+  Quindi, ricapitolando (nel caso che
+  l'<FONT COLOR="Green"><B>identificatore</B></FONT> sia il nome di una
+  variabile):</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG> la semplice <B>dichiarazione</B> assegna un
+      <FONT COLOR="Green"><B>tipo</B></FONT> alla variabile</BIG>;
+    <LI>
+      <P ALIGN=Justify>
+      <BIG> la <B>definizione</B> <U>crea</U> la variabile in memoria, ma <U>non
+      il suo contenuto</U>, che rimane, per il momento, indefinito (forse resta
+      quello che c'era prima nella stessa locazione fisica di memoria)</BIG>;
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la <B>definizione</B> con <B>inizializzazione</B> attribuisce un valore
+      iniziale alla variabile definita.</BIG>
+  </UL>
+  <P>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BIG>Es.
+  <FONT COLOR="Blue"><B>unsigned</B></FONT>
+  <FONT COLOR="Maroon"><B>peso</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>57</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT>
+  <P ALIGN=Justify>
+  <FONT COLOR="Red"><BIG><BIG>n.b.</BIG></BIG></FONT><BIG>
+  un'<B>inizializzazione</B> &egrave; concettualmente diversa da
+  un'<B>assegnazione</B></BIG>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red">C++</FONT> i valori di <B>inizializzazione</B>
+  possono essere dati non solo da costanti, ma anche da espressioni che includono
+  variabili definite precedentemente.</BIG>
+  <P>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BIG>Es.
+  &nbsp;&nbsp;&nbsp;&nbsp;<FONT COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="Maroon"><B>lordo</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>45</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT><BIG>
+  &nbsp;&nbsp;&nbsp;&nbsp;<FONT COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="Maroon"><B>tara</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>23</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT><BIG>
+  &nbsp;&nbsp;&nbsp;&nbsp;<FONT COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="Maroon"><B>netto</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>lordo-tara</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Il tipo
+"booleano"</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>bool</B></FONT> non faceva parte inizialmente dei
+  <FONT COLOR="Green"><B>tipi</B></FONT> <B><I>nativi</I></B> del
+  <FONT COLOR="Red">C</FONT> e solo recentemente &egrave; stato introdotto
+  nello standard del <FONT COLOR="Red">C++</FONT>.<BR>
+  Una variabile "<FONT COLOR="Green"><B>booleana</B></FONT>" (cio&egrave;
+  <B>dichiarata</B> <FONT COLOR="Blue"><B>bool</B></FONT>) pu&ograve; assumere
+  solo due valori: <FONT COLOR="Blue"><B>true</B></FONT> e
+  <FONT COLOR="Blue"><B>false</B></FONT>. Tuttavia, dal punto di vista
+  dell'occupazione di memoria, il <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>bool</B></FONT> &egrave; identico al
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>char</B></FONT>, cio&egrave; occupa un intero
+  <FONT COLOR="Green"><B>byte</B></FONT> (anche se in pratica utilizza un solo
+  bit). <BR>
+  Nelle espressioni aritmetiche e logiche valori
+  <FONT COLOR="Green"><B>booleani</B></FONT> e
+  <FONT COLOR="Green"><B>interi</B></FONT> possono essere mescolati insieme:
+  se un <FONT COLOR="Green"><B>booleano </B></FONT>&egrave; convertito in un
+  <FONT COLOR="Green"><B>intero</B></FONT>, per definizione
+  <FONT COLOR="Blue"><B>true</B></FONT> corrisponde al valore
+  </BIG><FONT COLOR="Maroon"><BIG><B>1</B></BIG></FONT><BIG> e
+  <FONT COLOR="Blue"><B>false</B></FONT> corrisponde al valore
+  </BIG><FONT COLOR="Maroon"><BIG><B>0</B></BIG></FONT><BIG>; viceversa, se
+  un <FONT COLOR="Green"><B>intero </B></FONT>&egrave; convertito in
+  un&nbsp;<FONT COLOR="Green"><B>booleano</B></FONT>, tutti i valori diversi
+  da zero diventano &nbsp;<FONT COLOR="Blue"><B>true</B></FONT> e zero diventa
+  <FONT COLOR="Blue"><B>false</B></FONT>. Esempi:</BIG>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>bool</B></FONT>&nbsp;
+	  <FONT COLOR="Maroon"><B>b</B></FONT></BIG></TD>
+	<TD><BIG>=</BIG></TD>
+	<TD><BIG><FONT COLOR="Maroon"><B>7</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+	<TD><BIG>(&nbsp;<FONT COLOR="Maroon"><B>b</B></FONT> &egrave; inizializzata
+	  con <FONT COLOR="Blue"><B>true</B></FONT>&nbsp;)</BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>int</B></FONT>&nbsp;
+	  <FONT COLOR="Maroon"><B>i</B></FONT></BIG></TD>
+	<TD><BIG>=</BIG></TD>
+	<TD><BIG><FONT COLOR="Blue"><B>true</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+	<TD><BIG>(&nbsp;<FONT COLOR="Maroon"><B>i</B></FONT> &egrave; inizializzata
+	  con <FONT COLOR="Maroon"><B>1</B></FONT>&nbsp;)</BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>int</B></FONT>&nbsp;
+	  <FONT COLOR="Maroon"><B>i</B></FONT></BIG></TD>
+	<TD><BIG>=</BIG></TD>
+	<TD><BIG><FONT COLOR="Maroon"><B>7 &lt;
+	  2</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+	<TD><BIG>(&nbsp;espressione
+	  <B><I>falsa</I></B>:<FONT COLOR="Maroon"><B> i</B></FONT> &egrave; inizializzata
+	  con <FONT COLOR="Maroon"><B>0</B></FONT>&nbsp;)</BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Le Costanti in
+C++</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<P>
+<FONT COLOR="Green"><BIG><B>Costanti intere</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Una <FONT COLOR="Green"><B>costante intera</B></FONT> &egrave; un numero
+  <FONT COLOR="Green"><B>decimale</B></FONT> (<B>base
+  </B><FONT COLOR="Maroon"><B>10</B></FONT>),
+  <FONT COLOR="Green"><B>ottale</B></FONT> (<B>base</B>
+  <FONT COLOR="Maroon"><B>8</B></FONT>) o
+  <FONT COLOR="Green"><B>esadecimale</B></FONT> (<B>base</B>
+  <FONT COLOR="Maroon"><B>16</B></FONT>) che rappresenta un <U>valore intero
+  positivo o negativo</U>. Un numero senza <I>prefissi</I> o <I>suffissi</I>
+  &egrave; interpretato in base <FONT COLOR="Green"><B>decimale</B></FONT>
+  e di </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>int</B></FONT>&nbsp;(o
+  <FONT COLOR="Blue"><B>unsigned</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT> se la costante specificata &egrave;
+  maggiore del massimo numero positivo
+  <FONT COLOR="Blue"><B>signed</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT>). La prima cifra del numero <U>non deve
+  essere <FONT COLOR="Maroon"><B>0</B></FONT></U>.<BR>
+  Un numero con <I>prefisso</I> <FONT COLOR="Maroon"><B>0</B></FONT> &egrave;
+  interpretato in base <FONT COLOR="Green"><B>ottale</B></FONT> e di
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>int </B></FONT>(o
+  <FONT COLOR="Blue"><B>unsigned</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT>).<BR>
+  Es.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT COLOR="Maroon"><B>a
+  </B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>
+  0100</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>&nbsp;&nbsp;&nbsp;(in
+  <FONT COLOR="Maroon"><B>a</B></FONT> &egrave; memorizzato il numero
+  <FONT COLOR="Maroon"><B>64</B></FONT>)<BR>
+  Un numero con <I>prefisso</I> <FONT COLOR="Maroon"><B>0x</B></FONT> o
+  <FONT COLOR="Maroon"><B>0X</B></FONT> &egrave; interpretato in base
+  <FONT COLOR="Green"><B>esadecimale</B></FONT> e di tipo
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>int </B></FONT>(o
+  <FONT COLOR="Blue"><B>unsigned</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT>). Le "cifre"
+  <FONT COLOR="Maroon"><B>a,b,c,d,e,f </B></FONT>possono essere scritte sia
+  in maiuscolo che in minuscolo.<BR>
+  Es.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT COLOR="Maroon"><B>a
+  </B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>
+  0x1B</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>&nbsp;&nbsp;&nbsp;(in
+  <FONT COLOR="Maroon"><B>a</B></FONT> &egrave; memorizzato il numero
+  <FONT COLOR="Maroon"><B>27</B></FONT>)</BIG>
+  <P ALIGN=Justify>
+  <BIG>In qualunque caso, la presenza del <I>suffisso</I>
+  <FONT COLOR="Blue"><B>L</B></FONT> indica che il numero deve essere di
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>long</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT>, mentre la presenza del suffisso
+  <FONT COLOR="Blue"><B>U</B></FONT> indica che il numero deve essere di
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>unsigned int</B></FONT>.<BR>
+  Es.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT COLOR="Maroon"><B>a
+  </B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>
+  0x1B</B></FONT><FONT COLOR="Blue"><B>L;</B></FONT>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT COLOR="Maroon"><B>a
+  </B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>
+  0x1B</B></FONT><FONT COLOR="Blue"><B>U;</B></FONT></BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Costanti in virgola mobile</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Una <FONT COLOR="Green"><B>costante</B></FONT>
+  </BIG><FONT COLOR="Green"><BIG><B>in virgola mobile</B></BIG></FONT><BIG>
+  &egrave; un numero <FONT COLOR="Green"><B>decimale</B></FONT> (<B>base
+  </B><FONT COLOR="Maroon"><B>10</B></FONT>), che rappresenta un <U>valore
+  reale positivo o negativo</U>.<BR>
+  Pu&ograve; essere specificato in 2 modi:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><B>parte_intera</B><FONT COLOR="Blue"><B>.</B></FONT><B>parte_decimale</B>
+      (il punto &egrave; obbligatorio)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><B>notazione esponenziale</B> (il punto non &egrave; obbligatorio)</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Esempi:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</BIG><FONT COLOR="Maroon"><BIG><B>15.75&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-1.5e2
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;25E-4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10.</B></BIG></FONT>
+  <P ALIGN=Justify>
+  <BIG>In qualunque notazione, se il numero &egrave; scritto senza
+  <I>suffissi</I>, &egrave; assunto di
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>double</B></FONT>. Per forzare il
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>float</B></FONT> bisogna apporre il <I>suffisso</I>
+  <FONT COLOR="Blue"><B>f</B></FONT> (o
+  <FONT COLOR="Blue"><B>F</B></FONT>)<BR>
+  Es.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT COLOR="Maroon"><B>10.3</B></FONT>
+  &egrave; di
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>double</B></FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <FONT COLOR="Maroon"><B>1.4e-5f </B></FONT>&egrave; di
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>float</B></FONT> </BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Costanti carattere</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Una <FONT COLOR="Green"><B>costante carattere</B></FONT> &egrave;
+  rappresentata inserendo fra <U>singoli apici</U> un carattere stampabile
+  oppure una <FONT COLOR="Green"><B>sequenza di escape</B></FONT>. </BIG>
+  <TABLE CELLPADDING="2" WIDTH="90%">
+    <TR VALIGN="Top">
+      <TD WIDTH="30%"><BIG>Esempi:</BIG></TD>
+      <TD WIDTH="70%"><TABLE CELLPADDING="2" WIDTH="100%">
+	  <TR>
+	    <TD WIDTH="30%"><FONT COLOR="Maroon"><BIG><B>'A'</B></BIG></FONT></TD>
+	    <TD WIDTH="70%"><BIG>carattere <B>A</B></BIG></TD>
+	  </TR>
+	  <TR>
+	    <TD WIDTH="30%"><FONT COLOR="Maroon"><BIG><B>'\n'</B></BIG></FONT></TD>
+	    <TD WIDTH="70%"><BIG>carattere <B><I>newline</I></B></BIG></TD>
+	  </TR>
+	  <TR>
+	    <TD WIDTH="30%"><FONT COLOR="Maroon"><BIG><B>'\003'</B></BIG></FONT></TD>
+	    <TD WIDTH="70%"><BIG>carattere <B><I>cuoricino</I></B></BIG></TD>
+	  </TR>
+	</TABLE>
+      </TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG> In memoria un <FONT COLOR="Green"><B>carattere</B></FONT> &egrave;
+  rappresentato da un numero intero di <B>1</B>
+  <FONT COLOR="Green"><B>byte</B></FONT> (il suo codice
+  <I><B>ascii</B></I>). Le conversioni fra
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>char</B></FONT> e
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>int</B></FONT> sono automatiche (purch&eacute; il valore
+  intero da convertire sia compreso nel <B><I>range</I></B> del
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>char</B></FONT>) e quindi i due tipi possono essere
+  mescolati insieme nelle espressioni aritmetiche.<BR>
+  Per esempio,
+  l'operazione:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT COLOR="Maroon"><B>MiaVar
+  </B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B> 'A'
+  + 1</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><BR>
+  &egrave; ammessa, se la variabile
+  <FONT COLOR="Maroon"><B>MiaVar</B></FONT> &egrave; stata <B>dichiarata</B>
+  <FONT COLOR="Blue"><B>int</B></FONT> oppure
+  <FONT COLOR="Blue"><B>char</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Green"><B>carattere</B></FONT>
+  <FONT COLOR="Blue"><B>NULL</B></FONT> ha codice <I><B>ascii</B></I>
+  </BIG><FONT COLOR="Maroon"><BIG><B>0</B></BIG></FONT><BIG> e si rappresenta
+  con </BIG><FONT COLOR="Maroon"><BIG><B>'\0'</B></BIG></FONT><BIG> (da non
+  confondere con il carattere <B>0</B> decimale che ha codice
+  <I><B>ascii</B></I>
+  </BIG><FONT COLOR="Maroon"><BIG><B>48</B></BIG></FONT><BIG>).</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Costanti stringa</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Una <FONT COLOR="Green"><B>costante stringa</B></FONT> &egrave;
+  rappresentata inserendo un insieme di
+  <FONT COLOR="Green"><B>caratteri</B></FONT> (fra cui anche
+  <FONT COLOR="Green"><B>sequenze di escape</B></FONT>) fra <U>doppi apici</U>
+  (<I><B>virgolette</B></I>).<BR>
+  Es.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</BIG><FONT
+      COLOR="Maroon"><BIG><B>"Ciao Universo\n" </B></BIG></FONT>
+  <P ALIGN=Justify>
+  <BIG> In <FONT COLOR="Red"><B>C++</B></FONT> (come in
+  <FONT COLOR="Red"><B>C</B></FONT>) non esistono le
+  <FONT COLOR="Green"><B>stringhe</B></FONT> come
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>
+  <I><B>intrinseco</B></I>. Infatti esse sono definite come sequenze
+  (<FONT COLOR="Green"><B>array</B></FONT>) di
+  <FONT COLOR="Green"><B>caratteri</B></FONT>, con una differenza rispetto
+  ai normali <FONT COLOR="Green"><B>array</B></FONT>: il compilatore, nel creare
+  una <FONT COLOR="Green"><B>costante stringa</B></FONT>, aggiunge automaticamente
+  un <FONT COLOR="Blue"><B>NULL</B></FONT> dopo l'ultimo carattere (si dice
+  che le <FONT COLOR="Green"><B>stringhe</B></FONT> sono "<I><B>array di caratteri
+  null terminated</B></I>"). E quindi, per esempio, <FONT COLOR="Maroon"><B>'A'
+  </B></FONT>e <FONT COLOR="Maroon"><B>"A" </B></FONT> sono due
+  <FONT COLOR="Green"><B>costanti</B></FONT> diverse : </BIG>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Maroon"><B>'A'</B></FONT></BIG></TD>
+	<TD><BIG>&nbsp;&nbsp;&nbsp;&egrave; un
+	  <FONT COLOR="Green"><B>carattere</B></FONT> e occupa <B>1</B>
+	  <FONT COLOR="Green"><B>byte</B></FONT> (con il numero
+	  <FONT COLOR="Maroon"><B>65</B></FONT>) </BIG></TD>
+      </TR>
+      <TR>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Maroon"><B>"A" </B></FONT></BIG></TD>
+	<TD><BIG>&nbsp;&nbsp;&nbsp;&egrave; una
+	  <FONT COLOR="Green"><B>stringa</B></FONT> e occupa <B>2
+	  </B><FONT COLOR="Green"><B>byte</B></FONT> (con i numeri
+	  <FONT COLOR="Maroon"><B>65</B></FONT> e
+	  <FONT COLOR="Maroon"><B>0</B></FONT>)</BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG><BR>
+  Per <B>inizializzare</B> una <FONT COLOR="Green"><B>stringa</B></FONT> bisogna
+  <B>definirla</B> &nbsp;di
+  </BIG><FONT COLOR="Green"><BIG><B>tipo</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>char</B></FONT> e aggiungere al nome della variabile
+  l'<FONT COLOR="Green"><B>operatore di dichiarazione</B></FONT>
+  <FONT COLOR="Blue"><B>[]</B></FONT>.<BR>
+  Es.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT COLOR="Blue"><B>char</B></FONT>
+  <FONT COLOR="Maroon"><B>MiaStr</B></FONT><FONT COLOR="Blue"><B>[]&nbsp;&nbsp;=&nbsp;&nbsp;</B></FONT><FONT
+      COLOR="Maroon"><B>"Sono una
+  stringa"</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p05/charstr.cpp">[p05]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Specificatore
+const</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Se nella <B>definizione</B> di una variabile, si premette al
+  <FONT COLOR="Green"><B>tipo</B></FONT> (e ai suoi eventuali
+  </BIG><FONT COLOR="Green"><BIG><B>qualificatori</B></BIG></FONT><BIG>), lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>const</B></FONT>, il contenuto della variabile non
+  pu&ograve; pi&ugrave; essere modificato. Ovviamente una variabile definita
+  <FONT COLOR="Blue"><B>const</B></FONT> <U>deve sempre essere
+  <B>inizializzata</B></U>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Es.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <FONT COLOR="Blue"><B>const</B></FONT>
+  <FONT COLOR="Blue"><B>double</B></FONT>
+  <FONT COLOR="Maroon"><B>pigreco</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>3.14159265385</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT>
+  <P ALIGN=Justify>
+  <BIG>L'uso di <FONT COLOR="Blue"><B>const</B></FONT> &egrave; fortemente
+  consigliato rispetto all'alternativa di scrivere pi&ugrave; volte la stessa
+  costante nelle istruzioni del programma; infatti se il programmatore decide
+  di cambiarne il valore, e ha usato
+  <FONT COLOR="Blue"><B>const</B></FONT>, &egrave; sufficiente che modifichi
+  la sola istruzione di <B>definizione</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>D'ora in poi, quando parleremo di
+  "<FONT COLOR="Green"><B>costanti</B></FONT>", intenderemo riferirci a "variabili
+  definite <FONT COLOR="Blue"><B>const</B></FONT>" (distinguendole dalle costanti
+  "dirette" che saranno invece chiamate "costanti letterali" o
+  "<I><B>literals</B></I>").</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#Visibility"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

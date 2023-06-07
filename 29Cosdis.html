@@ -1,0 +1,1779 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Costruttori e distruttori degli oggetti CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Costruttori e
+distruttori degli oggetti
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Costruzione e distruzione di un
+oggetto</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo detto pi&ugrave; volte che quando un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>,
+  <FONT COLOR="Green"><B>istanza</B></FONT> di un
+  <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>nativo</B></I> o
+  <I><B>astratto</B></I>, viene creato, si dice che
+  quell'<FONT COLOR="Green"><B>oggetto</B></FONT> &egrave;
+  <B><BIG>costruito</BIG></B>. Analogamente, quando
+  l'<FONT COLOR="Green"><B>oggetto </B></FONT>cessa di esistere, si dice che
+  quell'<FONT COLOR="Green"><B>oggetto</B></FONT> &egrave;
+  <B><BIG>distrutto</BIG></B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Vediamo le varie circostanze in cui un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> pu&ograve; essere <B>costruito</B>
+  o <B>distrutto</B>:</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>Un <FONT COLOR="Green"><B>oggetto</B></FONT>
+      <FONT COLOR="Green"><B>automatico</B></FONT> (cio&egrave;
+      <FONT COLOR="Green"><B>locale</B></FONT> non
+      <FONT COLOR="Green"><B>statico</B></FONT>) viene <B>costruito</B> <U>ogni
+      volta che</U> la sua <B>definizione</B> viene incontrata durante l'esecuzione
+      del programma, e <B>distrutto</B> <U>ogni volta che</U> il programma esce
+      dall'<FONT COLOR="Green"><B>ambito</B></FONT> in cui tale <B>definizione</B>
+      si trova.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>Un <FONT COLOR="Green"><B>oggetto</B></FONT>
+      <FONT COLOR="Green"><B>locale</B></FONT>
+      <FONT COLOR="Green"><B>statico</B></FONT> viene <B>costruito</B> <U>la prima
+      volta che</U> la sua <B>definizione</B> viene incontrata durante l'esecuzione
+      del programma, e <B>distrutto</B> <U>una sola volta</U>, quando il programma
+      termina.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>Un <FONT COLOR="Green"><B>oggetto</B></FONT> allocato nella
+      <FONT COLOR="Green"><B>memoria dinamica </B></FONT>(area
+      <FONT COLOR="Purple"><B>heap</B></FONT> ) viene &nbsp;<B>costruito</B> mediante
+      l'<FONT COLOR="Green"><B>operatore</B></FONT>
+      <FONT COLOR="Blue"><B>new</B></FONT> e <B>distrutto</B> mediante
+      l'<FONT COLOR="Green"><B>operatore</B></FONT>
+      <FONT COLOR="Blue"><B>delete</B></FONT>.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>Un <FONT COLOR="Green"><B>oggetto</B></FONT>,
+      <FONT COLOR="Green"><B>membro</B></FONT> &nbsp;non
+      <FONT COLOR="Green"><B>statico</B></FONT> di &nbsp;una
+      <FONT COLOR="Green"><B>classe</B></FONT>, viene <B>costruito</B> <U>ogni
+      volta che</U> (o meglio, <U>immediatamente <B>prima</B> che</U>) viene
+      <B>costruito</B> un <FONT COLOR="Green"><B>oggetto</B></FONT> della
+      <FONT COLOR="Green"><B>classe</B></FONT> di cui &egrave;
+      <FONT COLOR="Green"><B>membro</B></FONT>,&nbsp;e <B>distrutto</B> <U>ogni
+      volta che</U> (o meglio, <U>immediatamente <B>dopo</B> che</U>) lo stesso
+      <FONT COLOR="Green"><B>oggetto</B></FONT> viene <B>distrutto</B>.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>Un <FONT COLOR="Green"><B>oggetto</B></FONT>,
+      <FONT COLOR="Green"><B>elemento</B></FONT> di un
+      <FONT COLOR="Green"><B>array</B></FONT>, viene <B>costruito</B> o
+      <B>distrutto</B> ogni volta che l'<FONT COLOR="Green"><B>array</B></FONT>
+      di cui fa parte viene <B>costruito</B> o <B>distrutto</B>.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>Un <FONT COLOR="Green"><B>oggetto</B></FONT>
+      <FONT COLOR="Green"><B>globale</B></FONT>, un
+      <FONT COLOR="Green"><B>oggetto</B></FONT> di un
+      <FONT COLOR="Blue"><B>namespace</B></FONT> o un
+      <FONT COLOR="Green"><B>membro</B></FONT>
+      <FONT COLOR="Green"><B>statico</B></FONT> di &nbsp;una
+      <FONT COLOR="Green"><B>classe</B></FONT>,&nbsp;viene <B>costruito</B> <U>una
+      sola volta</U>, alla "partenza" del programma e <B>distrutto</B> quando il
+      programma termina.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>Infine, un <FONT COLOR="Green"><B>oggetto</B></FONT>
+      <I><B>temporaneo</B></I> viene <B>costruito</B> per memorizzare risultati
+      parziali durante la <FONT COLOR="Purple"><B>valutazione</B></FONT> di
+      un'<FONT COLOR="Green"><B>espressione</B></FONT>, e <B>distrutto</B> alla
+      fine dell'<FONT COLOR="Green"><B>espressione</B></FONT> completa in cui
+      compare.</BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <BIG>Come si pu&ograve; notare, la <B>costruzione</B> o <B>distruzione</B>
+  di un <FONT COLOR="Green"><B>oggetto</B></FONT> pu&ograve; avvenire in momenti
+  diversi, in base alla categoria
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT> che si sta considerando. In
+  ogni caso, sia durante la <B>costruzione</B> che durante la
+  <B>distruzione</B>, potrebbero rendersi necessarie delle operazioni specifiche.
+  Per esempio, se un <FONT COLOR="Green"><B>membro</B></FONT> di &nbsp;una
+  <FONT COLOR="Green"><B>classe</B></FONT> &egrave; un
+  <FONT COLOR="Green"><B>puntatore</B></FONT>, potrebbe essere necessario creare
+  l'area puntata (che non viene fatto automaticamente, come nel caso degli
+  <FONT COLOR="Green"><B>array</B></FONT>) e allocarla
+  <FONT COLOR="Green"><B>dinamicamente</B></FONT> con
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>new</B></FONT>; quest'area dovr&agrave; per&ograve;
+  essere rilasciata, prima e poi (con
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>delete</B></FONT>), e capita non di rado che non lo
+  si possa fare prima della <B>distruzione</B>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT>. Poich&egrave; d'altra parte
+  un <FONT COLOR="Green"><B>oggetto</B></FONT> pu&ograve; anche essere
+  <B>costruito</B> o <B>distrutto</B> automaticamente, <U>si pone il problema
+  di come "intercettare" il momento della sua &nbsp;<B>costruzione</B> o
+  <B>distruzione</B></U>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Nel caso che gli <FONT COLOR="Green"><B>oggetti</B></FONT> siano
+  <FONT COLOR="Green"><B>istanze</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT>,
+  &nbsp;il&nbsp;<FONT COLOR="Red"><B>C++</B></FONT> mette a disposizione un
+  mezzo molto potente, che consiste nella possibilit&agrave; di <B>definire</B>
+  dei particolari <B>metodi</B> della
+  <FONT COLOR="Green"><B>classe</B></FONT>, che il programma riconosce come
+  <FONT COLOR="Green"><B>funzioni</B></FONT> da eseguire al momento della
+  <B>costruzione</B> o <B>distruzione</B> di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>. Questi <B>metodi</B> prendono
+  il nome di <FONT COLOR="Green"><B><BIG>costruttori</BIG></B></FONT> e
+  <FONT COLOR="Green"><B><BIG>distruttori</BIG></B></FONT> degli
+  <FONT COLOR="Green"><B>oggetti</B></FONT>.</BIG> <BIG>Il loro scopo principale
+  &egrave;, per i <FONT COLOR="Green"><B>costruttori</B></FONT>, di
+  <B>inizializzare</B> i <FONT COLOR="Green"><B>membri</B></FONT> e/o
+  <B>allocare</B> risorse, per i
+  <FONT COLOR="Green"><B>distruttori</B></FONT>, di <B>rilasciare</B> le risorse
+  allocate.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Costruttori</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B><BIG>costruttori</BIG></B></FONT> degli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> devono sottostare alle seguenti
+  regole (ci rifaremo al solito esempio della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>point</B></FONT>):</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>devono avere <U>lo stesso <B>nome</B></U> della
+      <FONT COLOR="Green"><B>classe</B></FONT></BIG>
+      <TABLE CELLPADDING="2">
+	<TR>
+	  <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	  <TD><BIG><I><B>prototipo</B></I>: </BIG></TD>
+	  <TD><BIG><FONT COLOR="Maroon"><B>point</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><B>......</B><FONT
+		COLOR="Blue"><B>);</B></FONT></BIG></TD>
+	</TR>
+	<TR>
+	  <TD></TD>
+	  <TD><BIG><B>definizione</B> esterna: &nbsp; &nbsp;&nbsp;</BIG></TD>
+	  <TD><BIG><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+		COLOR="Maroon"><B>point</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><B>......</B><FONT
+		COLOR="Blue"><B>)</B></FONT></BIG>
+	    &nbsp;<BIG><FONT COLOR="Blue"><B>{</B></FONT><B>......</B><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+	</TR>
+      </TABLE>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>non bisogna specificare il <FONT COLOR="Green"><B>tipo</B></FONT> di
+      ritorno (neanche <FONT COLOR="Blue"><B>void</B></FONT>)<BR>
+      <FONT COLOR="Red"><U><B>NOTA</B></U></FONT>: in realt&agrave; la
+      <B>chiamata</B> di un <FONT COLOR="Green"><B>costruttore</B></FONT> pu&ograve;
+      anche essere inserita in
+      un'<FONT COLOR="Green"><B>espressione</B></FONT>; ci&ograve; significa che
+      un <FONT COLOR="Green"><B>costruttore</B></FONT> ritorna "qualcosa" e
+      precisamente .... l'<FONT COLOR="Green"><B>oggetto</B></FONT> che ha appena
+      creato!</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>ammettono <FONT COLOR="Maroon"><B>argomenti</B></FONT> e
+      <I><B>defaults</B></I>; i <FONT COLOR="Green"><B>costruttori</B></FONT> senza
+      <FONT COLOR="Maroon"><B>argomenti</B></FONT> (o con tutti
+      <FONT COLOR="Maroon"><B>argomenti</B></FONT> di <I><B>default</B></I>) sono
+      detti: "<FONT COLOR="Green"><B>costruttori</B></FONT> di
+      <I><B>default</B></I>"<BR>
+      <I><B>prototipo</B></I> di <FONT COLOR="Green"><B>costruttore</B></FONT>
+      di <I><B>default</B></I> della <FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="#cc0000"><B>point</B></FONT>:&nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp;<FONT COLOR="Maroon"><B>point</B></FONT><FONT COLOR="Blue"><B>(
+      );</B></FONT><BR>
+      <I><B>prototipo</B></I> di <FONT COLOR="Green"><B>costruttore</B></FONT>
+      della <FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="#cc0000"><B>point</B></FONT> con un
+      <FONT COLOR="Maroon"><B>argomento</B></FONT> <I><B>required</B></I> e uno
+      di <I><B>default</B></I>:<BR>
+      <FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp;point</B></FONT><FONT COLOR="Blue"><B>(double,double=</B></FONT><FONT
+	  COLOR="Maroon"><B>0.0</B></FONT><FONT COLOR="Blue"><B>);</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>possono esistere pi&ugrave;
+      <FONT COLOR="Green"><B>costruttori</B></FONT>, in
+      <FONT COLOR="Green"><B>overload</B></FONT>, in una stessa
+      <FONT COLOR="Green"><B>classe</B></FONT>. Il
+      <FONT COLOR="Red"><B>C++</B></FONT> li distingue in base alla lista degli
+      <FONT COLOR="Maroon"><B>argomenti</B></FONT>. Come tutte le
+      <FONT COLOR="Green"><B>funzioni</B></FONT> in
+      <FONT COLOR="Green"><B>overload</B></FONT>, non sono ammessi
+      <FONT COLOR="Green"><B>costruttori</B></FONT> che differiscano solo per gli
+      <FONT COLOR="Maroon"><B>argomenti</B></FONT> di
+      <I><B>default</B></I>.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>devono essere <B>dichiarati</B> come
+      <FONT COLOR="Green"><B>funzioni-membro</B></FONT> <B>pubbliche</B>, in quanto
+      sono sempre <B>chiamati</B> dall'esterno della
+      <FONT COLOR="Green"><B>classe</B></FONT> a cui appartengono.</BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B>costruttori</B></FONT> <U>non sono</U> obbligatori:
+  se una <FONT COLOR="Green"><B>classe</B></FONT> non ne possiede, il
+  <FONT COLOR="Red"><B>C++</B></FONT> fornisce un
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di <I><B>default</B></I> con
+  "corpo nullo" . &nbsp;</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <I><B>default</B></I> (<B>dichiarato</B> nella
+  <FONT COLOR="Green"><B>classe</B></FONT> oppure fornito dal
+  <FONT COLOR="Red"><B>C++</B></FONT>) viene eseguito <U>automaticamente</U>
+  nel momento in cui l'<FONT COLOR="Green"><B>oggetto</B></FONT> viene creato
+  nel programma (si vedano i vari casi elencati nella sezione precedente).
+  Esempio : </BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG><B>definizione</B> del
+	<FONT COLOR="Green"><B>costruttore</B></FONT> di <I><B>default</B></I>
+	di<FONT COLOR="Green"><B>
+	</B></FONT><FONT COLOR="#cc0000"><B>point</B></FONT>:</BIG></TD>
+      <TD>&nbsp;</TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+	    COLOR="Maroon"><B>point</B></FONT><FONT COLOR="Blue"><B>(
+	)</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Blue"><B>{</B></FONT><FONT COLOR="Maroon"><B>x</B></FONT><FONT
+	    COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>3.5</B></FONT><FONT COLOR="Blue"><B>;
+	</B></FONT><FONT COLOR="Maroon"><B>y</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>2.1</B></FONT><FONT COLOR="Blue"><B>;}</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><B>definizione</B></BIG>
+	<BIG>dell'<FONT COLOR="Green"><B>oggetto</B></FONT> </BIG>
+	<BIG><FONT COLOR="Maroon"><B>p</B></FONT>,
+	<FONT COLOR="Green"><B>istanza</B></FONT> di<FONT COLOR="Green"><B>
+	</B></FONT><FONT COLOR="#cc0000"><B>point</B></FONT>:</BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>point</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>p</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>nel momento in cui &egrave; l'eseguita l'istruzione di
+  <B>definizione</B></BIG>
+  <BIG>dell'<FONT COLOR="Green"><B>oggetto</B></FONT> </BIG>
+  <BIG><FONT COLOR="Maroon"><B>p</B></FONT>, il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di <I><B>default</B></I> va
+  in esecuzione automaticamente,&nbsp;<B>inizializzando</B>
+  <FONT COLOR="Maroon"><B>p</B></FONT> con
+  <FONT COLOR="Maroon"><B>3.5</B></FONT> nel
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Maroon"><B>x</B></FONT> e
+  <FONT COLOR="Maroon"><B>2.1</B></FONT> nel
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Maroon"><B>y</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Se invece in una <FONT COLOR="Green"><B>classe</B></FONT> esiste almeno
+  un <FONT COLOR="Green"><B>costruttore</B></FONT> con
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>, il
+  <FONT COLOR="Red"><B>C++</B></FONT> non mette a disposizione alcun
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di <I><B>default</B></I> e
+  perci&ograve; questo, se necessario, va esplicitamente <B>definito </B>come
+  <B>metodo</B> della <FONT COLOR="Green"><B>classe</B></FONT>. In sua assenza,
+  i <FONT COLOR="Green"><B>costruttori</B></FONT> con
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> <U>non vengono invocati
+  automaticamente</U> e pertanto ogni istruzione del programma che determini,
+  direttamente o indirettamente, la creazione di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>, <U>deve contenere la
+  <B>chiamata</B> esplicita di uno dei
+  <FONT COLOR="Green"><B>costruttori</B></FONT> disponibili</U>, nel modo che
+  dipende dalla categoria dell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  interessato. Esamineremo i vari casi separatamente, rifacendoci all'elenco
+  illustrato nella sezione precedente. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Per il momento consideriamo il caso pi&ugrave; frequente, che &egrave;
+  quello di un <U><FONT COLOR="Green"><B>oggetto</B></FONT> singolo creato
+  direttamente mediante la <B>definizione</B> del suo <B>nome</B></U> (casi
+  1., 2. e 6.): i modi possibili per invocare un
+  <FONT COLOR="Green"><B>costruttore</B></FONT> con
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> sono due, come &egrave;
+  &nbsp;mostrato dal seguente esempio: </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD>&nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><B>definizione</B> del
+	<FONT COLOR="Green"><B>costruttore</B></FONT> di<FONT COLOR="Green"><B>
+	</B></FONT><FONT COLOR="#cc0000"><B>point</B></FONT></BIG> <BIG>:</BIG></TD>
+      <TD>&nbsp;</TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+	    COLOR="Maroon"><B>point</B></FONT><FONT COLOR="Blue"><B>(double
+	</B></FONT><FONT COLOR="Maroon"><B>x0</B></FONT><FONT COLOR="Blue"><B>, double
+	</B></FONT><FONT COLOR="Maroon"><B>y0</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+	<BR>
+	<BIG><FONT COLOR="Blue"><B>{</B></FONT><FONT COLOR="Maroon"><B>x</B></FONT><FONT
+	    COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>x0</B></FONT><FONT COLOR="Blue"><B>;
+	</B></FONT><FONT COLOR="Maroon"><B>y</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>y0</B></FONT><FONT COLOR="Blue"><B>;}</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><B>definizione</B></BIG>
+	<BIG>dell'<FONT COLOR="Green"><B>oggetto</B></FONT> </BIG>
+	<BIG><FONT COLOR="Maroon"><B>p</B></FONT>,
+	<FONT COLOR="Green"><B>istanza</B></FONT> di<FONT COLOR="Green"><B>
+	</B></FONT><FONT COLOR="#cc0000"><B>point </B></FONT>:</BIG></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <BIG>prima forma :</BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>point</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>p</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>3.5</B></FONT><FONT
+	    COLOR="Blue"><B>,
+	</B></FONT><FONT COLOR="Maroon"><B>2.1</B></FONT><FONT COLOR="Blue"><B>);</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<BIG> &nbsp;seconda forma :</BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>point</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>p</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>=</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>point</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Maroon"><B>3.5</B></FONT><FONT COLOR="Blue"><B>,
+	</B></FONT><FONT COLOR="Maroon"><B>2.1</B></FONT><FONT COLOR="Blue"><B>);</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>la prima forma &egrave; pi&ugrave; concisa, ma la seconda &egrave; pi&ugrave;
+  chiara, in quanto ha proprio l'aspetto di una <B>inizializzazione</B> tramite
+  <B>chiamata</B> esplicita di una
+  <FONT COLOR="Green"><B>funzione</B></FONT>. In entrambi i casi viene invocato
+  un <FONT COLOR="Green"><B>costruttore</B></FONT> con due
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>double</B></FONT>, che <B>inizializza</B>
+  <FONT COLOR="Maroon"><B>p</B></FONT> inserendo i <B>valori</B> dei due
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> rispettivamente nel
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Maroon"><B>x</B></FONT> e nel
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Maroon"><B>y</B></FONT>.</BIG> <BIG>Aggiungiamo che la
+  <B>chiamata</B> esplicita pu&ograve; essere utilizzata anche per invocare
+  un &nbsp;<FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <I><B>default</B></I> (&egrave; necessaria, per esempio, quando
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> &egrave; creato all'interno di
+  un'<FONT COLOR="Green"><B>espressione</B></FONT>), per
+  esempio:<FONT COLOR="Blue"><B><BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; throw</B></FONT>
+  <FONT COLOR="Maroon"><B>Error</B></FONT><FONT COLOR="Blue"><B>(
+  )</B></FONT></BIG> <BIG><FONT COLOR="Blue"><B>;</B></FONT><BR>
+  (solleva un'<FONT COLOR="Green"><B>eccezione</B></FONT> e trasmette un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>Error</B></FONT>, creato con il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <I><B>default</B></I>).</BIG>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp; <BR>
+  <BIG>Terminiamo questa sezione osservando che anche i
+  <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>nativi</B></I> hanno i loro
+  <FONT COLOR="Green"><B>costruttori</B></FONT> di <I><B>default</B></I> (sebbene
+  di solito non si usino), che per&ograve;, quando servono, vanno esplicimente
+  <B>chiamati</B>, come nel seguente esempio:<BR>
+  <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  int
+  </B></FONT><FONT COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B> =
+  int();</B></FONT><BR>
+  i <FONT COLOR="Green"><B>costruttori</B></FONT> di <I><B>default</B></I>
+  dei <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>nativi</B></I>
+  <B>inizializzano</B> le variabili con
+  <FONT COLOR="Maroon"><B>zero</B></FONT> (in modo appropriato al
+  <FONT COLOR="Green"><B>tipo</B></FONT>). Sono utili quando si ha a che fare
+  con <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>parametrizzati</B></I> (come
+  i <FONT COLOR="Blue"><B>template</B></FONT>, che vedremo pi&ugrave; avanti),
+  in cui non &egrave; noto a priori se al <I><B>parametro</B></I> verr&agrave;
+  sostituito un <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>nativo</B></I>
+  o un <FONT COLOR="Green"><B>tipo</B></FONT>
+  <I><B>astratto</B></I>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Costruttori e conversione
+implicita</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Un'attenzione particolare merita il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> con un solo
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>. In questo caso, infatti, il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> <U>definisce anche una conversione
+  <I><B>implicita</B></I> di <FONT COLOR="Green"><B>tipo</B></FONT></U> dal
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  dell'<FONT COLOR="Maroon"><B>argomento</B></FONT> a quello della
+  &nbsp;<FONT COLOR="Green"><B>classe</B></FONT> (ovviamente, spetta al codice
+  di implementazione del <FONT COLOR="Green"><B>costruttore</B></FONT> assicurare
+  che la conversione venga eseguita in modo corretto). Esempio:</BIG><BR>
+  &nbsp; &nbsp; &nbsp;
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD>&nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><B>definizione</B> del
+	<FONT COLOR="Green"><B>costruttore</B></FONT> di<FONT COLOR="Green"><B>
+	</B></FONT><FONT COLOR="#cc0000"><B>point</B></FONT></BIG> <BIG>:</BIG></TD>
+      <TD>&nbsp;</TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+	    COLOR="Maroon"><B>point</B></FONT><FONT COLOR="Blue"><B>(double
+	</B></FONT><FONT COLOR="Maroon"><B>d</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+	<BR>
+	<BIG><FONT COLOR="Blue"><B>{</B></FONT><FONT COLOR="Maroon"><B>x</B></FONT><FONT
+	    COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>d</B></FONT><FONT COLOR="Blue"><B>;
+	</B></FONT><FONT COLOR="Maroon"><B>y</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>d</B></FONT><FONT COLOR="Blue"><B>;}</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><B>definizione</B></BIG>
+	<BIG>dell'<FONT COLOR="Green"><B>oggetto</B></FONT> </BIG>
+	<BIG><FONT COLOR="Maroon"><B>p</B></FONT>,
+	<FONT COLOR="Green"><B>istanza</B></FONT> di<FONT COLOR="Green"><B>
+	</B></FONT><FONT COLOR="#cc0000"><B>point </B></FONT>:</BIG></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>point</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>p</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>3</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<BIG> &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp;&egrave; equivalente a :</BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>point</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>p</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>=</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>point</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Maroon"><B>3.0</B></FONT><FONT COLOR="Blue"><B>);</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Notare che il numero <FONT COLOR="Maroon"><B>3</B></FONT> (che &egrave;
+  di <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT>) &egrave; convertito
+  <I><B>implicitamente</B></I>, prima a
+  <FONT COLOR="Blue"><B>double</B></FONT>, e poi nel
+  <FONT COLOR="Green"><B>tipo
+  </B></FONT><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Green"><B>&nbsp;</B></FONT>(tramite
+  esecuzione del <FONT COLOR="Green"><B>costruttore</B></FONT>, che lo utilizza
+  per <B>inizializzare</B> l'<FONT COLOR="Green"><B>oggetto</B></FONT> </BIG>
+  <BIG><FONT COLOR="Maroon"><B>p</B></FONT>). Notare anche (per "chiudere il
+  cerchio") che un'espressione del tipo
+  <FONT COLOR="Maroon"><B>point</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>3.0</B></FONT><FONT COLOR="Blue"><B>)</B></FONT> &egrave;
+  <U>formalmente identica</U> a
+  un'<FONT COLOR="Green"><B>operazione</B></FONT> di
+  <FONT COLOR="Purple"><B>casting</B></FONT> in <I><B>function-style
+  </B></I>(&egrave; persino ammessa la forma in <I><B>C-style
+  </B></I>!).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Le conversioni <I><B>implicite</B></I> sono molto utili nella definizione
+  degli <FONT COLOR="Green"><B>operatori</B></FONT> in
+  <FONT COLOR="Green"><B>overload</B></FONT> (come vedremo prossimamente).</BIG>
+  <P ALIGN=Justify>
+  <BIG>La conversione <I><B>implicita</B></I> pu&ograve; essere esclusa
+  premettendo, nella <B>dichiarazione</B> (<U>non</U> nella <B>definizione</B>
+  esterna) del <FONT COLOR="Green"><B>costruttore</B></FONT> lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>explicit</B></FONT> :<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>explicit</B></FONT>
+  <FONT COLOR="Maroon"><B>point</B></FONT><FONT COLOR="Blue"><B>(double);</B></FONT><BR>
+  il <FONT COLOR="Purple"><B>casting</B></FONT> continua invece ad essere ammesso
+  (anche nella forma in &nbsp;<I><B>C-style</B></I>), in quanto coincide puramente
+  con la <B>chiamata</B> del
+  <FONT COLOR="Green"><B>costruttore</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Distruttori</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B><BIG>distruttori</BIG></B></FONT> degli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> devono sottostare alle seguenti
+  regole (ci rifaremo al solito esempio della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>point</B></FONT>):</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>devono avere <U>lo stesso <B>nome</B></U> della
+      <FONT COLOR="Green"><B>classe </B></FONT><U>preceduto da una
+      <I><B>tilde</B></I></U> (<FONT COLOR="Blue"><B>~</B></FONT>) </BIG>
+      <TABLE CELLPADDING="2">
+	<TR>
+	  <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	  <TD><BIG><I><B>prototipo</B></I>: </BIG></TD>
+	  <TD><BIG><FONT COLOR="Blue"><B>~</B></FONT><FONT COLOR="Maroon"><B>point</B></FONT><FONT
+		COLOR="Blue"><B>( );</B></FONT></BIG></TD>
+	</TR>
+	<TR>
+	  <TD></TD>
+	  <TD><BIG><B>definizione</B> esterna: &nbsp; &nbsp;&nbsp;</BIG></TD>
+	  <TD><BIG><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>::~</B></FONT><FONT
+		COLOR="Maroon"><B>point</B></FONT><FONT COLOR="Blue"><B>(
+	    )</B></FONT></BIG>
+	    &nbsp;<BIG><FONT COLOR="Blue"><B>{</B></FONT><B>......</B><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+	</TR>
+      </TABLE>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>non bisogna specificare il <FONT COLOR="Green"><B>tipo</B></FONT> di
+      ritorno (neanche <FONT COLOR="Blue"><B>void</B></FONT>)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>non ammettono <FONT COLOR="Maroon"><B>argomenti</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>ciascuna <FONT COLOR="Green"><B>classe</B></FONT> pu&ograve; avere al
+      massimo un
+      </BIG><FONT COLOR="Green"><BIG><B>distruttore</B></BIG></FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>devono essere <B>dichiarati</B> come
+      <FONT COLOR="Green"><B>funzioni-membro</B></FONT> <B>pubbliche</B>, in quanto
+      sono sempre <B>chiamati</B> dall'esterno della
+      <FONT COLOR="Green"><B>classe</B></FONT> a cui appartengono.</BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <BIG>Come i <FONT COLOR="Green"><B>costruttori</B></FONT>, i
+  </BIG><FONT COLOR="Green"><BIG><B>distruttori</B></BIG></FONT> <BIG><U>non
+  sono</U> obbligatori; sono richiesti quando &egrave; necessario liberare
+  risorse allocate dagli <FONT COLOR="Green"><B>oggetti</B></FONT> o ripristinare
+  le condizioni preestistenti alla loro creazione. Se esiste, un
+  </BIG><FONT COLOR="Green"><BIG><B>distruttore</B></BIG></FONT> <BIG>&egrave;
+  sempre <B>chiamato</B> <U>automaticamente</U> ogni volta che
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> di cui fa parte sta per essere
+  <B>distrutto</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Quando pi&ugrave; <FONT COLOR="Green"><B>oggetti</B></FONT> sono
+  <B>costruiti</B> in sequenza, e poi sono <B>distrutti</B> contemporaneamente
+  (per esempio se sono <FONT COLOR="Green"><B>oggetti</B></FONT>
+  <FONT COLOR="Green"><B>automatici</B></FONT> che escono dal loro
+  <FONT COLOR="Green"><B>ambito</B></FONT> di visibilit&agrave;), i loro
+  </BIG><FONT COLOR="Green"><BIG><B>distruttori</B></BIG></FONT> <BIG>sono
+  normalmente eseguiti in sequenza inversa a quella di
+  <B>costruzione</B>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Oggetti allocati
+dinamicamente</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Se il programma non <B>definisce</B> direttamente un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>, ma un suo
+  <FONT COLOR="Green"><B>puntatore</B></FONT>, il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> non entra in azione al momento
+  della <B>definizione</B> del <FONT COLOR="Green"><B>puntatore</B></FONT>,
+  bens&igrave; quando viene <FONT COLOR="Green"><B>allocata dinamicamente
+  </B></FONT>la memoria per l'<FONT COLOR="Green"><B>oggetto </B></FONT>(caso
+  3. dell'elenco). Solito esempio: </BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>point</B></FONT></BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT>
+	<BIG><FONT COLOR="Maroon"><B>ptr</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG><B>costruisce</B> la "variabile"
+	<FONT COLOR="Green"><B>puntatore</B></FONT> <U>ma non l'area
+	puntata</U></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>ptr</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>=</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>new</B></FONT></BIG>
+	<BIG><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG><B>costruisce</B> l'area puntata </BIG></TD>
+    </TR>
+  </TABLE>
+  <P>
+  <BIG>la seconda istruzione dell'esempio esegue varie cose in una sola
+  volta:</BIG>
+  <UL>
+    <LI>
+      <BIG><FONT COLOR="Green"><B>alloca memoria dinamica</B></FONT> per un
+      <FONT COLOR="Green"><B>oggetto</B></FONT> della
+      <FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="#cc0000"><B>point</B></FONT></BIG>
+    <LI>
+      <BIG><FONT COLOR="Purple"><B>assegna</B></FONT>
+      l'<FONT COLOR="Green"><B>indirizzo</B></FONT>
+      dell'<FONT COLOR="Green"><B>oggetto</B></FONT>, &nbsp;restituito
+      dall'<FONT COLOR="Green"><B>operatore</B></FONT>
+      <FONT COLOR="Blue"><B>new</B></FONT>, al
+      <FONT COLOR="Green"><B>puntatore</B></FONT>
+      <FONT COLOR="Maroon"><B>ptr</B></FONT></BIG>
+    <LI>
+      <BIG><B>inizializza</B>
+      l'<FONT COLOR="Green"><B>oggetto</B></FONT></BIG> <BIG>eseguendo il
+      <FONT COLOR="Green"><B>costruttore</B></FONT> di
+      <I><B>default</B></I></BIG> <BIG>della
+      <FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="#cc0000"><B>point</B></FONT></BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Quando si vuole che nella creazione di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> sia eseguito un
+  <FONT COLOR="Green"><B>costruttore</B></FONT> con
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>, bisogna aggiungere, nell'istruzione
+  di <FONT COLOR="Green"><B>allocazione della memoria</B></FONT>, l'elenco
+  dei <B>valori</B> degli <FONT COLOR="Maroon"><B>argomenti</B></FONT> (fra
+  parentesi tonde):</BIG><BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<BIG><FONT COLOR="Maroon"><B>ptr</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>=</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>new</B></FONT></BIG>
+  <BIG><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>
+  (</B></FONT><FONT COLOR="Maroon"><B>3.5</B></FONT><FONT COLOR="Blue"><B>,
+  </B></FONT><FONT COLOR="Maroon"><B>2.1</B></FONT><FONT COLOR="Blue"><B>);</B></FONT></BIG><BR>
+  <BIG>questa istruzione cerca, fra i
+  <FONT COLOR="Green"><B>costruttori</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>point</B></FONT>, quello con due
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>double</B></FONT>, e lo esegue al posto del
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <I><B>default</B></I></BIG> <BIG>.</BIG>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp; <BR>
+  <BIG>Se si <FONT COLOR="Green"><B>alloca dinamicamente</B></FONT> un
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>oggetti</B></FONT>, sappiamo che la
+  <FONT COLOR="Green"><B>dimensione</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT> va specificata fra parentesi
+  quadre dopo il <B>nome</B> della
+  <FONT COLOR="Green"><B>classe</B></FONT>. Poich&egrave; il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> <B>chiamato</B> &egrave; unico
+  per tutti gli <FONT COLOR="Green"><B>elementi</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT>, questi vengono
+  <U>tutti</U><B> inizializzati</B> nello stesso modo. Nessun problema se si
+  usa il <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <I><B>default</B></I> (purch&egrave; sia disponibile):<BR>
+  </BIG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp;<BIG><FONT COLOR="Maroon"><B>ptr</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>=</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>new</B></FONT></BIG>
+  <BIG><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>
+  [</B></FONT><FONT COLOR="Maroon"><B>10</B></FONT><FONT COLOR="Blue"><B>];</B></FONT><BR>
+  ma, quando si vuole usare un
+  <FONT COLOR="Green"><B>costruttore</B></FONT> con
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>:<BR>
+  </BIG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp;<BIG><FONT COLOR="Maroon"><B>ptr</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>=</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>new</B></FONT></BIG>
+  <BIG><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>
+  [</B></FONT><FONT COLOR="Maroon"><B>10</B></FONT><FONT COLOR="Blue"><B>]
+  (</B></FONT><FONT COLOR="Maroon"><B>3.5</B></FONT><FONT COLOR="Blue"><B>,
+  </B></FONT><FONT COLOR="Maroon"><B>2.1</B></FONT><FONT COLOR="Blue"><B>);</B></FONT><BR>
+  non sempre l'istruzione viene eseguita correttamente: anzitutto alcuni
+  compilatori pi&ugrave; antichi (come il <FONT COLOR="Red"><B>Visual C++,
+  vers. 6</B></FONT>) non l'accettano; quelli che l'accettano la eseguono bene
+  se il <FONT COLOR="Green"><B>tipo</B></FONT> &egrave;
+  <I><B>astratto</B></I> (come nell'esempio di cui sopra), ma se il
+  <FONT COLOR="Green"><B>tipo</B></FONT> &egrave; <I><B>nativo</B></I>, per
+  es.:<BR>
+  </BIG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp;<BIG><FONT COLOR="Maroon"><B>ptr</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>=</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>new</B></FONT></BIG>
+  <BIG><FONT COLOR="#cc0000"><B> </B></FONT><FONT COLOR="Blue"><B>int
+  [</B></FONT><FONT COLOR="Maroon"><B>10</B></FONT><FONT COLOR="Blue"><B>]
+  (</B></FONT><FONT COLOR="Maroon"><B>3</B></FONT><FONT COLOR="Blue"><B>);</B></FONT><BR>
+  disponendo solo del <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <I><B>default</B></I>, tutti gli
+  <FONT COLOR="Green"><B>elementi</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT> vengono <U>comunque</U>
+  <B>inizializzati</B> con <FONT COLOR="Maroon"><B>0</B></FONT> (cio&egrave;
+  la parte dell'istruzione fra parentesi tonde viene ignorata).</BIG>
+  <P ALIGN=Justify>
+  &nbsp; <BIG><BR>
+  Gli &nbsp;<FONT COLOR="Green"><B>oggetti</B></FONT>
+  <FONT COLOR="Green"><B>allocati dinamicamente</B></FONT> <U>non sono mai</U>
+  <B>distrutti</B> in modo automatico. Per ottenere che vengano
+  <B>distrutti</B>, bisogna usare
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>delete</B></FONT>. Es. (al solito
+  <FONT COLOR="Maroon"><B>ptr</B></FONT> punta a
+  <FONT COLOR="Green"><B>oggetti</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>point</B></FONT>):<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; <FONT COLOR="Blue"><B>delete</B></FONT>
+  <FONT COLOR="Maroon"><B>ptr</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+  (per un singolo <FONT COLOR="Green"><B>oggetto</B></FONT>) &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; <FONT COLOR="Blue"><B>delete</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>[ ]
+  </B></FONT>&nbsp;<FONT COLOR="Maroon"><B>ptr</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>&nbsp;(per
+  un <FONT COLOR="Green"><B>array</B></FONT>)</BIG><BR>
+  <BIG>a questo punto viene eseguito, per ogni
+  <FONT COLOR="Green"><B>oggetto</B></FONT>, il
+  </BIG><FONT COLOR="Green"><BIG><B>distruttore</B></BIG></FONT> <BIG>della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>point</B></FONT> (<U>se esiste</U>) .</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p48/scalare.cpp">[p48]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Membri
+puntatori</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Una particolare attenzione va rivolta alla programmazione dei
+  <FONT COLOR="Green"><B>costruttori</B></FONT> e del
+  </BIG><FONT COLOR="Green"><BIG><B>distruttore</B></BIG></FONT><BIG> di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> che contiene
+  <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>puntatori</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Infatti, a differenza dal caso degli
+  <FONT COLOR="Green"><B>array</B></FONT>, l'area puntata non &egrave;
+  <B>definita</B> automaticamente e quindi (a meno che al
+  <FONT COLOR="Green"><B>puntatore</B></FONT> non venga successivamente
+  <FONT COLOR="Purple"><B>assegnato</B></FONT>
+  l'<FONT COLOR="Green"><B>indirizzo</B></FONT> di un'area gi&agrave; esistente)
+  capita quasi sempre che l'area debba essere
+  <FONT COLOR="Green"><B>allocata</B></FONT> nella memoria
+  <FONT COLOR="Purple"><B>heap</B></FONT>. e che questa operazione venga eseguita
+  proprio da un <FONT COLOR="Green"><B>costruttore</B></FONT>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Analogamente, quando l'<FONT COLOR="Green"><B>oggetto</B></FONT> &egrave;
+  <B>distrutto</B> (per esempio se &egrave; un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Green"><B>automatico</B></FONT> che va <I><B>out of
+  scope</B></I>), sono del pari <B>distrutti</B> tutti i suoi
+  <FONT COLOR="Green"><B>membri</B></FONT>, compresi i
+  <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>puntatori</B></FONT>, <U>ma non le aree puntate</U>,
+  che continuano ad esistere senza essere pi&ugrave; raggiungibili (errore
+  di <I><B>memory leak</B></I>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Pertanto &egrave; indispensabile che sia lo stesso
+  </BIG><FONT COLOR="Green"><BIG><B>distruttore</B></BIG></FONT>
+  <BIG>&nbsp;dell'<FONT COLOR="Green"><B>oggetto</B></FONT> a incaricarsi di
+  <B>distruggere</B> esplicitamente le aree puntate, cosa che pu&ograve; essere
+  fatta solamente usando l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>delete</B></FONT>. Esempio:</BIG>
+  <P ALIGN=Justify>
+  <CENTER>
+    <TABLE BORDER CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TH><BIG>CLASSE</BIG></TH>
+	<TH><BIG>COSTRUTTORE</BIG></TH>
+	<TH><BIG>DISTRUTTORE</BIG></TH>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>class
+	  </B></FONT><FONT COLOR="#cc0000"><B>Persona</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+	<TD><BIG><FONT COLOR="#cc0000"><B>Persona</B></FONT><FONT COLOR="Blue"><B>::</B></FONT></BIG><FONT
+	      COLOR="Maroon"><BIG><B>Persona</B></BIG></FONT>
+	  <BIG><FONT COLOR="Blue"><B>(int
+	  </B></FONT><FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG></TD>
+	<TD><BIG><FONT COLOR="#cc0000"><B>Persona</B></FONT><FONT COLOR="Blue"><B>::~</B></FONT></BIG><FONT
+	      COLOR="Maroon"><BIG><B>Persona</B></BIG></FONT>
+	  <BIG><FONT COLOR="Blue"><B>( )</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD>&nbsp; &nbsp;
+	  &nbsp;<BIG><FONT COLOR="Blue"><B>char</B></FONT></BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT>
+	  <BIG><FONT COLOR="Maroon"><B>nome</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	<TD><BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+	<TD><BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD>&nbsp; &nbsp;
+	  &nbsp;<BIG><FONT COLOR="Blue"><B>char</B></FONT></BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT>
+	  <BIG><FONT COLOR="Maroon"><B>cognome</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	<TD>&nbsp; &nbsp; &nbsp;
+	  &nbsp;<BIG><FONT COLOR="Maroon"><B>nome</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>=</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>new</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>char
+	  [</B></FONT><FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>];</B></FONT></BIG></TD>
+	<TD>&nbsp; &nbsp; &nbsp;
+	  &nbsp;<BIG><FONT COLOR="Blue"><B>delete</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>[ ]</B></FONT></BIG>
+	  <BIG><FONT COLOR="Maroon"><B>nome</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>public:</B></FONT></BIG></TD>
+	<TD>&nbsp; &nbsp; &nbsp;
+	  &nbsp;<BIG><FONT COLOR="Maroon"><B>cognome</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>=</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>new</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>char
+	  [</B></FONT><FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>];</B></FONT></BIG></TD>
+	<TD>&nbsp; &nbsp; &nbsp;
+	  &nbsp;<BIG><FONT COLOR="Blue"><B>delete</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>[ ]</B></FONT></BIG>
+	  <BIG><FONT COLOR="Maroon"><B>cognome</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD>&nbsp; &nbsp;
+	  &nbsp;<FONT COLOR="Maroon"><BIG><B>Persona</B></BIG></FONT>
+	  <BIG><FONT COLOR="Blue"><B>(int);</B></FONT></BIG></TD>
+	<TD><BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+	<TD><BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD>&nbsp; &nbsp;
+	  &nbsp;<BIG><FONT COLOR="Blue"><B>~</B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>Persona</B></BIG></FONT>
+	  <BIG><FONT COLOR="Blue"><B>( );</B></FONT></BIG></TD>
+	<TH COLSPAN=2><BIG>DEFINIZIONE DELL'OGGETTO NEL PROGRAMMA</BIG></TH>
+      </TR>
+      <TR>
+	<TD><BIG><B>.... </B>altri <B>metodi</B></BIG>
+	  &nbsp;<BIG><FONT COLOR="Blue"><B>};</B></FONT></BIG></TD>
+	<TD COLSPAN=2><P ALIGN=Center>
+	  <BIG><FONT COLOR="#cc0000"><B>Persona</B></FONT></BIG>
+	  <FONT COLOR="Maroon"><BIG><B>Tizio</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	      COLOR="Maroon"><B>25</B></FONT><FONT COLOR="Blue"><B>);</B></FONT></BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  </BIG><FONT COLOR="Maroon"><BIG><B>Tizio</B></BIG></FONT><BIG>,
+  <FONT COLOR="Green"><B>istanza</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>Persona</B></FONT>, viene <B>costruito</B>
+  automaticamente nella memoria <FONT COLOR="Purple"><B>stack</B></FONT>, e
+  cos&igrave; pure i suoi <FONT COLOR="Green"><B>membri</B></FONT>. In aggiunta,
+  il <FONT COLOR="Green"><B>costruttore</B></FONT>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Green"><B>alloca</B></FONT> nella memoria
+  <FONT COLOR="Purple"><B>heap</B></FONT> due aree di
+  <FONT COLOR="Maroon"><B>25</B></FONT> <B>byte</B>, e sistema i rispettivi
+  <FONT COLOR="Green"><B>indirizzi</B></FONT> nei
+  <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>puntatori</B></FONT>
+  </BIG><FONT COLOR="Maroon"><BIG><B>Tizio</B></BIG></FONT><B><FONT COLOR="Blue"><BIG>.</BIG></FONT></B><BIG><FONT
+      COLOR="Maroon"><B>nome</B></FONT> e
+  </BIG><FONT COLOR="Maroon"><BIG><B>Tizio</B></BIG></FONT><B><FONT COLOR="Blue"><BIG>.</BIG></FONT></B><BIG><FONT
+      COLOR="Maroon"><B>cognome</B></FONT>. Quando
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  </BIG><FONT COLOR="Maroon"><BIG><B>Tizio</B></BIG></FONT><BIG> va <I><B>out
+  of scope</B></I>, il
+  </BIG><FONT COLOR="Green"><BIG><B>distruttore</B></BIG></FONT><BIG> entra
+  in azione automaticamente &nbsp;e, con
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>delete</B></FONT>, libera la memoria
+  <FONT COLOR="Purple"><B>heap</B></FONT> allocata per le due aree. Senza il
+  </BIG><FONT COLOR="Green"><BIG><B>distruttore</B></BIG></FONT><BIG>, sarebbe
+  stata liberata soltanto la memoria
+  <FONT COLOR="Purple"><B>stack</B></FONT> occupata dall'oggetto
+  </BIG><FONT COLOR="Maroon"><BIG><B>Tizio</B></BIG></FONT><BIG> e dai suoi
+  <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>puntatori</B></FONT> , ma non l'area
+  <FONT COLOR="Purple"><B>heap</B></FONT> indirizzata da questi.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p49/mempunt.cpp">[p49]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Costruttori di
+copia</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B>costruttori di copia</B></FONT> sono particolari
+  <FONT COLOR="Green"><B>costruttori</B></FONT> che vengono eseguiti quando
+  un <FONT COLOR="Green"><B>oggetto</B></FONT> &eacute; creato per
+  <B>copia</B>. Ricordiamo brevemente in quali casi ci&ograve; si verifica:
+  </BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><B>definizione</B> di un <FONT COLOR="Green"><B>oggetto</B></FONT> e
+      sua <B>inizializzazione</B> tramite un
+      <FONT COLOR="Green"><B>oggetto</B></FONT> esistente dello stesso
+      <FONT COLOR="Green"><B>tipo</B></FONT>; </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>passaggio <B><I>by value</I></B> di un
+      <FONT COLOR="Maroon"><B>argomento</B></FONT> a una
+      <FONT COLOR="Green"><B>funzione</B></FONT>; </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>restituzione <I><B>by value </B></I>del <B>valore di ritorno </B>di
+      una <FONT COLOR="Green"><B>funzione</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>passaggio di un'<FONT COLOR="Green"><B>eccezione</B></FONT> al costrutto
+      <FONT COLOR="Blue"><B>catch</B></FONT>. </BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Un <FONT COLOR="Green"><B>costruttore di copia</B></FONT> deve avere
+  un solo <FONT COLOR="Maroon"><B>argomento</B></FONT>, dello stesso
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  dell'<FONT COLOR="Green"><B>oggetto</B></FONT> da <B>costruire</B>;
+  l'<FONT COLOR="Maroon"><B>argomento</B></FONT> (<U>che rappresenta
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> esistente</U>) deve essere
+  <B>dichiarato</B> <FONT COLOR="Blue"><B>const</B></FONT> (per sicurezza)
+  e passato <I><B>by reference</B></I> (altrimenti si creerebbe una copia della
+  copia!). Riprendendo il solito esempio, il <FONT COLOR="Green"><B>costruttore
+  di copia</B></FONT> della <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>point</B></FONT> &eacute;: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+      COLOR="Maroon"><B>point</B></FONT><FONT COLOR="Blue"><B>(const
+  </B></FONT><FONT COLOR="#cc0000"><B>point</B></FONT><FONT COLOR="Blue"><B>&amp;
+  </B></FONT><FONT COLOR="Maroon"><B>q</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+  <FONT COLOR="Blue"><B>{</B></FONT><B>......</B><FONT COLOR="Blue"><B>}</B></FONT>
+  <BR>
+  e viene <B>chiamato</B> <U>automaticamente</U> ogni volta che si verifica
+  una delle quattro circostanze sopraelencate. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Per esempio, se <B>definiamo</B> un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Maroon"><B>p</B></FONT> e lo <B>inizializziamo</B> con un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> preesistente
+  <FONT COLOR="Maroon"><B>q</B></FONT>: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="#cc0000"><B>point</B></FONT>
+  <FONT COLOR="Maroon"><B>p</B></FONT> <FONT COLOR="Blue"><B>=
+  </B></FONT><FONT COLOR="Maroon"><B>q</B></FONT> <FONT COLOR="Blue"><B>;<BR>
+  </B></FONT>questa istruzione aziona il <FONT COLOR="Green"><B>costruttore
+  di copia</B></FONT>, a cui &eacute; trasmesso
+  <FONT COLOR="Maroon"><B>q</B></FONT> come
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B>costruttori di copia</B></FONT>, come ogni
+  altro <FONT COLOR="Green"><B>costruttore</B></FONT>, <U>non sono</U> obbligatori:
+  se una <FONT COLOR="Green"><B>classe</B></FONT> non ne possiede, il
+  <FONT COLOR="Red"><B>C++</B></FONT> fornisce un
+  <FONT COLOR="Green"><B>costruttore di copia</B></FONT> di
+  <I><B>default</B></I> <U>che esegue la <B>copia</B>
+  <FONT COLOR="Green"><B>membro a membro</B></FONT></U>. Questo pu&ograve;
+  essere soddisfacente nella maggioranza dei casi. Tuttavia, se la
+  <FONT COLOR="Green"><B>classe</B></FONT> possiede dei
+  <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>puntatori</B></FONT>, l'azione di
+  <I><B>default</B></I> <U><B>copia</B> i
+  <FONT COLOR="Green"><B>puntatori</B></FONT>, ma non le aree puntate</U>:
+  alla fine si ritrovano due <FONT COLOR="Green"><B>oggetti</B></FONT> i cui
+  rispettivi <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>puntatori</B></FONT> puntano alla stessa area. Ci&ograve;
+  potrebbe essere pericoloso, perch&eacute;, se viene chiamato il
+  <FONT COLOR="Green"><B>distruttore</B></FONT> di uno dei due
+  <FONT COLOR="Green"><B>oggetti</B></FONT>, il
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Green"><B>puntatore</B></FONT> dell'altro, che esiste ancora,
+  <U>punta a un'area che non esiste pi&ugrave;</U> (errore di <I><B>dangling
+  references</B></I>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Nell'esempio seguente una <FONT COLOR="Green"><B>classe</B></FONT> di
+  <B>nome</B> <FONT COLOR="#cc0000"><B>A</B></FONT> contiene, fra l'altro,
+  un <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Blue"><B>int</B></FONT> e un <FONT COLOR="Green"><B>costruttore
+  di copia</B></FONT> che esegue le operazioni idonee ad evitare l'errore di
+  cui sopra:<BR>
+  </BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD></TD>
+      <TH><BIG>CLASSE</BIG></TH>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TH><BIG>COSTRUTTORE DI COPIA</BIG></TH>
+    </TR>
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>class
+	</B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>&nbsp; &nbsp; &nbsp; &nbsp;
+	A</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT COLOR="Maroon"><B>A</B></FONT><FONT
+	    COLOR="Blue"><B>(const
+	</B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&amp;
+	</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp;
+	&nbsp;int</B></FONT></BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT>
+	<BIG><FONT COLOR="Maroon"><B>pa</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>&nbsp; &nbsp; &nbsp; &nbsp;
+	</B></FONT><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>public:</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>&nbsp; &nbsp; &nbsp; &nbsp;
+	</B></FONT><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp;
+	&nbsp;</B></FONT><FONT COLOR="Maroon"><B>pa</B></FONT>
+	<FONT COLOR="Blue"><B>= new</B></FONT></BIG> <BIG><FONT COLOR="#cc0000"><B>
+	</B></FONT><FONT COLOR="Blue"><B>int</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp;
+	&nbsp;</B></FONT><FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>(const
+	</B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&amp;);</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>&nbsp; &nbsp; &nbsp; &nbsp;
+	</B></FONT></BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp;
+	&nbsp;</B></FONT><B><SUB><BIG>*</BIG></SUB></B></FONT><BIG><FONT COLOR="Maroon"><B>pa</B></FONT></BIG>
+	<BIG> <FONT COLOR="Blue"><B>=
+	</B></FONT></BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><BIG><FONT
+	    COLOR="Maroon"><B>a.pa</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp;
+	&nbsp;</B></FONT><B>........
+	</B></BIG>&nbsp;<BIG><FONT COLOR="Blue"><B>};</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>&nbsp; &nbsp; &nbsp; &nbsp;
+	</B></FONT><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>in questo modo, a seguito della creazione di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Maroon"><B>a2</B></FONT> per <B>copia</B> da un esistente
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Maroon"><B>a1</B></FONT>:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="#cc0000"><B>A</B></FONT>
+  <FONT COLOR="Maroon"><B>a2</B></FONT> <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>a1</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><BR>
+  il <FONT COLOR="Green"><B>costruttore di copia</B></FONT> fa si che la
+  <B>variabile puntata</B>
+  </BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><BIG><FONT
+      COLOR="Maroon"><B>a1.pa</B></FONT> venga copiata in
+  </BIG><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT><BIG><FONT
+      COLOR="Maroon"><B>a2.pa</B></FONT>; senza il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> sarebbe <B>copiato</B> il
+  <FONT COLOR="Green"><B>puntatore</B></FONT>
+  <FONT COLOR="Maroon"><B>a1.pa</B></FONT> in
+  <FONT COLOR="Maroon"><B>a2.pa</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p50/copia.cpp">[p50]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Liste di
+inizializzazione</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Quando un <FONT COLOR="Green"><B>costruttore</B></FONT> deve, fra l'altro,
+  <B>inizializzare</B> i <FONT COLOR="Green"><B>membri</B></FONT> della propria
+  <FONT COLOR="Green"><B>classe</B></FONT>, lo pu&ograve; fare tramite una
+  <B>lista di inizializzazione</B> (introdotta dal segno
+  "<FONT COLOR="Blue"><B>:</B></FONT>" e inserita nella <B>definizione</B>
+  del <FONT COLOR="Green"><B>costruttore</B></FONT> dopo la lista degli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>), la quale sostituisce le istruzioni
+  di <FONT COLOR="Purple"><B>assegnazione</B></FONT> (in effetti un
+  <FONT COLOR="Green"><B>costruttore</B></FONT> non dovrebbe
+  <FONT COLOR="Purple"><B>assegnare</B></FONT> bens&igrave; solo
+  <B>inizializzare</B>, anche se la distinzione pu&ograve; sembrare solo formale).
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>La sintassi di una <B>lista di inizializzazione</B> si desume dal seguente
+  esempio: <BR>
+  </BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD></TD>
+      <TH><BIG>CLASSE</BIG></TH>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TH><BIG>COSTRUTTORE </BIG></TH>
+    </TR>
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>class
+	</B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+	    COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>(int
+	</B></FONT><FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>, double
+	</B></FONT><FONT COLOR="Maroon"><B>q</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>:</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>m1</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>),</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>m2</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>),</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>r</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Maroon"><B>q</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp;int
+	</B></FONT><FONT COLOR="Maroon"><B>m1</B></FONT><FONT COLOR="Blue"><B>,</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>m2</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp;double
+	</B></FONT><FONT COLOR="Maroon"><B>r</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp;
+	&nbsp;</B></FONT><B>.... </B>eventuali altre operazioni<B>.... </B></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>public:</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp;
+	&nbsp;</B></FONT><FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>(int,double);</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp;
+	&nbsp;</B></FONT><B>........
+	</B></BIG>&nbsp;<BIG><FONT COLOR="Blue"><B>};</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Notare che alcuni <FONT COLOR="Green"><B>membri</B></FONT> possono essere
+  <B>inizializzati</B> con valori costanti, altri con i valori degli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> passati al
+  <FONT COLOR="Green"><B>costruttore</B></FONT>. L'ordine nella <B>lista</B>
+  &egrave; indifferente; in ogni i caso i
+  <FONT COLOR="Green"><B>membri</B></FONT> sono <B>costruiti</B> e
+  <B>inizializzati</B> nell'ordine in cui appaiono nella <B>definizione</B>
+  della <FONT COLOR="Green"><B>classe</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>E' buona norma utilizzare le <B>liste di inizializzazione</B> ogni volta
+  che &eacute; possibile. Il loro uso &eacute; indispensabile quando esistono
+  <FONT COLOR="Green"><B>membri</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT> <B>dichiarati</B>
+  <FONT COLOR="Blue"><B>const</B></FONT> o come
+  <FONT COLOR="Green"><B>riferimenti</B></FONT>, <U>per i quali
+  l'<B>inizializzazione</B> &egrave; obbligatoria</U>. </BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p51/listin.h">[p51]</A><A HREF="p51/listin.cpp">[p51]</A>
+<A HREF="p51/listinmain.cpp">[p51]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Membri
+oggetto</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Riprendiamo ora ad esaminare l'elenco presentato all'inizio di questo
+  capitolo e consideriano la <B>costruzione</B> e <B>distruzione</B> degli
+  <FONT COLOR="Green"><B>oggetti</B></FONT>, quando sono
+  <FONT COLOR="Green"><B>membri</B></FONT> &nbsp;non
+  <FONT COLOR="Green"><B>statici</B></FONT> di &nbsp;una
+  <FONT COLOR="Green"><B>classe</B></FONT> (caso 4. dell'elenco)</BIG>.
+  <P ALIGN=Justify>
+  <BIG>Sappiamo gi&agrave; che una <FONT COLOR="Green"><B>classe</B></FONT>
+  pu&ograve; avere anche <FONT COLOR="Green"><B>tipi</B></FONT>
+  <FONT COLOR="Green"><B>classe</B></FONT> fra i suoi
+  <FONT COLOR="Green"><B>membri</B></FONT>; per esempio: </BIG>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>class
+	  </B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	  &nbsp; &nbsp;</TD>
+	<TD><BIG><FONT COLOR="Blue"><B>class
+	  </B></FONT><FONT COLOR="#cc0000"><B>C</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp;int
+	  </B></FONT><FONT COLOR="Maroon"><B>aa</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><FONT
+	      COLOR="Maroon"><B> &nbsp;</B></FONT><B>........
+	  </B></BIG>&nbsp;<BIG><FONT COLOR="Blue"><B>};</B></FONT></BIG></TD>
+	<TD></TD>
+	<TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp;
+	  &nbsp;</B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>
+	  </B></FONT><FONT COLOR="Maroon"><B>ma</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><FONT
+	      COLOR="Maroon"><B> &nbsp;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>class
+	  </B></FONT><FONT COLOR="#cc0000"><B>B</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+	<TD></TD>
+	<TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp;
+	  &nbsp;</B></FONT><FONT COLOR="#cc0000"><B>B</B></FONT><FONT COLOR="Blue"><B>
+	  </B></FONT><FONT COLOR="Maroon"><B>mb</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><FONT
+	      COLOR="Maroon"><B> </B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp;int
+	  </B></FONT><FONT COLOR="Maroon"><B>bb</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><FONT
+	      COLOR="Maroon"><B> &nbsp;</B></FONT><B>........
+	  </B></BIG>&nbsp;<BIG><FONT COLOR="Blue"><B>};</B></FONT></BIG></TD>
+	<TD></TD>
+	<TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp;int
+	  </B></FONT><FONT COLOR="Maroon"><B>mc</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><FONT
+	      COLOR="Maroon"><B> &nbsp;</B></FONT><B>........
+	  </B></BIG>&nbsp;<BIG><FONT COLOR="Blue"><B>};</B></FONT></BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>C</B></FONT> del nostro esempio viene detta
+  <FONT COLOR="Green"><B>classe</B></FONT> <B>composta</B>, in quanto
+  &nbsp;contiene, fra i suoi <FONT COLOR="Green"><B>membri</B></FONT>,
+  <FONT COLOR="Green"><B>oggetti</B></FONT> di altre classi (il
+  <FONT COLOR="Green"><B>membro-oggetto
+  </B></FONT><FONT COLOR="Maroon"><B>ma</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> e il
+  <FONT COLOR="Green"><B>membro-oggetto
+  </B></FONT><FONT COLOR="Maroon"><B>mb</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>B</B></FONT>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Sappiamo inoltre che, creata
+  un'<FONT COLOR="Green"><B>istanza</B></FONT>
+  <FONT COLOR="Maroon"><B>cc</B></FONT> di
+  <FONT COLOR="#cc0000"><B>C</B></FONT>, le variabili corrispondenti ai singoli
+  <FONT COLOR="Green"><B>membri</B></FONT> vanno indicate nel programma con
+  espressioni del tipo:
+  <FONT COLOR="Maroon"><B>cc</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+      COLOR="Maroon"><B>ma</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT COLOR="Maroon"><B>aa</B></FONT>
+  oppure
+  <FONT COLOR="Maroon"><B>cc</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+      COLOR="Maroon"><B>mb</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT COLOR="Maroon"><B>bb</B></FONT>
+  (diritti di <FONT COLOR="Green"><B>accesso</B></FONT> permettendo). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Nel momento in cui un <FONT COLOR="Green"><B>oggetto</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT> <B>composta</B> sta per essere
+  <B>costruito</B>, e prima ancora che il suo
+  <FONT COLOR="Green"><B>costruttore</B></FONT> completi l'operazione, &nbsp;sono
+  eseguiti <U>automaticamente</U> i
+  <FONT COLOR="Green"><B>costruttori</B></FONT> che <B>inizializzano</B> i
+  <FONT COLOR="Green"><B>membri</B></FONT> delle
+  <FONT COLOR="Green"><B>classi</B></FONT> &nbsp;<B>componenti</B>. Se esistono
+  e si vogliono utilizzare i <FONT COLOR="Green"><B>costruttori</B></FONT>
+  di <I><B>default</B></I>, non esiste problema. Ma se deve essere chiamato
+  un <FONT COLOR="Green"><B>costruttore</B></FONT> con
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>, ci si chiede in che modo tali
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> possano essere passati, visto
+  che il <FONT COLOR="Green"><B>costruttore</B></FONT> di un
+  <FONT COLOR="Green"><B>membro-oggetto</B></FONT> non &egrave; <B>chiamato</B>
+  esplicitamente. </BIG>
+  <P ALIGN=Justify>
+  <BIG>In questi casi, <U>spetta al
+  <FONT COLOR="Green"><B>costruttore</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT> <B>composta</B></U> provvedere a
+  che vengano eseguiti correttamente anche i
+  <FONT COLOR="Green"><B>costruttori</B></FONT> delle
+  <FONT COLOR="Green"><B>classi</B></FONT> &nbsp;<B>componenti</B>. Per ottenere
+  ci&ograve;, deve includere, nella sua <B>lista di inizializzazione</B>, tutti
+  (e soli) i <FONT COLOR="Green"><B>membri-oggetto</B></FONT> che non utilizzano
+  il proprio <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <I><B>default</B></I>, ciascuno con i valori di <B>inzializzazione</B> che
+  corrispondono esattamente (cio&egrave; con gli stessi
+  <FONT COLOR="Green"><B>tipi</B></FONT> e nello stesso ordine) alla lista
+  degli <FONT COLOR="Maroon"><B>argomenti</B></FONT> del rispettivo
+  <FONT COLOR="Green"><B>costruttore</B></FONT>. Seguitando con il nostro esempio:
+  </BIG>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD><BIG><FONT COLOR="Green"><B>costruttore</B></FONT> di
+	&nbsp;<FONT COLOR="#cc0000"><B>A</B></FONT> </BIG></TD>
+      <TD><BIG>:</BIG>&nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+	    COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>(int</B></FONT>
+	</BIG><FONT COLOR="Maroon"><BIG><B>x</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Blue"><B>:</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>aa</B></FONT><FONT COLOR="Blue"><B>(</B></FONT></BIG><FONT
+	    COLOR="Maroon"><BIG><B>x</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>&nbsp;</B></FONT><B>........
+	</B></BIG>&nbsp;<BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><FONT COLOR="Green"><B>costruttore</B></FONT> di
+	&nbsp;<FONT COLOR="#cc0000"><B>B</B></FONT></BIG></TD>
+      <TD><BIG>:</BIG></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>B</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+	    COLOR="Maroon"><B>B</B></FONT><FONT COLOR="Blue"><B>(int</B></FONT>
+	</BIG><FONT COLOR="Maroon"><BIG><B>x</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Blue"><B>:</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>bb</B></FONT><FONT COLOR="Blue"><B>(</B></FONT></BIG><FONT
+	    COLOR="Maroon"><BIG><B>x</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>&nbsp;</B></FONT><B>........
+	</B></BIG>&nbsp;<BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><FONT COLOR="Green"><B>costruttore</B></FONT> di
+	&nbsp;<FONT COLOR="#cc0000"><B>C</B></FONT></BIG></TD>
+      <TD><BIG>:</BIG></TD>
+      <TD><BIG><FONT COLOR="#cc0000"><B>C</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+	    COLOR="Maroon"><B>C</B></FONT><FONT COLOR="Blue"><B>(int</B></FONT>
+	</BIG><FONT COLOR="Maroon"><BIG><B>x,
+	</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	</BIG><FONT COLOR="Maroon"><BIG><B>y,
+	</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	</BIG><FONT COLOR="Maroon"><BIG><B>z</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Blue"><B>:</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>ma</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Maroon"><B>z</B></FONT><FONT COLOR="Blue"><B>),</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>mb</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B>),</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>mc</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Maroon"><B>y</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+	&nbsp;<FONT COLOR="Blue"><B>{</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>&nbsp;</B></FONT><B>........
+	</B></BIG>&nbsp;<BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp;<BIG><BR>
+  Le <FONT COLOR="Green"><B>classi</B></FONT> &nbsp;<B>componenti</B>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> e
+  <FONT COLOR="#cc0000"><B>B</B></FONT> hanno anche una loro vita autonoma
+  e in particolare possono essere
+  <FONT COLOR="Green"><B>istanziate</B></FONT> con
+  <FONT COLOR="Green"><B>oggetti</B></FONT> propri. In questo caso il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  &nbsp;<FONT COLOR="#cc0000"><B>C</B></FONT> pu&ograve; generare i suoi
+  <FONT COLOR="Green"><B>membri-oggetto</B></FONT> <B>copiando</B>
+  <FONT COLOR="Green"><B>oggetti</B></FONT> gi&agrave; <B>costruiti</B> delle
+  <FONT COLOR="Green"><B>classi</B></FONT> &nbsp;<B>componenti</B>. Riprendendo
+  l'esempio, un'altra forma del
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  &nbsp;<FONT COLOR="#cc0000"><B>C</B></FONT> potrebbe essere: </BIG>
+  <P ALIGN=Justify>
+  <BIG>&nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="#cc0000"><B>C</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+      COLOR="Maroon"><B>C</B></FONT><FONT COLOR="Blue"><B>(int</B></FONT>
+  </BIG><FONT COLOR="Maroon"><BIG><B>x,
+  </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>const
+  </B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&amp;
+  </B></FONT><FONT COLOR="Maroon"><B>a</B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>,
+  </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>const
+  </B></FONT><FONT COLOR="#cc0000"><B>B</B></FONT><FONT COLOR="Blue"><B>&amp;
+  </B></FONT><FONT COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+  &nbsp;<BIG><FONT COLOR="Blue"><B>:</B></FONT></BIG>
+  <BIG><FONT COLOR="Maroon"><B>ma</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>),</B></FONT></BIG>
+  <BIG><FONT COLOR="Maroon"><B>mb</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B>),</B></FONT></BIG>
+  <BIG><FONT COLOR="Maroon"><B>mc</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>{</B></FONT></BIG>
+  <BIG><FONT COLOR="Maroon"><B>&nbsp;</B></FONT><B>........
+  </B></BIG>&nbsp;<BIG><FONT COLOR="Blue"><B>}</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>dove gli <FONT COLOR="Maroon"><B>argomenti</B></FONT>
+  <FONT COLOR="Maroon"><B>a</B></FONT> e
+  <FONT COLOR="Maroon"><B>b</B></FONT> corrispondono a
+  <FONT COLOR="Green"><B>istanze</B></FONT> gi&agrave; create rispettivamente
+  di <FONT COLOR="#cc0000"><B>A</B></FONT> e di
+  <FONT COLOR="#cc0000"><B>B</B></FONT>; in tale caso viene eseguito il
+  <FONT COLOR="Green"><B>costruttore di copia</B></FONT>, se esiste, oppure
+  di <I><B>default</B></I> viene fatta la <B>copia</B>
+  <FONT COLOR="Green"><B>membro a membro</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp; <BIG><BR>
+  Quando un <FONT COLOR="Green"><B>oggetto</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT> <B>composta</B> viene
+  <B>distrutto</B>, vengono successivamente e automaticamente <B>distrutti</B>
+  tutti i <FONT COLOR="Green"><B>membri</B></FONT> delle
+  <FONT COLOR="Green"><B>classi</B></FONT> &nbsp;<B>componenti</B>, in ordine
+  inverso a quello della loro <B>costruzione</B>.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p52/comp.h">[p52]</A><A HREF="p52/comp.cpp">[p52]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Array di
+oggetti</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Gli <FONT COLOR="Green"><B>elementi</B></FONT> di un
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>oggetti</B></FONT> (caso 5. dell'elenco iniziale)
+  vengono <B>inizializzati</B>, tramite il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT> comune di appartenenza, non appena
+  l'<FONT COLOR="Green"><B>array</B></FONT> &egrave; <B>definito</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Come al solito, non esiste nessun problema se si utilizza il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <I><B>default</B></I>:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="#cc0000"><B>point</B></FONT>
+  <FONT COLOR="Maroon"><B>pt</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>5</B></FONT><FONT COLOR="Blue"><B>];</B></FONT></BIG><BR>
+  <BIG>(<B>costruisce</B> <FONT COLOR="Maroon"><B>5</B></FONT>
+  <FONT COLOR="Green"><B>oggetti</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>point</B></FONT>, invocando, per ciascuno di essi,
+  il <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <I><B>default</B></I>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Se invece si vuole (o si deve, per mancanza del
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di <I><B>default</B></I>)
+  utilizzare un <FONT COLOR="Green"><B>costruttore</B></FONT> con
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>,</BIG> <BIG>bisogna considerare
+  a parte il caso di <FONT COLOR="Green"><B>costruttore</B></FONT> con <U>un
+  solo</U> <FONT COLOR="Maroon"><B>argomento</B></FONT> (o con pi&ugrave;
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> di cui uno solo
+  <B>required</B>). Ricordiamo a questo proposito come si <B>inizializza</B>
+  un <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>nativo</B></I>: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="Maroon"><B>valori</B></FONT><FONT COLOR="Blue"><B>[]</B></FONT>
+  <FONT COLOR="Blue"><B>=
+  {</B></FONT><FONT COLOR="Maroon"><B>32</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>53</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>28</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>85</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>21</B></FONT><FONT COLOR="Blue"><B>};</B></FONT><BR>
+  nello stesso modo si pu&ograve; <B>inizializzare</B> un
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>astratto</B></I>: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="#cc0000"><B>point</B></FONT>
+  <FONT COLOR="Maroon"><B>pt</B></FONT><FONT COLOR="Blue"><B>[]</B></FONT>
+  <FONT COLOR="Blue"><B>=
+  {</B></FONT><FONT COLOR="Maroon"><B>2.3</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>-1.2</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>0.0</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>1.4</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>0.5</B></FONT><FONT COLOR="Blue"><B>};</B></FONT><BR>
+  ma in questo caso ogni <B>valore</B> di <B>inizializzazione</B> , relativo
+  a un <FONT COLOR="Green"><B>elemento dell'array</B></FONT>, <U>viene passato
+  come <FONT COLOR="Maroon"><B>argomento</B></FONT> al
+  <FONT COLOR="Green"><B>costruttore</B></FONT></U>.</BIG> <BIG>Ci&ograve;
+  &egrave; possibile in quanto, grazie alla presenza del
+  <FONT COLOR="Green"><B>costruttore</B></FONT> con un solo
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>, ogni <B>valore</B> &egrave;
+  convertito <I><B>implicitamente</B></I> in un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>point</B></FONT> (chiamiamolo
+  <FONT COLOR="Maroon"><B>p<SUB>n</SUB></B></FONT>) e quindi l'espressione
+  precedente diventa: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="#cc0000"><B>point</B></FONT>
+  <FONT COLOR="Maroon"><B>pt</B></FONT><FONT COLOR="Blue"><B>[]</B></FONT>
+  <FONT COLOR="Blue"><B>=
+  {</B></FONT><FONT COLOR="Maroon"><B>p<SUB>0</SUB></B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>p<SUB>1</SUB></B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>p<SUB>2</SUB></B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>p<SUB>3</SUB></B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>p<SUB>4</SUB></B></FONT><FONT COLOR="Blue"><B>};</B></FONT><BR>
+  l'<B>inizializzazione</B> in questa forma di un
+  &nbsp;<FONT COLOR="Green"><B>array</B></FONT> di un certo
+  <FONT COLOR="Green"><B>tipo</B></FONT>, tramite
+  <FONT COLOR="Green"><B>elementi</B></FONT> dello stesso
+  <FONT COLOR="Green"><B>tipo</B></FONT> precedentemente <B>costruiti</B>,
+  &egrave; sempre consentita, anche per i
+  <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>astratti</B></I>.</BIG>
+  <P ALIGN=Justify>
+  <BIG><U>Non esiste invece alcuna possibilit&agrave; di utilizzare
+  <FONT COLOR="Green"><B>costruttori</B></FONT> con due o pi&ugrave;
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT></U>.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p53/oggarray.cpp">[p53]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Oggetti non
+locali</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo gi&agrave; considerato i casi degli
+  <FONT COLOR="Green"><B>oggetti</B></FONT>
+  <FONT COLOR="Green"><B>globali</B></FONT>, degli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> nei
+  <FONT COLOR="Blue"><B>namespace</B></FONT> e dei
+  <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>statici</B></FONT> delle
+  <FONT COLOR="Green"><B>classi</B></FONT> (numero 6. dell'elenco iniziale),
+  come casi particolari di <U><FONT COLOR="Green"><B>oggetto</B></FONT> singolo
+  creato direttamente mediante la <B>definizione</B> del suo <B>nome</B></U>
+  (vedere sezione: <FONT COLOR="Blue"><B>Costruttori</B></FONT>). Sappiamo
+  che tali <FONT COLOR="Green"><B>oggetti</B></FONT> non
+  <FONT COLOR="Green"><B>locali</B></FONT> sono <B>costruiti</B> una sola volta,
+  alla partenza del programma, e <B>distrutti</B> solo quando il programma
+  termina.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Qui vogliamo solo aggiungere alcune considerazioni riguardo all'ordine
+  di <B>costruzione</B> e <B>distruzione</B> di pi&ugrave;
+  <FONT COLOR="Green"><B>oggetti</B></FONT>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>due <FONT COLOR="Green"><B>oggetti</B></FONT> <B>definiti</B> nella
+      stessa <FONT COLOR="Red"><B>translation unit</B></FONT> sono <B>costruiti</B>
+      nello stesso ordine in cui la loro <B>definizione</B> appare nel programma,
+      e <B>distrutti</B> in ordine inverso;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>l'ordine di <B>costruzione</B> (e di <B>distruzione</B>) <U>&egrave;
+      invece indeterminato</U> se i due
+      <FONT COLOR="Green"><B>oggetti</B></FONT> <B>sono definiti</B> in
+      <FONT COLOR="Red"><B>translation unit</B></FONT> diverse.</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Ne consegue che &egrave; molto "imprudente" inserire, nel codice del
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> non
+  <FONT COLOR="Green"><B>locale</B></FONT>, operazioni che coinvolgano
+  <FONT COLOR="Green"><B>oggetti</B></FONT> <B>definiti</B> in altre
+  <FONT COLOR="Red"><B>translation unit</B></FONT> (in particolare evitare
+  istruzioni con <FONT COLOR="Blue"><B>cin</B></FONT> e
+  <FONT COLOR="Blue"><B>cout</B></FONT>, in quanto non si pu&ograve; essere
+  sicuri che gli <FONT COLOR="Green"><B>oggetti</B></FONT>
+  <FONT COLOR="Green"><B>globali</B></FONT> delle
+  <FONT COLOR="Green"><B>classi</B></FONT> di
+  <FONT COLOR="Purple"><B>flusso</B></FONT> di <B>I/O</B> siano gi&agrave;
+  stati <B>costruiti</B>).</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Oggetti
+temporanei</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo detto che un <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <I><B>temporaneo</B></I> (caso 7. dell'elenco iniziale) viene
+  <B>costruito</B> per memorizzare risultati parziali durante la
+  <FONT COLOR="Purple"><B>valutazione</B></FONT> di
+  un'<FONT COLOR="Green"><B>espressione</B></FONT>, e <B>distrutto</B> alla
+  fine dell'<FONT COLOR="Green"><B>espressione</B></FONT> <B>completa</B> in
+  cui compare (con il termine
+  "<FONT COLOR="Green"><B>espressione</B></FONT> <B>completa</B>" si intende
+  un'<FONT COLOR="Green"><B>espressione</B></FONT> che non sia
+  <FONT COLOR="Green"><B>sotto-espressione</B></FONT> di un'altra, cio&egrave;,
+  in pratica, un'intera istruzione di programma).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Finora abbiamo considerato soltanto
+  <FONT COLOR="Green"><B>operazioni</B></FONT> fra
+  <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>nativi</B></I>, per i quali
+  il problema della <B>costruzione</B> di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> <I><B>temporaneo</B></I> non si
+  pone. Ma, come vedremo nel prossimo capitolo, il
+  <FONT COLOR="Red"><B>C++</B></FONT> consente anche
+  <FONT COLOR="Green"><B>operazioni</B></FONT> fra
+  <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>astratti</B></I>, tramite la
+  possibilit&agrave; di ridefinire, in
+  <FONT COLOR="Green"><B>overload</B></FONT>, le
+  <FONT COLOR="Green"><B>funzioni</B></FONT> che competono all'azione di molti
+  <FONT COLOR="Green"><B>operatori</B></FONT>
+  (<FONT COLOR="Green"><B>overload</B></FONT> degli
+  <FONT COLOR="Green"><B>operatori</B></FONT>). Per esempio, si potrebbe ridefinire
+  l'<FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>somma</B></FONT>
+  (<FONT COLOR="Blue"><B>+</B></FONT>) &nbsp;in modo che accetti fra i suoi
+  <FONT COLOR="Green"><B>operandi</B></FONT> anche
+  <FONT COLOR="Green"><B>oggetti</B></FONT> della classe
+  <FONT COLOR="Green"><B>classe</B></FONT> <FONT COLOR="#cc0000"><B>point
+  </B></FONT>(si tratterebbe in questo caso di una somma
+  "<I><B>vettoriale</B></I>", ottenuta mediante somma
+  <FONT COLOR="Green"><B>membro</B></FONT> a <FONT COLOR="Green"><B>membro
+  </B></FONT>delle coordinate dei punti):<BR>
+  <FONT COLOR="#cc0000"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; point</B></FONT>
+  <FONT COLOR="Maroon"><B>p</B></FONT> <FONT COLOR="Blue"><B>=
+  </B></FONT><FONT COLOR="Maroon"><B>p1 </B></FONT><FONT COLOR="Blue"><B>+
+  </B></FONT><FONT COLOR="Maroon"><B>p2;</B></FONT><BR>
+  dove <FONT COLOR="Maroon"><B>p1</B></FONT> e
+  <FONT COLOR="Maroon"><B>p2</B></FONT> sono
+  <FONT COLOR="Green"><B>istanze</B></FONT> gi&agrave; create della stessa
+  <FONT COLOR="Green"><B>classe</B></FONT>.</BIG><BR>
+  <BIG>In questo caso &egrave; <B>costruito</B>
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> <I><B>temporaneo</B></I>
+  <FONT COLOR="Maroon"><B>p1 </B></FONT><FONT COLOR="Blue"><B>+
+  </B></FONT><FONT COLOR="Maroon"><B>p2</B></FONT>, che viene <B>distrutto</B>
+  dopo che l'istruzione &egrave; stata eseguita. Ci chiediamo per&ograve;:
+  cosa succede se la <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>point</B></FONT> non ha un
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di <I><B>default</B></I> ?
+  La risposta &egrave; che spetta al codice di implementazione della
+  <FONT COLOR="Green"><B>funzione</B></FONT>, che definisce
+  l'<FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>somma</B></FONT> in
+  <FONT COLOR="Green"><B>overload</B></FONT>, provvedere a che
+  l'<FONT COLOR="Green"><B>operazione</B></FONT> sia eseguita correttamente
+  (per esempio potrebbe <B>definire</B> un'<FONT COLOR="Green"><B>istanza locale
+  </B></FONT>di <FONT COLOR="#cc0000"><B>point</B></FONT>, con valori di
+  <B>inizalizzazione</B> qualsiasi, usarla per memorizzare la somma di
+  <FONT COLOR="Maroon"><B>p1</B></FONT> e
+  <FONT COLOR="Maroon"><B>p2</B></FONT>
+  <FONT COLOR="Green"><B>membro</B></FONT> a
+  <FONT COLOR="Green"><B>membro</B></FONT>, e infine trasmetterla come <B>valore
+  di ritorno <I>by value</I></B>, da <B>copiare</B> in
+  <FONT COLOR="Maroon"><B>p</B></FONT>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>In generale, tutte le volte che
+  un'<FONT COLOR="Green"><B>operazione</B></FONT> crea un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> <I><B>temporaneo</B></I>, la
+  <FONT COLOR="Green"><B>funzione</B></FONT> che compete a
+  quell'<FONT COLOR="Green"><B>operazione</B></FONT> deve creare nel proprio
+  <FONT COLOR="Green"><B>ambito</B></FONT>
+  <FONT COLOR="Green"><B>locale</B></FONT> un corrispondente
+  <FONT COLOR="Green"><B>oggetto</B></FONT>, che, in quanto <B>costruito</B>
+  mediante <B>definizione</B> con un <B>nome</B> (categoria 1. del nostro elenco),
+  non pone problemi, possegga o meno il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <I><B>default</B></I>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Utilit&agrave; dei costruttori e
+distruttori</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Poich&eacute; in <FONT COLOR="Red"><B>C++ </B></FONT>ogni
+  <FONT COLOR="Green"><B>oggetto</B></FONT> ha una sua precisa connotazione,
+  caratterizzata da <B>propriet&agrave;</B> e <B>metodi</B>, i
+  <FONT COLOR="Green"><B>costruttori</B></FONT> e i
+  <FONT COLOR="Green"><B>distruttori</B></FONT> hanno in realt&agrave; un campo
+  di applicazione molto pi&ugrave; vasto della semplice <B>inizializzazione</B>
+  o liberazione di risorse: in senso lato possono servire ogni qual volta un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> necessita di ben definite operazioni
+  iniziali e finali, <I><B>incapsulate</B></I>
+  nell'<FONT COLOR="Green"><B>oggetto</B></FONT> stesso. Per esempio, se
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> consiste in una procedura di
+  <I><B>help</B></I>, il <FONT COLOR="Green"><B>costruttore</B></FONT> potrebbe
+  servire per creare la "finestra di aiuto", mentre il
+  <FONT COLOR="Green"><B>distruttore</B></FONT> avrebbe il compito di ripristinare
+  le condizioni preesistenti dello schermo.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#overload"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

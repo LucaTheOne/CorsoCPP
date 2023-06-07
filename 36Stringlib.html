@@ -1,0 +1,2036 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Una classe C++ per le stringhe CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Una classe C++
+per le stringhe
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>La classe
+string</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Red"><B>Libreria Standard del C++</B></FONT> mette a
+  disposizione una <FONT COLOR="Green"><B>classe</B></FONT> per la gestione
+  delle <FONT COLOR="Green"><B>stringhe</B></FONT>, non come
+  </BIG><FONT COLOR="Green"><B><BIG>array</BIG></B></FONT> <BIG>di
+  <FONT COLOR="Green"><B>caratteri</B></FONT> (come le
+  <FONT COLOR="Green"><B>stringhe</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT>), ma come normali
+  <FONT COLOR="Green"><B>oggetti</B></FONT> (e quindi, per esempio, trasferibili
+  per <B>copia</B>, a differenza delle
+  <FONT COLOR="Green"><B>stringhe</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT>, nelle <B>chiamate</B> delle
+  &nbsp;<FONT COLOR="Green"><B>funzioni</B></FONT>). Questa
+  <FONT COLOR="Green"><B>classe</B></FONT> si chiama
+  <FONT COLOR="Blue"><B>string</B></FONT> &nbsp;ed &egrave; <B>definita</B>
+  nell'<I><B>header file</B></I>
+  <FONT COLOR="Blue"><B>&lt;string&gt;</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Per la verit&agrave;, il <B>nome</B>
+  <FONT COLOR="Blue"><B>string</B></FONT> non &egrave; altro che un
+  <I><B>sinonimo</B></I> (<B>definito</B> con
+  <FONT COLOR="Blue"><B>typedef</B></FONT>) di:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>basic_string&lt;char&gt;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>dove <FONT COLOR="Blue"><B>basic_string</B></FONT> &egrave; una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT> con
+  <FONT COLOR="Green"><B>tipo</B></FONT> di <FONT COLOR="Green"><B>carattere
+  </B></FONT><FONT COLOR="Red"><B>generico</B></FONT>, e quindi
+  <FONT COLOR="Blue"><B>string</B></FONT> &egrave; una
+  <FONT COLOR="Green"><B>specializzazione</B></FONT> di
+  <FONT COLOR="Blue"><B>basic_string</B></FONT> con <I><B>argomento</B></I>
+  <FONT COLOR="Blue"><B>char</B></FONT>. Ma poich&eacute;, come abbiamo gi&agrave;
+  detto nel capitolo di introduzione alla
+  <FONT COLOR="Red"><B>Libreria</B></FONT>, a noi interessano solo i
+  <FONT COLOR="Green"><B>caratteri</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>char</B></FONT>, ignoreremo la
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT> da cui
+  <FONT COLOR="Blue"><B>string</B></FONT> proviene e tratteremo
+  <FONT COLOR="Blue"><B>string</B></FONT> come una
+  <FONT COLOR="Green"><B>classe</B></FONT> specifica (non
+  <FONT COLOR="Blue"><B>template</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Da un altro punto di vista, pi&ugrave; vicino agli interessi dell'utente,
+  <FONT COLOR="Blue"><B>string</B></FONT> pu&ograve; essere considerata come
+  un "<FONT COLOR="Green"><B>contenitore</B></FONT>
+  <FONT COLOR="Green"><B>specializzato</B></FONT>", e in particolare "somiglia"
+  molto a <FONT COLOR="Blue"><B>vector&lt;char&gt;</B></FONT>. Possiede quasi
+  tutte le funzionalit&agrave; di <FONT COLOR="Blue"><B>vector</B></FONT>,
+  con alcune (poche) caratteristiche in meno e altre (molte) caratteristiche
+  in pi&ugrave;; quest'ultime servono soprattutto per eseguire le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> specifiche di manipolazione
+  delle <FONT COLOR="Green"><B>stringhe</B></FONT> (come per esempio la
+  <FONT COLOR="Purple"><B>concatenazione</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>In particolare, come gli <FONT COLOR="Green"><B>elementi</B></FONT>
+  di <FONT COLOR="Blue"><B>vector</B></FONT>, anche i
+  <FONT COLOR="Green"><B>caratteri</B></FONT> di
+  <FONT COLOR="Blue"><B>string</B></FONT> possono essere considerati come facenti
+  parte di una <FONT COLOR="Green"><B>sequenza</B></FONT>, e quindi
+  <FONT COLOR="Blue"><B>string</B></FONT> definisce gli stessi
+  </BIG><FONT COLOR="Green"><BIG><B>iteratori</B></BIG></FONT> <BIG>di
+  <FONT COLOR="Blue"><B>vector</B></FONT> e della stessa
+  <FONT COLOR="Green"><B>categoria</B></FONT> (<I><B>ad accesso
+  casuale</B></I>). Ci&ograve; rende possibile l'applicazione di <U>tutti</U>
+  gli <FONT COLOR="Green"><B>algoritmi</B></FONT>
+  <FONT COLOR="Red"><B>generici</B></FONT> della
+  <FONT COLOR="Red"><B>STL</B></FONT> anche a
+  <FONT COLOR="Blue"><B>string</B></FONT>, tramite i suoi
+  </BIG><FONT COLOR="Green"><BIG><B>iteratori</B></BIG></FONT><BIG>. Questo
+  fatto &egrave; indubbiamente un vantaggio, ma non cos&igrave; grande come
+  potrebbe sembrare. Infatti gli
+  <FONT COLOR="Green"><B>algoritmi</B></FONT>
+  <FONT COLOR="Red"><B>generici</B></FONT> sono pensati principalmente per
+  strutture i cui <FONT COLOR="Green"><B>elementi</B></FONT> sono significativi
+  anche se presi singolarmente, il che non &egrave; generalmente vero per le
+  <FONT COLOR="Green"><B>stringhe</B></FONT>. Per esempio, <B>ordinare</B>
+  una <FONT COLOR="Green"><B>stringa</B></FONT> non ha senso (e quindi gli
+  <FONT COLOR="Green"><B>algoritmi</B></FONT> di <B>ordinamento</B> o di
+  manipolazione di <FONT COLOR="Green"><B>sequenze</B></FONT> <B>ordinate</B>
+  sono poco utili se applicati alle
+  <FONT COLOR="Green"><B>stringhe</B></FONT>). L'attenzione maggiore va invece
+  concentrata sui <B>metodi</B> di <FONT COLOR="Blue"><B>string</B></FONT>,
+  alcuni dei quali sono implementati in modo da ottenere un'ottimizzazione
+  pi&ugrave; spinta di quanto non sia possibile nel caso generale.</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Confronto fra string e
+vector&lt;char&gt;</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<P ALIGN=Justify>
+<BIG>In questa sezione elencheremo le funzionalit&agrave; comuni a
+<FONT COLOR="Blue"><B>string</B></FONT> e
+<FONT COLOR="Blue"><B>vector</B></FONT>, e, separatamente, i <B>metodi</B>
+di <FONT COLOR="Blue"><B>vector</B></FONT> <U>non presenti</U> in
+<FONT COLOR="Blue"><B>string</B></FONT>. Nelle sezioni successive tratteremo
+esclusivamente delle
+</BIG><FONT COLOR="Green"><BIG><B>funzioni-membro</B></BIG></FONT> <BIG>e
+delle </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT> <BIG>esterne
+specifiche di <FONT COLOR="Blue"><B>string</B></FONT>. Per il significato
+dei <B>nomi</B>, e per la descrizione dei
+</BIG><FONT COLOR="Green"><BIG><B>tipi</B></BIG></FONT><BIG> e delle
+</BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT><BIG>, vedere
+il capitolo: </BIG><FONT COLOR="Red"><B><BIG><U>La Standard Template
+Library</U></BIG></B></FONT><BIG>, sezione:
+</BIG><FONT COLOR="Blue"><B><BIG>Contenitori
+Standard</BIG></B></FONT><BIG>.</BIG>
+<P>
+<FONT COLOR="Green"><BIG><B>Tipi definiti in string</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Nell'<FONT COLOR="Green"><B>ambito</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT> sono <B>definiti</B> gli stessi
+  </BIG><FONT COLOR="Green"><BIG><B>tipi</B></BIG></FONT>
+  <BIG><B>definiti</B> in <FONT COLOR="Blue"><B>vector</B></FONT> e in particolare
+  (citiamo i pi&ugrave; importanti):
+  </BIG><FONT COLOR="Blue"><BIG><B>iterator</B></BIG></FONT><BIG>,</BIG>
+  <FONT COLOR="Blue"><BIG><B>const_iterator</B></BIG></FONT><BIG>,
+  </BIG><FONT COLOR="Blue"><BIG><B>reverse_iterator</B></BIG></FONT><BIG>,
+  </BIG><FONT COLOR="Blue"><BIG><B>const_reverse_iterator</B></BIG></FONT><BIG>,</BIG><FONT
+      COLOR="Blue"><BIG><B>
+  </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>difference_type</B></FONT>,
+  <FONT COLOR="Blue"><B>value_type</B></FONT>,
+  <FONT COLOR="Blue"><B>size_type</B></FONT>,<FONT COLOR="Blue"><B>
+  reference</B></FONT>,
+  </BIG><FONT COLOR="Blue"><BIG><B>const_</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>reference</B></FONT></BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Funzioni-membro comuni</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>I seguenti <B>metodi</B>, gi&agrave; descritti nella trattazione dei
+  <FONT COLOR="Green"><B>contenitori</B></FONT>, sono <B>definiti</B> sia in
+  <FONT COLOR="Blue"><B>vector</B></FONT> che in
+  <FONT COLOR="Blue"><B>string</B></FONT>, hanno la stessa sintassi di
+  <B>chiamata</B> e svolgono le medesime
+  <FONT COLOR="Green"><B>operazioni</B></FONT> (se
+  <FONT COLOR="Blue"><B>vector</B></FONT> &egrave;
+  <FONT COLOR="Green"><B>specializzato</B></FONT> con con
+  <I><B>argomento</B></I> <FONT COLOR="Blue"><B>char</B></FONT>):</BIG>
+  <CENTER>
+    <TABLE BORDER CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD><BIG><FONT COLOR="Purple"><B>dereferenziazione </B></FONT>di un
+	  <FONT COLOR="Green"><B>iteratore</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>begin &nbsp; &nbsp;end &nbsp; &nbsp;rbegin
+	  &nbsp; &nbsp;rend</B></BIG></FONT></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>resize</B></BIG></FONT></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>size &nbsp; &nbsp;empty</B></BIG></FONT></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>max_size</B></BIG></FONT></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>reserve &nbsp;
+	  &nbsp;capacity</B></BIG></FONT></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Green"><BIG><B>costruttore</B></BIG></FONT> <BIG>di
+	  <I><B>default</B></I></BIG></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Green"><BIG><B>costruttore di
+	  copia</B></BIG></FONT><FONT COLOR="Blue"><BIG><B> &nbsp;
+	  &nbsp;operator=</B></BIG></FONT> &nbsp;
+	  <FONT COLOR="Blue"><BIG><B>assign</B></BIG></FONT></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Green"><BIG><B>costruttore</B></BIG></FONT> <BIG>e
+	  </BIG><FONT COLOR="Blue"><BIG><B>assign</B></BIG></FONT>
+	  <BIG>tramite</BIG><FONT COLOR="Green"><BIG><B> iteratori</B></BIG></FONT>
+	  &nbsp;<FONT COLOR="Blue"><BIG><B> &nbsp; </B></BIG></FONT></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>swap</B></BIG></FONT></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>operator[]</B></BIG></FONT>
+	  <BIG>(<FONT COLOR="Purple"><B>accesso</B></FONT> non controllato)</BIG></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>at</B></BIG></FONT>
+	  <BIG>(<FONT COLOR="Purple"><B>accesso</B></FONT> controllato)</BIG></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>insert &nbsp; &nbsp;erase</B></BIG></FONT></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <B><FONT COLOR="Red"><BIG>Note</BIG></FONT></B><BIG>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>come gli <FONT COLOR="Green"><B>oggetti</B></FONT> di
+      <FONT COLOR="Blue"><B>vector</B></FONT>, anche quelli di
+      <FONT COLOR="Blue"><B>string</B></FONT> possono utilizzare i <B>metodi</B>
+      </BIG><FONT COLOR="Blue"><BIG><B>operator[]</B></BIG></FONT> <BIG>e
+      </BIG><FONT COLOR="Blue"><BIG><B>at</B></BIG></FONT> <BIG>per accedere ai
+      propri <FONT COLOR="Green"><B>elementi</B></FONT> (i singoli
+      <FONT COLOR="Green"><B>caratteri</B></FONT>) tramite
+      <FONT COLOR="Green"><B>indice</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>c'&egrave; una piccola differenza fra i due <B>metodi</B>
+      </BIG><FONT COLOR="Blue"><BIG><B>assign</B></BIG></FONT> <BIG>di
+      <FONT COLOR="Blue"><B>vector</B></FONT> e quelli di
+      <FONT COLOR="Blue"><B>string</B></FONT>: i primi <B>ritornano</B>
+      <FONT COLOR="Blue"><B>void</B></FONT>, mentre i secondi <B>ritornano</B>
+      <FONT COLOR="Blue"><B>string&amp;</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>a proposito del <B>metodo
+      </B></BIG><FONT COLOR="Blue"><BIG><B>size</B></BIG></FONT><BIG>, &egrave;
+      <B>definito</B> in <FONT COLOR="Blue"><B>string</B></FONT> anche il
+      <B>metodo</B> <FONT COLOR="Blue"><B>length</B></FONT>, che fa esattamente
+      la stessa cosa.</BIG>
+  </UL>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Funzioni esterne comuni</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Tutte le
+  </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT> <BIG>esterne
+  di "appoggio" <B>definite</B> nell'<I><B>header file</B></I>
+  <FONT COLOR="Blue"><B>&lt;vector&gt;</B></FONT> sono anche <B>definite</B>
+  nell'<I><B>header file</B></I>
+  <FONT COLOR="Blue"><B>&lt;string&gt;</B></FONT>; ricordiamo che queste
+  </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT> <BIG>sono:
+  </BIG><FONT COLOR="Blue"><BIG><B>swap</B></BIG></FONT><BIG>,</BIG>
+  <FONT COLOR="Blue"><BIG><B>operator==</B></BIG></FONT><BIG>,</BIG>
+  <FONT COLOR="Blue"><BIG><B>operator!=</B></BIG></FONT><BIG>,</BIG>
+  <FONT COLOR="Blue"><BIG><B>operator&lt;</B></BIG></FONT><BIG>,</BIG>
+  <FONT COLOR="Blue"><BIG><B>operator&lt;=</B></BIG></FONT><BIG>,</BIG>
+  <FONT COLOR="Blue"><BIG><B>operator&gt;</B></BIG></FONT><BIG>,
+  </BIG><FONT COLOR="Blue"><BIG><B>operator&gt;=</B></BIG></FONT><BIG>. Ognuna
+  di esse ha due <FONT COLOR="Maroon"><B>argomenti</B></FONT>, che nelle
+  </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT>
+  <BIG><B>definite</B> nell'<I><B>header file</B></I>
+  <FONT COLOR="Blue"><B>&lt;string&gt;</B></FONT> sono ovviamente di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+<FONT COLOR="Green"><BIG><B>Funzioni-membro di vector non presenti in
+string</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Un numero molto ridotto di <B>metodi</B> di
+  <FONT COLOR="Blue"><B>vector</B></FONT> non &egrave; ridefinito in
+  <FONT COLOR="Blue"><B>string</B></FONT>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Green"><BIG><B>Costruttore</B></BIG></FONT> <BIG>con un <B>1</B>
+      <FONT COLOR="Maroon"><B>argomento</B></FONT><BR>
+      Non &egrave; ammesso <B>inizializzare</B> una
+      <FONT COLOR="Green"><B>stringa</B></FONT> fornendole solo la
+      <FONT COLOR="Green"><B>dimensione</B></FONT>. Per esempio:<BR>
+      <FONT COLOR="Blue"><B>string</B></FONT>
+      </BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>(</B></BIG></FONT><FONT
+	  COLOR="Maroon"><BIG><B>7</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>); &nbsp;
+      &nbsp; &nbsp; &nbsp; </B></BIG></FONT><BIG>&egrave; un'istruzione errata;<BR>
+      invece &egrave; possibile <B>inizializzare</B> una
+      <FONT COLOR="Green"><B>stringa</B></FONT> fornendole la
+      <FONT COLOR="Green"><B>dimensione</B></FONT> e il
+      <FONT COLOR="Green"><B>carattere</B></FONT> di "riempimento". Per esempio:<BR>
+      <FONT COLOR="Blue"><B>string</B></FONT>
+      </BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>(</B></BIG></FONT><FONT
+	  COLOR="Maroon"><BIG><B>7</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,'</B></BIG></FONT><FONT
+	  COLOR="Maroon"><BIG><B>a</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>');</B></BIG></FONT><BIG>
+      &nbsp; &nbsp;ok, genera:
+      &nbsp;</BIG><FONT COLOR="Blue"><BIG><B>"</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>aaaaaaa</B></BIG></FONT><FONT
+	  COLOR="Blue"><BIG><B>"</B></BIG></FONT><BIG>;<BR>
+      in pratica il secondo <FONT COLOR="Maroon"><B>argomento</B></FONT>, che in
+      <FONT COLOR="Blue"><B>vector</B></FONT> &egrave; <I><B>opzionale</B></I>,
+      in <FONT COLOR="Blue"><B>string</B></FONT> &egrave; obbligatorio</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Green"><B>Operazioni</B></FONT> in testa e in coda<BR>
+      i seguenti <B>metodi</B> di <FONT COLOR="Blue"><B>vector</B></FONT> non esistono
+      in <FONT COLOR="Blue"><B>string</B></FONT>:
+      <FONT COLOR="Blue"><B>front</B></FONT>,
+      <FONT COLOR="Blue"><B>back</B></FONT>,&nbsp;<FONT COLOR="Blue"><B>push_back</B></FONT>,
+      <FONT COLOR="Blue"><B>pop_back</B></FONT> </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><B>Metodo</B> <FONT COLOR="Blue"><B>clear</B></FONT></BIG><BR>
+      <BIG>in compenso esiste un ulteriore
+      <FONT COLOR="Green"><B>overload</B></FONT> del <B>metodo
+      </B><FONT COLOR="Blue"><B>erase</B></FONT> che esegue la stessa
+      </BIG><FONT COLOR="Green"><BIG><B>operazione</B></BIG></FONT>
+  </UL>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp;<BIG><BIG><A HREF="p86/string_vector.cpp">[p86]</A></BIG></BIG>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Il membro statico
+npos</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT> <B>dichiara</B> il seguente
+  <FONT COLOR="Green"><B>dato-membro</B></FONT> "atipico":</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>static &nbsp; const &nbsp; size_type &nbsp;
+  npos;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>che &egrave; <B>inizializzato</B> con il <B>valore</B>
+  <FONT COLOR="Maroon"><B>-1</B></FONT>. Poich&eacute; d'altra parte il
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>size_type</B></FONT> &egrave; sempre
+  <FONT COLOR="Blue"><B>unsigned</B></FONT>, la
+  <FONT COLOR="Green"><B>costante</B></FONT>
+  <FONT COLOR="Blue"><B>string::npos</B></FONT> contiene in realt&agrave; il
+  <U>massimo numero positivo possibile</U>. Viene usato come
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> di <B><I>default</I></B> di
+  alcune
+  </BIG><FONT COLOR="Green"><BIG><B>funzioni-membro</B></BIG></FONT> <BIG>o
+  come <B>valore di ritorno</B> "speciale" (per esempio per indicare che un
+  certo <FONT COLOR="Green"><B>elemento</B></FONT> non &egrave; stato trovato).
+  In pratica <FONT COLOR="Blue"><B>npos</B></FONT> rappresenta un
+  <FONT COLOR="Green"><B>indice</B></FONT> che "non pu&ograve; esistere", in
+  quanto &egrave; maggiore di tutti gli
+  <FONT COLOR="Green"><B>indici</B></FONT> possibili. In un certo senso svolge
+  le stesse funzioni del <I><B>terminatore</B></I> nelle
+  <FONT COLOR="Green"><B>stringhe</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT>, che non esiste negli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> di
+  <FONT COLOR="Blue"><B>string</B></FONT> (il
+  <FONT COLOR="Green"><B>carattere</B></FONT>
+  <FONT COLOR="Blue"><B>'\0'</B></FONT> pu&ograve; essere un
+  <FONT COLOR="Green"><B>elemento</B></FONT> di
+  <FONT COLOR="Blue"><B>string</B></FONT> come tutti gli altri).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Come vedremo, i <B>metodi</B> di
+  <FONT COLOR="Blue"><B>string</B></FONT> che utilizzano gli
+  <FONT COLOR="Green"><B>indici</B></FONT> come
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> spesso fanno uso di
+  <FONT COLOR="Blue"><B>npos</B></FONT> per indicare la <I><B>fine</B></I>
+  della <FONT COLOR="Green"><B>stringa</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Costruttori e operazioni di
+copia</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Oltre ai <B>4</B>
+  </BIG><FONT COLOR="Green"><BIG><B>costruttori</B></BIG></FONT> <BIG>gi&agrave;
+  visti (<I><B>default</B></I>,
+  <B>copia</B></BIG><FONT COLOR="Green"><BIG><B> </B></BIG></FONT><BIG>da
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT>, <B>copia</B></BIG>
+  <BIG>tramite</BIG><FONT COLOR="Green"><BIG><B> iteratori</B></BIG></FONT>
+  <BIG>e <B>inizializzazione</B> con
+  <FONT COLOR="Green"><B>carattere</B></FONT> di "riempimento"),
+  <FONT COLOR="Blue"><B>string</B></FONT> <B>definisce</B> i seguenti
+  </BIG><FONT COLOR="Green"><BIG><B>costruttori</B></BIG></FONT>
+  <BIG>specifici:</BIG>
+  <TABLE BORDER CELLPADDING="2">
+    <TR>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="Blue"><B>string</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>::</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>string</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(const
+	string&amp;
+	</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+	size_type
+	</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>ind</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+	size_type
+	</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>=npos)</B></FONT></BIG><BR>
+	<BIG><B>copia</B> da
+	</BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG>, a partire
+	dall'<FONT COLOR="Green"><B>elemento</B></FONT> con
+	<FONT COLOR="Green"><B>indice</B></FONT>
+	</BIG><FONT COLOR="Maroon"><BIG><B>ind</B></BIG></FONT><BIG>, per
+	</BIG><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT>
+	<BIG><FONT COLOR="Green"><B>elementi</B></FONT> o fino al termine di
+	</BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG> (quello che
+	"arriva prima")</BIG></TD>
+    </TR>
+    <TR>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="Blue"><B>string</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>::</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>string</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(const
+	char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT><BIG><B>
+	</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>)</B></FONT></BIG><BR>
+	<BIG><B>copia</B> <FONT COLOR="Green"><B>caratteri</B></FONT>, a partire
+	da quello puntato da
+	</BIG><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT> <BIG>e fino a quando
+	incontra il <FONT COLOR="Green"><B>carattere</B></FONT>
+	<FONT COLOR="Blue"><B>'\0'</B></FONT>&nbsp;(escluso); in pratica <B>copia</B>
+	una <FONT COLOR="Green"><B>stringa</B></FONT> del <FONT COLOR="Red"><B>C
+	</B></FONT>(che pu&ograve; anche essere una
+	<FONT COLOR="Green"><B>costante</B></FONT> <I><B>literal</B></I>)</BIG></TD>
+    </TR>
+    <TR>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="Blue"><B>string</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>::</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>string</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(const
+	char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT><BIG><B>
+	</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+	size_type
+	</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>)</B></FONT></BIG><BR>
+	<BIG>come sopra, salvo che <B>copia</B> solo
+	</BIG><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT>
+	<BIG><FONT COLOR="Green"><B>caratteri</B></FONT> (se prima non incontra
+	<FONT COLOR="Blue"><B>'\0'</B></FONT>)</BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Per quello che riguarda le <B>copie</B> in
+  <FONT COLOR="Green"><B>oggetti</B></FONT> di
+  <FONT COLOR="Blue"><B>string</B></FONT> gi&agrave; esistenti, oltre
+  all'</BIG><FONT COLOR="Green"><BIG><B>operatore</B></BIG></FONT><BIG> di
+  <FONT COLOR="Purple"><B>assegnazione</B></FONT> standard e alle due versioni
+  del <B>metodo</B>
+  </BIG><FONT COLOR="Blue"><BIG><B>assign</B></BIG></FONT>
+  (<BIG><B>copia</B></BIG> <BIG>tramite</BIG><FONT COLOR="Green"><BIG><B>
+  iteratori</B></BIG></FONT> <BIG>e <B>copia</B></BIG> <BIG>con
+  <FONT COLOR="Green"><B>carattere</B></FONT> di "riempimento"</BIG>)
+  <BIG>presenti anche in <FONT COLOR="Blue"><B>vector</B></FONT>,
+  <FONT COLOR="Blue"><B>string</B></FONT> <B>definisce</B> ulteriori
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT><BIG> (in tutte
+  le seguenti <FONT COLOR="Green"><B>operazioni</B></FONT>
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT> esistente viene cancellato e
+  sostituito da quello ottenuto per <B>copia</B>):</BIG>
+  <TABLE BORDER CELLPADDING="2">
+    <TR>
+      <TD><BIG><FONT COLOR="Blue"><B>string&amp;
+	string</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>::</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>operator=</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(const
+	char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT><BIG><B>
+	</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>)<BR>
+	</B></FONT><B>copia</B> una <FONT COLOR="Green"><B>stringa</B></FONT> del
+	<FONT COLOR="Red"><B>C</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="Blue"><B>string&amp;
+	string</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>::</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>operator=</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(char
+	</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>c</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>)</B></FONT></BIG><BR>
+	<BIG><B>copia</B> un singolo <FONT COLOR="Green"><B>carattere</B></FONT>;
+	nota: l'<FONT COLOR="Purple"><B>assegnazione</B></FONT> di un singolo
+	<FONT COLOR="Green"><B>carattere</B></FONT> &egrave; ammessa, mentre
+	l'<B>inizializzazione</B> non lo &egrave;</BIG></TD>
+    </TR>
+    <TR>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="Blue"><B>string&amp;
+	string</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>::</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>assign</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(const
+	string&amp;
+	</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>)</B></FONT></BIG><BR>
+	<BIG>esegue le stesse <FONT COLOR="Green"><B>operazioni</B></FONT>
+	dell'</BIG><FONT COLOR="Green"><BIG><B>operatore</B></BIG></FONT><BIG> di
+	<FONT COLOR="Purple"><B>assegnazione</B></FONT> standard</BIG></TD>
+    </TR>
+    <TR>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="Blue"><B>string&amp;
+	string</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>::</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>assign</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(const
+	string&amp;
+	</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+	size_type
+	</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>ind</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+	size_type
+	</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>)</B></FONT></BIG><BR>
+	<BIG>esegue le stesse <FONT COLOR="Green"><B>operazioni</B></FONT> del
+	</BIG><FONT COLOR="Green"><BIG><B>costruttore</B></BIG></FONT> <BIG>con uguali
+	<FONT COLOR="Maroon"><B>argomenti</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="Blue"><B>string&amp;
+	string</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>::</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>assign</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(const
+	char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT><BIG><B>
+	</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>)</B></FONT></BIG><BR>
+	<BIG>esegue le stesse <FONT COLOR="Green"><B>operazioni</B></FONT>
+	dell'</BIG><FONT COLOR="Green"><BIG><B>operatore</B></BIG></FONT><BIG> di
+	<FONT COLOR="Purple"><B>assegnazione</B></FONT></BIG> <BIG>con uguale
+	<FONT COLOR="Maroon"><B>argomento</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="Blue"><B>string&amp;
+	string</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>::</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>assign</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(const
+	char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT><BIG><B>
+	</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+	size_type
+	</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>)</B></FONT></BIG><BR>
+	<BIG>esegue le stesse <FONT COLOR="Green"><B>operazioni</B></FONT> del
+	</BIG><FONT COLOR="Green"><BIG><B>costruttore</B></BIG></FONT> <BIG>con uguali
+	<FONT COLOR="Maroon"><B>argomenti</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Gestione degli
+errori</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo detto che, come in <FONT COLOR="Blue"><B>vector</B></FONT>,
+  </BIG><FONT COLOR="Blue"><BIG><B>operator[]</B></BIG></FONT> <BIG>non controlla
+  che l'<FONT COLOR="Maroon"><B>argomento</B></FONT>
+  <FONT COLOR="Green"><B>indice</B></FONT> sia compreso nel
+  <I><B>range</B></I>
+  <B>[0,</B></BIG><FONT COLOR="Blue"><BIG><B>size()</B></BIG></FONT><BIG><B>)</B>,
+  mentre il <B>metodo</B>
+  </BIG><FONT COLOR="Blue"><BIG><B>at</B></BIG></FONT> <BIG>effettua il controllo
+  e genera un'<FONT COLOR="Green"><B>eccezione</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>out_of_range</B></FONT> in caso di errore.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Molti altri <B>metodi</B> di <FONT COLOR="Blue"><B>string</B></FONT>
+  hanno, fra gli &nbsp;<FONT COLOR="Maroon"><B>argomenti</B></FONT>, due
+  <FONT COLOR="Green"><B>tipi</B></FONT>
+  </BIG><FONT COLOR="Blue"><BIG><B>size_type</B></BIG></FONT> <BIG>consecutivi,
+  di cui il primo rappresenta un
+  &nbsp;<FONT COLOR="Green"><B>indice</B></FONT> (che ha il significato di
+  "posizione iniziale"), mentre il secondo rappresenta il numero di
+  <FONT COLOR="Green"><B>caratteri</B></FONT> "da quel punto in poi" (abbiamo
+  gi&agrave; visto cos&igrave; fatti un
+  </BIG><FONT COLOR="Green"><BIG><B>costruttore</B></BIG></FONT> <BIG>e un
+  <B>metodo</B> <FONT COLOR="Blue"><B>assign</B></FONT>). In tutti i casi il
+  primo <FONT COLOR="Maroon"><B>argomento</B></FONT> &egrave; sempre controllato
+  (generando la solita <FONT COLOR="Green"><B>eccezione</B></FONT> se
+  l'<FONT COLOR="Green"><B>indice</B></FONT> non &egrave; nel
+  <I><B>range</B></I>), mentre il secondo non lo &egrave; mai e quindi un numero
+  di <FONT COLOR="Green"><B>caratteri</B></FONT> troppo alto viene semplicemente
+  interpretato come "il resto della
+  <FONT COLOR="Green"><B>stringa</B></FONT>" (che in particolare &egrave; l'unica
+  interpretazione possibile se il valore del secondo
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> &egrave;
+  <FONT COLOR="Blue"><B>npos</B></FONT>). Notare che, se la "posizione iniziale"
+  e/o il numero di <FONT COLOR="Green"><B>caratteri</B></FONT> &nbsp;sono dati
+  come numeri negativi, questi vengono convertiti in valori positivi molto
+  grandi (essendo
+  </BIG><FONT COLOR="Blue"><BIG><B>size_type</B></BIG></FONT> <BIG>un
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>unsigned</B></FONT>), e quindi, per esempio:</BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>string</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(</B></BIG></FONT><FONT
+	    COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,</B></BIG></FONT><FONT
+	    COLOR="Maroon"><BIG><B>-2</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,</B></BIG></FONT><FONT
+	    COLOR="Maroon"><BIG><B>3</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>);</B></BIG></FONT></TD>
+      <TD>&nbsp;</TD>
+      <TD><BIG>genera <FONT COLOR="Blue"><B>out_of_range</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD>&nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>string</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(</B></BIG></FONT><FONT
+	    COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,</B></BIG></FONT><FONT
+	    COLOR="Maroon"><BIG><B>3</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,</B></BIG></FONT><FONT
+	    COLOR="Maroon"><BIG><B>-2</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>);</B></BIG></FONT></TD>
+      <TD>&nbsp;</TD>
+      <TD><P ALIGN=Justify>
+	<BIG>va bene: <B>costruisce</B> un
+	<FONT COLOR="Green"><B>oggetto</B></FONT>
+	<FONT COLOR="Blue"><B>string</B></FONT> per <B>copia</B> da
+	</BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG>, a partire dal
+	quarto <FONT COLOR="Green"><B>carattere</B></FONT> fino al &nbsp;termine</BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>I <B>metodi</B> per la ricerca di
+  <FONT COLOR="Green"><B>sotto-stringhe</B></FONT> (che vedremo pi&ugrave;
+  avanti) restituiscono <FONT COLOR="Blue"><B>npos</B></FONT> in caso di
+  insuccesso, ma <U>non generano
+  <FONT COLOR="Green"><B>eccezioni</B></FONT></U>; se per&ograve; il programma
+  dell'utente non controlla il <B>valore di ritorno</B> e lo usa direttamente
+  come <FONT COLOR="Maroon"><B>argomento</B></FONT> di "posizione" nella
+  <B>chiamata</B> di un'altra <FONT COLOR="Green"><B>funzione</B></FONT>, allora
+  s&igrave; che, in caso di insuccesso nella ricerca, si genera
+  un'<FONT COLOR="Green"><B>eccezione</B></FONT>
+  <FONT COLOR="Blue"><B>out_of_range</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>I <B>metodi</B> che usano una coppia di
+  </BIG><FONT COLOR="Green"><BIG><B>iteratori</B></BIG></FONT><BIG> al posto
+  della coppia "posizione-numero" non effettuano nessun controllo (e lo stesso
+  discorso vale per gli <FONT COLOR="Green"><B>algoritmi</B></FONT>, come sappiamo)
+  e quindi spetta al programma dell'utente assicurare che i limiti del
+  <I><B>range </B></I>non vengano oltrepassati.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La stessa cosa dicasi quando la coppia di
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> "posizione-numero" si riferisce
+  a una <FONT COLOR="Green"><B>stringa</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT>: anche qui non viene eseguito</BIG>
+  <BIG>nessun controllo &nbsp;(a parte il controllo sul
+  <I><B>terminator</B></I> che viene riconosciuto come<I><B> fine</B></I> della
+  <FONT COLOR="Green"><B>stringa</B></FONT>) e quindi bisogna porre la massima
+  attenzione sull'<FONT COLOR="Maroon"><B>argomento</B></FONT> che rappresenta
+  la "posizione iniziale" (che in questo caso &egrave; un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  </BIG><FONT COLOR="Blue"><BIG><B>char</B></BIG></FONT><BIG>): anzitutto deve
+  essere diverso da <FONT COLOR="Blue"><B>NULL</B></FONT> (altrimenti il programma
+  <I><B>abortisce</B></I>) e in secondo luogo deve realmente puntare a un
+  <FONT COLOR="Green"><B>carattere</B></FONT> interno alla
+  <FONT COLOR="Green"><B>stringa</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Un altro tipo di errore (comune anche a
+  <FONT COLOR="Blue"><B>vector</B></FONT>), molto raro, che genera
+  un'<FONT COLOR="Green"><B>eccezione</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>length_error</B></FONT>, avviene quando si tenta di
+  <B>costruire</B> una <FONT COLOR="Green"><B>stringa</B></FONT> pi&ugrave;
+  lunga del massimo consentito (dato da
+  </BIG><FONT COLOR="Blue"><BIG><B>max_size</B></BIG></FONT><BIG>). Lo stesso
+  errore &egrave; generato se si tenta di superare
+  </BIG><FONT COLOR="Blue"><BIG><B>max_size</B></BIG></FONT> <BIG>chiamando
+  un <B>metodo</B> che modifica la
+  <FONT COLOR="Green"><B>dimensione</B></FONT> direttamente
+  (</BIG><FONT COLOR="Blue"><BIG><B>resize</B></BIG></FONT><BIG>) o implicitamente
+  (</BIG><FONT COLOR="Blue"><BIG><B>insert</B></BIG></FONT><BIG>,</BIG><FONT
+      COLOR="Blue"><BIG><B>
+  append</B></BIG></FONT><BIG>,</BIG><FONT COLOR="Blue"><BIG><B>
+  replace</B></BIG></FONT><BIG>,
+  <FONT COLOR="Blue"><B>operator+=</B></FONT>), oppure che modifica la
+  <FONT COLOR="Green"><B>capacit&agrave;</B></FONT>
+  (</BIG><FONT COLOR="Blue"><BIG><B>reserve</B></BIG></FONT><BIG>).</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Conversioni fra oggetti string e stringhe
+del C</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La conversione da una <FONT COLOR="Green"><B>stringa</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT> (che indichiamo con
+  </BIG><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><BIG>) a un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT> (che indichiamo con
+  </BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG>) si ottiene
+  semplicemente <FONT COLOR="Purple"><B>assegnando</B></FONT>
+  </BIG><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT> <BIG>a
+  </BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT> <BIG>(con
+  <FONT COLOR="Blue"><B>operator=</B></FONT> o con il <B>metodo</B>
+  <FONT COLOR="Blue"><B>assign</B></FONT>), oppure <B>costruendo</B>
+  </BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG> per <B>copia</B>
+  da
+  </BIG><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><BIG>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Ovviamente, se si vuole eseguire la conversione inversa, da
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT> a
+  <FONT COLOR="Green"><B>stringa</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT>, non si pu&ograve; semplicemente invertire
+  gli <FONT COLOR="Green"><B>operandi</B></FONT>
+  nell'<FONT COLOR="Purple"><B>assegnazione</B></FONT>, in quanto il
+  <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>nativo</B></I>
+  </BIG><FONT COLOR="Blue"><BIG><B>char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT>
+  <BIG>non consente <FONT COLOR="Purple"><B>assegnazioni</B></FONT> da
+  <FONT COLOR="Green"><B>oggetti</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT>. Bisogna invece &nbsp;ricorrere ad
+  alcuni <B>metodi</B> <B>definiti</B> nella stessa
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT>. Questi <B>metodi</B> sono <B>3</B>
+  e precisamente:</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><BIG><FONT COLOR="Blue"><B>string</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>::data(</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT> </BIG><FONT COLOR="Blue"><BIG><B>const
+      </B></BIG></FONT><BIG><BR>
+      scrive i <FONT COLOR="Green"><B>caratteri</B></FONT> di
+      </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	  COLOR="Blue"><B>this</B></FONT> in un
+      </BIG><FONT COLOR="Green"><B><BIG>array</BIG></B></FONT> <BIG>di cui restituisce
+      il <FONT COLOR="Green"><B>puntatore</B></FONT>.
+      L'</BIG><FONT COLOR="Green"><B><BIG>array</BIG></B></FONT> <BIG>&nbsp;&egrave;
+      gestito internamente a <FONT COLOR="Blue"><B>string</B></FONT> e perci&ograve;
+      non va preallocato n&egrave; cancellato.
+      L'<FONT COLOR="Green"><B>oggetto</B></FONT>
+      </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	  COLOR="Blue"><B>this</B></FONT>&nbsp;non pu&ograve; essere modificato, nel
+      senso che una sua successiva modifica invalida
+      l'</BIG><FONT COLOR="Green"><B><BIG>array</BIG></B></FONT><BIG>, n&egrave;
+      possono essere modificati i <FONT COLOR="Green"><B>caratteri</B></FONT> dello
+      stesso
+      </BIG><FONT COLOR="Green"><B><BIG>array</BIG></B></FONT><BIG> (in pratica
+      il <B>metodo</B>
+      </BIG><FONT COLOR="Blue"><BIG><B>data</B></BIG></FONT> <BIG>pu&ograve; operare
+      solo su <FONT COLOR="Green"><B>oggetti costanti</B></FONT>). Non viene aggiunto
+      il <I><B>terminator</B></I> alla fine
+      dell'</BIG><FONT COLOR="Green"><B><BIG>array</BIG></B></FONT> <BIG>e quindi
+      non &egrave; possibile utilizzare
+      l'</BIG><FONT COLOR="Green"><B><BIG>array</BIG></B></FONT><BIG> come
+      <FONT COLOR="Maroon"><B>argomento</B></FONT> nelle
+      </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT><BIG> che operano
+      sulle <FONT COLOR="Green"><B>stringhe</B></FONT> (in sostanza &egrave; proprio
+      un </BIG><FONT COLOR="Green"><B><BIG>array</BIG></B></FONT> <BIG>di
+      <FONT COLOR="Green"><B>caratteri</B></FONT> , non una
+      <FONT COLOR="Green"><B>stringa</B></FONT>!)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><BIG><FONT COLOR="Blue"><B>string</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>::c_str(</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BIG><BR>
+      &egrave; identico a
+      </BIG><FONT COLOR="Blue"><BIG><B>data</B></BIG></FONT><BIG>, salvo il fatto
+      che aggiunge il <I><B>terminator</B></I> alla fine, creando cos&igrave; un
+      </BIG><FONT COLOR="Green"><B><BIG>array</BIG></B></FONT> <BIG>di
+      <FONT COLOR="Green"><B>caratteri</B></FONT> <I><B>null</B></I>
+      <I><B>terminated</B></I>, cio&egrave; una "vera"
+      <FONT COLOR="Green"><B>stringa</B></FONT> del
+      <FONT COLOR="Red"><B>C</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      copy(char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue">,
+      <BIG><B>size_type </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n,
+      </B></BIG></FONT><FONT COLOR="Blue"><BIG><B>size_type</B></BIG></FONT><FONT
+	  COLOR="Maroon"><BIG><B> pos</B></BIG></FONT> <BIG><FONT COLOR="Blue"><B>=
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>0</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BIG><BR>
+      <B>copia</B> </BIG><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT>
+      <BIG><FONT COLOR="Green"><B>caratteri</B></FONT> di
+      </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	  COLOR="Blue"><B>this</B></FONT>, a partire dal
+      <FONT COLOR="Green"><B>carattere</B></FONT> con
+      <FONT COLOR="Green"><B>indice</B></FONT>
+      </BIG><FONT COLOR="Maroon"><BIG><B>pos</B></BIG></FONT><BIG>,
+      nell'</BIG><FONT COLOR="Green"><B><BIG>array</BIG></B></FONT><BIG>
+      </BIG><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><BIG>, preallocato dal
+      <B>chiamante</B>. Restituisce il numero di
+      <FONT COLOR="Green"><B>caratteri</B></FONT> effettivamente <B>copiati</B>.
+      Non aggiunge il <I><B>terminator</B></I> alla fine
+      dell'</BIG><FONT COLOR="Green"><B><BIG>array</BIG></B></FONT><BIG>. Per copiare
+      <U>tutti</U> i <FONT COLOR="Green"><B>caratteri</B></FONT> di
+      </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	  COLOR="Blue"><B>this</B></FONT> si pu&ograve; usare
+      <FONT COLOR="Blue"><B>string::npos</B></FONT> come secondo
+      <FONT COLOR="Maroon"><B>argomento</B></FONT> e omettere il terzo.</BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <BIG>Da un esame critico dei tre <B>metodi</B> sopracitati, si pu&ograve;
+  osservare che:</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>data</B></BIG></FONT> <BIG>&egrave; "quasi"
+      inutilizzabile (pu&ograve; servire solo quando si trattano
+      </BIG><FONT COLOR="Green"><B><BIG>array</BIG></B></FONT> <BIG>di
+      <FONT COLOR="Green"><B>caratteri</B></FONT> e non
+      <FONT COLOR="Green"><B>stringhe</B></FONT>)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>c_str</B></BIG></FONT> <BIG>&egrave; invece molto
+      utile, perch&egrave; permette di inserire il suo <B>valore di ritorno</B>
+      come <FONT COLOR="Maroon"><B>argomento</B></FONT> nelle
+      </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT><BIG> di
+      <FONT COLOR="Red"><B>Libreria</B></FONT> del
+      <FONT COLOR="Red"><B>C</B></FONT> che operano sulle
+      <FONT COLOR="Green"><B>stringhe</B></FONT>. Per esempio:<BR>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp;</BIG><FONT COLOR="Blue"><BIG><B>int
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>m</B></BIG></FONT>
+      <FONT COLOR="Blue"><BIG><B>=
+      atoi(</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT
+	  COLOR="Blue"><BIG><B>.c_str());</B></BIG></FONT><BR>
+      <BIG>(nota: non esistono
+      </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT>
+      <BIG><FONT COLOR="Red"><B>C++</B></FONT> che convertono
+      <FONT COLOR="Green"><B>stringhe</B></FONT> di
+      <FONT COLOR="Green"><B>caratteri</B></FONT> decimali in numeri</BIG>).<BR>
+      <BIG>Tuttavia pu&ograve; operare solo su <FONT COLOR="Green"><B>oggetti
+      costanti</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>copy</B></BIG></FONT> <BIG>ha il vantaggio di
+      permettere la modifica
+      dell'</BIG><FONT COLOR="Green"><B><BIG>array</BIG></B></FONT><BIG>
+      <B>copiato</B></BIG>. <BIG>Bisogna per&ograve; ricordarsi di aggiungere un
+      <FONT COLOR="Green"><B>carattere</B></FONT>
+      <FONT COLOR="Blue"><B>'\0'</B></FONT> in fondo (e bisogna anche evitare che
+      lo stesso carattere sia presente all'interno della
+      <FONT COLOR="Green"><B>stringa</B></FONT> da copiare)</BIG>
+  </OL>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Confronti fra
+stringhe</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Per confrontare due <FONT COLOR="Green"><B>oggetti</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT>, o un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT> e una
+  <FONT COLOR="Green"><B>stringa</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT>, la
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT> fornisce il <B>metodo</B>
+  <FONT COLOR="Blue"><B>compare</B></FONT>, con vari
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT><BIG>. Il <B>valore
+  di ritorno</B> &egrave; sempre di <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT> ed ha il seguente significato:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><B>0</B>, se le due <FONT COLOR="Green"><B>stringhe</B></FONT> sono
+      identiche;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>un <B>numero negativo</B> se
+      </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	  COLOR="Blue"><B>this</B></FONT> precede <I><B>lessicograficamente</B></I>
+      la
+      <FONT COLOR="Green"><B>stringa</B></FONT>-<FONT COLOR="Maroon"><B>argomento</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>un <B>numero positvo </B>se
+      </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	  COLOR="Blue"><B>this</B></FONT> segue <I><B>lessicograficamente</B></I> la
+      <FONT COLOR="Green"><B>stringa</B></FONT>-<FONT COLOR="Maroon"><B>argomento</B></FONT>.</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Rispetto agli
+  </BIG><FONT COLOR="Green"><BIG><B>operatori</B></BIG></FONT><BIG>
+  <FONT COLOR="Purple"><B>relazionali</B></FONT>, il <B>metodo</B>
+  <FONT COLOR="Blue"><B>compare</B></FONT> ha quindi il vantaggio di restituire
+  il risultato di <FONT COLOR="Blue"><B>&lt;</B></FONT>,
+  <FONT COLOR="Blue"><B>==</B></FONT> o <FONT COLOR="Blue"><B>&gt;
+  </B></FONT>con una sola <B>chiamata</B>. I suoi
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT> <BIG>sono:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>int</B></FONT>
+      <FONT COLOR="Blue"><B>compare</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(const
+      string&amp;
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BR>
+      <BIG>confronta
+      </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	  COLOR="Blue"><B>this</B></FONT> con
+      l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+      <FONT COLOR="Blue"><B>string</B></FONT>
+      </BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>int</B></FONT>
+      <FONT COLOR="Blue"><B>compare</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BIG><BR>
+      confronta
+      </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	  COLOR="Blue"><B>this</B></FONT> con la
+      <FONT COLOR="Green"><B>stringa</B></FONT> del
+      <FONT COLOR="Red"><B>C</B></FONT></BIG>
+      <FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>int</B></FONT>
+      <FONT COLOR="Blue"><B>compare</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>ind</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      const string&amp;
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BR>
+      <BIG>confronta la <FONT COLOR="Green"><B>sotto-stringa</B></FONT> di
+      </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	  COLOR="Blue"><B>this</B></FONT>, data dalla coppia "posizione-numero"
+      </BIG><FONT COLOR="Maroon"><BIG><B>ind</B></BIG></FONT>-<FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG>,
+      con l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+      <FONT COLOR="Blue"><B>string</B></FONT>
+      </BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>int</B></FONT>
+      <FONT COLOR="Blue"><B>compare</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>ind</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      const string&amp;
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,</B></BIG></FONT>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>ind1</B></BIG></FONT><FONT
+	  COLOR="Blue"><BIG><B>, size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n1</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BIG><BR>
+      confronta la <FONT COLOR="Green"><B>sotto-stringa</B></FONT> di
+      </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	  COLOR="Blue"><B>this</B></FONT>, data dalla coppia "posizione-numero"
+      </BIG><FONT COLOR="Maroon"><BIG><B>ind</B></BIG></FONT>-<FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG>,
+      con la <FONT COLOR="Green"><B>sotto-stringa</B></FONT>
+      dell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+      <FONT COLOR="Blue"><B>string</B></FONT>
+      </BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG>, data dalla
+      coppia "posizione-numero"
+      </BIG><FONT COLOR="Maroon"><BIG><B>ind1</B></BIG></FONT>-<FONT COLOR="Maroon"><BIG><B>n1</B></BIG></FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>int</B></FONT>
+      <FONT COLOR="Blue"><B>compare</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>ind</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,</B></BIG></FONT>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n1</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>=npos)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BIG><BR>
+      confronta la <FONT COLOR="Green"><B>sotto-stringa</B></FONT> di
+      </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	  COLOR="Blue"><B>this</B></FONT>, data dalla coppia "posizione-numero"
+      </BIG><FONT COLOR="Maroon"><BIG><B>ind</B></BIG></FONT>-<FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG>,
+      con i primi </BIG><FONT COLOR="Maroon"><BIG><B>n1</B></BIG></FONT>
+      <BIG><FONT COLOR="Green"><B>caratteri</B></FONT> della
+      <FONT COLOR="Green"><B>stringa</B></FONT> del
+      <FONT COLOR="Red"><B>C</B></FONT></BIG>
+      <FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>L'utente non pu&ograve; fornire un criterio di confronto specifico;
+  se lo vuol fare, non deve usare <FONT COLOR="Blue"><B>compare</B></FONT>,
+  ma l'<FONT COLOR="Green"><B>algoritmo</B></FONT>
+  <FONT COLOR="Blue"><B>lexicographical_compare</B></FONT> con un
+  </BIG><FONT COLOR="Green"><BIG><B>predicato</B></BIG></FONT><BIG>. Per
+  esempio:<BR>
+  <FONT COLOR="Blue"><B>&nbsp;
+  &nbsp;lexicographical_compare</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(</B></BIG></FONT><BIG><FONT
+      COLOR="Maroon"><B>s1</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>.begin(),</B></BIG></FONT><BIG><FONT
+      COLOR="Maroon"><B>s1</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>.end(),</B></BIG></FONT><BIG><FONT
+      COLOR="Maroon"><B>s2</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>.begin(),</B></BIG></FONT><BIG><FONT
+      COLOR="Maroon"><B>s2</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>.end(),</B></BIG></FONT><FONT
+      COLOR="Maroon"><BIG><B>nocase</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>);</B></BIG></FONT><BIG><BR>
+  restituisce <FONT COLOR="Blue"><B>true</B></FONT> se la
+  <FONT COLOR="Green"><B>stringa</B></FONT>
+  <FONT COLOR="Maroon"><B>s1</B></FONT> precede la
+  <FONT COLOR="Green"><B>stringa</B></FONT>
+  <FONT COLOR="Maroon"><B>s2</B></FONT> in base al criterio di confronto dato
+  dalla <FONT COLOR="Green"><B>funzione</B></FONT>
+  </BIG><FONT COLOR="Maroon"><BIG><B>nocase</B></BIG></FONT><BIG> (fornita
+  dall'utente).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Nell'<I><B>header-file</B></I>
+  <FONT COLOR="Blue"><B>&lt;string&gt;</B></FONT> si trovano varie
+  </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT> <BIG>esterne
+  di "appoggio" che implementano diversi
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT> <BIG>degli
+  </BIG><FONT COLOR="Green"><BIG><B>operatori</B></BIG></FONT><BIG>
+  <FONT COLOR="Purple"><B>relazionali</B></FONT>:
+  <FONT COLOR="Blue"><B>&lt;</B></FONT>,
+  <FONT COLOR="Blue"><B>&lt;=</B></FONT>,
+  <FONT COLOR="Blue"><B>==</B></FONT>, <FONT COLOR="Blue"><B>!=</B></FONT>,
+  <FONT COLOR="Blue"><B>&gt;</B></FONT>,
+  <FONT COLOR="Blue"><B>&gt;=</B></FONT>; per ognuno di essi esistono tre versioni:
+  quella presente anche in
+  <FONT COLOR="Blue"><B>&lt;vector&gt;</B></FONT> e negli
+  <I><B>header-files</B></I> degli altri
+  <FONT COLOR="Green"><B>contenitori</B></FONT>, &nbsp;in cui entrambi gli
+  <FONT COLOR="Green"><B>operandi</B></FONT> sono della stessa
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>contenitore</B></FONT> (in questo caso
+  <FONT COLOR="Blue"><B>string</B></FONT>) e quelle in cui rispettivamente
+  il primo o il secondo <FONT COLOR="Green"><B>operando</B></FONT> &egrave;
+  di <FONT COLOR="Green"><B>tipo</B></FONT>
+  </BIG><FONT COLOR="Blue"><BIG><B>const
+  char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT>
+  <BIG>(cio&egrave; una <FONT COLOR="Green"><B>stringa</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT>). Questo permette di confrontare
+  indifferentemente due <FONT COLOR="Green"><B>oggetti</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT>, o un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT> e una
+  <FONT COLOR="Green"><B>stringa</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT>, o una
+  <FONT COLOR="Green"><B>stringa</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT> e un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT>. In particolare la
+  <FONT COLOR="Green"><B>stringa</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT> pu&ograve; essere una
+  <FONT COLOR="Green"><B>costante</B></FONT> <I><B>literal</B></I>. Esempio:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>if
+  (</B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG><FONT
+      COLOR="Blue"><B> ==
+  "</B></FONT><FONT COLOR="Maroon"><B>Hello</B></FONT><FONT COLOR="Blue"><B>")
+  </B></FONT><FONT COLOR="Black"><B>.....</B></FONT></BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Concatenazioni e
+inserimenti</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG><FONT COLOR="Purple"><B>Concatenare</B></FONT> due
+  <FONT COLOR="Green"><B>stringhe</B></FONT> significa scrivere le due
+  <FONT COLOR="Green"><B>stringhe</B></FONT> l'una di seguito all'altra in
+  una terza <FONT COLOR="Green"><B>stringa</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Nell'<I><B>header-file</B></I>
+  <FONT COLOR="Blue"><B>&lt;string&gt;</B></FONT> si trovano varie
+  </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT> <BIG>esterne
+  di "appoggio" che implementano diversi
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT>
+  <BIG>dell'</BIG><FONT COLOR="Green"><BIG><B>operatore</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>+</B></FONT>, il quale fornisce la
+  <FONT COLOR="Green"><B>stringa</B></FONT>
+  <FONT COLOR="Purple"><B>concatenata</B></FONT>, date due
+  <FONT COLOR="Green"><B>stringhe</B></FONT> come
+  <FONT COLOR="Green"><B>operandi</B></FONT>; di queste, una &egrave; sempre
+  di <FONT COLOR="Green"><B>tipo</B></FONT>
+  </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>, mentre l'altra pu&ograve;
+  essere ancora di <FONT COLOR="Green"><B>tipo</B></FONT>
+  </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>, oppure di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  </BIG><FONT COLOR="Blue"><BIG><B>const
+  char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT>
+  <BIG>(cio&egrave; una <FONT COLOR="Green"><B>stringa</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT>), oppure di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  </BIG><FONT COLOR="Blue"><BIG><B>char</B></BIG></FONT> <BIG>(cio&egrave;
+  un singolo <FONT COLOR="Green"><B>carattere</B></FONT>). Mantenendo la
+  convenzione simbolica che abbiamo usato finora, riteniamo a questo punto
+  che la descrizione delle
+  </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT> <BIG>possa essere
+  omessa (quando &egrave; autoesplicativa gi&agrave; in base ai
+  <FONT COLOR="Green"><B>tipi</B></FONT> e ai <B>nomi</B> convenzionali degli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>):</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string</B></FONT>
+      <FONT COLOR="Blue"><B>operator+(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+      <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str1</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>,</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>
+      const</B></BIG></FONT> <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str2</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>) </B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string</B></FONT>
+      <FONT COLOR="Blue"><B>operator+(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+      <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>,</B></FONT></BIG><FONT COLOR="Blue"><BIG><B> const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string</B></FONT>
+      <FONT COLOR="Blue"><B>operator+(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>,</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B> const</B></BIG></FONT>
+      <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string</B></FONT>
+      <FONT COLOR="Blue"><B>operator+(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+      <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>,</B></FONT></BIG><FONT COLOR="Blue"><BIG><B> char</B></BIG>
+      </FONT><FONT COLOR="Maroon"><BIG><B>c</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string</B></FONT>
+      <FONT COLOR="Blue"><B>operator+(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>char</B></BIG>
+      </FONT><FONT COLOR="Maroon"><BIG><B>c</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>,</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B> const</B></BIG></FONT>
+      <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT></BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Per l'<FONT COLOR="Green"><B>operazione</B></FONT> di
+  <FONT COLOR="Purple"><B>somma e assegnazione in notazione
+  compatta</B></FONT>, sono disponibili tre <B>metodi</B> che implementano
+  altrettanti
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT>
+  <BIG>dell'</BIG><FONT COLOR="Green"><BIG><B>operatore</B></BIG></FONT><BIG>
+  <FONT COLOR="Blue"><B>+=</B></FONT>. In questo caso la
+  <FONT COLOR="Green"><B>stringa</B></FONT>
+  <FONT COLOR="Purple"><B>concatenata</B></FONT> &egrave; la stessa di partenza
+  (</BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B>this</B></FONT>) a cui viene aggiunta in coda la
+  <FONT COLOR="Green"><B>stringa</B></FONT>-<FONT COLOR="Maroon"><B>argomento</B></FONT>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::operator+=(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+      <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::operator+=(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::operator+=(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>char</B></BIG>
+      </FONT><FONT COLOR="Maroon"><BIG><B>c</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Il <B>metodo</B> <FONT COLOR="Blue"><B>append</B></FONT> esegue la stessa
+  <FONT COLOR="Green"><B>operazione</B></FONT> di
+  <FONT COLOR="Blue"><B>operator+=</B></FONT>, con il vantaggio che gli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> possono essere pi&ugrave; di
+  uno. Ne sono forniti vari
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT><BIG>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::append(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+      <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::append(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+      <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>ind</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::append(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::append(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::append(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>,</B></FONT></BIG><FONT COLOR="Blue"><BIG><B> char</B></BIG>
+      </FONT><FONT COLOR="Maroon"><BIG><B>c</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT><FONT
+	  COLOR="Purple"><B><BR>
+      appende</B></FONT>
+      </BIG><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT> <BIG>volte il
+      <FONT COLOR="Green"><B>carattere</B></FONT>
+      </BIG><FONT COLOR="Maroon"><BIG><B>c</B></BIG></FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::append(</B></FONT></BIG><FONT COLOR="#800080"><BIG><B>Iter</B></BIG></FONT>
+      <BIG><FONT COLOR="Maroon"><B>first</B></FONT><FONT COLOR="Blue"><B>,
+      </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>Iter</B></BIG></FONT>
+      <BIG><FONT COLOR="Maroon"><B>last</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Per quello che riguarda
+  l'<FONT COLOR="Purple"><B>inserimento</B></FONT> di
+  <FONT COLOR="Green"><B>caratteri</B></FONT> "in mezzo" a una
+  <FONT COLOR="Green"><B>stringa</B></FONT>
+  (<FONT COLOR="Green"><B>operazione</B></FONT> di bassa efficienza, come in
+  <FONT COLOR="Blue"><B>vector</B></FONT>), sono disponibili ulteriori
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT> <BIG>del
+  <B>metodo</B> <FONT COLOR="Blue"><B>insert</B></FONT> (oltre a quelli comuni
+  con <FONT COLOR="Blue"><B>vector</B></FONT>); tutti
+  <FONT COLOR="Purple"><B>inseriscono</B></FONT>
+  <FONT COLOR="Green"><B>caratteri</B></FONT> <U>prima</U>
+  dell'<FONT COLOR="Green"><B>elemento</B></FONT> di
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B>this</B></FONT> con
+  <FONT COLOR="Green"><B>indice</B></FONT> <FONT COLOR="Maroon"><B>pos
+  </B></FONT>e restituiscono <I><B>by reference</B></I> lo stesso
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B>this</B></FONT>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::insert(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      const</B></BIG></FONT> <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::insert(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      const</B></BIG></FONT> <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>ind</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::insert(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::insert(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::insert(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>,</B></FONT></BIG><FONT COLOR="Blue"><BIG><B> char</B></BIG>
+      </FONT><FONT COLOR="Maroon"><BIG><B>c</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT><BR>
+      <FONT COLOR="Purple"><B>inserisce</B></FONT>
+      </BIG><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT> <BIG>volte il
+      <FONT COLOR="Green"><B>carattere</B></FONT>
+      </BIG><FONT COLOR="Maroon"><BIG><B>c</B></BIG></FONT>
+  </UL>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Ricerca di
+sotto-stringhe</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Nella <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT> sono <B>definiti</B> molti
+  <B>metodi</B> che ricercano la
+  <FONT COLOR="Green"><B>stringa</B></FONT>-<FONT COLOR="Maroon"><B>argomento</B></FONT>
+  come <FONT COLOR="Green"><B>sotto-stringa</B></FONT> di
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B>this</B></FONT>. Tutti restituiscono un <B>valore</B> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  </BIG><FONT COLOR="Blue"><BIG><B>size_type</B></BIG></FONT><BIG>, che, se
+  la <FONT COLOR="Green"><B>sotto-stringa</B></FONT> &egrave; trovata, rappresenta
+  l'<FONT COLOR="Green"><B>indice</B></FONT> del suo primo
+  <FONT COLOR="Green"><B>carattere</B></FONT>; se invece la ricerca fallisce
+  il <B>valore</B> restituito &egrave;
+  <FONT COLOR="Blue"><B>npos</B></FONT>.</BIG> <BIG>Tutti i <B>metodi</B> sono
+  <B>definiti</B>
+  </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT> <BIG>in quanto eseguono
+  la ricerca senza modificare
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Nell'elenco che segue, suddiviso in vari gruppi,
+  l'<FONT COLOR="Maroon"><B>argomento</B></FONT> di <B>nome</B>
+  <FONT COLOR="Maroon"><B>pos</B></FONT> rappresenta
+  l'<FONT COLOR="Green"><B>indice</B></FONT>
+  dell'<FONT COLOR="Green"><B>elemento</B></FONT> di
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B>this </B></FONT>da cui iniziare la ricerca, mentre
+  l'<FONT COLOR="Maroon"><B>argomento</B></FONT> di <B>nome</B>
+  <FONT COLOR="Maroon"><B>n</B></FONT> rappresenta il numero di
+  <FONT COLOR="Green"><B>caratteri</B></FONT> della
+  <FONT COLOR="Green"><B>stringa</B></FONT>-<FONT COLOR="Maroon"><B>argomento</B></FONT>
+  da utilizzare per la ricerca.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Cerca una <FONT COLOR="Green"><B>sotto-stringa</B></FONT>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+      <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	  COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BIG> </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	  COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BIG></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BIG></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>char</B></BIG>
+      </FONT><FONT COLOR="Maroon"><BIG><B>c</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	  COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Come sopra, ma partendo dalla <I><B>fine</B></I> di
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B>this </B></FONT>e scorrendo all'indietro:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::rfind(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+      <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=npos)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BIG> </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::rfind(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=npos)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::rfind(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BIG></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::rfind(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>char</B></BIG>
+      </FONT><FONT COLOR="Maroon"><BIG><B>c</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=npos)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Cerca il primo <FONT COLOR="Green"><B>carattere</B></FONT> di
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B>this</B></FONT> che si trova nella
+  <FONT COLOR="Green"><B>stringa</B></FONT>-<FONT COLOR="Maroon"><B>argomento</B></FONT>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find_first_of(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+      <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	  COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BIG> </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find_first_of(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	  COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find_first_of(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find_first_of(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>char</B></BIG>
+      </FONT><FONT COLOR="Maroon"><BIG><B>c</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	  COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Come sopra, ma partendo dalla <I><B>fine</B></I> di
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B>this </B></FONT>e scorrendo all'indietro:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find_last_of(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+      <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=npos)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BIG> </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find_last_of(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=npos)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find_last_of(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find_last_of(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>char</B></BIG>
+      </FONT><FONT COLOR="Maroon"><BIG><B>c</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=npos)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Cerca il primo <FONT COLOR="Green"><B>carattere</B></FONT> di
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B>this</B></FONT> che <U>non</U> si trova nella
+  <FONT COLOR="Green"><B>stringa</B></FONT>-<FONT COLOR="Maroon"><B>argomento</B></FONT>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find_first_not_of(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+      <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	  COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BIG> </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find_first_not_of(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	  COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find_first_not_of(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find_first_not_of(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>char</B></BIG>
+      </FONT><FONT COLOR="Maroon"><BIG><B>c</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	  COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Come sopra, ma partendo dalla <I><B>fine</B></I> di
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B>this </B></FONT>e scorrendo all'indietro:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find_last_not_of(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+      <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=npos)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT><BIG> </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find_last_not_of(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=npos)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find_last_not_of(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string::find_last_not_of(</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>char</B></BIG>
+      </FONT><FONT COLOR="Maroon"><BIG><B>c</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=npos)</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+  </UL>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Estrazione e sostituzione di
+sotto-stringhe</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Il <B>metodo</B> <FONT COLOR="Blue"><B>substr</B></FONT> crea una
+  <FONT COLOR="Green"><B>stringa</B></FONT> estraendola da
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B>this</B></FONT> e la restituisce per <B>copia</B>:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>string</B></FONT>
+  <FONT COLOR="Blue"><B>string::substr(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>size_type
+  </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+      COLOR="Maroon"><B>0</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>, size_type
+  </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+      COLOR="Blue"><B>=npos)</B></FONT>
+  </BIG><FONT COLOR="Blue"><BIG><B>const</B></BIG></FONT>
+  <P ALIGN=Justify>
+  <BIG>la <FONT COLOR="Green"><B>stringa</B></FONT> originaria non &egrave;
+  modificata; la nuova <FONT COLOR="Green"><B>stringa</B></FONT> coincide con
+  la <FONT COLOR="Green"><B>sotto-stringa</B></FONT> di
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B>this</B></FONT> che parte
+  dall'<FONT COLOR="Green"><B>elemento</B></FONT> con
+  <FONT COLOR="Green"><B>indice</B></FONT>
+  <FONT COLOR="Maroon"><B>pos</B></FONT> e contiene
+  </BIG><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT>
+  <BIG><FONT COLOR="Green"><B>caratteri</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il <B>metodo</B> <FONT COLOR="Blue"><B>replace</B></FONT>,
+  <B>definito</B> con vari
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT><BIG>, sotituisce
+  una <FONT COLOR="Green"><B>sotto-stringa</B></FONT> di
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B>this</B></FONT> con la
+  <FONT COLOR="Green"><B>stringa</B></FONT>-<FONT COLOR="Maroon"><B>argomento</B></FONT>
+  (o una sua <FONT COLOR="Green"><B>sotto-stringa</B></FONT>) e restituisce
+  <I><B>by reference</B></I> lo stesso
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B>this</B></FONT>. Il numero dei nuovi
+  <FONT COLOR="Green"><B>caratteri</B></FONT> non deve necessariamente coincidere
+  con quello preesistente (la nuova
+  <FONT COLOR="Green"><B>sotto-stringa</B></FONT> pu&ograve; essere pi&ugrave;
+  lunga o pi&ugrave; corta di quella sostituita) e quindi il <B>metodo</B>
+  <FONT COLOR="Blue"><B>replace</B></FONT>, oltre a modificare
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT>, pu&ograve; anche modificarne
+  la <FONT COLOR="Green"><B>dimensione</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Nell'elenco che segue, i <B>nomi</B> degli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> hanno il seguente
+  significato:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Maroon"><B>pos</B></FONT> : "posizione iniziale" in
+      </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	  COLOR="Blue"><B>this</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Maroon"><B>m </B></FONT>: "numero di
+      <FONT COLOR="Green"><B>caratteri</B></FONT>" in
+      </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	  COLOR="Blue"><B>this</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Maroon"><B>ind</B></FONT> : "posizione iniziale" nella
+      <FONT COLOR="Green"><B>stringa</B></FONT>-<FONT COLOR="Maroon"><B>argomento</B></FONT>
+      </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Maroon"><B>n </B></FONT>: "numero di
+      <FONT COLOR="Green"><B>caratteri</B></FONT>" nella
+      <FONT COLOR="Green"><B>stringa</B></FONT>-<FONT COLOR="Maroon"><B>argomento</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Maroon"><B>ib,ie</B></FONT> :
+      <FONT COLOR="Green"><B>iteratori</B></FONT> che delimitano la
+      &nbsp;<FONT COLOR="Green"><B>sotto-stringa</B></FONT> in
+      </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	  COLOR="Blue"><B>this</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Maroon"><B>n,c</B></FONT>: <FONT COLOR="Green"><B>carattere
+      </B></FONT><FONT COLOR="Maroon"><B>c</B></FONT> ripetuto
+      <FONT COLOR="Maroon"><B>n</B></FONT> volte</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG><B>Metodi</B> che definiscono la
+  <FONT COLOR="Green"><B>sotto-stringa</B></FONT> da sostituire mediante la
+  coppia "posizione-numero":</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::replace(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>m</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      const</B></BIG></FONT> <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::replace(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>m</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      const</B></BIG></FONT> <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>ind</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::replace(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>m</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::replace(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>m</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::replace(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>m</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>,</B></FONT></BIG><FONT COLOR="Blue"><BIG><B> char</B></BIG>
+      </FONT><FONT COLOR="Maroon"><BIG><B>c</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG><B>Metodi</B> che definiscono la
+  <FONT COLOR="Green"><B>sotto-stringa</B></FONT> da sostituire mediante una
+  coppia di <FONT COLOR="Green"><B>iteratori</B></FONT>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::replace(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>iterator
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>ib</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      iterator
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>ie</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      const</B></BIG></FONT> <BIG><FONT COLOR="Blue"><B>string&amp;
+      </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::replace(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>iterator
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>ib</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      iterator
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>ie</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::replace(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>iterator
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>ib</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      iterator
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>ie</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      const
+      char</B></BIG><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT>
+      </FONT><FONT COLOR="Maroon"><BIG><B>s</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::replace(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>iterator
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>ib</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      iterator
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>ie</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      size_type
+      </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>,</B></FONT></BIG><FONT COLOR="Blue"><BIG><B> char</B></BIG>
+      </FONT><FONT COLOR="Maroon"><BIG><B>c</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>string&amp;</B></FONT>
+      <FONT COLOR="Blue"><B>string::replace(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>iterator
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>ib</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      iterator
+      </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>ie</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>,
+      </B></BIG></FONT><FONT COLOR="#800080"><BIG><B>Iter</B></BIG></FONT>
+      <BIG><FONT COLOR="Maroon"><B>first</B></FONT><FONT COLOR="Blue"><B>,
+      </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>Iter</B></BIG></FONT>
+      <BIG><FONT COLOR="Maroon"><B>last</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+  </UL>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp;<BR>
+  <BIG>Per cancellare una <FONT COLOR="Green"><B>sotto-stringa</B></FONT> &egrave;
+  disponibile un ulteriore
+  </BIG><FONT COLOR="Green"><BIG><B>overload</B></BIG></FONT> <BIG>del
+  <B>metodo</B> <FONT COLOR="Blue"><B>erase</B></FONT> (oltre a quelli comuni
+  con <FONT COLOR="Blue"><B>vector</B></FONT>):<BR>
+  <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;string&amp;</B></FONT>
+  <FONT COLOR="Blue"><B>string::erase(</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>size_type
+  </B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>pos</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+      COLOR="Maroon"><B>0</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>, size_type
+  </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>n</B></BIG></FONT><BIG><FONT
+      COLOR="Blue"><B>=npos)</B></FONT><BR>
+  notare che la <B>chiamata</B> di <FONT COLOR="Blue"><B>erase</B></FONT> senza
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> equivale alla <B>chiamata</B>
+  di <FONT COLOR="Blue"><B>clear</B></FONT> in
+  <FONT COLOR="Blue"><B>vector</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operazioni di
+input-output</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Nell'<I><B>header-file</B></I>
+  <FONT COLOR="Blue"><B>&lt;string&gt;</B></FONT> si trovano due
+  </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT> <BIG>esterne
+  di "appoggio" che implementano due ulteriori
+  </BIG><FONT COLOR="Green"><BIG><B>overloads</B></BIG></FONT> <BIG>degli
+  <FONT COLOR="Green"><B>operatori</B></FONT> di
+  <FONT COLOR="Purple"><B>flusso</B></FONT>
+  "<FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>"
+  (<FONT COLOR="Purple"><B>inserimento</B></FONT>) e
+  "<FONT COLOR="Blue"><B>&gt;&gt;</B></FONT>"
+  (<FONT COLOR="Purple"><B>estrazione</B></FONT>), con
+  <FONT COLOR="Green"><B>right-operand</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Pertanto, la <B>lettura</B> e la <B>scrittura</B> di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT> si possono eseguire semplicemente
+  utilizzando gli <FONT COLOR="Green"><B>operatori</B></FONT> di
+  <FONT COLOR="Purple"><B>flusso</B></FONT> come per le
+  <FONT COLOR="Green"><B>stringhe</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>In particolare la <B>lettura</B> "salta" (cio&egrave; non inserisce
+  nella <FONT COLOR="Green"><B>stringa</B></FONT>) i
+  <FONT COLOR="Green"><B>caratteri</B></FONT> <I><B>bianchi</B></I> e i
+  <FONT COLOR="Green"><B>caratteri</B></FONT> <I><B>speciali</B></I> (che anzi
+  usa come <I><B>separatori</B></I> fra una
+  <FONT COLOR="Green"><B>stringa</B></FONT> e l'altra). I
+  <FONT COLOR="Green"><B>caratteri</B></FONT> "buoni" vengono invece immessi
+  nella <FONT COLOR="Green"><B>stringa</B></FONT> l'uno dopo l'altro a partire
+  dalla "posizione" <FONT COLOR="Maroon"><B>0</B></FONT> e fino all'incontro
+  di un <I><B>separatore</B></I>; la
+  <FONT COLOR="Green"><B>stringa</B></FONT> letta sostituisce quella memorizzata
+  precedentemente, assumendo (in pi&ugrave; o in meno) anche una nuova
+  <FONT COLOR="Green"><B>dimensione</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Per la <B>lettura</B> di una
+  <FONT COLOR="Green"><B>stringa</B></FONT> che includa anche i
+  <FONT COLOR="Green"><B>caratteri</B></FONT> <I><B>bianchi</B></I> e i
+  <FONT COLOR="Green"><B>caratteri</B></FONT> <I><B>speciali</B></I>, in
+  <FONT COLOR="Blue"><B>&lt;string&gt;</B></FONT> &egrave; <B>definita</B>
+  anche la
+  </BIG><FONT COLOR="Green"><BIG><B>funzione</B></BIG></FONT>
+  <BIG><FONT COLOR="Blue"><B>getline</B></FONT>:</BIG>
+  <P ALIGN=Center>
+  <FONT COLOR="Blue"><BIG><B>istream&amp;
+  getline</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>(</B></FONT></BIG><FONT
+      COLOR="Blue"><BIG><B>istream&amp;,
+  </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>string&amp;
+  </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><FONT COLOR="Blue"><BIG><B>,
+  char
+  </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>eol</B></BIG></FONT><BIG><FONT
+      COLOR="Blue"><B>='\n')</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>che &nbsp;<FONT COLOR="Purple"><B>estrae</B></FONT>
+  <FONT COLOR="Green"><B>caratteri</B></FONT> dal
+  <FONT COLOR="Purple"><B>flusso</B></FONT> di <I><B>input</B></I> e li memorizza
+  in </BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG>;
+  l'<FONT COLOR="Purple"><B>estrazione</B></FONT> termina quando &egrave;
+  incontrato il <FONT COLOR="Green"><B>carattere
+  </B></FONT></BIG><FONT COLOR="Maroon"><BIG><B>eol</B></BIG></FONT><BIG>,
+  che viene <U>rimosso</U> dal <FONT COLOR="Purple"><B>flusso</B></FONT> di
+  <I><B>input</B></I> &nbsp;ma <U>non</U> inserito in
+  </BIG><FONT COLOR="Maroon"><BIG><B>str</B></BIG></FONT><BIG>. Omettendo il
+  terzo <FONT COLOR="Maroon"><B>argomento</B></FONT> si ottiene effettivamente
+  la <B>lettura</B> di una intera "linea" di testo.<BR>
+  Il <B>valore di ritono</B>, di <FONT COLOR="Green"><B>tipo
+  riferimento</B></FONT> a
+  </BIG><FONT COLOR="Blue"><BIG><B>istream</B></BIG></FONT><BIG>, permette
+  di utilizzare la <B>chiamata</B> di
+  </BIG><FONT COLOR="Blue"><BIG><B>getline</B></BIG></FONT> <BIG>come
+  <FONT COLOR="Green"><B>left-operand</B></FONT> di una o pi&ugrave;
+  <FONT COLOR="Green"><B>operazioni</B></FONT> di
+  <FONT COLOR="Purple"><B>estrazione</B></FONT>. Esempio:<BR>
+  &nbsp; &nbsp; </BIG><FONT COLOR="Blue"><BIG><B>&nbsp; &nbsp;
+  &nbsp;getline(cin,</B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>str1</B></BIG></FONT><FONT
+      COLOR="Blue"><BIG><B>,</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>'\t'</B></FONT></BIG><FONT
+      COLOR="Blue"><BIG><B>) &gt;&gt;
+  </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>str2</B></BIG></FONT>
+  <FONT COLOR="Blue"><BIG><B>&gt;&gt;
+  </B></BIG></FONT><FONT COLOR="Maroon"><BIG><B>str3</B></BIG></FONT>
+  <FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT><BIG><BR>
+  legge <U>tutti</U> i <FONT COLOR="Green"><B>caratteri</B></FONT> fino al
+  primo <I><B>tabulatore</B></I> (escluso), memorizzandoli in
+  </BIG><FONT COLOR="Maroon"><BIG><B>str1</B></BIG></FONT><BIG>, e poi legge
+  due sequenze di <FONT COLOR="Green"><B>caratteri</B></FONT> delimitate da
+  <I><B>separatori</B></I> e li memorizza in
+  </BIG><FONT COLOR="Maroon"><BIG><B>str2</B></BIG></FONT> <BIG>e
+  </BIG><FONT COLOR="Maroon"><BIG><B>str3</B></BIG></FONT><BIG>&nbsp;.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp;<BIG><BIG><A HREF="p87/parole.cpp">[p87]</A></BIG></BIG>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#linuxlib"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

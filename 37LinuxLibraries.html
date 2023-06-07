@@ -1,0 +1,632 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<HTML>
+<HEAD>
+  <META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <META name="GENERATOR" content="Microsoft FrontPage 4.0">
+  <TITLE>Librerie statiche e dinamiche in Linux CPP </TITLE>
+</HEAD>
+<BODY text="#000000" bgcolor="#EEEEEE" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<CENTER>
+  <H1>
+    <U><FONT color="#FF0000"><FONT size=+4>Librerie statiche e dinamiche in
+    Linux</FONT></FONT></U>
+  </H1>
+  <P>
+    <HR WIDTH="100%">
+  <H1>
+    <FONT color="#3333FF">Introduzione</FONT>
+  </H1>
+</CENTER>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT size=+1>Un problema che si presenta comunemente nello sviluppo dei
+  programmi &egrave; che questi tendono a diventare sempre pi&ugrave; complessi,
+  il tempo richiesto per la loro compilazione cresce di conseguenza, e la directory
+  di lavoro &egrave; sempre pi&ugrave; affollata. E' proprio in questa fase
+  che incominciamo a chiederci se non esista un modo pi&ugrave; efficiente
+  per organizzare i nostri progetti. Una possibilit&agrave; che ci viene offerta
+  dai compilatori sono le librerie.&nbsp;</FONT>
+</BLOCKQUOTE>
+<CENTER>
+    <HR WIDTH="100%">
+</CENTER>
+<CENTER>
+  <H1>
+    <FONT color="#3333FF">Librerie in ambiente Linux</FONT>
+  </H1>
+</CENTER>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT size=+1>Una libreria &egrave; semplicemente un file contenente codice
+  compilato che pu&ograve; essere successivamente incorporato come una unica
+  entit&agrave; in un nostro programma in fase di linking; l'utilizzo delle
+  librerie ci permettere di realizzare programmi pi&ugrave; facili da compilare
+  e mantenere. Di norma le librerie sono indicizzate, cos&igrave; risulta pi&ugrave;
+  facile localizzare simboli (funzioni, variabili, classi, etc...) al loro
+  interno. Per questa ragione il link ad una libreria &egrave; pi&ugrave; veloce
+  rispetto al caso in cui i moduli oggetto siano separati nel disco.
+  Inoltre,&nbsp; quando usiamo una libreria abbiamo meno files da aprire e
+  controllare, e questo comporta un ulteriore aumento della velocit&agrave;
+  del processo di link.</FONT>
+  <P>
+  <BR>
+  <FONT color="#000000"><FONT size=+1>Nell'ambiente Linux (come nella maggior
+  parte dei sistemi moderni) le librerie si suddividono in due famiglie
+  principali:</FONT></FONT>
+  <UL>
+    <LI>
+      <FONT color="#000000"><FONT size=+1>librerie <B>statiche </B>(<I>static
+      libraries</I>)</FONT></FONT>
+    <LI>
+      <FONT color="#000000"><FONT size=+1>librerie <B>dinamiche</B> o <B>condivise
+      </B>(<I>shared libraries</I>)</FONT></FONT>
+  </UL>
+  <P>
+  <FONT color="#000000"><FONT size=+1>Ognuna presenta vantaggi e svantaggi,
+  ma tutte hanno una cosa in comune: costituiscono un catalogo di funzioni,
+  classi, etc..., che ogni programmatore pu&ograve; riutilizzare.</FONT></FONT>
+</BLOCKQUOTE>
+<P>
+  <HR WIDTH="100%">
+<CENTER>
+  <H2>
+    <FONT color="#3333FF">Un programma di prova</FONT>
+  </H2>
+</CENTER>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT size="+1">Prima di vedere come si costruiscono e si usano questi due
+  tipi di librerie, presentiamo un piccolo programma di prova che ci servir&agrave;
+  da esempio.</FONT>
+  <P ALIGN=Justify>
+  <FONT size="+1">Il programma comprende una collezione di funzioni matematiche
+  (<B>myfuncs</B>) ed un gestore di errori (la classe <B>ErrMsg</B>):</FONT>
+  <UL>
+    <LI>
+      <A href="main.cpp.html"><FONT size="5">main.cpp</FONT></A>
+    <LI>
+      <A href="myfuncs.h.html"><FONT size="5">myfuncs.h</FONT></A>
+    <LI>
+      <A href="myfuncs.cpp.html"><FONT size="5">myfuncs.cpp</FONT></A>
+    <LI>
+      <A href="errmsg.h.html"><FONT size="5">errmsg.h</FONT></A>
+    <LI>
+      <A href="errmsg.cpp.html"><FONT size="5">errmsg.cpp</FONT></A>
+  </UL>
+  <P ALIGN=Justify>
+  <FONT size="+1">Le funzioni ''div'' e ''log''&nbsp; in sostanza ridefiniscono
+  le operazioni di divisione e il logaritmo decimale ma in aggiunta permettono
+  una gestione delle eccezioni tramite il meccanismo di
+  <B>throw-catch</B>.</FONT>
+  <P>
+  <FONT size="+1">Il programma pu&ograve; essere compilato in maniera
+  ''convenzionale'' tramite l'istruzione:&nbsp;</FONT>
+  <P>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+3>g++ -o prova main.cpp myfuncs.cpp errmsg.cpp</FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <FONT size="+1">L'eseguibile <B>prova </B>si aspetta sulla linea di comando
+  due numeri e calcola in sequenza il loro rapporto ed il logaritmo del
+  primo:</FONT>
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><FONT size=+3><B>./prova 10 3</B></FONT>
+<FONT size=+3><B></B></FONT>
+<FONT size=+3>3.33333<B></B></FONT>
+<FONT size=+3><B></B></FONT>
+<FONT size=+3>1</FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+</BLOCKQUOTE>
+<P ALIGN=Justify>
+<FONT size="+1">Queste operazioni vengono eseguite nel main del programma
+in un blocco <B>try; </B>se si verifica una eccezione (nella fattispecie
+una divisione per zero o il logaritmo di un numero negativo) il blocco <B>catch
+</B>invoca la funzione membro<B> ErrMsg.print_message() </B>ed il programma
+termina con un messaggio di errore:</FONT>
+<DIV align="center">
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><DIV align="left">
+	    <PRE><FONT size="5"><B><FONT color="#000000">./prova -10 3</FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000"></FONT></B></FONT>
+<FONT size="5"><FONT color="#000000">-3.33333<B></B></FONT></FONT>
+<FONT size="5"><FONT color="#000000"><B></B></FONT></FONT>
+<FONT size="5"><FONT color="#FF0000">**Severe Error in "double log(double)":Invalid argument.</FONT></FONT>
+</PRE>
+	  </DIV>
+	  <DIV align="left">
+	    <PRE><FONT color="#FF0000" size="5">Quitting now.</FONT>
+</PRE>
+	  </DIV>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+</DIV>
+<P>
+  <HR>
+<H1>
+  <CENTER>
+    <B><FONT color="#3333FF">Librerie statiche</FONT></B>
+  </CENTER>
+</H1>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT size=+1>Le librerie statiche vengono installate nell'eseguibile del
+  programma <U><B>prima che questo possa essere lanciato</B></U>. Esse sono
+  semplicemente cataloghi di moduli oggetto che sono stati collezionati in
+  un unico file contenitore. Le librerie statiche ci permettono di effettuare
+  dei link di programmi senza dover ricompilare il loro codice sorgente. Per
+  far girare il nostro programma abbiamo bisogno solo del suo file
+  eseguibile.</FONT>&nbsp;
+</BLOCKQUOTE>
+<P>
+  <HR WIDTH="100%">
+<H2 align="center">
+  <B><FONT color="#3333FF">Come costruire una libreria statica</FONT></B>
+</H2>
+<BLOCKQUOTE>
+  <FONT size="+1" color="#000000">Per costruire una libreria statica bisogna
+  partire dai moduli oggetto dei nostri sorgenti.</FONT>
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><FONT size=+3><B>g++ -c myfuncs.cpp errmsg.gcc</B></FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Una volta compilati i moduli <B>myfuncs.o</B>
+  e <B>errmsg.o, </B>costruiamo la libreria statica <B>libmath_util.a</B> con
+  il </FONT><FONT size=+1> programma di archiviazione <B>ar</B>:</FONT>
+  <P>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><FONT size="+3" color="#000000"><B>ar r libmath_util.a myfuncs.o errmsg.o</B></FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Il comando <B>ar</B> invocato con la flag
+  ''<B>r</B>'' crea la libreria (se ancora non esiste) e vi inserisce
+  (eventualmente rimpiazzandoli) i moduli oggetto. </FONT><FONT size=+1>Nel
+  scegliere il nome di una libreria statica &egrave; stata utilizzata la seguente
+  convenzione: il nome del file della libreria inizia con il prefisso
+  ''<B>lib</B>''&nbsp; e termina con il suffisso "<B>.a</B>".</FONT>
+  <P>
+  <FONT size="+1" color="#000000">Per verificare il contenuto della libreria
+  possiamo usare</FONT>
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><FONT color="#000000" size="5"><B>ar tv libmath_util.a</B></FONT><FONT size="5"><B><FONT color="#000000"></FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000"></FONT></B></FONT>
+<FONT size="5"><FONT color="#000000">rw-r--r-- 223/100  18256 Dec 10 14:24 2003 errmsg.o</FONT></FONT>
+<FONT size="5"><FONT color="#000000"></FONT></FONT>
+<FONT size="5"><FONT color="#000000">rw-r--r-- 223/100  23476 Dec 10 14:23 2003 myfuncs.o</FONT></FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+</BLOCKQUOTE>
+<P>
+  <HR>
+<BLOCKQUOTE>
+  <CENTER>
+    <H2 align="center">
+      <B><FONT color="#3333FF">Link con una libreria statica</FONT></B>
+    </H2>
+  </CENTER>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Una volta creato il nostro archivio, vogliamo
+  utilizzarlo in un programma. Per poter effettuare il link ad una libreria
+  statica, il compilatore g++ deve essere utilizzato in questo modo:</FONT>
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><FONT size=+3><B>g++ -o prova_s main.cpp -L. -lmath_util</B></FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Dove abbiamo chiamato l'eseguibile
+  <B>prova_s</B> per ricordarci che &egrave; stato ottenuto tramite il link
+  alla libreria statica. Notate che abbiamo omesso il prefisso ''<B>lib</B>''
+  e il suffisso ''<B>.a'</B>' quando abbiamo immesso il nome della libreria
+  nella linea di comando con la flag "<B>-l</B>". Ci pensa il linker ad attaccare
+  queste parti alla fine e all'inizio del nome di libreria. Notate inoltre
+  l'uso della</FONT> <FONT size="+1" color="#000000">flag ''<B>-L.</B>'' che
+  dice al compilatore di cercare la libreria anche nella directory in uso e
+  non solo nelle directory standard dove risiedono le librerie di sistema (per
+  es. /usr/lib/).&nbsp;</FONT>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Il processo di link inizia con il caricamento
+  del modulo <B>main.o</B> in cui viene definita la funzione <B>main(). </B>A
+  questo punto il linker si accorge della presenza dei nomi di funzioni
+  <B>div</B> e<B> log</B> e della classe <B>ErrMsg</B>, utilizzate dalla funzione
+  <B>main()</B> ma non definite. Siccome viene fornito al linker il nome della
+  libreria <B>libmath_util.a</B>, viene fatta una ricerca nei moduli all'interno
+  di questa libreria per cercare quelli in cui sono definite queste entit&agrave;.
+  Una volta localizzati, questi moduli vengono estratti dalla libreria ed inclusi
+  nell'eseguibile del programma.</FONT>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">L'eseguibile <B>prova_s </B>contiene cos&igrave;
+  tutto il codice necessario al suo funzionamento ed &egrave; pronto per essere
+  lanciato.</FONT>
+</BLOCKQUOTE>
+<P>
+  <HR>
+<H2 align="center">
+  <B><FONT color="#3333FF">I limiti del meccanismo del link statico</FONT></B>
+</H2>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Si deve precisare che il linker estrae dalla
+  libreria statica solo i moduli strettamente necessari alla compilazione del
+  programma. Questo dimostra una certa capacit&agrave; di economizzare le risorse
+  delle librerie. Pensiamo per&ograve; a pi&ugrave;&nbsp; programmi che utilizzano,
+  magari per altri scopi, la stessa libreria statica. I programmi utilizzano
+  la libreria statica distintamente, cio&egrave; ognuno ne possiede una copia.
+  Se questi devono essere eseguiti contemporaneamente nello stesso sistema,
+  i requisiti di memoria si moltiplicano di conseguenza solo per ospitare funzioni
+  assolutamente identiche.</FONT>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Le librerie condivise forniscono un meccanismo
+  che permette a una singola copia di un modulo di codice di essere condivisa
+  tra diversi programmi nello stesso sistema operativo. Ci&ograve; permette
+  di tenere solo una copia di una data libreria in memoria ad un certo
+  istante.</FONT>
+</BLOCKQUOTE>
+<P>
+  <HR>
+<H1 align="center">
+  <B><FONT color="#3333FF">Librerie condivise</FONT></B>
+</H1>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Le librerie condivise (dette anche dinamiche)
+  vengono collegate ad un programma in due passaggi. In un primo momento, durante
+  la fase di compilazione (<I>Compile Time</I>), il linker verifica che tutti
+  i simboli (funzioni, variabili, classi, e simili ...) richieste dal programma
+  siano effettivamente collegate o al programma o ad una delle sue librerie
+  condivise. In ogni caso <U><B>i moduli oggetto della libreria dinamica non
+  vengono inseriti direttamente nel file eseguibile</B></U>. In un secondo
+  momento, quando&nbsp; l'eseguibile viene lanciato (<I>Run Time</I>), un programma
+  di sistema (<I>dynamic loader</I>) controlla quali librerie dinamiche sono
+  state collegate al nostro programma, le carica in memoria, e le attacca alla
+  copia del programma in memoria.</FONT>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">La fase di caricamento dinamico rallenta
+  leggermente il lancio del programma, ma si ottiene il notevole vantaggio
+  che, se un secondo programma collegato alla stessa libreria condivisa viene
+  lanciato, questo pu&ograve; utilizzare la stessa copia della libreria dinamica
+  gi&agrave; in memoria, con un prezioso risparmio delle risorse del sistema.
+  Per esempio, le librerie standard del C e del C++ sono delle librerie condivise
+  utilizzate da tutti i programmi C/C++.</FONT>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">L'uso di librerie condivise ci permette quindi
+  di utilizzare meno memoria per far girare i nostri programmi e di avere
+  eseguibili molto pi&ugrave; snelli, risparmiando cos&igrave; spazio
+  disco.</FONT>
+</BLOCKQUOTE>
+<P>
+  <HR>
+<H2 align="center">
+  <B><FONT color="#3333FF">Come costruire una libreria condivisa</FONT></B>
+</H2>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">La creazione di una libreria condivisa &egrave;
+  molto simile alla creazione di una libreria statica. Si compila una lista
+  di oggetti e li si colleziona in un unico file. Ci sono per&ograve; due
+  differenze importanti:</FONT>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT size="+1" color="#000000">Dobbiamo compilare per "<B>P</B>osition
+      <B>I</B>ndependent <B>C</B>ode" (PIC)</FONT><FONT size="+1" color="#000000">.
+      Visto che al momento della creazione dei moduli oggetto non sappiamo in quale
+      posizione della memoria saranno inseriti nei programmi che li useranno, tutte
+      le chiamate alle funzioni devono usare indirizzi relativi e non assoluti.
+      Per generare questo tipo di codice si passa al compilatore la flag
+      "<B>-fpic</B>" o "<B>-fPIC</B>" nella fase di compilazione dei moduli
+      oggetto.&nbsp;</FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT size="+1" color="#000000">Contrariamente alle librerie statiche, quelle
+      dinamiche <U>non sono file di archivio</U>. Una libreria condivisa ha un
+      formato specifico che dipende dall'architettura per la quale &egrave; stata
+      creata. Per generarla di usa o il compilatore stesso con la flag
+      "<B>-shared</B>" o il suo linker.</FONT>
+  </OL>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Consideriamo ancora una volta il nostro programma
+  di prova. I comandi per la creazione di una libreria condivisa possono
+  presentarsi come segue:&nbsp;</FONT>
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><FONT color="#000000" size="6"><B>g++ -fPIC -c myfuncs.cpp</B></FONT>
+<FONT color="#000000" size="6"><B></B></FONT>
+<FONT color="#000000" size="6"><B>g++ -fPIC -c errmsg.cpp</B></FONT>
+<FONT color="#000000" size="6"><B></B></FONT>
+<FONT color="#000000" size="6"><B>g++ -shared -o libmath_util.so myfuncs.o errmsg.o</B></FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <FONT size=+1>Nel scegliere il nome di una libreria condivisa &egrave; stata
+  utilizzata la convenzione secondo cui il nome del file della libreria inizia
+  con il prefisso ''<B>lib</B>''&nbsp; e termina con il suffisso
+  "<B>.so'</B>'.</FONT>
+  <P ALIGN=Justify>
+  <FONT size="+1">I primi due comandi compilano i moduli oggetto con l'opzione
+  (fPIC) in maniera tale che essi siano utilizzabili per una libreria condivisa
+  (possiamo comunque utilizzarli in un programma normale anche se sono stati
+  compilati con PIC). L'ultimo comando chiede al compilatore di generare la
+  libreria dinamica.&nbsp;</FONT>
+</BLOCKQUOTE>
+<CENTER>
+    <HR>
+  <H2 align="center">
+    <B><FONT color="#3333FF">Link con una libreria condivisa</FONT></B>
+  </H2>
+</CENTER>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Come abbiamo gi&agrave; preannunciato l'uso
+  di una libreria condivisa si articola in due momenti: Compile time e Run
+  Time. La parte di compilazione e semplice. Il link ad una libreria condivisa
+  avviene in maniera del tutto simile al caso di una libreria statica</FONT>
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><FONT size=+3><B>g++ -o prova_d main.cpp -L. -lmath_util</B></FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <FONT size="+1" color="#000000">Dove abbiamo chiamato l'eseguibile
+  <B>prova_d</B> per ricordarci che &egrave; stato ottenuto tramite il link
+  alla libreria dinamica.</FONT>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Se per&ograve; proviamo a lanciare l'eseguibile
+  otteniamo una sgradita sorpresa:</FONT>
+  <DIV align="center">
+    <CENTER>
+      <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	<TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	  <TD VALIGN=TOP NOSAVE><DIV align="left">
+	      <PRE><FONT size="5"><B><FONT color="#000000">./prova_d -10 3</FONT></B><FONT color="#000000"><B></B></FONT></FONT>
+<FONT size="5"><FONT color="#000000"><B></B></FONT></FONT>
+<FONT size="5"><FONT color="#FF0000">./prova_d: error while loading shared libraries: libmath_util.so:</FONT></FONT>
+</PRE>
+	    </DIV>
+	    <DIV align="left">
+	      <PRE><FONT color="#FF0000" size="5">cannot open shared object file: No such file or directory</FONT>
+</PRE>
+	    </DIV>
+	  </TD>
+	</TR>
+      </TABLE>
+    </CENTER>
+  </DIV>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Il dynamic loader non &egrave; in grado di
+  localizzare la nostra libreria!</FONT>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Possiamo infatti usare il comando <B>ldd</B>
+  per verificare le dipendenze delle librerie condivise e scoprire che
+  </FONT><FONT size="+1" color="#000000"> la nostra libreria non viene localizzata
+  dal loader dinamico:&nbsp; </FONT>
+  <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+    <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+      <TD VALIGN=TOP NOSAVE><DIV align="left">
+	  <PRE><FONT size="5"><B><FONT color="#000000">ldd ./prova_d</FONT></B></FONT>
+</PRE>
+	</DIV>
+	<DIV align="left">
+	  <PRE><FONT size="5"><B><FONT color="#FF0000">libmath_util.so =&gt; not found</FONT><FONT color="#000000"></FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000"></FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000">libstdc++.so.5 =&gt; /usr/lib/libstdc++.so.5 (0x40030000)</FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000"></FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000">libm.so.6 =&gt; /lib/tls/libm.so.6 (0x400e3000)</FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000"></FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000">libgcc_s.so.1 =&gt; /lib/libgcc_s.so.1 (0x40106000)</FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000"></FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000">libc.so.6 =&gt; /lib/tls/libc.so.6 (0x42000000)</FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000"></FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000">/lib/ld-linux.so.2 =&gt; /lib/ld-linux.so.2 (0x40000000)</FONT></B></FONT>
+</PRE>
+	</DIV>
+      </TD>
+    </TR>
+  </TABLE>
+  <P>
+  <FONT size="+1" color="#000000"> Ci&ograve; avviene perch&eacute; la nostra
+  libreria non risiede in una directory standard.&nbsp; </FONT>
+</BLOCKQUOTE>
+<P>
+  <HR>
+<CENTER>
+  <H2 align="center">
+    <B><FONT color="#3333FF">La variabile ambiente LD_LIBRARY_PATH</FONT></B>
+  </H2>
+</CENTER>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Ci sono diversi modi per specificare la posizione
+  delle librerie condivise nell'ambiente linux. Se avete i privilegi di
+  root,&nbsp; una possibilit&agrave; &egrave; quella di aggiungere il path
+  della nostra libreria al file <B>/etc/ld.so.conf</B> per poi lanciare
+  <B>/sbin/ldconfig</B> . Ma se non avete l'accesso all'utente root, potete
+  sfruttare la variabile ambiente <B>LD_LIBRARY_PATH </B>per dire al dynamic
+  loader dove cercare la nostra libreria:</FONT>
+  <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+    <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+      <TD VALIGN=TOP NOSAVE><DIV align="left">
+	  <PRE><FONT color="#000000" size="5"><B>setenv LD_LIBRARY_PATH </B></FONT><FONT size="5"><B>/home/murgia/C++/</B></FONT>
+</PRE>
+	</DIV>
+	<DIV align="left">
+	  <PRE><FONT size="5"><B><FONT color="#000000">ldd ./prova_d</FONT></B></FONT>
+</PRE>
+	</DIV>
+	<DIV align="left">
+	  <PRE><FONT size="5"><B>libmath_util.so =&gt; /home/murgia/C++/libmath_util.so (0x40017000)<FONT color="#000000"></FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000"></FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000">libstdc++.so.5 =&gt; /usr/lib/libstdc++.so.5 (0x40030000)</FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000"></FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000">libm.so.6 =&gt; /lib/tls/libm.so.6 (0x400e3000)</FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000"></FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000">libgcc_s.so.1 =&gt; /lib/libgcc_s.so.1 (0x40106000)</FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000"></FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000">libc.so.6 =&gt; /lib/tls/libc.so.6 (0x42000000)</FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000"></FONT></B></FONT>
+<FONT size="5"><B><FONT color="#000000">/lib/ld-linux.so.2 =&gt; /lib/ld-linux.so.2 (0x40000000)</FONT></B></FONT>
+</PRE>
+	</DIV>
+      </TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">In questo caso il programma ldd ci informa
+  che ora il dynamic loader &egrave; in grado di localizzare
+  <B>libmath_util.so</B>, ed il programma sar&agrave; eseguito con
+  successo.</FONT>
+</BLOCKQUOTE>
+<P>
+  <HR>
+<CENTER>
+  <H2 align="center">
+    <B><FONT color="#3333FF">La flag -rpath</FONT></B>
+  </H2>
+</CENTER>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Esiste anche la possibilit&agrave; di passare
+  al linker la locazione della nostra librerie con l'opzione <B>-rpath </B>in
+  questa maniera</FONT>
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT size="5">g++ -o prova_d main.cpp -Wl,-rpath,/home/murgia/C++/ -L. -lmath_util</FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">in questo caso non sar&agrave; necessario
+  preoccuparsi di definire la variabile ambiente LD_LIBRARY_PATH.</FONT>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Si faccia per&ograve; attenzione al fatto
+  che il linker da' &nbsp;la precedenza al path specificato con <B>-rpath</B>,
+  se questo non &egrave; specificato allora usa il valore di LD_LIBRARY_PATH,
+  e solo infine verifica il contenuto del file
+  /etc/ld.so.conf.&nbsp;&nbsp;</FONT>
+</BLOCKQUOTE>
+<P>
+  <HR>
+<CENTER>
+  <H2 align="center">
+    <B><FONT color="#3333FF">Che tipo di libreria sto usando?</FONT></B>
+  </H2>
+</CENTER>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Se nella stessa directory sono presenti sia
+  </FONT><FONT size="+1" color="#000000"><B>libmath_util.so </B>che
+  <B>libmath_util.a </B>il <U> linker preferir&agrave; la prima</U>. Per forzare
+  il linker ad utilizzare la libreria statica si pu&ograve; usare la flag
+  <B>-static</B>.</FONT>
+</BLOCKQUOTE>
+<P>
+  <HR>
+<CENTER>
+  <H2 align="center">
+    <B><FONT color="#3333FF">Un aspetto positivo dell'utilizzo delle librerie
+    condivise</FONT></B>
+  </H2>
+</CENTER>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT size="+1" color="#000000">Diversi programmi che fanno uso di librerie
+  comuni possono essere corretti contemporaneamente intervenendo sulla libreria
+  che &egrave; fonte di errore. La sola ricompilazione e sostituzione della
+  libreria risolve un problema comune. </FONT>
+</BLOCKQUOTE>
+<P>
+  <HR>
+<CENTER>
+  <H2 align="center">
+    <B><FONT color="#3333FF">Librerie statiche vs librerie condivise</FONT></B>
+  </H2>
+</CENTER>
+<BLOCKQUOTE>
+  <P align="left">
+  <FONT size="+1" color="#000000">Per riassumere:</FONT>
+  <P align="left">
+  <FONT size="+1" color="#000000"><B>Librerie statiche</B>: </FONT>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT size="+1" color="#000000">Ogni processo ha la sua copia della libreria
+      statica che sta usando, caricata in memoria.</FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT size="+1" color="#000000">Gli eseguibili collegati con librerie statiche
+      sono pi&ugrave; grandi.</FONT>
+  </UL>
+  <P align="left">
+  &nbsp;
+  <P align="left">
+  <FONT size="+1" color="#000000"><B>Librerie condivise</B>:</FONT>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT size="+1" color="#000000">Solo una copia della libreria viene conservata
+      in memoria ad un dato istante (sfruttiamo meno memoria per far girare i nostri
+      programmi e gli eseguibili sono pi&ugrave; snelli).</FONT>
+    <LI>
+      <P ALIGN=Justify>
+      <FONT size="+1" color="#000000">I programmi partono pi&ugrave;
+      lentamente.</FONT>
+  </UL>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#IOCPP"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

@@ -1,0 +1,366 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Allocazione dinamica della memoria CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Allocazione dinamica
+della memoria
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Memoria stack e memoria heap
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo gi&agrave; sentito parlare dell'area di memoria
+  <FONT COLOR="Purple"><B>stack</B></FONT>: &eacute; quella in cui viene allocato
+  un <I><B>pacchetto</B></I> di dati non appena l'esecuzione passa dal
+  <B>programma chiamante</B> a una
+  <FONT COLOR="Green"><B>funzione</B></FONT>. Abbiamo detto che questo
+  <I><B>pacchetto</B></I> (il quale contiene l'indirizzo di rientro nel
+  <B>programma chiamante</B>, la lista degli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> passati alla
+  <FONT COLOR="Green"><B>funzione</B></FONT> e tutte le variabili
+  <FONT COLOR="Green"><B>automatiche</B></FONT> <B>definite</B> nella
+  <FONT COLOR="Green"><B>funzione</B></FONT>) viene "impilato" sopra il
+  <I><B>pacchetto</B></I> precedente (quello del <B>programma chiamante</B>)
+  e poi automaticamente rimosso dalla memoria appena l'esecuzione della
+  <FONT COLOR="Green"><B>funzione</B></FONT> &eacute; terminata. <BR>
+  Sappiamo anche che, grazie a questo meccanismo, le
+  <FONT COLOR="Green"><B>funzioni</B></FONT> possono essere chiamate
+  <I><B>ricorsivamente</B></I> e inoltre si possono gestire
+  <FONT COLOR="Green"><B>funzioni</B></FONT> con numero variabile di
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>. Le variabili
+  <FONT COLOR="Green"><B>automatiche</B></FONT> <B>definite</B> nella
+  <FONT COLOR="Green"><B>funzione</B></FONT> hanno <I><B>lifetime</B></I> limitato
+  all'esecuzione della <FONT COLOR="Green"><B>funzione</B></FONT> stessa
+  <U>proprio perch&eacute;</U>, quando la
+  <FONT COLOR="Green"><B>funzione</B></FONT> termina, il corrispondente
+  <I><B>pacchetto</B></I>&nbsp;allocato nell'area
+  <FONT COLOR="Purple"><B>stack</B></FONT> viene rimosso. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Un'altra area di memoria &egrave; quella in cui vengono allocate le
+  variabili non <FONT COLOR="Green"><B>locali</B></FONT> e le variabili
+  <FONT COLOR="Green"><B>locali</B></FONT>
+  <FONT COLOR="Green"><B>statiche</B></FONT>. A differenza dalla precedente,
+  quest'area viene mantenuta in vita fino alla fine del programma, anche se
+  ogni variabile &egrave; <FONT COLOR="Green"><B>visibile</B></FONT> solo
+  all'interno del proprio <FONT COLOR="Green"><B>ambito</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Esiste una terza area di memoria che il programma pu&ograve; utilizzare.
+  Questa area, detta <FONT COLOR="Purple"><B>heap</B></FONT>, &egrave; soggetta
+  a regole di <B>visibilit&agrave;</B> e <B>tempo di vita </B> diverse da quelle
+  che governano le due aree precedenti, e precisamente:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>l'area <FONT COLOR="Purple"><B>heap</B></FONT> <U>non &eacute; allocata
+      automaticamente</U>, ma pu&ograve; essere allocata o rimossa solo su esplicita
+      richiesta del programma (<FONT COLOR="Green"><B>allocazione dinamica della
+      memoria</B></FONT>);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>l'area allocata non &eacute; identificata da un <B>nome</B>, ma &eacute;
+      accessibile esclusivamente tramite
+      <FONT COLOR="Purple"><B>deref.</B></FONT> di un
+      <FONT COLOR="Green"><B>puntatore</B></FONT>; </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>il suo <I><B>scope</B></I> coincide con quello del
+      <FONT COLOR="Green"><B>puntatore</B></FONT> che contiene il suo
+      <FONT COLOR="Green"><B>indirizzo</B></FONT>; </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>il suo <I><B>lifetime</B></I> <U>coincide con l'intera durata del
+      programma</U>, a meno che non venga esplicitamente <B>deallocata</B>; se
+      il <FONT COLOR="Green"><B>puntatore</B></FONT> va <I><B>out of scope</B></I>,
+      l'area non &eacute; pi&ugrave; accessibile, ma continua a occupare memoria
+      inutilmente: si verifica l'errore di <I><B>memory leak</B></I>, opposto a
+      quello di <I><B>dangling references</B></I>.</BIG>
+  </UL>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatore new
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT>,
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B><BIG>new</BIG></B></FONT> <B>costruisce</B> uno o pi&ugrave;
+  <FONT COLOR="Green"><B>oggetti</B></FONT> nell'area
+  <FONT COLOR="Purple"><B>heap</B></FONT> e ne restituisce
+  l'<FONT COLOR="Green"><B>indirizzo</B></FONT>. In caso di <B>errore</B> (memoria
+  non disponibile) restituisce <FONT COLOR="Blue"><B>NULL</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Gli <FONT COLOR="Green"><B>operandi</B></FONT> di
+  <FONT COLOR="Blue"><B>new</B></FONT> (tutti alla sua destra) sono tre, di
+  cui solo il primo &eacute; obbligatorio (le parentesi quadre nere racchiudono
+  gli <FONT COLOR="Green"><B>operandi</B></FONT> <I><B>opzionali</B></I>):
+  </BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>new</B></FONT> &nbsp;
+  <FONT COLOR="Maroon"><B>tipo</B></FONT> &nbsp;
+  <B>[</B><FONT COLOR="Blue"><B>[</B></FONT><FONT COLOR="Maroon"><B>dimensione</B></FONT><FONT
+      COLOR="Blue"><B>]</B></FONT><B>]</B> &nbsp;
+  <B>[</B><FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>valore
+  iniziale</B></FONT><FONT COLOR="Blue"><B>)</B></FONT><B>]</B> </BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Maroon"><B>tipo</B></FONT> &eacute; il
+      <FONT COLOR="Green"><B>tipo</B></FONT> (anche <I><B>astratto</B></I>)
+      dell'<FONT COLOR="Green"><B>oggetto</B></FONT> (o degli
+      <FONT COLOR="Green"><B>oggetti</B></FONT>) da creare;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Maroon"><B>dimensione</B></FONT> &eacute; il numero degli
+      <FONT COLOR="Green"><B>oggetti</B></FONT>, che vengono sistemati nella memoria
+      <FONT COLOR="Purple"><B>heap</B></FONT> consecutivamente (come gli
+      <FONT COLOR="Green"><B>elementi</B></FONT> di un
+      <FONT COLOR="Green"><B>array</B></FONT>); se questo
+      <FONT COLOR="Green"><B>operando</B></FONT> &eacute; omesso, viene costruito
+      un solo <FONT COLOR="Green"><B>oggetto</B></FONT>; se &eacute; presente,
+      l'<FONT COLOR="Green"><B>indirizzo</B></FONT> restituito da
+      <FONT COLOR="Blue"><B>new</B></FONT> punta al <U>primo</U>
+      <FONT COLOR="Green"><B>oggetto</B></FONT>; </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Maroon"><B>valore iniziale</B></FONT> &eacute; il
+      <B>valore</B> con cui l'area allocata viene <B>inizializzata</B> (deve essere
+      dello stesso <FONT COLOR="Green"><B>tipo</B></FONT> di
+      <FONT COLOR="Maroon"><B>tipo</B></FONT>); se &eacute; omesso l'area non &eacute;
+      <B>inizializzata</B>. </BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <B><FONT COLOR="Red"><BIG><U>NOTA</U></BIG></FONT></B><BIG>: si &egrave;
+  potuto riscontrare che a volte i due
+  <FONT COLOR="Green"><B>operandi</B></FONT> <I><B>opzionali</B></I> sono
+  mutuamente incompatibili (alcuni compilatori pi&ugrave; antichi danno errore):
+  in pratica (vedremo perch&egrave; parlando dei
+  <FONT COLOR="Green"><B>costruttori</B></FONT>), se il
+  <FONT COLOR="Green"><B>tipo</B></FONT> &egrave; <I><B>nativo</B></I>
+  <B>inizializza</B> comunque tutti i valori con
+  <FONT COLOR="Maroon"><B>zero</B></FONT>, se il
+  <FONT COLOR="Green"><B>tipo</B></FONT> &egrave; <I><B>astratto</B></I> funziona
+  bene (a certe condizioni).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Ovviamente l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>new</B></FONT> non pu&ograve; restituire un
+  <FONT COLOR="Green"><B>l-value</B></FONT>; pu&ograve; essere invece un
+  <FONT COLOR="Green"><B>r-value</B></FONT> sia nelle <B>inizializzazioni</B>
+  che nelle <FONT COLOR="Purple"><B>assegnazioni</B></FONT>, e pu&ograve; far
+  parte di operazioni di <B>aritmetica fra puntatori</B> . Esempi: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; <B>inizializzazione</B>: &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>int</B></FONT></BIG><FONT COLOR="Blue"><FONT
+      COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG>
+  <FONT COLOR="Maroon"><B>punt</B></FONT><FONT COLOR="Blue"><B> =
+  new</B></FONT> <FONT COLOR="Blue"><B>int
+  (</B></FONT><FONT COLOR="Maroon"><B>7</B></FONT><FONT COLOR="Blue"><B>);</B></FONT>
+  <BR>
+  &nbsp; &nbsp; &nbsp;
+  &nbsp;&nbsp;<FONT COLOR="Purple"><B>assegnazione</B></FONT> con operazione
+  <B>aritmetica</B>: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; <FONT COLOR="Blue"><B>struct</B></FONT>
+  <FONT COLOR="#cc0000"><B>anagrafico</B></FONT>
+  <FONT COLOR="Blue"><B>{</B></FONT> <B>.......</B>
+  <FONT COLOR="Blue"><B>}</B></FONT> <FONT COLOR="Blue"><B>;</B></FONT> <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp;
+  <FONT COLOR="#cc0000"><B>anagrafico</B></FONT></BIG><FONT COLOR="Blue"><FONT
+      COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG>
+  &nbsp;&nbsp;<FONT COLOR="Maroon"><B>p_anag</B></FONT></BIG>
+  <BIG><FONT COLOR="Blue"><B>;</B></FONT> <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; <FONT COLOR="Maroon"><B>p_anag
+  </B></FONT><FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Blue"><B>new</B></FONT>
+  <FONT COLOR="#cc0000"><B>anagrafico</B></FONT>
+  <FONT COLOR="Blue"><B>[</B></FONT><FONT COLOR="Maroon"><B>100</B></FONT><FONT
+      COLOR="Blue"><B>]</B></FONT> <FONT COLOR="Blue"><B>+</B></FONT>
+  <FONT COLOR="Maroon"><B>9</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT>&nbsp;</BIG>
+  <P ALIGN=Justify>
+  <BIG>nel primo esempio <B>alloca</B> un <B>oggetto</B>
+  <FONT COLOR="Blue"><B>int</B></FONT> (<B>inizializzato</B> con il valore
+  <FONT COLOR="Maroon"><B>7</B></FONT>) nell'area
+  <FONT COLOR="Purple"><B>heap</B></FONT> e usa il suo
+  <FONT COLOR="Green"><B>indirizzo</B></FONT> per <B>inizializzare</B> il
+  <FONT COLOR="Green"><B>puntatore</B></FONT>
+  <FONT COLOR="Maroon"><B>punt</B></FONT>; nel secondo esempio <B>definisce</B>
+  la <FONT COLOR="Green"><B>struttura</B></FONT>
+  <FONT COLOR="#cc0000"><B>anagrafico</B></FONT> e <B>definisce</B> un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a tale
+  <FONT COLOR="Green"><B>struttura</B></FONT>, a cui
+  <FONT COLOR="Purple"><B>assegna</B></FONT>
+  l'<FONT COLOR="Green"><B>indirizzo</B></FONT> del decimo di cento
+  <FONT COLOR="Green"><B>oggetti</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="#cc0000"><B>anagrafico</B></FONT>, <B>allocati</B> nell'area
+  <FONT COLOR="Purple"><B>heap</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatore delete
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT>,
+  l'<FONT COLOR="Green"><B>operatore binario</B></FONT>
+  <FONT COLOR="Blue"><B><BIG>delete</BIG></B></FONT> (con un
+  <FONT COLOR="Green"><B>operando</B></FONT> <I><B>opzionale</B></I> e l'altro
+  obbligatorio)&nbsp;<B>dealloca</B> la memoria dell'area
+  <FONT COLOR="Purple"><B>heap</B></FONT> puntata
+  dall'<FONT COLOR="Green"><B>operando</B></FONT> (obbligatorio). Non restituisce
+  alcun <B>valore</B> e quindi deve essere usato da solo in un'istruzione (non
+  essendo n&eacute; un <FONT COLOR="Green"><B>l-value</B></FONT> n&eacute;
+  un <FONT COLOR="Green"><B>r-value </B></FONT>non pu&ograve; essere usato
+  in un'espressione con altre operazioni). </BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </BIG></TD>
+      <TD><BIG><B>allocazione: &nbsp; &nbsp; </B></BIG></TD>
+      <TD><BIG>&nbsp;<FONT COLOR="Blue"><B>int</B></FONT></BIG><FONT COLOR="Blue"><FONT
+	    COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG>
+	<FONT COLOR="Maroon"><B>punt</B></FONT><FONT COLOR="Blue"><B> =
+	new</B></FONT> <FONT COLOR="Blue"><B>int ;</B></FONT> </BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><B>deallocazione: &nbsp;</B></BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>delete</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>punt</B></FONT><FONT COLOR="Blue"><B>
+	;</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Contrariamente all'apparenza
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>delete</B></FONT> non cancella il
+  <FONT COLOR="Green"><B>puntatore</B></FONT> n&eacute; altera il suo contenuto:
+  l'unico effetto &eacute; <U>di liberare la memoria puntata</U> rendendola
+  disponibile per ulteriori <B>allocazioni</B> (se
+  l'<FONT COLOR="Green"><B>operando</B></FONT> non punta a un'area
+  <FONT COLOR="Purple"><B>heap</B></FONT> alcuni compilatori generano un messaggio
+  di errore (o di <I><B>warning</B></I>), altri no, ma in ogni caso
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>delete</B></FONT> non ha effetto). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Se l'<FONT COLOR="Green"><B>operando</B></FONT> punta a un'area in cui
+  &egrave; stato <B>allocato</B> un
+  &nbsp;<FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>oggetti</B></FONT>, bisogna inserire dopo
+  <FONT COLOR="Blue"><B>delete</B></FONT>
+  l'<FONT COLOR="Green"><B>operando</B></FONT> <I><B>opzionale</B></I>, che
+  consiste in una coppia di parentesi quadre (senza la
+  <FONT COLOR="Green"><B>dimensione</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT>, che il
+  <FONT COLOR="Red"><B>C++</B></FONT> &eacute; in grado di riconoscere
+  automaticamente).</BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.: &nbsp; &nbsp; &nbsp; &nbsp;</BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>float</B></FONT></BIG><FONT COLOR="Blue"><FONT
+	    COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT>
+	<BIG><FONT COLOR="Maroon"><B>punt
+	</B></FONT><FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Blue"><B>new</B></FONT>
+	<FONT COLOR="Blue"><B>float</B></FONT>
+	<FONT COLOR="Blue"><B>[</B></FONT><FONT COLOR="Maroon"><B>100</B></FONT><FONT
+	    COLOR="Blue"><B>]</B></FONT> <FONT COLOR="Blue"><B>;</B></FONT></BIG> &nbsp;
+	&nbsp; &nbsp;</TD>
+      <TD><BIG>(<B>alloca</B> <FONT COLOR="Maroon"><B>100</B></FONT>
+	<FONT COLOR="Green"><B>oggetti</B></FONT>
+	<FONT COLOR="Blue"><B>float</B></FONT> ) </BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>delete</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>[</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>]</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>punt</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>(libera <U>tutta</U> la memoria <B>allocata</B>) </BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp; &nbsp;<BR>
+  <BIG>L'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>delete</B></FONT> <U>costituisce l'unico mezzo</U>
+  per <B>deallocare</B> memoria <FONT COLOR="Purple"><B>heap</B></FONT>, che,
+  altrimenti, sopravvive fino alla fine del programma, anche quando non &eacute;
+  pi&ugrave; raggiungibile.</BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD WIDTH="5%"><BIG>Es.:</BIG></TD>
+      <TD WIDTH="30%"><BIG><FONT COLOR="Blue"><B>int</B></FONT></BIG><FONT COLOR="Blue"><FONT
+	    COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG>
+	<FONT COLOR="Maroon"><B>punt</B></FONT><FONT COLOR="Blue"><B> =
+	new</B></FONT> <FONT COLOR="Blue"><B>int ;</B></FONT></BIG> &nbsp; &nbsp;</TD>
+      <TD><BIG>(<B>alloca</B> un <FONT COLOR="Green"><B>oggetto</B></FONT>
+	<FONT COLOR="Blue"><B>int</B></FONT> nell'area
+	<FONT COLOR="Purple"><B>heap</B></FONT> e <B>inizializza</B>
+	<FONT COLOR="Maroon"><B>punt</B></FONT> con il suo
+	<FONT COLOR="Green"><B>indirizzo</B></FONT>) </BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>int</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>
+	;</B></FONT></BIG> &nbsp; &nbsp;</TD>
+      <TD><BIG>(<B>definisce</B> un <FONT COLOR="Green"><B>oggetto</B></FONT>
+	<FONT COLOR="Blue"><B>int</B></FONT> nell'area
+	<FONT COLOR="Purple"><B>stack</B></FONT>)</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>punt</B></FONT><FONT COLOR="Blue"><B> =
+	&amp;a ;</B></FONT></BIG></TD>
+      <TD><BIG>(<FONT COLOR="Purple"><B>assegna</B></FONT> a
+	<FONT COLOR="Maroon"><B>punt</B></FONT> un
+	<FONT COLOR="Green"><B>indirizzo</B></FONT> dell'area
+	<FONT COLOR="Purple"><B>stack</B></FONT>;
+	l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+	<FONT COLOR="Blue"><B>int</B></FONT> dell'area
+	<FONT COLOR="Purple"><B>heap</B></FONT> non &eacute; pi&ugrave;
+	raggiungibile)</BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p38/dynamic.cpp">[p38]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#namesp"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

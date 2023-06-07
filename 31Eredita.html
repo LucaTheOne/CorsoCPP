@@ -1,0 +1,1319 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Eredita' CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Eredita'
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>L'eredit&agrave; in
+C++</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>L'<B>eredit&agrave;</B> domina e governa tutti gli aspetti della vita.
+  Non solo nel campo della genetica, ma anche nello stesso pensiero umano,
+  i concetti si aggregano e si trasmettono &nbsp;secondo relazioni di tipo
+  "genitore-figlio": ogni concetto complesso non si crea
+  <I><B>ex-novo</B></I>, ma deriva da concetti pi&ugrave; semplici, che vengono
+  "ereditati" e integrati con ulteriori approfondimenti. Per esempio, alle
+  elementari si impara l'aritmetica usando "mele e arance", alle medie si applicano
+  le nozioni dell'aritmetica per&nbsp;&nbsp;studiare l'algebra, al liceo si
+  descrivono le formule chimiche con espressioni algebriche; ma un professore
+  di chimica non penserebbe mai di insegnare la sua materia ripartendo dalle
+  mele e dalle arance!</BIG>
+  <P ALIGN=Justify>
+  <BIG>E quindi &egrave; lo stesso processo conoscitivo che si sviluppa e si
+  evolve attraverso l'<B>eredit&agrave;</B>. Eppure, esisteva, fino a pochi
+  anni fa, un campo in cui questo principio generale non veniva applicato:
+  quello dello <B>sviluppo del software (!), </B>che, pur utilizzando strumenti
+  tecnologici "nuovi" e "avanzati", era in realt&agrave; in "ritardo" rispetto
+  a tutti gli altri aspetti della vita: i programmatori continuavano a scrivere
+  programmi da zero, cio&egrave; ripartivano proprio, ogni volta, dalle mele
+  e dalle arance!</BIG>
+  <P ALIGN=Justify>
+  <BIG>In realt&agrave; le cose non stanno proprio cos&igrave;: anche i linguaggi
+  di programmazione precedenti al <FONT COLOR="Red"><B>C++</B></FONT> (compreso
+  il <FONT COLOR="Red"><B>C</B></FONT>) applicano una "specie" di
+  <B>eredit&agrave;</B> nel momento in cui mettono&nbsp;a disposizione le loro
+  <B>librerie</B> di <FONT COLOR="Green"><B>funzioni</B></FONT>: un programmatore
+  pu&ograve; utilizzarle se soddisfano <U>esattamente</U> le esigenze del suo
+  problema specifico; ma, quando ci&ograve; non avviene (come spesso capita),
+  non esiste altro modo che ricopiare le
+  <FONT COLOR="Green"><B>funzioni</B></FONT> e modificarle per adattarle alle
+  proprie esigenze; questa operazione comporta il rischio di introdurre errori,
+  che a volte sono ancora pi&ugrave; difficili da localizzare di quando si
+  riscrive &nbsp;il programma da zero!</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Red"><B>C++</B></FONT> consente invece di applicare
+  lo stesso concetto di <B>eredit&agrave;</B> che &egrave; nella vita reale:
+  gli <FONT COLOR="Green"><B>oggetti</B></FONT> possono assumere, per
+  <B>eredit&agrave;</B>, le caratteristiche di altri
+  <FONT COLOR="Green"><B>oggetti</B></FONT> e aggiungere caratteristiche proprie,
+  esattamente come avviene nell'evoluzione del processo conoscitivo. Ed &egrave;
+  questa capacit&agrave; di uniformarsi alla vita reale che rende il
+  <FONT COLOR="Red"><B>C++</B></FONT> pi&ugrave; potente degli altri linguaggi:
+  il <FONT COLOR="Red"><B>C++</B></FONT> vanta caratteristiche peculiari di
+  <B>estendibilit&agrave;</B>, <B>riusabilit&agrave;</B>,
+  <B>modularit&agrave;</B>, e <B>manutenibilit&agrave;</B>, proprio grazie
+  ai suoi meccanismi di uniformizzazione alla vita reale, quali il
+  <FONT COLOR="Red"><B>data hiding</B></FONT>, il
+  <FONT COLOR="Green"><B>polimorfismo</B></FONT>,
+  l'<FONT COLOR="Green"><B>overload</B></FONT> e, ora,
+  l'<FONT COLOR="Green"><B>eredit&agrave;</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Classi base e
+derivata</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> con il termine
+  "<FONT COLOR="Green"><B>eredit&agrave;</B></FONT>" si intende quel meccanismo
+  per cui si pu&ograve; creare una nuova
+  <FONT COLOR="Green"><B>classe</B></FONT>, detta
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>figlia</B></FONT> o
+  <FONT COLOR="Green"><B>derivata</B></FONT>, trasferendo in essa tutti i
+  <FONT COLOR="Green"><B>membri</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT> esistente, detta
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>genitrice</B></FONT> o
+  <FONT COLOR="Green"><B>base</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La relazione di <FONT COLOR="Green"><B>eredit&agrave;</B></FONT> si
+  specifica nella <B>definizione</B> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> (supponendo che la
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> sia gi&agrave; stata <B>definita</B>),
+  inserendo, dopo il <B>nome</B> della
+  <FONT COLOR="Green"><B>classe</B></FONT> e prima della parentesi graffa di
+  apertura, il simbolo "<FONT COLOR="Blue"><B>:</B></FONT>" seguito dal
+  <B>nome</B> della <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>, come nel seguente esempio: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <FONT COLOR="Blue"><B>class</B></FONT>
+  <FONT COLOR="#cc0000"><B>B
+  </B></FONT><FONT COLOR="Blue"><B>:</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> &nbsp;<FONT COLOR="Blue"><B>{
+  &nbsp;</B></FONT><B>........</B>
+  &nbsp;<FONT COLOR="Blue"><B>}</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT><BR>
+  questa scrittura significa che la nuova
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>B</B></FONT> possiede, oltre ai
+  <FONT COLOR="Green"><B>membri</B></FONT> elencati nella propria
+  <B>definizione</B>, anche quelli
+  <FONT COLOR="Green"><B>ereditati</B></FONT> dalla
+  <FONT COLOR="Green"><B>classe</B></FONT> esistente
+  <FONT COLOR="#cc0000"><B>A</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>eredit&agrave;</B></FONT> procede con struttura
+  <I><B>gerarchica</B></I>, o <I><B>ad albero</B></I> (come le
+  <I><B>subdirectories</B></I> nell'organizzazione dei files) e quindi una
+  stessa <FONT COLOR="Green"><B>classe</B></FONT> pu&ograve; essere
+  <FONT COLOR="Green"><B>derivata</B></FONT> da una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> e contemporaneamente
+  <FONT COLOR="Green"><B>genitrice</B></FONT> di una o pi&ugrave;
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>figlie</B></FONT>. Quando ogni
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>figlia</B></FONT> ha una sola
+  <FONT COLOR="Green"><B>genitrice</B></FONT> si dice che
+  l'<FONT COLOR="Green"><B>eredit&agrave;</B></FONT> &egrave;
+  "<FONT COLOR="Green"><B>singola</B></FONT>", come nel seguente grafico:</BIG>
+  <CENTER>
+    <IMG SRC="Ered1.gif" BORDER=0>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>Se una <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>figlia</B></FONT> ha pi&ugrave;
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>genitrici</B></FONT>, si dice che
+  l'<FONT COLOR="Green"><B>eredit&agrave;</B></FONT> &egrave;
+  "<FONT COLOR="Green"><B>multipla</B></FONT>", come nel seguente grafico,
+  dove la <FONT COLOR="Green"><B>classe</B></FONT> <FONT COLOR="#cc0000"><B>AB
+  </B></FONT>&egrave; <FONT COLOR="Green"><B>figlia</B></FONT> delle
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="#cc0000"><B>A3</B></FONT> e
+  <FONT COLOR="#cc0000"><B>B4</B></FONT>, e la
+  <FONT COLOR="Green"><B>classe</B></FONT> <FONT COLOR="#cc0000"><B>B23
+  </B></FONT>&egrave; <FONT COLOR="Green"><B>figlia</B></FONT> delle
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="#cc0000"><B>B2</B></FONT> e
+  <FONT COLOR="#cc0000"><B>B3</B></FONT>:</BIG>
+  <CENTER>
+    <IMG SRC="Ered2.gif" BORDER=0>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>Nella <B>definizione</B> di una
+  <FONT COLOR="Green"><B>classe</B></FONT> <FONT COLOR="Green"><B>derivata
+  </B></FONT>per <FONT COLOR="Green"><B>eredit&agrave;</B></FONT>
+  <FONT COLOR="Green"><B>multipla</B></FONT>, le due
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>genitrici</B></FONT> vanno indicate entrambe, separate
+  da una virgola: </BIG>&nbsp; <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <BIG><FONT COLOR="Blue"><B>class</B></FONT> <FONT COLOR="#cc0000"><B>AB
+  &nbsp;</B></FONT><FONT COLOR="Blue"><B>:</B></FONT>
+  <FONT COLOR="#cc0000"><B>&nbsp;A3</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  &nbsp;<FONT COLOR="#cc0000"><B>B4</B></FONT> &nbsp;<FONT COLOR="Blue"><B>{
+  &nbsp;</B></FONT><B>........</B>
+  &nbsp;<FONT COLOR="Blue"><B>}</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT></BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Accesso ai membri della classe
+base</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Introducendo le <FONT COLOR="Green"><B>classi</B></FONT>, abbiamo illustrato
+  il significato degli <FONT COLOR="Green"><B>specificatori di
+  accesso</B></FONT> <FONT COLOR="Blue"><B>private: </B></FONT>e
+  <FONT COLOR="Blue"><B>public:</B></FONT>, e abbiamo soltanto accennato
+  all'esistenza di un terzo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>:
+  <FONT COLOR="Blue"><B>protected:</B></FONT>. Ora, in relazione
+  all'<FONT COLOR="Green"><B>eredit&agrave;</B></FONT>, siamo in grado di
+  descrivere completamente i tre
+  <FONT COLOR="Green"><B>specificatori</B></FONT>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>private:</B></FONT> (<I><B>default</B></I>) indica
+      che tutti i <FONT COLOR="Green"><B>membri</B></FONT> seguenti sono
+      <B>privati</B>, e <U>non possono essere
+      <FONT COLOR="Green"><B>ereditati</B></FONT></U></BIG>;
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>public:</B></FONT> indica che tutti i
+      <FONT COLOR="Green"><B>membri</B></FONT> seguenti sono <B>pubblici</B>, e
+      <U>possono essere
+      <FONT COLOR="Green"><B>ereditati</B></FONT></U></BIG>;
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>protected:</B></FONT> indica che tutti i
+      <FONT COLOR="Green"><B>membri</B></FONT> seguenti sono <B>protetti</B>, nel
+      senso che sono <B>privati</B>, ma <U>possono essere
+      <FONT COLOR="Green"><B>ereditati</B></FONT></U></BIG>;
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Quindi, un <FONT COLOR="Green"><B>membro</B></FONT> <B>protetto</B>
+  &egrave; inaccesibile dall'esterno, come i
+  <FONT COLOR="Green"><B>membri</B></FONT> <B>privati</B>, ma pu&ograve; essere
+  <FONT COLOR="Green"><B>ereditato</B></FONT>, come i
+  <FONT COLOR="Green"><B>membri</B></FONT> <B>pubblici</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>In realt&agrave;, esiste un'ulteriore restrizione, che ha lo scopo di
+  rendere il <FONT COLOR="Red"><B>data-hiding </B></FONT>ancora pi&ugrave;
+  profondo: l'accessibilit&agrave; dei
+  <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>ereditati</B></FONT> da una
+  <FONT COLOR="Green"><B>classe base</B></FONT> dipende anche dallo
+  "<FONT COLOR="Green"><B>specificatore di accesso alla classe
+  base</B></FONT>", che deve essere indicato come nel seguente esempio:<BR>
+  <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; class</B></FONT>
+  <FONT COLOR="#cc0000"><B>B
+  </B></FONT><FONT COLOR="Blue"><B>:</B></FONT> <FONT COLOR="Green"><B>spec.di
+  accesso</B></FONT> <FONT COLOR="#cc0000"><B>A</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>{ &nbsp;</B></FONT><B>........</B>
+  &nbsp;<FONT COLOR="Blue"><B>}</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT><BR>
+  dove <FONT COLOR="Green"><B>spec.di accesso</B></FONT> pu&ograve; essere:
+  <FONT COLOR="Blue"><B>private</B></FONT> (<I><B>default</B></I>),
+  <FONT COLOR="Blue"><B>protected</B></FONT> o
+  <FONT COLOR="Blue"><B>public</B></FONT> (notare l'assenza dei due punti).
+  Ogni <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Green"><B>ereditato</B></FONT> avr&agrave; l'accesso pi&ugrave;
+  "restrittivo" fra il proprio originario e quello indicato dallo
+  <FONT COLOR="Green"><B>specificatore di accesso alla classe base</B></FONT>,
+  come &egrave; chiarito dalla seguente tabella: </BIG>
+  <P ALIGN=Justify>
+  <CENTER>
+    <TABLE BORDER CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD></TD>
+	<TD COLSPAN=3><P ALIGN=Center>
+	  <BIG><FONT COLOR="Green"><B>Specificatori di accesso alla classe
+	  base</B></FONT> </BIG></TD>
+      </TR>
+      <TR>
+	<TH ROWSPAN=2><BIG>Accesso dei membri<BR>
+	  nella classe base</BIG></TH>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B>private</B></FONT></BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B>protected</B></FONT></BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B>public</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TH COLSPAN=3><BIG>Accessibilit&agrave; dei membri ereditati</BIG></TH>
+      </TR>
+      <TR>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B>private:</B></FONT> </BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG>inaccessibili</BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG>inaccessibili</BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG>inaccessibili</BIG></TD>
+      </TR>
+      <TR>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B>protected:</B></FONT> </BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><B>privati</B></BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><B>protetti</B></BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><B>protetti</B></BIG></TD>
+      </TR>
+      <TR>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B>public:</B></FONT></BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><B>privati</B></BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><B>protetti</B></BIG></TD>
+	<TD><P ALIGN=Center>
+	  <BIG><B>pubblici</B></BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>e quindi un <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Green"><B>ereditato</B></FONT> &egrave; <B>pubblico</B> solo
+  se &egrave; <FONT COLOR="Blue"><B>public:</B></FONT> nella
+  <FONT COLOR="Green"><B>classe base</B></FONT> e l'accesso della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> alla <FONT COLOR="Green"><B>classe
+  base</B></FONT> &egrave; <FONT COLOR="Blue"><B>public</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Se una <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> &egrave; a sua volta
+  <FONT COLOR="Green"><B>genitrice</B></FONT> di una nuova
+  <FONT COLOR="Green"><B>classe</B></FONT>, in quest'ultima l'accesso ai
+  <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>ereditati</B></FONT> &egrave; governato dalle stesse
+  regole, che vengono per&ograve; applicate esclusivamente ai
+  <FONT COLOR="Green"><B>membri</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT> "intermedia", indipendentemente
+  da come questi erano nella <FONT COLOR="Green"><B>classe base</B></FONT>.
+  In altre parole, ogni <FONT COLOR="Green"><B>classe</B></FONT> "vede" la
+  sua diretta <FONT COLOR="Green"><B>genitrice</B></FONT>, e non si preoccupa
+  degli altri eventuali "ascendenti".</BIG>
+  <P ALIGN=Justify>
+  <BIG>Normalmente l'<FONT COLOR="Green"><B>accesso alla classe base</B></FONT>
+  &egrave; <FONT COLOR="Blue"><B>public</B></FONT>. In alcune circostanze,
+  tuttavia, si pu&ograve; volere che i suoi
+  <FONT COLOR="Green"><B>membri</B></FONT> <B>pubblici</B> e <B>protetti</B>,
+  <FONT COLOR="Green"><B>ereditati</B></FONT> nella
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT>, <U>siano accessibili unicamente
+  da <FONT COLOR="Green"><B>funzioni</B></FONT>
+  <FONT COLOR="Green"><B>membro</B></FONT> e
+  <FONT COLOR="Blue"><B>friend</B></FONT></U> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> stessa: in questo caso, occorre
+  che lo <FONT COLOR="Green"><B>specificatore di accesso alla classe
+  base</B></FONT> sia <FONT COLOR="Blue"><B>private</B></FONT>; analogamente,
+  se si vuole che i <FONT COLOR="Green"><B>membri</B></FONT> <B>pubblici</B>
+  e <B>protetti</B> di una <FONT COLOR="Green"><B>classe base</B></FONT> siano
+  accessibili unicamente da <FONT COLOR="Green"><B>funzioni</B></FONT>
+  <FONT COLOR="Green"><B>membro</B></FONT> e
+  <FONT COLOR="Blue"><B>friend</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> e <U>di altre eventuali
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>derivate</B></FONT> da questa</U>, &nbsp;occorre che
+  lo <FONT COLOR="Green"><B>specificatore di accesso alla classe
+  base</B></FONT> sia <FONT COLOR="Blue"><B>protected</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p66/ered.cpp">[p66]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Conversioni fra classi base e
+derivata</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Si dice che l'<FONT COLOR="Green"><B>eredit&agrave;</B></FONT> &egrave;
+  una relazione di tipo "<I><B>is a</B></I>" (un cane <B><U>&egrave; un</U></B>
+  mammifero, con caratteristiche in pi&ugrave; che lo specializzano). Quindi,
+  se due <FONT COLOR="Green"><B>classi</B></FONT>,
+  <FONT COLOR="#cc0000"><B>A</B></FONT> e
+  <FONT COLOR="#cc0000"><B>B</B></FONT>, sono rispettivamente
+  <FONT COLOR="Green"><B>base</B></FONT> e
+  <FONT COLOR="Green"><B>derivata</B></FONT>, gli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT> sono (anche)
+  <FONT COLOR="Green"><B>oggetti</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, ma non viceversa.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Ne consegue che le conversioni <I><B>implicite</B></I> di
+  <FONT COLOR="Green"><B>tipo</B></FONT> da
+  <FONT COLOR="#cc0000"><B>B</B></FONT> ad
+  <FONT COLOR="#cc0000"><B>A</B></FONT> (cio&egrave; da
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> a <FONT COLOR="Green"><B>classe
+  base</B></FONT>) sono sempre ammesse (con il mantenimento dei soli i
+  <FONT COLOR="Green"><B>membri</B></FONT> comuni), e in particolare ogni
+  <FONT COLOR="Green"><B>puntatore</B></FONT> (o
+  <FONT COLOR="Green"><B>riferimento</B></FONT>) ad
+  <FONT COLOR="#cc0000"><B>A</B></FONT> pu&ograve; essere
+  <FONT COLOR="Purple"><B>assegnato</B></FONT> o <B>inizializzato</B> con
+  l'<B>indirizzo</B> (o il <B>nome</B>) di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT>. Questo permette, quando si ha a che
+  fare con una <I><B>gerarchia</B></I> di
+  <FONT COLOR="Green"><B>classi</B></FONT>, di <B>definire</B> all'inizio un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> generico alla
+  <FONT COLOR="Green"><B>classe base</B></FONT> "capostipite", e di
+  <FONT COLOR="Purple"><B>assegnargli</B></FONT> in seguito (in base al flusso
+  del programma) l'<B>indirizzo</B> di un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> appartenente a una qualunque
+  <FONT COLOR="Green"><B>classe</B></FONT> della <I><B>gerarchia</B></I>. Ci&ograve;
+  &egrave; particolarmente efficace quando si utilizzano le
+  "<FONT COLOR="Green"><B>funzioni virtuali</B></FONT>", di cui parleremo nel
+  prossimo capitolo.&nbsp;</BIG>
+  <P ALIGN=Justify>
+  <BIG>La conversione opposta, da <FONT COLOR="#cc0000"><B>A</B></FONT> a
+  <FONT COLOR="#cc0000"><B>B</B></FONT>, non &egrave; ammessa (a meno che
+  <FONT COLOR="#cc0000"><B>B</B></FONT> non abbia un
+  <FONT COLOR="Green"><B>costruttore</B></FONT> con un
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>, di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>); fra
+  <FONT COLOR="Green"><B>puntatori</B></FONT> (o fra
+  <FONT COLOR="Green"><B>riferimenti</B></FONT>) la conversione &egrave; ammessa
+  solo se &egrave; <I><B>esplicita</B></I>, tramite
+  <FONT COLOR="Purple"><B>casting</B></FONT>. Non &egrave; comunque
+  un'<FONT COLOR="Green"><B>operazione</B></FONT> che abbia molto senso,
+  tantopi&ugrave; che possono insorgere errori che sfuggono al controllo del
+  compilatore. Per esempio, supponiamo che
+  <FONT COLOR="Maroon"><B>mb</B></FONT> sia un
+  <FONT COLOR="Green"><B>membro</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT> (e non di
+  <FONT COLOR="#cc0000"><B>A</B></FONT>):</BIG>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD WIDTH="20%"><BIG><FONT COLOR="#cc0000"><B>A</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><FONT COLOR="#cc0000"><B>B</B></FONT><FONT COLOR="Blue"><B>&amp;
+	</B></FONT><FONT COLOR="Maroon"><B>b</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>=</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="#cc0000"><B>B</B></FONT><FONT
+	    COLOR="Blue"><B>&amp;)</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT
+	    COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>b</B></FONT></BIG> <BIG>&egrave; un
+	<I><B>alias</B></I> di <FONT COLOR="Maroon"><B>a</B></FONT>, convertito a
+	<FONT COLOR="Green"><B>tipo</B></FONT></BIG>
+	<BIG><FONT COLOR="#cc0000"><B>B</B></FONT><FONT COLOR="Blue"><B>&amp;</B></FONT></BIG>
+	<BIG>- il compilatore lo accetta</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><FONT COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>mb</B></FONT></BIG>
+	<BIG><FONT COLOR="Blue"><B>=</B></FONT></BIG> <BIG><B>.......</B></BIG></TD>
+      <TD><BIG>per il compilatore va bene
+	(<FONT COLOR="Maroon"><B>mb</B></FONT> &egrave;
+	<FONT COLOR="Green"><B>membro</B></FONT> di
+	<FONT COLOR="#cc0000"><B>B</B></FONT>), ma in realt&agrave;
+	<FONT COLOR="Maroon"><B>b</B></FONT></BIG> <BIG>&egrave; un
+	<I><B>alias</B></I> di <FONT COLOR="Maroon"><B>a </B></FONT>e
+	<FONT COLOR="Maroon"><B>mb</B></FONT> <U>non &egrave;</U>
+	<FONT COLOR="Green"><B>membro</B></FONT> di
+	<FONT COLOR="#cc0000"><B>A</B></FONT> - <I><B>access violation
+	</B></I>?</BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Tornando alle conversioni <I><B>implicite</B></I> da
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> a <FONT COLOR="Green"><B>classe
+  base</B></FONT>, c'&egrave; da aggiungere che si tratta di conversioni di
+  "grado" molto alto (altrimenti dette "conversioni banali"), cio&egrave; accettate
+  da tutti i costrutti (come le conversioni da
+  <FONT COLOR="Green"><B>variabile</B></FONT> a
+  <FONT COLOR="Green"><B>costante</B></FONT>). Per esempio, il costrutto
+  <FONT COLOR="Blue"><B>catch</B></FONT> con
+  <FONT COLOR="Green"><B>tipo</B></FONT> di
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> <FONT COLOR="#cc0000"><B>X
+  </B></FONT>"cattura" le <FONT COLOR="Green"><B>eccezioni</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="#cc0000"><B>Y</B></FONT></BIG> <BIG>(con
+  <FONT COLOR="#cc0000"><B>Y</B></FONT> diverso da
+  <FONT COLOR="#cc0000"><B>X</B></FONT>), cio&egrave; accetta conversioni da
+  <FONT COLOR="#cc0000"><B>Y</B></FONT> a
+  <FONT COLOR="#cc0000"><B>X</B></FONT>, solo se:</BIG>
+  <OL>
+    <LI>
+      <BIG><FONT COLOR="#cc0000"><B>X</B></FONT> &egrave;
+      <FONT COLOR="Blue"><B>const</B></FONT>
+      <FONT COLOR="#cc0000"><B>Y</B></FONT> (o viceversa, solo se
+      l'<FONT COLOR="Maroon"><B>argomento</B></FONT> &egrave; passato <I><B>by
+      value</B></I>)</BIG>
+    <LI>
+      <BIG><FONT COLOR="#cc0000"><B>Y</B></FONT> &egrave; una
+      <FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="Green"><B>derivata</B></FONT> da
+      <FONT COLOR="#cc0000"><B>X</B></FONT></BIG>
+  </OL>
+  <P>
+  <BIG>mentre, per esempio, non accetta conversioni da
+  <FONT COLOR="Blue"><B>int</B></FONT> a
+  <FONT COLOR="Blue"><B>long</B></FONT> (o viceversa).</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p67/eredconv.cpp">[p67]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Costruzione della classe
+base</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Una <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> non
+  <FONT COLOR="Green"><B>eredita</B></FONT> i
+  <FONT COLOR="Green"><B>costruttori</B></FONT> e il
+  <FONT COLOR="Green"><B>distruttore</B></FONT> della sua
+  <FONT COLOR="Green"><B>classe base</B></FONT>. In altre parole ogni
+  <FONT COLOR="Green"><B>classe</B></FONT> deve fornire i propri
+  <FONT COLOR="Green"><B>costruttori</B></FONT> e il
+  <FONT COLOR="Green"><B>distruttore</B></FONT> (oppure utilizzare quelli di
+  <I><B>default</B></I>). Quanto detto vale anche per
+  l'<FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>assegnazione</B></FONT>, nel senso che, in sua assenza,
+  la <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> usa
+  l'<FONT COLOR="Green"><B>operatore</B></FONT> di <I><B>default</B></I>
+  anzich&egrave; ereditare quello eventualmente presente nella
+  <FONT COLOR="Green"><B>classe base</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Ogni volta che una <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT>&nbsp;&egrave;
+  <FONT COLOR="Green"><B>istanziata</B></FONT>, entrano in azione automaticamente
+  i&nbsp;<FONT COLOR="Green"><B>costruttori</B></FONT> di tutte le
+  <FONT COLOR="Green"><B>classi</B></FONT> <I><B>gerarchicamente</B></I> superiori,
+  secondo lo stesso ordine <I><B>gerarchico</B></I> (prima la
+  <FONT COLOR="Green"><B>classe base</B></FONT> "capostipite", poi tutte le
+  altre, e per ultima la <FONT COLOR="Green"><B>classe</B></FONT> che deve
+  creare l'<FONT COLOR="Green"><B>oggetto</B></FONT>). Analogamente, quando
+  l'<FONT COLOR="Green"><B>oggetto </B></FONT>"muore", entrano in azione
+  automaticamente i&nbsp;<FONT COLOR="Green"><B>distruttori</B></FONT> delle
+  stesse <FONT COLOR="Green"><B>classi</B></FONT>, ma procedendo in ordine
+  inverso (per primo il <FONT COLOR="Green"><B>distruttore</B></FONT>
+  dell'<FONT COLOR="Green"><B>oggetto </B></FONT>e per ultimo il
+  <FONT COLOR="Green"><B>distruttore</B></FONT> della
+  <FONT COLOR="Green"><B>classe base</B></FONT> "capostipite").</BIG>
+  <P ALIGN=Justify>
+  <BIG>Per quello che riguarda
+  i&nbsp;<FONT COLOR="Green"><B>costruttori</B></FONT>, il fatto che entrino
+  in azione automaticamente comporta il solito problema (vedere il capitolo
+  sui <FONT COLOR="Green"><B>Costruttori</B></FONT> e
+  &nbsp;<FONT COLOR="Green"><B>Distruttori</B></FONT> degli
+  <FONT COLOR="Green"><B>oggetti</B></FONT>), che insorge ogni volta che un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> non &egrave; <B>costruito</B> con
+  una <B>chiamata</B> esplicita: se &egrave; eseguito il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di <I><B>default</B></I>, tutto
+  bene, ma come fare se si vuole (o si deve) eseguire un
+  <FONT COLOR="Green"><B>costruttore</B></FONT> con
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>?</BIG>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo visto che questo problema ha una soluzione diversa per ogni
+  circostanza: in pratica ci deve sempre essere "qualcun altro" che si occupi
+  di <B>chiamare</B> il <FONT COLOR="Green"><B>costruttore</B></FONT> e fornigli
+  i valori degli <FONT COLOR="Maroon"><B>argomenti</B></FONT> richiesti. Nel
+  caso &nbsp;delle <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>ereditate</B></FONT> il "qualcun altro" &egrave;
+  rappresentato dai <U><FONT COLOR="Green"><B>costruttori</B></FONT> delle
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>derivate</B></FONT></U>, ciascuno dei quali deve
+  provvedere ad attivare il <FONT COLOR="Green"><B>costruttore</B></FONT> della
+  propria diretta <FONT COLOR="Green"><B>genitrice</B></FONT> (non preoccupandosi
+  invece delle eventuali altre <FONT COLOR="Green"><B>classi</B></FONT>
+  <I><B>gerarchicamente</B></I> superiori). Come gi&agrave; abbiamo visto nel
+  caso di una <FONT COLOR="Green"><B>classe</B></FONT> <B>composta</B>, il
+  cui <FONT COLOR="Green"><B>costruttore</B></FONT> deve includere le
+  <B>chiamate</B> dei <FONT COLOR="Green"><B>costruttori</B></FONT> dei
+  <FONT COLOR="Green"><B>membri-oggetto</B></FONT> nella propria <B>lista di
+  inizializzazione</B>, cos&igrave; vale anche per le
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>ereditate</B></FONT>: <U>ogni
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di una<FONT COLOR="Green"><B>
+  classe</B></FONT> <FONT COLOR="Green"><B>derivata</B></FONT> deve includere
+  nella <B>lista di inizializzazione </B>la <B>chiamata</B> del
+  <FONT COLOR="Green"><B>costruttore</B></FONT> della propria
+  <FONT COLOR="Green"><B>genitrice</B></FONT></U>. Questa operazione si chiama:
+  <FONT COLOR="Green"><B><BIG>costruzione della classe base</BIG></B></FONT>.
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>Per chiarire quanto detto, consideriamo per esempio una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> che disponga di un
+  <FONT COLOR="Green"><B>costruttore</B></FONT> con due
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>: </BIG>
+  <P ALIGN=Justify>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>class</B></FONT>
+	  <FONT COLOR="#cc0000"><B>A</B></FONT>
+	  </BIG><FONT COLOR="Blue"><BIG><B>{</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp;&nbsp;</TD>
+	<TH>DEFINIZIONE DEL COSTRUTTORE DI
+	  <BIG><FONT COLOR="#cc0000"><B>A</B></FONT></BIG></TH>
+      </TR>
+      <TR>
+	<TD><BIG>&nbsp; &nbsp;<FONT COLOR="Blue"><B>protected:</B></FONT> </BIG></TD>
+	<TD></TD>
+	<TD><BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+	      COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>(int</B></FONT>
+	  <FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+	  <FONT COLOR="Blue"><B>float</B></FONT>
+	  <FONT COLOR="Maroon"><B>q</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+	  <FONT COLOR="Blue"><B>:</B></FONT>
+	  <FONT COLOR="Maroon"><B>m1</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	      COLOR="Maroon"><B>q</B></FONT><FONT COLOR="Blue"><B>),</B></FONT>
+	  <FONT COLOR="Maroon"><B>m2</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	      COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;
+	  <BIG><FONT COLOR="Blue"><B>float</B></FONT></BIG>
+	  <BIG><FONT COLOR="Maroon"><B>m1</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	<TD></TD>
+	<TD><FONT COLOR="Blue"><BIG><B>{</B></BIG></FONT> &nbsp; <BIG><B>....
+	  </B>eventuali altre <FONT COLOR="Green"><B>operazioni</B></FONT> del</BIG></TD>
+      </TR>
+      <TR>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;
+	  <BIG><FONT COLOR="Blue"><B>int</B></FONT></BIG>
+	  <BIG><FONT COLOR="Maroon"><B>m2</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	<TD></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	  <BIG><FONT COLOR="Green"><B>costruttore</B></FONT> di
+	  <FONT COLOR="#cc0000"><B>A</B></FONT></BIG>
+	  &nbsp;<FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT></TD>
+      </TR>
+      <TR>
+	<TD><BIG>&nbsp; &nbsp;<FONT COLOR="Blue"><B>public:</B></FONT></BIG>
+	  <BIG><FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>(int,float);</B></FONT></BIG></TD>
+	<TD></TD>
+	<TD></TD>
+      </TR>
+      <TR>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;<BIG><B>.... </B>altri
+	  <FONT COLOR="Green"><B>membri</B></FONT> <B>....
+	  &nbsp;</B></BIG><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	<TD></TD>
+	<TD></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>Vediamo ora come si deve comportare il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>B</B></FONT>,
+  <FONT COLOR="Green"><B>derivata</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT>: </BIG>
+  <P ALIGN=Justify>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>class</B></FONT>
+	  <FONT COLOR="#cc0000"><B>B</B></FONT> <FONT COLOR="Blue"><B>:
+	  public</B></FONT> <FONT COLOR="#cc0000"><B>A</B></FONT>
+	  </BIG><FONT COLOR="Blue"><BIG><B>{</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp;&nbsp;</TD>
+	<TH>DEFINIZIONE DEL COSTRUTTORE DI
+	  <BIG><FONT COLOR="#cc0000"><B>B</B></FONT></BIG></TH>
+      </TR>
+      <TR>
+	<TD>&nbsp; &nbsp; &nbsp;
+	  <BIG><FONT COLOR="Blue"><B>int</B></FONT></BIG>
+	  <BIG><FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	<TD></TD>
+	<TD><BIG><FONT COLOR="#cc0000"><B>B</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+	      COLOR="Maroon"><B>B</B></FONT><FONT COLOR="Blue"><B>(int</B></FONT>
+	  <FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+	  <FONT COLOR="Blue"><B>int</B></FONT>
+	  <FONT COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+	  <FONT COLOR="Blue"><B>float</B></FONT>
+	  <FONT COLOR="Maroon"><B>c</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+	  <FONT COLOR="Blue"><B>:</B></FONT>
+	  <FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	      COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B>),</B></FONT>
+	  <FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	      COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>c</B></FONT><FONT
+	      COLOR="Blue"><B>)</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG>&nbsp; &nbsp;<FONT COLOR="Blue"><B>public:</B></FONT></BIG>
+	  <BIG><FONT COLOR="Maroon"><B>B</B></FONT><FONT COLOR="Blue"><B>(int,int,float);</B></FONT></BIG></TD>
+	<TD></TD>
+	<TD><FONT COLOR="Blue"><BIG><B>{</B></BIG></FONT> &nbsp; <BIG><B>....
+	  </B>eventuali altre <FONT COLOR="Green"><B>operazioni</B></FONT> del</BIG></TD>
+      </TR>
+      <TR>
+	<TD>&nbsp; &nbsp; &nbsp; <BIG><B>.... </B>altri
+	  <FONT COLOR="Green"><B>membri</B></FONT> <B>....
+	  &nbsp;</B></BIG><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	<TD></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;
+	  <BIG><FONT COLOR="Green"><B>costruttore</B></FONT> di
+	  <FONT COLOR="#cc0000"><B>B</B></FONT></BIG>
+	  &nbsp;<FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>Come si pu&ograve; notare, il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT> deve inserire la <B>chiamata</B> di
+  quello di <FONT COLOR="#cc0000"><B>A</B></FONT> nella propria <B>lista di
+  inizializzazione</B> (se non lo fa, e il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> esiste, cio&egrave; non &egrave;
+  <B>chiamato</B> di <I><B>default</B></I>, il
+  <FONT COLOR="Red"><B>C++</B></FONT> d&agrave; errore); ovviamente l'ordine
+  originario degli <FONT COLOR="Maroon"><B>argomenti</B></FONT> del
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> va rigorosamente mantenuto. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Nel caso che <FONT COLOR="#cc0000"><B>B</B></FONT> sia a sua volta
+  <FONT COLOR="Green"><B>genitrice</B></FONT> di un'altra
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>C</B></FONT>, il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <FONT COLOR="#cc0000"><B>C</B></FONT> deve includere nella propria <B>lista
+  di inizializzazione</B> il termine:
+  <FONT COLOR="Maroon"><B>B</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>b</B></FONT><FONT
+      COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>c</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>,
+  cio&egrave; la <B>chiamata</B> del
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT>, ma non il termine
+  <FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>c</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT>, <B>chiamata</B> del
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Green"><B>costruttore</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> non pu&ograve;
+  <B>inizializzare</B> direttamente i
+  <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>ereditati</B></FONT> dalla
+  <FONT COLOR="Green"><B>classe base</B></FONT>: rifacendoci all'esempio, il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT> non pu&ograve; <B>inizializzare</B>
+  i <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Maroon"><B>m1</B></FONT> e
+  <FONT COLOR="Maroon"><B>m2</B></FONT>
+  <FONT COLOR="Green"><B>ereditati</B></FONT> da
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, ma lo pu&ograve; fare solo indirettamente,
+  invocando il <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Notiamo infine che il <FONT COLOR="Green"><B>costruttore</B></FONT>
+  di <FONT COLOR="#cc0000"><B>A</B></FONT> &egrave; <B>dichiarato</B>
+  <FONT COLOR="Blue"><B>public</B></FONT>: ci&ograve; significa che la
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> pu&ograve; essere anche
+  <FONT COLOR="Green"><B>istanziata</B></FONT> indipendentemente. Se per&ograve;
+  fosse <B>dichiarato</B> <FONT COLOR="Blue"><B>protected</B></FONT>, il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT> lo "vedrebbe" ancora e quindi potrebbe
+  invocarlo ugualmente nella propria <B>lista di inizializzazione</B>, ma gli
+  utenti esterni non potrebbero accedervi. Un modo per
+  <I><B>occultare</B></I> una <FONT COLOR="Green"><B>classe base</B></FONT>
+  (rendendola disponibile <U>solo</U> per le sue
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>derivate</B></FONT>) &egrave; pertanto quello &nbsp;di
+  <B>dichiarare</B> tutti i suoi
+  <FONT COLOR="Green"><B>costruttori</B></FONT> nella sezione
+  <B>protetta</B>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Regola della
+dominanza</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Finora, negli esempi abbiamo attribuito sempre (e deliberatamente)
+  <B>nomi</B> diversi ai <FONT COLOR="Green"><B>membri</B></FONT> delle
+  <FONT COLOR="Green"><B>classi</B></FONT>. Ci chiediamo adesso: cosa succede
+  nel caso che esista un <FONT COLOR="Green"><B>membro</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> con lo stesso <B>nome</B> di un
+  <FONT COLOR="Green"><B>membro</B></FONT> della sua
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>? &nbsp;Pu&ograve; insorgere un conflitto
+  fra i <B>nomi</B>, oppure (nel caso che il
+  <FONT COLOR="Green"><B>membro</B></FONT> sia un <B>metodo</B>) si applicano
+  le regole dell'<FONT COLOR="Green"><B>overload</B></FONT>? La risposta ad
+  entrambe le domande &egrave;: NO. In realt&agrave; si applica una regola
+  diversa, detta regola della "<B>dominanza</B>": <U>viene sempre scelto il
+  <FONT COLOR="Green"><B>membro</B></FONT> che appartiene alla stessa
+  <FONT COLOR="Green"><B>classe</B></FONT> a cui appartiene
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT></U>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Per esempio, se due <FONT COLOR="Green"><B>classi</B></FONT>,
+  <FONT COLOR="#cc0000"><B>A</B></FONT> e
+  <FONT COLOR="#cc0000"><B>B</B></FONT>, sono rispettivamente
+  <FONT COLOR="Green"><B>base</B></FONT> e
+  <FONT COLOR="Green"><B>derivata</B></FONT> e possiedono entrambe un
+  <FONT COLOR="Green"><B>membro</B></FONT> di nome
+  <FONT COLOR="Maroon"><B>mem</B></FONT>,
+  l'<FONT COLOR="Green"><B>operazione</B></FONT>:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Maroon"><B>ogg</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+      COLOR="Maroon"><B>mem</B></FONT><BR>
+  seleziona il <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Maroon"><B>mem</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> se
+  <FONT COLOR="Maroon"><B>ogg</B></FONT> &egrave;
+  <FONT COLOR="Green"><B>istanza</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, oppure il
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Maroon"><B>mem</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT> se
+  <FONT COLOR="Maroon"><B>ogg</B></FONT> &egrave;
+  <FONT COLOR="Green"><B>istanza</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Volendo invece selezionare forzatamente uno dei due, bisogna
+  <B>qualificare</B> il <B>nome</B> del
+  <FONT COLOR="Green"><B>membro</B></FONT> comune mediante il solito
+  <FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>risoluzione della visibilit&agrave;</B></FONT>. Per
+  esempio:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Maroon"><B>ogg</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+      COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT COLOR="Maroon"><B>mem</B></FONT><BR>
+  seleziona sempre il <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Maroon"><B>mem</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, anche se
+  <FONT COLOR="Maroon"><B>ogg</B></FONT> &egrave;
+  <FONT COLOR="Green"><B>istanza</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La regola della <B>dominanza</B> pu&ograve; essere sfruttata per modificare
+  i <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>ereditati</B></FONT> (soprattutto per quello che riguarda
+  i <B>metodi</B>): l'unico sistema &egrave; quello di <B>ridichiararli</B>
+  con lo stesso <B>nome</B>, garantendosi cos&igrave; che saranno i nuovi
+  <FONT COLOR="Green"><B>membri</B></FONT>, e non gli originari, ad essere
+  utilizzati in tutti gli <FONT COLOR="Green"><B>oggetti</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT>. Non &egrave; comunque possibile
+  diminuire il numero dei <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>ereditati</B></FONT>: le
+  <FONT COLOR="Green"><B>funzioni</B></FONT> "indesiderate" potrebbero essere
+  ridefinite con "corpo nullo", ma non si pu&ograve; fare di pi&ugrave;.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p68/cbase.cpp">[p68]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Eredit&agrave; e
+overload</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Se vi sono due <B>metodi</B> con lo stesso <B>nome</B>, uno della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> e l'altro della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT>, abbiamo visto che vale la regola
+  della <B>dominanza</B> e non quella
+  dell'<FONT COLOR="Green"><B>overload</B></FONT>. Ci&ograve; &egrave; vero
+  anche se le due <FONT COLOR="Green"><B>funzioni</B></FONT> hanno
+  <FONT COLOR="Green"><B>tipi</B></FONT> di
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> diversi e, in base
+  all'<FONT COLOR="Green"><B>overload</B></FONT>, verrebbe selezionata la
+  <FONT COLOR="Green"><B>funzione</B></FONT> che appartiene alla
+  <FONT COLOR="Green"><B>classe</B></FONT> a cui <U>non</U> appartiene
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Per fare un esempio (riprendendo quello precedente), supponiamo che
+  <FONT COLOR="Maroon"><B>ogg</B></FONT> sia
+  un'<FONT COLOR="Green"><B>istanza</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT>
+  <FONT COLOR="#cc0000"><B>B</B></FONT>, e che entrambe le
+  <FONT COLOR="Green"><B>classi</B></FONT> possiedano un <B>metodo</B>, di
+  nome <FONT COLOR="Maroon"><B>fun</B></FONT>, con un
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>double</B></FONT> nella
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>&nbsp; e di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT> nella
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>B</B></FONT>:<BR>
+  <FONT COLOR="#cc0000"><B>&nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;A</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT COLOR="Maroon"><B>fun</B></FONT><FONT
+      COLOR="Blue"><B>(double) </B></FONT><FONT COLOR="#cc0000"><B>&nbsp; &nbsp;
+  &nbsp; &nbsp;
+  &nbsp;B</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT COLOR="Maroon"><B>fun</B></FONT><FONT
+      COLOR="Blue"><B>(int) </B></FONT><BR>
+  in esecuzione, la <B>chiamata</B>: &nbsp;
+  &nbsp;<FONT COLOR="Maroon"><B>ogg</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+      COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>10.7</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT><BR>
+  non considera l'<FONT COLOR="Green"><B>overload</B></FONT> e seleziona comunque
+  la <FONT COLOR="Maroon"><B>fun</B></FONT> di<FONT COLOR="#cc0000"><B> B
+  </B></FONT>con <FONT COLOR="Maroon"><B>argomento
+  </B></FONT><FONT COLOR="Blue"><B>int</B></FONT>, operando una
+  <I><B>conversione implicita</B></I> da
+  <FONT COLOR="Maroon"><B>10.7</B></FONT> a
+  <FONT COLOR="Maroon"><B>10</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>Questo comportamento deriva in realt&agrave; da una regola pi&ugrave;
+  generale: <U>l'<FONT COLOR="Green"><B>overload</B></FONT> non si applica
+  mai fra <FONT COLOR="Green"><B>funzioni</B></FONT> che appartengono a due
+  diversi <FONT COLOR="Green"><B>ambiti di visibilit&agrave;</B></FONT></U>,
+  anche se i due <FONT COLOR="Green"><B>ambiti</B></FONT> corrispondono a una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> e alla sua
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> e quindi la
+  <FONT COLOR="Green"><B>funzione</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> &egrave; accessibile nella
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> per
+  <FONT COLOR="Green"><B>eredit&agrave;</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>La dichiarazione
+using</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo gi&agrave; incontrato l'istruzione di
+  "<I><B>using-declaration</B></I>", parlando dei
+  <FONT COLOR="Blue"><B>namespace</B></FONT>, e sappiamo che serve a rendere
+  accessibile un <FONT COLOR="Green"><B>membro</B></FONT> di un
+  <FONT COLOR="Blue"><B>namespace</B></FONT> nello stesso
+  <FONT COLOR="Green"><B>ambito</B></FONT> in cui &egrave; inserita l'istruzione
+  stessa.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Analogamente, una <I><B>using-declaration</B></I> si pu&ograve; inserire
+  nella <B>definizione</B> di una <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> per trasferire nel suo
+  <FONT COLOR="Green"><B>ambito</B></FONT> un
+  <FONT COLOR="Green"><B>membro</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>. Riprendendo il solito esempio, supponiamo
+  ora di inserire nella <B>definizione</B> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT> l'istruzione:<BR>
+  <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; using
+  </B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+      COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><BR>
+  (notare che il <B>nome</B> <FONT COLOR="Maroon"><B>fun</B></FONT> appare
+  da solo, senza <FONT COLOR="Maroon"><B>argomenti</B></FONT> e senza parentesi).
+  Adesso s&igrave; che entrambe le
+  <FONT COLOR="Green"><B>funzioni</B></FONT> sono nello stesso
+  <FONT COLOR="Green"><B>ambito di visibilit&agrave;</B></FONT> e quindi si
+  pu&ograve; applicare l'<FONT COLOR="Green"><B>overload</B></FONT>. Pertanto
+  la <B>chiamata</B>: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+  &nbsp;<FONT COLOR="Maroon"><B>ogg</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+      COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>10.7</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT><BR>
+  selezioner&agrave; correttamente la
+  <FONT COLOR="Green"><B>funzione</B></FONT> con
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>
+  <FONT COLOR="Blue"><B>double</B></FONT>, cio&egrave; la
+  <FONT COLOR="Maroon"><B>fun</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Una <I><B>using-declaration</B></I>, se non si riferisce a un
+  &nbsp;<FONT COLOR="Blue"><B>namespace</B></FONT>, pu&ograve; essere inserita
+  <U>esclusivamente</U> nella <B>definizione</B> di una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT> e pu&ograve; riferirsi
+  <U>esclusivamente</U> a un <FONT COLOR="Green"><B>membro</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>. Non sono ammessi altri usi. Una
+  <I><B>using-directive</B></I> pu&ograve; essere usata solo con i
+  <FONT COLOR="Blue"><B>namespace</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Una <I><B>using-declaration</B></I>, inserita nella <B>definizione</B>
+  di una <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT>, pu&ograve; avere un altro effetto,
+  oltre a quello di rendere possibile
+  l'<FONT COLOR="Green"><B>overload</B></FONT>: permette di modificare
+  l'<B>accesso</B> ai <FONT COLOR="Green"><B>membri</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>. Infatti, se un
+  <FONT COLOR="Green"><B>membro</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> &egrave; <B>protetto</B> (non se &egrave;
+  <B>privato</B>), oppure se lo <FONT COLOR="Green"><B>specificatore di accesso
+  alla classe base</B></FONT> &egrave;
+  <FONT COLOR="Blue"><B>protected</B></FONT> o
+  <FONT COLOR="Blue"><B>private</B></FONT>, e la
+  <I><B>using-declaration</B></I> &egrave; inserita nella sezione
+  <B>pubblica</B> della <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT>, quel
+  <FONT COLOR="Green"><B>membro</B></FONT> diventa <B>pubblico</B>. Questo
+  fatto pu&ograve; essere utilizzato per specificare
+  <FONT COLOR="Red"><B>interfacce</B></FONT> che mettono a disposizione degli
+  utenti parti selezionate di una
+  <FONT COLOR="Green"><B>classe</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Eredit&agrave; multipla e classi basi
+virtuali</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Supponiamo che una certa <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>C</B></FONT>
+  <FONT COLOR="Green"><B>derivi</B></FONT>, per
+  <FONT COLOR="Green"><B>eredit&agrave;</B></FONT>
+  <FONT COLOR="Green"><B>multipla</B></FONT>, da due
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>genitrici</B></FONT>
+  <FONT COLOR="#cc0000"><B>B1</B></FONT> e
+  <FONT COLOR="#cc0000"><B>B2</B></FONT>. Nella <B>definizione</B> di
+  <FONT COLOR="#cc0000"><B>C</B></FONT>, il <B>nome</B> di ognuna delle due
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> deve essere preceduto dal rispettivo
+  <FONT COLOR="Green"><B>specificatore di accesso</B></FONT> (se non &egrave;
+  <FONT COLOR="Blue"><B>private</B></FONT>, che, ricordiamo, &egrave; lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT> di
+  <I><B>default</B></I>). Per esempio:<BR>
+  <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;class</B></FONT>
+  <FONT COLOR="#cc0000"><B>C
+  &nbsp;</B></FONT><FONT COLOR="Blue"><B>:</B></FONT>
+  <FONT COLOR="#cc0000"><B>&nbsp;</B></FONT><FONT COLOR="Blue"><B>protected</B></FONT>
+  <FONT COLOR="#cc0000"><B>B1</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Blue"><B>&nbsp;public</B></FONT>&nbsp;<FONT COLOR="#cc0000"><B>B2</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>{ &nbsp;</B></FONT><B>........</B>
+  &nbsp;<FONT COLOR="Blue"><B>}</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT><BR>
+  in questo caso, nella classe <FONT COLOR="#cc0000"><B>C</B></FONT>, &nbsp;i
+  <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>ereditati</B></FONT> da
+  <FONT COLOR="#cc0000"><B>B1</B></FONT> sono tutti <B>protetti</B>, mentre
+  quelli <FONT COLOR="Green"><B>ereditati</B></FONT> da
+  <FONT COLOR="#cc0000"><B>B2</B></FONT> rimangono come erano nella
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> (<B>protetti</B> o
+  <B>pubblici</B>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Green"><B>costruttore</B></FONT> di
+  <FONT COLOR="#cc0000"><B>C</B></FONT> deve <B>costruire</B> <U>entrambe</U>
+  le <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>genitrici</B></FONT>, cio&egrave; deve includere,
+  nella propria <B>lista di inizializzazione</B>, entrambe le <B>chiamate</B>
+  dei <FONT COLOR="Green"><B>costruttori</B></FONT> di<FONT COLOR="#cc0000"><B>
+  B1</B></FONT> e di <FONT COLOR="#cc0000"><B>B2</B></FONT>, o meglio, deve
+  includere quei <FONT COLOR="Green"><B>costruttori</B></FONT>
+  di<FONT COLOR="#cc0000"><B> B1</B></FONT> o di
+  <FONT COLOR="#cc0000"><B>B2</B></FONT> che non sono di
+  <I><B>default</B></I>, considerati indipendentemente (e quindi, a secondo
+  delle circostanze, deve includerli entrambi, o uno solo, o nessuno). Anche
+  nel caso che la <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>C</B></FONT> non abbia
+  <FONT COLOR="Green"><B>costruttori</B></FONT>, &egrave; <U>obbligatorio</U>
+  <B>definire</B> esplicitamente il
+  <FONT COLOR="Green"><B>costruttore</B></FONT> di <I><B>default</B></I> di
+  <FONT COLOR="#cc0000"><B>C</B></FONT> (anche con "corpo nullo"), con il solo
+  compito di <B>costruire</B> le <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>genitrici</B></FONT> (questa operazione non &egrave;
+  richiesta solo se <U>anche</U> le
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>genitrici</B></FONT> sono <U>entrambe</U>
+  <FONT COLOR="Green"><B>istanziate</B></FONT> mediante i loro rispettivi
+  <FONT COLOR="Green"><B>costruttori</B></FONT> di
+  <I><B>default</B></I>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Supponiamo ora che le <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="#cc0000"><B>B1</B></FONT> e
+  <FONT COLOR="#cc0000"><B>B2</B></FONT>
+  <FONT COLOR="Green"><B>derivino</B></FONT> a loro volta da un'unica
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>. Siccome ogni
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT>&nbsp;si deve occupare solo della
+  sua diretta <FONT COLOR="Green"><B>genitrice</B></FONT>, il compito di
+  <B>costruire</B> la <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> &egrave; delegato sia a
+  <FONT COLOR="#cc0000"><B>B1</B></FONT> che a
+  <FONT COLOR="#cc0000"><B>B2</B></FONT>, ma <U>non</U> a
+  <FONT COLOR="#cc0000"><B>C</B></FONT>. Per cui, quando viene
+  <FONT COLOR="Green"><B>istanziata</B></FONT>
+  <FONT COLOR="#cc0000"><B>C</B></FONT>, sono <B>costruite</B> direttamente
+  soltanto le sue dirette <FONT COLOR="Green"><B>genitrici</B></FONT>
+  <FONT COLOR="#cc0000"><B>B1</B></FONT> e
+  <FONT COLOR="#cc0000"><B>B2</B></FONT>, ma ciascuna di queste
+  <B>costruisce</B> a sua volta (e separatamente)
+  <FONT COLOR="#cc0000"><B>A</B></FONT>; in altre parole, ogni volta che &egrave;
+  <FONT COLOR="Green"><B>istanziata</B></FONT>
+  <FONT COLOR="#cc0000"><B>C</B></FONT>, la sua
+  <FONT COLOR="Green"><B>classe</B></FONT> "nonna"
+  <FONT COLOR="#cc0000"><B>A</B></FONT> <U>viene <B>costruita</B> due volte</U>
+  (<FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> "<I><B>replicate</B></I>"), come &egrave;
+  illustrato dalla seguente figura:</BIG>
+  <CENTER>
+    <IMG SRC="Ered3.gif" BORDER=0>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>La <I><B>replicazione</B></I> di una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> pu&ograve; causare due generi di
+  problemi:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>occupazione doppia di memoria, che pu&ograve; essere poco "piacevole",
+      soprattutto se gli <FONT COLOR="Green"><B>oggetti</B></FONT>
+      di<FONT COLOR="#cc0000"><B> C</B></FONT> sono molti e il
+      <FONT COLOR="Blue"><B>sizeof(</B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT><FONT
+	  COLOR="Blue"><B>)</B></FONT> &egrave; grande;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>errore di <I><B>ambiguit&agrave;</B></I>: se gli
+      <FONT COLOR="Green"><B>oggetti</B></FONT> di
+      <FONT COLOR="#cc0000"><B>C</B></FONT> non accedono mai direttamente ai
+      <FONT COLOR="Green"><B>membri</B></FONT>
+      <FONT COLOR="Green"><B>ereditati</B></FONT> da
+      <FONT COLOR="#cc0000"><B>A</B></FONT>, tutto bene; ma, se dovesse capitare
+      il contrario, il compilatore darebbe errore, non sapendo se accedere ai
+      <FONT COLOR="Green"><B>membri</B></FONT>
+      <FONT COLOR="Green"><B>ereditati</B></FONT>&nbsp;tramite
+      <FONT COLOR="#cc0000"><B>B1</B></FONT> o tramite
+      <FONT COLOR="#cc0000"><B>B2</B></FONT>.</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Il secondo problema pu&ograve; essere risolto (in un modo per&ograve;
+  poco "brillante") <B>qualificando</B> ogni volta i
+  <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>ereditati</B></FONT> da
+  <FONT COLOR="#cc0000"><B>A</B></FONT>. Per esempio, se
+  <FONT COLOR="Maroon"><B>ogg</B></FONT> &egrave;
+  un'<FONT COLOR="Green"><B>istanza</B></FONT> di
+  <FONT COLOR="#cc0000"><B>C</B></FONT> e
+  <FONT COLOR="Maroon"><B>ma</B></FONT> &egrave; un
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Green"><B>ereditato</B></FONT> da
+  <FONT COLOR="#cc0000"><B>A</B></FONT>:</BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>ogg</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="#cc0000"><B>B1</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+	    COLOR="Maroon"><B>ma</B></FONT></BIG></TD>
+      <TD>&nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG>indica che <FONT COLOR="Maroon"><B>ma</B></FONT> &egrave;
+	<FONT COLOR="Green"><B>ereditato</B></FONT> tramite
+	<FONT COLOR="#cc0000"><B>B1</B></FONT> </BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>ogg</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="#cc0000"><B>B2</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+	    COLOR="Maroon"><B>ma</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG>indica che <FONT COLOR="Maroon"><B>ma</B></FONT> &egrave;
+	<FONT COLOR="Green"><B>ereditato</B></FONT> tramite
+	<FONT COLOR="#cc0000"><B>B2</B></FONT> </BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Entrambi i problemi, invece, si possono risolvere definendo
+  <FONT COLOR="#cc0000"><B>A</B></FONT> come
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>
+  "<FONT COLOR="Green"><B>virtuale</B></FONT>": questo si ottiene inserendo,
+  nelle <B>definizioni</B> di tutte le
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>derivate</B></FONT>, la <I><B>parola-chiave
+  </B></I><FONT COLOR="Blue"><B>virtual</B></FONT> accanto allo
+  <FONT COLOR="Green"><B>specificatore di accesso alla classe base</B></FONT>.
+  Esempio:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>class</B></FONT> <FONT COLOR="#cc0000"><B>B1
+  </B></FONT><FONT COLOR="Blue"><B>:</B></FONT>
+  <FONT COLOR="Blue"><B>virtual</B></FONT>
+  <FONT COLOR="Blue"><B>protected</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> &nbsp;<FONT COLOR="Blue"><B>{
+  &nbsp;</B></FONT><B>........</B>
+  &nbsp;<FONT COLOR="Blue"><B>}</B></FONT> <FONT COLOR="Blue"><B>;<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</B></FONT>&nbsp;
+  &nbsp;&nbsp;&nbsp;<FONT COLOR="Blue"><B>class</B></FONT>
+  <FONT COLOR="#cc0000"><B>B2
+  </B></FONT><FONT COLOR="Blue"><B>:</B></FONT>
+  <FONT COLOR="Blue"><B>virtual</B></FONT>
+  <FONT COLOR="Blue"><B>public</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> &nbsp;<FONT COLOR="Blue"><B>{
+  &nbsp;</B></FONT><B>........</B>
+  &nbsp;<FONT COLOR="Blue"><B>}</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>La <I><B>parola-chiave
+  </B></I><FONT COLOR="Blue"><B>virtual</B></FONT> non ha alcun effetto sulle
+  <FONT COLOR="Green"><B>istanze</B></FONT> dirette di
+  <FONT COLOR="#cc0000"><B>B1</B></FONT> e di
+  <FONT COLOR="#cc0000"><B>B2</B></FONT>: ciascuna di esse <B>costruisce</B>
+  la propria <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> normalmente, come se
+  <FONT COLOR="Blue"><B>virtual</B></FONT> non fosse specificata. Ma, se viene
+  <FONT COLOR="Green"><B>istanziata</B></FONT> la
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>C</B></FONT>,
+  <FONT COLOR="Green"><B>derivata</B></FONT> da
+  <FONT COLOR="#cc0000"><B>B1</B></FONT> e da
+  <FONT COLOR="#cc0000"><B>B2</B></FONT> per
+  <FONT COLOR="Green"><B>eredit&agrave;</B></FONT>
+  <FONT COLOR="Green"><B>multipla</B></FONT>, <U>viene creata una sola copia
+  dei <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Green"><B>ereditati</B></FONT> da
+  <FONT COLOR="#cc0000"><B>A</B></FONT></U>, della cui <B>inizializzazione</B>
+  deve essere lo stesso
+  <FONT COLOR="Green"><B>costruttore</B></FONT>&nbsp;di
+  <FONT COLOR="#cc0000"><B>C</B></FONT> ad occuparsene (contravvenendo alla
+  regola generale che vuole che ogni
+  <FONT COLOR="Green"><B>figlia</B></FONT> si occupi solo delle sue immediate
+  <FONT COLOR="Green"><B>genitrici</B></FONT>); in altre parole, nella <B>lista
+  di inizializzazione</B> del
+  <FONT COLOR="Green"><B>costruttore</B></FONT>&nbsp;di
+  <FONT COLOR="#cc0000"><B>C</B></FONT> devono essere incluse le
+  <B>chiamate</B>, non solo dei
+  <FONT COLOR="Green"><B>costruttori</B></FONT> di<FONT COLOR="#cc0000"><B>
+  B1</B></FONT> e di <FONT COLOR="#cc0000"><B>B2</B></FONT>, ma anche del
+  <FONT COLOR="Green"><B>costruttore</B></FONT>&nbsp;di
+  <FONT COLOR="#cc0000"><B>A</B></FONT>. In sostanza la <I><B>parola-chiave
+  </B></I><FONT COLOR="Blue"><B>virtual</B></FONT> dice a
+  <FONT COLOR="#cc0000"><B>B1</B></FONT> e
+  <FONT COLOR="#cc0000"><B>B2</B></FONT> di non prendersi cura di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> quando viene creato un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> di
+  <FONT COLOR="#cc0000"><B>C</B></FONT>, perch&egrave; sar&agrave; la stessa
+  <FONT COLOR="Green"><B>classe</B></FONT> "nipote"
+  <FONT COLOR="#cc0000"><B>C</B></FONT> ad occuparsi della sua "nonna".</BIG>
+  <P ALIGN=Justify>
+  <BIG>Pertanto, se una <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT> &egrave; definita
+  <FONT COLOR="Green"><B>virtuale </B></FONT>da tutte le sue
+  &nbsp;<FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>derivate</B></FONT>,&nbsp;viene evitata la
+  <I><B>replicazione</B></I> e si realizza la cosidetta
+  <FONT COLOR="Green"><B>eredit&agrave;</B></FONT> a
+  <I><B>diamante</B></I>, rappresentata dal seguente grafico: </BIG>
+  <CENTER>
+    <IMG SRC="Ered4.gif" BORDER=0>
+  </CENTER>
+  <P ALIGN=Right>
+  <BIG><BIG><A HREF="p69/DT.h">[p69]</A><A HREF="p69/DT.cpp">[p69]</A>
+  <A HREF="p69/DTmain.cpp">[p69]</A></BIG></BIG>
+  <P ALIGN=Justify>
+  <BIG>Sulla reale efficacia
+  dell'<FONT COLOR="Green"><B>eredit&agrave;</B></FONT>
+  <FONT COLOR="Green"><B>multipla</B></FONT> esistono a tutt'oggi pareri
+  discordanti: qualcuno sostiene che bisognerebbe usarla il meno possibile,
+  perch&egrave; raramente pu&ograve; essere utile ed &egrave; meno sicura e
+  pi&ugrave; restrittiva
+  dell'<FONT COLOR="Green"><B>eredit&agrave;</B></FONT>
+  <FONT COLOR="Green"><B>singola</B></FONT> (per esempio non si pu&ograve;
+  convertire un <FONT COLOR="Green"><B>puntatore</B></FONT> da
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>base</B></FONT>
+  <FONT COLOR="Green"><B>virtuale</B></FONT> a
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Green"><B>derivata</B></FONT>); altri ritengono al contrario
+  che l'<FONT COLOR="Green"><B>eredit&agrave;</B></FONT>
+  <FONT COLOR="Green"><B>multipla</B></FONT> possa essere necessaria per la
+  risoluzione di molti problemi progettuali, fornendo la possibilit&agrave;
+  di associare due <FONT COLOR="Green"><B>classi</B></FONT> altrimenti non
+  correlate come parti dell'implementazione di una terza
+  <FONT COLOR="Green"><B>classe</B></FONT>. Questo fatto &egrave; evidente
+  in modo particolare quando le due
+  <FONT COLOR="Green"><B>classi</B></FONT> giocano ruoli logicamente distinti,
+  come vedremo in un esempio riportato nel prossimo capitolo, a proposito delle
+  <FONT COLOR="Green"><B>classi base astratte</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#virtual"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

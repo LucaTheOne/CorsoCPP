@@ -1,0 +1,982 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<HTML>
+<HEAD>
+  <META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <META name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.9-31 i686) [Netscape]">
+  <TITLE>Il Compilatore GNU gcc in ambiente Linux CPP </TITLE>
+</HEAD>
+<BODY text="#000000" bgcolor="#eeeeee" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<CENTER>
+  <H1>
+    <U><FONT color="#FF0000"><FONT size=+4>Il Compilatore GNU gcc in ambiente
+    Linux</FONT></FONT></U>
+  </H1>
+</CENTER>
+<CENTER>
+  <H1>
+      <HR WIDTH="100%">
+  </H1>
+</CENTER>
+<CENTER>
+  <H1>
+    <FONT color="#3333FF">Un compilatore integrato C/C++</FONT>
+  </H1>
+</CENTER>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT color="#000000"><FONT size=+1>Per Linux e' disponibile un compilatore
+  integrato C/C++: si tratta dei comandi GNU <B>gcc </B>e <B>g++,</B>
+  rispettivamente.</FONT></FONT> <BR>
+  <FONT color="#000000"><FONT size=+1>In realta g++&nbsp; e' uno script che
+  chiama gcc con opzioni specifiche per riconoscere il C++.</FONT></FONT>
+</BLOCKQUOTE>
+<P>
+  <HR WIDTH="100%">
+<CENTER>
+  <B><FONT color="#3333FF"><FONT size=+3>Il progetto GNU</FONT></FONT></B>
+</CENTER>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT color="#000000"><FONT size=+1>Il comando gcc, GNU Compiler Collection,
+  fa parte del progetto GNU&nbsp; (web server www.gnu.org).&nbsp; Il progetto
+  GNU fu lanciato nel 1984 da Richard Stallman con lo scopo di sviluppare un
+  sistema operativo di tipo Unix che fosse completamente "free"
+  software.</FONT></FONT>
+  <P>
+  <FONT color="#000000"><FONT size=+1>Cosa &egrave; GNU/Linux?</FONT></FONT>
+  <BR>
+  <FONT color="#000000"><FONT size=+1>Gnu Non &egrave; Unix!</FONT></FONT>
+  <BLOCKQUOTE>
+    &nbsp; <BR>
+    <FONT color="#000000"><FONT size=+1>"<I>GNU, che sta per "Gnu's Not Unix"
+    (Gnu Non &egrave; Unix), &egrave; il nome del sistema</I></FONT></FONT> <BR>
+    <I><FONT color="#000000"><FONT size=+1>software completo e Unix-compatibile
+    che sto scrivendo per distribuirlo</FONT></FONT></I> <BR>
+    <I><FONT color="#000000"><FONT size=+1>liberamente a chiunque lo possa
+    utilizzare. Molti altri volontari mi</FONT></FONT></I> <BR>
+    <I><FONT color="#000000"><FONT size=+1>stanno aiutando. Abbiamo gran
+    necessit&agrave; di contributi in tempo, denaro,</FONT></FONT></I> <BR>
+    <FONT color="#000000"><FONT size=+1><I>programmi e
+    macchine.</I>"</FONT></FONT>
+  </BLOCKQUOTE>
+  <P>
+  <FONT color="#000000"><FONT size=+1>[Richard Stallman, Dal manifesto GNU,
+  </FONT></FONT><A href="http://www.gnu.org/gnu/manifesto.html">http://www.gnu.org/gnu/manifesto.html</A>
+</BLOCKQUOTE>
+<P>
+  <HR WIDTH="100%">
+<CENTER>
+  <H4>
+    <FONT color="#3333FF"><FONT size=+2>Quale versione di gcc sto
+    usando?</FONT></FONT>
+  </H4>
+</CENTER>
+<BLOCKQUOTE>
+  <FONT color="#000000"><FONT size=+1>Si puo' determinare la versione del
+  compilatore invocando:</FONT></FONT>
+</BLOCKQUOTE>
+<CENTER>
+  <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+    <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+      <TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+3>gcc -v</FONT></FONT></B>
+</PRE>
+	<PRE><FONT color="#000000"><FONT size=+3>gcc version 2.96 20000731 (Red Hat Linux 7.1 2.96-98)</FONT></FONT>
+</PRE>
+      </TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<CENTER>
+    <HR WIDTH="100%">
+</CENTER>
+<BLOCKQUOTE>
+  <CENTER>
+    <H4>
+      <FONT color="#3333FF"><FONT size=+2>I passi della compilazione</FONT></FONT>
+    </H4>
+  </CENTER>
+  <P>
+  <FONT color="#000000"><FONT size=+1>Sia gcc che g++ processano file di input
+  attraverso uno o piu' dei seguenti passi:</FONT></FONT>
+  <P>
+  <FONT color="#000000"><FONT size=+1>1) preprocessing</FONT></FONT> <BR>
+  <FONT color="#000000"><FONT size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  -rimozione dei commenti</FONT></FONT> <BR>
+  <FONT color="#000000"><FONT size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  -interpretazioni di speciali direttive per il preprocessore denotate da "#"
+  come:</FONT></FONT> <BR>
+  <FONT color="#000000"><FONT size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  #include&nbsp; - include il contenuto di un determinato file,&nbsp; Es.&nbsp;
+  #include&lt;math.h&gt;</FONT></FONT> <BR>
+  <FONT color="#000000"><FONT size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  #define&nbsp;&nbsp;&nbsp; -definisce un nome simbolico o una variabile, Es.
+  #define MAX_ARRAY_SIZE 100</FONT></FONT>
+  <P>
+  <FONT color="#000000"><FONT size=+1>2) compilation</FONT></FONT> <BR>
+  <FONT color="#000000"><FONT size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  -traduzione del codice sorgente ricevuto dal preprocessore in codice
+  assembly</FONT></FONT>
+  <P>
+  <FONT color="#000000"><FONT size=+1>3) assembly</FONT></FONT> <BR>
+  <FONT color="#000000"><FONT size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  -creazione del codice oggetto</FONT></FONT>
+  <P>
+  <FONT color="#000000"><FONT size=+1>4) linking</FONT></FONT> <BR>
+  <FONT color="#000000"><FONT size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  -combinazione delle funzioni definite in altri file sorgenti o definite in
+  librerie con la funzione main() per creare il file eseguibile.</FONT></FONT>
+</BLOCKQUOTE>
+<P>
+  <HR WIDTH="100%">
+<CENTER>
+  <B><FONT color="#3333FF"><FONT size=+3>Estensioni</FONT></FONT></B>
+  <P>
+  <FONT color="#000000"><FONT size=+1>Alcuni suffissi di moduli implicati nel
+  processo di compilazione:</FONT></FONT>
+</CENTER>
+<BLOCKQUOTE>
+  <FONT color="#000000"><FONT size=+1>&nbsp;<B>.c&nbsp;</B>&nbsp;&nbsp; modulo
+  sorgente C; da preprocessare, compilare e assemblare</FONT></FONT> <BR>
+  <FONT color="#000000"><FONT size=+1>&nbsp;<B>.cc</B>&nbsp;&nbsp; modulo sorgente
+  C++; da preprocessare, compilare e assemblare</FONT></FONT> <BR>
+  <FONT color="#000000"><FONT size=+1>&nbsp;<B>.cpp&nbsp;</B> modulo sorgente
+  C++; da preprocessare, compilare e assemblare</FONT></FONT> <BR>
+  <FONT color="#000000"><FONT size=+1>&nbsp;<B>.h&nbsp;</B>&nbsp;&nbsp; modulo
+  per il preprocessore; di solito non nominato nella riga di
+  commando</FONT></FONT> <BR>
+  <FONT color="#000000"><FONT size=+1>&nbsp;<B>.o&nbsp;</B>&nbsp;&nbsp; modulo
+  oggetto; da passare linker</FONT></FONT> <BR>
+  <FONT color="#000000"><FONT size=+1>&nbsp;<B>.a</B>&nbsp;&nbsp;&nbsp; sono
+  librerie statiche</FONT></FONT> <BR>
+  <FONT color="#000000"><FONT size=+1>&nbsp;<B>.so</B>&nbsp;&nbsp; sono librerie
+  dinamiche</FONT></FONT>
+</BLOCKQUOTE>
+<P>
+  <HR WIDTH="100%">
+<CENTER>
+  <B><FONT color="#3333FF"><FONT size=+3>L' input/output di
+  gcc</FONT></FONT></B>
+</CENTER>
+<P>
+<BR>
+<BLOCKQUOTE>
+  <FONT color="#000000"><FONT size=+1>gcc accetta in input ed effettua la
+  compilazione di codice C o C++ in un solo colpo.</FONT></FONT> <BR>
+  <FONT color="#000000"><FONT size=+1>Consideriamo il seguente codice sorgente
+  C:</FONT></FONT> <BR>
+  &nbsp; <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+3>/* il codice C pippo.c */</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>#include &lt;stdio.h&gt;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3></FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>int main() {</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>&nbsp; puts("ciao pippo!");</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>&nbsp; return 0;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>}</FONT></FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <FONT color="#000000"><FONT size=+1>Per effettuare la
+  compilazione</FONT></FONT> <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+3>gcc pippo.c</FONT></FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <FONT color="#000000"><FONT size=+1>In questo caso l' output di default e'
+  direttamente l'eseguibile <B>a.out.</B></FONT></FONT>
+  <P>
+  <FONT color="#000000"><FONT size=+1>Di solito si specifica il nome del file
+  di output utilizzando l' opzione&nbsp; <B>-o </B>:</FONT></FONT> <BR>
+  &nbsp; <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+3>gcc -o prova pippo.c</FONT></FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <FONT color="#000000"><FONT size=+1>L'eseguibile puo' essere lanciato usando
+  semplicemente</FONT></FONT> <BR>
+  &nbsp; <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+3>./prova</FONT></FONT></B>
+</PRE>
+	  <PRE><FONT color="#000000"><FONT size=+3>ciao pippo!</FONT></FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <FONT color="#000000"><FONT size=+1><B>Nota.</B> Usare "<B>./</B>" puo' sembrare
+  superfluo. In realta' si dimostra molto utile per evitare di lanciare
+  involontariamente un programma omonimo, per esempio il comando
+  "test"!</FONT></FONT>
+  <P>
+  <FONT color="#000000"><FONT size=+1>Consideriamo ora&nbsp; un codice sorgente
+  C++<B> </B>analogo:</FONT></FONT> <BR>
+  &nbsp; <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+3>// Il codice C++ pippo.cpp</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>#include&lt;iostream&gt;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3></FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>int main() {</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>&nbsp;&nbsp; cout&lt;&lt;"ciao pippo!"&lt;&lt;'\n';</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>&nbsp;&nbsp; return 0;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>}</FONT></FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <FONT color="#000000"><FONT size=+1>Questa volta compiliamo
+  usando</FONT></FONT> <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+3>g++ -o prova pippo.cpp</FONT></FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+</BLOCKQUOTE>
+<P>
+  <HR WIDTH="100%">
+<CENTER>
+  <B><FONT color="#3333FF"><FONT size=+3>Il valore restituito al
+  sistema</FONT></FONT></B>
+</CENTER>
+<P>
+<BR>
+<BLOCKQUOTE>
+  <FONT color="#000000"><FONT size=+1>Per verificare il valore restituito dal
+  programma al sistema tramite l'istruzione di<B> return
+  </B>usiamo</FONT></FONT> <BR>
+  &nbsp; <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><FONT color="#000000"><FONT size=+3><B>./prova</B></FONT></FONT>
+<FONT color="#000000"><FONT size=+3>ciao pippo!</FONT></FONT>
+<FONT color="#000000"><FONT size=+3><B>echo $?</B></FONT></FONT>
+<FONT color="#000000"><FONT size=+3>0</FONT></FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+</BLOCKQUOTE>
+<CENTER>
+    <HR WIDTH="100%">
+  <P>
+  <B><FONT color="#3333FF"><FONT size=+3>Passaggi intermedi di
+  compilazione</FONT></FONT></B>
+</CENTER>
+<BLOCKQUOTE>
+  &nbsp; <BR>
+  <FONT color="#000000"><FONT size=+1>Per compilare senza effettuare il link
+  usare</FONT></FONT> <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+2>g++ -c pippo.cpp&nbsp;</FONT></FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <FONT color="#000000"><FONT size=+1>In questo caso viene creato il file oggetto
+  <B>pippo.o</B> .</FONT></FONT> <BR>
+  <FONT color="#000000"><FONT size=+1>Per effettuare il link
+  usiamo</FONT></FONT> <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+2>g++ -o prova pippo.o&nbsp;</FONT></FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+</BLOCKQUOTE>
+<CENTER>
+    <HR WIDTH="100%">
+  <P>
+  <B><FONT color="#3333FF"><FONT size=+3>I messaggi del
+  compilatore</FONT></FONT></B>
+</CENTER>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  &nbsp; <BR>
+  <FONT color="#000000"><FONT size=+1>Il compilatore&nbsp; invia spesso dei
+  messaggi all'utente. Questi messaggi si possono classificare in due famiglie:
+  messaggi di avvertimento (<B>warning messagges</B>) e messaggi di errore
+  (<B>error messagges</B>). I messaggi di avvertimento indicano la presenza
+  di parti di codice presumibilmente mal scritte o di problemi che potrebbero
+  avvenire in seguito, <U>durante l'esecuzione del programma</U>. I messaggi
+  di avvertimento non interrompono comunque la compilazione.I messaggi di errore
+  invece indicano qualcosa che deve essere necessariamente corretto e causano
+  <U>l'interruzione della compilazione</U>.</FONT></FONT>
+  <P>
+  <FONT size=+1>Esempio di un codice C++ che genera un warning:</FONT> <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+2>// example1.cpp</FONT></FONT></B>
+</PRE>
+	  <PRE><B><FONT color="#000000"><FONT size=+2>#include&lt;iostream&gt;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2></FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>float multi(int a, int b) {</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>&nbsp; return a*b;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>};</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2></FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>int main() {</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>&nbsp; float a=2.5;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>&nbsp; int b=1;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>&nbsp;&nbsp;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>&nbsp; cout&lt;&lt;"a="&lt;&lt;a&lt;&lt;", b="&lt;&lt;b&lt;&lt;'\n';</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>&nbsp; cout&lt;&lt;"a*b="&lt;&lt;multi(a,b)&lt;&lt;'\n';</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>&nbsp;&nbsp;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>&nbsp; return 0;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>}</FONT></FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <FONT size=+1>In fase di compilazione apparira' il seguente warning:</FONT>
+  <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><FONT color="#000000"><FONT size=+2>example1.cpp: In function `int main ()':</FONT></FONT>
+<FONT color="#000000"><FONT size=+2>example1.cpp:12: warning: passing `float' for argument passing 1 of&nbsp;</FONT></FONT>
+<FONT color="#000000"><FONT size=+2>`multi (int, int)'</FONT></FONT>
+<FONT color="#000000"><FONT size=+2>example1.cpp:12: warning: argument to `int' from `float'</FONT></FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <FONT size=+1>Il messaggio ci avvisa che alla linea 12 del <B>main() </B>e'
+  stato passato alla funzione <B>multi </B>un float invece che un int.</FONT>
+  <P>
+  <FONT size=+1>Esempio di un codice che genera un messaggio di errore:</FONT>
+  <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+2>// example1.cpp</FONT></FONT></B>
+</PRE>
+	  <PRE><B><FONT size=+2><FONT color="#000000">#include&lt;iostream&gt;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000"></FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">float multi(int a, int b) {</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; </FONT><FONT color="#FF0000">return a*b</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">};</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000"></FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">int main() {</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; int a=2;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; int b=1;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp;&nbsp;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; cout&lt;&lt;"a="&lt;&lt;a&lt;&lt;", b="&lt;&lt;b&lt;&lt;'\n';</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; cout&lt;&lt;"a/b="&lt;&lt;multi(a,b)&lt;&lt;'\n';</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp;&nbsp;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; return 0;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">}</FONT></FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <FONT size=+1>Si noti che l' instruzione di return all' interno della funzione
+  multi non termina con il <B>;</B> .</FONT> <BR>
+  <FONT size=+1>A causa di questo grave errore la compilazione non puo' essere
+  portata a termine:</FONT> <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><FONT color="#FF0000"><FONT size=+2>example1.cpp: In function `float multi (int, int)':</FONT></FONT>
+<FONT color="#FF0000"><FONT size=+2>example1.cpp:5: parse error before `}'</FONT></FONT>
+<FONT color="#FF0000"><FONT size=+2>example1.cpp:5: warning: no return statement in function returning</FONT></FONT>
+<FONT color="#FF0000"><FONT size=+2>non-void</FONT></FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+</BLOCKQUOTE>
+<P>
+<BR>
+  <HR WIDTH="100%">
+<B><FONT color="#3333FF"><FONT size=+3></FONT></FONT></B>
+<CENTER>
+  <B><FONT color="#3333FF"><FONT size=+3>Controlliamo i livelli di
+  warning</FONT></FONT></B>
+</CENTER>
+<BLOCKQUOTE>
+  &nbsp; <BR>
+  <FONT color="#000000"><FONT size=+1>Per inibire tutti i messaggi di warinig
+  usare l' opzione <B>-w</B></FONT></FONT> <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+2>g++ -w -o prova example1.cpp</FONT></FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <FONT color="#000000"><FONT size=+1>Per usare il massimo livello di warning
+  usare l' opzione<B> -Wall</B></FONT></FONT> <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+2>g++ -Wall -o prova example1.cpp</FONT></FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+</BLOCKQUOTE>
+<P>
+  <HR WIDTH="100%">
+<BLOCKQUOTE>
+  <B><FONT color="#3333FF"><FONT size=+3></FONT></FONT></B>&nbsp;
+  <CENTER>
+    <BR>
+    <B><FONT color="#3333FF"><FONT size=+3>Compilare per effetture il
+    debug</FONT></FONT></B>
+  </CENTER>
+  <BLOCKQUOTE>
+    &nbsp; <BR>
+    <FONT color="#000000"><FONT size=+1>Se siete intenzionati ad effettuare il
+    debug di un programma, utilizzate sempre l'opzione
+    <B>-g</B>:</FONT></FONT> <BR>
+    &nbsp;
+    <CENTER>
+      <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	<TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	  <TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+2>g++ -Wall -g -o pippo example1.cpp</FONT></FONT></B>
+</PRE>
+	  </TD>
+	</TR>
+      </TABLE>
+    </CENTER>
+    <P>
+    <FONT size=+1></FONT>
+    <P ALIGN=Justify>
+    <FONT size=+1>L' opzione <B>-g</B> fa in modo che il programma eseguibile
+    contenga informazioni supplementari che permettono al debugger di collegare
+    le istruzioni in linguaggio macchina che si trovano nell'eseguibile alle
+    righe del codice corrispondenti nei sorgenti C/C++.</FONT>
+  </BLOCKQUOTE>
+</BLOCKQUOTE>
+<P>
+  <HR WIDTH="100%">
+<BLOCKQUOTE>
+  <BLOCKQUOTE>
+    <CENTER>
+      <B><FONT color="#3333FF"><FONT size=+3>Autopsia di un programma
+      defunto</FONT></FONT></B>
+    </CENTER>
+    <P ALIGN=Justify>
+    <FONT color="#000000"><FONT size=+1>Il seguente codice C++,
+    <B>wrong.cpp</B>,&nbsp; genera un errore (nella fattispecie una divisione
+    per 0)&nbsp; in <I>fase di esecuzione</I>&nbsp; che porta alla terminazione
+    innaturale del programma</FONT></FONT>
+    <BLOCKQUOTE>
+      &nbsp;
+      <CENTER>
+	<TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	  <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	    <TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+2>#include&lt;iostream&gt;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2></FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>int div(int a, int b) {</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>&nbsp; return a/b;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>};</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2></FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2></FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>int main() {</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>&nbsp; int a=2;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>&nbsp; int b=0;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2></FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>&nbsp; cout&lt;&lt;"a="&lt;&lt;a&lt;&lt;", b="&lt;&lt;b&lt;&lt;'\n';</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>&nbsp; cout&lt;&lt;"a/b="&lt;&lt;div(a,b)&lt;&lt;'\n';</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2></FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>&nbsp; return 0;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>}</FONT></FONT></B>
+</PRE>
+	    </TD>
+	  </TR>
+	</TABLE>
+      </CENTER>
+    </BLOCKQUOTE>
+    <P>
+    <FONT size=+1>Compiliamo il file <B>wrong_code.cpp</B></FONT>
+    <BLOCKQUOTE>
+      &nbsp;
+      <CENTER>
+	<TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	  <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	    <TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+2>g++ -Wall -g -o wrong_program wrong_code.cpp</FONT></FONT></B>
+</PRE>
+	    </TD>
+	  </TR>
+	</TABLE>
+      </CENTER>
+    </BLOCKQUOTE>
+    <P ALIGN=Justify>
+    <FONT size=+1>Il codice e' sintatticamente ineccepibile e verra' compilato
+    senza problemi. In fase di esecuzione si verifica tuttavia una divisione
+    per zero che causa la morte del programma.</FONT>
+    <BLOCKQUOTE>
+      &nbsp;
+      <CENTER>
+	<TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	  <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	    <TD VALIGN=TOP NOSAVE><PRE><FONT size=+2><FONT color="#000000"><B>./wrong_program</B></FONT></FONT>
+<FONT size=+2><FONT color="#000000">a=2, b=0</FONT></FONT>
+<FONT size=+2><FONT color="#FF0000">Floating exception (core dumped)</FONT></FONT>
+</PRE>
+	    </TD>
+	  </TR>
+	</TABLE>
+      </CENTER>
+    </BLOCKQUOTE>
+    <P ALIGN=Justify>
+    <FONT size=+1>Linux genera nella directory corrente un file in cui scarica
+    la memoria memoria assocciata al programma (<I>core dump</I>):</FONT>
+    <BLOCKQUOTE>
+      <BLOCKQUOTE>
+	&nbsp;
+	<CENTER>
+	  <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	    <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	      <TD VALIGN=TOP NOSAVE><PRE><FONT size=+2><FONT color="#000000"><B>ls -sh</B></FONT></FONT>
+<FONT size=+2><FONT color="#000000">total 132k</FONT></FONT>
+<FONT size=+2><FONT color="#FF0000">100k core</FONT><FONT color="#000000">&nbsp; 4.0k wrong_code.cpp&nbsp;&nbsp; 28k wrong_program*</FONT></FONT>
+</PRE>
+	      </TD>
+	    </TR>
+	  </TABLE>
+	</CENTER>
+      </BLOCKQUOTE>
+    </BLOCKQUOTE>
+    <P ALIGN=Justify>
+    <FONT size=+1>Il file <B>core</B> contiene l 'immagine della memoria (riferita
+    al nostro programma) al momento dell'errore.</FONT> <BR>
+    <FONT size=+1>Possiamo effettuare l' autopsia del programma utilizzando il
+    debugger GNU <B>gdb</B></FONT>
+    <BLOCKQUOTE>
+      <BLOCKQUOTE>
+	&nbsp;
+	<CENTER>
+	  <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	    <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	      <TD VALIGN=TOP NOSAVE><PRE><FONT color="#000000"><FONT size=+2><B>gdb wrong_program&nbsp; core</B></FONT></FONT>
+<FONT color="#000000"><FONT size=+2><B></B></FONT></FONT>
+<FONT color="#000000"><FONT size=+2>...</FONT></FONT>
+<FONT color="#000000"><FONT size=+2></FONT></FONT>
+<FONT color="#000000"><FONT size=+2>Core was generated by `wrong_prog'.</FONT></FONT>
+<FONT color="#000000"><FONT size=+2></FONT></FONT>
+<FONT color="#000000"><FONT size=+2>...</FONT></FONT>
+<FONT color="#000000"><FONT size=+2></FONT></FONT>
+<FONT color="#000000"><FONT size=+2>#0&nbsp; 0x080486a5 in div (a=2, b=0) at wrong_code.cpp:4</FONT></FONT>
+<FONT color="#000000"><FONT size=+2>4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return a/b;</FONT></FONT>
+<FONT color="#000000"><FONT size=+2><B>(gdb) where</B></FONT></FONT>
+<FONT color="#000000"><FONT size=+2>#0&nbsp; 0x080486a5 in div (a=2, b=0) at wrong_code.cpp:4</FONT></FONT>
+<FONT color="#000000"><FONT size=+2>#1&nbsp; 0x08048737 in main () at wrong_code.cpp:13</FONT></FONT>
+<FONT color="#000000"><FONT size=+2>#2&nbsp; 0x400b1647 in __libc_start_main (main=0x80486b0 &lt;main&gt;, argc=1,</FONT></FONT>
+<FONT color="#000000"><FONT size=+2>&nbsp;&nbsp;&nbsp; ubp_av=0xbfffe614, init=0x80484e8 &lt;_init&gt;, fini=0x80487b0 &lt;_fini&gt;,</FONT></FONT>
+<FONT color="#000000"><FONT size=+2>&nbsp;&nbsp;&nbsp; rtld_fini=0x4000dcd4 &lt;_dl_fini&gt;, stack_end=0xbfffe60c)</FONT></FONT>
+<FONT color="#000000"><FONT size=+2>&nbsp;&nbsp;&nbsp; at ../sysdeps/generic/libc-start.c:129</FONT></FONT>
+<FONT color="#000000"><FONT size=+2><B>(gdb) quit</B></FONT></FONT>
+</PRE>
+	      </TD>
+	    </TR>
+	  </TABLE>
+	</CENTER>
+      </BLOCKQUOTE>
+    </BLOCKQUOTE>
+    <BLOCKQUOTE>
+      &nbsp;
+    </BLOCKQUOTE>
+    <P ALIGN=Justify>
+    <FONT size=+1>Il comando <B>where </B>di<B> </B>gdb<B> </B>ci informa che
+    l' errore si e' verificato alla riga 4 del modulo wrong_code.cpp.</FONT>
+    <BR>
+    <FONT size=+1>Esiste una versione con interfaccia grafica di&nbsp; gdb :<B>
+    kdbg</B></FONT>
+  </BLOCKQUOTE>
+</BLOCKQUOTE>
+<P>
+  <HR WIDTH="100%">
+<BLOCKQUOTE>
+  <BLOCKQUOTE>
+    <CENTER>
+      <B><FONT color="#3333FF"><FONT size=+3>Ottimizzazione</FONT></FONT></B>
+    </CENTER>
+  </BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT color="#000000"><FONT size=+1>Il compilatore gcc consente di utilizzare
+  diverse opzioni per ottenere un risultato pi&ugrave; o meno ottimizzato.
+  L'ottimizzazione richiede una potenza elaborativa maggiore, al crescere del
+  livello di ottimizzazione richiesto. L' opzione <B>-O<I>n</I></B> ottimizza
+  il codice, dove <B><I>n</I></B> &eacute; il livello di ottimizzazione. Il
+  massimo livello di ottimizzazione allo stato attuale &eacute; il <B>3,</B>
+  quello generalmente pi&ugrave; usato &eacute;&nbsp; <B>2</B>. Quando non
+  si deve eseguire il debug &eacute; consigliato ottimizzare il
+  codice.</FONT></FONT> <BR>
+  &nbsp; <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER COLS=2 WIDTH="50%" NOSAVE >
+      <TR NOSAVE>
+	<TD NOSAVE><FONT size=+1>&nbsp;Opzione</FONT></TD>
+	<TD><FONT size=+1>&nbsp;Descrizione</FONT></TD>
+      </TR>
+      <TR NOSAVE>
+	<TD><FONT size=+1>&nbsp;-O, -O1&nbsp;</FONT></TD>
+	<TD NOSAVE><FONT size=+1>&nbsp;Ottimizzazione minima</FONT></TD>
+      </TR>
+      <TR>
+	<TD><FONT size=+1>&nbsp;-O2</FONT></TD>
+	<TD><FONT size=+1>&nbsp;Ottimizzazione media</FONT></TD>
+      </TR>
+      <TR>
+	<TD><FONT size=+1>&nbsp;-O3&nbsp;</FONT></TD>
+	<TD><FONT size=+1>Ottimizzazione massima</FONT></TD>
+      </TR>
+      <TR>
+	<TD><FONT size=+1>&nbsp;-O0</FONT></TD>
+	<TD><FONT size=+1>Nessuna ottimizzazione</FONT></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <FONT size=+1>Esempio di un codice chiaramente inefficiente</FONT>
+  <BLOCKQUOTE>
+    <BLOCKQUOTE>
+      &nbsp;
+      <CENTER>
+	<TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	  <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	    <TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2><FONT color="#000000">int main() {</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000"></FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; int a=10;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; int b=1;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; int c;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000"></FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; for (int i=0; i&lt;1e9; i++) {</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp;&nbsp;&nbsp; c=i+</FONT><FONT color="#FF0000">a*b-a/b</FONT><FONT color="#000000">;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; }</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000"></FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; return 0;&nbsp;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">}</FONT></FONT></B>
+</PRE>
+	    </TD>
+	  </TR>
+	</TABLE>
+      </CENTER>
+    </BLOCKQUOTE>
+  </BLOCKQUOTE>
+  <P>
+  <FONT size=+1>Confronto dei tempi di esecuzione in funzione di livelli di
+  ottimizzazione crescente</FONT> <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER COLS=2 WIDTH="50%" NOSAVE >
+      <TR NOSAVE>
+	<TD NOSAVE><FONT size=+1>&nbsp;Livello</FONT></TD>
+	<TD><FONT size=+1>&nbsp;Tempo di esecuzione (secondi)</FONT></TD>
+      </TR>
+      <TR NOSAVE>
+	<TD><FONT size=+1>&nbsp;O0</FONT></TD>
+	<TD NOSAVE><FONT size=+1>&nbsp;32.2</FONT></TD>
+      </TR>
+      <TR>
+	<TD><FONT size=+1>&nbsp;O1</FONT></TD>
+	<TD><FONT size=+1>&nbsp;5.4</FONT></TD>
+      </TR>
+      <TR>
+	<TD><FONT size=+1>&nbsp;O2</FONT></TD>
+	<TD><FONT size=+1>&nbsp;5.2</FONT></TD>
+      </TR>
+      <TR>
+	<TD><FONT size=+1>&nbsp;O3</FONT></TD>
+	<TD><FONT size=+1>&nbsp;5.2</FONT></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+</BLOCKQUOTE>
+<CENTER>
+    <HR WIDTH="100%">
+  <P>
+  <B><FONT color="#3333FF"><FONT size=+3>Compilazione di un programma
+  modulare</FONT></FONT></B>
+</CENTER>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT color="#000000"><FONT size=+1>Un programma modulare e' un programma
+  spezzettato in componenti piu' piccole con&nbsp; funzioni specifiche. La
+  programmazione modulare e' piu' facile da comprendere e da
+  correggere.</FONT></FONT>
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+  <BLOCKQUOTE>
+    <BLOCKQUOTE>
+      <FONT size=+1>Nel seguito abbiamo un programma C++ composto da tre moduli:
+      <B>main.cpp</B>, <B>myfunc.cpp </B>e <B>myfunc.h</B> .</FONT> <BR>
+      &nbsp; <BR>
+      &nbsp;
+      <CENTER>
+	<TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	  <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	    <TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2><FONT color="#009900">// main.cpp</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">#include&lt;iostream&gt;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">#include"myfunc.h"</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000"></FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">int main() {</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000"></FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; int a=6;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; int b=3;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp;&nbsp;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; cout&lt;&lt;"a="&lt;&lt;a&lt;&lt;", b="&lt;&lt;b&lt;&lt;'\n';</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; cout&lt;&lt;"a/b="&lt;&lt;div(a,b)&lt;&lt;'\n';</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; cout&lt;&lt;"a*b="&lt;&lt;mul(a,b)&lt;&lt;'\n';</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000"></FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; return 0;&nbsp;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">}</FONT></FONT></B>
+</PRE>
+	    </TD>
+	  </TR>
+	</TABLE>
+      </CENTER>
+    </BLOCKQUOTE>
+  </BLOCKQUOTE>
+  <BLOCKQUOTE>
+    <BLOCKQUOTE>
+      &nbsp;
+      <CENTER>
+	<TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	  <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	    <TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2><FONT color="#009900">// myfunc.h</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">int div(int a, int b);</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">int mul(int a, int b);</FONT></FONT></B>
+</PRE>
+	    </TD>
+	  </TR>
+	</TABLE>
+      </CENTER>
+    </BLOCKQUOTE>
+  </BLOCKQUOTE>
+  <BLOCKQUOTE>
+    <BLOCKQUOTE>
+      &nbsp;
+      <CENTER>
+	<TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	  <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	    <TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2><FONT color="#009900">// myfunc.cpp</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">int div(int a, int b) {</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; return a/b;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">};</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000"></FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">int mul(int a, int b) {</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; return a*b;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">};</FONT></FONT></B>
+</PRE>
+	    </TD>
+	  </TR>
+	</TABLE>
+      </CENTER>
+    </BLOCKQUOTE>
+  </BLOCKQUOTE>
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+  <OL>
+    <LI>
+      <FONT size=+1>Per compilare usiamo</FONT>
+      <CENTER>
+	<TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	  <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	    <TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2>g++ -Wall -g -o prova main.cpp myfunc.cpp</FONT></B>
+</PRE>
+	    </TD>
+	  </TR>
+	</TABLE>
+      </CENTER>
+      <P>
+      <FONT size=+1>Si noti che il file <B>myfunc.h </B>non appare nella riga di
+      comando, verra' incluso dal gcc in fase di precompilazione.</FONT>
+  </OL>
+</BLOCKQUOTE>
+<P>
+  <HR WIDTH="100%">
+<BLOCKQUOTE>
+  <CENTER>
+    <B><FONT color="#3333FF"><FONT size=+3>Inclusione di librerie in fase di
+    compilazione</FONT></FONT></B>
+  </CENTER>
+  <P ALIGN=Justify>
+  <FONT color="#000000"><FONT size=+1>L'opzione -<B>lnome_libreria</B> compila
+  utilizzando la libreria indicata, tenendo presente che, per questo, verr&agrave;
+  cercato un file che inizia per <B>lib</B>, continua con il nome indicato
+  e termina con <B>.a </B>oppure <B>.so</B>.</FONT></FONT>
+  <BLOCKQUOTE>
+    <FONT size=+1>Modifichiamo i moduli myfunc.h e myfunc.cpp aggiungendo la
+    funzione <B>pot</B>:</FONT>
+    <BLOCKQUOTE>
+      &nbsp;
+      <CENTER>
+	<TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	  <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	    <TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2><FONT color="#000000">// myfunc.h</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000"></FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">int div(int a, int b);</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">int mul(int a, int b);</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#009900">float pot(float a, float b);</FONT></FONT></B>
+</PRE>
+	    </TD>
+	  </TR>
+	</TABLE>
+      </CENTER>
+      <BLOCKQUOTE>
+	<BLOCKQUOTE>
+	  &nbsp;
+	  <CENTER>
+	    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+		<TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+2>// myfunc.cpp</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>int div(int a, int b) {</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>&nbsp; return a/b;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>};</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2></FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>int mul(int a, int b) {</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>&nbsp; return a*b;</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+2>};</FONT></FONT></B>
+</PRE>
+		  <PRE><B><FONT color="#009900"><FONT size=+2>float pot(float a, float b) {&nbsp;&nbsp;&nbsp;&nbsp;</FONT></FONT></B>
+<B><FONT color="#009900"><FONT size=+2>&nbsp; return pow(a,b);</FONT></FONT></B>
+<B><FONT color="#009900"><FONT size=+2>}</FONT></FONT></B>
+</PRE>
+		</TD>
+	      </TR>
+	    </TABLE>
+	  </CENTER>
+	</BLOCKQUOTE>
+	<P>
+	<FONT size=+1>La compilazione pero' si interrompe</FONT>
+      </BLOCKQUOTE>
+      <CENTER>
+	<TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	  <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	    <TD VALIGN=TOP NOSAVE><PRE><FONT size=+2><B><FONT color="#000000">g++ -Wall -g -o prova main.cpp myfunc.cpp</FONT></B></FONT>
+<FONT size=+2><B><FONT color="#000000"></FONT></B></FONT>
+<FONT size=+2><FONT color="#FF0000">myfunc.cpp: In function `float pot (float, float)':</FONT></FONT>
+<FONT size=+2><FONT color="#FF0000">myfunc.cpp:11: `pow' undeclared (first use this function)</FONT></FONT>
+<FONT size=+2><FONT color="#FF0000">myfunc.cpp:11: (Each undeclared identifier is reported only once for</FONT></FONT>
+<FONT size=+2><FONT color="#FF0000">each function it appears in.)</FONT></FONT>
+</PRE>
+	    </TD>
+	  </TR>
+	</TABLE>
+      </CENTER>
+      <P ALIGN=Justify>
+      <FONT size=+1>La funzione <B>pow</B> e' contenuta nella libreria matematica
+      <B>math,</B> dobbiamo allora aggiungere l'istruzione include</FONT>
+      <FONT size=+1>nel modulo :</FONT> <BR>
+      &nbsp;
+      <CENTER>
+	<TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	  <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	    <TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+2>// myfunc.cpp</FONT></FONT></B>
+</PRE>
+	      <PRE><B><FONT size=+2><FONT color="#009900">#include&lt;math.h&gt;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#009900"></FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">int div(int a, int b) {</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; return a/b;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">};</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000"></FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">int mul(int a, int b) {</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; return a*b;</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">};</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000"></FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">float pot(float a, float b) {</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">&nbsp; return pow(a,b);</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#000000">}</FONT></FONT></B>
+</PRE>
+	    </TD>
+	  </TR>
+	</TABLE>
+      </CENTER>
+    </BLOCKQUOTE>
+    <P>
+    <FONT size=+1>e compilare con un link alla libreria <B>libm.so</B></FONT>
+    <BLOCKQUOTE>
+      &nbsp;
+      <CENTER>
+	<TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	  <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	    <TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2><FONT color="#000000">g++ -Wall -g -o prova main.cpp myfunc.cpp </FONT><FONT color="#009900">-lm&nbsp;</FONT></FONT></B>
+</PRE>
+	    </TD>
+	  </TR>
+	</TABLE>
+      </CENTER>
+    </BLOCKQUOTE>
+    <P>
+    <FONT size=+1>Di default il compilatore esegue la ricerca della libreria
+    nel direttorio standard&nbsp; <B>/usr/lib/</B>. Tramite l' opzione
+    <B>-L/nome_dir</B>, e' possibile aggiunge la directory <B>/nome_dir</B> alla
+    lista di direttori in cui gcc cerca le librerie in fase di linking.</FONT>
+  </BLOCKQUOTE>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#linuxmake"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

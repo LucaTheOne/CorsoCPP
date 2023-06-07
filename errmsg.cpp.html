@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="Generator" content="Kate, the KDE Advanced Text Editor" />
+<title>errmsg.cpp.html</title>
+</head>
+<body><pre>
+<span style='color=#000000'></span><span style='color:#008000'>#include"errmsg.h"
+
+</span><span style='color:#000000'><b>using</b> <b>namespace</b> std;
+
+ErrMsg::ErrMsg(string c, string m) {
+  caller=c;
+  message=m;
+}
+
+ErrMsg::~ErrMsg() {}
+
+</span><span style='color:#800000'>void</span><span style='color:#000000'> ErrMsg::print_message() {
+  cerr&lt;&lt;</span><span style='color:#ff0000'>"**Severe Error in </span><span style='color:#ff00ff'>\"</span><span style='color:#ff0000'>"</span><span style='color:#000000'>&lt;&lt;caller&lt;&lt;</span><span style='color:#ff0000'>"</span><span style='color:#ff00ff'>\"</span><span style='color:#ff0000'>: "</span><span style='color:#000000'>&lt;&lt;message&lt;&lt;</span><span style='color:#ff00ff'>'\n'</span><span style='color:#000000'>;
+  cerr&lt;&lt;</span><span style='color:#ff0000'>"Quitting now."</span><span style='color:#000000'>&lt;&lt;</span><span style='color:#ff00ff'>'\n'</span><span style='color:#000000'>;
+}
+
+
+</span></pre></body></html>

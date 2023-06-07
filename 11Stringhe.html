@@ -1,0 +1,478 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Stringhe di caratteri CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Stringhe di caratteri
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Le stringhe come particolari array di
+caratteri</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo gi&agrave; visto che le
+  <FONT COLOR="Green"><B>stringhe</B></FONT> non costituiscono un tipo
+  <I><B>intrinseco</B></I> del <FONT COLOR="Red"><B>C++ </B></FONT>e di conseguenza
+  non sono ammesse come <FONT COLOR="Green"><B>operandi</B></FONT> dalla maggior
+  parte degli <FONT COLOR="Green"><B>operatori</B></FONT> (compreso l'operatore
+  di <FONT COLOR="Purple"><B>assegnazione</B></FONT>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Sono tuttavia riconosciute da alcuni
+  <FONT COLOR="Green"><B>operatori</B></FONT> (come per esempio gli operatori
+  di <FONT COLOR="Purple"><B>flusso</B></FONT> di <B>I/O</B> del
+  <FONT COLOR="Red"><B>C++</B></FONT>) e da numerose
+  <FONT COLOR="Green"><B>funzioni di libreria</B></FONT> del
+  <FONT COLOR="Red"><B>C </B></FONT>(come per esempio la
+  <FONT COLOR="Green"><B>printf</B></FONT>, insieme a molte altre che hanno
+  il compito specifico di manipolare le
+  <FONT COLOR="Green"><B>stringhe</B></FONT>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>In memoria le <FONT COLOR="Green"><B>stringhe</B></FONT> sono degli
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>char</B></FONT>, con una particolarit&agrave; in pi&ugrave;,
+  che le fa riconoscere da <FONT COLOR="Green"><B>operatori</B></FONT> e
+  <FONT COLOR="Green"><B>funzioni</B></FONT> come
+  <FONT COLOR="Green"><B>stringhe</B></FONT> e non come normali
+  <FONT COLOR="Green"><B>array</B></FONT>:
+  l'<FONT COLOR="Green"><B>elemento</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT> <U>che segue l'ultimo
+  carattere</U> della <FONT COLOR="Green"><B>stringa</B></FONT> <U>deve contenere
+  il carattere </U><FONT COLOR="Blue"><U><B>NULL</B></U></FONT> (detto in questo
+  caso <FONT COLOR="Olive"><B>terminatore</B></FONT>); si dice pertanto che
+  una stringa &eacute; un "<I><B>array di tipo char null terminated</B></I>".
+  </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Definizione di variabili
+stringa</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Consideriamo il seguente esempio. L'istruzione: </BIG>
+  <P ALIGN=Justify>
+  <BIG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>char</B></FONT>
+  <FONT COLOR="Maroon"><B>MiaVar</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>30</B></FONT><FONT COLOR="Blue"><B>];</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG><B>definisce</B> la variabile
+  <FONT COLOR="Maroon"><B>MiaVar</B></FONT> come
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>char</B></FONT> con massimo
+  <FONT COLOR="Maroon"><B>30</B></FONT>
+  <FONT COLOR="Green"><B>elementi</B></FONT>, <U>ma non ancora</U> come
+  <FONT COLOR="Green"><B>stringa</B></FONT>. Affinch&eacute;
+  <FONT COLOR="Maroon"><B>MiaVar</B></FONT> sia identificata da
+  <FONT COLOR="Green"><B>operatori</B></FONT> e
+  <FONT COLOR="Green"><B>funzioni</B></FONT> come
+  <FONT COLOR="Green"><B>stringa</B></FONT>, dobbiamo non solo <B>definire</B>
+  una variabile <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>char</B></FONT>, ma anche inserire
+  nell'<FONT COLOR="Green"><B>array</B></FONT> una serie di caratteri
+  <FONT COLOR="Olive"><B>terminata</B></FONT> da un
+  <FONT COLOR="Blue"><B>NULL</B></FONT>.<BR>
+  Per esempio, se vogliamo che <FONT COLOR="Maroon"><B>MiaVar</B></FONT> presenti
+  a <FONT COLOR="Green"><B>operatori</B></FONT> e
+  <FONT COLOR="Green"><B>funzioni</B></FONT> la <FONT COLOR="Green"><B>stringa
+  </B></FONT>"<FONT COLOR="Maroon"><B>Ciao</B></FONT>", dobbiamo scrivere le
+  istruzioni: </BIG>
+  <P ALIGN=Justify>
+  <BIG><FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  MiaVar</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT COLOR="Maroon"><B>0</B></FONT><FONT
+      COLOR="Blue"><B>] =
+  '</B></FONT><FONT COLOR="Maroon"><B>C</B></FONT><FONT COLOR="Blue"><B>';</B></FONT>
+  <BR>
+  <FONT COLOR="Maroon"><B> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  MiaVar</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT COLOR="Maroon"><B>1</B></FONT><FONT
+      COLOR="Blue"><B>] =
+  '</B></FONT><FONT COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>';<BR>
+  </B></FONT><FONT COLOR="Maroon"><B> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+  MiaVar</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT COLOR="Maroon"><B>2</B></FONT><FONT
+      COLOR="Blue"><B>] =
+  '</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>';<BR>
+  </B></FONT><FONT COLOR="Maroon"><B> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  MiaVar</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT COLOR="Maroon"><B>3</B></FONT><FONT
+      COLOR="Blue"><B>] =
+  '</B></FONT><FONT COLOR="Maroon"><B>o</B></FONT><FONT COLOR="Blue"><B>';<BR>
+  </B></FONT><FONT COLOR="Maroon"><B> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+  MiaVar</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT COLOR="Maroon"><B>4</B></FONT><FONT
+      COLOR="Blue"><B>] =
+  '</B></FONT><FONT COLOR="Blue"><B>\0</B></FONT><FONT COLOR="Blue"><B>';</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>impegnando cos&igrave; <FONT COLOR="Maroon"><B>5</B></FONT> elementi
+  dell'<FONT COLOR="Green"><B>array</B></FONT> dei
+  <FONT COLOR="Maroon"><B>30</B></FONT> disponibili (i rimanenti
+  <FONT COLOR="Maroon"><B>25</B></FONT> saranno ignorati). </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Inizializzazione di variabili
+stringa</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Bench&eacute; le <FONT COLOR="Green"><B>stringhe</B></FONT> non siano
+  ammesse nelle operazioni di
+  <FONT COLOR="Purple"><B>assegnazione</B></FONT>, lo sono in quelle di
+  <B>inizializzazione</B> (il che conferma che si tratta di due operazioni
+  diverse!):</BIG>
+  <P ALIGN=Justify>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TH><BIG>Sequenza non valida</BIG></TH>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	<TH><BIG>Sequenza valida</BIG></TH>
+      </TR>
+      <TR>
+	<TD><BIG><B><FONT COLOR="Blue">char</FONT>
+	  <FONT COLOR="Maroon">Saluto</FONT><FONT COLOR="Blue">[</FONT><FONT COLOR="Maroon">10</FONT><FONT
+	      COLOR="Blue">];</FONT></B></BIG></TD>
+	<TD></TD>
+	<TD><BIG><B><FONT COLOR="Blue">char</FONT>
+	  <FONT COLOR="Maroon">Saluto</FONT><FONT COLOR="Blue">[</FONT><FONT COLOR="Maroon">10</FONT><FONT
+	      COLOR="Blue">] = </FONT>
+	  <FONT COLOR="Maroon">"Ciao"</FONT><FONT COLOR="Blue">;</FONT> </B></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><B><FONT COLOR="Maroon">Saluto
+	  </FONT><FONT COLOR="Blue">=</FONT><FONT COLOR="Maroon"> </FONT>
+	  <FONT COLOR="Maroon">"Ciao"</FONT><FONT COLOR="Blue">;</FONT></B></BIG></TD>
+	<TD></TD>
+	<TD></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>Nelle <B>inizializzazioni</B> si utilizzano le
+  <FONT COLOR="Green"><B>costanti</B></FONT>
+  <FONT COLOR="Green"><B>stringa</B></FONT>, i cui caratteri vengono inseriti
+  nei primi <FONT COLOR="Green"><B>elementi</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT> dichiarato; il
+  <FONT COLOR="Olive"><B>terminatore</B></FONT> viene aggiunto automaticamente
+  nell'<FONT COLOR="Green"><B>elemento</B></FONT> <U>successivo</U> a quello
+  in cui &eacute; stato inserito l'ultimo carattere. La
+  <FONT COLOR="Green"><B>stringa</B></FONT> pu&ograve; essere "allungata" fino
+  a un massimo di caratteri (<FONT COLOR="Olive"><B>terminatore</B></FONT>
+  compreso) pari alla <FONT COLOR="Green"><B>dimensione</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>E' anche possibile <B>inizializzare</B> una
+  <FONT COLOR="Green"><B>stringa</B></FONT> come un normale
+  <FONT COLOR="Green"><B>array</B></FONT>; in questo caso, per&ograve;, il
+  terminatore deve essere inserito esplicitamente: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <B><FONT COLOR="Blue">char</FONT>
+  <FONT COLOR="Maroon">Saluto</FONT><FONT COLOR="Blue">[] = {
+  '</FONT><FONT COLOR="Maroon">C</FONT><FONT COLOR="Blue">',
+  '</FONT><FONT COLOR="Maroon">i</FONT><FONT COLOR="Blue">',
+  '</FONT><FONT COLOR="Maroon">a</FONT><FONT COLOR="Blue">',</FONT>
+  <FONT COLOR="Blue">'</FONT><FONT COLOR="Maroon">o</FONT><FONT COLOR="Blue">',
+  '\0' };</FONT></B><BR>
+  ovviamente questa seconda forma, inutilmente pi&ugrave; "faticosa", non &eacute;
+  mai usata!</BIG>
+  <P ALIGN=Justify>
+  <BIG>Se nella <B>inizializzazione</B> si omette la
+  <FONT COLOR="Green"><B>dimensione</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT>, questa viene automaticamente
+  definita dalla lunghezza della <FONT COLOR="Green"><B>costante</B></FONT>
+  <FONT COLOR="Green"><B>stringa</B></FONT> <U>aumentata di uno</U>, per far
+  posto al <FONT COLOR="Olive"><B>terminatore</B></FONT> (in questo caso la
+  <FONT COLOR="Green"><B>stringa</B></FONT> non pu&ograve; pi&ugrave; essere
+  "allungata"!): </BIG>
+  <P ALIGN=Justify>
+  <BIG><B><FONT COLOR="Blue">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;char</FONT> <FONT COLOR="Maroon">Saluto</FONT><FONT COLOR="Blue">[]
+  = </FONT> <FONT COLOR="Maroon">"Ciao"</FONT><FONT COLOR="Blue">; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; </FONT></B>(allocato in memoria
+  <FONT COLOR="Green"><B>array</B></FONT> con
+  <B><FONT COLOR="Maroon">5</FONT></B>
+  <FONT COLOR="Green"><B>elementi</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>In caso che si creino delle
+  <FONT COLOR="Green"><B>stringhe</B></FONT> con un numero di caratteri (compreso
+  il <FONT COLOR="Olive"><B>terminatore</B></FONT>) maggiore di quello dichiarato,
+  il programma non produce direttamente messaggi di errore, ma invade zone
+  di memoria non di sua pertinenza, con conseguenze imprevedibili (spesso si
+  verifica un <I><B>errore fatale</B></I> a livello di sistema operativo).</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p17/strmodify.cpp">[p17]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Funzioni di libreria gets e puts
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Bench&eacute; le funzioni <FONT COLOR="Blue"><B>gets</B></FONT> e
+  <FONT COLOR="Blue"><B>puts</B></FONT> facciano parte della
+  <FONT COLOR="Red"><B>libreria </B></FONT>di <B>I/O</B> del
+  <FONT COLOR="Red"><B>C</B></FONT>, il loro uso &eacute; abbastanza frequente
+  anche in programmi <FONT COLOR="Red"><B>C++</B></FONT>, a causa di alcune
+  peculiarit&agrave; che le distinguono da tutte le altre funzioni di
+  <B>I/O</B>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>La funzione
+  <FONT COLOR="Blue"><B>gets(</B></FONT><FONT COLOR="Maroon"><B>argomento</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT> trasferisce l'intero
+  <FONT COLOR="Olive"><B>buffer di input</B></FONT> di
+  <FONT COLOR="Blue"><B>stdin</B></FONT> nella variabile
+  <FONT COLOR="Green"><B>stringa</B></FONT>
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>, riconoscendo come unico
+  <FONT COLOR="Olive"><B>terminatore</B></FONT> il carattere <I><B>new-line
+  </B></I>(<FONT COLOR="Blue"><B>'\n'</B></FONT>) (che &eacute; sempre l'ultimo
+  carattere del <FONT COLOR="Olive"><B>buffer</B></FONT>) e sostituendolo con
+  il carattere <FONT COLOR="Blue"><B>NULL</B></FONT>
+  (<FONT COLOR="Blue"><B>'\0'</B></FONT>). Ne consegue che la stringa pu&ograve;
+  contenere anche <FONT COLOR="Olive"><B>blanks</B></FONT> e
+  <FONT COLOR="Olive"><B>tabulazioni</B></FONT> (a differenza dalle
+  <FONT COLOR="Green"><B>stringhe</B></FONT> lette mediante
+  <FONT COLOR="Blue"><B>cin</B></FONT> o le altre funzioni di input del
+  <FONT COLOR="Red"><B>C</B></FONT>). In pratica, la
+  <FONT COLOR="Blue"><B>gets</B></FONT> <U>legge da tastiera un'intera riga
+  di testo, compreso il ritorno a capo</U> che trasforma nel
+  <FONT COLOR="Olive"><B>terminatore</B></FONT> della
+  <FONT COLOR="Green"><B>stringa</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>La funzione
+  <FONT COLOR="Blue"><B>puts(</B></FONT><FONT COLOR="Maroon"><B>argomento</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT> trasferisce in
+  <FONT COLOR="Blue"><B>stdout</B></FONT> il contenuto della variabile
+  <FONT COLOR="Green"><B>stringa</B></FONT>
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>, sostituendo il
+  <FONT COLOR="Olive"><B>terminatore</B></FONT> di stringa
+  <FONT COLOR="Blue"><B>NULL</B></FONT> con il carattere
+  <I><B>new-line</B></I>. In pratica, la
+  <FONT COLOR="Blue"><B>puts</B></FONT> <U>scrive su video un'intera riga di
+  testo, compreso il ritorno a capo</U>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>In entrambi i casi la variabile
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> deve essere stata
+  <B>definita</B> (nel programma chiamante) come
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>char</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Conversioni fra stringhe e numeri
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Le <B>conversioni</B> fra <FONT COLOR="Green"><B>stringhe</B></FONT>
+  (contenenti caratteri numerici) e <B>numeri</B> (e viceversa) non si possono
+  fare direttamente mediante
+  </BIG><FONT COLOR="Purple"><BIG><B>casting</B></BIG></FONT><BIG>, in quanto
+  le <FONT COLOR="Green"><B>stringhe</B></FONT> sono degli
+  <FONT COLOR="Green"><B>array </B></FONT>e, in pi&ugrave;, ogni
+  <FONT COLOR="Green"><B>elemento</B></FONT> che le costituisce &egrave;
+  convertibile nel corrispondente codice <I><B>ascii</B></I>, non nel valore
+  numerico della cifra rappresentata.<BR>
+  Es.:
+  &nbsp;<FONT COLOR="Blue"><B>int('</B></FONT><FONT COLOR="Maroon"><B>1</B></FONT><FONT
+      COLOR="Blue"><B>')</B></FONT> &nbsp;da' come risultato il numero
+  <FONT COLOR="Maroon"><B>49 </B></FONT>(codice <I><B>ascii</B></I> del carattere
+  <FONT COLOR="Maroon"><B>1</B></FONT>) e non il numero
+  <FONT COLOR="Maroon"><B>1</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>Bisogna invece ricorrere a opportune
+  <FONT COLOR="Green"><B>funzioni</B></FONT> di libreria.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Conversioni da stringhe a numeri - Le
+funzioni
+</B></BIG></FONT><STRONG><FONT COLOR="Blue"><BIG><B>atoi</B></BIG></FONT></STRONG><FONT
+    COLOR="Green"><BIG><B> e
+</B></BIG></FONT><STRONG><FONT COLOR="Blue"><BIG><B>atof</B></BIG></FONT></STRONG>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Per convertire una <FONT COLOR="Green"><B>stringa</B></FONT> in un
+  <B>numero</B>, la via&nbsp;pi&ugrave; semplice &egrave; usare le
+  </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT><BIG> di libreria
+  (del <FONT COLOR="Red"><B>C</B></FONT>)
+  </BIG><STRONG><FONT COLOR="Blue"><BIG><B>atoi</B></BIG></FONT></STRONG><BIG>
+  e
+  </BIG><STRONG><FONT COLOR="Blue"><BIG><B>atof</B></BIG></FONT></STRONG><BIG>
+  :</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <STRONG><FONT COLOR="Blue"><BIG><B>atoi</B></BIG></FONT></STRONG><B><FONT
+	  COLOR="Blue"><BIG>(</BIG></FONT><FONT COLOR="Maroon"><BIG>argomento</BIG></FONT><FONT
+	  COLOR="Blue"><BIG>)</BIG></FONT></B><BIG>, dove
+      </BIG><B><FONT COLOR="Maroon"><BIG>argomento</BIG></FONT></B><BIG> &egrave;
+      una <FONT COLOR="Green"><B>stringa</B></FONT> contenente la rappresentazione
+      decimale di un <B>numero</B> <FONT COLOR="Green"><B>intero</B></FONT>, esegue
+      la conversione di
+      </BIG><B><FONT COLOR="Maroon"><BIG>argomento</BIG></FONT></B><BIG> e restituisce
+      un valore di
+      <FONT COLOR="Green"><B>tipo</B></FONT>&nbsp;<FONT COLOR="Blue"><B>int</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <STRONG><FONT COLOR="Blue"><BIG><B>atof</B></BIG></FONT></STRONG><B><FONT
+	  COLOR="Blue"><BIG>(</BIG></FONT><FONT COLOR="Maroon"><BIG>argomento</BIG></FONT><FONT
+	  COLOR="Blue"><BIG>)</BIG></FONT></B><BIG>, dove
+      </BIG><B><FONT COLOR="Maroon"><BIG>argomento</BIG></FONT></B><BIG> &egrave;
+      una <FONT COLOR="Green"><B>stringa</B></FONT> contenente la rappresentazione
+      decimale di un <B>numero</B> <FONT COLOR="Green"><B>floating</B></FONT> (in
+      notazione normale o esponenziale), esegue la conversione di
+      </BIG><B><FONT COLOR="Maroon"><BIG>argomento</BIG></FONT></B><BIG> e restituisce
+      un valore di
+      <FONT COLOR="Green"><B>tipo</B></FONT>&nbsp;<FONT COLOR="Blue"><B>double</B></FONT></BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Entrambe le
+  </BIG><FONT COLOR="Green"><BIG><B>funzioni</B></BIG></FONT><BIG> vanno utilizzate
+  includendo</BIG> l'<BIG><I><B>header-file</B></I>:
+  <FONT COLOR="Blue"><B>&lt;stdlib.h&gt;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>Il processo di conversione si interrompe (con il numero calcolato fino
+  a quel momento) appena &egrave; incontrato un carattere non valido (<U>senza
+  messaggi di errore</U>). Se nessun carattere &egrave; convertito
+  </BIG><STRONG><FONT COLOR="Blue"><BIG><B>atoi</B></BIG></FONT></STRONG><BIG>
+  e
+  </BIG><STRONG><FONT COLOR="Blue"><BIG><B>atof</B></BIG></FONT></STRONG><BIG>
+  ritornano rispettivamente
+  </BIG><B><FONT COLOR="Maroon"><BIG>0</BIG></FONT></B><BIG> e
+  </BIG><B><FONT COLOR="Maroon"><BIG>0.0</BIG></FONT></B>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Conversioni da numeri a stringhe - La
+funzione
+</B></BIG></FONT><STRONG><FONT COLOR="Blue"><BIG><B>sprintf</B></BIG></FONT></STRONG>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Per convertire <B>numeri</B> in
+  <FONT COLOR="Green"><B>stringhe</B></FONT>, &egrave; pi&ugrave; conveniente
+  (rispetto ad altre possibilit&agrave;) usare la
+  </BIG><FONT COLOR="Green"><BIG><B>funzione</B></BIG></FONT><BIG> di libreria
+  (del <FONT COLOR="Red"><B>C</B></FONT>)
+  </BIG><STRONG><FONT COLOR="Blue"><BIG><B>sprintf</B></BIG></FONT></STRONG><BIG>.</BIG>
+  <BIG>Infatti questa funzione, non solo esegue la conversione, ma permette
+  anche di ottenere una <FONT COLOR="Green"><B>stringa</B></FONT>
+  <I><B>formattata</B></I> nel modo desiderato.</BIG>
+  <P ALIGN=Justify>
+  <BIG>All'inizio di questo corso abbiamo trattato della
+  </BIG><FONT COLOR="Green"><BIG><B>funzione</B></BIG></FONT><BIG>
+  </BIG><STRONG><FONT COLOR="Blue"><BIG><B>printf</B></BIG></FONT></STRONG><BIG>,
+  che utilizza gli <FONT COLOR="Green"><B>specificatori di formato</B></FONT>
+  per scrivere dati sul <I><B>dispositivo standard</B></I> di
+  <I><B>output</B></I> (<FONT COLOR="Blue"><B>stdout</B></FONT>). La funzione
+  </BIG><STRONG><FONT COLOR="Blue"><BIG><B>sprintf</B></BIG></FONT></STRONG><BIG>
+  &eacute; identica alla
+  </BIG><STRONG><FONT COLOR="Blue"><BIG><B>printf</B></BIG></FONT></STRONG><BIG>
+  <U>salvo il fatto che scrive in una
+  <FONT COLOR="Green"><B>stringa</B></FONT> anzich&eacute; su
+  <FONT COLOR="Blue"><B>stdout</B></FONT></U>. Richiede due
+  </BIG><B><FONT COLOR="Maroon"><BIG>argomenti</BIG></FONT></B><BIG>
+  <B>fissi</B>, seguiti da un numero qualsiasi di
+  </BIG><B><FONT COLOR="Maroon"><BIG>argomenti</BIG></FONT></B><BIG>
+  <B>opzionali</B>:</BIG>
+  <UL>
+    <LI>
+      <BIG>il <U>primo</U>
+      </BIG><B><FONT COLOR="Maroon"><BIG>argomento</BIG></FONT></B><BIG> &eacute;
+      la variabile <FONT COLOR="Green"><B>stringa</B></FONT> (<B>definita</B> come
+      <FONT COLOR="Green"><B>array</B></FONT> di
+      <FONT COLOR="Green"><B>tipo</B></FONT>
+      <FONT COLOR="Blue"><B>char</B></FONT>) in cui inserire i dati
+      <I><B>formattati</B></I></BIG>
+    <LI>
+      <BIG>il <U>secondo</U>
+      </BIG><B><FONT COLOR="Maroon"><BIG>argomento</BIG></FONT></B><BIG> &eacute;
+      la <I><B>control-string</B></I> (come il <U>primo</U> della
+      </BIG><STRONG><FONT COLOR="Blue"><BIG><B>printf</B></BIG></FONT></STRONG><BIG>)</BIG>
+    <LI>
+      <BIG>il <U>terzo</U>
+      </BIG><B><FONT COLOR="Maroon"><BIG>argomento</BIG></FONT></B><BIG> e i successivi
+      sono i dati da <I><B>formattare</B></I> (come il <U>secondo</U> e i successivi
+      della
+      </BIG><STRONG><FONT COLOR="Blue"><BIG><B>printf</B></BIG></FONT></STRONG><BIG>)</BIG>
+  </UL>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p18/parser.cpp">[p18]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Le stringhe in
+C++</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Le
+  </BIG><FONT COLOR="Green"><BIG><B>stringhe</B></BIG></FONT><BIG> descritte
+  finora sono quelle "in <I><B>stile</B></I>
+  <FONT COLOR="Red"><B>C</B></FONT>". In
+  <FONT COLOR="Red"><B>C++</B></FONT>&nbsp;si usano ancora, ma si ricorre pi&ugrave;
+  spesso alla <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>string</B></FONT> della <FONT COLOR="Red"><B>Libreria
+  Standard</B></FONT>, che offre maggiori flessibilit&agrave; e
+  <I><B>incapsula</B></I> tutte le funzioni di manipolazione delle
+  </BIG><FONT COLOR="Green"><BIG><B>stringhe</B></BIG></FONT><BIG>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#funzioni"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

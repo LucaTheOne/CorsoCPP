@@ -1,0 +1,315 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Visibilit&agrave; e tempo di vita CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Visibilit&agrave;
+e tempo di vita
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Visibilit&agrave; di una
+variabile</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Ambito di azione</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo visto che, in via del tutto generale, si definisce
+  <FONT COLOR="Green"><B>ambito di azione</B></FONT> (o <I><B>ambito di
+  visibilit&agrave;</B></I> o <I><B>scope</B></I>) l'insieme di istruzioni
+  di programma comprese fra due parentesi graffe:
+  <FONT COLOR="Blue"><B>{....}</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Le istruzioni di una <B>funzione</B> <U>devono</U> essere comprese tutte
+  nello stesso <FONT COLOR="Green"><B>ambito</B></FONT>; ci&ograve; non esclude
+  che si possano definire pi&ugrave;
+  <FONT COLOR="Green"><B>ambiti</B></FONT> <I><B>innestati</B></I> l'uno dentro
+  l'altro (ovviamente il numero di parentesi chiuse deve bilanciare quello
+  di parentesi aperte, e ogni parentesi chiusa termina
+  l'<FONT COLOR="Green"><B>ambito</B></FONT> iniziato con la parentesi aperta
+  pi&ugrave; interna). </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Variabili locali</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In ogni caso una variabile &egrave;
+  <I><B><U>visibile</U></B></I> al programma e utilizzabile <U>solo nello stesso
+  <FONT COLOR="Green"><B>ambito</B></FONT> in cui &egrave;
+  <B>definita</B></U> (variabili <FONT COLOR="Green"><B>locali</B></FONT>).
+  Se si tenta di utilizzare una variabile in
+  <FONT COLOR="Green"><B>ambiti</B></FONT> diversi da quello in cui &egrave;
+  definita (o in <FONT COLOR="Green"><B>ambiti</B></FONT> superiori in caso
+  di pi&ugrave; <FONT COLOR="Green"><B>ambiti</B></FONT>
+  <I><B>innestati</B></I>), <U>il compilatore non la riconosce</U>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Red"><B>C++</B></FONT> ammette che si ridefinisca pi&ugrave;
+  volte la stessa variabile, purch&eacute; in
+  <FONT COLOR="Green"><B>ambiti</B></FONT> diversi; in questo caso riconosce
+  la variabile definita nel proprio
+  <FONT COLOR="Green"><B>ambito</B></FONT> o in quello superiore pi&ugrave;
+  vicino.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Variabili globali</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Una variabile &egrave; <FONT COLOR="Green"><B>globale</B></FONT>, cio&egrave;
+  &egrave; <U><I><B>visibile</B></I> in tutto il programma</U>, solo se &egrave;
+  <B>definita</B> al di fuori di qualunque
+  <FONT COLOR="Green"><B>ambito</B></FONT> (che viene per questo definito:
+  <FONT COLOR="Green"><B>ambito globale</B></FONT>). Le <B>definizioni</B>
+  (con eventuali <B>inizializzazioni</B>) sono le uniche istruzioni del linguaggio
+  che possono anche risiedere esternamente
+  all'<FONT COLOR="Green"><B>ambito</B></FONT> delle <B>funzioni</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>In caso di concorrenza fra una variabile
+  <FONT COLOR="Green"><B>globale</B></FONT> e una
+  <FONT COLOR="Green"><B>locale</B></FONT> viene riconosciuta la variabile
+  <FONT COLOR="Green"><B>locale</B></FONT>; tuttavia la variabile
+  <FONT COLOR="Green"><B>globale</B></FONT> prevale se &egrave; specificata
+  con <I><B>prefisso</B></I> <FONT COLOR="Blue"><B>::</B></FONT>
+  (<FONT COLOR="Green"><B>operatore</B></FONT> di
+  </BIG><FONT COLOR="Purple"><B><BIG>riferimento
+  globale</BIG></B></FONT><BIG>). </BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p06/ambiti.cpp">[p06]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Tempo di vita di una
+variabile</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Variabili automatiche</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Una variabile &egrave; detta
+  <FONT COLOR="Green"><B>automatica</B></FONT> (o
+  <FONT COLOR="Green"><B>dinamica</B></FONT>), se cessa di esistere non appena
+  il flusso del programma esce dalla <B>funzione</B> in cui la variabile &egrave;
+  definita. Se il flusso del programma torna nella funzione, <U>la variabile
+  viene ricreata ex-novo </U>e, in particolare, viene <B>reinizializzata</B>
+  sempre con lo stesso valore. Tutte le variabili
+  <FONT COLOR="Green"><B>locali</B></FONT> sono, per <I>default</I>,
+  <FONT COLOR="Green"><B>automatiche</B></FONT> ("<FONT COLOR="Green"><B>tempo
+  di vita</B></FONT>" limitato all'esecuzione della <B>funzione</B>).</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Variabili statiche</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Una variabile &egrave; detta
+  <FONT COLOR="Green"><B>statica</B></FONT> se il suo
+  "<FONT COLOR="Green"><B>tempo di vita</B></FONT>" coincide con l'intera durata
+  del programma: quando il flusso del programma torna nella <B>funzione</B>
+  in cui &egrave; definita una variabile
+  <FONT COLOR="Green"><B>statica</B></FONT>, <U>ritrova la variabile come l'aveva
+  lasciata</U> (cio&egrave; con lo stesso valore); ci&ograve; significa in
+  particolare che l'istruzione di <B>definizione</B> (con eventuale annessa
+  <B>inizializzazione</B>) <U>viene eseguita solo la prima volta</U>. Per ottenere
+  che una variabile sia <FONT COLOR="Green"><B>statica</B></FONT>, bisogna
+  preporre lo <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT> nella <B>definizione</B> della
+  variabile.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Esiste anche, per le variabili
+  </BIG><FONT COLOR="Green"><BIG><B>automatiche</B></BIG></FONT><BIG>, lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>auto</B></FONT>, ma &egrave; inutile in quanto di
+  <I>default</I> (pu&ograve; essere usato per migliorare la leggibilit&agrave;
+  del programma).</BIG>
+  <P ALIGN=Justify>
+  <BIG>A differenza dalle variabili
+  </BIG><FONT COLOR="Green"><BIG><B>automatiche</B></BIG></FONT><BIG>, (in
+  cui, in assenza di <B>inizializzatore</B>, il contenuto iniziale &egrave;
+  indefinito), le variabile <FONT COLOR="Green"><B>statiche</B></FONT> sono
+  inizializzate di <I>default</I> a <B>zero</B> (in modo appropriato al
+  <FONT COLOR="Green"><B>tipo</B></FONT>).</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p07/autom.cpp">[p07]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Visibilit&agrave;
+globale</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Variabili globali
+statiche</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Una variabile <FONT COLOR="Green"><B>locale</B></FONT> pu&ograve; essere
+  <FONT COLOR="Green"><B>automatica</B></FONT> o
+  <FONT COLOR="Green"><B>statica</B></FONT>; una variabile
+  <FONT COLOR="Green"><B>globale</B></FONT> <U>&egrave; sempre</U>
+  <FONT COLOR="Green"><B>statica</B></FONT> (se &egrave; visibile dall'esterno
+  deve essere anche viva!) e quindi &nbsp;lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT> non avrebbe significato.</BIG>
+  <P ALIGN=Justify>
+  <BIG>In realt&agrave;, nella <B>definizione</B> di una variabile
+  <FONT COLOR="Green"><B>globale</B></FONT>, lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT> ha un significato differente: quello
+  di <U>limitare la visibilit&agrave; della variabile al solo file in cui &egrave;
+  <B>definita</B></U><B> </B>(<I><B>file scope</B></I>). Senza lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT>, la variabile &egrave; visibile anche
+  negli altri files, purch&eacute; in essi venga <B>dichiarata</B> con lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>extern</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Visibilit&agrave; di variabili
+globali</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Se una variabile <FONT COLOR="Green"><B>globale</B></FONT>, visibile
+  in tutti i files sorgente del programma (cio&egrave; <B>definita</B>
+  <U>senza</U> lo <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT>), <U>non &eacute;</U>
+  <B>inizializzata</B>, deve esistere <U>una e una sola</U><B> dichiarazione</B>
+  senza lo <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>extern</B></FONT>, altrimenti il
+  <I><B>linker</B></I> darebbe errore, con messaggio
+  "<FONT COLOR="Olive"><I><B>unresolved symbol</B></I></FONT>" (se tutte le
+  <B>dichiarazioni</B> hanno <FONT COLOR="Blue"><B>extern</B></FONT>), oppure
+  "<FONT COLOR="Olive"><B><I>one or more multiply defined
+  symbols</I></B></FONT>" (se ci sono due <B>dichiarazioni</B> senza
+  <FONT COLOR="Blue"><B>extern</B></FONT>); &nbsp;se invece la variabile
+  <U>&eacute;</U> <B>inizializzata</B>, l'inizializzazione deve essere presente
+  <U>in un solo file</U> (in questo caso lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>extern</B></FONT> &eacute; opzionale), mentre negli
+  altri files la variabile deve essere <B>dichiarata</B> con
+  <FONT COLOR="Blue"><B>extern</B></FONT> e <U>non deve</U> essere
+  <B>inizializzata</B>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Visibilit&agrave; di costanti globali
+</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red">C++</FONT> le
+  </BIG><FONT COLOR="Green"><BIG><B>costanti globali
+  </B></BIG></FONT><BIG>(cio&egrave; le variabili
+  <FONT COLOR="Green"><B>globali</B></FONT> <B>definite</B>
+  <FONT COLOR="Blue"><B>const</B></FONT>, con <B>inizializzazione</B>
+  obbligatoria), obbediscono a regole&nbsp;differenti e precisamente:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>di <I>default</I> le </BIG><FONT COLOR="Green"><BIG><B>costanti
+      globali</B></BIG></FONT> <BIG>hanno <I><B>file scope</B></I>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>affinch&eacute; una </BIG><FONT COLOR="Green"><BIG><B>costante
+      globale</B></BIG></FONT><BIG> sia visibile dappertutto, &egrave; necessaria
+      la presenza dello <FONT COLOR="Green"><B>specificatore</B></FONT>
+      <FONT COLOR="Blue"><B>extern</B></FONT> <U>anche</U> nella
+      <B>dichiarazione</B> in cui la costante &egrave; <B>inizializzata</B>
+      (ovviamente, come per le variabili, l'inizializzazione deve essere presente
+      una sola volta). </BIG>
+  </UL>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Tabella riassuntiva</B></BIG></FONT>
+<P>
+<CENTER>
+  <TABLE BORDER CELLPADDING="2" ALIGN="Center">
+    <TR>
+      <TD ROWSPAN=2></TD>
+      <TD COLSPAN=2><P ALIGN=Center>
+	<BIG><B><BIG>Visibilit&agrave;</BIG></B>
+	<FONT COLOR="Green"><BIG><B>globale</B></BIG></FONT></BIG></TD>
+      <TD ROWSPAN=2><P ALIGN=Center>
+	<I><B><BIG><BIG>File scope</BIG></BIG></B></I></TD>
+    </TR>
+    <TR>
+      <TD><P ALIGN=Center>
+	<BIG><FONT COLOR="Green"><B>specificatore</B></FONT>
+	<FONT COLOR="Blue"><B>extern</B></FONT><BR>
+	nel file di <B>definizione</B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><FONT COLOR="Green"><B>specificatore</B></FONT>
+	<FONT COLOR="Blue"><B>extern</B></FONT><BR>
+	negli altri files</BIG></TD>
+    </TR>
+    <TR>
+      <TD><BIG>Variabile <FONT COLOR="Green"><B>globale</B></FONT> senza <BR>
+	<B>inizializzazione</B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG>vietato</BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG>obbligatorio</BIG></TD>
+      <TD><BIG><FONT COLOR="Green"><B>specificatore</B></FONT>
+	<FONT COLOR="Blue"><B>static</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD><BIG>Variabile <FONT COLOR="Green"><B>globale</B></FONT> con<BR>
+	<B>inizializzazione</B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG>opzionale</BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG>obbligatorio<BR>
+	senza <B>inizializzazione</B></BIG></TD>
+      <TD><BIG><FONT COLOR="Green"><B>specificatore</B></FONT>
+	<FONT COLOR="Blue"><B>static</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD><FONT COLOR="Green"><BIG><B>Costante globale</B></BIG></FONT></TD>
+      <TD><P ALIGN=Center>
+	<BIG>obbligatorio</BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG>obbligatorio<BR>
+	senza <B>inizializzazione</B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><I><B>default</B></I></BIG></TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<P>
+&nbsp;
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p08/ext.cpp">[p08]</A>
+<A HREF="p08/global.cpp">[p08]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#Operatori"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

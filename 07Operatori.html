@@ -1,0 +1,1557 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Operatori e operandi CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Operatori e operandi
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Definizione di operatore e regole
+generali</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Un <FONT COLOR="Green"><B>operatore</B></FONT> &egrave; un
+  <I><B>token</B></I> che agisce su una coppia di dati (o su un singolo dato),
+  detti <FONT COLOR="Green"><B>operandi</B></FONT>, ottenendo un nuovo dato
+  (risultato dell'<FONT COLOR="Green"><B>operazione</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Ogni <FONT COLOR="Green"><B>operatore</B></FONT> &egrave; identificato
+  da un particolare simbolo grafico, costituito di solito da un solo carattere
+  (ma talvolta anche da due o pi&ugrave; caratteri). Non tutti gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> possono applicarsi ad ogni tipo
+  di <FONT COLOR="Green"><B>operando</B></FONT>, ma, per ogni
+  <FONT COLOR="Green"><B>operatore</B></FONT> esiste un ben definito insieme
+  di <FONT COLOR="Green"><B>tipi</B></FONT> di
+  <FONT COLOR="Green"><B>operandi</B></FONT> a cui
+  l'<FONT COLOR="Green"><B>operatore </B></FONT>&egrave; applicabile.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Un <FONT COLOR="Green"><B>operatore</B></FONT> &egrave; detto
+  <FONT COLOR="Green"><B>binario</B></FONT> se agisce su due
+  <FONT COLOR="Green"><B>operandi</B></FONT>,
+  <FONT COLOR="Green"><B>unario</B></FONT> se agisce su un solo
+  <FONT COLOR="Green"><B>operando</B></FONT>. Se
+  l'<FONT COLOR="Green"><B>operatore</B></FONT> &egrave;
+  <FONT COLOR="Green"><B>binario</B></FONT>, i due
+  <FONT COLOR="Green"><B>operandi</B></FONT> sono detti
+  <FONT COLOR="Green"><B>left-operand</B></FONT> e
+  <FONT COLOR="Green"><B>right-operand</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Un'<FONT COLOR="Green"><B>espressione</B></FONT> &egrave; una successione
+  di <FONT COLOR="Green"><B>operazioni</B></FONT> in cui il risultato di ogni
+  <FONT COLOR="Green"><B>operazione</B></FONT> diviene
+  <FONT COLOR="Green"><B>operando</B></FONT> per le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> successive, fino a giungere
+  ad un unico risultato. L'ordine in cui le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> sono eseguite &egrave; regolato
+  secondo precisi criteri di <FONT COLOR="Purple"><B>precedenza</B></FONT>
+  e <FONT COLOR="Purple"><B>associativit&agrave; </B></FONT>fra gli
+  <FONT COLOR="Green"><B>operatori</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Es. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <FONT COLOR="Maroon"><B>a op1 b op2
+  c</B></FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  (<FONT COLOR="Maroon"><B>a</B></FONT>,<FONT COLOR="Maroon"><B> b</B></FONT>,
+  <FONT COLOR="Maroon"><B>c</B></FONT> sono
+  <FONT COLOR="Green"><B>operandi</B></FONT>,
+  <FONT COLOR="Maroon"><B>op1</B></FONT> e
+  <FONT COLOR="Maroon"><B>op2</B></FONT> sono
+  <FONT COLOR="Green"><B>operatori</B></FONT>) </BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Maroon"><B>op1</B></FONT> ha la
+      <FONT COLOR="Purple"><B>precedenza</B></FONT>: il risultato di
+      <FONT COLOR="Maroon"><B>a op1 b</B></FONT> diventa
+      <FONT COLOR="Green"><B>left-operand</B></FONT> di <FONT COLOR="Maroon"><B>op2
+      c</B></FONT> </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Maroon"><B>op2 </B></FONT>ha la
+      <FONT COLOR="Purple"><B>precedenza</B></FONT>: il risultato di
+      <FONT COLOR="Maroon"><B>b op2 c</B></FONT> diventa
+      <FONT COLOR="Green"><B>right-operand</B></FONT> di <FONT COLOR="Maroon"><B>a
+      op1</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Maroon"><B>op1</B></FONT> e
+      <FONT COLOR="Maroon"><B>op2</B></FONT> hanno la stessa
+      <FONT COLOR="Purple"><B>precedenza</B></FONT>, ma
+      l'<FONT COLOR="Purple"><B>associativit&agrave;</B></FONT> procede da
+      <I><B>sinistra</B></I> a <I><B>destra</B></I>: come nel caso 1.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Maroon"><B>op1</B></FONT> e
+      <FONT COLOR="Maroon"><B>op2</B></FONT> hanno la stessa
+      <FONT COLOR="Purple"><B>precedenza</B></FONT>, ma
+      l'<FONT COLOR="Purple"><B>associativit&agrave;</B></FONT> procede da
+      <I><B>destra</B></I> a <I><B>sinistra</B></I>: come nel caso 2.</BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <BIG>Per ottenere che un'<FONT COLOR="Green"><B>operazione</B></FONT> venga
+  comunque eseguita con <FONT COLOR="Purple"><B>precedenza</B></FONT> rispetto
+  alle altre, bisogna racchiudere
+  <FONT COLOR="Green"><B>operatore</B></FONT> e
+  <FONT COLOR="Green"><B>operandi</B></FONT> <U>fra parentesi tonde</U>.<BR>
+  Es. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <FONT COLOR="Maroon"><B>a op1
+  </B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B> b op2
+  c</B></FONT>
+  <FONT COLOR="Blue"><B>)</B></FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (la
+  seconda <FONT COLOR="Green"><B>operazione</B></FONT> viene eseguita per prima)
+  </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatore di
+assegnazione</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Green"><B>binario </B></FONT>di
+  <FONT COLOR="Purple"><B>assegnazione</B></FONT>
+  <FONT COLOR="Blue"><B><BIG>=</BIG> </B></FONT>copia il contenuto del
+  <FONT COLOR="Green"><B>right-operand</B></FONT> (detto nello specifico
+  <FONT COLOR="Green"><B>r-value</B></FONT>) nel
+  <FONT COLOR="Green"><B>left-operand</B></FONT> (detto
+  <FONT COLOR="Green"><B>l-value</B></FONT>).</BIG>
+  <P ALIGN=Center>
+  <B><FONT COLOR="Maroon"><BIG><BIG>a</BIG></BIG></FONT><BIG><FONT COLOR="Olive"><BIG>
+  </BIG></FONT><FONT COLOR="Blue"><BIG>=</BIG></FONT><BIG>
+  </BIG></BIG><FONT COLOR="Maroon"><BIG><BIG>b</BIG></BIG></FONT></B>
+  <P ALIGN=Justify>
+  <BIG><FONT COLOR="Maroon"><B>b</B></FONT>
+  (<FONT COLOR="Green"><B>r-value</B></FONT>) pu&ograve; essere una qualunque
+  <FONT COLOR="Green"><B>espressione</B></FONT> che restituisce un
+  <B>valore</B> di <FONT COLOR="Green"><B>tipo</B></FONT>
+  <I><B>nativo</B></I>; </BIG>
+  <P ALIGN=Justify>
+  <BIG><FONT COLOR="Maroon"><B>a</B></FONT>
+  (<FONT COLOR="Green"><B>l-value</B></FONT>) ha un ambito di scelta molto
+  pi&ugrave; ristretto (tutti gli
+  <FONT COLOR="Green"><B>l-values</B></FONT> possono essere
+  <FONT COLOR="Green"><B>r-values</B></FONT>, ma non viceversa); in pratica,
+  salvo poche eccezioni, <FONT COLOR="Maroon"><B>a</B></FONT> deve essere una
+  <U>variabile</U>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B>tipi</B></FONT> di
+  <FONT COLOR="Maroon"><B>a</B></FONT> e
+  <FONT COLOR="Maroon"><B>b</B></FONT> devono coincidere, oppure il
+  <FONT COLOR="Green"><B>tipo</B></FONT> di
+  <FONT COLOR="Maroon"><B>b</B></FONT> deve essere convertibile
+  <I><B>implicitamente</B></I> nel <FONT COLOR="Green"><B>tipo</B></FONT> di
+  <FONT COLOR="Maroon"><B>a</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatori
+matematici</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Come in tutti i linguaggi di programmazione, le
+  <FONT COLOR="Green"><B>operazioni</B></FONT> <B>matematiche</B> fondamentali
+  (<FONT COLOR="Purple"><B>addizione</B></FONT>,
+  <FONT COLOR="Purple"><B>sottrazione</B></FONT>,
+  <FONT COLOR="Purple"><B>moltiplicazione</B></FONT>,
+  <FONT COLOR="Purple"><B>divisione</B></FONT>) sono eseguite rispettivamente
+  dai seguenti <FONT COLOR="Green"><B>operatori</B></FONT>
+  <FONT COLOR="Green"><B>binari</B></FONT>:</BIG>
+  <P ALIGN=Center>
+  <B><FONT COLOR="Blue"><BIG><BIG> +</BIG></BIG></FONT></B>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <B><FONT COLOR="Blue"><BIG><BIG> -</BIG></BIG></FONT></B>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <B><FONT COLOR="Blue"><BIG><BIG> *</BIG></BIG></FONT></B>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <B><FONT COLOR="Blue"><BIG><BIG> /</BIG></BIG></FONT></B>
+  <P ALIGN=Justify>
+  <BIG>Se la <FONT COLOR="Purple"><B>divisione</B></FONT> &egrave; fra due
+  numeri <FONT COLOR="Green"><B>interi</B></FONT>, il risultato
+  dell'<FONT COLOR="Green"><B>operazione</B></FONT> &egrave; ancora un numero
+  <FONT COLOR="Green"><B>intero</B></FONT>
+  (<I><B>troncamento</B></I>).<BR>
+  Es. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B><FONT COLOR="Maroon">27</FONT>&nbsp;<FONT
+      COLOR="Blue">/</FONT>&nbsp;<FONT COLOR="Maroon">4</FONT>
+  </B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;da' come
+  risultato <FONT COLOR="Maroon"><B>6</B></FONT> (anzich&eacute;
+  <FONT COLOR="Maroon"><B>6.75</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Purple"><B>resto di una divisione</B></FONT> fra numeri
+  <FONT COLOR="Green"><B>interi</B></FONT> si calcola con
+  l'<FONT COLOR="Green"><B>operatore binario</B></FONT>
+  <FONT COLOR="Blue"><B><BIG>%</BIG></B></FONT> <BR>
+  Es. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B><FONT COLOR="Maroon">27</FONT>&nbsp;<FONT
+      COLOR="Blue">%</FONT>&nbsp;<FONT COLOR="Maroon">4</FONT>
+  </B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;da' come
+  risultato <FONT COLOR="Maroon"><B>3</B></FONT></BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatori a livello del
+bit</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Red"><B>C++</B></FONT> pu&ograve;, a differenza da altri
+  linguaggi, operare sulle variabili
+  <FONT COLOR="Green"><B>intere</B></FONT> <FONT COLOR="Purple"><B>a livello
+  del bit</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  &nbsp;
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Green"><B>binario</B></FONT>
+  <FONT COLOR="Blue"><B><BIG>&gt;&gt;</BIG></B></FONT> produce lo
+  <FONT COLOR="Purple"><B>scorrimento a destra</B></FONT>
+  (<FONT COLOR="Purple"><B>right-shift</B></FONT>) dei bit del
+  <FONT COLOR="Green"><B>left-operand</B></FONT>, in quantit&agrave; pari al
+  <FONT COLOR="Green"><B>right-operand</B></FONT>. In pratica esegue una
+  <U>divisione intera </U>(con divisore uguale a una potenza di 2)<BR>
+  Es. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <B><FONT COLOR="Maroon">a</FONT> <FONT COLOR="Blue">&gt;&gt;</FONT>
+  <FONT COLOR="Maroon">n</FONT></B><FONT COLOR="Maroon">
+  </FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;equivale
+  a &nbsp;&nbsp;&nbsp;&nbsp;<B><FONT COLOR="Maroon">a</FONT>
+  </B><FONT COLOR="Blue"><B>/
+  </B></FONT><B><FONT COLOR="Maroon">2<SUP>n</SUP></FONT></B><BR>
+  Dalla sinistra entrano cifre binarie <FONT COLOR="Maroon"><B>0</B></FONT>
+  se il numero a &egrave; <U>positivo</U>, oppure cifre binarie
+  <FONT COLOR="Maroon"><B>1</B></FONT> se il numero a &egrave; <U>negativo</U>
+  (a causa della notazione a <I><B>complemento a 2</B></I><B> </B>dei numeri
+  negativi).</BIG>
+  <P ALIGN=Justify>
+  &nbsp;
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Green"><B>binario</B></FONT>
+  <FONT COLOR="Blue"><B><BIG>&lt;&lt; </BIG></B></FONT>produce lo
+  <FONT COLOR="Purple"><B>scorrimento a sinistra</B></FONT>
+  (<FONT COLOR="Purple"><B>left-shift</B></FONT>) dei bit del
+  <FONT COLOR="Green"><B>left-operand</B></FONT>, in quantit&agrave; pari al
+  <FONT COLOR="Green"><B>right-operand</B></FONT>. In pratica esegue una
+  moltiplicazione per una potenza di 2<BR>
+  Es. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <B><FONT COLOR="Maroon">a</FONT> <FONT COLOR="Blue">&lt;&lt;</FONT>
+  <FONT COLOR="Maroon">n</FONT></B><FONT COLOR="Maroon">
+  </FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;equivale
+  a &nbsp;&nbsp;&nbsp;&nbsp;<B><FONT COLOR="Maroon">a</FONT>
+  </B><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB>
+  </B></FONT><B><FONT COLOR="Maroon">2<SUP>n</SUP></FONT></B><BR>
+  Dalla destra entrano sempre cifre binarie
+  <FONT COLOR="Maroon"><B>0</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  &nbsp;
+  <P ALIGN=Justify>
+  <BIG>Gli <FONT COLOR="Green"><B>operatori</B></FONT>
+  <FONT COLOR="Green"><B>binari</B></FONT>
+  <FONT COLOR="Blue"><B><BIG>&amp;</BIG></B></FONT>,
+  <FONT COLOR="Blue"><B><BIG>|</BIG></B></FONT>, e
+  <FONT COLOR="Blue"><B><BIG>^</BIG></B></FONT> eseguono
+  <FONT COLOR="Purple"><B>operazioni logiche bit a bit</B></FONT> fra i due
+  <FONT COLOR="Green"><B>operandi</B></FONT>, e precisamente: </BIG>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center" WIDTH="80%">
+      <TR>
+	<TD WIDTH="10%"><FONT COLOR="Blue"><B><BIG>&amp;</BIG></B></FONT></TD>
+	<TD><BIG>esegue l'<FONT COLOR="Purple"><B>AND</B></FONT> fra i corrispondenti
+	  bit dei due <FONT COLOR="Green"><B>operandi</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD WIDTH="10%"><FONT COLOR="Blue"><B><BIG>|</BIG></B></FONT></TD>
+	<TD><BIG>esegue l'<FONT COLOR="Purple"><B>OR inclusivo</B></FONT> fra i
+	  corrispondenti bit dei due
+	  <FONT COLOR="Green"><B>operandi</B></FONT></BIG></TD>
+      </TR>
+      <TR VALIGN="Top">
+	<TD WIDTH="10%"><FONT COLOR="Blue"><B><BIG>^</BIG></B></FONT></TD>
+	<TD><BIG>esegue l'<FONT COLOR="Purple"><B>OR esclusivo</B></FONT>
+	  (<FONT COLOR="Purple"><B>XOR</B></FONT>) fra i corrispondenti bit dei due
+	  <FONT COLOR="Green"><B>operandi</B></FONT></BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <BIG>Es., date due variabili <FONT COLOR="Blue"><B>char</B></FONT>
+  <B><FONT COLOR="Maroon">a</FONT></B> e
+  <FONT COLOR="Maroon"><B>b</B></FONT> i cui valori sono, in notazione
+  binaria:</BIG>
+  <TABLE CELLPADDING="2" WIDTH="90%">
+    <TR>
+      <TD WIDTH="8%">&nbsp;</TD>
+      <TD WIDTH="28%"><BIG><B><FONT COLOR="Maroon">a</FONT></B></BIG></TD>
+      <TD WIDTH="10%"><BIG><B><FONT COLOR="Blue">=</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="22%"><P ALIGN=Center>
+	<BIG>(<B><FONT COLOR="Maroon">77</FONT></B>)</BIG></TD>
+    </TR>
+    <TR>
+      <TD WIDTH="8%">&nbsp;</TD>
+      <TD WIDTH="28%"><BIG><B><FONT COLOR="Maroon">b</FONT></B></BIG></TD>
+      <TD WIDTH="10%"><BIG><B><FONT COLOR="Blue">=</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="22%"><P ALIGN=Center>
+	<BIG>(<B><FONT COLOR="Maroon">58</FONT></B>)</BIG></TD>
+    </TR>
+  </TABLE>
+  <P>
+  <BIG>i risultati delle tre <FONT COLOR="Green"><B>operazioni</B></FONT> sono
+  rispettivamente:</BIG>
+  <TABLE CELLPADDING="2" WIDTH="90%">
+    <TR>
+      <TD WIDTH="8%">&nbsp;</TD>
+      <TD WIDTH="28%"><BIG><B><FONT COLOR="Maroon">a
+	</FONT><FONT COLOR="Blue">&amp;</FONT>
+	<FONT COLOR="Maroon">b</FONT></B></BIG></TD>
+      <TD WIDTH="10%"><BIG><B><FONT COLOR="Blue">=</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="22%"><P ALIGN=Center>
+	<BIG>(<B><FONT COLOR="Maroon">8</FONT></B>)</BIG></TD>
+    </TR>
+    <TR>
+      <TD WIDTH="8%">&nbsp;</TD>
+      <TD WIDTH="28%"><BIG><B><FONT COLOR="Maroon">a
+	</FONT><FONT COLOR="Blue">|</FONT>
+	<FONT COLOR="Maroon">b</FONT></B></BIG></TD>
+      <TD WIDTH="10%"><BIG><B><FONT COLOR="Blue">=</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="22%"><P ALIGN=Center>
+	<BIG>(<B><FONT COLOR="Maroon">127</FONT></B>)</BIG></TD>
+    </TR>
+    <TR>
+      <TD WIDTH="8%">&nbsp;</TD>
+      <TD WIDTH="28%"><BIG><B><FONT COLOR="Maroon">a
+	</FONT><FONT COLOR="Blue">^</FONT>
+	<FONT COLOR="Maroon">b</FONT></B></BIG></TD>
+      <TD WIDTH="10%"><BIG><B><FONT COLOR="Blue">=</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">0</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="4%"><BIG><B><FONT COLOR="Maroon">1</FONT></B></BIG></TD>
+      <TD WIDTH="22%"><P ALIGN=Center>
+	<BIG>(<B><FONT COLOR="Maroon">119</FONT></B>)</BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  &nbsp;
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>operatore unario</B></FONT>
+  <FONT COLOR="Blue"><B><BIG>~</BIG></B></FONT> <FONT COLOR="Purple"><B>inverte
+  i bit</B></FONT> dell'<FONT COLOR="Green"><B>operando</B></FONT>, cio&egrave;
+  calcola il suo <I><B>complemento a uno </B></I>(in pratica, se il numero
+  &eacute; <FONT COLOR="Blue"><B>signed</B></FONT>, lo inverte di segno e sottrae
+  <B><FONT COLOR="Maroon">1</FONT></B>).</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatori binari in notazione
+compatta</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Data l'<FONT COLOR="Green"><B>espressione</B></FONT>: </BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Maroon"><B><BIG>a
+  </BIG></B></FONT><B><FONT COLOR="Blue"><BIG>=</BIG></FONT></B><BIG>
+  <FONT COLOR="Maroon"><B>a op b</B></FONT></BIG></BIG>
+  <P ALIGN=Justify>
+  <BIG>dove <FONT COLOR="Maroon"><B>op</B></FONT> &egrave;
+  un'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Purple"><B>matematico</B></FONT> o <FONT COLOR="Purple"><B>a
+  livello del bit</B></FONT>, <FONT COLOR="Maroon"><B>b</B></FONT> &egrave;
+  un'<FONT COLOR="Green"><B>espressione</B></FONT> qualsiasi e
+  <FONT COLOR="Maroon"><B>a</B></FONT> &egrave; una variabile, le due
+  <FONT COLOR="Green"><B>operazioni</B></FONT> possono essere sintetizzate
+  in una tramite l'<FONT COLOR="Green"><B>operatore binario</B></FONT>
+  <B><FONT COLOR="Maroon"><BIG>op</BIG></FONT></B></BIG><B><FONT COLOR="Blue"><BIG><BIG>=</BIG></BIG></FONT></B>
+  <P ALIGN=Justify>
+  <BIG>Es. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <B><FONT COLOR="Maroon">MiaVariabile</FONT>
+  <FONT COLOR="Blue"><SUB><BIG>*</BIG></SUB>=</FONT>
+  <FONT COLOR="Maroon">4</FONT></B><FONT COLOR="Maroon">
+  </FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;equivale
+  a &nbsp;&nbsp;&nbsp;&nbsp;<B><FONT COLOR="Maroon">MiaVariabile</FONT>
+  </B><FONT COLOR="Blue"><B>=
+  </B></FONT><B><FONT COLOR="Maroon">MiaVariabile</FONT><FONT COLOR="Blue"><SUB><BIG>*</BIG></SUB></FONT><FONT
+      COLOR="Maroon">4</FONT></B></BIG>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Purple"><B>notazione compatta </B></FONT>&egrave;
+  conveniente soprattutto quando il nome delle variabili &egrave; lungo!</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatori
+relazionali</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Gli <FONT COLOR="Green"><B>operatori</B></FONT>
+  <FONT COLOR="Green"><B>binari</B></FONT>
+  <FONT COLOR="Purple"><B>relazionali</B></FONT> sono: </BIG>
+  <P ALIGN=Center>
+  <FONT COLOR="Blue"><B><BIG><BIG>&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+  &gt;=&nbsp;&nbsp;&nbsp;&nbsp; &lt;&nbsp;&nbsp;&nbsp;&nbsp;
+  &lt;=&nbsp;&nbsp;&nbsp;&nbsp; ==
+  &nbsp;&nbsp;&nbsp;&nbsp;!=</BIG></BIG></B></FONT><BIG> </BIG>
+  <P ALIGN=Justify>
+  <BIG>Questi <FONT COLOR="Green"><B>operatori</B></FONT>&nbsp;eseguono il
+  confronto fra i valori dei due <FONT COLOR="Green"><B>operandi</B></FONT>
+  (che possono essere di qualsiasi <FONT COLOR="Green"><B>tipo</B></FONT>
+  <I><B>nativo</B></I>) e restituiscono un valore
+  <FONT COLOR="Green"><B>booleano</B></FONT>: </BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <B><FONT COLOR="Maroon"><BIG>a</BIG></FONT><BIG>
+      <FONT COLOR="Blue">&gt;</FONT>
+      <FONT COLOR="Maroon">b</FONT></BIG></B><BIG> &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp;restituisce <FONT COLOR="Blue"><B>true</B></FONT> se
+      </BIG><B><FONT COLOR="Maroon"><BIG>a</BIG></FONT></B> <BIG>&eacute; maggiore
+      di </BIG><B><BIG><FONT COLOR="Maroon">b</FONT></BIG></B>
+    <LI>
+      <P ALIGN=Justify>
+      <B><FONT COLOR="Maroon"><BIG>a</BIG></FONT><BIG>
+      <FONT COLOR="Blue">&gt;=</FONT>
+      <FONT COLOR="Maroon">b</FONT></BIG></B><BIG> &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp;restituisce <FONT COLOR="Blue"><B>true</B></FONT> se
+      </BIG><B><FONT COLOR="Maroon"><BIG>a</BIG></FONT></B> <BIG>&eacute; maggiore
+      o uguale a </BIG><B><BIG><FONT COLOR="Maroon">b</FONT></BIG></B>
+    <LI>
+      <P ALIGN=Justify>
+      <B><FONT COLOR="Maroon"><BIG>a</BIG></FONT><BIG> &lt;
+      <FONT COLOR="Maroon">b</FONT></BIG></B><BIG> &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp;restituisce <FONT COLOR="Blue"><B>true</B></FONT> se
+      </BIG><B><FONT COLOR="Maroon"><BIG>a</BIG></FONT></B> <BIG>&eacute; minore
+      di </BIG><B><BIG><FONT COLOR="Maroon">b</FONT></BIG></B>
+    <LI>
+      <P ALIGN=Justify>
+      <B><FONT COLOR="Maroon"><BIG>a</BIG></FONT><BIG>
+      <FONT COLOR="Blue">&lt;=</FONT>
+      <FONT COLOR="Maroon">b</FONT></BIG></B><BIG> &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp;restituisce <FONT COLOR="Blue"><B>true</B></FONT> se
+      </BIG><B><FONT COLOR="Maroon"><BIG>a</BIG></FONT></B> <BIG>&eacute; minore
+      o uguale a </BIG><B><BIG><FONT COLOR="Maroon">b</FONT></BIG></B>
+    <LI>
+      <P ALIGN=Justify>
+      <B><FONT COLOR="Maroon"><BIG>a</BIG></FONT><BIG> <FONT COLOR="Blue">==</FONT>
+      <FONT COLOR="Maroon">b</FONT></BIG></B><BIG> &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp;restituisce <FONT COLOR="Blue"><B>true</B></FONT> se
+      </BIG><B><FONT COLOR="Maroon"><BIG>a</BIG></FONT></B> <BIG>&eacute; uguale
+      a
+      </BIG><B><BIG><FONT COLOR="Maroon">b</FONT></BIG></B><BIG></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <B><FONT COLOR="Maroon"><BIG>a</BIG></FONT><BIG> <FONT COLOR="Blue">!=</FONT>
+      <FONT COLOR="Maroon">b</FONT></BIG></B><BIG> &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+      &nbsp; &nbsp;restituisce <FONT COLOR="Blue"><B>true</B></FONT> se
+      </BIG><B><FONT COLOR="Maroon"><BIG>a</BIG></FONT></B> <BIG>&eacute; diverso
+      da </BIG><B><BIG><FONT COLOR="Maroon">b</FONT></BIG></B>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Esempi: </BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>bool</B></FONT>
+      <FONT COLOR="Maroon"><B>bvar</B></FONT>
+      <FONT COLOR="Blue"><B>=</B></FONT> <FONT COLOR="Maroon"><B>7</B></FONT>
+      <FONT COLOR="Blue">&gt;</FONT> <FONT COLOR="Maroon"><B>3</B></FONT>; &nbsp;
+      &nbsp; &nbsp; &nbsp; (in <FONT COLOR="Maroon"><B>bvar</B></FONT> viene
+      memorizzato <FONT COLOR="Blue"><B>true</B></FONT>) </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>bool</B></FONT>
+      <FONT COLOR="Maroon"><B>bvar</B></FONT>
+      <FONT COLOR="Blue"><B>=</B></FONT> <FONT COLOR="Maroon"><B>7</B></FONT>
+      <FONT COLOR="Blue">&lt;</FONT> <FONT COLOR="Maroon"><B>3</B></FONT>; &nbsp;
+      &nbsp; &nbsp; &nbsp; (in <FONT COLOR="Maroon"><B>bvar</B></FONT> viene
+      memorizzato <FONT COLOR="Blue"><B>false</B></FONT>) </BIG>
+  </UL>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatori
+logici</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Gli <FONT COLOR="Green"><B>operatori</B></FONT>
+  <FONT COLOR="Purple"><B>logici</B></FONT> sono: </BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B><BIG>&amp;&amp;</BIG></B></FONT> &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp;<BIG><FONT COLOR="Blue"><B>||</B></FONT></BIG> &nbsp;
+  &nbsp; &nbsp; &nbsp;
+  &nbsp;<BIG><FONT COLOR="Blue"><B>!</B></FONT></BIG></BIG>
+  <P ALIGN=Justify>
+  <BIG>Questi <FONT COLOR="Green"><B>operatori</B></FONT>&nbsp;agiscono su
+  <FONT COLOR="Green"><B>operandi booleani </B></FONT>e restituiscono un valore
+  <FONT COLOR="Green"><B>booleano</B></FONT>:</BIG>
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Green"><B>binario</B></FONT>
+  <FONT COLOR="Blue"><B>&amp;&amp;</B></FONT> esegue
+  l'<FONT COLOR="Purple"><B>AND logico</B></FONT> fra gli
+  <FONT COLOR="Green"><B>operandi</B></FONT>: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<FONT COLOR="Maroon"><B>a</B></FONT>
+  <FONT COLOR="Blue"><B>&amp;&amp;</B></FONT>
+  <FONT COLOR="Maroon"><B>b</B></FONT> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;risultato: <FONT COLOR="Blue"><B>true</B></FONT> se entrambi
+  <FONT COLOR="Maroon"><B>a</B></FONT> e
+  <FONT COLOR="Maroon"><B>b</B></FONT> sono
+  <FONT COLOR="Blue"><B>true</B></FONT>; altrimenti:
+  <FONT COLOR="Blue"><B>false</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Green"><B>binario</B></FONT>
+  <FONT COLOR="Blue"><B>||</B></FONT> esegue l'<FONT COLOR="Purple"><B>OR
+  logico</B></FONT> fra gli <FONT COLOR="Green"><B>operandi</B></FONT>: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<FONT COLOR="Maroon"><B>a</B></FONT>
+  <FONT COLOR="Blue"><B>||</B></FONT> <FONT COLOR="Maroon"><B>b</B></FONT>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;risultato:
+  <FONT COLOR="Blue"><B>false</B></FONT> se entrambi
+  <FONT COLOR="Maroon"><B>a</B></FONT> e
+  <FONT COLOR="Maroon"><B>b</B></FONT> sono
+  <FONT COLOR="Blue"><B>false</B></FONT>; altrimenti:
+  <FONT COLOR="Blue"><B>true</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG> L'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Green"><B>unario</B></FONT><FONT COLOR="Blue"><B> !</B></FONT>
+  esegue il <FONT COLOR="Purple"><B>NOT logico</B></FONT>
+  dell'<FONT COLOR="Green"><B>operando</B></FONT>:<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>!</B></FONT></BIG><B><FONT COLOR="Maroon"><BIG>a</BIG></FONT><BIG>
+  </BIG></B><BIG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; risultato: <FONT COLOR="Blue"><B>true</B></FONT> se
+  </BIG><B><FONT COLOR="Maroon"><BIG>a</BIG></FONT></B> <BIG>&eacute;
+  <FONT COLOR="Blue"><B>false</B></FONT> o viceversa</BIG>
+  <P ALIGN=Justify>
+  &nbsp;
+  <P ALIGN=Justify>
+  <BIG>Notare la differenza fra gli
+  <FONT COLOR="Green"><B>operatori</B></FONT>
+  <FONT COLOR="Purple"><B>logici</B></FONT> &nbsp;&nbsp;
+  <FONT COLOR="Blue"><B>&amp;&amp;</B></FONT> &nbsp;&nbsp;e&nbsp;&nbsp;
+  <FONT COLOR="Blue"><B>||</B></FONT>&nbsp;&nbsp;&nbsp;e gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> di
+  <FONT COLOR="Purple"><B>confronto bit a bit</B></FONT>&nbsp;&nbsp;
+  <FONT COLOR="Blue"><B>&amp;</B></FONT> &nbsp;&nbsp;e&nbsp;&nbsp;
+  <FONT COLOR="Blue"><B>|</B></FONT><BR>
+  </BIG>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD><BIG>Es:&nbsp;&nbsp;&nbsp;&nbsp;</BIG></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>5</B></FONT>
+	<FONT COLOR="Blue"><B>&amp;&amp;</B></FONT>
+	<FONT COLOR="Maroon"><B>2</B></FONT> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp;</BIG></TD>
+      <TD><P ALIGN=Justify>
+	<BIG>restituisce <FONT COLOR="Blue"><B>true</B></FONT> in quanto entrambi
+	gli <FONT COLOR="Green"><B>operandi</B></FONT> sono
+	<FONT COLOR="Blue"><B>true</B></FONT> (ogni
+	<FONT COLOR="Green"><B>intero</B></FONT> diverso da zero &egrave; convertito
+	in <FONT COLOR="Blue"><B>true</B></FONT>)</BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>5</B></FONT>
+	<FONT COLOR="Blue"><B>&amp;</B></FONT>
+	<FONT COLOR="Maroon"><B>2</B></FONT> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp;</BIG></TD>
+      <TD><P ALIGN=Justify>
+	<BIG>restituisce <B><FONT COLOR="Maroon">0</FONT></B> (e quindi
+	<FONT COLOR="Blue"><B>false</B></FONT> se convertito in
+	<FONT COLOR="Green"><B>booleano</B></FONT>) in quanto i bit corrispondenti
+	sono tutti diversi</BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatori di incremento e
+decremento</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Gli <FONT COLOR="Green"><B>operatori</B></FONT>
+  <FONT COLOR="Green"><B>unari</B></FONT> di
+  <FONT COLOR="Purple"><B>incremento</B></FONT>
+  <FONT COLOR="Blue"><B><BIG>++</BIG></B></FONT> o
+  <FONT COLOR="Purple"><B>decremento</B></FONT> <FONT COLOR="Blue"><B><BIG>--
+  </BIG></B></FONT>fanno <U>aumentare o diminuire di un'unit&agrave;</U> il
+  valore dell'<FONT COLOR="Green"><B>operando</B></FONT> (che deve essere un
+  <FONT COLOR="Green"><B>l-value</B></FONT> di qualunque
+  <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>nativo</B></I>). Equivalgono
+  alla sintesi di un <FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Green"><B>binario</B></FONT> di
+  <FONT COLOR="Purple"><B>addizione</B></FONT> o
+  <FONT COLOR="Purple"><B>sottrazione</B></FONT>, in cui il
+  <FONT COLOR="Green"><B>right-operand </B></FONT>&egrave;
+  <FONT COLOR="Maroon"><B>1</B></FONT>, con un
+  <FONT COLOR="Green"><B>operatore</B></FONT> di
+  <FONT COLOR="Purple"><B>assegnazione</B></FONT>, in cui il
+  <FONT COLOR="Green"><B>left-operand</B></FONT> coincide con il
+  <FONT COLOR="Green"><B>left-operand</B></FONT>
+  dell'<FONT COLOR="Purple"><B>addizione</B></FONT> o
+  <FONT COLOR="Purple"><B>sottrazione</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Es. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <B><FONT COLOR="Maroon">MiaVariabile</FONT><FONT COLOR="Blue">++;</FONT></B><FONT
+      COLOR="Maroon">
+  </FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;equivale
+  a &nbsp;&nbsp;&nbsp;&nbsp;<B><FONT COLOR="Maroon">MiaVariabile</FONT>
+  </B><FONT COLOR="Blue"><B>=
+  </B></FONT><B><FONT COLOR="Maroon">MiaVariabile</FONT><FONT COLOR="Blue">+</FONT><FONT
+      COLOR="Maroon">1</FONT><FONT COLOR="Blue">;</FONT></B></BIG>
+  <P ALIGN=Justify>
+  <BIG>la prima forma &egrave; pi&ugrave; rapida e compatta (specialmente se
+  il nome della variabile &egrave; lungo!) .</BIG>
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>operatore</B></FONT> pu&ograve; seguire
+  (<I><B>suffisso</B></I>) o precedere (<I><B>prefisso</B></I>)
+  l'<FONT COLOR="Green"><B>operando</B></FONT>. Nella forma
+  <I><B>prefisso</B></I> l'<FONT COLOR="Purple"><B>incremento</B></FONT> (o
+  il <FONT COLOR="Purple"><B>decremento</B></FONT>) viene eseguito <U>prima
+  che la variabile sia utilizzata nell'espressione</U>, nella forma
+  <I><B>suffisso</B></I> avviene il contrario.</BIG><BR>
+  &nbsp;
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD><P ALIGN=Justify>
+	<BIG>Es:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</BIG></TD>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="Blue"><B>int</B></FONT>&nbsp;
+	<FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>&nbsp;
+	<FONT COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>&nbsp;
+	<FONT COLOR="Maroon"><B>c</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>5</B></FONT> <FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD><P ALIGN=Justify>
+      </TD>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="Maroon"><B>a</B>&nbsp;&nbsp;</FONT><FONT COLOR="Blue"><B>=</B></FONT>&nbsp;&nbsp;
+	<FONT COLOR="Maroon"><B>c</B></FONT><FONT COLOR="Blue"><B>++</B></FONT><FONT
+	    COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD><P ALIGN=Justify>
+      </TD>
+      <TD><P ALIGN=Justify>
+	<BIG><FONT COLOR="Maroon"><B>b</B>&nbsp;&nbsp;</FONT><FONT COLOR="Blue"><B>=</B></FONT>&nbsp;&nbsp;
+	<FONT COLOR="Blue"><B>++</B></FONT><FONT COLOR="Maroon"><B>c</B></FONT><FONT
+	    COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>alla fine di queste operazioni si trovano, nella variabili
+  <FONT COLOR="Maroon"><B>a</B></FONT>,
+  <FONT COLOR="Maroon"><B>b</B></FONT> e
+  <FONT COLOR="Maroon"><B>c</B></FONT>, rispettivamente i valori
+  <FONT COLOR="Maroon"><B>5</B></FONT>,
+  <FONT COLOR="Maroon"><B>7</B></FONT> e
+  <FONT COLOR="Maroon"><B>7</B></FONT>.<BR>
+  Da questo esempio si capisce anche che la forma
+  <FONT COLOR="Purple"><B>incremento</B></FONT> (o
+  <FONT COLOR="Purple"><B>decremento</B></FONT>) conviene non solo perch&eacute;
+  &egrave; pi&ugrave; compatta, ma soprattutto perch&eacute; consente di ridurre
+  il numero di istruzioni.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p09/incdec.cpp">[p09]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatore
+condizionale</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Purple"><B>condizionale</B></FONT> &eacute; l'unico
+  <FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Green"><B>ternario</B></FONT> (tre
+  <FONT COLOR="Green"><B>operandi</B></FONT>): </BIG>
+  <P ALIGN=Center>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center" WIDTH="70%">
+      <TR>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Maroon"><B>condizione
+	  </B></FONT><FONT COLOR="Blue"><B><BIG>?</BIG></B></FONT>
+	  <FONT COLOR="Maroon"><B>espressioneA
+	  </B></FONT><FONT COLOR="Blue"><B><BIG>:</BIG></B></FONT>
+	  </BIG><FONT COLOR="Maroon"><BIG><B>espressioneB</B></BIG></FONT>
+	  <P ALIGN=Justify>
+	  <BIG>(dove <FONT COLOR="Maroon"><B>condizione</B></FONT> &eacute;
+	  un'<FONT COLOR="Green"><B>espressione logica</B></FONT>)
+	  l'<FONT COLOR="Green"><B>operazione </B></FONT>restituisce il valore
+	  dell'<FONT COLOR="Maroon"><B>espressioneA</B></FONT> se la
+	  <FONT COLOR="Maroon"><B>condizione</B></FONT> e'
+	  <FONT COLOR="Blue"><B>true</B></FONT> o il valore
+	  dell'</BIG><FONT COLOR="Maroon"><BIG><B>espressioneB</B></BIG></FONT><BIG>
+	  se la <FONT COLOR="Maroon"><B>condizione</B></FONT> e'
+	  <FONT COLOR="Blue"><B>false</B></FONT></BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <BIG>Es:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <FONT COLOR="Maroon"><B>minimo</B></FONT>&nbsp;&nbsp;
+  <FONT COLOR="Blue"><B>=</B></FONT>&nbsp;&nbsp;
+  <FONT COLOR="Maroon"><B>a</B></FONT>&nbsp;
+  <FONT COLOR="Blue"><B>&lt;</B></FONT>&nbsp;
+  <FONT COLOR="Maroon"><B>b</B></FONT>&nbsp;
+  <FONT COLOR="Blue"><B>?</B></FONT>&nbsp;
+  <FONT COLOR="Maroon"><B>a</B></FONT>&nbsp;
+  <FONT COLOR="Blue"><B>:</B></FONT>&nbsp;
+  <FONT COLOR="Maroon"><B>b</B></FONT>&nbsp;
+  <FONT COLOR="Blue"><B>;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Purple"><B>condizionale</B></FONT> gode della rara propriet&agrave;
+  di restituire un ammissibile <FONT COLOR="Green"><B>l-value </B></FONT>(non
+  in tutti i compilatori, per&ograve;!)<BR>
+  Es. &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>m</B></FONT>&nbsp;
+  <FONT COLOR="Blue"><B>&lt;</B></FONT>&nbsp;
+  <FONT COLOR="Maroon"><B>n</B></FONT>&nbsp;
+  <FONT COLOR="Blue"><B>?</B></FONT>&nbsp;
+  <FONT COLOR="Maroon"><B>a</B></FONT>&nbsp;
+  <FONT COLOR="Blue"><B>:</B></FONT>&nbsp;
+  <FONT COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT> <FONT COLOR="Maroon"><B>c</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT> <BR>
+  (memorizza il valore di <FONT COLOR="Maroon"><B>c</B></FONT> in
+  <FONT COLOR="Maroon"><B>a</B></FONT> se
+  <FONT COLOR="Maroon"><B>m</B></FONT> &eacute; minore di
+  <FONT COLOR="Maroon"><B>n</B></FONT>, altrimenti memorizza il valore di
+  <FONT COLOR="Maroon"><B>c</B></FONT> in
+  <FONT COLOR="Maroon"><B>b</B></FONT>)<BR>
+  in questo caso per&ograve; <FONT COLOR="Maroon"><B>a</B></FONT> e
+  <FONT COLOR="Maroon"><B>b</B></FONT> non possono essere n&eacute;
+  <FONT COLOR="Green"><B>espressioni</B></FONT> n&eacute;
+  <FONT COLOR="Green"><B>costanti</B></FONT>, ma soltanto
+  <FONT COLOR="Green"><B>l-values</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Conversioni di
+tipo</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Conversioni di tipo
+implicite</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Red"><B>C++</B></FONT> esercita un forte controllo sui
+  <FONT COLOR="Green"><B>tipi</B></FONT> e da' messaggio di errore quando si
+  tenta di eseguire <FONT COLOR="Green"><B>operazioni</B></FONT> fra
+  <FONT COLOR="Green"><B>operandi</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT> non ammesso. Es.
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>%</B></FONT> richiede che entrambi gli
+  <FONT COLOR="Green"><B>operandi</B></FONT> siano
+  <FONT COLOR="Green"><B>interi</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>I quattro <FONT COLOR="Green"><B>operatori</B></FONT>
+  <FONT COLOR="Purple"><B>matematici</B></FONT> si applicano a qualsiasi
+  <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>intrinseco</B></I>, ma i
+  <FONT COLOR="Green"><B>tipi</B></FONT> dei due
+  <FONT COLOR="Green"><B>operandi</B></FONT> <U>devono essere uguali</U>. Tuttavia,
+  nel caso di due <FONT COLOR="Green"><B>tipi</B></FONT> diversi, il compilatore
+  esegue una <FONT COLOR="Green"><B>conversione di tipo implicita</B></FONT>
+  su uno dei due <FONT COLOR="Green"><B>operandi</B></FONT>, seguendo la regola
+  di adeguare il <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>pi&ugrave;
+  semplice</B></I> a quello <I><B>pi&ugrave; complesso</B></I>, secondo la
+  seguente gerarchia (in ordine crescente di
+  <I><B>complessit&agrave;</B></I>):</BIG>
+  <P ALIGN=Center>
+  <BIG> <FONT COLOR="Blue"><B>bool</B></FONT>&nbsp;-&nbsp;
+  <FONT COLOR="Blue"><B>char</B></FONT>&nbsp;-&nbsp;
+  <FONT COLOR="Blue"><B>unsigned char</B></FONT>&nbsp;-&nbsp;
+  <FONT COLOR="Blue"><B>short</B></FONT>&nbsp;-&nbsp;
+  <FONT COLOR="Blue"><B>unsigned short</B></FONT>&nbsp;-&nbsp;
+  <FONT COLOR="Blue"><B>long</B></FONT>&nbsp;-&nbsp;
+  <FONT COLOR="Blue"><B>unsigned long</B></FONT>&nbsp;-&nbsp;
+  <FONT COLOR="Blue"><B>float</B></FONT>&nbsp;-&nbsp;
+  <FONT COLOR="Blue"><B>double</B></FONT>&nbsp;-&nbsp;
+  <FONT COLOR="Blue"><B>long double</B></FONT></BIG>
+  <P ALIGN=Center>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD><P ALIGN=Justify>
+	<BIG>Es:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</BIG></TD>
+      <TD><P ALIGN=Justify>
+	<BIG>nell'<FONT COLOR="Green"><B>operazione</B></FONT>
+	<FONT COLOR="Maroon"><B>3.4
+	</B></FONT><FONT COLOR="Blue"><B>/</B></FONT>
+	<FONT COLOR="Maroon"><B>2</B></FONT> il secondo
+	<FONT COLOR="Green"><B>operando</B></FONT> &egrave; trasformato in
+	<FONT COLOR="Maroon"><B>2.0 </B></FONT>e il risultato &egrave; correttamente
+	</BIG><FONT COLOR="Maroon"><BIG><B>1.7 </B></BIG></FONT></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Nelle <FONT COLOR="Purple"><B>assegnazioni</B></FONT>, il
+  <FONT COLOR="Green"><B>tipo</B></FONT> del
+  <FONT COLOR="Green"><B>right-operand </B></FONT>viene sempre trasformato
+  implicitamente nel <FONT COLOR="Green"><B>tipo</B></FONT> del
+  <FONT COLOR="Green"><B>left-operand </B></FONT>(con un messaggio
+  <I><B>warning</B></I> se la conversione potrebbe implicare <I><B>loss of
+  data</B></I> (perdita di dati), trasformando un
+  <FONT COLOR="Green"><B>tipo</B></FONT> pi&ugrave; complesso in un
+  <FONT COLOR="Green"><B>tipo</B></FONT> pi&ugrave; semplice).</BIG>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD><P ALIGN=Justify>
+	<BIG>Es:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</BIG></TD>
+      <TD><P ALIGN=Justify>
+	<BIG>date le variabili&nbsp;&nbsp;&nbsp;
+	<FONT COLOR="Blue"><B>char</B></FONT>
+	<FONT COLOR="Maroon"><B>c</B></FONT> &nbsp;&nbsp;e&nbsp;&nbsp;
+	<FONT COLOR="Blue"><B>double</B></FONT>
+	<FONT COLOR="Maroon"><B>d</B></FONT>,
+	&nbsp;&nbsp;&nbsp;l'<FONT COLOR="Purple"><B>assegnazione</B></FONT>&nbsp;&nbsp;
+	<FONT COLOR="Maroon"><B>c</B></FONT>&nbsp;<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>d</B></FONT>&nbsp;&nbsp;&nbsp;&egrave; ammessa, ma
+	genera un messaggio <I><B>warning</B></I> in fase di compilazione.</BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Nelle <FONT COLOR="Green"><B>operazioni</B></FONT> fra
+  <FONT COLOR="Green"><B>tipi interi</B></FONT>, se il valore ottenuto esce
+  dal <I><B>range</B></I> (<I><B>overflow</B></I>), l'errore <U>non viene
+  segnalato</U>. La stessa cosa dicasi se l'<I><B>overflow</B></I> si verifica
+  a seguito di una <FONT COLOR="Green"><B>conversione di
+  tipo</B></FONT>.</BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><TABLE CELLPADDING="2">
+	  <TR>
+	    <TD><P ALIGN=Justify>
+	      <BIG>Es:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</BIG></TD>
+	    <TD><P ALIGN=Justify>
+	      <BIG> <FONT COLOR="Blue"><B>short</B></FONT>&nbsp;
+	      <FONT COLOR="Maroon"><B>n</B></FONT> &nbsp;
+	      <FONT COLOR="Blue"><B>=</B></FONT>&nbsp;
+	      <FONT COLOR="Maroon"><B>32767</B></FONT>&nbsp;
+	      <FONT COLOR="Blue"><B>;</B></FONT> </BIG></TD>
+	  </TR>
+	  <TR>
+	    <TD></TD>
+	    <TD><P ALIGN=Justify>
+	      <BIG>
+	      <FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>++&nbsp;;</B></FONT>
+	      </BIG></TD>
+	  </TR>
+	</TABLE>
+      </TD>
+    </TR>
+    <TR>
+      <TD><BIG>(l'errore non viene segnalato, ma in
+	<FONT COLOR="Maroon"><B>n</B></FONT> si ritrova il numero
+	<FONT COLOR="Maroon"><B>-32768</B></FONT>) </BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Conversioni di tipo esplicite
+(</B></BIG></FONT><FONT COLOR="Purple"><BIG><B>casting</B></BIG></FONT><FONT
+    COLOR="Green"><BIG><B>)</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Quando si vuole ottenere una <FONT COLOR="Green"><B>conversione di
+  tipo</B></FONT> che non verrebbe eseguita <I><B>implicitamente</B></I>, bisogna
+  usare l'<FONT COLOR="Green"><B>operatore binario</B></FONT> di
+  </BIG><FONT COLOR="Purple"><BIG><B>casting</B></BIG></FONT><BIG> (o
+  <FONT COLOR="Green"><B>conversione esplicita</B></FONT>), che consiste
+  nell'indicazione del nuovo <FONT COLOR="Green"><B>tipo</B></FONT> fra parentesi
+  davanti al nome della variabile da trasformare.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Es. se la variabile <FONT COLOR="Maroon"><B>n</B></FONT> &eacute; di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT>, l'espressione
+  <FONT COLOR="Blue"><B>(float)</B></FONT><FONT COLOR="Maroon"><B>n</B></FONT>
+  trasforma il contenuto di <FONT COLOR="Maroon"><B>n</B></FONT> da
+  <FONT COLOR="Blue"><B>int</B></FONT> in
+  <FONT COLOR="Blue"><B>float</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> si pu&ograve; usare anche il
+  <I><B>formato funzione</B></I> (<I><B>function-style</B></I>
+  <I><B>casting</B></I>):</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>float(</B></FONT><FONT COLOR="Maroon"><B>n</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT> &nbsp; &eacute; &nbsp; equivalente &nbsp;&nbsp;a
+  &nbsp;
+  <FONT COLOR="Blue"><B>(float)</B></FONT><FONT COLOR="Maroon"><B>n</B></FONT>
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>va detto che il <I><B>function-style</B></I> <I><B>casting</B></I> non
+  &egrave; sempre possibile (per esempio con i
+  <FONT COLOR="Green"><B>puntatori</B></FONT> non si pu&ograve; fare).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Tutti i <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>nativi</B></I>
+  consentono il
+  </BIG><FONT COLOR="Purple"><BIG><B>casting</B></BIG></FONT><BIG>, fermo restando
+  il fatto che, se la variabile da trasformare &egrave;
+  <FONT COLOR="Green"><B>operando</B></FONT> di una certa
+  <FONT COLOR="Green"><B>operazione</B></FONT>, il
+  <FONT COLOR="Green"><B>tipo</B></FONT> risultante deve essere fra quelli
+  ammissibili (altrimenti viene generato un errore in compilazione). Per esempio:
+  <FONT COLOR="Blue"><B>float(</B></FONT><FONT COLOR="Maroon"><B>n</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT> <FONT COLOR="Blue"><B>%</B></FONT>
+  <FONT COLOR="Maroon"><B>3</B></FONT> &eacute; errato in quanto l'operatore
+  <FONT COLOR="Blue"><B>%</B></FONT> ammette solo
+  <FONT COLOR="Green"><B>operandi interi</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Vediamo ora un esempio in cui si evidenzia la necessit&agrave; del
+  </BIG><FONT COLOR="Purple"><BIG><B>casting</B></BIG></FONT><BIG>: </BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>m</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>10</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+	<FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>4</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>float</B></FONT>
+	<FONT COLOR="Maroon"><B>r</B></FONT>,
+	<FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+	    COLOR="Maroon"><B>2.7F</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>r</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>m</B></FONT><FONT COLOR="Blue"><B>/</B></FONT><FONT
+	    COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>+</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT
+	    COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>nell'ultima istruzione la
+  <FONT COLOR="Purple"><B>divisione</B></FONT> &egrave; fra due numeri
+  <FONT COLOR="Green"><B>interi</B></FONT> e quindi, essendo i due
+  <FONT COLOR="Green"><B>operandi</B></FONT> dello stesso
+  <FONT COLOR="Green"><B>tipo</B></FONT>, la <FONT COLOR="Green"><B>conversione
+  implicita</B></FONT> non viene eseguita e il risultato della divisione &egrave;
+  il numero <FONT COLOR="Green"><B>intero</B></FONT>
+  <FONT COLOR="Maroon"><B>2</B></FONT>; solo <U>successivamente</U> questo
+  numero viene convertito in modo
+  <FONT COLOR="Green"><B>implicito</B></FONT> in
+  <FONT COLOR="Maroon"><B>2.0</B></FONT> per essere sommato ad
+  <FONT COLOR="Maroon"><B>a</B></FONT>. Se vogliamo che la
+  <FONT COLOR="Green"><B>conversione</B></FONT> a
+  <FONT COLOR="Blue"><B>float</B></FONT> avvenga <U>prima</U> della
+  <FONT COLOR="Purple"><B>divisione</B></FONT>, e che questa fornisca il risultato
+  esatto (cio&egrave; <FONT COLOR="Maroon"><B>2.5</B></FONT>), dobbiamo
+  <FONT COLOR="Green"><B>convertire esplicitamente</B></FONT> almeno uno dei
+  due <FONT COLOR="Green"><B>operandi</B></FONT> e quindi riscrivere cos&igrave;
+  la terza istruzione: </BIG>
+  <CENTER>
+    <TABLE CELLPADDING="2" WIDRH="90%" ALIGN="Center">
+      <TR VALIGN="Top">
+	<TD><BIG><FONT COLOR="Maroon"><B>r</B></FONT>
+	  <FONT COLOR="Blue"><B>=</B></FONT>
+	  <FONT COLOR="Blue"><B>(float)</B></FONT><FONT COLOR="Maroon"><B>m</B></FONT><FONT
+	      COLOR="Blue"><B>/</B></FONT><FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>+</B></FONT><FONT
+	      COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	<TD><BIG>&nbsp;&nbsp;(non servono altre parentesi perch&egrave; il
+	  </BIG><FONT COLOR="Purple"><BIG><B>casting</B></BIG></FONT><BIG> ha la
+	  precedenza<BR>
+	  &nbsp;&nbsp;sulla <FONT COLOR="Purple"><B>divisione</B></FONT>)</BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>Il </BIG><FONT COLOR="Purple"><BIG><B>casting</B></BIG></FONT> <BIG>che
+  abbiamo esaminato finora &egrave; quello del
+  <FONT COLOR="Red"><B>C</B></FONT> (<I><B>C-style casting</B></I>). Il
+  <FONT COLOR="Red"><B>C++</B></FONT> ha aggiunto altri quattro
+  <FONT COLOR="Green"><B>operatori</B></FONT> di
+  </BIG><FONT COLOR="Purple"><BIG><B>casting</B></BIG></FONT><BIG>, suddividendo
+  le conversioni di <FONT COLOR="Green"><B>tipo</B></FONT> in altrettante categorie
+  e riservando un <FONT COLOR="Green"><B>operatore </B></FONT>per ciascuna
+  di esse (per fornire al compilatore strumenti di controllo pi&ugrave; raffinati).
+  D'altra parte il <I><B>C-style casting</B></I> (che li comprende tutti) &egrave;
+  ammesso anche in <FONT COLOR="Red"><B>C++</B></FONT>, e pertanto non tratteremo
+  in questo corso degli altri <FONT COLOR="Green"><B>operatori</B></FONT> di
+  </BIG><FONT COLOR="Purple"><BIG><B>casting</B></BIG></FONT><BIG>, limitandoci
+  a fornirne l'elenco:<FONT COLOR="Blue"><BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<B>static_cast&lt;</B></FONT><FONT COLOR="#cc0000"><B>T</B></FONT><FONT
+      COLOR="Blue"><B>&gt;(</B></FONT><FONT COLOR="Maroon"><B>E</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT><BR>
+  <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;
+  dynamic_cast&lt;</B></FONT><FONT COLOR="#cc0000"><B>T</B></FONT><FONT COLOR="Blue"><B>&gt;(</B></FONT><FONT
+      COLOR="Maroon"><B>E</B></FONT><FONT COLOR="Blue"><B>)<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;reinterpret_cast&lt;</B></FONT><FONT COLOR="#cc0000"><B>T</B></FONT><FONT
+      COLOR="Blue"><B>&gt;(</B></FONT><FONT COLOR="Maroon"><B>E</B></FONT><FONT
+      COLOR="Blue"><B>)<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;const_cast&lt;</B></FONT><FONT COLOR="#cc0000"><B>T</B></FONT><FONT
+      COLOR="Blue"><B>&gt;(</B></FONT><FONT COLOR="Maroon"><B>E</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT><BR>
+  dove &egrave; <FONT COLOR="Maroon"><B>E</B></FONT>
+  un'<FONT COLOR="Green"><B>espressione</B></FONT> qualsiasi il cui
+  <FONT COLOR="Green"><B>tipo</B></FONT> &egrave; convertito nel
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="#cc0000"><B>T</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Precedenza fra operatori
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Nella seguente tabella gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> sono in ordine di
+  <FONT COLOR="Purple"><B>precedenza</B></FONT> <U>decrescente</U> (nello stesso
+  blocco di righe hanno uguale
+  <FONT COLOR="Purple"><B>precedenza</B></FONT>):</BIG>
+  <P ALIGN=Left>
+  <BIG>[<FONT COLOR="Red"><B>Legenda degli operandi</B></FONT>:
+  &nbsp;<FONT COLOR="Green"><B>id</B></FONT>=<FONT COLOR="Green"><B>identificatore</B></FONT>;
+  <FONT COLOR="Green"><B>&nbsp; &nbsp;
+  pid</B></FONT>=<FONT COLOR="Green"><B>puntatore a identificatore</B></FONT>;
+  <FONT COLOR="Green"><B>expr</B></FONT>=<FONT COLOR="Green"><B>espressione</B></FONT>;
+  &nbsp;
+  &nbsp;<FONT COLOR="Green"><B>lv</B></FONT>=<FONT COLOR="Green"><B>l-value</B></FONT>;<FONT
+      COLOR="Green"><B> &nbsp;
+  &nbsp;&nbsp;...</B></FONT>=<FONT COLOR="Green"><B>operandi
+  opzionali</B></FONT>]</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Justify>
+<CENTER>
+  <TABLE BORDER CELLPADDING="2" ALIGN="Center">
+    <TR>
+      <TH><BIG>DESCRIZIONE OPERATORE</BIG></TH>
+      <TH><BIG>CATEGORIA</BIG></TH>
+      <TH><BIG>SIMBOLO E<BR>
+	OPERANDI</BIG></TH>
+      <TH><BIG>ASSOCIATIVITA'</BIG></TH>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><B><FONT COLOR="Purple">&nbsp;risoluzione di visibilit&agrave;<BR>
+	&nbsp;riferimento globale</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">binario<BR>
+	unario</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B>
+	<FONT COLOR="Green">id</FONT><FONT COLOR="Blue">::</FONT><FONT COLOR="Green">id</FONT><BR>
+	<FONT COLOR="Blue">::</FONT><FONT COLOR="Green">id</FONT></B></BIG></TD>
+      <TD><BIG>&nbsp;da sinistra a destra</BIG><BR>
+	<BIG>&nbsp;----</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><B><FONT COLOR="Purple">&nbsp;selezione di un membro<BR>
+	&nbsp;selezione di un membro puntato<BR>
+	&nbsp;indicizzazione array<BR>
+	&nbsp;chiamata di funzione<BR>
+	&nbsp;incremento suffisso<BR>
+	&nbsp;decremento suffisso<BR>
+	&nbsp;identificazione di tipo</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">binario<BR>
+	binario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">binario<BR>
+	binario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">unario<BR>
+	unario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">unario</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B>
+	<FONT COLOR="Green">id</FONT><FONT COLOR="Blue">.</FONT><FONT COLOR="Green">id</FONT><BR>
+	<FONT COLOR="Green">pid</FONT><FONT COLOR="Blue">-&gt;</FONT><FONT COLOR="Green">id</FONT><BR>
+	<FONT COLOR="Green">id</FONT><FONT COLOR="Blue">[</FONT><FONT COLOR="Green">expr</FONT><FONT
+	    COLOR="Blue">]</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">id</FONT><FONT COLOR="Blue">(</FONT><FONT COLOR="Green">expr</FONT><FONT
+	    COLOR="Blue">)</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">lv</FONT><FONT COLOR="Blue">++</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">lv</FONT><FONT COLOR="Blue">--</FONT></B></BIG><BR>
+	<BIG><B>
+	<FONT COLOR="Blue">typeid(</FONT><FONT COLOR="Green">expr</FONT><FONT COLOR="Blue">)</FONT></B></BIG></TD>
+      <TD><BIG>&nbsp;da sinistra a destra</BIG><BR>
+	<BIG>&nbsp;da sinistra a destra</BIG><BR>
+	&nbsp;<BIG>da sinistra a destra</BIG><BR>
+	&nbsp;<BIG>----</BIG><BR>
+	<BIG>&nbsp;----</BIG><BR>
+	<BIG>&nbsp;----</BIG><BR>
+	<BIG>&nbsp;----</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><B><FONT COLOR="Purple">&nbsp;dimensione di un oggetto<BR>
+	&nbsp;complemento a 1<BR>
+	&nbsp;NOT logico<BR>
+	&nbsp;incremento prefisso<BR>
+	&nbsp;decremento prefisso<BR>
+	&nbsp;segno - algebrico<BR>
+	&nbsp;segno + algebrico<BR>
+	&nbsp;indirizzo di memoria<BR>
+	&nbsp;dereferenziazione<BR>
+	&nbsp;allocazione di memoria<BR>
+	&nbsp;deallocazione di memoria<BR>
+	&nbsp;casting (conversione di tipo) </FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">unario<BR>
+	unario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">unario<BR>
+	unario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">unario<BR>
+	unario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">unario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">unario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">unario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">ternario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">binario <BR>
+	binario</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Blue">sizeof(</FONT><FONT COLOR="Green">expr</FONT><FONT
+	    COLOR="Blue">)</FONT><BR>
+	<FONT COLOR="Blue">~</FONT><FONT COLOR="Green"> expr</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Blue">!</FONT><FONT COLOR="Green">
+	expr</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Blue">++</FONT><FONT COLOR="Green">lv</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Blue">--</FONT><FONT COLOR="Green">lv</FONT></B></BIG><BR>
+	<BIG><B> <FONT COLOR="Blue">-
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG><BR>
+	<BIG><B> <FONT COLOR="Blue">+
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Blue">&amp;</FONT><FONT COLOR="Green">lv</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Blue"><SUB><BIG>*</BIG></SUB></FONT><FONT COLOR="Green">pid</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Blue">new</FONT><FONT COLOR="Green"> tipo
+	...</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Blue">delete</FONT><FONT COLOR="Green"> ...
+	pid</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Blue">(</FONT><FONT COLOR="Green">tipo</FONT><FONT COLOR="Blue">)</FONT><FONT
+	    COLOR="Green">expr</FONT></B></BIG></TD>
+      <TD><BIG>&nbsp;----</BIG><BR>
+	<BIG>&nbsp;da destra a sinistra</BIG><BR>
+	<BIG>&nbsp;da destra a sinistra</BIG><BR>
+	&nbsp;<BIG>da destra a sinistra</BIG><BR>
+	<BIG>&nbsp;da destra a sinistra</BIG><BR>
+	<BIG>&nbsp;da destra a sinistra</BIG><BR>
+	<BIG>&nbsp;da destra a sinistra</BIG><BR>
+	&nbsp;<BIG>da destra a sinistra</BIG><BR>
+	&nbsp;<BIG>da destra a sinistra</BIG><BR>
+	&nbsp;<BIG>----</BIG><BR>
+	&nbsp;<BIG>----</BIG><BR>
+	&nbsp;<BIG>da destra a sinistra</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><B><FONT COLOR="Purple">&nbsp;moltiplicazione<BR>
+	&nbsp;divisione<BR>
+	&nbsp;resto di divisione intera</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">binario<BR>
+	binario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">expr</FONT><FONT COLOR="Blue">
+	<SUB><BIG>*</BIG></SUB> </FONT><FONT COLOR="Green">expr</FONT><BR>
+	<FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> /
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> %
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG></TD>
+      <TD><BIG>&nbsp;da sinistra a destra</BIG><BR>
+	<BIG>&nbsp;da sinistra a destra</BIG><BR>
+	<BIG>&nbsp;da sinistra a destra</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><B><FONT COLOR="Purple">&nbsp;addizione<BR>
+	&nbsp;sottrazione</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">binario<BR>
+	binario</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> +
+	</FONT><FONT COLOR="Green">expr</FONT><BR>
+	<FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> -
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG></TD>
+      <TD><BIG>&nbsp;da sinistra a destra</BIG><BR>
+	<BIG>&nbsp;da sinistra a destra</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><B><FONT COLOR="Purple">&nbsp;</FONT></B><FONT COLOR="Purple"><B>scorrimento
+	a destra</B></FONT><B><FONT COLOR="Purple"><BR>
+	&nbsp;</FONT></B><FONT COLOR="Purple"><B>scorrimento a
+	sinistra</B></FONT></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">binario<BR>
+	binario</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> &gt;&gt;
+	</FONT><FONT COLOR="Green">expr</FONT><BR>
+	<FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> &lt;&lt;
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG></TD>
+      <TD><BIG>&nbsp;da sinistra a destra</BIG><BR>
+	<BIG>&nbsp;da sinistra a destra</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><B><FONT COLOR="Purple">&nbsp;</FONT></B><FONT COLOR="Purple"><B>minore</B></FONT><B><FONT
+	    COLOR="Purple"><BR>
+	&nbsp;</FONT></B><FONT COLOR="Purple"><B>minore o
+	uguale</B></FONT></BIG><BR>
+	<BIG><B><FONT COLOR="Purple">&nbsp;</FONT></B><FONT COLOR="Purple"><B>maggiore</B></FONT></BIG><BR>
+	&nbsp;<BIG><FONT COLOR="Purple"><B>maggiore o uguale</B></FONT></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">binario<BR>
+	binario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> &lt;
+	</FONT><FONT COLOR="Green">expr</FONT><BR>
+	<FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> &lt;=
+	</FONT><FONT COLOR="Green">expr<BR>
+	expr</FONT><FONT COLOR="Blue"> &gt;
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> &gt;=
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG></TD>
+      <TD><BIG>&nbsp;da sinistra a destra</BIG><BR>
+	<BIG>&nbsp;da sinistra a destra<BR>
+	&nbsp;da sinistra a destra<BR>
+	&nbsp;da sinistra a destra</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG>&nbsp;<FONT COLOR="Purple"><B>uguale</B></FONT></BIG><BR>
+	<BIG><B><FONT COLOR="Purple">&nbsp;</FONT></B><FONT COLOR="Purple"><B>diverso</B></FONT></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">binario<BR>
+	binario</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> ==
+	</FONT><FONT COLOR="Green">expr</FONT><BR>
+	<FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> !=
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG></TD>
+      <TD><BIG>&nbsp;da sinistra a destra</BIG><BR>
+	<BIG>&nbsp;da sinistra a destra</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG>&nbsp;<FONT COLOR="Purple"><B>AND bit a bit</B></FONT></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> &amp;
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG></TD>
+      <TD><BIG>&nbsp;da sinistra a destra</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG>&nbsp;<FONT COLOR="Purple"><B>XOR bit a bit</B></FONT></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> ^
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG></TD>
+      <TD><BIG>&nbsp;da sinistra a destra</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG>&nbsp;<FONT COLOR="Purple"><B>OR bit a bit</B></FONT></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> |
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG></TD>
+      <TD><BIG>&nbsp;da sinistra a destra</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG>&nbsp;<FONT COLOR="Purple"><B>AND logico</B></FONT></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> &amp;&amp;
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG></TD>
+      <TD><BIG>&nbsp;da sinistra a destra</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG>&nbsp;<FONT COLOR="Purple"><B>OR logico</B></FONT></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> ||
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG></TD>
+      <TD><BIG>&nbsp;da sinistra a destra</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG>&nbsp;<FONT COLOR="Purple"><B>espressione
+	condizionale</B></FONT></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">ternario</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> ?
+	</FONT><FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> :
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG></TD>
+      <TD>&nbsp;<BIG>da destra a sinistra</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><FONT COLOR="Purple"><B> &nbsp;assegnazione<BR>
+	&nbsp;moltiplicazione e assegnazione<BR>
+	&nbsp;divisione e assegnazione<BR>
+	&nbsp;resto e assegnazione<BR>
+	&nbsp;addizione e assegnazione<BR>
+	&nbsp;sottrazione e assegnazione<BR>
+	&nbsp;scorrimento a destra e assegnazione<BR>
+	&nbsp;scorrimento a sinistra e assegnazione<BR>
+	&nbsp;AND bit a bit e assegnazione<BR>
+	&nbsp;OR bit a bit e assegnazione<BR>
+	&nbsp;XOR bit a bit e assegnazione</B></FONT></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">lv</FONT><FONT COLOR="Blue"> =
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">lv</FONT><FONT COLOR="Blue">
+	<SUB><BIG>*</BIG></SUB>=
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">lv</FONT><FONT COLOR="Blue"> /=
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">lv</FONT><FONT COLOR="Blue"> %=
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">lv</FONT><FONT COLOR="Blue"> +=
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">lv</FONT><FONT COLOR="Blue"> -=
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">lv</FONT><FONT COLOR="Blue"> &gt;&gt;=
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">lv</FONT><FONT COLOR="Blue"> &lt;&lt;=
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">lv</FONT><FONT COLOR="Blue"> &amp;=
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">lv</FONT><FONT COLOR="Blue"> |=
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG><BR>
+	<BIG><B><FONT COLOR="Green">lv</FONT><FONT COLOR="Blue"> ^=
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG></TD>
+      <TD>&nbsp;<BIG>da destra a sinistra</BIG><BR>
+	&nbsp;<BIG>da destra a sinistra</BIG><BR>
+	&nbsp;<BIG>da destra a sinistra</BIG><BR>
+	&nbsp;<BIG>da destra a sinistra</BIG><BR>
+	&nbsp;<BIG>da destra a sinistra</BIG><BR>
+	&nbsp;<BIG>da destra a sinistra</BIG><BR>
+	&nbsp;<BIG>da destra a sinistra</BIG><BR>
+	&nbsp;<BIG>da destra a sinistra</BIG><BR>
+	&nbsp;<BIG>da destra a sinistra</BIG><BR>
+	&nbsp;<BIG>da destra a sinistra</BIG><BR>
+	&nbsp;<BIG>da destra a sinistra</BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD><BIG><B><FONT COLOR="Purple">&nbsp;</FONT></B><FONT COLOR="Purple"><B>serializzazione
+	delle espressioni</B></FONT></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">binario</FONT></B></BIG></TD>
+      <TD><P ALIGN=Center>
+	<BIG><B><FONT COLOR="Green">expr</FONT><FONT COLOR="Blue"> ,
+	</FONT><FONT COLOR="Green">expr</FONT></B></BIG></TD>
+      <TD><BIG>&nbsp;da sinistra a destra</BIG></TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Ordine di
+valutazione</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Le regole di <FONT COLOR="Purple"><B>precedenza</B></FONT> e
+  <FONT COLOR="Purple"><B>associativit&agrave; </B></FONT>fra gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> non garantiscono che
+  l'<FONT COLOR="Purple"><B>ordine di valutazione</B></FONT> delle
+  <FONT COLOR="Green"><B>sotto-espressioni</B></FONT> all'interno di un
+  <FONT COLOR="Green"><B>espressione</B></FONT> sia sempre definito. Per esempio,
+  si consideri l'espressione:<FONT COLOR="Maroon"><BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<B>a
+  </B></FONT><B><FONT COLOR="Blue">=</FONT>
+  <FONT COLOR="Maroon">fun1</FONT><FONT COLOR="Blue">(</FONT><FONT COLOR="Maroon">5</FONT><FONT
+      COLOR="Blue">)</FONT> <FONT COLOR="Blue">+</FONT>
+  <FONT COLOR="Maroon">fun2</FONT><FONT COLOR="Blue">(</FONT><FONT COLOR="Maroon">3</FONT><FONT
+      COLOR="Blue">);</FONT> </B>&nbsp; &nbsp; &nbsp; (dove
+  <B><FONT COLOR="Maroon">fun1</FONT></B> e
+  <B><FONT COLOR="Maroon">fun2</FONT></B> sono
+  <FONT COLOR="Green"><B>funzioni</B></FONT>)<BR>
+  le regole di <FONT COLOR="Purple"><B>precedenza</B></FONT> assicurano che
+  prima vengano eseguite le <B><FONT COLOR="Purple">chiamate</FONT></B> delle
+  <FONT COLOR="Green"><B>funzioni</B></FONT>, poi
+  l'<B><FONT COLOR="Purple">addizione</FONT></B> e infine
+  l'<FONT COLOR="Purple"><B>assegnazione</B></FONT>, ma non &egrave; definito
+  quale delle due <FONT COLOR="Green"><B>funzioni</B></FONT> venga chiamata
+  per prima.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Un altro caso di <FONT COLOR="Purple"><B>ordine di
+  valutazione</B></FONT> indefinito si ha fra gli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> di chiamata di una
+  <FONT COLOR="Green"><B>funzione</B></FONT>:<BR>
+  Es. &nbsp; &nbsp; &nbsp;
+  <B><FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">(</FONT><FONT COLOR="Maroon">expr1,expr2</FONT><FONT
+      COLOR="Blue">) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  </FONT></B><FONT COLOR="Purple"><B>valuta</B></FONT></BIG> <BIG>prima
+  <B><FONT COLOR="Maroon">expr1</FONT></B> o
+  <B><FONT COLOR="Maroon">expr2</FONT></B> ?</BIG>
+  <P ALIGN=Justify>
+  &nbsp;<BIG><BR>
+  All'opposto, in molti casi, l'<FONT COLOR="Purple"><B>ordine di
+  valutazione</B></FONT> &egrave; univocamente definito, come per esempio nelle
+  <FONT COLOR="Green"><B>operazioni
+  </B></FONT><FONT COLOR="Purple"><B>logiche</B></FONT>: </BIG>
+  <OL>
+    <LI>
+      <BIG><FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp;</B></FONT><B><FONT COLOR="Maroon">expr1</FONT></B> &nbsp;
+      <B><FONT COLOR="Blue">&amp;&amp;
+      &nbsp;</FONT><FONT COLOR="Maroon">expr2</FONT></B></BIG>
+    <LI>
+      <BIG><FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp;</B></FONT><B><FONT COLOR="Maroon">expr1</FONT></B> &nbsp;
+      <B><FONT COLOR="Blue">||
+      &nbsp;</FONT><FONT COLOR="Maroon">expr2</FONT></B></BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <BIG>in entrambi i casi <B><FONT COLOR="Maroon">expr1</FONT></B> &egrave;
+  sempre <FONT COLOR="Purple"><B>valutata</B></FONT> prima di
+  <B><FONT COLOR="Maroon">expr2</FONT></B>; &nbsp;in pi&ugrave;,
+  <B><FONT COLOR="Maroon">expr2</FONT></B> &egrave;
+  &nbsp;<FONT COLOR="Purple"><B>valutata </B></FONT>(e quindi eseguita) <U>solo
+  se &egrave; necessario</U>. In altre parole:</BIG>
+  <UL>
+    <LI>
+      <BIG>nel caso 1. <B><FONT COLOR="Maroon">expr2</FONT></B> non viene eseguita
+      se <B><FONT COLOR="Maroon">expr1</FONT></B> &egrave;
+      </BIG><FONT COLOR="Blue"><BIG><B>false</B></BIG></FONT>
+    <LI>
+      <BIG>nel caso 2. <B><FONT COLOR="Maroon">expr2</FONT></B> non viene eseguita
+      se <B><FONT COLOR="Maroon">expr1</FONT></B> &egrave;
+      </BIG><FONT COLOR="Blue"><BIG><B>true</B></BIG></FONT>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>questo tipo di azione si chiama <FONT COLOR="Purple"><B>valutazione
+  <I>cortocircuitata</I> </B></FONT>ed &egrave; molto utile perch&eacute; consente
+  di ridurre il numero di istruzioni.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#IOstd"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

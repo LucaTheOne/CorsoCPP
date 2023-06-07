@@ -1,0 +1,579 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Istruzioni di controllo CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Istruzioni di
+controllo
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P ALIGN=Justify>
+<BIG>Si chiamano "<FONT COLOR="Green"><B>istruzioni di controllo</B></FONT>"
+in <FONT COLOR="Red"><B>C++</B></FONT> (come in
+<FONT COLOR="Red"><B>C</B></FONT>) quelle istruzioni che <U>modificano
+l'esecuzione sequenziale</U> di un programma.</BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Istruzione di controllo if
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG><B>Sintassi</B>:</BIG>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center" WIDTH="70%">
+      <TR>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B><BIG>if</BIG></B></FONT><BIG>
+	  <FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>condizione</B></FONT><FONT
+	      COLOR="Blue"><B>)</B></FONT>
+	  <FONT COLOR="Maroon"><B>istruzione</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></BIG>
+	  <P ALIGN=Justify>
+	  <BIG>(dove <FONT COLOR="Maroon"><B>condizione</B></FONT> &eacute;
+	  un'<FONT COLOR="Green"><B>espressione logica</B></FONT>) se la
+	  <FONT COLOR="Maroon"><B>condizione</B></FONT> &eacute;
+	  <FONT COLOR="Blue"><B>true</B></FONT> il programma esegue
+	  l'<FONT COLOR="Maroon"><B>istruzione</B></FONT>, altrimenti passa direttamente
+	  all'istruzione successiva</BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>Nel caso di due scelte alternative, all'istruzione
+  <FONT COLOR="Blue"><B>if</B></FONT> si pu&ograve; associare l'istruzione
+  <FONT COLOR="Blue"><B>else</B></FONT> :</BIG>
+  <P>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD><BIG> <FONT COLOR="Blue"><B>if</B></FONT>
+	  <FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>condizione</B></FONT><FONT
+	      COLOR="Blue"><B>)</B></FONT>
+	  &nbsp;<FONT COLOR="Maroon"><B>istruzioneA</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+	  <BR>
+	  <FONT COLOR="Blue"><B>else</B></FONT>
+	  &nbsp;<FONT COLOR="Maroon"><B>istruzioneB</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG>
+	  <P>
+	  <BIG>se la <FONT COLOR="Maroon"><B>condizione</B></FONT> &eacute;
+	  <FONT COLOR="Blue"><B>true</B></FONT> il programma esegue
+	  l'<FONT COLOR="Maroon"><B>istruzioneA</B></FONT>, <BR>
+	  altrimenti esegue
+	  l'<FONT COLOR="Maroon"><B>istruzioneB</B></FONT></BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  &nbsp;
+  <P>
+  <BIG>Se le <FONT COLOR="Maroon"><B>istruzioni</B></FONT> da eseguire in base
+  alla <FONT COLOR="Maroon"><B>condizione</B></FONT> sono pi&ugrave; di una,
+  bisogna creare un <FONT COLOR="Green"><B>ambito</B></FONT>, cio&egrave;
+  raggruppare le <FONT COLOR="Maroon"><B>istruzioni</B></FONT> fra <U>parentesi
+  graffe</U>: </BIG>
+  <P>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<BIG><FONT COLOR="Blue"><B>if</B></FONT>
+  <FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>condizione</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT> <FONT COLOR="Blue"><B>&nbsp;{</B></FONT> .......
+  <FONT COLOR="Green"><B>blocco</B></FONT> di
+  <FONT COLOR="Maroon"><B>istruzioni</B></FONT> ......
+  <FONT COLOR="Blue"><B>}</B></FONT> </BIG>
+  <P>
+  <BIG>e analogamente: </BIG>
+  <P>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <BIG><FONT COLOR="Blue"><B>else</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>{</B></FONT> .......
+  <FONT COLOR="Green"><B>blocco</B></FONT> di
+  <FONT COLOR="Maroon"><B>istruzioni</B></FONT> ......
+  <FONT COLOR="Blue"><B>}</B></FONT></BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p11/testif.cpp">[p11]</A></BIG></BIG>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  &nbsp;
+  <P ALIGN=Justify>
+  <BIG>Se l'<FONT COLOR="Maroon"><B>istruzione</B></FONT> controllata da un
+  <FONT COLOR="Blue"><B>if</B></FONT> consiste a sua volta in un altro
+  <FONT COLOR="Blue"><B>if</B></FONT> (sono possibili pi&ugrave; istruzioni
+  <FONT COLOR="Blue"><B>if</B></FONT> "<I><B>innestate</B></I>"), ogni eventuale
+  <FONT COLOR="Blue"><B>else</B></FONT> si riferisce sempre
+  all'<FONT COLOR="Blue"><B>if</B></FONT> immediatamente superiore (in assenza
+  di parentesi graffe). <BR>
+  Es. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>if</B></FONT>
+  <FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>cond1</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT> &nbsp;<FONT COLOR="Blue"><B>if</B></FONT>
+  <FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>cond2</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT>
+  <FONT COLOR="Maroon"><B>istr1</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>&nbsp;<FONT
+      COLOR="Blue"><B> else</B></FONT>
+  <FONT COLOR="Maroon"><B>istr2</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+  <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; (<FONT COLOR="Maroon"><B>istr2</B></FONT> &eacute; eseguita
+  se <FONT COLOR="Maroon"><B>cond1</B></FONT> &eacute;
+  <FONT COLOR="Blue"><B>true</B></FONT> e
+  <FONT COLOR="Maroon"><B>cond2</B></FONT> &eacute;
+  <FONT COLOR="Blue"><B>false</B></FONT>) </BIG>
+  <P ALIGN=Justify>
+  <BIG>Invece: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;&nbsp;<FONT COLOR="Blue"><B>if</B></FONT>
+  <FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>cond1</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT> <FONT COLOR="Blue"><B>{ if</B></FONT>
+  <FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>cond2</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT>
+  <FONT COLOR="Maroon"><B>istr1</B></FONT><FONT COLOR="Blue"><B>;}</B></FONT>
+  <FONT COLOR="Blue"><B>else</B></FONT>
+  <FONT COLOR="Maroon"><B>istr2</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+  <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; (<FONT COLOR="Maroon"><B>istr2</B></FONT> &eacute; eseguita
+  se <FONT COLOR="Maroon"><B>cond1</B></FONT> &eacute;
+  <FONT COLOR="Blue"><B>false</B></FONT>, indipendentemente da
+  <FONT COLOR="Maroon"><B>cond2</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Per essere sicuri di ottenere quello che si vuole, <U>mettere sempre
+  le parentesi graffe</U>, anche se sono ridondanti, e quindi il primo caso
+  &egrave; equivalente (ma pi&ugrave; chiaro) se si scrive: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; <FONT COLOR="Blue"><B>if</B></FONT>
+  <FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>cond1</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT> &nbsp;<FONT COLOR="Blue"><B>{
+  &nbsp;if</B></FONT>
+  <FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>cond2</B></FONT><FONT
+      COLOR="Blue"><B>)</B></FONT>
+  <FONT COLOR="Maroon"><B>istr1</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+  <FONT COLOR="Blue"><B>else</B></FONT>
+  <FONT COLOR="Maroon"><B>istr2</B></FONT><FONT COLOR="Blue"><B>;
+  }</B></FONT></BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p12/nestif.cpp">[p12]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Istruzione di controllo while
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG><B>Sintassi</B>:</BIG>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center" WIDTH="70%">
+      <TR>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B><BIG>while</BIG></B></FONT><BIG>
+	  <FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>condizione</B></FONT><FONT
+	      COLOR="Blue"><B>)</B></FONT>
+	  <FONT COLOR="Maroon"><B>istruzione</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></BIG>
+	  <P ALIGN=Justify>
+	  <BIG>(dove <FONT COLOR="Maroon"><B>condizione</B></FONT> &eacute;
+	  un'<FONT COLOR="Green"><B>espressione logica</B></FONT>) il programma esegue
+	  ripetutamente l'<FONT COLOR="Maroon"><B>istruzione</B></FONT> finch&egrave;
+	  la <FONT COLOR="Maroon"><B>condizione</B></FONT> &eacute;
+	  <FONT COLOR="Blue"><B>true</B></FONT> e passa all'istruzione successiva appena
+	  la <FONT COLOR="Maroon"><B>condizione</B></FONT> diventa
+	  <FONT COLOR="Blue"><B>false</B></FONT>.<BR>
+	  Ovviamente, affinch&eacute; il <I><B>loop</B></I> (ciclo) <U>non si ripeta
+	  all'infinito</U>, l'<FONT COLOR="Maroon"><B>istruzione</B></FONT> deve modificare
+	  qualche parametro della
+	  <FONT COLOR="Maroon"><B>condizione</B></FONT>.</BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  &nbsp;
+  <P ALIGN=Justify>
+  <BIG>Se le <FONT COLOR="Maroon"><B>istruzioni</B></FONT> da eseguire in base
+  alla <FONT COLOR="Maroon"><B>condizione</B></FONT> sono pi&ugrave; di una,
+  bisogna creare un <FONT COLOR="Green"><B>ambito</B></FONT>, cio&egrave;
+  raggruppare le <FONT COLOR="Maroon"><B>istruzioni</B></FONT> fra <U>parentesi
+  graffe</U>: </BIG>
+  <P>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <BIG><FONT COLOR="Blue"><B>while
+  (</B></FONT><FONT COLOR="Maroon"><B>condizione</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+  <FONT COLOR="Blue"><B>&nbsp;{</B></FONT> .......
+  <FONT COLOR="Green"><B>blocco</B></FONT> di
+  <FONT COLOR="Maroon"><B>istruzioni</B></FONT> ......
+  <FONT COLOR="Blue"><B>}</B></FONT> </BIG>
+  <P>
+  &nbsp;
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Maroon"><B>condizione</B></FONT> viene verificata
+  <U>all'inizio</U> di ogni <B>iterazione</B> del ciclo: &eacute; pertanto
+  possibile, se la <FONT COLOR="Maroon"><B>condizione</B></FONT> &eacute; gi&agrave;
+  inizialmente <FONT COLOR="Blue"><B>false</B></FONT>, che il <U>ciclo non
+  venga eseguito neppure una volta</U>.</BIG>
+  <P ALIGN=Justify>
+  &nbsp;
+  <P ALIGN=Justify>
+  <BIG> E' ammessa anche la forma: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp;<FONT COLOR="Blue"><B>while
+  &nbsp;(</B></FONT><FONT COLOR="Maroon"><B>condizione</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT><BR>
+  in questo caso, per evitare un <U><I><B>loop</B></I> infinito</U>, la
+  <FONT COLOR="Maroon"><B>condizione</B></FONT> deve essere in grado di
+  <U>automodificarsi</U>. </BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p13/testwhile.cpp">[p13]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Istruzione di controllo do ... while
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG><B>Sintassi</B>:</BIG>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center" WIDTH="80%">
+      <TR>
+	<TD><P ALIGN=Center>
+	  <BIG><BIG><B> <FONT COLOR="Blue">do&nbsp;&nbsp;{</FONT>&nbsp;...&nbsp;
+	  <FONT COLOR="Green">blocco</FONT></B>&nbsp;di&nbsp;<B>
+	  <FONT COLOR="Maroon">istruzioni</FONT>&nbsp;...&nbsp;
+	  <FONT COLOR="Blue">}&nbsp;&nbsp;while (</FONT>
+	  <FONT COLOR="Maroon">condizione</FONT>
+	  <FONT COLOR="Blue">)&nbsp;;</FONT></B></BIG></BIG>
+	  <P ALIGN=Justify>
+	  <BIG>(dove <FONT COLOR="Maroon"><B>condizione</B></FONT> &eacute;
+	  un'<FONT COLOR="Green"><B>espressione logica</B></FONT>) funziona come
+	  l'istruzione <FONT COLOR="Blue"><B>while</B></FONT>, con la differenza che
+	  la <FONT COLOR="Maroon"><B>condizione</B></FONT> &eacute; verificata <U>alla
+	  fine</U> di ogni <B>iterazione</B> e pertanto <U>il ciclo &eacute; sempre
+	  eseguito almeno una volta</U>. Se la
+	  <FONT COLOR="Maroon"><B>condizione</B></FONT> &eacute;
+	  <FONT COLOR="Blue"><B>true</B></FONT> il programma torna all'inizio del ciclo
+	  ed esegue una nuova <B>iterazione</B>, se &eacute;
+	  <FONT COLOR="Blue"><B>false</B></FONT>, passa all'istruzione successiva.
+	  Le parentesi graffe sono <U>obbligatorie</U>, anche se il
+	  <FONT COLOR="Green"><B>blocco</B></FONT> &egrave; costituito da una sola
+	  <FONT COLOR="Maroon"><B>istruzione</B></FONT>.</BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p14/massimo.cpp">[p14]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Istruzione di controllo for
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG><B>Sintassi</B>:</BIG>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD><P ALIGN=Center>
+	  <BIG><FONT COLOR="Blue"><B><BIG>for</BIG></B></FONT><BIG>
+	  <FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>inizializzazione</B></FONT><FONT
+	      COLOR="Blue"><B>;
+	  </B></FONT><FONT COLOR="Maroon"><B>condizione</B></FONT><FONT COLOR="Blue"><B>;
+	  </B></FONT><FONT COLOR="Maroon"><B>modifica</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+	  <FONT COLOR="Maroon"><B>istruzione</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></BIG></TD>
+      </TR>
+    </TABLE>
+    <TABLE CELLPADDING="2" ALIGN="Center" WIDTH="80%">
+      <TR>
+	<TD><P ALIGN=Justify>
+	  <BIG>(dove <FONT COLOR="Maroon"><B>inizializzazione</B></FONT> &eacute;
+	  un'<FONT COLOR="Green"><B>espressione </B></FONT><U>eseguita solo la prima
+	  volta</U>, <FONT COLOR="Maroon"><B>condizione</B></FONT> &eacute;
+	  un'<FONT COLOR="Green"><B>espressione logica</B></FONT>,
+	  <FONT COLOR="Maroon"><B>modifica</B></FONT> &eacute;
+	  un'<FONT COLOR="Green"><B>espressione </B></FONT><U>eseguita alla fine di
+	  ogni <B>iterazione</B></U>) il programma esegue ripetutamente
+	  l'<FONT COLOR="Maroon"><B>istruzione</B></FONT> finch&egrave; la
+	  <FONT COLOR="Maroon"><B>condizione</B></FONT> &eacute;
+	  <FONT COLOR="Blue"><B>true</B></FONT> e passa all'istruzione successiva appena
+	  la <FONT COLOR="Maroon"><B>condizione</B></FONT> diventa
+	  <FONT COLOR="Blue"><B>false</B></FONT>.</BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  &nbsp;
+  <P ALIGN=Justify>
+  <BIG>Se le <FONT COLOR="Maroon"><B>istruzioni</B></FONT> da eseguire in base
+  alla <FONT COLOR="Maroon"><B>condizione</B></FONT> sono pi&ugrave; di una,
+  bisogna creare un <FONT COLOR="Green"><B>ambito</B></FONT>, cio&egrave;
+  raggruppare le <FONT COLOR="Maroon"><B>istruzioni</B></FONT> fra <U>parentesi
+  graffe</U>: </BIG>
+  <P>
+  <BIG> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>for</B></FONT>
+  <FONT COLOR="Blue"><B>(</B></FONT><FONT COLOR="Maroon"><B>inizializzazione</B></FONT><FONT
+      COLOR="Blue"><B>;
+  </B></FONT><FONT COLOR="Maroon"><B>condizione</B></FONT><FONT COLOR="Blue"><B>;
+  </B></FONT><FONT COLOR="Maroon"><B>modifica</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+  <FONT COLOR="Blue"><B>&nbsp;<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</B></FONT> .......
+  <FONT COLOR="Green"><B>blocco</B></FONT> di
+  <FONT COLOR="Maroon"><B>istruzioni</B></FONT> ......
+  <FONT COLOR="Blue"><B>}</B></FONT> </BIG>
+  <P>
+  &nbsp;
+  <P ALIGN=Justify>
+  <BIG>L'istruzione <FONT COLOR="Blue"><B>for</B></FONT> &eacute; simile
+  all'istruzione <FONT COLOR="Blue"><B>while</B></FONT>, con le differenze
+  che in <FONT COLOR="Blue"><B>while</B></FONT>
+  l'<FONT COLOR="Maroon"><B>inizializzazione</B></FONT> &eacute; impostata
+  precedentemente e la <FONT COLOR="Maroon"><B>modifica</B></FONT> &eacute;
+  eseguita all'interno del <FONT COLOR="Green"><B>blocco</B></FONT> di
+  <FONT COLOR="Maroon"><B>istruzioni</B></FONT> del ciclo. Come in
+  <FONT COLOR="Blue"><B>while</B></FONT>, anche in
+  <FONT COLOR="Blue"><B>for</B></FONT> la
+  <FONT COLOR="Maroon"><B>condizione</B></FONT> viene verificata
+  <U>all'inizio</U> di ogni <B>iterazione</B>.</BIG>
+  <P>
+  &nbsp;
+  <P ALIGN=Justify>
+  <BIG>Esempio (confronto fra <FONT COLOR="Blue"><B>for</B></FONT> e
+  <FONT COLOR="Blue"><B>while</B></FONT>): </BIG><BR>
+  &nbsp;
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD><B><FONT COLOR="Blue"><BIG>int</BIG></FONT></B>
+	  <B><FONT COLOR="Maroon"><BIG>conta</BIG></FONT></B><BIG><FONT COLOR="Blue"><B>;</B></FONT>
+	  </BIG></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	  &nbsp;</TD>
+	<TD><B><FONT COLOR="Blue"><BIG>int</BIG></FONT></B><BIG>
+	  </BIG><B><FONT COLOR="Maroon"><BIG>conta</BIG></FONT></B><BIG><FONT COLOR="Blue"><B>=</B></FONT></BIG><B><FONT
+	      COLOR="Maroon"><BIG>0</BIG></FONT></B><BIG><FONT COLOR="Blue"><B>;</B></FONT>
+	  </BIG></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><FONT COLOR="Blue"><B>for</B></FONT>
+	  <B>(</B></BIG></FONT><B><FONT COLOR="Maroon"><BIG>conta</BIG></FONT></B><BIG><FONT
+	      COLOR="Blue"><B>=</B></FONT></BIG><B><FONT COLOR="Maroon"><BIG>0</BIG></FONT></B><BIG><FONT
+	      COLOR="Blue"><B>;</B></FONT>
+	  </BIG><B><FONT COLOR="Maroon"><BIG>conta</BIG></FONT></B><FONT COLOR="Blue"><BIG><B>&lt;</B></BIG></FONT><B><FONT
+	      COLOR="Maroon"><BIG>10</BIG></FONT></B><BIG><FONT COLOR="Blue"><B>;</B></FONT>
+	  </BIG><B><FONT COLOR="Maroon"><BIG>conta</BIG></FONT></B><BIG><FONT COLOR="Blue"><B>+=</B></FONT></BIG><B><FONT
+	      COLOR="Maroon"><BIG>2</BIG></FONT></B><FONT COLOR="Blue"><BIG><B>)</B></BIG></FONT></TD>
+	<TD></TD>
+	<TD><BIG><FONT COLOR="Blue"><B>while</B></FONT>
+	  </BIG><FONT COLOR="Blue"><BIG><B>(</B></BIG></FONT><B><FONT COLOR="Maroon"><BIG>conta</BIG></FONT></B><FONT
+	      COLOR="Blue"><BIG><B>&lt;</B></BIG></FONT><B><FONT COLOR="Maroon"><BIG>10</BIG></FONT></B><FONT
+	      COLOR="Blue"><BIG><B>)</B></BIG></FONT><BIG> </BIG></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><B><FONT COLOR="Blue"><BIG>&nbsp; &nbsp;cout
+	  </BIG></FONT></B><BIG><B>&lt;&lt;</B></BIG></FONT><BIG>
+	  </BIG><B><FONT COLOR="Maroon"><BIG>conta</BIG></FONT></B><BIG>
+	  </BIG><FONT COLOR="Blue"><BIG><B>&lt;&lt;</B></BIG></FONT><BIG>
+	  </BIG><B><FONT COLOR="Blue"><BIG>'\n'</BIG></FONT></B><BIG>
+	  <FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	<TD></TD>
+	<TD><FONT COLOR="Blue"><BIG><B>{</B></BIG></FONT></TD>
+      </TR>
+      <TR>
+	<TD></TD>
+	<TD></TD>
+	<TD><BIG>&nbsp; &nbsp;
+	  </BIG><B><FONT COLOR="Blue"><BIG>cout</BIG></FONT></B><BIG>
+	  </BIG><FONT COLOR="Blue"><BIG><B>&lt;&lt;</B></BIG></FONT><BIG>
+	  </BIG><B><FONT COLOR="Maroon"><BIG>conta</BIG></FONT></B><BIG>
+	  </BIG><FONT COLOR="Blue"><BIG><B>&lt;&lt;</B></BIG></FONT><BIG>
+	  </BIG><B><FONT COLOR="Blue"><BIG>'\n'</BIG></FONT></B><BIG>
+	  <FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD></TD>
+	<TD></TD>
+	<TD>&nbsp; &nbsp;
+	  &nbsp;<B><FONT COLOR="Maroon"><BIG>conta</BIG></FONT></B><BIG><FONT COLOR="Blue"><B>+=</B></FONT></BIG><B><FONT
+	      COLOR="Maroon"><BIG>2</BIG></FONT></B><BIG><FONT COLOR="Blue"><B>;</B></FONT>
+	  </BIG></TD>
+      </TR>
+      <TR>
+	<TD></TD>
+	<TD></TD>
+	<TD><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  &nbsp;
+  <P ALIGN=Justify>
+  <BIG>Tutte le parti di un'istruzione
+  </BIG><FONT COLOR="Blue"><BIG><FONT COLOR="Blue"><B>for</B></FONT></BIG></FONT><BIG>
+  sono <U>opzionali</U>; al limite anche l'istruzione:</BIG>
+  <P ALIGN=Justify>
+  <BIG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp;<FONT COLOR="Blue"><B>for</B></FONT>
+  <FONT COLOR="Blue"><B>(;;)</B></FONT> <FONT COLOR="Blue"><B>;</B></FONT>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(<I><B>loop</B></I>
+  infinito)</BIG>
+  <P ALIGN=Justify>
+  <BIG>&eacute; <U>sintatticamente valida</U> (anche se poco "pratica"!); infatti,
+  se non specificata, la <FONT COLOR="Maroon"><B>condizione</B></FONT> &eacute;
+  di <I><B>default</B></I> <FONT COLOR="Blue"><B>true</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Istruzioni continue, break e
+goto</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Le istruzioni <FONT COLOR="Blue"><B>continue</B></FONT> e
+  <FONT COLOR="Blue"><B>break</B></FONT> sono utilizzate all'interno di un
+  <FONT COLOR="Green"><B>blocco</B></FONT> di
+  <FONT COLOR="Maroon"><B>istruzioni</B></FONT> controllate da
+  <FONT COLOR="Blue"><B>while</B></FONT>,
+  <FONT COLOR="Blue"><B>do</B></FONT> <B>...
+  </B><FONT COLOR="Blue"><B>while</B></FONT> o
+  <FONT COLOR="Blue"><B>for</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>L'istruzione <FONT COLOR="Blue"><B>continue</B></FONT> <U>interrompe
+  l'<B>iterazione</B> corrente del ciclo</U>: il programma riprende
+  <U>dall'inizio dell'<B>iterazione</B> successiva</U>, previa esecuzione della
+  <FONT COLOR="Maroon"><B>modifica</B></FONT> (nei cicli
+  <FONT COLOR="Blue"><B>for</B></FONT>) e verifica della
+  <FONT COLOR="Maroon"><B>condizione</B></FONT> (in tutti i tipi di cicli).</BIG>
+  <P ALIGN=Justify>
+  <BIG>L'istruzione <FONT COLOR="Blue"><B>break</B></FONT> <U>interrompe
+  completamente un ciclo</U>: il programma riprende <U>dalla prima
+  <FONT COLOR="Maroon"><B>istruzione</B></FONT> successiva a quelle del
+  ciclo</U>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Nel caso di pi&ugrave; cicli <I><B>innestati</B></I>, le istruzioni
+  <FONT COLOR="Blue"><B>continue</B></FONT> e
+  <FONT COLOR="Blue"><B>break</B></FONT> hanno effetto <U>esclusivamente sul
+  ciclo a cui appartengono e non su quelli pi&ugrave; esterni</U>. </BIG>
+  <P ALIGN=Justify>
+  <P ALIGN=Justify>
+  <BIG>Il <FONT COLOR="Red"><B>C++</B></FONT> mantiene la "vecchia" istruzione
+  <FONT COLOR="Blue"><B>goto</B></FONT> :</BIG>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; <BIG><FONT COLOR="Blue"><B>goto</B></FONT>
+  <FONT COLOR="Green"><B>identificatore</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; ............................<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; ............................<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Green"><B>identificatore</B></FONT><FONT COLOR="Blue"><B>:</B></FONT>
+  <FONT COLOR="Maroon"><B>istruzione</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>il flusso del programma "salta" direttamente
+  all'<FONT COLOR="Maroon"><B>istruzione</B></FONT> <I><B>labellata</B></I>
+  (etichettata) <FONT COLOR="Green"><B>identificatore</B></FONT>.<BR>
+  L'istruzione <FONT COLOR="Blue"><B>goto</B></FONT> ha pochi utilizzi nella
+  normale programmazione ad alto livello. Pu&ograve; essere importante nei
+  rari casi in cui &egrave; richiesta la massima efficienza (per esempio in
+  applicazioni in tempo reale), oppure per uscire direttamente dal pi&ugrave;
+  interno di diversi cicli <I><B>innestati</B></I>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Istruzione di controllo switch ... case
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG><B>Sintassi (</B>le parti fra parentesi quadra sono
+  <B><I>opzionali</I>)</B>:</BIG>
+  <P ALIGN=Justify>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD><BIG><BIG><B> <FONT COLOR="Blue">switch(</FONT>
+	  <FONT COLOR="Maroon">espressione</FONT> <FONT COLOR="Blue">)<BR>
+	  {<BR>
+	  </FONT>[<FONT COLOR="Blue">case</FONT> <FONT COLOR="Maroon">costante1</FONT>
+	  <FONT COLOR="Blue">:</FONT> [ blocco di <FONT COLOR="Maroon">istruzioni
+	  1</FONT>]]<BR>
+	  [<FONT COLOR="Blue">case</FONT> <FONT COLOR="Maroon">costante2</FONT>
+	  <FONT COLOR="Blue">:</FONT> [ blocco di <FONT COLOR="Maroon">istruzioni
+	  2</FONT>]]<BR>
+	  ..............<BR>
+	  [<FONT COLOR="Blue">default :</FONT> [blocco di
+	  <FONT COLOR="Maroon">istruzioni</FONT>]]<BR>
+	  <FONT COLOR="Blue">}</FONT></B></BIG></BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  &nbsp;
+  <P ALIGN=Justify>
+  <BIG>L'istruzione <FONT COLOR="Blue"><B>switch</B></FONT> confronta il valore
+  dell'<FONT COLOR="Maroon"><B>espressione</B></FONT> (che deve restituire
+  un risultato <FONT COLOR="Green"><B>intero</B></FONT>) con le diverse
+  <FONT COLOR="Maroon"><B>costanti</B></FONT> (dello stesso
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  dell'<FONT COLOR="Maroon"><B>espressione</B></FONT>) e, <U>appena ne trova
+  una uguale, esegue tutte le <FONT COLOR="Maroon"><B>istruzioni</B></FONT>
+  da quel punto in poi</U> (anche se le
+  <FONT COLOR="Maroon"><B>istruzioni</B></FONT> relative allo stesso
+  <FONT COLOR="Blue"><B>case</B></FONT> sono pi&ugrave; d'una, <U>non &egrave;
+  necessario inserirle fra parentesi graffe</U>). Se nessuna
+  <FONT COLOR="Maroon"><B>costante</B></FONT> &eacute; uguale al valore
+  dell'<FONT COLOR="Maroon"><B>espressione</B></FONT>, esegue, se esistono,
+  le <FONT COLOR="Maroon"><B>istruzioni</B></FONT> dopo
+  <FONT COLOR="Blue"><B>default:</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>Per ottenere che le <FONT COLOR="Maroon"><B>istruzioni</B></FONT>
+  selezionate siano eseguite <U>in alternativa alle altre</U>, bisogna inserire
+  alla fine del corrispondente blocco l'istruzione
+  <FONT COLOR="Blue"><B>break</B></FONT></BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p15/vocali.cpp">[p15]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#array"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

@@ -1,0 +1,661 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Indirizzi e Puntatori CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Indirizzi e Puntatori
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatore di indirizzo &amp;
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>operatore unario</B></FONT> di
+  <FONT COLOR="Purple"><B>indirizzo</B></FONT> :</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B><BIG>&amp;</BIG></B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>restituisce <U>l'<B>indirizzo</B> della locazione di memoria
+  dell'</U><FONT COLOR="Green"><U><B>operando</B></U></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>operando</B></FONT> <U>deve essere</U> un
+  ammissibile <FONT COLOR="Green"><B>l-value</B></FONT>. Il <B>valore</B>
+  restituito dall'<FONT COLOR="Green"><B>operatore</B></FONT> <U>non pu&ograve;
+  essere</U> usato come <FONT COLOR="Green"><B>l-value</B></FONT> (in quanto
+  l'<B>indirizzo</B> di memoria di una variabile non pu&ograve; essere
+  <FONT COLOR="Purple"><B>assegnato</B></FONT> in un'istruzione, ma &egrave;
+  predeterminato dal programma). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Esempi (notare l'uso delle parentesi per alterare l'ordine delle
+  <FONT COLOR="Purple"><B>precedenze</B></FONT>): </BIG>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD>&nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&amp;</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT></BIG></TD>
+      <TD>&nbsp; &nbsp;&nbsp;</TD>
+      <TD><BIG><U>ammesso</U>, purch&eacute;
+	<FONT COLOR="Maroon"><B>a</B></FONT> sia un
+	<FONT COLOR="Green"><B>l-value</B></FONT> </BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&amp;(</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT
+	    COLOR="Blue"><B>+</B></FONT><FONT COLOR="Maroon"><B>1</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+	</BIG></TD>
+      <TD></TD>
+      <TD><BIG><U>non ammesso</U>, in quanto
+	<FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>+</B></FONT><FONT
+	    COLOR="Maroon"><B>1</B></FONT> non &eacute; un
+	<FONT COLOR="Green"><B>l-value</B></FONT> </BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&amp;(</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT
+	    COLOR="Blue"><B>&gt;</B></FONT><FONT COLOR="Maroon"><B>b</B></FONT><FONT
+	    COLOR="Blue"><B>?</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>:</B></FONT><FONT
+	    COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B>)</B></FONT> </BIG></TD>
+      <TD></TD>
+      <TD><BIG><U>ammesso</U>, in quanto
+	l'<FONT COLOR="Green"><B>operatore</B></FONT>
+	<FONT COLOR="Purple"><B>condizionale</B></FONT> pu&ograve; restituire un
+	<FONT COLOR="Green"><B>l-value</B></FONT>,<BR>
+	purch&eacute; <FONT COLOR="Maroon"><B>a</B></FONT> e
+	<FONT COLOR="Maroon"><B>b</B></FONT> siano
+	<FONT COLOR="Green"><B>l-values</B></FONT> </BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>&amp;</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT>
+	= <FONT COLOR="Maroon"><B>b</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG><U>non ammesso</U>, in quanto
+	l'<FONT COLOR="Green"><B>operatore</B></FONT>
+	<FONT COLOR="Blue"><B>&amp;</B></FONT> non pu&ograve; restituire un
+	<FONT COLOR="Green"><B>l-value</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P>
+  &nbsp;
+  <P>
+  <BIG>Gli <B>indirizzi</B> di memoria sono rappresentati da numeri
+  <FONT COLOR="Green"><B>interi</B></FONT>, in
+  <FONT COLOR="Green"><B>byte</B></FONT>, e, nelle operazioni di
+  <I><B>output</B></I>, sono scritti, di <I><B>default</B></I>, in forma
+  <B>esadecimale</B>.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p26/address.cpp">[p26]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Cosa sono i puntatori ?
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B><BIG>puntatori</BIG></B></FONT> sono particolari
+  <FONT COLOR="Green"><B>tipi</B></FONT> del linguaggio. Una variabile di
+  <FONT COLOR="Green"><B>tipo puntatore </B></FONT>&eacute; designata a contenere
+  <U>l'indirizzo di memoria di un'altra variabile</U> (detta <B>variabile
+  puntata</B>), la quale a sua volta pu&ograve; essere di qualunque
+  <FONT COLOR="Green"><B>tipo</B></FONT>, anche non <I><B>nativo</B></I> (persino
+  un altro <FONT COLOR="Green"><B>puntatore</B></FONT>!).</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Dichiarazione di una variabile di tipo
+puntatore </BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Bench&eacute; gli <B>indirizzi</B> siano numeri
+  <FONT COLOR="Green"><B>interi</B></FONT> e quindi una variabile
+  <FONT COLOR="Green"><B>puntatore</B></FONT> possa contenere solo valori
+  <FONT COLOR="Green"><B>interi</B></FONT>, tuttavia il
+  <FONT COLOR="Red"><B>C++</B></FONT> (come il
+  <FONT COLOR="Red"><B>C</B></FONT>) pretende che nella <B>dichiarazione</B>
+  di un <FONT COLOR="Green"><B>puntatore</B></FONT> <U>sia specificato anche
+  il <FONT COLOR="Green"><B>tipo</B></FONT> della <B>variabile puntata</B></U>
+  (in altre parole un dato <FONT COLOR="Green"><B>puntatore</B></FONT> pu&ograve;
+  puntare solo a un determinato <FONT COLOR="Green"><B>tipo</B></FONT> di
+  variabili, quello specificato nella <B>dichiarazione</B>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Per ottenere ci&ograve;, bisogna usare
+  l'<FONT COLOR="Green"><B>operatore di dichiarazione</B></FONT> :
+  </BIG>&nbsp;<FONT COLOR="Blue"><BIG><B><BIG><SUB><BIG>*</BIG></SUB></BIG></B></BIG></FONT>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD><BIG>Es. : </BIG>&nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>int <SUB><BIG>*</BIG></SUB></B></FONT>
+	<FONT COLOR="Maroon"><B>pointer &nbsp; &nbsp; &nbsp;</B></FONT></BIG></TD>
+      <TD><P ALIGN=Justify>
+	<BIG><B>dichiara</B> &nbsp;(e <B>definisce</B>) la variabile
+	<FONT COLOR="Maroon"><B>pointer</B></FONT>,
+	<FONT COLOR="Green"><B>puntatore</B></FONT> a variabile di
+	<FONT COLOR="Green"><B>tipo</B></FONT>
+	<FONT COLOR="Blue"><B>int</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <B><FONT COLOR="Red"><BIG>Nota</BIG></FONT></B><BIG>: nelle
+  <B>definizioni</B> <B>multiple</B>
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG>
+  <U>va ripetuto</U>: in altre parole, l'<FONT COLOR="Green"><B>operatore di
+  dichiarazione</B></FONT>
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG>
+  va considerato, dal punto di vista sintattico, un <I><B>prefisso</B></I>
+  dell'<FONT COLOR="Green"><B>identificatore</B></FONT> e non un
+  <I><B>suffisso</B></I> del
+  <FONT COLOR="Green"><B>tipo</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG> Si pu&ograve; dire pertanto che, a questo punto della nostra conoscenza,
+  il numero dei <FONT COLOR="Green"><B>tipi</B></FONT> del
+  <FONT COLOR="Red"><B>C++</B></FONT> &eacute; "raddoppiato": esistono tanti
+  <FONT COLOR="Green"><B>tipi</B></FONT> di
+  <FONT COLOR="Green"><B>puntatori</B></FONT> quanti sono i
+  <FONT COLOR="Green"><B>tipi</B></FONT> delle <B>variabili puntate</B>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Un <FONT COLOR="Green"><B>puntatore</B></FONT> accetta quasi sempre
+  il
+  </BIG><FONT COLOR="Purple"><BIG><B>casting</B></BIG></FONT><BIG>, purch&eacute;
+  il risultato della conversione sia ancora un
+  <FONT COLOR="Green"><B>puntatore</B></FONT>. Tornando all'esempio precedente,
+  l'operazione di
+  </BIG><FONT COLOR="Purple"><BIG><B>casting</B></BIG></FONT><BIG>: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>(double</B></FONT></BIG><FONT COLOR="Blue"><FONT
+      COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B>)</B></FONT><FONT COLOR="Maroon"><B>pointer</B></FONT> <BR>
+  restituisce un <FONT COLOR="Green"><B>puntatore</B></FONT> a una variabile
+  di <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>double</B></FONT>.<BR>
+  </BIG><B><FONT COLOR="Red"><BIG>Nota2</BIG></FONT></B><BIG>: nel
+  </BIG><FONT COLOR="Purple"><BIG><B>casting</B></BIG></FONT><BIG>, invece,
+  l'<FONT COLOR="Green"><B>operatore di dichiarazione</B></FONT>
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG>
+  &egrave; un <I><B>suffisso</B></I> del
+  <FONT COLOR="Green"><B>tipo</B></FONT>. (!)</BIG>
+  <P ALIGN=Justify>
+  <BIG>Si pu&ograve; anche dichiarare un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>puntatore</B></FONT>. </BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es. : </BIG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>double</B></FONT></BIG><FONT COLOR="Blue"><FONT
+	    COLOR="Blue"><B><SUB><BIG><BIG>**</BIG></BIG></SUB></B></FONT></FONT><BIG>
+	<FONT COLOR="Maroon"><B>pointer_to_pointer </B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD>&nbsp;</TD>
+      <TD><BIG><B>dichiara</B> &nbsp;(e <B>definisce</B>) la variabile
+	<FONT COLOR="Maroon"><B>pointer_to_pointer</B></FONT>, <BR>
+	<FONT COLOR="Green"><B>puntatore</B></FONT> a
+	<FONT COLOR="Green"><B>puntatore</B></FONT> a variabile di
+	<FONT COLOR="Green"><B>tipo</B></FONT> <FONT COLOR="Blue"><B>double&nbsp;
+	&nbsp; &nbsp;</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Assegnazione di un valore a un puntatore
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Sappiamo che gli <B>indirizzi</B> di memoria non possono essere
+  <FONT COLOR="Purple"><B>assegnati</B></FONT> da istruzioni di programma,
+  ma sono determinati automaticamente in fase di esecuzione; quindi non si
+  possono assegnare <B>valori</B> a un
+  <FONT COLOR="Green"><B>puntatore</B></FONT>, salvo che in questi quattro
+  casi: </BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>a un <FONT COLOR="Green"><B>puntatore</B></FONT> &eacute;
+      <FONT COLOR="Purple"><B>assegnato</B></FONT> il valore
+      <FONT COLOR="Blue"><B>NULL</B></FONT> (non punta a "niente");</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>a un <FONT COLOR="Green"><B>puntatore</B></FONT> &eacute;
+      <FONT COLOR="Purple"><B>assegnato</B></FONT> l'<B>indirizzo</B> di una variabile
+      esistente, restituito dall'<FONT COLOR="Green"><B>operatore</B></FONT>
+      <FONT COLOR="Blue"><B>&amp;<BR>
+      </B></FONT> ( &nbsp;Es. :&nbsp; &nbsp; &nbsp;
+      &nbsp;<FONT COLOR="Blue"><B>int</B></FONT>
+      <FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>;</B></FONT> &nbsp;
+      &nbsp; &nbsp; &nbsp;
+      <FONT COLOR="Blue"><B>int</B></FONT></BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG>
+      <FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+      <FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp;
+      &nbsp;p</B></FONT><FONT COLOR="Blue"><B> =
+      &amp;</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+      );</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>&eacute; eseguita un'operazione di <B>allocazione dinamica della memoria
+      </B>(di cui tratteremo pi&ugrave; avanti);</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>a un <FONT COLOR="Green"><B>puntatore</B></FONT> &eacute;
+      <FONT COLOR="Purple"><B>assegnato</B></FONT> il valore che deriva da
+      un'operazione di <B>aritmetica dei puntatori</B> (vedere prossima
+      sezione)</BIG>.
+  </UL>
+  <P ALIGN=Justify>
+  <BIG> Quanto detto per le <FONT COLOR="Purple"><B>assegnazioni</B></FONT>
+  vale anche per le <B>inizializzazioni</B>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Va precisato, comunque, che ogni tentativo di
+  <FONT COLOR="Purple"><B>assegnare</B></FONT> <B>valori</B> a un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> in casi diversi da quelli
+  sopraelencati &nbsp;(per esempio
+  &nbsp;<FONT COLOR="Purple"><B>l'assegnazione
+  </B></FONT>di<FONT COLOR="Purple"><B> </B></FONT>una
+  <FONT COLOR="Green"><B>costante</B></FONT>) <U>costituisce un errore che
+  non viene segnalato dal compilatore</U>, ma che pu&ograve; produrre effetti
+  indesiderabili (o talvolta disastrosi) in fase di esecuzione.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Aritmetica dei puntatori
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo detto che il <B>valore</B> assunto da un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> &eacute; un numero
+  <FONT COLOR="Green"><B>intero</B></FONT> che rappresenta, in
+  <FONT COLOR="Green"><B>byte</B></FONT>, un <B>indirizzo</B> di memoria. Il
+  <FONT COLOR="Red"><B>C++</B></FONT> (come il
+  <FONT COLOR="Red"><B>C</B></FONT>) ammette le operazioni di
+  <FONT COLOR="Purple"><B>somma</B></FONT> fra un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> e un <B>valore</B>
+  <FONT COLOR="Green"><B>intero</B></FONT> (con risultato
+  <FONT COLOR="Green"><B>puntatore</B></FONT>), oppure di
+  <FONT COLOR="Purple"><B>sottrazione</B></FONT> fra due
+  <FONT COLOR="Green"><B>puntatori</B></FONT> (con risultato
+  <FONT COLOR="Green"><B>intero</B></FONT>). Tali operazioni vengono per&ograve;
+  eseguite in modo "intelligente", cio&egrave; <U>tenendo conto del
+  <FONT COLOR="Green"><B>tipo</B></FONT> della <B>variabile puntata</B></U>.
+  Per esempio, se si incrementa un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Blue"><B>float</B></FONT> di
+  <FONT COLOR="Maroon"><B>3</B></FONT> unit&agrave;, in realt&agrave; il suo
+  <B>valore</B> viene incrementato di <FONT COLOR="Maroon"><B>12</B></FONT>
+  <FONT COLOR="Green"><B>byte</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Queste regole dell'<B>aritmetica dei puntatori</B> assicurano che il
+  risultato sia sempre corretto, qualsiasi sia la lunghezza in
+  <FONT COLOR="Green"><B>byte</B></FONT> della <B>variabile puntata</B>. Per
+  esempio, se <FONT COLOR="Maroon"><B>p</B></FONT> punta a un
+  <FONT COLOR="Green"><B>elemento</B></FONT> di un
+  <FONT COLOR="Green"><B>array</B></FONT>,
+  <FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>++</B></FONT>
+  punter&agrave; all'<FONT COLOR="Green"><B>elemento</B></FONT> successivo,
+  qualunque sia il <FONT COLOR="Green"><B>tipo</B></FONT> (anche non
+  <I><B>nativo</B></I>) dell'<FONT COLOR="Green"><B>array</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p27/aritpun.cpp">[p27]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatore di dereferenziazione
+</BIG></BIG></BIG></B><FONT COLOR="Blue"><B><SUB><BIG><BIG><BIG>*</BIG></BIG></BIG></SUB></B></FONT><B><BIG><BIG><BIG>
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>operatore unario</B></FONT> di
+  <FONT COLOR="Purple"><B>dereferenziazione</B></FONT>
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG>
+  (che abbrevieremo in <FONT COLOR="Purple"><B>deref.</B></FONT>) di un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> restituisce <U>il valore della
+  <B>variabile puntata</B></U>
+  dall'<FONT COLOR="Green"><B>operando</B></FONT> ed ha un duplice significato:
+  </BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>usato come <FONT COLOR="Green"><B>r-value</B></FONT>, esegue un'operazione
+      di <B>estrazione</B>. <BR>
+      Es. <FONT COLOR="Maroon"><B>a</B></FONT>
+      <FONT COLOR="Blue"><B>=</B></FONT>
+      </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	  COLOR="Maroon"><B>p</B></FONT> <FONT COLOR="Blue"><B>;</B></FONT>
+      (<FONT COLOR="Purple"><B>assegna</B></FONT> ad
+      <FONT COLOR="Maroon"><B>a</B></FONT> il valore della <B>variabile puntata</B>
+      da <FONT COLOR="Maroon"><B>p</B></FONT>)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>usato come <FONT COLOR="Green"><B>l-value</B></FONT>, esegue un'operazione
+      di <B>inserimento</B>. <BR>
+      Es.
+      </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	  COLOR="Maroon"><B>p</B></FONT> <FONT COLOR="Blue"><B>=</B></FONT>
+      <FONT COLOR="Maroon"><B>a</B></FONT> <FONT COLOR="Blue"><B>;</B></FONT>
+      (<FONT COLOR="Purple"><B>assegna</B></FONT> il valore di
+      <FONT COLOR="Maroon"><B>a</B></FONT> alla <B>variabile puntata</B> da
+      <FONT COLOR="Maroon"><B>p</B></FONT>) </BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>In pratica l'operazione di <FONT COLOR="Purple"><B>deref.</B></FONT>
+  &eacute; <U>inversa</U> a quella di
+  <FONT COLOR="Purple"><B>indirizzo</B></FONT>. Infatti, se
+  <FONT COLOR="Purple"><B>assegniamo</B></FONT> a un
+  <FONT COLOR="Green"><B>puntatore</B></FONT>
+  <FONT COLOR="Maroon"><B>p</B></FONT>
+  l'<FONT COLOR="Purple"><B>indirizzo</B></FONT> di una variabile
+  <FONT COLOR="Maroon"><B>a</B></FONT>, <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <FONT COLOR="Maroon"><B>p</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Blue"><B>&amp;</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT> <BR>
+  allora la relazione logica: &nbsp;&nbsp;
+  </BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Maroon"><B>p</B></FONT> <FONT COLOR="Blue"><B>==</B></FONT>
+  <FONT COLOR="Maroon"><B>a</B></FONT> &nbsp; &nbsp; risulta <B>vera</B>,
+  cio&egrave; la <U><FONT COLOR="Purple"><B>deref.</B></FONT> di
+  <FONT COLOR="Maroon"><B>p</B></FONT> coincide con
+  <FONT COLOR="Maroon"><B>a</B></FONT></U>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Ovviamente non &eacute; detto il contrario, cio&egrave;, se
+  <FONT COLOR="Purple"><B>assegniamo</B></FONT> alla
+  <FONT COLOR="Purple"><B>deref.</B></FONT> di
+  <FONT COLOR="Maroon"><B>p</B></FONT> il valore di
+  <FONT COLOR="Maroon"><B>a</B></FONT>, <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <FONT COLOR="Maroon"><B>p</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Blue"><B>&amp;</B></FONT><FONT COLOR="Maroon"><B>b</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT> <BR>
+  <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;</B></FONT></BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Maroon"><B>p</B></FONT> <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>a</B></FONT> <FONT COLOR="Blue"><B>;</B></FONT> <BR>
+  ci&ograve; non comporta automaticamente che in
+  <FONT COLOR="Maroon"><B>p</B></FONT> si ritrovi l'<B>indirizzo </B>di
+  <FONT COLOR="Maroon"><B>a</B></FONT> (dove invece resta l'<B>indirizzo </B>di
+  <FONT COLOR="Maroon"><B>b</B></FONT>), ma semplicemente che il valore della
+  <B>variabile puntata</B> da <FONT COLOR="Maroon"><B>p</B></FONT> (cio&egrave;
+  <FONT COLOR="Maroon"><B>b</B></FONT>) coincider&agrave; con
+  <FONT COLOR="Maroon"><B>a</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Puntatori a
+void</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Contrariamente all'apparenza un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> <B>dichiarato</B> a
+  <FONT COLOR="Blue"><B>void</B></FONT>, <BR>
+  es.: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>void<SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Maroon"><B>vptr</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><BR>
+  <U>pu&ograve; puntare a qualsiasi
+  </U><FONT COLOR="Green"><B><U>tipo</U></B></FONT><U> di variabile</U>. Ne
+  consegue che a un <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Blue"><B>void</B></FONT> si pu&ograve;
+  <FONT COLOR="Purple"><B>assegnare</B></FONT> il valore di qualunque
+  <FONT COLOR="Green"><B>puntatore</B></FONT>, ma non viceversa (&eacute;
+  necessario operare il <FONT COLOR="Purple"><B>casting</B></FONT>). <BR>
+  </BIG>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD><BIG>Es.: </BIG>&nbsp; &nbsp;</TD>
+      <TD><BIG><B>definiti</B>:</BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>int<SUB><BIG>*
+	</BIG></SUB></B></FONT><FONT COLOR="Maroon"><B>iptr</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+	&nbsp; &nbsp;e &nbsp; &nbsp;
+	<FONT COLOR="Blue"><B>void<SUB><BIG>*</BIG></SUB></B></FONT>
+	<FONT COLOR="Maroon"><B>vptr</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG>&eacute; ammessa
+	l'<FONT COLOR="Purple"><B>assegnazione</B></FONT>:</BIG> &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>vptr</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>iptr</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG>ma non: </BIG></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>iptr</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>vptr</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG>bens&igrave;:</BIG></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>iptr</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Blue"><B>(int<SUB><BIG>*</BIG></SUB>)</B></FONT><FONT COLOR="Maroon"><B>vptr</B></FONT><FONT
+	    COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  &nbsp;<BR>
+  <BIG>I <FONT COLOR="Green"><B>puntatori</B></FONT> a
+  <FONT COLOR="Blue"><B>void</B></FONT> non possono essere
+  <FONT COLOR="Purple"><B>dereferenziati</B></FONT> n&egrave; possono essere
+  inseriti in operazioni di <B>aritmetica dei puntatori</B>. In generale si
+  usano quando il <FONT COLOR="Green"><B>tipo</B></FONT> della <B>variabile
+  puntata </B>non &egrave; ancora stabilito al momento della <B>definizione</B>
+  del <FONT COLOR="Green"><B>puntatore</B></FONT>, ma &egrave; determinato
+  successivamente, in base al flusso di esecuzione del programma.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Errori di dangling references
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> (come in
+  <FONT COLOR="Red"><B>C</B></FONT>)
+  l'<FONT COLOR="Purple"><B>assegnazione</B></FONT>
+  dell'<FONT COLOR="Purple"><B>indirizzo</B></FONT> di una variabile
+  <FONT COLOR="Maroon"><B>a</B></FONT> a un
+  <FONT COLOR="Green"><B>puntatore</B></FONT>
+  <FONT COLOR="Maroon"><B>p</B></FONT> : <BR>
+  <FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp;p</B></FONT> <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Blue"><B>&amp;</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT> <BR>
+  e il successivo accesso ad <FONT COLOR="Maroon"><B>a</B></FONT> tramite
+  <FONT COLOR="Purple"><B>deref.</B></FONT> di
+  <FONT COLOR="Maroon"><B>p</B></FONT>, possono portare a errori di
+  <I><B>dangling references </B></I>(perdita degli agganci) se
+  <FONT COLOR="Green"><B>puntatore</B></FONT> e <B>variabile puntata </B>non
+  condividono lo stesso <FONT COLOR="Green"><B>ambito d'azione</B></FONT>.
+  Infatti, se l'<FONT COLOR="Green"><B>ambito</B></FONT> di
+  <FONT COLOR="Maroon"><B>p</B></FONT> &eacute; pi&ugrave; esteso di quello
+  di <FONT COLOR="Maroon"><B>a</B></FONT> (per esempio se
+  <FONT COLOR="Maroon"><B>p</B></FONT> &eacute; una variabile
+  <FONT COLOR="Green"><B>globale</B></FONT>) e
+  <FONT COLOR="Maroon"><B>a</B></FONT> va <I><B>out of scope</B></I> mentre
+  <FONT COLOR="Maroon"><B>p</B></FONT> continua ad essere visibile, la
+  <FONT COLOR="Purple"><B>deref.</B></FONT> di
+  <FONT COLOR="Maroon"><B>p</B></FONT> accede ad <U>un'area della memoria non
+  pi&ugrave; allocata al programma</U>, con risultati spesso imprevedibili.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p28/deref.cpp">[p28]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Funzioni con argomenti puntatori
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Quando, nella <B>chiamata</B> di una
+  <FONT COLOR="Green"><B>funzione</B></FONT>, si passa come
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> un <B>indirizzo</B> (sia che
+  si tratti di una variabile <FONT COLOR="Green"><B>puntatore</B></FONT> oppure
+  del risultato di un'<FONT COLOR="Green"><B>operazione</B></FONT> di
+  <FONT COLOR="Purple"><B>indirizzo</B></FONT>), per esempio (essendo, al solito,
+  <FONT COLOR="Maroon"><B>p</B></FONT> un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> e
+  <FONT COLOR="Maroon"><B>a</B></FONT> una qualsiasi variabile): </BIG>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD><BIG><FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(</B></FONT>....
+	  <FONT COLOR="Maroon"><B>p</B></FONT> ....<FONT COLOR="Blue"><B>) &nbsp;
+	  &nbsp;</B></FONT></BIG></TD>
+	<TD><BIG>oppure</BIG> &nbsp; &nbsp; &nbsp;</TD>
+	<TD><BIG><FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(</B></FONT>....
+	  <FONT COLOR="Blue"><B>&amp;</B></FONT><FONT COLOR="Maroon"><B>a</B></FONT>
+	  ....<FONT COLOR="Blue"><B>)</B></FONT> </BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>nella <B>definizione</B> (e ovviamente anche nella <B>dichiarazione</B>)
+  della <FONT COLOR="Green"><B>funzione</B></FONT> il corrispondente
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> va dichiarato come
+  <FONT COLOR="Green"><B>puntatore</B></FONT>; continuando l'esempio (se
+  <FONT COLOR="Maroon"><B>a</B></FONT> &eacute; di tipo
+  <FONT COLOR="Blue"><B>int</B></FONT>): <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>void</B></FONT>
+  <FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><B>....
+  </B><FONT COLOR="Blue"><B>int</B></FONT></BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG>
+  <FONT COLOR="Maroon"><B>p</B></FONT>
+  <B>....</B><FONT COLOR="Blue"><B>)</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Maroon"><B>argomento</B></FONT> &eacute;, come sempre,
+  passato <I><B>by value</B></I>. In <FONT COLOR="Red"><B>C++</B></FONT> &eacute;
+  anche possibile, passarlo <I><B>by reference</B></I>, nel qual caso bisogna
+  indicare entrambi gli <FONT COLOR="Green"><B>operatori di dichiarazione
+  </B></FONT></BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B> &nbsp;</B></FONT>e
+  &nbsp;<FONT COLOR="Blue"><B>&amp;</B></FONT> : <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>void</B></FONT>
+  <FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><B>....
+  </B><FONT COLOR="Blue"><B>int</B></FONT></BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+      COLOR="Blue"><B>&amp;</B></FONT> <FONT COLOR="Maroon"><B>p</B></FONT>
+  <B>....</B><FONT COLOR="Blue"><B>)</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>Se il <FONT COLOR="Green"><B>puntatore</B></FONT> &eacute; passato
+  <I><B>by value</B></I>, nella <FONT COLOR="Green"><B>funzione</B></FONT>
+  <U>viene creata una <B>copia</B> del
+  <FONT COLOR="Green"><B>puntatore</B></FONT></U> e, qualsiasi modifica venga
+  fatta al suo <B>valore</B>, il corrispondente valore nel <B>programma chiamante
+  </B>rimane inalterato. In questo caso, tuttavia, tramite
+  l'<FONT COLOR="Green"><B>operazione</B></FONT> di
+  <FONT COLOR="Purple"><B>deref.</B></FONT>, la <B>variabile puntata</B> (che
+  si trova nel <B>programma chiamante</B>), &eacute; <U>accessibile e modificabile
+  dall'interno della <FONT COLOR="Green"><B>funzione</B></FONT></U>. </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.:</BIG> &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><B>programma chiamante</B>:</BIG> &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>a</B></FONT> <FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>10</B></FONT><FONT COLOR="Blue"><B>;
+	</B></FONT>......
+	<FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(&amp;</B></FONT><FONT
+	    COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>);</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Green"><B>funzione</B></FONT>:</BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>void</B></FONT>
+	<FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>(</B></FONT>
+	<FONT COLOR="Blue"><B>int</B></FONT></BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG>
+	<FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>)</B></FONT>
+	<FONT COLOR="Blue"><B>{</B></FONT>
+	<B>....</B></BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	    COLOR="Maroon"><B>p</B></FONT> <FONT COLOR="Blue"><B>=</B></FONT>
+	</BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+	    COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>+</B></FONT><FONT COLOR="Maroon"><B>5</B></FONT><FONT
+	    COLOR="Blue"><B>;</B></FONT> <B>....</B>
+	<FONT COLOR="Blue"><B>}</B></FONT> </BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>alla fine, nella variabile <FONT COLOR="Maroon"><B>a</B></FONT> si trova
+  il valore <FONT COLOR="Maroon"><B>15</B></FONT> (in questo caso non esistono
+  problemi di <I><B>scope</B></I>, in quanto la variabile
+  <FONT COLOR="Maroon"><B>a</B></FONT>, pur non essendo direttamente visibile
+  dalla <FONT COLOR="Green"><B>funzione</B></FONT>, <U>&eacute; ancora in
+  vita</U> e quindi &eacute; accessibile tramite
+  un'<FONT COLOR="Green"><B>operazione</B></FONT> di
+  <FONT COLOR="Purple"><B>deref.</B></FONT>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Per i motivi suddetti, quando
+  l'<FONT COLOR="Maroon"><B>argomento</B></FONT> della <B>chiamata</B> &eacute;
+  un <B>indirizzo</B>, si dice <U>impropriamente</U> che la <B>variabile
+  puntata</B> &eacute; trasmessa <I><B>by address</B></I> e che, per questa
+  ragione, &eacute; modificabile. In realt&agrave;
+  l'<FONT COLOR="Maroon"><B>argomento</B></FONT> <U>non &eacute;</U> la
+  <B>variabile puntata</B>, ma il
+  <FONT COLOR="Green"><B>puntatore</B></FONT>, e questo &eacute; trasmesso,
+  come ogni altra variabile, <I><B>by value</B></I>.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p29/byadd.cpp">[p29]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#puntarray"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

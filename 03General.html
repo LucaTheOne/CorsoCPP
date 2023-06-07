@@ -1,0 +1,175 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Caratteristiche generali del linguaggio CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U> Caratteristiche
+generali del linguaggio
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>"Case sensitivity"
+&nbsp;</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Il linguaggio <FONT COLOR="Red">C++</FONT></BIG> <BIG>(come il
+  <FONT COLOR="Red">C</FONT>) distingue i caratteri <U>maiuscoli</U> da quelli
+  <U>minuscoli</U>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Esempio: i nomi <B><I>MiaVariabile</I></B> e
+  <B><I>miavariabile</I></B> indicano due variabili diverse</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Moduli funzione
+&nbsp;</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red">C++</FONT> (come in <FONT COLOR="Red">C</FONT>)
+  ogni modulo di programma &egrave; una <B>funzione</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Non esistono subroutines o altri tipi di sottoprogramma</BIG>.
+  <P ALIGN=Justify>
+  <BIG>Ogni funzione &egrave; identificata da un <B>nome </B></BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Entry point del programma: la funzione
+<BIG>main</BIG> &nbsp;</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Quando si manda in esecuzione un programma, questo inizia sempre dalla
+  funzione identificata dalla <I><B>parola chiave</B></I>
+  </BIG><FONT COLOR="Blue"><BIG><B><BIG>main</BIG></B></BIG></FONT><BR>
+  <BIG>Il <FONT COLOR="Blue"><B>main</B></FONT> &egrave; chiamato dal sistema
+  operativo, che gli pu&ograve; passare dei parametri; a sua volta il
+  <FONT COLOR="Blue"><B>main</B></FONT> pu&ograve; restituire al sistema un
+  numero intero (di solito analizzato come possibile codice di errore)</BIG>.
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Le tre parti di una funzione
+&nbsp;</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<UL>
+  <LI>
+    <P ALIGN=Justify>
+    <BIG><U>lista degli argomenti passati dal programma chiamante</U>: vanno
+    indicati fra parentesi tonde dopo il nome della funzione;
+    <FONT COLOR="Blue"><B>void</B></FONT> indica che non vi sono argomenti (si
+    pu&ograve; omettere)</BIG><BR>
+    &nbsp;
+  <LI>
+    <P ALIGN=Justify>
+    <BIG><U>blocco</U> (<B><FONT COLOR="Green">ambito di azione</FONT>,
+    <FONT COLOR="Green">ambito di visibilit&agrave;</FONT>,
+    </B><FONT COLOR="Green"><I><B>scope</B></I></FONT>) <U>delle istruzioni della
+    funzione</U>: va racchiuso fra <U>parentesi graffe</U>; <BR>
+    <U>ogni istruzione deve terminare con
+    "<FONT COLOR="Blue"><B>;</B></FONT>"</U> (pu&ograve; estendersi su pi&ugrave;
+    righe o vi possono essere pi&ugrave; istruzioni sulla stessa riga);<BR>
+    <U>un'istruzione &egrave; costituita da una successione di
+    "<I><B>tokens</B></I>"</U>: &nbsp;un "<B><I>token</I></B>" &egrave; il pi&ugrave;
+    piccolo elemento di codice individualmente riconosciuto dal compilatore;
+    sono "<I><B>tokens</B></I>" : gli <I><B>identificatori</B></I>, le
+    <I><B>parole-chiave</B></I>, le <I><B>costanti letterali o numeriche</B></I>,
+    gli <I><B>operatori</B></I> e alcuni <I><B>caratteri di
+    punteggiatura</B></I>;<BR>
+    <U>i <I>blanks</I> e gli altri caratteri "separatori"</U> (<I>horizontal
+    or vertical tabs</I>, <I>new lines</I>, <I>formfeeds</I>) fra un
+    <I><B>token</B></I> e l'altro o fra un'istruzione e l'altra, sono ignorati;
+    in assenza di "separatori" il compilatore analizza l'istruzione da sinistra
+    a destra e tende, nei casi di ambiguit&agrave;, a separare il
+    <I><B>token</B></I> pi&ugrave; lungo possibile.<BR>
+    Es. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; l'istruzione &nbsp; &nbsp; &nbsp; &nbsp; <B>a = i+++j;</B><BR>
+    pu&ograve; essere interpretata come: &nbsp; &nbsp; <B>a = i + ++j;</B> &nbsp;
+    &nbsp; &nbsp; oppure come: <B>&nbsp;a = i++ + j;<BR>
+    </B>il compilatore sceglie la seconda interpretazione.</BIG><BR>
+    &nbsp;
+  <LI>
+    <P ALIGN=Justify>
+    <BIG><U>tipo del valore di ritorno al programma chiamante</U>: va indicato
+    prima del nome della funzione &nbsp;ed &egrave; <U>obbligatorio</U>; se &egrave;
+    <FONT COLOR="Blue"><B>void</B></FONT> indica che non c'&egrave; valore di
+    ritorno</BIG>
+</UL>
+<P ALIGN=Justify>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Commenti
+&nbsp;</BIG></BIG></BIG></B></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  &nbsp;
+  <P ALIGN=Justify>
+  <BIG>I <U>commenti</U> sono brani di programma &nbsp;(che il compilatore
+  ignora) inseriti al solo scopo di documentazione, cio&egrave; per spiegare
+  il significato delle istruzioni e cos&igrave; migliorare la leggibilit&agrave;
+  del programma. Sono molto utili anche allo stesso autore, per ricordargli
+  quello che ha fatto, quando ha necessit&agrave; di rivisitare il programma
+  per esigenze di manutenzione o di aggiornamento. &nbsp;Un buon programma
+  si caratterizza anche per il fatto che fa abbondante uso di commenti.</BIG>
+  <BR>
+  <BIG>In <FONT COLOR="Red">C++</FONT> ci sono due modi possibili di inserire
+  i commenti:</BIG>
+</BLOCKQUOTE>
+<UL>
+  <LI>
+    <BIG>l'area di commento &egrave; introdotta dal doppio carattere
+    <FONT COLOR="Blue"><B>/*</B></FONT> e termina con il doppio carattere
+    <FONT COLOR="Blue"><B>*/</B></FONT> (pu&ograve; anche estendersi su pi&ugrave;
+    righe)</BIG>&nbsp;
+  <LI>
+    <BIG>l'area di commento</BIG> <BIG>inizia con il doppio carattere
+    <FONT COLOR="Blue"><B>//</B></FONT> e termina alla fine della riga </BIG>
+</UL>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Esempio di programma
+&nbsp;</BIG></BIG></BIG></B></FONT>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p01/Hello.cpp">[p01]</A></BIG></BIG>
+<P ALIGN=Center>
+<IMG SRC="printf.gif">
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#printf"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

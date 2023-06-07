@@ -1,0 +1,1177 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Template CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Template
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Programmazione
+generica</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Nello sviluppo di questo corso, siamo "passati" attraverso vari tipi
+  di "<FONT COLOR="Red"><B>programmazione</B></FONT>", che in realt&agrave;
+  perseguono sempre lo stesso obiettivo (suddivisione di un progetto in porzioni
+  indipendenti, allo scopo di minimizzare il rapporto costi/benefici nella
+  produzione e manutenzione del software), ma che via via tendono a realizzare
+  tale obiettivo a livelli sempre pi&ugrave; profondi:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><U><FONT COLOR="Red"><B>programmazione</B></FONT>
+      <FONT COLOR="Red"><B>procedurale</B></FONT></U>: &egrave; la programmazione
+      caratteristica del linguaggio <FONT COLOR="Red"><B>C</B></FONT> (e di tutti
+      gli altri linguaggi precedenti al <FONT COLOR="Red"><B>C++</B></FONT>).
+      L'interesse principale &egrave; focalizzato sull'<B>elaborazione</B> e sulla
+      scelta degli <B>algoritmi</B> pi&ugrave; idonei a massimizzarne l'efficienza.
+      Ogni <B>algoritmo</B> lavora in una
+      <FONT COLOR="Green"><B>funzione</B></FONT>, a cui si passano
+      <FONT COLOR="Maroon"><B>argomenti</B></FONT> e da cui si ottiene un <B>valore
+      di ritorno</B>. Le <FONT COLOR="Green"><B>funzioni</B></FONT> sono implementate
+      con gli strumenti tipici del linguaggio
+      (<FONT COLOR="Green"><B>tipi</B></FONT>, <B>variabili</B>,
+      <FONT COLOR="Green"><B>puntatori</B></FONT>, <B>costrutti</B> vari ecc...).
+      Dal punto di vista dell'utente ogni
+      <FONT COLOR="Green"><B>funzione</B></FONT> &egrave; una "scatola nera" e
+      i suoi <FONT COLOR="Maroon"><B>argomenti</B></FONT> e <B>valore di ritorno</B>
+      sono gli unici canali di comunicazione.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><U><FONT COLOR="Red"><B>programmazione</B></FONT>
+      <FONT COLOR="Red"><B>modulare</B></FONT></U>: l'attenzione si sposta dal
+      progetto delle procedure all'organizzazione dei dati. Ogni gruppo formato
+      da dati logicamente correlati e dalle procedure che li utilizzano costituisce
+      un <FONT COLOR="Red"><B>modulo</B></FONT>, in cui i dati sono "occultati"
+      (<FONT COLOR="Red"><I><B>data hiding</B></I></FONT>). I
+      <FONT COLOR="Red"><B>moduli</B></FONT> sono il pi&ugrave; possibile indipendenti.
+      Le <FONT COLOR="Red"><B>interfacce</B></FONT> costituiscono l'unico canale
+      di comunicazione fra i <FONT COLOR="Red"><B>moduli</B></FONT> e i loro utenti.
+      I <FONT COLOR="Blue"><B>namespace</B></FONT> sono gli strumenti che il
+      <FONT COLOR="Red"><B>C++</B></FONT> mette a disposizione per realizzare questo
+      tipo di programmazione.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><U><FONT COLOR="Red"><B>programmazione</B></FONT> <FONT COLOR="Red"><B>a
+      oggetti</B></FONT></U>: l'attenzione si sposta ulteriormente dai
+      <FONT COLOR="Red"><B>moduli</B></FONT> ai singoli
+      <FONT COLOR="Green"><B>oggetti</B></FONT>. Attraverso le
+      <FONT COLOR="Green"><B>classi</B></FONT>, esiste la possibilit&agrave; di
+      definire nuovi <FONT COLOR="Green"><B>tipi</B></FONT>. I
+      <FONT COLOR="Green"><B>membri</B></FONT> di ogni
+      <FONT COLOR="Green"><B>classe</B></FONT> possono essere sia
+      <FONT COLOR="Green"><B>dati</B></FONT> che
+      <FONT COLOR="Green"><B>funzioni</B></FONT> e solo alcuni di essi possono
+      essere accessibili dall'esterno. Il <FONT COLOR="Red"><I><B>data
+      hiding</B></I></FONT> si trasferisce <U>dentro</U> gli
+      <FONT COLOR="Green"><B>oggetti</B></FONT>, che diventano entit&agrave; attive
+      e autosufficienti e comunicano con gli utenti solo attraverso i propri
+      <FONT COLOR="Green"><B>membri</B></FONT> <B>pubblici</B>. Ogni nuovo
+      <FONT COLOR="Green"><B>tipo</B></FONT> pu&ograve; essere corredato di un
+      insieme di <B>operazioni</B> (<FONT COLOR="Green"><B>overload degli
+      operatori</B></FONT>) e ulteriormente espanso e specializzato in modo
+      <U>incrementale e indipendente dal codice gi&agrave; scritto</U>, grazie
+      all'<FONT COLOR="Green"><B>eredit&agrave;</B></FONT> e al
+      <FONT COLOR="Green"><B>polimorfismo</B></FONT>.</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Un ulteriore "salto di qualit&agrave;" &egrave; rappresentato dalla
+  cosidetta "<U><FONT COLOR="Red"><B>programmazione</B></FONT>
+  <FONT COLOR="Red"><B>generica</B></FONT></U>", la quale consente di applicare
+  lo stesso codice a <FONT COLOR="Green"><B>tipi</B></FONT> diversi, cio&egrave;
+  di definire <FONT COLOR="Blue"><B>template</B></FONT> (<B>modelli</B>) di
+  <FONT COLOR="Green"><B>classi</B></FONT> e
+  <FONT COLOR="Green"><B>funzioni</B></FONT> <B><I>parametrizzando</I></B>
+  i <FONT COLOR="Green"><B>tipi</B></FONT> utilizzati: nelle
+  <FONT COLOR="Green"><B>classi</B></FONT>, si possono
+  <B><I>parametrizzare</I></B> i <FONT COLOR="Green"><B>tipi</B></FONT> dei
+  <FONT COLOR="Green"><B>dati-membro</B></FONT>; nelle
+  <FONT COLOR="Green"><B>funzioni</B></FONT> (e nelle
+  <FONT COLOR="Green"><B>funzioni-membro</B></FONT> delle
+  <FONT COLOR="Green"><B>classi</B></FONT>) si possono
+  <B><I>parametrizzare</I></B> i <FONT COLOR="Green"><B>tipi</B></FONT> degli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> e del <B>valore di ritorno</B>.
+  In questo modo si raggiunge il massimo di indipendenza degli <B>algoritmi</B>
+  dai <B>dati</B> a cui si applicano: per esempio, un <B>algoritmo</B> di
+  <B>ordinamento</B> pu&ograve; essere scritto una sola volta, qualunque sia
+  il <FONT COLOR="Green"><B>tipo</B></FONT> dei dati da ordinare.</BIG>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Blue"><B>template</B></FONT> sono risolti
+  <B>staticamente</B> (cio&egrave; a livello di
+  <FONT COLOR="Red"><B>compilazione</B></FONT>) e pertanto non comportano alcun
+  costo aggiuntivo in fase di <FONT COLOR="Red"><B>esecuzione</B></FONT>;
+  &nbsp;sono invece di enorme utilit&agrave; per il programmatore, che pu&ograve;
+  scrivere del codice "<FONT COLOR="Red"><B>generico</B></FONT>", senza doversi
+  preoccupare di differenziarlo in ragione della variet&agrave; dei
+  <FONT COLOR="Green"><B>tipi</B></FONT> a cui tale codice va applicato. Ci&ograve;
+  &egrave; particolarmente vantaggioso quando si possono creare
+  <FONT COLOR="Green"><B>classi</B></FONT> strutturate identicamente, ma differenti
+  solo per i <FONT COLOR="Green"><B>tipi</B></FONT> dei
+  <FONT COLOR="Green"><B>membri</B></FONT> e/o per i
+  <FONT COLOR="Green"><B>tipi</B></FONT> degli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> delle
+  <FONT COLOR="Green"><B>funzioni-membro</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>La stessa <FONT COLOR="Red"><B>Libreria Standard del C++</B></FONT>
+  mette a disposizione strutture precostituite di
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT>, dette
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>contenitore</B></FONT> (<I><B>liste
+  concatenate</B></I>, <I><B>mappe</B></I>, <I><B>vettori</B></I> ecc...) che
+  possono essere utilizzate specificando, nella creazione degli
+  <FONT COLOR="Green"><B>oggetti</B></FONT>, i valori reali da sostituire ai
+  <FONT COLOR="Green"><B>tipi</B></FONT>
+  <I><B>parametrizzati</B></I>.</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Definizione di una classe
+template</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Una &nbsp;<FONT COLOR="Green"><B>classe</B></FONT> (o
+  <FONT COLOR="Green"><B>struttura</B></FONT>)
+  &nbsp;<FONT COLOR="Blue"><B>template</B></FONT> &egrave; identificata dalla
+  presenza, davanti alla <B>definizione</B> della
+  <FONT COLOR="Green"><B>classe</B></FONT>, dell'espressione:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>template&lt;class
+  </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT
+      COLOR="Blue"><B>&gt;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>dove
+  </BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG> (che &egrave;
+  un <B>nome</B> e segue le normali regola di specifica degli
+  <FONT COLOR="Green"><B>identificatori</B></FONT>) rappresenta il
+  <I><B>parametro</B></I> di un <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Red"><B>generico</B></FONT> che verr&agrave; utilizzato nella
+  <B>dichiarazione</B> di uno o pi&ugrave;
+  <FONT COLOR="Green"><B>membri</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>. In questo contesto la
+  <I><B>parola-chiave</B></I> <FONT COLOR="Blue"><B>class</B></FONT> non ha
+  il solito significato: indica che
+  </BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG> &egrave; il
+  <B>nome</B>&nbsp;di un <FONT COLOR="Green"><B>tipo</B></FONT> (anche
+  <I><B>nativo</B></I>), non necessariamente di una
+  <FONT COLOR="Green"><B>classe</B></FONT>. L'<FONT COLOR="Green"><B>ambito
+  di visibilit&agrave; </B></FONT>di
+  </BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG> coincide con
+  quello della <FONT COLOR="Green"><B>classe</B></FONT>. Se per&ograve; una
+  <FONT COLOR="Green"><B>funzione-membro</B></FONT> non &egrave;
+  <B>definita</B> <FONT COLOR="Blue"><B>inline</B></FONT> ma esternamente,
+  bisogna, al solito, <B>qualificare</B> il suo <B>nome</B>: in questo caso
+  la <B>qualificazione</B> completa consiste&nbsp;nel ripetere il prefisso
+  <FONT COLOR="Blue"><B>template&lt;class
+  </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT
+      COLOR="Blue"><B>&gt;</B></FONT> ancora prima del
+  <FONT COLOR="Green"><B>tipo</B></FONT> di <B>ritorno</B> (che in particolare
+  pu&ograve; anche dipendere da
+  </BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG>) e inserire
+  <FONT COLOR="Blue"><B>&lt;</B></FONT></BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT
+      COLOR="Blue"><B>&gt;</B></FONT> dopo il nome della
+  <FONT COLOR="Green"><B>classe</B></FONT>. Esempio:</BIG>
+  <P ALIGN=Justify>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TH COLSPAN=2><BIG>Definizione della
+	  <FONT COLOR="Green"><B>classe</B></FONT>
+	  <FONT COLOR="Blue"><B>template</B></FONT>
+	  <FONT COLOR="#cc0000"><B>A</B></FONT></BIG></TH>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="#800080"><FONT COLOR="Fuchsia"><FONT COLOR="Teal"><FONT
+	      COLOR="Fuchsia"><FONT COLOR="Aqua"><FONT COLOR="Gray"><FONT COLOR="Silver"><FONT
+	      COLOR="Lime"><FONT COLOR="Yellow"><FONT COLOR="Navy"><BIG><FONT COLOR="Blue"><B>template&lt;class
+	  </B></FONT></BIG></FONT></FONT></FONT></FONT></FONT></FONT></FONT></FONT></FONT><BIG><B>T</B></BIG></FONT><BIG><FONT
+	      COLOR="Blue"><B>&gt;</B></FONT>
+	  </BIG>&nbsp;<BIG><FONT COLOR="Blue"><B>class</B></FONT>
+	  <FONT COLOR="#cc0000"><B>A
+	  &nbsp;</B></FONT><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+	<TD></TD>
+      </TR>
+      <TR>
+	<TD>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+	  &nbsp;<FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>
+	  mem</B></FONT></BIG> <FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp;&nbsp;
+	  <BIG><FONT COLOR="Green"><B>dato-membro</B></FONT> di
+	  <FONT COLOR="Green"><B>tipo</B></FONT>
+	  <B><I>parametrizzato</I></B></BIG></TD>
+      </TR>
+      <TR>
+	<TD>&nbsp; &nbsp;
+	  &nbsp;<BIG><FONT COLOR="Blue"><B>public:</B></FONT></BIG></TD>
+	<TD></TD>
+      </TR>
+      <TR VALIGN="Top">
+	<TD>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+	  &nbsp;<BIG><FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>(const
+	  </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT
+	      COLOR="Blue"><B>&amp;</B></FONT><FONT COLOR="Maroon"><B>
+	  m</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>:</B></FONT></BIG>
+	  <BIG><FONT COLOR="Maroon"><B>mem</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	      COLOR="Maroon"><B>m</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG>&nbsp;<BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+	<TD>&nbsp; &nbsp; &nbsp;&nbsp;
+	  <BIG><FONT COLOR="Green"><B>costruttore</B></FONT>
+	  <FONT COLOR="Blue"><B>inline</B></FONT> con un
+	  <FONT COLOR="Maroon"><B>argomento</B></FONT> di<BR>
+	  &nbsp; &nbsp; &nbsp; <FONT COLOR="Green"><B>tipo</B></FONT> </BIG>
+	  <BIG><B><I>parametrizzato</I></B></BIG></TD>
+      </TR>
+      <TR VALIGN="Top">
+	<TD>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+	  &nbsp;<FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT COLOR="Maroon"><B>
+	  get</B></FONT><FONT COLOR="Blue"><B>(</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp;&nbsp; <BIG><B>dichiarazione</B> di
+	  <FONT COLOR="Green"><B>funzione-membro</B></FONT></BIG> <BIG>con<BR>
+	  &nbsp; &nbsp; &nbsp; <B>valore di ritorno</B></BIG> <BIG>di</BIG>
+	  <BIG><FONT COLOR="Green"><B>tipo</B></FONT></BIG>
+	  <BIG><B><I>parametrizzato</I></B></BIG></TD>
+      </TR>
+      <TR>
+	<TD>&nbsp; &nbsp; &nbsp;<BIG><B>........
+	  </B></BIG>&nbsp;<BIG><FONT COLOR="Blue"><B>};</B></FONT></BIG></TD>
+	<TD></TD>
+      </TR>
+      <TR>
+	<TD></TD>
+	<TD></TD>
+      </TR>
+      <TR>
+	<TH COLSPAN=2><BIG>Definizione esterna della
+	  <FONT COLOR="Green"><B>funzione-membro</B></FONT>
+	  <FONT COLOR="Maroon"><B>get</B></FONT><FONT COLOR="Blue"><B>(</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG></TH>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>template&lt;class
+	  </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>par</B></BIG></FONT><BIG><FONT
+	      COLOR="Blue"><B>&gt;</B></FONT>
+	  </BIG>&nbsp;<FONT COLOR="#800080"><BIG><B>par</B></BIG></FONT>
+	  <BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&lt;</B></FONT></BIG><FONT
+	      COLOR="#800080"><BIG><B>par</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>&gt;::</B></FONT><FONT
+	      COLOR="Maroon"><B>get</B></FONT><FONT COLOR="Blue"><B>(</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG></TD>
+	<TD>&nbsp; &nbsp; &nbsp;&nbsp; <BIG>notare che il <B>nome</B> del
+	  <B><I>parametro</I></B> pu&ograve; </BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+	<TD>&nbsp; &nbsp; &nbsp;&nbsp; <BIG>anche essere diverso da quello usato
+	  nella</BIG></TD>
+      </TR>
+      <TR>
+	<TD>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+	  &nbsp;<BIG><FONT COLOR="Blue"><B>return</B></FONT></BIG>
+	  <BIG><FONT COLOR="Maroon"><B>mem</B></FONT></BIG>
+	  <FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp;&nbsp; <BIG><B>definizione</B> della
+	  <FONT COLOR="Green"><B>classe</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+	<TD></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD><FONT COLOR="Red"><BIG>NOTA &nbsp;</BIG></FONT></TD>
+      <TD><P ALIGN=Justify>
+	<BIG>Nella &nbsp;<B>definizione </B>della
+	<FONT COLOR="Green"><B>funzione</B></FONT>
+	<FONT COLOR="Maroon"><B>get</B></FONT> la ripetizione del
+	&nbsp;<B><I>parametro</I></B>
+	</BIG><FONT COLOR="#800080"><BIG><B>par</B></BIG></FONT><BIG> nelle espressioni
+	<FONT COLOR="Blue"><B>template&lt;class
+	</B></FONT></BIG><FONT COLOR="#800080"><BIG><B>par</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>&gt;</B></FONT> e
+	<FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&lt;</B></FONT></BIG><FONT
+	    COLOR="#800080"><BIG><B>par</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>&gt;</B></FONT>
+	potrebbe sembrare ridondante. In realt&agrave; le due espressioni hanno
+	significato &egrave; diverso:</BIG>
+	<UL>
+	  <LI>
+	    <P ALIGN=Justify>
+	    <BIG><FONT COLOR="Blue"><B>template&lt;class
+	    </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>par</B></BIG></FONT><BIG><FONT
+		COLOR="Blue"><B>&gt;</B></FONT> introduce, nel corrente
+	    <FONT COLOR="Green"><B>ambito di visibilit&agrave;</B></FONT> (in questo
+	    caso della <FONT COLOR="Green"><B>funzione</B></FONT>
+	    <FONT COLOR="Maroon"><B>get</B></FONT>), il <B>nome</B>
+	    </BIG><FONT COLOR="#800080"><BIG><B>par</B></BIG></FONT><BIG> come<B><I>
+	    parametro</I></B> di <FONT COLOR="Blue"><B>template</B></FONT>;</BIG>
+	  <LI>
+	    <P ALIGN=Justify>
+	    <BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&lt;</B></FONT></BIG><FONT
+		COLOR="#800080"><BIG><B>par</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>&gt;</B></FONT>
+	    indica che la <FONT COLOR="Green"><B>classe</B></FONT>
+	    <FONT COLOR="#cc0000"><B>A</B></FONT> &egrave; un
+	    <FONT COLOR="Blue"><B>template</B></FONT> con <B><I>parametro</I></B>
+	    </BIG><FONT COLOR="#800080"><BIG><B>par</B></BIG></FONT><BIG>.</BIG>
+	</UL>
+	<P ALIGN=Justify>
+	<BIG>In generale, ogni volta che una
+	<FONT COLOR="Green"><B>classe</B></FONT>
+	<FONT COLOR="Blue"><B>template</B></FONT> &egrave; riferita al di fuori del
+	proprio <FONT COLOR="Green"><B>ambito</B></FONT> (per esempio come
+	<FONT COLOR="Maroon"><B>argomento</B></FONT> di una
+	<FONT COLOR="Green"><B>funzione</B></FONT>), &egrave; obbligatorio specificarla
+	seguita dal proprio <B><I>parametro</I></B> fra parentesi angolari. </BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>&nbsp;<BR>
+  I <B><I>parametri</I></B> di un <FONT COLOR="Blue"><B>template</B></FONT>
+  possono anche essere pi&ugrave; di uno, nel qual caso, nella
+  <B>definizione</B> della <FONT COLOR="Green"><B>classe</B></FONT> e nelle
+  <B>definizioni</B> esterne delle sue
+  <FONT COLOR="Green"><B>funzioni-membro</B></FONT>, tutti i
+  <B><I>parametri</I></B> vanno specificati con il prefisso
+  <FONT COLOR="Blue"><B>class</B></FONT> e separati da virgole. Esempio:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>template&lt;class
+  </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>par1</B></BIG></FONT><FONT
+      COLOR="Blue"><BIG><B>,</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>class
+  </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>par2</B></BIG></FONT><FONT
+      COLOR="Blue"><BIG><B>,</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>class
+  </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>par3</B></BIG></FONT><BIG><FONT
+      COLOR="Blue"><B>&gt;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Blue"><B>template</B></FONT> vanno sempre <B>definiti</B>
+  in un <FONT COLOR="Blue"><B>namespace</B></FONT>, o nel
+  <FONT COLOR="Blue"><B>namespace</B></FONT> <FONT COLOR="Green"><B>globale
+  </B></FONT>o anche nell'<FONT COLOR="Green"><B>ambito</B></FONT> di un'altra
+  &nbsp;<FONT COLOR="Green"><B>classe</B></FONT>
+  (<FONT COLOR="Blue"><B>template</B></FONT> o no). Non possono essere
+  <B>definiti</B> nell'<FONT COLOR="Green"><B>ambito</B></FONT> di un
+  <B><I>blocco</I></B>. Non &egrave; inoltre ammesso definire nello stesso
+  <FONT COLOR="Green"><B>ambito</B></FONT> due
+  <FONT COLOR="Green"><B>classi</B></FONT> con lo stesso <B>nome</B>, anche
+  se hanno diverso numero di <I><B>parametri</B></I> oppure se una
+  <FONT COLOR="Green"><B>classe</B></FONT> &egrave;
+  <FONT COLOR="Blue"><B>template</B></FONT> e l'altra no (in altre parole
+  l'<FONT COLOR="Green"><B>overload</B></FONT> &egrave; ammesso fra le
+  <FONT COLOR="Green"><B>funzioni</B></FONT>, non fra le
+  <FONT COLOR="Green"><B>classi</B></FONT>).</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Istanza di un
+template</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Un <FONT COLOR="Blue"><B>template</B></FONT> &egrave; un semplice
+  <B>modello</B> (come dice la parola stessa in inglese) e non pu&ograve; essere
+  usato direttamente. Bisogna prima sostituirne i <B><I>parametri</I></B> con
+  <FONT COLOR="Green"><B>tipi</B></FONT> gi&agrave; precedentemente definiti
+  (che vengono detti <I><B>argomenti</B></I>). Solo dopo che &egrave; stata
+  fatta questa operazione si crea una nuova
+  <FONT COLOR="Green"><B>classe</B></FONT> (cio&egrave; un nuovo
+  <FONT COLOR="Green"><B>tipo</B></FONT>) che pu&ograve; essere a sua volta
+  <FONT COLOR="Green"><B>istanziata</B></FONT> per la creazione di
+  <FONT COLOR="Green"><B>oggetti</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il processo di generazione di una
+  <FONT COLOR="Green"><B>classe</B></FONT> "reale" partendo da una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT> e da un <I><B>argomento</B></I>
+  &egrave; detto: <FONT COLOR="Green"><B>istanziazione</B></FONT> di un
+  <FONT COLOR="Blue"><B>template</B></FONT> (notare l'analogia: come un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> si crea
+  <FONT COLOR="Green"><B>istanziando</B></FONT> un
+  <FONT COLOR="Green"><B>tipo</B></FONT>, cos&igrave; un
+  <FONT COLOR="Green"><B>tipo</B></FONT> si crea
+  <FONT COLOR="Green"><B>istanziando</B></FONT> un
+  <FONT COLOR="Blue"><B>template</B></FONT>). Se una stessa
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT> viene
+  <FONT COLOR="Green"><B>istanziata</B></FONT> pi&ugrave; volte con
+  <I><B>argomenti</B></I> diversi, si dice che vengono create diverse
+  <FONT COLOR="Green"><B>specializzazioni</B></FONT> dello stesso
+  <FONT COLOR="Blue"><B>template</B></FONT>. La sintassi per
+  l'<FONT COLOR="Green"><B>istanziazione</B></FONT> di un
+  <FONT COLOR="Blue"><B>template</B></FONT> &egrave; la seguente (riprendiamo
+  l'esempio della <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>):</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&lt;</B></FONT><FONT
+      COLOR="Maroon"><B>tipo</B></FONT><FONT COLOR="Blue"><B>&gt;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>dove <FONT COLOR="Maroon"><B>tipo</B></FONT> &egrave; il <B>nome</B>
+  di un <FONT COLOR="Green"><B>tipo</B></FONT> &nbsp;(<I><B>nativo</B></I>
+  o <I><B>definito dall'utente</B></I>), da sostituire al
+  <I><B>parametro</B></I> della <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> nelle <B>dichiarazioni</B> (e
+  <B>definizioni</B>) di tutti i <FONT COLOR="Green"><B>membri</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> in cui tale <I><B>parametro</B></I>
+  compare. Quindi la <FONT COLOR="Green"><B>classe</B></FONT> "reale" &nbsp;non
+  &egrave; <FONT COLOR="#cc0000"><B>A</B></FONT>, ma
+  <FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&lt;</B></FONT><FONT
+      COLOR="Maroon"><B>tipo</B></FONT><FONT COLOR="Blue"><B>&gt;</B></FONT>,
+  cio&egrave; la <FONT COLOR="Green"><B>specializzazione</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> con <I><B>argomento</B></I>
+  <FONT COLOR="Maroon"><B>tipo</B></FONT>. Ci&ograve; rende possibili istruzioni,
+  come per esempio la seguente:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&lt;int&gt;
+  </B></FONT><FONT COLOR="Maroon"><B>ai</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>5</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT
+      COLOR="Blue"><BIG><B>;</B></BIG></FONT>
+  <P ALIGN=Justify>
+  <BIG>che <B>costruisce</B> (mediante chiamata del
+  <FONT COLOR="Green"><B>costruttore</B></FONT> con un
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>, di valore
+  <FONT COLOR="Maroon"><B>5</B></FONT>) un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Maroon"><B>ai</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>,
+  <FONT COLOR="Green"><B>specializzata</B></FONT> con
+  <I><B>argomento</B></I> <FONT COLOR="Blue"><B>int</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p73/template.cpp">[p73]</A></BIG></BIG>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Parametri di
+default</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Come gli <FONT COLOR="Maroon"><B>argomenti</B></FONT> delle
+  <FONT COLOR="Green"><B>funzioni</B></FONT>, anche i
+  <B><I>parametri</I></B> dei <FONT COLOR="Blue"><B>template</B></FONT> possono
+  essere impostati di <I><B>default</B></I>. Riprendendo l'esempio precedente,
+  modifichiamo il <I><B>prefisso</B></I> della <B>definizione</B> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> in: </BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>template&lt;class
+  </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT
+      COLOR="Blue"><B> = double&gt;</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>ci&ograve; comporta che, se nelle
+  <FONT COLOR="Green"><B>istanziazioni</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> si omette
+  l'<I><B>argomento</B></I>, questo &egrave; sottinteso
+  <FONT COLOR="Blue"><B>double</B></FONT>; per esempio:<BR>
+  <FONT COLOR="#cc0000"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  A</B></FONT><FONT COLOR="Blue"><B>&lt;&gt;
+  </B></FONT><FONT COLOR="Maroon"><B>ad</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>3.7</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT
+      COLOR="Blue"><BIG><B>;</B></BIG></FONT> &nbsp; &nbsp; &nbsp; &nbsp;
+  <BIG>equivale a <FONT COLOR="#cc0000"><B>&nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;A</B></FONT><FONT COLOR="Blue"><B>&lt;double&gt;
+  </B></FONT><FONT COLOR="Maroon"><B>ad</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>3.7</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT
+      COLOR="Blue"><BIG><B>;</B></BIG></FONT><BR>
+  <BIG> (notare che le parentesi angolari vanno specificate comunque).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Se una <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT> ha pi&ugrave;
+  <B><I>parametri</I></B>, quelli di <I><B>default</B></I> possono anche essere
+  espressi in funzione di altri <B><I>parametri</I></B>. Supponiamo per esempio
+  di <B>definire</B> una <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT>
+  <FONT COLOR="#cc0000"><B>B</B></FONT> nel seguente modo:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>template&lt;class
+  </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT
+      COLOR="Blue"><B>, class
+  </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>U</B></BIG></FONT><BIG><FONT
+      COLOR="Blue"><B> =
+  </B></FONT><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&lt;</B></FONT></BIG><FONT
+      COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>&gt;
+  &gt;</B></FONT></BIG> <BIG><FONT COLOR="Blue"><B>class</B></FONT>
+  <FONT COLOR="#cc0000"><B>B
+  &nbsp;</B></FONT><FONT COLOR="Blue"><B>{</B></FONT></BIG>
+  &nbsp;<BIG><B>........
+  </B></BIG>&nbsp;<BIG><FONT COLOR="Blue"><B>};</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>in questa <FONT COLOR="Green"><B>classe</B></FONT> i
+  <B><I>parametri</I></B> sono due:
+  </BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG> e
+  </BIG><FONT COLOR="#800080"><BIG><B>U</B></BIG></FONT><BIG>; ma, mentre
+  l'<I><B>argomento</B></I> corrispondente a
+  </BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG> deve essere sempre
+  specificato, quello corrispondente a
+  </BIG><FONT COLOR="#800080"><BIG><B>U</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>
+  </B></FONT>pu&ograve; essere omesso, nel qual caso viene sostituito con il
+  <FONT COLOR="Green"><B>tipo</B></FONT> generato dalla
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>
+  <FONT COLOR="Green"><B>specializzata</B></FONT> con
+  l'<I><B>argomento</B></I> corrispondente a
+  </BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG>. Cos&igrave;:</BIG>
+  <P ALIGN=Justify>
+  <BIG><FONT COLOR="#cc0000"><B>B</B></FONT><FONT COLOR="Blue"><B>&lt;double,int&gt;</B></FONT>
+  crea la <FONT COLOR="Green"><B>specializzazione</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT> con <I><B>argomenti</B></I>
+  <FONT COLOR="Blue"><B>double</B></FONT> e
+  <FONT COLOR="Blue"><B>int</B></FONT>, mentre:</BIG>
+  <P ALIGN=Justify>
+  <BIG><FONT COLOR="#cc0000"><B>B</B></FONT><FONT COLOR="Blue"><B>&lt;int&gt;</B></FONT>
+  crea la <FONT COLOR="Green"><B>specializzazione</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT> con <I><B>argomenti</B></I>
+  <FONT COLOR="Blue"><B>int</B></FONT> e
+  <FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&lt;int&gt;</B></FONT></BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p74/pardef.cpp">[p74]</A></BIG></BIG>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Funzioni
+template</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Analogamente alle <FONT COLOR="Green"><B>funzioni-membro</B></FONT>
+  di una <FONT COLOR="Green"><B>classe</B></FONT>, anche le
+  &nbsp;<FONT COLOR="Green"><B>funzioni</B></FONT> non appartenenti a
+  una<FONT COLOR="Green"><B> classe</B></FONT> possono essere <B>dichiarate</B>
+  (e <B>definite</B>) <FONT COLOR="Blue"><B>template</B></FONT>. Esempio di
+  <B>dichiarazione</B> di una <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT>:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>template&lt;class
+  </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT
+      COLOR="Blue"><B>&gt;</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>void</B></FONT>
+  <FONT COLOR="Maroon"><B>sort</B></FONT><FONT COLOR="Blue"><B>(int
+  </B></FONT><FONT COLOR="Maroon"><B>n</B></FONT>,
+  </BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><FONT COLOR="Blue"><FONT
+      COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG>
+  <FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT
+      COLOR="Blue"><BIG><B>;</B></BIG></FONT>
+  <P ALIGN=Justify>
+  <BIG>Come si pu&ograve; notare, uno degli
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> della
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>sort</B></FONT> &egrave; di
+  <FONT COLOR="Green"><B>tipo</B></FONT></BIG>
+  <BIG><B><I>parametrizzato</I></B>. La
+  <FONT COLOR="Green"><B>funzione</B></FONT> ha lo scopo di ordinare un
+  <FONT COLOR="Green"><B>array</B></FONT>
+  <FONT COLOR="Maroon"><B>p</B></FONT> di
+  <FONT COLOR="Maroon"><B>n</B></FONT>
+  <FONT COLOR="Green"><B>elementi</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  </BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG>, e dovr&agrave;
+  essere <FONT COLOR="Green"><B>istanziata</B></FONT> con
+  <I><B>argomenti</B></I> di <FONT COLOR="Green"><B>tipi</B></FONT> "reali"
+  da sostituire al <I><B>parametro</B></I>
+  </BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG> (vedremo pi&ugrave;
+  avanti come si fa). Se un <I><B>argomento</B></I> &egrave; di
+  <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>definito dall'utente</B></I>,
+  la <FONT COLOR="Green"><B>classe</B></FONT> che corrisponde a
+  </BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG> dovr&agrave;
+  anche contenere tutti gli <FONT COLOR="Green"><B>overload degli
+  operatori</B></FONT> necessari per eseguire i <U>confronti</U> e gli
+  <U>scambi</U> fra gli <FONT COLOR="Green"><B>elementi</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Seguitando nell'esempio, allo scopo di evidenziare tutta la "potenza"
+  dei <FONT COLOR="Blue"><B>template</B></FONT> confrontiamo ora la nostra
+  <FONT COLOR="Green"><B>funzione</B></FONT> con un'analoga
+  <FONT COLOR="Green"><B>funzione</B></FONT> di <B>ordinamento</B>, tratta
+  dalla <FONT COLOR="Red"><B>Run Time Library</B></FONT> (che &egrave; la
+  <FONT COLOR="Green"><B>libreria standard</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT>). Il linguaggio
+  <FONT COLOR="Red"><B>C</B></FONT>, che ovviamente non conosce i
+  <FONT COLOR="Blue"><B>template</B></FONT> n&egrave;
+  l'<FONT COLOR="Green"><B>overload degli operatori</B></FONT>, pu&ograve;
+  rendere applicabile lo stesso <B>algoritmo</B> di <B>ordinamento</B> a diversi
+  <FONT COLOR="Green"><B>tipi</B></FONT> facendo ricorso agli "strumenti" che
+  ha, e cio&egrave; ai <FONT COLOR="Green"><B>puntatori</B></FONT> a
+  <FONT COLOR="Blue"><B>void</B></FONT> (per
+  <FONT COLOR="Red"><B>generalizzare</B></FONT> il
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT>) e ai
+  <FONT COLOR="Green"><B>puntatori</B></FONT> a
+  <FONT COLOR="Green"><B>funzione</B></FONT> (per dar modo all'utente di fornire
+  la <FONT COLOR="Green"><B>funzione</B></FONT> di confronto fra gli
+  <FONT COLOR="Green"><B>elementi</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT>). Inoltre, nel codice della
+  <FONT COLOR="Green"><B>funzione</B></FONT>, dovr&agrave; eseguire il
+  <FONT COLOR="Purple"><B>casting</B></FONT> da
+  <FONT COLOR="Green"><B>puntatori</B></FONT> a
+  <FONT COLOR="Blue"><B>void</B></FONT> (che non sono direttamente utilizzabili)
+  a <FONT COLOR="Green"><B>puntatori</B></FONT> a <I><B>byte</B></I> (cio&egrave;
+  a <FONT COLOR="Blue"><B>char</B></FONT>) e quindi, non potendo usare
+  &nbsp;direttamente l'<B>aritmetica dei puntatori</B>, dovr&agrave; anche
+  conoscere il <B><I>size</I></B> del
+  <FONT COLOR="Green"><B>tipo</B></FONT> utilizzato (come ulteriore
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> della
+  <FONT COLOR="Green"><B>funzione</B></FONT>, che si aggiunge al
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>funzione</B></FONT> da usarsi per i confronti). In
+  definitiva, la <FONT COLOR="Green"><B>funzione</B></FONT>
+  "<FONT COLOR="Red"><B>generica</B></FONT>"
+  <FONT COLOR="Maroon"><B>sort</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT> dovrebbe essere <B>dichiarata</B> nel seguente
+  modo:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>typedef</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="Blue"><B>(<SUB><BIG>*</BIG></SUB></B></FONT><FONT COLOR="#cc0000"><B>CMP</B></FONT>)<FONT
+      COLOR="Blue"><B>(const void<SUB><BIG>*</BIG></SUB>, &nbsp;const
+  void<SUB><BIG>*</BIG></SUB>);</B></FONT><BR>
+  <FONT COLOR="Blue"><B>void</B></FONT>
+  <FONT COLOR="Maroon"><B>sort</B></FONT><FONT COLOR="Blue"><B>(int
+  </B></FONT><FONT COLOR="Maroon"><B>n</B></FONT>,
+  <FONT COLOR="Blue"><B>void</B></FONT></BIG><FONT COLOR="Blue"><FONT COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG>
+  <FONT COLOR="Maroon"><B>p</B></FONT><FONT COLOR="Blue"><B>, int
+  </B></FONT><FONT COLOR="Maroon"><B>size</B></FONT>,
+  <FONT COLOR="#cc0000"><B>CMP</B></FONT>
+  <FONT COLOR="Maroon"><B>cmp</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT
+      COLOR="Blue"><BIG><B>;</B></BIG></FONT>
+  <P ALIGN=Justify>
+  <BIG>l'utente dovr&agrave; provvedere a fornire la
+  <FONT COLOR="Green"><B>funzione</B></FONT> di confronto "vera" da sostituire
+  a <FONT COLOR="Maroon"><B>cmp</B></FONT>, e dovr&agrave; pure preoccuparsi
+  di eseguire, in detta <FONT COLOR="Green"><B>funzione</B></FONT>, tutti i
+  necessari <FONT COLOR="Purple"><B>casting</B></FONT> da
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Blue"><B>void</B></FONT> a
+  <FONT COLOR="Green"><B>puntatore</B></FONT> al
+  <FONT COLOR="Green"><B>tipo</B></FONT> utilizzato nella
+  <B>chiamata</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Risulta evidente che la soluzione con i
+  <FONT COLOR="Blue"><B>template</B></FONT> &egrave; di gran lunga preferibile:
+  &egrave; molto pi&ugrave; semplice e concisa (sia dal punto di vista del
+  programmatore che da quello dell'utente) ed &egrave; anche pi&ugrave; veloce
+  in <FONT COLOR="Red"><B>esecuzione</B></FONT>, in quanto non usa
+  <FONT COLOR="Green"><B>puntatori</B></FONT> a
+  <FONT COLOR="Green"><B>funzione</B></FONT>, ma solo <B>chiamate</B> dirette
+  (di <FONT COLOR="Green"><B>overload di operatori&nbsp;</B></FONT>che, oltretutto,
+  si possono spesso realizzare
+  <FONT COLOR="Blue"><B>inline</B></FONT>).</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Differenze fra funzioni e classi
+template</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Le <FONT COLOR="Green"><B>funzioni</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT> differiscono dalle
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT> principalmente sotto tre
+  aspetti:</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>Le <FONT COLOR="Green"><B>funzioni</B></FONT>
+      <FONT COLOR="Blue"><B>template</B></FONT> non ammettono
+      <B><I>parametri</I></B> di <I><B>default</B></I> .</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>Come le <FONT COLOR="Green"><B>classi</B></FONT>, anche le
+      <FONT COLOR="Green"><B>funzioni</B></FONT>
+      <FONT COLOR="Blue"><B>template</B></FONT> sono utilizzabili soltanto dopo
+      che sono state <FONT COLOR="Green"><B>istanziate</B></FONT>; ma, mentre nelle
+      <FONT COLOR="Green"><B>classi</B></FONT> le
+      <FONT COLOR="Green"><B>istanze</B></FONT> devono essere sempre esplicite
+      (cio&egrave; gli <I><B>argomenti</B></I> non di <I><B>default</B></I> devono
+      essere sempre specificati), nelle
+      &nbsp;<FONT COLOR="Green"><B>funzioni</B></FONT> gli
+      <I><B>argomenti</B></I> possono essere spesso <B>dedotti</B> implicitamente
+      dal contesto della <B>chiamata</B>. Riprendendo l'esempio della
+      <FONT COLOR="Green"><B>funzione</B></FONT>
+      <FONT COLOR="Maroon"><B>sort</B></FONT>, la sequenza: </BIG>
+      <TABLE CELLPADDING="2">
+	<TR>
+	  <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	  <TD><BIG><FONT COLOR="Blue"><B>double</B></FONT>
+	    <FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+		COLOR="Maroon"><B>10</B></FONT><FONT COLOR="Blue"><B>] = {
+	    </B></FONT><B>.........</B><FONT COLOR="Blue"><B>};</B></FONT></BIG></TD>
+	</TR>
+	<TR>
+	  <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	  <TD><BIG><FONT COLOR="Maroon"><B>sort</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+		COLOR="Maroon"><B>10</B></FONT>,
+	    <FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT
+		COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	</TR>
+      </TABLE>
+      <P ALIGN=Justify>
+      <BIG>crea automaticamente un'<FONT COLOR="Green"><B>istanza</B></FONT> della
+      <FONT COLOR="Green"><B>funzione</B></FONT>
+      <FONT COLOR="Blue"><B>template</B></FONT>
+      <FONT COLOR="Maroon"><B>sort</B></FONT>, con <I><B>argomento</B></I>
+      <FONT COLOR="Blue"><B>double</B></FONT> <B>dedotto</B> dalla stessa
+      <B>chiamata</B> della <FONT COLOR="Green"><B>funzione</B></FONT>.<BR>
+      <BR>
+      Quando invece un <I><B>argomento</B></I> non pu&ograve; essere <B>dedotto</B>
+      dal contesto, deve essere specificato esplicitamente, nello stesso modo in
+      cui lo si fa con le <FONT COLOR="Green"><B>classi</B></FONT>. Esempio:</BIG>
+      <TABLE CELLPADDING="2">
+	<TR>
+	  <TD>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</TD>
+	  <TD><BIG><FONT COLOR="Blue"><B>template&lt;class
+	    </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT
+		COLOR="Blue"><B>&gt;</B></FONT>
+	    &nbsp;</BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><FONT COLOR="Blue"><FONT
+		COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG><FONT
+		COLOR="Maroon"><B>
+	    create</B></FONT><FONT COLOR="Blue"><B>(</B></FONT></BIG>
+	    <BIG><FONT COLOR="Blue"><B>) {
+	    </B></FONT><B>.........</B><FONT COLOR="Blue"><B>}&nbsp;</B></FONT></BIG></TD>
+	</TR>
+	<TR>
+	  <TD>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</TD>
+	  <TD><BIG><FONT COLOR="Blue"><B>int</B></FONT></BIG><FONT COLOR="Blue"><FONT
+		COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG>
+	    <FONT COLOR="Maroon"><B>p</B></FONT></BIG>
+	    <BIG><FONT COLOR="Blue"><B>=</B></FONT>
+	    <FONT COLOR="Maroon"><B>create</B></FONT><FONT COLOR="Blue"><B>&lt;int&gt;(</B></FONT></BIG>
+	    <BIG><FONT COLOR="Blue"><B>)
+	    </B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	</TR>
+      </TABLE>
+      <P ALIGN=Justify>
+      <BIG>In generale un <I><B>argomento</B></I> pu&ograve; essere <B>dedotto</B>
+      quando corrisponde al <FONT COLOR="Green"><B>tipo</B></FONT> di un
+      <FONT COLOR="Maroon"><B>argomento</B></FONT> della
+      <FONT COLOR="Green"><B>funzione</B></FONT> e non pu&ograve; esserlo quando
+      corrisponde al <FONT COLOR="Green"><B>tipo</B></FONT> del <B>valore di
+      ritorno</B>.<BR>
+      <BR>
+      Se una <FONT COLOR="Green"><B>funzione</B></FONT>
+      <FONT COLOR="Blue"><B>template</B></FONT> ha pi&ugrave;
+      <I><B>parametri</B></I>, dei quali corrispondenti <I><B>argomenti</B></I>
+      alcuni possono essere <B>dedotti</B> e altri no, gli
+      <I><B>argomenti</B></I> <B>deducibili</B> possono essere omessi solo se sono
+      gli ultimi nella lista (esattamente come avviene per gli
+      <FONT COLOR="Maroon"><B>argomenti</B></FONT> di <I><B>default</B></I> di
+      una <FONT COLOR="Green"><B>funzione</B></FONT>). Esempio (supponiamo che
+      la variabile <FONT COLOR="Maroon"><B>d</B></FONT> sia stata <B>definita</B>
+      <FONT COLOR="Blue"><B>double</B></FONT>):</BIG><BR>
+      &nbsp;
+      <TABLE BORDER CELLPADDING="2">
+	<TR VALIGN="Top">
+	  <TH>FUNZIONE</TH>
+	  <TH>CHIAMATA</TH>
+	  <TH>NOTE</TH>
+	</TR>
+	<TR VALIGN="Top">
+	  <TD><BIG><FONT COLOR="Blue"><B>template&lt;class
+	    </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG>,<FONT
+		COLOR="Blue"><B>class
+	    </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>U</B></BIG></FONT><BIG><FONT
+		COLOR="Blue"><B>&gt;</B></FONT> <BR>
+	    &nbsp;</BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG>
+	    <FONT COLOR="Maroon"><B>fun1</B></FONT><FONT COLOR="Blue"><B>(</B></FONT></BIG><FONT
+		COLOR="#800080"><BIG><B>U</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT
+		COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	  <TD><BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	    <FONT COLOR="Maroon"><B>m</B></FONT></BIG>
+	    <BIG><FONT COLOR="Blue"><B>=</B></FONT>
+	    <FONT COLOR="Maroon"><B>fun1</B></FONT><FONT COLOR="Blue"><B>&lt;int&gt;(</B></FONT><FONT
+		COLOR="Maroon"><B>d</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT
+		COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	  <TD><BIG>Il secondo <I><B>argomento</B></I> &egrave; <B>dedotto</B> di
+	    <FONT COLOR="Green"><B>tipo</B></FONT>
+	    <FONT COLOR="Blue"><B>double</B></FONT></BIG></TD>
+	</TR>
+	<TR VALIGN="Top">
+	  <TD><BIG><FONT COLOR="Blue"><B>template&lt;class
+	    </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG>,<FONT
+		COLOR="Blue"><B>class
+	    </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>U</B></BIG></FONT><BIG><FONT
+		COLOR="Blue"><B>&gt;</B></FONT> <BR>
+	    &nbsp;</BIG><FONT COLOR="#800080"><BIG><B>U</B></BIG></FONT><BIG>
+	    <FONT COLOR="Maroon"><B>fun2</B></FONT><FONT COLOR="Blue"><B>(</B></FONT></BIG><FONT
+		COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT
+		COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	  <TD><BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	    <FONT COLOR="Maroon"><B>m</B></FONT></BIG>
+	    <BIG><FONT COLOR="Blue"><B>=</B></FONT> <BR>
+	    <FONT COLOR="Maroon"><B>fun2</B></FONT><FONT COLOR="Blue"><B>&lt;double,int&gt;(</B></FONT><FONT
+		COLOR="Maroon"><B>d</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT
+		COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	  <TD><BIG>Il primo <I><B>argomento</B></I> non si pu&ograve; omettere,<BR>
+	    anche se &egrave; <B>deducibile</B></BIG></TD>
+	</TR>
+      </TABLE>
+      <P>
+      <BIG></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>Analogamente alle <FONT COLOR="Green"><B>funzioni</B></FONT> tradizionali,
+      e a differenza dalle <FONT COLOR="Green"><B>classi</B></FONT>, anche le
+      <FONT COLOR="Green"><B>funzioni</B></FONT>
+      <FONT COLOR="Blue"><B>template</B></FONT> ammettono
+      l'<FONT COLOR="Green"><B>overload </B></FONT>(compresi
+      <FONT COLOR="Green"><B>overload</B></FONT> di tipo "misto", cio&egrave; fra
+      una <FONT COLOR="Green"><B>funzione</B></FONT> tradizionale e una
+      <FONT COLOR="Green"><B>funzione</B></FONT>
+      <FONT COLOR="Blue"><B>template</B></FONT>). Nel momento della "scelta"
+      (cio&egrave; quando una <FONT COLOR="Green"><B>funzione</B></FONT> in
+      <FONT COLOR="Green"><B>overload</B></FONT> viene <B>chiamata</B>), il
+      <FONT COLOR="Red"><B>compilatore</B></FONT> applica le normali regole di
+      risoluzione degli <FONT COLOR="Green"><B>overload</B></FONT>, alle quali
+      si aggiungono le regole per la scelta della
+      <FONT COLOR="Green"><B>specializzazione</B></FONT> che meglio si adatta agli
+      <FONT COLOR="Maroon"><B>argomenti</B></FONT> di <B>chiamata</B> della
+      <FONT COLOR="Green"><B>funzione</B></FONT>. Va precisato, tuttavia, che tali
+      regole dipendono dal tipo di <FONT COLOR="Red"><B>compilatore</B></FONT>
+      usato, in quanto i <FONT COLOR="Blue"><B>template</B></FONT> rappresentano
+      un aspetto dello standard <FONT COLOR="Red"><B>C++</B></FONT> ancora in
+      "evoluzione". Nel seguito, ci riferiremo ai criteri applicati dal
+      <FONT COLOR="Red"><B>compilatore gcc 3.3</B></FONT> (che &egrave; il pi&ugrave;
+      "moderno" che conosciamo):<BR>
+      </BIG>
+      <TABLE CELLPADDING="2">
+	<TR VALIGN="Top">
+	  <TD><BIG>a)</BIG> &nbsp; &nbsp;</TD>
+	  <TD><P ALIGN=Justify>
+	    <BIG>fra due <FONT COLOR="Green"><B>funzioni</B></FONT>
+	    <FONT COLOR="Blue"><B>template</B></FONT> con lo stesso <B>nome</B> viene
+	    scelta quella "pi&ugrave;
+	    <FONT COLOR="Green"><B>specializzata</B></FONT>" (cio&egrave; quella che
+	    corrisponde pi&ugrave; esattamente agli
+	    <FONT COLOR="Maroon"><B>argomenti</B></FONT> della <B>chiamata</B>); per
+	    esempio, date due <FONT COLOR="Green"><B>funzioni</B></FONT>:<BR>
+	    <FONT COLOR="Blue"><B>template&lt;class
+	    </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT
+		COLOR="Blue"><B>&gt;</B></FONT>
+	    &nbsp;<FONT COLOR="Blue"><B>void</B></FONT>
+	    <FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT></BIG><FONT
+		COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT
+		COLOR="Blue"><BIG><B>;</B></BIG></FONT> <BIG>&nbsp;e &nbsp;
+	    <FONT COLOR="Blue"><B>template&lt;class
+	    </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT
+		COLOR="Blue"><B>&gt;</B></FONT>
+	    &nbsp;<FONT COLOR="Blue"><B>void</B></FONT>
+	    <FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+		COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&lt;</B></FONT></BIG><FONT
+		COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>&gt;)</B></FONT></BIG><FONT
+		COLOR="Blue"><BIG><B>;</B></BIG></FONT><BIG><BR>
+	    (dove <FONT COLOR="#cc0000"><B>A</B></FONT> &egrave; la
+	    <FONT COLOR="Green"><B>classe</B></FONT> del nostro esempio iniziale), la
+	    <B>chiamata</B>:<BR>
+	    <FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+		COLOR="Maroon"><B>5</B></FONT><FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT
+		COLOR="Blue"><BIG><B>;</B></BIG></FONT><BIG> &nbsp; selezioner&agrave; la
+	    prima <FONT COLOR="Green"><B>funzione</B></FONT>, mentre la
+	    <B>chiamata</B>:<BR>
+	    <FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+		COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>&lt;int&gt;(</B></FONT><FONT
+		COLOR="Maroon"><B>5</B></FONT><FONT COLOR="Blue"><B>))</B></FONT></BIG><FONT
+		COLOR="Blue"><BIG><B>;</B></BIG></FONT><BIG> &nbsp; selezioner&agrave; la
+	    seconda <FONT COLOR="Green"><B>funzione</B></FONT>;</BIG></TD>
+	</TR>
+	<TR VALIGN="Top">
+	  <TD><BIG>b)</BIG></TD>
+	  <TD><P ALIGN=Justify>
+	    <BIG>se un <I><B>argomento</B></I> &egrave; <B>dedotto</B>, non sono ammesse
+	    conversioni <I><B>implicite</B></I> di
+	    <FONT COLOR="Green"><B>tipo</B></FONT>, salvo quelle "banali", cio&egrave;
+	    le conversioni fra <FONT COLOR="Green"><B>variabile</B></FONT> e
+	    <FONT COLOR="Green"><B>costante</B></FONT> e quelle da
+	    <FONT COLOR="Green"><B>classe derivata </B></FONT>a
+	    <FONT COLOR="Green"><B>classe base</B></FONT>; in altre parole, se uno stesso
+	    <I><B>argomento</B></I> &egrave; ripetuto pi&ugrave; volte, tutti i
+	    <FONT COLOR="Green"><B>tipi</B></FONT> dei corrispondenti
+	    <FONT COLOR="Maroon"><B>argomenti</B></FONT> nella <B>chiamata</B> devono
+	    essere identici (a parte i casi di convertibilit&agrave; sopra
+	    menzionati);</BIG></TD>
+	</TR>
+	<TR VALIGN="Top">
+	  <TD><BIG>c)</BIG></TD>
+	  <TD><P ALIGN=Justify>
+	    <BIG>come per l'<FONT COLOR="Green"><B>overload</B></FONT> fra
+	    &nbsp;<FONT COLOR="Green"><B>funzioni</B></FONT> tradizionali, le
+	    <FONT COLOR="Green"><B>funzioni</B></FONT> in cui la corrispondenza fra i
+	    <FONT COLOR="Green"><B>tipi</B></FONT> &egrave; esatta sono preferite a quelle
+	    in cui la corrispondenza si ottiene solo dopo una conversione
+	    <I><B>implicita</B></I>;</BIG></TD>
+	</TR>
+	<TR VALIGN="Top">
+	  <TD><BIG>d)</BIG></TD>
+	  <TD><P ALIGN=Justify>
+	    <BIG>a parit&agrave; di tutte le altre condizioni, le
+	    &nbsp;<FONT COLOR="Green"><B>funzioni</B></FONT> tradizionali sono preferite
+	    alle <FONT COLOR="Green"><B>funzioni</B></FONT>
+	    <FONT COLOR="Blue"><B>template</B></FONT>;</BIG></TD>
+	</TR>
+	<TR VALIGN="Top">
+	  <TD><BIG>e)</BIG></TD>
+	  <TD><P ALIGN=Justify>
+	    <BIG>il <FONT COLOR="Red"><B>compilatore</B></FONT> segnala errore se, malgrado
+	    tutti gli "sforzi", non trova nessuna corrispondenza soddisfacente; come
+	    pure segnala errore in caso di <I><B>ambiguit&agrave;</B></I>, cio&egrave;
+	    se trova due diverse soluzioni allo stesso livello di preferenza.</BIG></TD>
+	</TR>
+      </TABLE>
+      <P ALIGN=Justify>
+      <BIG>Per maggior chiarimento, vediamo ora alcuni esempi di <B>chiamate</B>
+      di <FONT COLOR="Green"><B>funzioni</B></FONT> e di scelte conseguenti operate
+      dal <FONT COLOR="Red"><B>compilatore</B></FONT>, date queste due
+      <FONT COLOR="Green"><B>funzioni</B></FONT> in
+      <FONT COLOR="Green"><B>overload</B></FONT>, una tradizionale e l'altra
+      <FONT COLOR="Blue"><B>template</B></FONT>:<BR>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <FONT COLOR="Blue"><B>void</B></FONT>
+      <FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(double,double)</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>;</B></BIG></FONT> <BIG>&nbsp;e &nbsp;
+      <FONT COLOR="Blue"><B>template&lt;class
+      </B></FONT></BIG><FONT COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT
+	  COLOR="Blue"><B>&gt;</B></FONT>
+      &nbsp;<FONT COLOR="Blue"><B>void</B></FONT>
+      <FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT></BIG><FONT
+	  COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>,</B></FONT></BIG><FONT
+	  COLOR="#800080"><BIG><B>T</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>;</B></BIG></FONT><BR>
+      &nbsp;
+      <TABLE BORDER CELLPADDING="2">
+	<TR>
+	  <TH>CHIAMATA</TH>
+	  <TH>RISOLUZIONE</TH>
+	  <TH>NOTE</TH>
+	</TR>
+	<TR VALIGN="Top">
+	  <TD><BIG><FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+		COLOR="Maroon"><B>1</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>2</B></FONT><FONT
+		COLOR="Blue"><B>)</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	  <TD><BIG><FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>&lt;int&gt;(</B></FONT><FONT
+		COLOR="Maroon"><B>1</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>2</B></FONT><FONT
+		COLOR="Blue"><B>)</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	  <TD><P ALIGN=Left>
+	    <I><B>argomento</B></I> <B>dedotto</B>, corrispondenza esatta</TD>
+	</TR>
+	<TR VALIGN="Top">
+	  <TD><BIG><FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+		COLOR="Maroon"><B>1.1</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>2.3</B></FONT><FONT
+		COLOR="Blue"><B>)</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	  <TD><BIG><FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+		COLOR="Maroon"><B>1.1</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>2.3</B></FONT><FONT
+		COLOR="Blue"><B>)</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	  <TD><P ALIGN=Justify>
+	    <FONT COLOR="Green"><B>funzione</B></FONT> tradizionale, preferita</TD>
+	</TR>
+	<TR VALIGN="Top">
+	  <TD><BIG><FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+		COLOR="Maroon"><B>'A'</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>2</B></FONT><FONT
+		COLOR="Blue"><B>)</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	  <TD><BIG><FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(double(</B></FONT><FONT
+		COLOR="Maroon"><B>'A'</B></FONT><FONT COLOR="Blue"><B>),double(</B></FONT><FONT
+		COLOR="Maroon"><B>2</B></FONT><FONT COLOR="Blue"><B>))</B></FONT></BIG><FONT
+		COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	  <TD><P ALIGN=Justify>
+	    <FONT COLOR="Green"><B>funzione</B></FONT> tradizionale, unica possibile</TD>
+	</TR>
+	<TR VALIGN="Top">
+	  <TD><BIG><FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>&lt;char&gt;(</B></FONT><FONT
+		COLOR="Maroon"><B>69</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>71.2</B></FONT><FONT
+		COLOR="Blue"><B>)</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	  <TD><BIG><FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>&lt;char&gt;(char(</B></FONT><FONT
+		COLOR="Maroon"><B>69</B></FONT><FONT COLOR="Blue"><B>),char(</B></FONT><FONT
+		COLOR="Maroon"><B>71.2</B></FONT><FONT COLOR="Blue"><B>))</B></FONT></BIG><FONT
+		COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	  <TD><P ALIGN=Left>
+	    <I><B>argomento</B></I> esplicito, conversioni ammesse</TD>
+	</TR>
+	<TR>
+	  <TD COLSPAN=3><BIG><B>definite</B> le seguenti variabili:
+	    </BIG>&nbsp;<BIG><FONT COLOR="Blue"><B>int</B></FONT></BIG>
+	    <BIG><FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B> =</B></FONT>
+	    ...</BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT> &nbsp;
+	    &nbsp;<BIG><FONT COLOR="Blue"><B>const int</B></FONT></BIG>
+	    <BIG><FONT COLOR="Maroon"><B>c
+	    </B></FONT><FONT COLOR="Blue"><B>=</B></FONT>
+	    ...</BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT> &nbsp;
+	    &nbsp;<BIG><FONT COLOR="Blue"><B>int</B></FONT></BIG><FONT COLOR="Blue"><FONT
+		COLOR="Blue"><B><SUB><BIG><BIG>*</BIG></BIG></SUB></B></FONT></FONT><BIG>
+	    <FONT COLOR="Maroon"><B>p</B></FONT></BIG>
+	    <BIG><FONT COLOR="Blue"><B>=</B></FONT>
+	    ...</BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	</TR>
+	<TR VALIGN="Top">
+	  <TD><BIG><FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+		COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>c</B></FONT><FONT
+		COLOR="Blue"><B>)</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	  <TD><BIG><FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>&lt;int&gt;(</B></FONT><FONT
+		COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>c</B></FONT><FONT
+		COLOR="Blue"><B>)</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	  <TD><I><B>argomento</B></I> <B>dedotto</B>, conversione "banale"</TD>
+	</TR>
+	<TR VALIGN="Top">
+	  <TD><BIG><FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+		COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>p</B></FONT><FONT
+		COLOR="Blue"><B>)</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	  <TD><P ALIGN=Center>
+	    ERRORE</TD>
+	  <TD>conversione non ammessa da
+	    &nbsp;<FONT COLOR="Blue"><B>int</B><FONT COLOR="Blue"><B><SUB><BIG>*</BIG></SUB></B></FONT></FONT>
+	    a <FONT COLOR="Blue"><B>double</B></FONT></TD>
+	</TR>
+      </TABLE>
+  </OL>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Template e
+modularit&agrave;</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In relazione alla <I><B>ODR</B></I>
+  (<I><B>One-Definition-Rule</B></I>), le
+  <FONT COLOR="Green"><B>funzioni</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT> (e le
+  <FONT COLOR="Green"><B>funzioni-membro</B></FONT> delle
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT>) appartengono alla stessa categoria
+  delle <FONT COLOR="Green"><B>funzioni
+  </B></FONT><FONT COLOR="Blue"><B>inline</B></FONT> e delle
+  <FONT COLOR="Green"><B>classi</B></FONT> (vedere capitolo:
+  </BIG><FONT COLOR="Red"><B><BIG><U>Tipi definiti
+  dall'utente</U></BIG></B></FONT><BIG>, sezione:
+  </BIG><FONT COLOR="Blue"><B><BIG>Strutture</BIG></B></FONT><BIG>), cio&egrave;
+  in pratica la <B>definizione</B> di una
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT> pu&ograve; essere ripetuta identica
+  in pi&ugrave; <FONT COLOR="Red"><B><I>translation units</I></B></FONT> del
+  programma.</BIG>
+  <P ALIGN=Justify>
+  <BIG>N&egrave; potrebbe essere diversamente. Infatti, come si &egrave; detto,
+  i <FONT COLOR="Blue"><B>template</B></FONT> sono
+  <FONT COLOR="Green"><B>istanziati</B></FONT> <B>staticamente</B>, cio&egrave;
+  a livello di <FONT COLOR="Red"><B>compilazione</B></FONT>, e quindi il codice
+  che utilizza un <FONT COLOR="Blue"><B>template</B></FONT> deve essere nella
+  stessa <FONT COLOR="Red"><B><I>translation unit</I></B></FONT>&nbsp;del codice
+  che lo <B>definisce</B>. In particolare, se un stesso
+  <FONT COLOR="Blue"><B>template</B></FONT> &egrave; usato in pi&ugrave;
+  <FONT COLOR="Red"><B><I>translation units</I></B></FONT>, la sua
+  <B>definizione</B>, <U>non solo pu&ograve;</U>, <U>ma deve</U> essere inclusa
+  in tutte (in altre parole, non sono ammesse librerie di
+  <FONT COLOR="Blue"><B>template</B></FONT> gi&agrave; direttamente in codice
+  binario, ma solo <I><B>header-files</B></I> che includano anche il codice
+  di implementazione in forma sorgente).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Queste regole, per&ograve;, contraddicono il principio fondamentale
+  della <FONT COLOR="Red"><B>programmazione</B></FONT>
+  <FONT COLOR="Red"><B>modulare</B></FONT>, che stabilisce la
+  <U>separazione</U> e l'<U>indipendenza</U> del codice dell'utente da quello
+  delle procedure utilizzate: l'<FONT COLOR="Red"><B>interfaccia</B></FONT>
+  comune non dovrebbe contenere le <B>definizioni</B>, ma solo le
+  <B>dichiarazioni</B> delle <FONT COLOR="Green"><B>funzioni</B></FONT> (e
+  delle <FONT COLOR="Green"><B>funzioni-membro</B></FONT> delle
+  <FONT COLOR="Green"><B>classi</B></FONT>) coinvolte, per modo che qualunque
+  modifica venga apportata al codice di implementazione di dette
+  <FONT COLOR="Green"><B>funzioni</B></FONT>, quello dell'utente non ne venga
+  influenzato. Con le <FONT COLOR="Green"><B>funzioni</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT> <U>questo non &egrave; pi&ugrave;
+  possibile</U>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Per ovviare a tale grave carenza, e far s&igrave; che la
+  <FONT COLOR="Red"><B>programmazione</B></FONT>
+  <FONT COLOR="Red"><B>generica</B></FONT> costituisca realmente "un passo
+  avanti" nella direzione dell'indipendenza fra le varie parti di un programma,
+  mantenendo nel contempo tutte le "posizioni" acquisite dagli altri livelli
+  di <FONT COLOR="Red"><B>programmazione</B></FONT>, &egrave; stata recentemente
+  introdotta nello standard una nuova <I><B>parola-chiave</B></I>:
+  "<FONT COLOR="Blue"><B>export</B></FONT>", che, usata come
+  <I><B>prefisso</B></I> nella <B>definizione</B> di una
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT>, indica che la stessa
+  <B>definizione</B> &egrave; accessibile anche da altre
+  <FONT COLOR="Red"><B><I>translation units</I></B></FONT>. Spetter&agrave;
+  poi al <FONT COLOR="Red"><B><I>linker</I></B></FONT>, e non al
+  <FONT COLOR="Red"><B>compilatore</B></FONT>, generare le eventuali
+  <FONT COLOR="Green"><B>istanze</B></FONT> richieste dall'utente. In questo
+  modo "tutto si rimette a posto", e in particolare:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>le <FONT COLOR="Green"><B>funzioni</B></FONT>
+      <FONT COLOR="Blue"><B>template</B></FONT> possono essere
+      <FONT COLOR="Red"><B>compilate</B></FONT> separatamente;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>nell'<FONT COLOR="Red"><B>interfaccia</B></FONT> comune si possono includere
+      solo le <B>dichiarazioni</B>, come per le
+      <FONT COLOR="Green"><B>funzioni</B></FONT> tradizionali. </BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Tutto ci&ograve; sarebbe molto "bello", se non fosse che ... putroppo
+  (secondo quello che ci risulta) <U>nessun
+  <FONT COLOR="Red"><B>compilatore</B></FONT> a tutt'oggi implementa la
+  <I><B>parola-chiave</B></I>
+  <FONT COLOR="Blue"><B>export</B></FONT></U>! E quindi, per il momento, bisogna
+  ancora includere le <B>definizioni</B> delle
+  <FONT COLOR="Green"><B>funzioni</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT>
+  nell'<FONT COLOR="Red"><B>interfaccia</B></FONT> comune.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p75/sort.h">[p75]</A><A HREF="p75/sort.cpp">[p75]</A>
+<A HREF="p75/sortmain.cpp">[p75]</A></BIG></BIG>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p76/hsort.h">[p76]</A><A HREF="p76/hsort.cpp">[p76]</A>
+<A HREF="p76/hsortmain.cpp">[p76]</A></BIG></BIG>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#standard"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

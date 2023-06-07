@@ -1,0 +1,334 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Riferimenti CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Riferimenti
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Costruzione di una variabile mediante
+copia</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Riassumiamo i casi in cui una variabile (o pi&ugrave; in generale un
+  <FONT COLOR="Green"><B>oggetto</B></FONT>) viene <I><B>costruita</B></I>
+  (creata) mediante <B>copia</B> di una variabile esistente dello stesso
+  <FONT COLOR="Green"><B>tipo</B></FONT>: </BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>una variabile &eacute; <B>definita</B> e <B>inizializzata</B> con il
+      valore di una <FONT COLOR="Green"><B>costante</B></FONT> o di una variabile
+      esistente;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>l'<FONT COLOR="Maroon"><B>argomento</B></FONT> di una
+      <FONT COLOR="Green"><B>funzione</B></FONT> &eacute; passato <I><B>by value
+      </B></I>(per valore) dal <B>programma chiamante</B> alla
+      <FONT COLOR="Green"><B>funzione</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>il <B>valore di ritorno</B> di una
+      <FONT COLOR="Green"><B>funzione</B></FONT> &eacute; passato <I><B>by value
+      </B></I>dalla <FONT COLOR="Green"><B>funzione</B></FONT> al <B>programma
+      chiamante</B>.</BIG>
+  </UL>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Cosa sono i riferimenti
+?</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red">C++</FONT> i
+  <FONT COLOR="Green"><B>riferimenti</B></FONT> sono variabili introdotte
+  dall'<FONT COLOR="Green"><B>operatore di dichiarazione</B></FONT></BIG> :
+  <P ALIGN=Center>
+  <BIG><BIG> <FONT COLOR="Blue"><B>&amp;</B></FONT></BIG> </BIG>
+  <P ALIGN=Justify>
+  <BIG>Il loro significato &egrave; quello di <U>occupare la stessa memoria
+  delle variabili a cui si riferiscono</U> (in altre parole sono degli
+  <I><B>alias</B></I> di altre variabili).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Si <B>definiscono</B> come nel seguente esempio: &nbsp;
+  <FONT COLOR="Blue"><B>int &amp; </B></FONT><FONT COLOR="Maroon"><B>ref
+  </B></FONT><FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>var</B></FONT><FONT COLOR="Blue"><B>;
+  </B></FONT><BR>
+  (dove <FONT COLOR="Maroon"><B>var</B></FONT> &egrave; una variabile di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT> precedentemente <B>definita</B>, oppure
+  una qualunque <FONT COLOR="Green"><B>espressione</B></FONT> che restituisce
+  un <FONT COLOR="Green"><B>l-value</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT>) la variabile
+  <FONT COLOR="Maroon"><B>ref</B></FONT> &egrave; un
+  <U><FONT COLOR="Green"><B>riferimento</B></FONT> a
+  <FONT COLOR="Maroon"><B>var</B></FONT></U>: qualsiasi modifica apportata
+  a <FONT COLOR="Maroon"><B>var</B></FONT> si ritrova in
+  <FONT COLOR="Maroon"><B>ref</B></FONT> (e viceversa). I
+  <FONT COLOR="Green"><B>tipi</B></FONT> di
+  <FONT COLOR="Maroon"><B>ref</B></FONT> e
+  <FONT COLOR="Maroon"><B>var</B></FONT> <U>devono coincidere</U>, non &egrave;
+  ammesso il
+  </BIG><FONT COLOR="Purple"><BIG><B>casting</B></BIG></FONT><BIG> in nessun
+  caso (anche quando i <FONT COLOR="Green"><B>tipi</B></FONT> sono in pratica
+  gli stessi, come <FONT COLOR="Blue"><B>int</B></FONT> e
+  <FONT COLOR="Blue"><B>long</B></FONT>). L'insieme <FONT COLOR="Blue"><B>int
+  &amp;</B></FONT> assume la connotazione di un nuovo
+  <FONT COLOR="Green"><B>tipo</B></FONT>: il
+  <U><FONT COLOR="Green"><B>tipo</B></FONT> di
+  <FONT COLOR="Green"><B>riferimento</B></FONT> a
+  <FONT COLOR="Blue"><B>int</B></FONT></U>.</BIG> <B><FONT COLOR="Red"><BR>
+  <BIG>Nota</BIG></FONT></B><BIG>: nelle <B>definizioni</B> <B>multiple</B>
+  <FONT COLOR="Blue"><B>&amp;</B></FONT> <U>va ripetuto</U>: in altre parole,
+  l'<FONT COLOR="Green"><B>operatore di dichiarazione</B></FONT>
+  <FONT COLOR="Blue"><B>&amp;</B></FONT> va considerato, dal punto di vista
+  sintattico, un <I><B>prefisso</B></I>
+  dell'<FONT COLOR="Green"><B>identificatore</B></FONT> e non un
+  <I><B>suffisso</B></I> del
+  <FONT COLOR="Green"><B>tipo</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Va da s&eacute; che i <FONT COLOR="Green"><B>riferimenti</B></FONT>
+  vanno sempre <B>inizializzati</B>. L'inizializzazione, tuttavia, non comporta
+  la <I><B>costruzione</B></I> di una nuova variabile mediante <B>copia</B>,
+  in quanto, per il programma, si tratta sempre della stessa variabile (la
+  differenza fra i nomi "scompare" dopo la compilazione).</BIG>
+  <P ALIGN=Justify>
+  <BIG>E' anche possibile dichiarare un
+  <FONT COLOR="Green"><B>riferimento</B></FONT> con lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>const</B></FONT> : &nbsp; &nbsp;<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>const int &amp;
+  </B></FONT><FONT COLOR="Maroon"><B>ref
+  </B></FONT><FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>var</B></FONT><FONT COLOR="Blue"><B>; <BR>
+  </B></FONT>si pu&ograve; sempre modificare
+  <FONT COLOR="Maroon"><B>var</B></FONT> (e di conseguenza resta modificato
+  <FONT COLOR="Maroon"><B>ref</B></FONT>), ma non si pu&ograve; modificare
+  direttamente <FONT COLOR="Maroon"><B>ref</B></FONT>, che per questo viene
+  anche detto <U><I><B>alias</B></I> di riferimento a sola lettura</U>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B>riferimenti</B></FONT> dichiarati
+  <FONT COLOR="Blue"><B>const</B></FONT> si possono anche <B>inizializzare</B>
+  con un non <FONT COLOR="Green"><B>l-value </B></FONT>(e non necessariamente
+  dello stesso <FONT COLOR="Green"><B>tipo</B></FONT>, purch&egrave; convertibile
+  <I><B>implicitamente</B></I>). Es.:</BIG><BR>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; int &amp;
+	</B></FONT><FONT COLOR="Maroon"><B>ref
+	</B></FONT><FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>var+1</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>&nbsp; &nbsp; &nbsp; &nbsp;non ammesso:
+	<FONT COLOR="Maroon"><B>var+1</B></FONT> non &egrave; un
+	<FONT COLOR="Green"><B>l-value</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<BIG><FONT COLOR="Blue"><B>const int
+	&amp; </B></FONT><FONT COLOR="Maroon"><B>ref
+	</B></FONT><FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>var+1</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG>&nbsp; &nbsp; &nbsp; &nbsp;ammesso, anche se
+	<FONT COLOR="Maroon"><B>var</B></FONT> non &egrave;
+	<FONT COLOR="Blue"><B>int</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Ci&ograve; &egrave; possibile perch&egrave; in questo caso il programma
+  crea una variabile temporanea di <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT> (chiamiamola
+  <FONT COLOR="Maroon"><B>temp</B></FONT>) che <B>inizializza</B> con
+  <FONT COLOR="Maroon"><B>var+1</B></FONT> (dopo aver convertito, se necessario,
+  il <FONT COLOR="Green"><B>tipo</B></FONT> di
+  <FONT COLOR="Maroon"><B>var</B></FONT> in
+  <FONT COLOR="Blue"><B>int</B></FONT>) e poi definisce: &nbsp;<BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; <FONT COLOR="Blue"><B>const int &amp;
+  </B></FONT><FONT COLOR="Maroon"><B>ref
+  </B></FONT><FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>temp</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><BR>
+  La variabile <FONT COLOR="Maroon"><B>temp</B></FONT> persiste nello stesso
+  <FONT COLOR="Green"><B>ambito</B></FONT> di
+  <FONT COLOR="Maroon"><B>ref</B></FONT>, ma non &egrave; accessibile e quindi
+  in questo caso <FONT COLOR="Maroon"><B>ref</B></FONT> non pu&ograve; pi&ugrave;
+  cambiare anche se cambia <FONT COLOR="Maroon"><B>var</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Comunicazione per "riferimento" fra
+programma e funzione</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;&nbsp; <BIG></BIG>
+<P ALIGN=Justify>
+<BIG>L'uso pi&ugrave; frequente dei
+<FONT COLOR="Green"><B>riferimenti</B></FONT> si ha nelle comunicazioni fra
+<FONT COLOR="Green"><B>funzione</B></FONT> e <B>programma chiamante</B>.
+Infatti, mentre in <FONT COLOR="Red">C</FONT> il passaggio degli
+<FONT COLOR="Maroon"><B>argomenti</B></FONT> e del <B>valore di ritorno</B>
+avviene <U>sempre e soltanto <I><B>by value</B></I></U>, in
+<FONT COLOR="Red">C++</FONT> pu&ograve; avvenire anche <I><B><U>by
+reference</U></B></I> (per
+<FONT COLOR="Green"><B>riferimento</B></FONT>). </BIG>
+<P ALIGN=Justify>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Da programma chiamante a
+funzione</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Un <FONT COLOR="Maroon"><B>argomento</B></FONT> passato a una
+  <FONT COLOR="Green"><B>funzione</B></FONT> pu&ograve; essere
+  <B>dichiarato</B> come <FONT COLOR="Green"><B>riferimento</B></FONT>: </BIG>
+  <P ALIGN=Center>
+  <BIG><B><FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">(int&amp;</FONT>
+  <FONT COLOR="Maroon">num</FONT><FONT COLOR="Blue">)</FONT> </B></BIG>
+  <P ALIGN=Justify>
+  <BIG>in questo caso l'<FONT COLOR="Maroon"><B>argomento</B></FONT> &egrave;
+  passato <B>by reference</B>, cio&egrave; <U>non ne viene <B>costruita</B>
+  una <B>copia</B></U>, ma la variabile
+  <B><FONT COLOR="Maroon">num</FONT></B> &eacute; un
+  <U><I><B>alias</B></I> di <FONT COLOR="Green"><B>riferimento</B></FONT> della
+  sua corrispondente nel <B>programma chiamante</B></U>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Ne consegue che <U>ogni modifica apportata a
+  <B><FONT COLOR="Maroon">num</FONT></B> in
+  <B><FONT COLOR="Maroon">funz</FONT></B> viene effettuata anche nel <B>programma
+  chiamante</B></U>. </BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.: </BIG>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Green"><B>funzione</B></FONT>: </BIG></TD>
+      <TD><BIG><B><FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">(int&amp;</FONT>
+	<FONT COLOR="Maroon">a</FONT><FONT COLOR="Blue">)</FONT></B></BIG> &nbsp;
+	<BIG><B><FONT COLOR="Blue">{</FONT> ..... <FONT COLOR="Maroon">a</FONT>
+	<FONT COLOR="Blue">=</FONT>
+	<FONT COLOR="Maroon">a</FONT><FONT COLOR="Blue">+</FONT><FONT COLOR="Maroon">1</FONT><FONT
+	    COLOR="Blue">;</FONT> .... <FONT COLOR="Blue">} </FONT></B></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><B>prog. chiamante</B>: &nbsp; &nbsp; &nbsp;</BIG></TD>
+      <TD><BIG><B><FONT COLOR="Blue">int</FONT></B>
+	<FONT COLOR="Maroon"><B>b</B></FONT> <B><FONT COLOR="Blue">=</FONT></B>
+	<FONT COLOR="Maroon"><B>0</B></FONT><B><FONT COLOR="Blue">;</FONT></B>
+	<B>......
+	<FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">(</FONT><FONT COLOR="Maroon">b</FONT></B>)<B><FONT
+	    COLOR="Blue">;</FONT></B> <B>.....</B></BIG></TD>
+    </TR>
+  </TABLE>
+  <P>
+  <BIG>alla fine in <FONT COLOR="Maroon"><B>b</B></FONT> si ritrova il
+  <B>valore</B> <FONT COLOR="Maroon"><B>1</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>In base alle regole enunciate nel paragrafo precedente, il <B>valore</B>
+  passato alla <FONT COLOR="Green"><B>funzione</B></FONT> deve essere un
+  <FONT COLOR="Green"><B>l-value</B></FONT> ed esattamente dello stesso
+  <FONT COLOR="Green"><B>tipo</B></FONT> del corrispondente
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> <B>dichiarato</B> nella
+  <FONT COLOR="Green"><B>funzione</B></FONT> (a meno che non venga dichiarato
+  <FONT COLOR="Blue"><B>const</B></FONT>, nel qual caso non ci sono restrizioni,
+  purch&egrave; sia ammessa la conversione di
+  <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>implicita</B></I>). </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp;
+<P>
+&nbsp; <FONT COLOR="Green"><BIG><B>Da funzione a programma
+chiamante</B></BIG></FONT>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Anche il <B>valore di ritorno</B> restituito da una
+  <FONT COLOR="Green"><B>funzione</B></FONT> pu&ograve; essere
+  <B>dichiarato</B> come <FONT COLOR="Green"><B>riferimento</B></FONT>. </BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.: &nbsp; &nbsp; &nbsp; </BIG></TD>
+      <TD><BIG>nel <B>programma chiamante</B>:</BIG> &nbsp; &nbsp; &nbsp;</TD>
+      <TD><BIG><B>..... <FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">(
+	);</FONT> ....... </B></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG>nella <FONT COLOR="Green"><B>funzione</B></FONT>:</BIG></TD>
+      <TD><BIG><B><FONT COLOR="Blue">int&amp;</FONT>
+	<FONT COLOR="Maroon">funz</FONT><FONT COLOR="Blue">( )</FONT>
+	<FONT COLOR="Blue">{</FONT> ...... <FONT COLOR="Blue">return</FONT>
+	<FONT COLOR="Maroon">b</FONT><FONT COLOR="Blue">;</FONT> ....
+	<FONT COLOR="Blue">}</FONT></B></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>anche questa volta il <B>valore</B> &egrave; passato <I><B>by
+  reference</B></I>, cio&egrave; <U>non ne viene <B>costruita</B> una
+  <B>copia</B></U>, ma nel <B>programma chiamante </B>viene utilizzato direttamente
+  il <FONT COLOR="Green"><B>riferimento</B></FONT> al <B>valore</B>
+  <B><FONT COLOR="Maroon">b</FONT></B> restituito da
+  <B><FONT COLOR="Maroon">funz</FONT></B> (per le note regole
+  <B><FONT COLOR="Maroon">b</FONT></B> deve essere un
+  <FONT COLOR="Green"><B>l-value</B></FONT>, a meno che il <B>valore di
+  ritorno</B> non sia dichiarato <FONT COLOR="Blue"><B>const</B></FONT>) .
+  <BR>
+  In questo caso per&ograve;, onde evitare errori in esecuzione, <U>&eacute;
+  necessario che <B><FONT COLOR="Maroon">b</FONT></B> sopravviva a
+  <B><FONT COLOR="Maroon">funz</FONT></B></U>; ci&ograve; &eacute; possibile
+  soltanto in uno dei seguenti tre casi:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG> <B><FONT COLOR="Maroon">b</FONT></B> &eacute; una variabile
+      <FONT COLOR="Green"><B>globale</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><B><FONT COLOR="Maroon">b</FONT></B> &eacute; una variabile
+      <FONT COLOR="Green"><B>locale</B></FONT> di
+      <B><FONT COLOR="Maroon">funz</FONT></B>, ma <B>dichiarata</B>
+      <FONT COLOR="Green"><B>static</B></FONT></BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><B><FONT COLOR="Maroon">b</FONT></B> &eacute; essa stessa un
+      <FONT COLOR="Green"><B>argomento</B></FONT> di
+      <B><FONT COLOR="Maroon">funz</FONT></B>, a sua volta passato <I><B>by
+      reference</B></I>. </BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Il <B>valore di ritorno</B> &egrave; un
+  <FONT COLOR="Green"><B>l-value</B></FONT> (se non &egrave; dichiarato
+  <FONT COLOR="Blue"><B>const</B></FONT>). Questo significa che la
+  <B>chiamata</B> di una <FONT COLOR="Green"><B>funzione</B></FONT> che ritorna
+  un <B>valore</B> <I><B>by reference
+  </B></I><FONT COLOR="Red"><B>pu&ograve; essere messa a sinistra di un'operazione
+  di assegnazione !!!</B></FONT> <BR>
+  Ci&ograve; &egrave; possibile solo in
+  </BIG><FONT COLOR="Red"><BIG><B>C++</B></BIG></FONT> <BIG>!</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p24/refer.cpp">[p24]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#direttive"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

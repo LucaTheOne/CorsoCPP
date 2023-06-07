@@ -1,0 +1,27 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="Generator" content="Microsoft FrontPage 4.0" />
+<title>errmsg.h.html</title>
+</head>
+<body><?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<pre>
+<span style='color=#000000'></span><span style='color:#008000'>#ifndef _ERRMSG_
+#define _ERRMSG_
+
+#include&lt;string&gt;
+#include&lt;iostream&gt;</span></pre><pre><span style='color:#000000'><b>using</b> <b>namespace</b> std;</span><span style='color:#008000'>
+</span></pre><pre><span style='color:#000000'>class ErrMsg {
+  string message;
+  string caller;
+ public:
+  ErrMsg(string c, string m);
+  ~ErrMsg();
+  virtual </span><span style='color:#800000'>void</span><span style='color:#000000'> print_message();
+};
+
+</span><span style='color:#008000'>#endif
+
+</span></pre></body></html>

@@ -1,0 +1,311 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Array CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U> Array
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Cos'&egrave; un array
+?</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Un <FONT COLOR="Green"><B>array</B></FONT> &eacute; un insieme di variabili
+  che occupano locazioni consecutive in memoria e sono caratterizzate
+  dall'<U>appartenere tutte allo stesso
+  <FONT COLOR="Green"><B>tipo</B></FONT></U>, detto
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT> (pu&ograve; anche essere un
+  <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>astratto</B></I>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Ogni variabile di tale insieme &eacute; detta
+  <FONT COLOR="Green"><B>elemento</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT> ed &eacute; identificata dalla
+  sua posizione d'ordine nell'<FONT COLOR="Green"><B>array</B></FONT>
+  (<FONT COLOR="Green"><B>indice</B></FONT>). L'intero
+  <FONT COLOR="Green"><B>array</B></FONT> &eacute; identificato da un
+  <B>nome</B> (che va specificato secondo le regole generali di specifica degli
+  <FONT COLOR="Green"><B>identificatori</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il numero di <FONT COLOR="Green"><B>elementi</B></FONT> di un
+  <FONT COLOR="Green"><B>array</B></FONT> (detto
+  <FONT COLOR="Green"><B>dimensione</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT> ) &eacute; <U>predefinito e
+  invariabile</U>. In <FONT COLOR="Red"><B>C++</B></FONT> (come in
+  <FONT COLOR="Red"><B>C</B></FONT>)
+  l'<FONT COLOR="Green"><B>indice</B></FONT> pu&ograve; assumere valori compresi
+  fra <U>zero</U> e il numero di <FONT COLOR="Green"><B>elementi</B></FONT>
+  <U>meno 1</U>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Definizione e inizializzazione di un
+array </BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Per <B>definire</B> un <FONT COLOR="Green"><B>array</B></FONT> bisogna
+  specificare prima il <FONT COLOR="Green"><B>tipo</B></FONT> e poi il nome
+  dell'<FONT COLOR="Green"><B>array</B></FONT>, seguito dalla sua
+  <FONT COLOR="Green"><B>dimensione</B></FONT> fra parentesi quadre (la
+  <FONT COLOR="Green"><B>dimensione</B></FONT> <U>deve</U> essere espressa
+  da una <FONT COLOR="Green"><B>costante</B></FONT>). <BR>
+  Es. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<FONT COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="Maroon"><B>valori</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>30</B></FONT><FONT COLOR="Blue"><B>];</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>In fase di <B>definizione</B> un
+  <FONT COLOR="Green"><B>array</B></FONT> pu&ograve; essere anche
+  <FONT COLOR="Green"><B>inizializzato</B></FONT>. I valori iniziali dei suoi
+  <FONT COLOR="Green"><B>elementi</B></FONT> devono essere specificati <U>fra
+  parentesi graffe</U> e separati l'un l'altro da una virgola; inoltre la
+  <FONT COLOR="Green"><B>dimensione</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT>, essendo determinata
+  automaticamente, pu&ograve; essere omessa (non per&ograve; le parentesi quadre,
+  che costituiscono l'<FONT COLOR="Green"><B>operatore di
+  dichiarazione</B></FONT> dell'<FONT COLOR="Green"><B>array</B></FONT>). <BR>
+  Es. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;&nbsp;<FONT COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="Maroon"><B>valori</B></FONT><FONT COLOR="Blue"><B>[]</B></FONT>
+  <FONT COLOR="Blue"><B>=
+  {</B></FONT><FONT COLOR="Maroon"><B>32</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>53</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>28</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>85</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>21</B></FONT><FONT COLOR="Blue"><B>};</B></FONT><BR>
+  nel caso dell'esempio la <FONT COLOR="Green"><B>dimensione</B></FONT>
+  <FONT COLOR="Maroon"><B>5</B></FONT> &eacute; automaticamente calcolata.
+  </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>L'operatore [ ]
+</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>operatore binario</B></FONT>
+  <FONT COLOR="Blue"><B>[ ] </B></FONT>richiede come
+  <FONT COLOR="Green"><B>left-operand</B></FONT> il <B>nome</B> di un
+  <FONT COLOR="Green"><B>array</B></FONT> e come secondo
+  <FONT COLOR="Green"><B>operando</B></FONT> (racchiuso fra le due parentesi
+  quadre) una qualunque <FONT COLOR="Maroon"><B>espressione</B></FONT> con
+  risultato <FONT COLOR="Green"><B>intero</B></FONT> (interpretato come
+  <FONT COLOR="Green"><B>indice</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il significato dell'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>[ ]</B></FONT> &eacute; duplice:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>usato per restituire un <FONT COLOR="Green"><B>l-value</B></FONT>, &eacute;
+      un <FONT COLOR="Green"><B>operatore</B></FONT> di
+      <U><FONT COLOR="Purple"><B>inserimento</B></FONT> </U>di dati
+      nell'<FONT COLOR="Green"><B>array</B></FONT>. <BR>
+      Es. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<FONT COLOR="Maroon"><B> &nbsp; &nbsp;
+      &nbsp;
+      &nbsp;valori</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT COLOR="Maroon"><B>3</B></FONT><FONT
+	  COLOR="Blue"><B>] =</B></FONT>
+      <FONT COLOR="Maroon"><B>45</B></FONT><FONT COLOR="Blue"><B>;</B></FONT> <BR>
+      (il numero <FONT COLOR="Maroon"><B>45</B></FONT> viene
+      <FONT COLOR="Purple"><B>assegnato</B></FONT> alla variabile identificata
+      dall'<FONT COLOR="Green"><B>indice</B></FONT>
+      <FONT COLOR="Maroon"><B>3</B></FONT>
+      dell'<FONT COLOR="Green"><B>array</B></FONT>
+      <FONT COLOR="Maroon"><B>valori</B></FONT>) </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>usato per restituire un <FONT COLOR="Green"><B>r-value</B></FONT>, &eacute;
+      un <FONT COLOR="Green"><B>operatore</B></FONT> di
+      <FONT COLOR="Purple"><B><U>estrazione</U></B></FONT> di dati
+      dall'<FONT COLOR="Green"><B>array</B></FONT>. <BR>
+      Es. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <FONT COLOR="Maroon"><B>a</B></FONT> =
+      <FONT COLOR="Maroon"><B>valori</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	  COLOR="Maroon"><B>4</B></FONT><FONT COLOR="Blue"><B>] ;</B></FONT> <BR>
+      (il contenuto della variabile identificata
+      dall'<FONT COLOR="Green"><B>indice</B></FONT>
+      <FONT COLOR="Maroon"><B>4</B></FONT>
+      dell'<FONT COLOR="Green"><B>array</B></FONT>
+      <FONT COLOR="Maroon"><B>valori</B></FONT> viene
+      <FONT COLOR="Purple"><B>assegnato</B></FONT> alla variabile
+      <FONT COLOR="Maroon"><B>a</B></FONT>) </BIG>
+  </UL>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Array
+multidimensionali</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> (come in
+  <FONT COLOR="Red"><B>C</B></FONT>) sono possibili
+  <FONT COLOR="Green"><B>array</B></FONT> con qualsivoglia numero di
+  <I><B>dimensioni</B></I>; tali <FONT COLOR="Green"><B>array</B></FONT> vanno
+  <B>definiti</B> come nel seguente esempio
+  (<FONT COLOR="Green"><B>array</B></FONT> <I><B>tridimensionale</B></I>):
+  &nbsp; &nbsp;<FONT COLOR="Blue"><B>float</B></FONT>
+  <FONT COLOR="Maroon"><B>tabella</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>3</B></FONT><FONT COLOR="Blue"><B>][</B></FONT><FONT COLOR="Maroon"><B>4</B></FONT><FONT
+      COLOR="Blue"><B>][</B></FONT><FONT COLOR="Maroon"><B>2</B></FONT><FONT COLOR="Blue"><B>]</B></FONT>;</BIG>
+  <P ALIGN=Justify>
+  <BIG><FONT COLOR="Red"><B><U>NOTA</U></B></FONT> : la formulazione appare
+  un po' "strana", ma chiarisce il fatto che un
+  <FONT COLOR="Green"><B>array</B></FONT> <I><B>multidimensionale</B></I> &egrave;
+  da intendersi come un <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>array</B></FONT>. Nell'esempio:
+  <FONT COLOR="Maroon"><B>tabella</B></FONT> &egrave; un
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Maroon"><B>3</B></FONT>
+  <FONT COLOR="Green"><B>elementi</B></FONT>, ciascuno dei quali &egrave; un
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Maroon"><B>4</B></FONT>
+  <FONT COLOR="Green"><B>elementi</B></FONT>, ciascuno dei quali &egrave; un
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Maroon"><B>2</B></FONT>
+  <FONT COLOR="Green"><B>elementi</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>float</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>A differenza dal <FONT COLOR="Red"><B>FORTRAN</B></FONT>, in
+  <FONT COLOR="Red"><B>C++</B></FONT> (come in
+  <FONT COLOR="Red"><B>C</B></FONT>) &nbsp;gli
+  <FONT COLOR="Green"><B>array</B></FONT> <I><B>multidimensionali</B></I> sono
+  memorizzati con gli <U>indici meno significativi a destra</U> ("per riga",
+  nel caso di <FONT COLOR="Green"><B>array</B></FONT>
+  <I><B>bidimensionali</B></I>). <BR>
+  Per esempio, dato l'<FONT COLOR="Green"><B>array</B></FONT>
+  <FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>2</B></FONT><FONT COLOR="Blue"><B>][</B></FONT><FONT COLOR="Maroon"><B>3</B></FONT><FONT
+      COLOR="Blue"><B>]</B></FONT>, i suoi elementi sono memorizzati nel seguente
+  ordine: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>][</B></FONT><FONT COLOR="Maroon"><B>0</B></FONT><FONT
+      COLOR="Blue"><B>]</B></FONT> ,
+  <FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>][</B></FONT><FONT COLOR="Maroon"><B>1</B></FONT><FONT
+      COLOR="Blue"><B>]</B></FONT> ,
+  <FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>0</B></FONT><FONT COLOR="Blue"><B>][</B></FONT><FONT COLOR="Maroon"><B>2</B></FONT><FONT
+      COLOR="Blue"><B>]</B></FONT> ,
+  <FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>1</B></FONT><FONT COLOR="Blue"><B>][</B></FONT><FONT COLOR="Maroon"><B>0</B></FONT><FONT
+      COLOR="Blue"><B>]</B></FONT> ,
+  <FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>1</B></FONT><FONT COLOR="Blue"><B>][</B></FONT><FONT COLOR="Maroon"><B>1</B></FONT><FONT
+      COLOR="Blue"><B>]</B></FONT> ,
+  <FONT COLOR="Maroon"><B>A</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>1</B></FONT><FONT COLOR="Blue"><B>][</B></FONT><FONT COLOR="Maroon"><B>2</B></FONT><FONT
+      COLOR="Blue"><B>]</B></FONT> </BIG>
+  <P ALIGN=Justify>
+  <BIG>Per <B>inizializzare</B> un <FONT COLOR="Green"><B>array</B></FONT>
+  <I><B>multidimensionale</B></I>, bisogna innestare tanti gruppi di parentesi
+  graffe quante sono le singole porzioni <I><B>monodimensionali</B></I>
+  dell'<FONT COLOR="Green"><B>array</B></FONT>, ed elencare gli
+  <FONT COLOR="Green"><B>elementi</B></FONT> nello stesso ordine in cui saranno
+  memorizzati.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Esempio, nel caso <I><B>bidimensionale</B></I>: &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; <FONT COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="Maroon"><B>dati</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>3</B></FONT><FONT COLOR="Blue"><B>][</B></FONT><FONT COLOR="Maroon"><B>2</B></FONT><FONT
+      COLOR="Blue"><B>]</B></FONT> <FONT COLOR="Blue"><B>= {
+  {</B></FONT><FONT COLOR="Maroon"><B>8</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>-5</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>}
+  </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Blue"><B>{</B></FONT><FONT COLOR="Maroon"><B>4</B></FONT><FONT
+      COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>0</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>}
+  </B></BIG></FONT><BIG><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Blue"><B>{</B></FONT><FONT COLOR="Maroon"><B>-2</B></FONT><FONT
+      COLOR="Blue"><B>,</B></FONT> <FONT COLOR="Maroon"><B>6</B></FONT>
+  </BIG><FONT COLOR="Blue"><BIG><B>} }; </B></BIG></FONT>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>L'operatore sizeof e gli
+array</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>sizeof</B></FONT>, se
+  l'<FONT COLOR="Green"><B>operando</B></FONT> &eacute; il <B>nome</B> di un
+  <FONT COLOR="Green"><B>array</B></FONT>, restituisce il numero di
+  <I><B>bytes</B></I> complessivi
+  dell'<FONT COLOR="Green"><B>array</B></FONT>, che &eacute; dato dal <U>numero
+  degli <FONT COLOR="Green"><B>elementi</B></FONT> moltiplicato per la lunghezza
+  in <I><B>byte</B></I> di ciascun
+  </U><FONT COLOR="Green"><U><B>elemento</B></U></FONT> (la quale ovviamente
+  dipende dal <FONT COLOR="Green"><B>tipo</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT>).</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p16/random.cpp">[p16]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Gli array in
+C++</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Gli <FONT COLOR="Green"><B>array</B></FONT> descritti finora sono quelli
+  "in <I><B>stile</B></I> <FONT COLOR="Red"><B>C</B></FONT>". Nei programmi
+  in <FONT COLOR="Red"><B>C++</B></FONT>&nbsp;ad alto livello sono scarsamente
+  utilizzati. Al loro posto si preferisce usare alcune
+  <FONT COLOR="Green"><B>classi</B></FONT> della <FONT COLOR="Red"><B>Libreria
+  Standard </B></FONT>(come vedremo) che offrono flessibilit&agrave; molto
+  maggiori (per esempio la <FONT COLOR="Green"><B>dimensione</B></FONT> &egrave;
+  modificabile dinamicamente e inoltre, negli
+  <FONT COLOR="Green"><B>array</B></FONT> <I><B>multidimensionali</B></I>,
+  si possono definire singole porzioni <I><B>monodimensionali</B></I> con
+  <FONT COLOR="Green"><B>dimensioni</B></FONT> diverse).</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#stringhe"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

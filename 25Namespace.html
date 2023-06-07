@@ -1,0 +1,1282 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Namespace CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Namespace
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Programmazione modulare e compilazione
+separata</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Nel corso degli anni, l'enfasi nella <B>progettazione</B> dei programmi
+  si &egrave; spostata dal progetto delle <B>procedure</B> all'<B>organizzazione
+  dei dati</B>, in ragione anche dei problemi di sviluppo e manutenzione del
+  software che sono direttamente correlati all'aumento di dimensione dei programmi.
+  La possibilit&agrave; di suddividere grossi programmi in porzioni il pi&ugrave;
+  possibile ridotte e autosufficienti (detti
+  <FONT COLOR="Red"><B>moduli</B></FONT>) &egrave; pertanto caratteristica
+  di un modo efficiente di produrre software, in quanto permette di sviluppare
+  programmi pi&ugrave; chiari e pi&ugrave; facili da mantenere ed aggiornare
+  (specie se i programmatori che lavorano a un stesso progetto sono molti)</BIG>.
+  <P ALIGN=Justify>
+  <BIG>Un <FONT COLOR="Red"><B>modulo</B></FONT> &egrave; costituito da
+  <B>dati</B> logicamente correlati e dalle <B>procedure</B> che li utilizzano.
+  L'idea-base &nbsp;&egrave; quella del "<FONT COLOR="Red"><I><B>data
+  hiding</B></I></FONT>" (<I><B>occultamento dei dati</B></I>), in ragione
+  della quale un programmatore "utente" del
+  <FONT COLOR="Red"><B>modulo</B></FONT> non ha bisogno di conoscere i
+  <B>nomi</B> delle variabili, dei <FONT COLOR="Green"><B>tipi</B></FONT>,
+  delle <FONT COLOR="Green"><B>funzioni</B></FONT> e in generale delle
+  caratteristiche di implementazione del
+  <FONT COLOR="Red"><B>modulo</B></FONT> stesso, ma &egrave; sufficiente che
+  sappia come utilizzarlo, cio&egrave; come <U>mandargli le informazioni</U>
+  e <U>ottenere le risposte</U>. Un <FONT COLOR="Red"><B>modulo</B></FONT>
+  &egrave; pertanto paragonabile a un dispositivo (il cui meccanismo interno
+  &egrave; sconosciuto), con il quale comunicare attraverso operazioni di
+  input-output. Tali operazioni sono a loro &nbsp;volta raggruppate in un
+  <FONT COLOR="Red"><B>modulo</B></FONT> separato, detto
+  <FONT COLOR="Red"><B>interfaccia</B></FONT> che rappresenta l'unico canale
+  di comunicazione fra il <FONT COLOR="Red"><B>modulo</B></FONT> e i suoi
+  utenti.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Red"><B>programmazione modulare </B></FONT>offre cos&igrave;
+  un duplice vantaggio: quello di <U>separare</U>
+  l'<FONT COLOR="Red"><B>interfaccia</B></FONT> dal codice di implementazione
+  del <FONT COLOR="Red"><B>modulo</B></FONT>, dando la possibilit&agrave; al
+  <FONT COLOR="Red"><B>modulo</B></FONT> di essere modificato senza che il
+  codice dell'utente ne sia influenzato; e quello di permettere all'utente
+  di definire i <B>nomi</B> delle variabili, dei
+  <FONT COLOR="Green"><B>tipi</B></FONT>, delle
+  <FONT COLOR="Green"><B>funzioni</B></FONT> ecc.. senza doversi preoccupare
+  di eventuali conflitti con i nomi usati nel
+  <FONT COLOR="Red"><B>modulo</B></FONT> e dell'insorgere di errori dovuti
+  a <I><B>simboli duplicati</B></I>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Parallelo al concetto di <FONT COLOR="Red"><B>programmazione modulare
+  </B></FONT>&egrave; quello di <FONT COLOR="Red"><B>compilazione
+  separata</B></FONT>. Per motivi di efficienza la progettazione di un programma
+  (specie se di grosse dimensioni) dovrebbe prevedere la sistemazione dei
+  <FONT COLOR="Red"><B>moduli</B></FONT> in <I><B>files</B></I> separati: in
+  questo modo ogni intervento di modifica o di correzione degli errori di un
+  singolo <FONT COLOR="Red"><B>modulo</B></FONT> comporterebbe la ricompilazione
+  di un solo <I><B>file</B></I>. E' utile che anche
+  l'<FONT COLOR="Red"><B>interfaccia</B></FONT> di un
+  <FONT COLOR="Red"><B>modulo</B></FONT> risieda in un file separato sia dal
+  codice dell'utente che da quello di implementazione del
+  <FONT COLOR="Red"><B>modulo</B></FONT> stesso. Entrambi questi files dovrebbero
+  poi contenere la <FONT COLOR="Green"><B>direttiva</B></FONT>
+  <FONT COLOR="Blue"><B>#include</B></FONT> (<I><B>file</B></I>
+  dell'<FONT COLOR="Red"><B>interfaccia</B></FONT>) cos&igrave; che il
+  <FONT COLOR="Red"><B>preprocessore</B></FONT> possa creare due
+  <FONT COLOR="Red"><B>translation units </B></FONT>indipendenti, ma collegate
+  entrambe alla stessa <FONT COLOR="Red"><B>interfaccia</B></FONT> (questo
+  approccio &egrave; molto pi&ugrave; conveniente di quello di creare due soli
+  <I><B>files</B></I> entrambi con il codice
+  dell'<FONT COLOR="Red"><B>interfaccia</B></FONT>, in quanto permette al
+  progettista del <FONT COLOR="Red"><B>modulo</B></FONT> di modificare
+  l'<FONT COLOR="Red"><B>interfaccia</B></FONT> senza implicare che la stessa
+  modifica venga eseguita anche nel <I><B>file</B></I> dell'utente).</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Definizione di
+namespace</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Dal punto di vista <U>sintattico</U>, la <B>definizione</B> di un
+  <FONT COLOR="Blue"><B>namespace</B></FONT> somiglia molto a quella di una
+  <FONT COLOR="Green"><B>struttura</B></FONT> (cambia la
+  <B><I>parola-chiave</I></B> e inoltre il punto e virgola in fondo non &egrave;
+  obbligatorio). Esempio:</BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD COLSPAN=2><BIG><FONT COLOR="Blue"><B>namespace</B></FONT>
+	<FONT COLOR="#cc0000"><B>Stack</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG>&nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp;</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>const int</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>max_size
+	</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>
+	100</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>char</B></FONT>
+	<FONT COLOR="Maroon"><B>v</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>max_size
+	</B></FONT><FONT COLOR="Blue"><B>];</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>top</B></FONT><FONT COLOR="Blue"><B>
+	=</B></FONT><FONT COLOR="Maroon"><B>
+	0</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>void</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>push</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(char</B></BIG></FONT>
+	<BIG><FONT COLOR="Maroon"><B>c</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>)
+	{</B></BIG></FONT><BIG><B>......</B></BIG><FONT COLOR="Blue"><BIG><B>}
+	</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>char</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>pop</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(
+	)
+	{</B></BIG></FONT><BIG><B>......</B></BIG><FONT COLOR="Blue"><BIG><B>}
+	</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>}</B></FONT> </BIG></TD>
+      <TD><BIG> </BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B>membri</B></FONT> di un
+  <FONT COLOR="Blue"><B>namespace</B></FONT> sono <B>dichiarazioni</B> o
+  <B>definizioni</B> (con eventuali <B>inizializzazioni</B>) di
+  <FONT COLOR="Green"><B>identificatori</B></FONT> <U>di qualunque genere</U>
+  (variabili, <FONT COLOR="Green"><B>funzioni</B></FONT>,
+  <FONT COLOR="Blue"><B>typedef</B></FONT>,
+  <FONT COLOR="Green"><B>strutture</B></FONT>,
+  <FONT COLOR="Green"><B>enumeratori</B></FONT>, altri
+  <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>astratti</B></I> qualsiasi ecc...).
+  Anche il <B>nome</B> di un <FONT COLOR="Blue"><B>namespace</B></FONT>
+  (<FONT COLOR="#cc0000"><B>Stack</B></FONT>, nell'esempio) &egrave; un
+  <FONT COLOR="Green"><B>identificatore</B></FONT>. Pertanto <B>definire</B>
+  un <FONT COLOR="Blue"><B>namespace</B></FONT> significa
+  <B>dichiarare</B>/<B>definire</B> un <U>gruppo di <B>nomi</B></U> a sua volta
+  identificato da un <B>nome</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>A differenza dalle <FONT COLOR="Green"><B>strutture</B></FONT>,
+  <FONT COLOR="#cc0000"><B>Stack</B></FONT> <U>non &egrave; un
+  <FONT COLOR="Green"><B>tipo</B></FONT></U> (non pu&ograve; essere
+  <FONT COLOR="Green"><B>istanziato</B></FONT> da
+  <FONT COLOR="Green"><B>oggetti</B></FONT>) ma identifica semplicemente un
+  <FONT COLOR="Green"><B>ambito di visibilit&agrave;</B></FONT>
+  (<I><B>scope</B></I>). I <FONT COLOR="Green"><B>membri</B></FONT> di
+  <FONT COLOR="#cc0000"><B>Stack</B></FONT> sono perci&ograve;
+  <FONT COLOR="Green"><B>identificatori</B></FONT>
+  <FONT COLOR="Green"><B>locali</B></FONT>, visibili soltanto nello
+  <I><B>scope</B></I> definito da
+  <FONT COLOR="#cc0000"><B>Stack</B></FONT>. Il programmatore &egrave; perci&ograve;
+  libero di <B>definire</B> gli stessi <B>nomi</B> al di fuori, senza pericolo
+  di conflitti o ambiguit&agrave;.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Non &egrave; ammesso <B>definire</B> un
+  <FONT COLOR="Blue"><B>namespace</B></FONT> all'interno di un altro
+  <I><B>scope</B></I> (per esempio nel <I><B>block</B></I>
+  <I><B>scope</B></I> di una <FONT COLOR="Green"><B>funzione</B></FONT> o una
+  <FONT COLOR="Green"><B>struttura</B></FONT>); e quindi il suo <B>nome</B>
+  ha <I><B>global</B></I> <I><B>scope</B></I> cio&egrave; &egrave; riconoscibile
+  dappertutto. E' per&ograve; possibile "annidare" un
+  <FONT COLOR="Blue"><B>namespace</B></FONT> all'interno di un altro
+  <FONT COLOR="Blue"><B>namespace</B></FONT>: in questo caso il suo
+  &nbsp;<I><B>scope</B></I> coincide con quello degli altri
+  <FONT COLOR="Green"><B>membri</B></FONT> del
+  <FONT COLOR="Blue"><B>namespace</B></FONT> superiore.</BIG>
+  <P ALIGN=Justify>
+  <BIG>In definitiva, il termine <FONT COLOR="Blue"><B>namespace</B></FONT>
+  si identifica con quello di "<B>ambito dichiarativo con un nome</B>". In
+  questo senso, anche i <B>blocchi</B> delle
+  <FONT COLOR="Green"><B>funzioni</B></FONT> e delle
+  <FONT COLOR="Green"><B>strutture</B></FONT> sono dei
+  <FONT COLOR="Blue"><B>namespace</B></FONT> (con molte funzionalit&agrave;
+  in pi&ugrave;) e tutto ci&ograve; che &egrave; al di fuori (le variabili
+  <FONT COLOR="Green"><B>globali</B></FONT>) &egrave; detto appartenere al
+  "<FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT>".</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Risoluzione della
+visibilit&agrave;</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Sorge a questo punto spontanea una domanda: come comunicare fra i
+  <FONT COLOR="Blue"><B>namespace</B></FONT>? In altre parole, se i
+  <FONT COLOR="Green"><B>membri</B></FONT> di un
+  <FONT COLOR="Blue"><B>namespace</B></FONT> non sono accessibili dall'esterno,
+  come si possono usare nel programma ?</BIG>
+  <P ALIGN=Justify>
+  <BIG>Per accedere a un <B>nome</B> definito in un
+  <FONT COLOR="Blue"><B>namespace</B></FONT>, bisogna "<B>qualificarlo</B>",
+  associandogli il nome del <FONT COLOR="Blue"><B>namespace</B></FONT> (che
+  invece &egrave; visibile, avendo <I><B>global</B></I>
+  <I><B>scope</B></I>), tramite l'<FONT COLOR="Green"><B>operatore
+  binario</B></FONT> di <FONT COLOR="Purple"><B>risoluzione di
+  visibilit&agrave;</B></FONT>
+  </BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG> (doppi due
+  punti).<BR>
+  Seguitando nell'esempio precedente:</BIG>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <BIG><FONT COLOR="#cc0000"><B>Stack</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT
+      COLOR="Maroon"><B>top</B></FONT></BIG> &nbsp;<BIG>(accede al
+  <FONT COLOR="Green"><B>membro
+  </B></FONT><FONT COLOR="Maroon"><B>top</B></FONT> del
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="#cc0000"><B>Stack</B></FONT>)</BIG>
+  <P ALIGN=Justify>
+  <BIG>Notare l'analogia di questo
+  <FONT COLOR="Green"><B>operatore</B></FONT> con quello
+  <FONT COLOR="Green"><B>unario</B></FONT> di
+  <FONT COLOR="Purple"><B>riferimento globale</B></FONT> (gi&agrave; visto
+  a proposito dell'accesso alle variabili
+  <FONT COLOR="Green"><B>globali</B></FONT>). Infatti, se il
+  <FONT COLOR="Green"><B>left-operand</B></FONT> manca, vuol dire che il
+  <B>nome</B> dato dal <FONT COLOR="Green"><B>right-operand</B></FONT> deve
+  essere cercato nel <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Membri di un namespace definiti
+esternamente</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo visto che i <FONT COLOR="Green"><B>membri</B></FONT> di un
+  <FONT COLOR="Blue"><B>namespace</B></FONT> possono essere sia
+  <B>dichiarati</B> che <B>definiti</B>. Sappiamo per&ograve; che alcune
+  <B>dichiarazioni</B> non sono <B>definizioni</B>&nbsp;e che in generale un
+  <FONT COLOR="Green"><B>identificatore</B></FONT> &egrave; utilizzabile dal
+  programma se &egrave; <B>definito</B> (da qualche parte) ed &egrave;
+  <B>dichiarato</B> <U>prima</U> del punto in cui lo si vuole utilizzare.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Possiamo perci&ograve; separare, dove &egrave; possibile, le
+  <B>dichiarazioni</B> dalle <B>definizioni</B> e includere solo le prime fra
+  i &nbsp;<FONT COLOR="Green"><B>membri</B></FONT> di un
+  <FONT COLOR="Blue"><B>namespace</B></FONT>, ponendo le seconde al di fuori.
+  Nelle <B>definizioni</B> esterne per&ograve;, i <B>nomi</B> devono essere
+  <B>qualificati</B>, altrimenti non sarebbero riconoscibili. </BIG>
+  <P ALIGN=Justify>
+  <BIG>La separazione fra <B>dichiarazioni</B> e <B>definizioni</B> &egrave;
+  applicata soprattutto alle <FONT COLOR="Green"><B>funzioni</B></FONT>. Seguitando
+  con lo stesso esempio:</BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD COLSPAN=2><BIG><FONT COLOR="Blue"><B>namespace</B></FONT>
+	<FONT COLOR="#cc0000"><B>Stack</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG> &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>const int</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>max_size
+	</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>
+	100</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>char</B></FONT>
+	<FONT COLOR="Maroon"><B>v</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+	    COLOR="Maroon"><B>max_size
+	</B></FONT><FONT COLOR="Blue"><B>];</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>top</B></FONT><FONT COLOR="Blue"><B>
+	=</B></FONT><FONT COLOR="Maroon"><B>
+	0</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>void</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>push</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(char)</B></BIG></FONT><BIG><FONT
+	    COLOR="Blue"><B>;</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>
+	</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>char</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>pop</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(
+	)</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>}</B></FONT> </BIG></TD>
+      <TD><BIG> </BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD><BIG> </BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD COLSPAN=2><BIG><FONT COLOR="Blue"><B>void</B></FONT></BIG>
+	<BIG><FONT COLOR="#cc0000"><B>&nbsp;Stack</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT
+	    COLOR="Maroon"><B>push</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(char</B></BIG></FONT>
+	<BIG><FONT COLOR="Maroon"><B>c</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>)
+	{</B></BIG></FONT><BIG><B>......</B></BIG><FONT COLOR="Blue"><BIG><B>}
+	</B></BIG></FONT></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD COLSPAN=2><BIG><FONT COLOR="Blue"><B>char</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="#cc0000"><B>Stack</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT
+	    COLOR="Maroon"><B>pop</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>( )
+	{</B></BIG></FONT><BIG><B>......</B></BIG><FONT COLOR="Blue"><BIG><B>}
+	</B></BIG></FONT></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Le <FONT COLOR="Green"><B>funzioni</B></FONT>
+  <FONT COLOR="Maroon"><B>push</B></FONT> e
+  <FONT COLOR="Maroon"><B>pop</B></FONT> sono soltanto <B>dichiarate</B> nella
+  definizione del <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="#cc0000"><B>Stack</B></FONT>, e <B>definite</B> altrove con
+  i <B>nomi</B> <B>qualificati</B>. Non &egrave; necessario, invece,
+  <B>qualificare</B> i <FONT COLOR="Green"><B>membri</B></FONT> di
+  <FONT COLOR="#cc0000"><B>Stack</B></FONT> utilizzati all'interno delle
+  <FONT COLOR="Green"><B>funzioni</B></FONT>, in quanto il compilatore, se
+  incontra una variabile <FONT COLOR="Green"><B>locale</B></FONT> non
+  <B>definita</B> nell'<FONT COLOR="Green"><B>ambito</B></FONT> della
+  <FONT COLOR="Green"><B>funzione</B></FONT>, la va a cercare nel
+  <FONT COLOR="Blue"><B>namespace</B></FONT> a cui la
+  <FONT COLOR="Green"><B>funzione</B></FONT> appartiene.</BIG>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp;<BIG><BR>
+  Quando viene <B>chiamata</B> una
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Green"><B>membro</B></FONT> di un
+  <FONT COLOR="Blue"><B>namespace</B></FONT>, con
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> di cui almeno uno &egrave; di
+  <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>astratto</B></I>
+  <FONT COLOR="Green"><B>membro</B></FONT> dello stesso
+  <FONT COLOR="Blue"><B>namespace</B></FONT>, la <B>qualificazione</B> del
+  <B>nome</B> della <FONT COLOR="Green"><B>funzione</B></FONT> <U>non &egrave;</U>
+  necessaria. Esempio:</BIG>
+  <PRE>   <B><BIG>#include &lt;iostream.h&gt;</BIG></B>
+<BIG>   <B>namespace A { struct AS {int k;}; char ff(AS); }</B></BIG>
+<BIG>   <B>char A::ff(AS m) { return (char)m.k; }</B></BIG>
+<B><BIG>   int main()</BIG></B>
+<BIG>   <B>{</B></BIG>
+<B><BIG>	A::AS m;</BIG></B>
+<B><BIG>	m.k = 65;</BIG></B>
+<B><BIG>	cout &lt;&lt; ff(m) &lt;&lt; '\n';   // non importa A:: davanti a ff</BIG></B>
+<BIG>   <B>}</B></BIG>
+</PRE>
+  <P ALIGN=Justify>
+  <BIG>Infatti il <B>nome</B> di una
+  <FONT COLOR="Green"><B>funzione</B></FONT> &egrave; cercato, non solo
+  nell'<FONT COLOR="Green"><B>ambito</B></FONT> della <B>chiamata</B> (o in
+  <FONT COLOR="Green"><B>ambiti</B></FONT> superiori), ma anche in quelli dei
+  <FONT COLOR="Blue"><B>namespace</B></FONT> in cui sono <B>definiti</B> i
+  <FONT COLOR="Green"><B>tipi</B></FONT> di ogni
+  <FONT COLOR="Maroon"><B>argomento</B></FONT>.</BIG><B><FONT COLOR="Red">
+  </FONT></B><BIG>Non sono prefissati criteri di precedenza: in caso di
+  ambiguit&agrave; il compilatore d&agrave; un messaggio di
+  errore.</BIG><B><FONT COLOR="Red"><BR>
+  <BIG>NOTA</BIG></FONT></B><BIG> : si tratta di una funzionalit&agrave; recente
+  del <FONT COLOR="Red"><B>C++</B></FONT>. Infatti il compilatore
+  <FONT COLOR="Red"><B>gcc</B></FONT> la accetta, mentre il
+  <FONT COLOR="Red"><B>Visual C++</B></FONT> pretende la
+  <B>qualificazione</B>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Namespace
+annidati</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo detto che i <FONT COLOR="Blue"><B>namespace</B></FONT> possono
+  essere <B>definiti</B> solo nell'<FONT COLOR="Green"><B>ambito</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT> (cio&egrave; non si possono definire
+  all'interno di altri <B>blocchi</B>, per esempio di
+  <FONT COLOR="Green"><B>funzioni</B></FONT> o
+  <FONT COLOR="Green"><B>strutture</B></FONT>). E' per&ograve; possibile definire
+  un <FONT COLOR="Blue"><B>namespace</B></FONT>&nbsp;all'interno di un altro
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  (<FONT COLOR="Blue"><B>namespace</B></FONT> "annidati").</BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp;&nbsp; &nbsp; &nbsp;</BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>void</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Maroon"><B>f</B></FONT><FONT COLOR="Blue"><B>(
+	);</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>namespace</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="#cc0000"><B>A &nbsp;
+	&nbsp;</B></FONT><FONT COLOR="Blue"><B>{</B></FONT><FONT COLOR="#cc0000"><B>
+	</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	<BIG><FONT COLOR="Blue"><B>void</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Maroon"><B>g</B></FONT><FONT COLOR="Blue"><B>(
+	);</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	<BIG><FONT COLOR="Blue"><B>namespace</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="#cc0000"><B>B &nbsp;
+	&nbsp;</B></FONT><FONT COLOR="Blue"><B>{</B></FONT><FONT COLOR="#cc0000"><B>
+	</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; <BIG><FONT COLOR="Blue"><B>void</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Maroon"><B>h</B></FONT><FONT COLOR="Blue"><B>(
+	);</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp;<BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>la <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>f</B></FONT> &egrave; <B>dichiarata</B> nel
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT>; la funzione
+  <FONT COLOR="Maroon"><B>g</B></FONT> &egrave; <B>dichiarata</B> nel
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>; e infine la
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>h</B></FONT> &nbsp;&egrave; <B>dichiarata</B> nel
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="#cc0000"><B>B</B></FONT> <B>definito</B> nel
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Per accedere (dall'esterno) a un membro del
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="#cc0000"><B>B</B></FONT> bisogna ripetere due volte
+  l'<FONT COLOR="Green"><B>operazione</B></FONT> di
+  <FONT COLOR="Purple"><B>risoluzione di visibilit&agrave;</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Es.: &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>void</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT
+      COLOR="#cc0000"><B>B</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT
+      COLOR="Maroon"><B>h</B></FONT><FONT COLOR="Blue"><B>( )</B></FONT>
+  </BIG><FONT COLOR="Blue"><BIG><B>{</B></BIG></FONT><BIG><B>......</B></BIG><FONT
+      COLOR="Blue"><BIG><B>}</B></BIG></FONT> &nbsp; &nbsp; &nbsp;
+  <BIG>(<B>definizione</B> esterna della
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>h</B></FONT>)</BIG>
+  <P ALIGN=Justify>
+  <BIG>Per i <FONT COLOR="Blue"><B>namespace</B></FONT> "annidati" <U>valgono
+  le normali regole di <B>visibilit&agrave;</B> e di
+  <B>qualificazione</B></U>: all'interno della
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>h</B></FONT> non occorre <B>qualificare</B> i
+  <FONT COLOR="Green"><B>membri</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT> (come sempre), ma neppure quelli di
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, in quanto i <B>nomi</B>
+  <B>definiti</B> in <FONT COLOR="Green"><B>ambiti</B></FONT> superiori sono
+  ancora visibili negli <FONT COLOR="Green"><B>ambiti</B></FONT> sottostanti;
+  viceversa, all'interno della <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>g</B></FONT> bisogna <B>qualificare</B> i
+  <FONT COLOR="Green"><B>membri</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT> (perch&egrave; i <B>nomi</B>
+  <B>definiti</B> in <FONT COLOR="Green"><B>ambiti</B></FONT> inferiori &nbsp;non
+  solo visibili in quelli superiori), ma non quelli di
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, per cui &egrave; sufficiente applicare
+  la <FONT COLOR="Purple"><B>risoluzione di visibilit&agrave;</B></FONT> a
+  un solo livello.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Es. &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>void</B></FONT></BIG>
+  &nbsp;<BIG><FONT COLOR="#cc0000"><B>A</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT
+      COLOR="Maroon"><B>g</B></FONT><FONT COLOR="Blue"><B>( )</B></FONT>
+  </BIG><FONT COLOR="Blue"><BIG><B>{</B></BIG></FONT><BIG><B>....
+  </B><FONT COLOR="#cc0000"><B>B</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT
+      COLOR="Maroon"><B>h</B></FONT></BIG> <BIG><FONT COLOR="Blue"><B>(
+  )</B></FONT>
+  <B>....</B></BIG><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT><BIG> &nbsp;(
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>h</B></FONT> <B>chiamata</B> dalla
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>g</B></FONT> )</BIG>
+  <P ALIGN=Justify>
+  <BIG>Infine, dall'interno della
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT>
+  <FONT COLOR="Maroon"><B>f</B></FONT> bisogna <B>qualificare</B> sia i
+  <FONT COLOR="Green"><B>membri</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT> (a un livello:
+  <FONT COLOR="#cc0000"><B>A</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG>)
+  che quelli di <FONT COLOR="#cc0000"><B>B</B></FONT> (a due livelli:
+  <FONT COLOR="#cc0000"><B>A</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT
+      COLOR="#cc0000"><B>B</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG>)
+  in quanto nessun <B>nome</B> <B>definito</B> nei due
+  <FONT COLOR="Blue"><B>namespace</B></FONT> &egrave; visibile nel
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Namespace
+sinonimi</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La scelta del <B>nome</B> di un
+  <FONT COLOR="Blue"><B>namespace</B></FONT> &egrave; importante: se &egrave;
+  troppo breve, rischia il conflitto con i <B>nomi</B> di altri
+  <FONT COLOR="Blue"><B>namespace</B></FONT> (per esempio includendo librerie
+  create da altri programmatori); se &egrave; molto lungo, pu&ograve; evitare
+  il conflitto con altri <B>nomi</B>, ma diventa scomodo se lo si usa ripetutamente
+  per <B>qualificare</B> esternamente i suoi
+  <FONT COLOR="Green"><B>membri</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Es.: &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>namespace</B></FONT></BIG>
+  &nbsp;<BIG><FONT COLOR="#cc0000"><B>creato_appositamente_da_me_medesimo &nbsp;
+  &nbsp;</B></FONT><FONT COLOR="Blue"><B>{</B></FONT><B>...
+  </B><FONT COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B>
+  </B></FONT><B>...</B></BIG><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT>
+  <P ALIGN=Justify>
+  <BIG>con un <B>nome</B> cos&igrave; lungo (e cos&igrave; "stupido") non c'&egrave;
+  pericolo di conflitto, ma &egrave; scomodissimo utilizzare in altri
+  <FONT COLOR="Green"><B>ambiti</B></FONT> il suo
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Maroon"><B>x</B></FONT>:</BIG>
+  <P ALIGN=Justify>
+  <BIG>&nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="#cc0000"><B>creato_appositamente_da_me_medesimo</B></FONT></BIG><FONT
+      COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT COLOR="Maroon"><B>x
+  </B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>
+  20</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>Entrambi gli inconvenienti possono essere superati, definendo, in un
+  <FONT COLOR="Green"><B>ambito</B></FONT> ristretto (e quindi con scarso pericolo
+  di conflitto), un <B>sinonimo</B> breve di un <B>nome</B> "vero" lungo (i
+  <B>sinonimi</B> possono anche essere <B>definiti</B>
+  <FONT COLOR="Green"><B>localmente</B></FONT>, a differrenza dei
+  <FONT COLOR="Blue"><B>namespace</B></FONT>). Per <B>definire</B> un
+  <B>sinonimo</B> si usa la seguente sintassi (seguitando con l'esempio):</BIG>
+  <P ALIGN=Justify>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<BIG><FONT COLOR="Blue"><B>namespace</B></FONT></BIG>
+  &nbsp;<BIG><FONT COLOR="#cc0000"><B>STUP</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="#cc0000"><B>creato_appositamente_da_me_medesimo</B></FONT><FONT
+      COLOR="Blue"><B>;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>da questo punto in poi (nello stesso
+  <FONT COLOR="Green"><B>ambito</B></FONT> in cui &egrave; definito il
+  <B>sinonimo</B> <FONT COLOR="#cc0000"><B>STUP</B></FONT>) si pu&ograve; ogni
+  volta <B>qualificare</B> un <FONT COLOR="Green"><B>membro</B></FONT> del
+  suo <FONT COLOR="Blue"><B>namespace</B></FONT> utilizzando come
+  <FONT COLOR="Green"><B>left-operand </B></FONT>il
+  &nbsp;<B>sinonimo</B>:</BIG>
+  <P ALIGN=Justify>
+  <BIG>&nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="#cc0000"><B>STUP</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT
+      COLOR="Maroon"><B>x
+  </B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT COLOR="Maroon"><B>
+  20</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  &nbsp;<BR>
+  <BIG>I <FONT COLOR="Blue"><B>namespace</B></FONT> <B>sinonimi</B> sono utili
+  non solo per abbreviare <B>nomi</B> lunghi, ma anche per localizzare in un
+  unico punto una modifica che altrimenti si dovrebbe ripetere in molti punti
+  del programma (come nelle <B>definizioni</B> con
+  <FONT COLOR="Blue"><B>const</B></FONT>,
+  <FONT COLOR="Blue"><B>#define</B></FONT> e
+  <FONT COLOR="Blue"><B>typedef</B></FONT>). Per esempio, se il <B>nome</B>
+  di un <FONT COLOR="Blue"><B>namespace</B></FONT> si riferisce alla versione
+  di una libreria usata dal programma, e questa potrebbe essere successivamente
+  aggiornata, &egrave; molto conveniente creare un <B>sinonimo</B> da utilizzare
+  nel programma al posto del nome della libreria: in questo modo, in caso di
+  cambiamento di versione &nbsp;della libreria, si pu&ograve; modificare solo
+  l'istruzione di <B>definizione</B> del <B>sinonimo</B>, assegnando allo stesso
+  <B>sinonimo</B> il nuovo <B>nome</B> (altrimenti si dovrebbero modificare
+  <U>tutte</U> le istruzioni che utilizzano quel <B>nome</B> nel
+  programma).</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Namespace
+anonimi</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Nella definizione di un <FONT COLOR="Blue"><B>namespace</B></FONT>,
+  il <B>nome</B> <U>non &egrave;</U> obbligatorio. Se lo si omette, si crea
+  un <FONT COLOR="Blue"><B>namespace</B></FONT> <B>anonimo</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Es.: &nbsp; <FONT COLOR="Blue"><B>namespace</B></FONT></BIG>
+  &nbsp;<BIG><FONT COLOR="#cc0000"><B>&nbsp;
+  &nbsp;</B></FONT><FONT COLOR="Blue"><B>{</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT>
+  <FONT COLOR="Maroon"><B>a</B></FONT><FONT COLOR="Blue"><B>
+  =</B></FONT><FONT COLOR="Maroon"><B> 10</B></FONT><FONT COLOR="Blue"><B>;
+  &nbsp;int</B></FONT>
+  <FONT COLOR="Maroon"><B>b</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+  <FONT COLOR="Blue"><B>void</B></FONT></BIG>
+  <BIG><FONT COLOR="Maroon"><B>c</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>(double)</B></BIG></FONT><BIG><FONT
+      COLOR="Blue"><B>;</B></FONT>
+  </BIG><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Maroon"><B>a</B></FONT>,
+  <FONT COLOR="Maroon"><B>b</B></FONT> e
+  <FONT COLOR="Maroon"><B>c</B></FONT> del
+  <FONT COLOR="Blue"><B>namespace</B></FONT> <B>anonimo</B> sono visibili in
+  tutto il file (<I><B>file scope</B></I>), non devono essere
+  <B>qualificati</B>, ma non possono essere utilizzati in files differenti
+  da quello in cui sono stati <B>definiti</B> (cio&egrave;, diversamente dagli
+  <FONT COLOR="Green"><B>oggetti</B></FONT>
+  <FONT COLOR="Green"><B>globali</B></FONT>, non possono essere collegati
+  dall'esterno tramite lo <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>extern</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>In altre parole i <FONT COLOR="Green"><B>membri</B></FONT> di un
+  <FONT COLOR="Blue"><B>namespace</B></FONT> <B>anonimo</B> <U>hanno le stesse
+  identiche propriet&agrave; degli
+  <FONT COLOR="Green"><B>oggetti</B></FONT>
+  <FONT COLOR="Green"><B>globali</B></FONT> definiti con lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT></U>. Per questo motivo, e allo scopo
+  di ridurre le ambiguit&agrave; nel significato delle
+  <I><B>parole-chiave</B></I> del linguaggio, il comitato per la definizione
+  dello standard (pur mantenendo, per compatibilt&agrave; con i "vecchi" programmi,
+  il doppio significato di <FONT COLOR="Blue"><B>static</B></FONT>), suggerisce
+  di usare sempre i <FONT COLOR="Blue"><B>namespace</B></FONT> <B>anonimi</B>
+  per definire <FONT COLOR="Green"><B>oggetti</B></FONT> con <I><B>file
+  scope</B></I>, e di mantenere l'uso di
+  &nbsp;<FONT COLOR="Blue"><B>static</B></FONT> esclusivamente per l'allocazione
+  permanente (cio&egrave; con <I><B>lifetime</B></I> illimitato) di
+  <FONT COLOR="Green"><B>oggetti</B></FONT> con
+  visibilit&agrave;<FONT COLOR="Green"><B> locale</B></FONT> (<B><I>block
+  scope</I></B>).</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Estendibilit&agrave; della definizione
+di un namespace</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Al contrario delle <FONT COLOR="Green"><B>strutture</B></FONT>, i
+  <FONT COLOR="Blue"><B>namespace</B></FONT> sono costrutti "aperti", nel senso
+  che <U>possono essere <B>definiti</B> pi&ugrave; volte con lo stesso
+  <B>nome</B></U>. Non si tratta per&ograve; di <U>diverse</U>
+  <B>definizioni</B>, bens&igrave; di <U><B>estensioni</B></U> della
+  <B>definizione</B> iniziale.&nbsp;E quindi, pur essendovi <B>blocchi</B>
+  diversi di un <FONT COLOR="Blue"><B>namespace</B></FONT> con lo stesso
+  <B>nome</B>, l'<FONT COLOR="Green"><B>ambito </B></FONT>definito dal
+  <FONT COLOR="Blue"><B>namespace</B></FONT> con quel <B>nome</B> resta
+  unico.</BIG>
+  <P ALIGN=Justify>
+  <BIG> Ne consegue che, per la <I><B>ODR</B></I> (<I><B>one definition
+  rule</B></I>), i <FONT COLOR="Green"><B>membri</B></FONT> complessivamente
+  definiti in un <FONT COLOR="Blue"><B>namespace</B></FONT> (anche se frammentato
+  in pi&ugrave; <B>blocchi</B>) devono essere tutti diversi (cio&egrave; nelle
+  <B>estensioni</B> &egrave; consentito aggiungere nuovi
+  <FONT COLOR="Green"><B>membri</B></FONT> ma non ridefinire
+  <FONT COLOR="Green"><B>membri</B></FONT> definiti precedentemente).</BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.: </BIG>&nbsp; &nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>namespace</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="#cc0000"><B>A &nbsp;
+	&nbsp;</B></FONT><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; &nbsp;
+	&nbsp;<BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B>
+	;</B></FONT></BIG></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>namespace</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="#cc0000"><B>B &nbsp;
+	&nbsp;</B></FONT><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; &nbsp;
+	&nbsp;<BIG><FONT COLOR="Blue"><B>int</B></FONT> <FONT COLOR="Maroon"><B>x
+	</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG><B>OK</B>:
+	&nbsp;<FONT COLOR="#cc0000"><B>A</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT
+	    COLOR="Maroon"><B>x</B></FONT> e
+	<FONT COLOR="#cc0000"><B>B</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT
+	    COLOR="Maroon"><B>x</B></FONT> sono <B>definiti</B> in due
+	<FONT COLOR="Green"><B>ambiti</B></FONT> diversi</BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>void</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Maroon"><B>f</B></FONT><FONT COLOR="Blue"><B>(
+	)</B></FONT></BIG> <BIG><FONT COLOR="Blue"><B>{</B></FONT><B>...
+	</B><FONT COLOR="#cc0000"><B>A</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT
+	    COLOR="Maroon"><B>y</B></FONT><FONT COLOR="Blue"><B>=
+	</B></FONT><B>...</B></BIG><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT>
+	&nbsp; &nbsp;</TD>
+      <TD><BIG><B>errore</B>: <FONT COLOR="Maroon"><B>y</B></FONT></BIG> <BIG>non
+	ancora <B>dichiarato</B> in <FONT COLOR="#cc0000"><B>A</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>namespace</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="#cc0000"><B>A &nbsp;
+	&nbsp;</B></FONT><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+      <TD><BIG><B>OK</B>: <B>estensione</B> del</BIG>
+	<BIG><FONT COLOR="Blue"><B>namespace</B></FONT></BIG>
+	<BIG><FONT COLOR="#cc0000"><B>A</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; &nbsp;
+	&nbsp;<BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B>
+	;</B></FONT></BIG></TD>
+      <TD><BIG><B>errore</B>: <FONT COLOR="Maroon"><B>x</B></FONT> &egrave; gi&agrave;
+	<B>definito</B> nell'<FONT COLOR="Green"><B>ambito</B></FONT>
+	di<FONT COLOR="#cc0000"><B> A</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; &nbsp;
+	&nbsp;<BIG><FONT COLOR="Blue"><B>int</B></FONT> <FONT COLOR="Maroon"><B>y
+	</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      <TD><BIG><B>OK</B>: <FONT COLOR="Maroon"><B>y</B></FONT> &egrave; un nuovo
+	<FONT COLOR="Green"><B>membro</B></FONT> di
+	<FONT COLOR="#cc0000"><B>A</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>}</B></FONT></BIG></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>void</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Maroon"><B>f</B></FONT><FONT COLOR="Blue"><B>(
+	)</B></FONT></BIG> <BIG><FONT COLOR="Blue"><B>{</B></FONT><B>...
+	</B><FONT COLOR="#cc0000"><B>A</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT
+	    COLOR="Maroon"><B>y</B></FONT><FONT COLOR="Blue"><B>=
+	</B></FONT><B>...</B></BIG><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT>
+	&nbsp;</TD>
+      <TD><BIG>adesso &egrave; <B>OK</B></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  &nbsp;<BIG><BR>
+  La possibilit&agrave; di suddividere un
+  <FONT COLOR="Blue"><B>namespace</B></FONT> in <B>blocchi</B> separati consente,
+  da un lato, di racchiudere grandi frammenti di programma in un unico
+  <FONT COLOR="Blue"><B>namespace</B></FONT> e, dall'altro, di presentare diverse
+  <FONT COLOR="Red"><B>interfacce</B></FONT> a diverse categorie di utenti,
+  mostrandone parti differenti.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Parola-chiave
+using</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Quando un <FONT COLOR="Green"><B>membro</B></FONT> di un
+  <FONT COLOR="Blue"><B>namespace</B></FONT> viene usato ripetutamente fuori
+  dal suo <FONT COLOR="Green"><B>ambito</B></FONT>, esiste la possibilit&agrave;,
+  aggiungendo una sola istruzione, di evitare il fastidio di
+  <B>qualificarlo</B> ogni volta.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La <I><B>parola-chiave
+  </B></I><FONT COLOR="Blue"><B>using</B></FONT> serve a questo scopo e pu&ograve;
+  essere usata in due modi diversi:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>con un'istruzione di "<I><B>using-declaration</B></I>" si rende accessibile
+      un <FONT COLOR="Green"><B>membro</B></FONT> di un
+      <FONT COLOR="Blue"><B>namespace</B></FONT> nello stesso
+      <FONT COLOR="Green"><B>ambito</B></FONT> in cui &egrave; inserita l'istruzione.
+      Tornando all'esempio del <FONT COLOR="Blue"><B>namespace</B></FONT>
+      <FONT COLOR="#cc0000"><B>Stack</B></FONT>, l'istruzione:<BR>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <FONT COLOR="Blue"><B>using</B></FONT>
+      <FONT COLOR="#cc0000"><B>Stack</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT
+	  COLOR="Maroon"><B>top</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><BR>
+      permette di accedere al <FONT COLOR="Green"><B>membro</B></FONT>
+      <FONT COLOR="Maroon"><B>top</B></FONT> di
+      <FONT COLOR="#cc0000"><B>Stack</B></FONT>, senza bisogno di
+      <B>qualificarlo</B>, in tutte le istruzioni che seguono all'interno dello
+      stesso <FONT COLOR="Green"><B>ambito</B></FONT>. In sostanza, con la
+      <I><B>using-declaration</B></I>, si introduce il <B>sinonimo</B>
+      <FONT COLOR="Green"><B>locale</B></FONT>
+      <FONT COLOR="Maroon"><B>top</B></FONT> di
+      <FONT COLOR="#cc0000"><B>Stack</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT
+	  COLOR="Maroon"><B>top</B></FONT></BIG> <BIG>. </BIG><BR>
+      <BIG>In una <I><B>using-declaration</B></I>&nbsp;va specificato <U>solo il
+      <B>nome</B></U> del <FONT COLOR="Green"><B>membro</B></FONT> interessato,
+      per cui, in particolare, se il
+      &nbsp;<FONT COLOR="Green"><B>membro</B></FONT> &egrave; una
+      <FONT COLOR="Green"><B>funzione</B></FONT>, &nbsp;l'elenco degli
+      <FONT COLOR="Maroon"><B>argomenti</B></FONT> non va indicato (e neppure le
+      parentesi tonde); nel caso di pi&ugrave;
+      <FONT COLOR="Green"><B>funzioni</B></FONT> in
+      <FONT COLOR="Green"><B>overload</B></FONT> con lo stesso <B>nome</B>, la
+      <I><B>using-declaration</B></I> le rende accessibili tutte.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>con un'istruzione di "<I><B>using-directive</B></I>" si rendono accessibili
+      <U>tutti</U> i <FONT COLOR="Green"><B>membri</B></FONT> di un
+      <FONT COLOR="Blue"><B>namespace</B></FONT> nello stesso
+      <FONT COLOR="Green"><B>ambito</B></FONT> in cui &egrave; inserita l'istruzione.
+      Tornando all'esempio, l'istruzione:<BR>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <FONT COLOR="Blue"><B>using</B></FONT>
+      <FONT COLOR="Blue"><B>namespace</B></FONT>
+      <FONT COLOR="#cc0000"><B>Stack</B></FONT><FONT COLOR="Blue"><B>;</B></FONT><BR>
+      permette di accedere a <U>tutti</U> i
+      <FONT COLOR="Green"><B>membri</B></FONT> di
+      <FONT COLOR="#cc0000"><B>Stack</B></FONT>, senza bisogno di qualificarli,
+      in tutte le istruzioni che seguono all'interno dello stesso
+      <FONT COLOR="Green"><B>ambito</B></FONT>.</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Entrambe le istruzioni <FONT COLOR="Blue"><B>using</B></FONT> possono
+  essere inserite in qualunque <FONT COLOR="Green"><B>ambito</B></FONT> e in
+  esso mettono a disposizione <B>sinonimi</B> che a loro volta seguono le normali
+  regole di <FONT COLOR="Green"><B>visibilit&agrave;. </B></FONT>In
+  particolare:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>se le istruzioni <FONT COLOR="Blue"><B>using</B></FONT> sono inserite
+      in un <B>blocco</B> (di una <FONT COLOR="Green"><B>funzione</B></FONT>,
+      <FONT COLOR="Green"><B>struttura</B></FONT> o altro), i <B>sinonimi</B> hanno
+      <I><B>block scope</B></I>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>se sono inserite nel <FONT COLOR="Blue"><B>namespace</B></FONT>
+      <FONT COLOR="Green"><B>globale</B></FONT> o in un
+      <FONT COLOR="Blue"><B>namespace</B></FONT> <B>anonimo</B>, i <B>sinonimi</B>
+      hanno &nbsp;<I><B>file scope</B></I>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>infine, se sono inserite in un altro
+      <FONT COLOR="Blue"><B>namespace</B></FONT>, i <B>sinonimi</B> hanno lo
+      stesso<I><B> scope </B></I>del <FONT COLOR="Blue"><B>namespace</B></FONT>
+      che li ospita.</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Spesso la &nbsp;<I><B>using-directive</B></I></BIG> <BIG>a livello
+  <FONT COLOR="Green"><B>globale</B></FONT> &egrave; usata come "strumento
+  di transizione", cio&egrave; per&nbsp;trasportare in
+  <FONT COLOR="Red"><B>C++</B></FONT> vecchio codice scritto in
+  <FONT COLOR="Red"><B>C</B></FONT>. Esistono infatti centinaia di librerie
+  scritte in <FONT COLOR="Red"><B>C</B></FONT>, con centinaia di migliaia di
+  righe di codice, che fanno un uso massiccio ed estensivo di <B>nomi</B>
+  <FONT COLOR="Green"><B>globali</B></FONT>. Molte di queste librerie sono
+  ancora utili e costituiscono un "patrimonio" che non va disperso. D'altra
+  parte, "affollare" cos&igrave; pesantemente il
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT> non fa parte della "logica" del
+  <FONT COLOR="Red"><B>C++</B></FONT>. Il problema &egrave; stato risolto
+  racchiudendo le librerie in tanti
+  <FONT COLOR="Blue"><B>namespace</B></FONT> e facendo ricorso alle
+  <I><B>using-directive</B></I> per renderle accessibili (quando serve). In
+  questo modo si mantiene la compatibilit&agrave; con i vecchi programmi, ma
+  i <B>nomi</B> utilizzati dalle librerie non occupano il
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT> e quindi non rischiano di creare
+  conflitti in altri contesti.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Precedenze e conflitti fra i
+nomi</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo visto che le istruzioni
+  <FONT COLOR="Blue"><B>using</B></FONT> forniscono la possibilit&agrave; di
+  evitare la <B>qualificazione</B> ripetuta dei <B>nomi</B> definiti in un
+  <FONT COLOR="Blue"><B>namespace</B></FONT>. D'altra parte, rendendo accessibili
+  delle parti di programma che altrimenti sarebbero nascoste, indeboliscono
+  il "<FONT COLOR="Red"><I><B>data hiding</B></I></FONT>" e aumentano la
+  probabilit&agrave; di conflitti fra <B>nomi</B> e di errori non sempre
+  riconoscibili. Si tratta pertanto di operare di volta in volta la scelta
+  pi&ugrave; opportuna, bilanciando "comodit&agrave;" e "sicurezza".</BIG>
+  <P ALIGN=Justify>
+  <BIG>A questo scopo il <FONT COLOR="Red"><B>C++</B></FONT> definisce delle
+  regole precise che, in taluni casi, vietano i conflitti di <B>nomi</B> (nel
+  senso che all'occorrenza il compilatore segnala errore) e, in altri, stabiliscono
+  delle precedenze fra <B>nomi</B> uguali (cio&egrave; il <B>nome</B> con
+  precedenza superiore "nasconde" quello con precedenza inferiore). Tali regole
+  sono diverse se si usa una <I><B>using-declaration</B></I> o una
+  <I><B>using-directive</B></I></BIG> <BIG>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>una <I><B>using-declaration</B></I> <U>aggiunge</U>, nello
+      <I><B>scope</B></I> in cui &egrave; inserita, <U>un &nbsp;nuovo
+      <B>nome</B></U>, che si comporta esattamente come tutti gli altri <B>nomi</B>
+      (il fatto che sia <B>sinonimo</B> di un
+      <FONT COLOR="Green"><B>membro</B></FONT> di un
+      <FONT COLOR="Blue"><B>namespace</B></FONT> &egrave; del tutto ininfluente),
+      e pertanto:</BIG>
+      <UL>
+	<LI>
+	  <P ALIGN=Justify>
+	  <BIG><U>entra il conflitto</U> con un nome uguale <B>definito</B> nello stesso
+	  <FONT COLOR="Green"><B>ambito</B></FONT>;</BIG>
+	<LI>
+	  <P ALIGN=Justify>
+	  <BIG><U>nasconde</U> i nomi uguali (non <B>qualificati</B>) definiti in
+	  <FONT COLOR="Green"><B>ambiti</B></FONT> superiori.</BIG>
+      </UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>una <I><B>using-directive</B></I> <U>mette a disposizione</U>, nello
+      <I><B>scope</B></I> in cui &egrave; inserita, tutti i <B>nomi</B> definiti
+      in un <FONT COLOR="Blue"><B>namespace</B></FONT>; si sottolinea il fatto
+      che li "mette a disposizione" <U>ma non li aggiunge immediatamente</U>, e
+      pertanto questa istruzione non genera conflitti di per s&egrave;. Al momento
+      dell'utilizzo, ogni <B>nome</B> del
+      <FONT COLOR="Blue"><B>namespace</B></FONT> interessato si comporta nel modo
+      seguente:</BIG>
+      <UL>
+	<LI>
+	  <P ALIGN=Justify>
+	  <BIG><U>&egrave; nascosto</U> da un nome uguale <B>definito</B> nello stesso
+	  <FONT COLOR="Green"><B>ambito</B></FONT> o in
+	  <FONT COLOR="Green"><B>ambiti</B></FONT> superiori, esclusi il
+	  <FONT COLOR="Blue"><B>namespace</B></FONT>
+	  <FONT COLOR="Green"><B>globale</B></FONT> e il
+	  <FONT COLOR="Blue"><B>namespace</B></FONT> <B>anonimo</B>;</BIG>
+	<LI>
+	  <P ALIGN=Justify>
+	  <BIG><U>entra il conflitto</U> con un nome uguale (non <B>qualificato</B>)
+	  definito nel <FONT COLOR="Blue"><B>namespace</B></FONT>
+	  <FONT COLOR="Green"><B>globale</B></FONT>&nbsp;o nel
+	  <FONT COLOR="Blue"><B>namespace</B></FONT> <B>anonimo</B>.</BIG>
+      </UL>
+      <P ALIGN=Justify>
+      <BIG>Queste regole (un po' "atipiche") sui <B>nomi</B> resi accessibili dalla
+      <I><B>using-directive</B></I>, sono state concepite al duplice scopo di
+      permettere l'inclusione di grandi librerie con molti <B>nomi</B>
+      <FONT COLOR="Green"><B>globali</B></FONT> senza segnalare i potenziali conflitti
+      dei <B>nomi</B> che non vengono di fatto utilizzati, e, all'opposto, di non
+      incoraggiare l'utente "pigro" che continua a definire <B>nomi</B>
+      <FONT COLOR="Green"><B>globali</B></FONT> piuttosto che fare ricorso ai
+      <FONT COLOR="Blue"><B>namespace</B></FONT>.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>nel caso di concorrenza fra <I><B>using-declaration</B></I> e
+      <I><B>using-directive</B></I>, le prime prevalgono sulle seconde e risolvono
+      anche i potenziali conflitti</BIG><BR>
+      <TABLE CELLPADDING="2">
+	<TR>
+	  <TD><BIG>Es.: &nbsp;</BIG></TD>
+	  <TD><BIG><FONT COLOR="Blue"><B>namespace</B></FONT></BIG>
+	    &nbsp;<BIG><FONT COLOR="#cc0000"><B>A &nbsp;
+	    &nbsp;</B></FONT><FONT COLOR="Blue"><B>{ </B></FONT><B>...</B>
+	    &nbsp;<FONT COLOR="Blue"><B>int</B></FONT>
+	    <FONT COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B> ;
+	    </B></FONT><B>...</B>
+	    </BIG><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT><BIG><FONT COLOR="Blue"><B>&nbsp;</B></FONT></BIG></TD>
+	  <TD></TD>
+	</TR>
+	<TR>
+	  <TD></TD>
+	  <TD><BIG><FONT COLOR="Blue"><B>namespace</B></FONT></BIG>
+	    &nbsp;<BIG><FONT COLOR="#cc0000"><B>B &nbsp;
+	    &nbsp;</B></FONT><FONT COLOR="Blue"><B>{ </B></FONT><B>...</B>
+	    &nbsp;<FONT COLOR="Blue"><B>int</B></FONT>
+	    <FONT COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B> ;
+	    </B></FONT><B>...</B>
+	    </BIG><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT> &nbsp; &nbsp; &nbsp;
+	    &nbsp;</TD>
+	  <TD><BIG><FONT COLOR="#cc0000"><B>A</B></FONT> e
+	    <FONT COLOR="#cc0000"><B>B</B></FONT> hanno un
+	    <FONT COLOR="Green"><B>membro</B></FONT> con lo stesso <B>nome</B></BIG></TD>
+	</TR>
+	<TR>
+	  <TD></TD>
+	  <TD><BIG><FONT COLOR="Blue"><B>using</B></FONT>
+	    <FONT COLOR="Blue"><B>namespace</B></FONT>
+	    <FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	  <TD></TD>
+	</TR>
+	<TR>
+	  <TD></TD>
+	  <TD><BIG><FONT COLOR="Blue"><B>using</B></FONT>
+	    <FONT COLOR="Blue"><B>namespace</B></FONT>
+	    <FONT COLOR="#cc0000"><B>B</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	  <TD>&nbsp;<BIG>Achtung ! potenziale conflitto ..........</BIG></TD>
+	</TR>
+	<TR>
+	  <TD></TD>
+	  <TD><BIG><FONT COLOR="Blue"><B>using</B></FONT>
+	    <FONT COLOR="#cc0000"><B>A</B></FONT></BIG><FONT COLOR="Blue"><B><BIG>::</BIG></B></FONT><BIG><FONT
+		COLOR="Maroon"><B>x</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+	  <TD><BIG>.......... risolto a favore di
+	    &nbsp;<FONT COLOR="#cc0000"><B>A</B></FONT> !</BIG></TD>
+	</TR>
+      </TABLE>
+  </UL>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Collegamento fra namespace definiti
+in files diversi</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Finora abbiamo trattato i <FONT COLOR="Blue"><B>namespace</B></FONT>
+  intendendo che fossero sempre <B>definiti</B> nello stesso file. Ci chiediamo
+  ora &nbsp;in che modo &egrave; possibile il collegamento fra
+  <FONT COLOR="Blue"><B>namespace</B></FONT> di file diversi. Prima, per&ograve;,
+  &egrave; opportuno ricordare la differenza che intercorre fra
+  <FONT COLOR="Red"><B>file sorgente</B></FONT> e
+  <FONT COLOR="Red"><B>translation unit</B></FONT>:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>un <FONT COLOR="Red"><B>file sorgente</B></FONT> contiene le istruzioni
+      del programma create dal
+      </BIG><FONT COLOR="Red"><BIG><B>programmatore</B></BIG></FONT>;
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>una <FONT COLOR="Red"><B>translation unit</B></FONT> &egrave; lo stesso
+      file visto dal <FONT COLOR="Red"><B>compilatore</B></FONT>, dopo che il
+      <FONT COLOR="Red"><B>preprocessore</B></FONT> ha incluso gli
+      <I><B>header-files</B></I> ed eseguito le altre eventuali
+      </BIG><FONT COLOR="Green"><BIG><B>direttive</B></BIG></FONT>
+      (<BIG><FONT COLOR="Blue"><B>#define</B></FONT>,
+      </BIG><FONT COLOR="Green"><BIG><B>direttive</B></BIG></FONT><BIG>
+      <FONT COLOR="Green"><B>condizionali</B></FONT> ecc...)</BIG>.
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Due <FONT COLOR="Blue"><B>namespace</B></FONT> con lo stesso <B>nome</B>
+  appartenenti a due diverse <FONT COLOR="Red"><B>translation units</B></FONT>
+  <U>non sono in conflitto</U>, ma sono da considerarsi come facenti parte
+  dello stesso unico &nbsp;<FONT COLOR="Blue"><B>namespace</B></FONT> (per
+  la propriet&agrave; di <B>estendibilit&agrave; </B>dei
+  <FONT COLOR="Blue"><B>namespace</B></FONT>). Il conflitto, semmai, pu&ograve;
+  sorgere fra i <U><B>nomi</B> dei
+  <FONT COLOR="Green"><B>membri</B></FONT></U> del
+  <FONT COLOR="Blue"><B>namespace</B></FONT>, se viene violata la
+  <I><B>ODR</B></I>. D'altra parte ogni <FONT COLOR="Red"><B>translation
+  unit</B></FONT> viene <FONT COLOR="Red"><B>compilata</B></FONT> separatamente
+  e quindi ogni <B>nome</B> utilizzato in una <FONT COLOR="Red"><B>translation
+  unit</B></FONT> deve essere, nella stessa, anche <B>dichiarato</B>. Ne consegue
+  che i <FONT COLOR="Green"><B>membri</B></FONT> di uno stesso
+  <FONT COLOR="Blue"><B>namespace</B></FONT> che vengono utilizzati in entrambe
+  le <FONT COLOR="Red"><B>translation units</B></FONT>, devono essere, in una
+  delle due, <B><U>definiti</U></B>, e nell'altra <U><B>dichiarati</B> senza
+  essere <B>definiti</B></U> (questo discorso vale per gli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> e le
+  <FONT COLOR="Green"><B>funzioni</B></FONT> non
+  <FONT COLOR="Green"><B>inline</B></FONT>, mentre le
+  <FONT COLOR="Green"><B>funzioni</B></FONT>
+  <FONT COLOR="Green"><B>inline</B></FONT>, i
+  <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>astratti</B></I> e altre
+  entit&agrave; del linguaggio che vederemo, come i
+  <FONT COLOR="Blue"><B>template</B></FONT>, possono anche essere
+  <B>ridefiniti</B>, purch&egrave; gli elementi lessicali di ogni
+  <B>definizione</B> siano identici).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Diverso &egrave; l'approccio, se si considerano i
+  <FONT COLOR="Red"><B>file sorgente</B></FONT>: ogni
+  <FONT COLOR="Red"><B>file</B></FONT> (cio&egrave; ogni
+  <FONT COLOR="Red"><B>modulo</B></FONT> del programma) dovrebbe essere progettato
+  in modo da non contenere duplicazioni e da localizzare questo problema soltanto
+  nelle eventuali <FONT COLOR="Red"><B>interfacce</B></FONT> incluse da pi&ugrave;
+  <FONT COLOR="Red"><B>moduli</B></FONT></BIG>. <BIG>Queste
+  <FONT COLOR="Red"><B>interfacce</B></FONT> dovrebbero contenere solo
+  <B>dichiarazioni</B> o <B>definizioni</B> "ripetibili".</BIG>
+  <P ALIGN=Justify>
+  <BIG>Quindi il "trucco" &nbsp;consiste sostanzialmente nel progettare al
+  meglio le <FONT COLOR="Red"><B>interfacce</B></FONT> comuni: una "buona"
+  <FONT COLOR="Red"><B>interfaccia</B></FONT>&nbsp;dovrebbe essere tale da
+  minimizzare le dipendenze fra le varie parti del programma, in quanto
+  <FONT COLOR="Red"><B>interfacce</B></FONT> con dipendenze minime conducono
+  a sistemi pi&ugrave; facili da comprendere, con dettagli implementativi
+  invisibili (<FONT COLOR="Red"><B>data-hiding</B></FONT>), pi&ugrave; facili
+  da modificare e pi&ugrave; veloci da compilare.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Riprendiamo a questo proposito il nostro esempio iniziale del
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="#cc0000"><B>Stack</B></FONT> e mettiamoci "nei panni" sia del
+  progettista che dell'utente. </BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>Il progettista deve individuare con quale strumenti rappresentare la
+      pila (per esempio con un <FONT COLOR="Green"><B>array</B></FONT>, ma ci
+      potrebbero essere anche altre soluzioni), quali siano le informazioni da
+      memorizzare e mantenere (l'indice corrispondente all'ultimo dato inserito
+      e la massima dimensione di accrescimento della pila), quali algoritmi applicare
+      per le operazioni di inserimento ed estrazione dei dati, e infine come dare
+      all'utente la possibilit&agrave; di operare.</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>L'utente ha bisogno di conoscere solo due cose: il <B>nome</B> della
+      <FONT COLOR="Green"><B>funzione</B></FONT> per inserire un dato e il
+      <B>nome</B> della <FONT COLOR="Green"><B>funzione</B></FONT> per estrarlo.
+      E' quindi opportuno che acceda esclusivamente a tali informazioni (le
+      <B>dichiarazioni</B> delle due
+      <FONT COLOR="Green"><B>funzioni</B></FONT>), che costituiranno
+      l'<FONT COLOR="Red"><B>interfaccia</B></FONT> comune fra il
+      <FONT COLOR="Red"><B>file sorgente</B></FONT> del progettista e quello
+      dell'utente.</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Si deduce pertanto che il progettista dovr&agrave; spezzare la
+  <B>definizione</B> del <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="#cc0000"><B>Stack</B></FONT> in due (per fortuna ci&ograve;
+  &egrave; possibile!):</BIG> <BIG>nella prima parte metter&agrave; solo le
+  <B>dichiarazioni</B> delle <FONT COLOR="Green"><B>funzioni</B></FONT>
+  <FONT COLOR="Maroon"><B>push</B></FONT> e
+  <FONT COLOR="Maroon"><B>pop</B></FONT>; nella seconda tutto il resto.
+  Creer&agrave; poi due files separati: nel primo
+  (l'<FONT COLOR="Red"><B>interfaccia</B></FONT> comune) metter&agrave; soltanto
+  la prima <B>definizione</B> del
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="#cc0000"><B>Stack</B></FONT>&nbsp;, nel secondo metter&agrave;
+  l'<B>estensione</B> di <FONT COLOR="#cc0000"><B>Stack</B></FONT> e, esternamente
+  al <FONT COLOR="Blue"><B>namespace</B></FONT>, le <B>definizioni</B> delle
+  due <FONT COLOR="Green"><B>funzioni</B></FONT>. A sua volta l'utente non
+  dovr&agrave; fare altro che inserire nel suo <FONT COLOR="Red"><B>file
+  sorgente</B></FONT> la <FONT COLOR="Green"><B>direttiva</B></FONT> di inclusione
+  dell'<FONT COLOR="Red"><B>interfaccia</B></FONT> comune</BIG>. <BIG>Cos&igrave;,
+  qualsiasi modifica o miglioramento venga fatto al codice di implementazione
+  dello <FONT COLOR="#cc0000"><B>Stack</B></FONT>, i programmi degli utenti
+  non ne verranno minimamente influenzati (al massimo dovrano essere
+  <I><B>ri-linkati</B></I>).</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p39/interfaccia.h">[p39]</A><A HREF="p39/stack.cpp">[p39]</A>
+<A HREF="p39/invert.cpp">[p39]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#eccezioni"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

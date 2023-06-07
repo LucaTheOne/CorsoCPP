@@ -1,0 +1,477 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Introduzione all'I/O CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Introduzione all'I/O
+sui dispositivi standard
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P ALIGN=Justify>
+<BIG>In questa lezione introdurremo le caratteristiche principali
+dell'<B>I/O</B> in <FONT COLOR="Red"><B>C++</B></FONT>, limitandoci per il
+momento all'<B>I/O</B> in <I><B>free-format </B></I>sui <I><B>dispositivi
+standard </B></I>di <I><B>input</B></I> e di
+<I><B>output</B></I>.</BIG>
+<P ALIGN=Justify>
+<BIG>Precisiamo che useremo una libreria (dichiarata
+nell'<I><B>header-file</B></I>:
+<FONT COLOR="Blue"><B>&lt;iostream.h&gt;</B></FONT></BIG>) <BIG>che &egrave;
+ormai "superata" dalla <FONT COLOR="Red"><B>Libreria Standard</B></FONT>
+(alcuni compilatori danno un messaggio di <I><B>warning</B></I>, avvisando
+che si sta usando una "<I>deprecated</I>" (?!) <I>library</I>). Tuttavia
+questa libreria &egrave; ancora integrata nello standard e ci sembra un buon
+approccio per introdurre l'argomento</BIG>.
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Dispositivi standard di
+I/O</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> (come in
+  <FONT COLOR="Red"><B>C</B></FONT>) sono definiti i seguenti <I><B>dispositivi
+  standard</B></I> di <B>I/O</B> (elenchiamo i tre principali):</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>stdout</B></FONT> <I><B>standard output</B></I>
+      (di <I>default</I> associato al video)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>stderr</B></FONT> <I><B>standard output</B></I>
+      per i messaggi (associato al video)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>stdin</B></FONT> &nbsp;<I><B>standard
+      input</B></I> (di <I>default</I> associato alla tastiera)</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG><FONT COLOR="Blue"><B>stdin</B></FONT> e
+  <FONT COLOR="Blue"><B>stdout</B></FONT> sono <B><I>reindirizzabili</I> </B>a
+  <I><B>files</B></I> nella linea di comando quando si lancia il programma
+  eseguibile.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Oggetti globali di
+I/O</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> i <I><B>dispositivi
+  standard</B></I> di <B>I/O</B> <FONT COLOR="Blue"><B>stdout</B></FONT>,
+  <FONT COLOR="Blue"><B>stderr</B></FONT> e
+  <FONT COLOR="Blue"><B>stdin</B></FONT> sono "<I><B>collegati</B></I>"
+  rispettivamente agli <FONT COLOR="Green"><B>oggetti globali</B></FONT>
+  <FONT COLOR="Blue"><B>cout</B></FONT>,
+  <FONT COLOR="Blue"><B>cerr</B></FONT> e
+  <FONT COLOR="Blue"><B>cin</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG><FONT COLOR="Green"><B><BIG>O</BIG>ggetto</B></FONT> (definizione
+  temporanea): variabile appartenente a un
+  <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>astratto</B></I>, non
+  <I><B>nativo</B></I> del linguaggio.</BIG>
+  <P ALIGN=Justify>
+  <BIG><FONT COLOR="Green"><B><BIG>G</BIG>lobale</B></FONT>: <U>visibile sempre
+  e dappertutto</U>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Un <FONT COLOR="Green"><B>oggetto globale </B></FONT>&eacute;
+  <B>creato</B> appena si lancia il programma, prima che venga eseguita la
+  prima istruzione del <FONT COLOR="Blue"><B>main</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Per <B>definire</B> gli <FONT COLOR="Green"><B>oggetti
+  globali</B></FONT> di <B>I/O</B> bisogna includere
+  l'<I><B>header-file</B></I>:
+  <FONT COLOR="Blue"><B>&lt;iostream.h&gt;</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Operatori di flusso di
+I/O</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> sono definiti gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> di
+  <FONT COLOR="Purple"><B>flusso</B></FONT> di <B>I/O</B> </BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B><BIG>&lt;&lt;</BIG></B></FONT>
+  (<FONT COLOR="Purple"><B>inserimento</B></FONT>)</BIG>
+  <P ALIGN=Justify>
+  <BIG> e </BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B><BIG>&gt;&gt;</BIG></B></FONT>
+  (<FONT COLOR="Purple"><B>estrazione</B></FONT>)</BIG>
+  <P ALIGN=Justify>
+  <BIG> i cui <B><FONT COLOR="Green">left-operand</FONT> </B>sono rispettivamente
+  <FONT COLOR="Blue"><B>cout</B></FONT> (oppure
+  <FONT COLOR="Blue"><B>cerr</B></FONT>, che non menzioneremo pi&ugrave;, in
+  quanto le sue propriet&agrave; sono identiche a quelle di
+  <FONT COLOR="Blue"><B>cout</B></FONT>) e
+  <FONT COLOR="Blue"><B>cin</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il compilatore distingue gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> di
+  <FONT COLOR="Purple"><B>flusso</B></FONT> da quelli di
+  <FONT COLOR="Purple"><B>shift dei bit</B></FONT> (identificati dagli stessi
+  simboli) in base al <I><B>contesto</B></I>, cio&egrave; in base al
+  <FONT COLOR="Green"><B>tipo</B></FONT> degli
+  <FONT COLOR="Green"><B>operandi</B></FONT>. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Output tramite l'operatore di
+inserimento</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> un'operazione di
+  <I><B>output</B></I> si identifica con un'operazione di
+  <FONT COLOR="Purple"><B>inserimento</B></FONT>
+  nell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>cout</B></FONT>:</BIG>
+  <P ALIGN=Center>
+  <BIG> <FONT COLOR="Blue"><B>cout</B></FONT> &nbsp;
+  <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT> &nbsp;
+  <FONT COLOR="Maroon"><B>dato</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>dove <FONT COLOR="Maroon"><B>dato</B></FONT> &egrave; una qualsiasi
+  variabile o espressione di <FONT COLOR="Green"><B>tipo</B></FONT>
+  <I><B>nativo</B></I> (oppure una
+  <FONT COLOR="Green"><B>stringa</B></FONT>). L'istruzione significa: il
+  "<FONT COLOR="Maroon"><B>dato</B></FONT>" viene
+  "<FONT COLOR="Purple"><B>inserito</B></FONT>"
+  nell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>cout</B></FONT> (e da questo automaticamente trasferito
+  su <FONT COLOR="Blue"><B>stdout</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>A differenza dalla funzione <FONT COLOR="Blue"><B>printf</B></FONT>
+  non &egrave; necessario usare <FONT COLOR="Green"><B>specificatori di
+  formato</B></FONT>, in quanto il <FONT COLOR="Green"><B>tipo</B></FONT> delle
+  variabili &egrave; riconosciuto automaticamente (in realt&agrave;, come vedremo
+  pi&ugrave; avanti, esistono anche qui degli
+  <FONT COLOR="Green"><B>specificatori</B></FONT>, detti
+  "<FONT COLOR="Green"><B>manipolatori di formato</B></FONT>", ma servono soltanto
+  quando la scrittura deve essere non in
+  <I><B>free-format</B></I>).</BIG>
+  <BLOCKQUOTE>
+    <TABLE CELLPADDING="2">
+      <TR>
+	<TD><BIG>Esempi:</BIG> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	  &nbsp; &nbsp; &nbsp;</TD>
+	<TD><BIG><FONT COLOR="Blue"><B>cout</B></FONT>
+	  <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT> <FONT COLOR="Maroon"><B>"Scrive
+	  una
+	  stringa</B></FONT><FONT COLOR="Blue"><B>\n</B></FONT><FONT COLOR="Maroon"><B>"</B></FONT><FONT
+	      COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD></TD>
+	<TD><BIG><FONT COLOR="Blue"><B>cout</B></FONT>
+	  <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>
+	  <FONT COLOR="Maroon"><B>Variabile_intera</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD></TD>
+	<TD><BIG><FONT COLOR="Blue"><B>cout</B></FONT>
+	  <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>
+	  <FONT COLOR="Maroon"><B>Variabile_float</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD></TD>
+	<TD><BIG>ecc..... </BIG></TD>
+      </TR>
+    </TABLE>
+  </BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In ogni operazione viene trasferito un solo dato per volta; per cui,
+  se si devono scrivere pi&ugrave; dati (specie se di
+  <FONT COLOR="Green"><B>tipo</B></FONT> diverso), vanno fatte altrettante
+  operazioni di <FONT COLOR="Purple"><B>inserimento</B></FONT>, con istruzioni
+  separate. Alternativamente, in una stessa istruzione si possono
+  "<I><B>impilare</B></I>" pi&ugrave; operazioni di
+  <FONT COLOR="Purple"><B>inserimento</B></FONT> una di seguito all'altra.
+  </BIG>
+  <P>
+  <BLOCKQUOTE>
+    <TABLE CELLPADDING="2">
+      <TR>
+	<TD><BIG>Esempio:</BIG> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	  &nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	<TD><BIG><FONT COLOR="Blue"><B>cout</B></FONT>
+	  <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>
+	  <FONT COLOR="Maroon"><B>dato1</B></FONT>
+	  <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>
+	  <FONT COLOR="Maroon"><B>dato2</B></FONT>
+	  <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>
+	  <FONT COLOR="Maroon"><B>dato3</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><P ALIGN=Right>
+	  <BIG>equivale a:</BIG> &nbsp; &nbsp;</TD>
+	<TD><BIG><FONT COLOR="Blue"><B>cout</B></FONT>
+	  <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>
+	  <FONT COLOR="Maroon"><B>dato1</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+	  &nbsp; <FONT COLOR="Blue"><B>cout</B></FONT>
+	  <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>
+	  <FONT COLOR="Maroon"><B>dato2</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+	  &nbsp; <FONT COLOR="Blue"><B>cout</B></FONT>
+	  <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>
+	  <FONT COLOR="Maroon"><B>dato3</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+	  </BIG></TD>
+      </TR>
+    </TABLE>
+  </BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>questo &egrave; possibile grazie al fatto che
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>&lt;&lt;</B></FONT> restituisce lo stesso
+  <FONT COLOR="Green"><B>oggetto</B></FONT> del
+  <FONT COLOR="Green"><B>left-operand</B></FONT> (cio&egrave;
+  <FONT COLOR="Blue"><B>cout</B></FONT>) e che
+  l'<FONT COLOR="Purple"><B>associativit&agrave; </B></FONT>dell'operazione
+  procede da sinistra a destra.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Una variabile di <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>char</B></FONT> &egrave; scritta come <U>carattere</U>;
+  per scriverla come <U>numero</U> occorre fare il
+  </BIG><FONT COLOR="Purple"><BIG><B>casting</B></BIG></FONT><BIG>.</BIG>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Per esempio, l'istruzione:</BIG> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp;</TD>
+      <TD><BIG><FONT COLOR="Blue"><B>cout</B></FONT>
+	<FONT COLOR="Blue"><B>&lt;&lt;</B></FONT> <FONT COLOR="Maroon"><B>'A'
+	</B></FONT><FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>
+	<FONT COLOR="Maroon"><B>" ha codice ascii: "</B></FONT>
+	<FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>
+	<FONT COLOR="Blue"><B>(int)</B></FONT><FONT COLOR="Maroon"><B>'A' </B></FONT>
+	<FONT COLOR="Blue"><B>&lt;&lt;</B></FONT>
+	<FONT COLOR="Maroon"><B>"</B></FONT><FONT COLOR="Blue"><B>\n</B></FONT><FONT
+	    COLOR="Maroon"><B>"</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD><BIG>visualizza la frase:</BIG></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>A ha codice ascii 65</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Input tramite l'operatore di
+estrazione</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> un'operazione di
+  <I><B>input</B></I> si identifica con un'operazione di
+  <FONT COLOR="Purple"><B>estrazione</B></FONT>
+  dall'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>cin</B></FONT>: </BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>cin &nbsp;</B></FONT>
+  <FONT COLOR="Blue"><B>&gt;&gt;</B></FONT>
+  &nbsp;<FONT COLOR="Maroon"><B>dato</B></FONT><FONT COLOR="Blue"><B>;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG><FONT COLOR="Blue"><B></B></FONT> dove
+  <FONT COLOR="Maroon"><B>dato</B></FONT> &egrave; un
+  <FONT COLOR="Green"><B>l-value</B></FONT> di qualsiasi
+  <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>nativo</B></I> (oppure una variabile
+  <FONT COLOR="Green"><B>stringa</B></FONT>). L'istruzione significa: il valore
+  immesso da <FONT COLOR="Blue"><B>stdin</B></FONT> (automaticamente trasferito
+  in <FONT COLOR="Blue"><B>cin</B></FONT>) viene
+  "<FONT COLOR="Purple"><B>estratto</B></FONT>" dall'oggetto
+  <FONT COLOR="Blue"><B>cin</B></FONT> e memorizzato nella variabile
+  "<FONT COLOR="Maroon"><B>dato</B></FONT>". </BIG>
+  <P ALIGN=Justify>
+  <BIG>Come le operazioni di
+  <FONT COLOR="Purple"><B>inserimento</B></FONT>, anche quelle di
+  <FONT COLOR="Purple"><B>estrazione</B></FONT> possono essere
+  "<I><B>impilate</B></I>" una di seguito all'altra in un'unica istruzione.
+  <BR>
+  Esempio: <FONT COLOR="Blue"><B>cin</B></FONT>
+  <FONT COLOR="Blue"><B>&gt;&gt;</B></FONT>
+  <FONT COLOR="Maroon"><B>dato1</B></FONT>
+  <FONT COLOR="Blue"><B>&gt;&gt;</B></FONT>
+  <FONT COLOR="Maroon"><B>dato2</B></FONT>
+  <FONT COLOR="Blue"><B>&gt;&gt;</B></FONT>
+  <FONT COLOR="Maroon"><B>dato3</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+  (i dati <FONT COLOR="Maroon"><B>dato1</B></FONT>,
+  <FONT COLOR="Maroon"><B>dato2</B></FONT>,
+  <FONT COLOR="Maroon"><B>dato3</B></FONT> devono essere forniti nello stesso
+  ordine).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Il programma interpreta la lettura di un dato come
+  <FONT COLOR="Green"><B>terminata</B></FONT> se incontra un
+  <FONT COLOR="Olive"><B>blank</B></FONT>, un <FONT COLOR="Olive"><B>carattere
+  di tabulazione</B></FONT><FONT COLOR="Fuchsia"><B> </B></FONT>o un
+  <FONT COLOR="Olive"><B>ritorno a capo</B></FONT>. Ne consegue che, se
+  l'<I><B>input</B></I> &egrave; una
+  <FONT COLOR="Green"><B>stringa</B></FONT>, non deve contenere
+  <FONT COLOR="Olive"><B>blanks</B></FONT> (n&eacute;
+  <FONT COLOR="Olive"><B>tabs</B></FONT>) e non pu&ograve; essere spezzata
+  in due righe. D'altra parte l'esistenza dei
+  <FONT COLOR="Green"><B>terminatori</B></FONT>
+  (<FONT COLOR="Olive"><B>blank</B></FONT>,
+  <FONT COLOR="Olive"><B>tab</B></FONT> o
+  <FONT COLOR="Olive"><B>CR</B></FONT>) consente di immettere <U>pi&ugrave;
+  dati nella stessa riga</U>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Casi particolari: </BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>i <FONT COLOR="Green"><B>terminatori</B></FONT> inseriti
+      <U>ripetutamente</U> o <U>prima</U> del dato da leggere sono ignorati</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>se il dato da leggere &eacute; di <FONT COLOR="Green"><B>tipo
+      numerico</B></FONT>, la lettura &eacute;
+      <FONT COLOR="Green"><B>terminata</B></FONT> quando incontra un carattere
+      non valido (compreso il <FONT COLOR="Green"><B>punto decimale </B></FONT>se
+      il numero &eacute; <FONT COLOR="Green"><B>intero</B></FONT>, cio&egrave;
+      <U>non esegue</U> <FONT COLOR="Green"><B>conversioni di
+      tipo</B></FONT>)</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>se il dato da leggere &eacute; di
+      <FONT COLOR="Green"><B>tipo</B></FONT>
+      <FONT COLOR="Blue"><B>char</B></FONT>, legge un solo carattere</BIG>
+  </UL>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Memorizzazione dei dati introdotti da
+tastiera</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Se <FONT COLOR="Blue"><B>stdin</B></FONT> &eacute; associato, come di
+  <I><B>default</B></I>, alla <U>tastiera</U>, la memorizzazione dei dati segue
+  delle regole generali, che sono le stesse sia in
+  <FONT COLOR="Red"><B>C++</B></FONT> (lettura tramite
+  l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>cin</B></FONT>) che in
+  <FONT COLOR="Red"><B>C</B></FONT> (lettura tramite le <B>funzioni di
+  libreria</B>):</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>la lettura non avviene direttamente, ma tramite un'area di memoria,
+      detta <FONT COLOR="Olive"><B>buffer di input</B></FONT>; </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>il programma, appena incontra un'istruzione di lettura, si appresta
+      a memorizzare i dati (che distingue l'uno dall'altro riconoscendo i
+      <FONT COLOR="Green"><B>terminatori</B></FONT>) trasferendoli dal
+      <FONT COLOR="Olive"><B>buffer di input</B></FONT>, finch&eacute; questo non
+      resta vuoto;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>se il <FONT COLOR="Olive"><B>buffer di input</B></FONT> si svuota
+      <U>prima</U> che la lettura sia terminata (oppure se il
+      <FONT COLOR="Olive"><B>buffer</B></FONT> &eacute; gi&agrave; vuoto all'inizio
+      della lettura, come dovrebbe succedere sempre), il programma <U>si ferma
+      in attesa di <I><B>input</B></I> e il controllo passa all'operatore</U>,
+      che viene abilitato a introdurre dati da tastiera fino a quando non invia
+      un <I><B>enter</B></I> (indipendentemente dal numero di dati da leggere);
+      l'intera riga digitata dall'operatore viene poi trasferita nel
+      <FONT COLOR="Olive"><B>buffer di input</B></FONT>, al quale il programma
+      riaccede per completare l'operazione di lettura;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>se nel <FONT COLOR="Olive"><B>buffer di input</B></FONT> restano ancora
+      dati <U>dopo</U> che l'operazione di lettura &eacute; finita, questi verranno
+      memorizzati durante la lettura successiva.</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Come si pu&ograve; notare, la presenza del <FONT COLOR="Olive"><B>buffer
+  di input</B></FONT> (molto utile peraltro per migliorare l'efficienza del
+  programma) crea una specie di "<I><B>asincronismo</B></I>" fra operatore
+  e programma, che pu&ograve; essere facilmente causa di errore: bisogna fare
+  attenzione a fornire ogni volta esattamente il numero di dati richiesti.
+  </BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+&nbsp; <BIG><BIG><A HREF="p10/anagrafe.cpp">[p10]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Comportamento in caso di errore in
+lettura</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Le operazioni di <FONT COLOR="Purple"><B>estrazione</B></FONT> non
+  restituiscono mai espliciti <I><B>messaggi di errore</B></I>, tuttavia, </BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>se il <U>primo</U> carattere letto non &eacute; valido (per esempio
+      una <FONT COLOR="Green"><B>lettera</B></FONT> se vuole leggere un
+      <FONT COLOR="Green"><B>numero</B></FONT>), il programma <U>non memorizza
+      il dato</U> e imposta una condizione di errore interna che <U>inibisce anche
+      le successive operazioni di lettura</U> (nel senso che tutte le istruzioni
+      di lettura, dal punto dell'errore in poi, vengono "saltate");</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>se invece il carattere non valido <U>non &egrave; il primo</U>, il programma
+      accetta il dato letto fino a quel momento, ma il <U>carattere invalido resta
+      nel buffer</U>, disponibile per le operazioni di lettura successive.</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>Per accorgersi di un errore (e per porvi rimedio) bisogna utilizzare
+  alcune <I><B>propriet&agrave;
+  </B></I>dell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+  <FONT COLOR="Blue"><B>cin</B></FONT> (di cui parleremo pi&ugrave;
+  avanti).</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#linuxgcc"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

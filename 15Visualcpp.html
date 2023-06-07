@@ -1,0 +1,243 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Sviluppo delle applicazioni in ambiente Windows CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U> Sviluppo delle
+applicazioni in ambiente Windows
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Definizioni di IDE e di "progetto"
+&nbsp;</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Un <FONT COLOR="Green"><B>IDE</B></FONT>
+  (<FONT COLOR="Green"><B>I</B></FONT>ntegrated
+  <FONT COLOR="Green"><B>D</B></FONT>evelopment
+  <FONT COLOR="Green"><B>E</B></FONT>nvironment) &egrave; un programma
+  <I><B>interattivo</B> </I>che si lancia da sistema operativo e che aiuta
+  lo <I><B>sviluppatore di software</B></I> (cio&egrave; il programmatore)
+  a costruire un <FONT COLOR="Green"><B>progetto</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Un <FONT COLOR="Green"><B>progetto</B></FONT> &egrave; un insieme di
+  files, contenenti <FONT COLOR="Red"><B>codice sorgente</B></FONT>, che vengono
+  &nbsp;letti ed elaborati dal <FONT COLOR="Red"><B>compilatore</B></FONT>
+  separatamente e poi collegati insieme (tramite il
+  <FONT COLOR="Red"><B>linker</B></FONT>) per costruire un unico file in codice
+  binario, contenente il &nbsp;<FONT COLOR="Red"><B>programma
+  eseguibile</B></FONT>, che pu&ograve; essere a sua volta lanciato dallo stesso
+  <FONT COLOR="Green"><B>IDE</B></FONT> o autonomamente da sistema
+  operativo.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Lo sviluppatore interagisce con
+  <FONT COLOR="Green"><B>IDE</B></FONT> tramite
+  <FONT COLOR="Green"><B>men&ugrave;</B></FONT> di tipo <B><I>pop-up</I> </B>(a
+  tendina); in genere le voci di men&ugrave; pi&ugrave; significative sono
+  selezionabili anche tramite <I><B>toolbars</B></I> (gruppi di icone) o tramite
+  i cosiddetti <I><B>acceleratori</B> </I>(tasti della keyboard che eseguono
+  la stessa funzione della corrispondente voce di men&ugrave;).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Un <FONT COLOR="Green"><B>IDE</B></FONT> pu&ograve; aprire sullo schermo
+  e usare parecchie <FONT COLOR="Green"><B>finestre
+  </B></FONT>contemporaneamente, contenenti i files sorgente (uno per ogni
+  finestra), l'output del programma, le informazioni acquisite in fase di
+  <I><B>debug</B></I> ecc&#133; Possono esistere anche finestre che contengono
+  l'elenco dei files, delle funzioni, o anche delle singole variabili utilizzate;
+  "cliccando" su queste voci si pu&ograve; raggiungere rapidamente la parte
+  di programma che interessa esaminare o modificare.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Nel seguito illustreremo brevemente l'utilizzo del seguente
+  <FONT COLOR="Green"><B>IDE</B></FONT>: <FONT COLOR="Red"><B>Microsoft Visual
+  C++</B></FONT>, versione 6, che gira nel sistema operativo <B>Windows</B>.
+  Teniamo a precisare che il <FONT COLOR="Red"><B>Visual C++</B></FONT> non
+  &egrave; soltanto un <FONT COLOR="Green"><B>IDE</B></FONT>, ma un
+  &nbsp;linguaggio vero e proprio, essendo dotato di funzionalit&agrave; e
+  librerie che vanno ben oltre lo standard
+  <FONT COLOR="Red"><B>C++</B></FONT>. Noi ci limiteremo, per&ograve;, ad
+  illustrare il suo ambiente di sviluppo, nella versione "ridotta" &nbsp;per
+  applicazioni che utilizzano solo codice standard.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Justify>
+&nbsp; 
+  <HR>
+<P ALIGN=Justify>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Gestione di files e progetti
+&nbsp;</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<UL>
+  <LI>
+    <BIG>creazione nuovo progetto o nuovo file</BIG>
+  <LI>
+    <BIG>apertura e chiusura progetto</BIG>
+  <LI>
+    <BIG>inserimento di files esistenti nel progetto aperto</BIG>
+  <LI>
+    <BIG>apertura, salvataggio (con eventuale cambiamento del nome) e chiusura
+    file </BIG>
+  <LI>
+    <BIG>tutte le operazioni di selezione di file o directory sono eseguibili
+    tramite <I>dialog box</I> oppure direttamente dalla lista dei MRU (Most Recently
+    Used)</BIG>
+</UL>
+<P>
+&nbsp; 
+  <HR>
+<P ALIGN=Justify>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Editor di testo
+&nbsp;</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Un <FONT COLOR="Green"><B>IDE</B></FONT> &egrave; normalmente provvisto
+  di tutte le funzionalit&agrave; standard di un editor di testo interattivo
+  (<I>cut, copy, paste, delete, find, replace, undo, redo</I>, ecc&#133;).
+  In pi&ugrave;, il suo editor &egrave; "intelligente", nel senso che &egrave;
+  in grado di riconoscere ed interpretare il testo in modo da renderlo di pi&ugrave;
+  facile comprensione (per esempio, scrive le
+  <FONT COLOR="Green"><B>parole-chiave</B></FONT> con un altro colore, "indenta"
+  automaticamente le istruzioni che continuano nella riga successiva o che
+  appartengono ad un <FONT COLOR="Green"><B>ambito</B></FONT> interno
+  ecc...).</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P ALIGN=Justify>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Gestione delle finestre
+&nbsp;</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<UL>
+  <LI>
+    <BIG><I>full screen</I> della finestra attiva</BIG>
+  <LI>
+    <BIG>selezione della finestra da porre in primo piano</BIG>
+  <LI>
+    <BIG>visione contemporanea di pi&ugrave; finestre (allineate orizzontalmente,
+    verticalmente o in <I>cascade</I>) ecc&#133;</BIG>
+</UL>
+<P>
+&nbsp; 
+  <HR>
+<P ALIGN=Justify>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Costruzione dell'applicazione eseguibile
+&nbsp;</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<UL>
+  <LI>
+    <P ALIGN=Justify>
+    <BIG>file <FONT COLOR="Green"><B>make</B></FONT>: &egrave; creato e aggiornato
+    automaticamente; contiene tutte le relazioni fra i files sorgente e le opzioni
+    di compilazione e <FONT COLOR="Red"><B>link</B></FONT> del
+    <FONT COLOR="Green"><B>progetto</B></FONT></BIG>
+  <LI>
+    <P ALIGN=Justify>
+    <BIG>programma <FONT COLOR="Green"><B>make</B></FONT>: legge il file
+    <FONT COLOR="Green"><B>make</B></FONT> ed esegue:</BIG>
+    <UL>
+      <LI>
+	<P ALIGN=Justify>
+	<BIG>la <FONT COLOR="Red"><B>compilazione</B></FONT> di tutti i files del
+	<FONT COLOR="Green"><B>progetto</B></FONT>, creando un file binario
+	<B><I>.obj</I> </B>per ogni <FONT COLOR="Red"><B>file sorgente</B></FONT>
+	incluso nel <FONT COLOR="Green"><B>progetto</B></FONT>; inoltre la compilazione
+	&egrave; di tipo <U>incrementale</U>, nel senso che ricompila solo i files
+	sorgente che sono stati modificati dopo la creazione dei rispettivi
+	<B><I>.obj</I> </B></BIG>
+      <LI>
+	<P ALIGN=Justify>
+	<BIG>il <FONT COLOR="Red"><B>link</B></FONT> di tutti i <B><I>.obj</I> </B>per
+	la creazione del <FONT COLOR="Red"><B>programma eseguibile</B></FONT>, che
+	ha estensione <I><B>.exe</B></I>; anche in questo caso l'operazione &egrave;
+	di tipo <U>incrementale</U>, cio&egrave; viene eseguita solo se almeno un
+	<B><I>.obj</I></B> &egrave; stato modificato (o se il <I><B>.exe</B></I>
+	non esiste).</BIG>
+    </UL>
+</UL>
+<P ALIGN=Justify>
+&nbsp;
+<P ALIGN=Justify>
+  <HR>
+<P ALIGN=Justify>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Debug del programma
+&nbsp;</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Eseguendo il programma in modo <I><B>debug</B></I>, &egrave; possibile
+  inserire dei <I><B>breakpoints</B></I> (punti di interruzione del programma)
+  direttamente nel <FONT COLOR="Red"><B>codice sorgente</B></FONT> e poi esaminare
+  il valore corrente delle variabili (con il comando <I><B>watch</B></I>, oppure
+  semplicemente posizionando il cursore del mouse sulla variabile da ispezionare:
+  si apre una finestrella gialla (<I><B>tip</B></I>) che mostra il contenuto
+  della variabile), oppure eseguire il programma <B><I>step-by-step</I> </B>(una
+  istruzione alla volta) ecc&#133;</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Justify>
+<P ALIGN=Justify>
+&nbsp;
+<P ALIGN=Justify>
+  <HR>
+<P ALIGN=Justify>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Utilizzo dell'help in linea
+&nbsp;</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Ogni buon <FONT COLOR="Green"><B>IDE</B></FONT> &egrave; provvisto di
+  un robusto sistema di documentazione che spiega il significato e il modo
+  di utilizzo delle <FONT COLOR="Green"><B>parole-chiave</B></FONT> del linguaggio,
+  dei simboli, delle variabili predefinite e, ovviamente, delle funzioni di
+  libreria; di solito &egrave; organizzato per <I><B>topics</B></I> (argomenti),
+  ma esiste anche la possibilit&agrave; di eseguire la ricerca di ogni singolo
+  termine presente del sistema accedendo a un elenco generale in ordine
+  alfabetico.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Inoltre &egrave; disponibile il "<I><B>context sensitive help</B></I>"
+  che permette di accedere direttamente all'informazione desiderata posizionando
+  il cursore del mouse all'interno della finestra di editor del proprio file
+  sorgente, sopra la variabile o funzione da esaminare, e poi spingendo il
+  tasto <FONT COLOR="Blue"><B>F1</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Infine il testo della guida in linea &egrave; accessibile con la
+  funzionalit&agrave; <I><B>copy</B></I> dell'editor (ovviamente non con
+  <I><B>cut</B></I> o <I><B>paste</B></I>, essendo in sola lettura): ci&ograve;
+  consente di selezionare e trasferire nel proprio programma brani di codice
+  (per esempio nomi di funzioni o variabili predefinite) senza possibilit&agrave;
+  di errore.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#indpunt"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

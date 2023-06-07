@@ -1,0 +1,557 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<HTML>
+<HEAD>
+  <META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <META name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.9-31 i686) [Netscape]">
+  <TITLE>Il Comando make in ambiente Linux CPP</TITLE>
+</HEAD>
+<BODY text="#000000" bgcolor="#eeeeee" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<CENTER>
+  <H1>
+    <U><FONT color="#FF0000"><FONT size=+4>Il Comando '<B>make'</B> in ambiente
+    Linux</FONT></FONT></U>
+  </H1>
+</CENTER>
+<CENTER>
+  <H1>
+      <HR WIDTH="100%">
+  </H1>
+</CENTER>
+<CENTER>
+  <B><FONT color="#3333FF"><FONT size=+3>Perche' utilizzare il comando
+  make?</FONT></FONT></B>
+</CENTER>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT color="#000000"><FONT size=+1>Immaginate un progetto molto esteso,
+  formato da decine e decine di moduli, e di voler cambiare solo una piccola
+  parte di codice e</FONT></FONT> <FONT color="#000000"><FONT size=+1>di voler
+  poi testare il programma. Ovviamente, per evitare di ricompilare tutto il
+  codice ad ogni modifica, e' conveniente compilare solo i moduli appena modificati
+  e poi effettuare il link con la parte di codice rimasta immutata. Potrebbe
+  pero' essere difficile, o quanto meno noioso, controllare ripetutamente quali
+  moduli devono essere per forza ricompilati e quali no. Il comando <B>make</B>
+  fa questo per voi!</FONT></FONT>
+</BLOCKQUOTE>
+<P>
+  <HR WIDTH="100%">
+<BLOCKQUOTE>
+  <CENTER>
+    <H4>
+      <FONT color="#3333FF"><FONT size=+2>Il Makefile ed i <I>target </I>del
+      make</FONT></FONT>
+    </H4>
+  </CENTER>
+  <P>
+  <FONT size=+1><FONT color="#000000">Per funzionare make ha bisogno che voi
+  scriviate un file chiamato <B>Makefile </B>in cui siano descritte le relazioni
+  fra i vostri files ed i comandi per aggiornarli. Quando il make viene
+  invocato</FONT> esegue le istruzioni contenute nel Makefile.</FONT>
+  <P>
+  <FONT size=+1>Una idea base che bisogna capire del make e' il concetto di
+  <U>target</U> . Il primo target in assoluto e' il Makefile stesso. se si
+  lancia il make senza aver preparato un Makefile si ottiene il seguente
+  risultato</FONT>
+</BLOCKQUOTE>
+<CENTER>
+  <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+    <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+      <TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+3>make</FONT></FONT></B>
+</PRE>
+	<PRE><FONT color="#FF0000"><FONT size=+3>make: *** No targets specified and no makefile found.&nbsp; Stop.</FONT></FONT>
+</PRE>
+      </TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<CENTER>
+  <FONT size=+1>Quello che segue e' un semplice Makefile in cui sono stati
+  definiti tre target e tre <U>azioni</U> corrispondenti:</FONT>
+</CENTER>
+<P>
+<BR>
+<CENTER>
+  <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+    <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+      <TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+3># Un esempio di Makefile</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3></FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>one:</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @echo UNO!</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3></FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>two:</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @echo DUE!</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3></FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>three:</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @echo E TRE!</FONT></FONT></B>
+</PRE>
+      </TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<BLOCKQUOTE>
+  <CENTER>
+    <P ALIGN=Justify>
+    <FONT size=+1>La definizione di un target inizia sempre all'inizio della
+    riga ed seguito da <FONT COLOR="Black"><B>:</B></FONT><B> </B>. Le azioni&nbsp;
+    (in questo caso&nbsp; degli output su schermo)&nbsp; seguono le definizioni
+    di ogni target e, anche se in questo esempio sono singole, possono essere
+    molteplici. La prima riga, che inizia con <B>#, </B>e' un commento.</FONT>
+  </CENTER>
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+  &nbsp;
+  <CENTER>
+    <FONT size=+1>Per utilizare i target invochiamoli sulla riga di comando del
+    make:</FONT>
+  </CENTER>
+</BLOCKQUOTE>
+<CENTER>
+  <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+    <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+      <TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+3>make one</FONT></FONT></B>
+</PRE>
+	<PRE><FONT color="#000000"><FONT size=+3>UNO!</FONT></FONT>
+</PRE>
+	<PRE><B><FONT color="#000000"><FONT size=+3>make one two three</FONT></FONT></B>
+</PRE>
+	<PRE><FONT color="#000000"><FONT size=+3>UNO!</FONT></FONT>
+<FONT color="#000000"><FONT size=+3>DUE!</FONT></FONT>
+<FONT color="#000000"><FONT size=+3>E TRE!</FONT></FONT>
+</PRE>
+      </TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<BLOCKQUOTE>
+  &nbsp; <FONT size=+1>Se non si invoca nessun target nella linea di comando,
+  make assume come default il primo che trova nel Makefile:</FONT>
+</BLOCKQUOTE>
+<CENTER>
+  <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+    <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+      <TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+3>make</FONT></FONT></B>
+</PRE>
+	<PRE><FONT color="#000000"><FONT size=+3>UNO!</FONT></FONT>
+</PRE>
+      </TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<BLOCKQUOTE>
+  <CENTER>
+    <B><FONT color="#FF0000"><FONT size=+3>IMPORTANTE</FONT></FONT><FONT size=+1>:
+    </FONT></B><FONT size=+1><U>le linee in cui si specificano le azioni
+    corrispondenti ad ogni target (Es. @echo UNO!) devono iniziare con un separatore
+    &lt;TAB&gt;</U>!</FONT>
+  </CENTER>
+</BLOCKQUOTE>
+<CENTER>
+  <FONT size=+1>Il seguente Makefile non e' valido perche' la riga seguente
+  la definizione del target non inizia con un&nbsp; separatore
+  &lt;TAB&gt;:</FONT>
+</CENTER>
+<P>
+<BR>
+<CENTER>
+  <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+    <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+      <TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+3># Un esempio di Makefile mal scritto</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3></FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>one:</FONT></FONT></B>
+<B><FONT color="#000000"><FONT size=+3>&nbsp; @echo UNO!</FONT></FONT></B>
+</PRE>
+      </TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<BLOCKQUOTE>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT color="#000000"><FONT size=+3>make one</FONT></FONT></B>
+</PRE>
+	  <PRE><FONT color="#FF0000"><FONT size=+3>Makefile:4: *** missing separator.&nbsp; Stop.</FONT></FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <FONT size=+1>Le righe di azione devo iniziare&nbsp; invariabilmente con
+  un&nbsp; separatore &lt;TAB&gt;,&nbsp; <B><U>NON POSSONO ESSERE UITLIZZATI
+  DEGLI SPAZI!</U></B></FONT>
+</BLOCKQUOTE>
+<CENTER>
+  <BR>
+    <HR WIDTH="100%">
+</CENTER>
+<BLOCKQUOTE>
+  <CENTER>
+    <H4>
+      <FONT color="#3333FF"><FONT size=+2>Dipendenze</FONT></FONT>
+    </H4>
+  </CENTER>
+</BLOCKQUOTE>
+<P>
+&nbsp;&nbsp;&nbsp; <FONT size=+1>E' possibile definire delle
+<U>dipendenze</U>&nbsp; fra i target all' interno del Makefile</FONT> <BR>
+&nbsp; <BR>
+&nbsp;
+<CENTER>
+  <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+    <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+      <TD VALIGN=TOP NOSAVE><PRE><FONT size=+2>#<B> Un esempio di Makefile con dipendenze</B></FONT>
+<FONT size=+2><B></B></FONT>
+<FONT size=+2><B>one:</B></FONT>
+<FONT size=+2><B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @echo UNO!</B></FONT>
+<FONT size=+2><B></B></FONT>
+<FONT size=+2><B>two:&nbsp;&nbsp;&nbsp; one</B></FONT>
+<FONT size=+2><B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @echo DUE!</B></FONT>
+<FONT size=+2><B></B></FONT>
+<FONT size=+2><B>three:&nbsp; one two</B></FONT>
+<FONT size=+2><B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @echo E TRE!</B></FONT>
+<FONT size=+2><B></B></FONT>
+<FONT size=+2><B>all:&nbsp;&nbsp;&nbsp; one two three</B></FONT>
+<FONT size=+2><B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @echo TUTTI E TRE!</B></FONT>
+</PRE>
+      </TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<BLOCKQUOTE>
+  &nbsp;&nbsp;&nbsp; <FONT size=+1>Si noti come i target vengono elaborati
+  in sequenza:</FONT>
+</BLOCKQUOTE>
+<CENTER>
+  <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+    <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+      <TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2>make three</FONT></B>
+</PRE>
+	<PRE><FONT size=+2>UNO!</FONT>
+<FONT size=+2>DUE!</FONT>
+<FONT size=+2>E TRE!</FONT>
+</PRE>
+	<PRE><B><FONT size=+2>make all</FONT></B>
+</PRE>
+	<PRE><FONT size=+2>UNO!</FONT>
+<FONT size=+2>DUE!</FONT>
+<FONT size=+2>E TRE!</FONT>
+<FONT size=+2>TUTTI E TRE!</FONT>
+</PRE>
+      </TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<P>
+  <HR WIDTH="100%">
+<CENTER>
+  <B><FONT color="#3333FF"><FONT size=+3>Macro e variabili
+  ambiente</FONT></FONT></B>
+  <P>
+  <FONT color="#000000"><FONT size=+1>E' possibile definere delle <U>Macro</U>
+  all' interno del Makefile</FONT></FONT>
+</CENTER>
+<BLOCKQUOTE>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><FONT size=+2>#<B>Definiamo la Macro OBJECT</B></FONT>
+<FONT size=+2><B></B></FONT>
+<FONT size=+2><B><FONT color="#FF0000">OBJECT</FONT>=PIPPO</B></FONT>
+<FONT size=+2><B></B></FONT>
+<FONT size=+2><B>one:</B></FONT>
+<FONT size=+2><B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @echo CIAO $(<FONT color="#FF0000">OBJECT</FONT>)!</B></FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><FONT size=+2><B>make</B></FONT>
+<FONT size=+2><B></B></FONT>
+<FONT size=+2>CIAO PIPPO!</FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <FONT color="#000000"><FONT size=+1>Possiamo ridefinire il valore della macro
+  OBJECT direttamente sulla riga di comando, senza alterare il
+  Makefile!</FONT></FONT> <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><FONT size=+2><B>make OBJECT=pippa</B></FONT>
+<FONT size=+2><B></B></FONT>
+<FONT size=+2>CIAO pippa!</FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <FONT color="#000000"><FONT size=+1>Il Makefile puo' accedere alle <U>variabili
+  ambiente</U>:</FONT></FONT> <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2># Usiamo una variabile ambiente</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2>OBJECT=$(<FONT color="#FF0000">TERM</FONT>)</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2>one:</FONT></B>
+<B><FONT size=+2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @echo CIAO $(OBJECT)!</FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><FONT size=+2><B>make&nbsp;</B></FONT>
+<FONT size=+2><B></B></FONT>
+<FONT size=+2>CIAO xterm!</FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+</BLOCKQUOTE>
+<P>
+  <HR WIDTH="100%">
+<CENTER>
+  <B><FONT color="#3333FF"><FONT size=+3>Compiliamo con make
+  (finalmente)</FONT></FONT></B>
+</CENTER>
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <FONT color="#000000"><FONT size=+1>Supponiamo di voler compilare il seguente
+  codice C++ composto da tre moduli (main.cpp, myfunc.cpp e myfunc.h)&nbsp;
+  usando il comando make.</FONT></FONT> <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2>// main.cpp</FONT></B>
+</PRE>
+	  <PRE><B><FONT size=+2>#include&lt;iostream&gt;</FONT></B>
+<B><FONT size=+2>#include"myfunc.h"</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2>int main() {</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2>&nbsp; int a=6;</FONT></B>
+<B><FONT size=+2>&nbsp; int b=3;</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2>&nbsp; cout&lt;&lt;"a="&lt;&lt;a&lt;&lt;", b="&lt;&lt;b&lt;&lt;endl;</FONT></B>
+<B><FONT size=+2>&nbsp; cout&lt;&lt;"a/b="&lt;&lt;div(a,b)&lt;&lt;endl;</FONT></B>
+<B><FONT size=+2>&nbsp; cout&lt;&lt;"a*b="&lt;&lt;mul(a,b)&lt;&lt;endl;</FONT></B>
+<B><FONT size=+2>&nbsp; cout&lt;&lt;"a^b="&lt;&lt;pot(a,b)&lt;&lt;endl;</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2>&nbsp; return 0;</FONT></B>
+<B><FONT size=+2>}</FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2>// myfunc.cpp</FONT></B>
+</PRE>
+	  <PRE><B><FONT size=+2>#include&lt;math.h&gt;</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2>int div(int a, int b) {</FONT></B>
+<B><FONT size=+2>&nbsp; return a/b;</FONT></B>
+<B><FONT size=+2>};</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2>int mul(int a, int b) {</FONT></B>
+<B><FONT size=+2>&nbsp; return a*b;</FONT></B>
+<B><FONT size=+2>};</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2>float pot(float a, float b) {</FONT></B>
+<B><FONT size=+2>&nbsp; return pow(a,b);</FONT></B>
+<B><FONT size=+2>}</FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2>// myfunc.h</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2>int div(int a, int b);</FONT></B>
+<B><FONT size=+2>int mul(int a, int b);</FONT></B>
+<B><FONT size=+2>float pot(float a, float b);</FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P>
+  <FONT size=+1>Un semplice Makefile si presenta cosi':</FONT> <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2><FONT color="#000000">OBJECTS</FONT>=main.o myfunc.o</FONT></B>
+</PRE>
+	  <PRE><B><FONT size=+2>CFLAGS=-g -Wall</FONT></B>
+<B><FONT size=+2>LIBS=-lm</FONT></B>
+<B><FONT size=+2>CC=g++</FONT></B>
+</PRE>
+	  <PRE><B><FONT size=+2>PROGRAM_NAME=prova</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2>$(PROGRAM_NAME):$(OBJECTS)</FONT></B>
+<B><FONT size=+2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $(CC) $(CFLAGS) -o $(PROGRAM_NAME) $(OBJECTS) $(LIBS)</FONT></B>
+<B><FONT size=+2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @echo " "</FONT></B>
+<B><FONT size=+2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @echo "Compilazione completata!"</FONT></B>
+<B><FONT size=+2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @echo " "</FONT></B>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <FONT size=+1>Il make ricompilera' il <I>target </I><B>prova</B> se i files
+  da cui questo <I>dipende</I> (gli OBJECTS <B>main.o</B> e <B>myfunc.o</B>)
+  sono stati modificati&nbsp; dopo che prova e' stato modificato l'ultima volta
+  oppure non esistono. Il processo di ricompilazione avverra' secondo la regola
+  descritta nell' <I>azione</I></FONT> <FONT size=+1><I>del target</I> e usando
+  le <I>Macro</I> definite dall' utente (CC, CFLAGS, LIBS).</FONT>
+  <P>
+  <FONT size=+1>Per compilare usiamo semplicemente</FONT> <BR>
+  &nbsp;
+  <CENTER>
+    <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+      <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	<TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2>make</FONT></B>
+</PRE>
+	  <PRE><FONT size=+2>g++&nbsp;&nbsp;&nbsp; -c -o main.o main.cpp</FONT>
+<FONT size=+2>g++&nbsp;&nbsp;&nbsp; -c -o myfunc.o myfunc.cpp</FONT>
+<FONT size=+2>g++ -g -Wall -o prova main.o myfunc.o -lm</FONT>
+<FONT size=+2></FONT>
+<FONT size=+2>Compilazione completata!</FONT>
+</PRE>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <FONT size=+1>Se modifichiamo solo un modulo, per esempio myfunc.cpp, il
+  make effettuera' la compilazione di questo file solamente.</FONT>
+</BLOCKQUOTE>
+<CENTER>
+  <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+    <TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+      <TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2>make</FONT></B>
+</PRE>
+	<PRE><FONT size=+2>g++&nbsp;&nbsp;&nbsp; -c -o myfunc.o myfunc.cpp</FONT>
+<FONT size=+2>g++ -g -Wall -o prova main.o myfunc.o -lm</FONT>
+<FONT size=+2></FONT>
+<FONT size=+2>Compilazione completata!</FONT>
+</PRE>
+      </TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<P>
+  <HR WIDTH="100%">
+<CENTER>
+  <B><FONT color="#3333FF"><FONT size=+3>Alcuni target
+  standard</FONT></FONT></B>
+</CENTER>
+<BLOCKQUOTE>
+  <FONT color="#000000"><FONT size=+1>Esistono alcuni target standard usati
+  da programmatori Linux e GNU. Fra questi:</FONT></FONT>
+  <UL>
+    <LI>
+      <FONT color="#000000"><FONT size=+1><B>install</B>, viene utilizzato per
+      installare i file di un progetto e puo' comprendere la creazione di nuove
+      directory e la assegnazione di diritti di accesso ai file.</FONT></FONT>
+    <LI>
+      <FONT color="#000000"><FONT size=+1><B>clean</B>, viene utilizzato per rimuovere
+      dal sistema i file oggetto (*.o), i file core, e altri file tempornei creati
+      in fase di compilazione</FONT></FONT>
+    <LI>
+      <FONT color="#000000"><FONT size=+1><B>all</B>, di solito utilizzato per
+      richiamare altri target con lo scopo di costruire l'intero
+      progetto.</FONT></FONT>
+  </UL>
+  <P>
+  <FONT color="#000000"><FONT size=+1>Aggiungiamo il target <B>clean</B> al
+  nostro Makefile:</FONT></FONT>
+  <BLOCKQUOTE>
+    &nbsp;
+    <CENTER>
+      <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	<TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	  <TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2>OBJECTS=main.o myfunc.o</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2>CC=g++</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2>CFLAGS=-g -Wall</FONT></B>
+<B><FONT size=+2>LIBS=-lm</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2>PROGRAM_NAME=prova</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2>$(PROGRAM_NAME):$(OBJECTS)</FONT></B>
+<B><FONT size=+2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $(CC) $(CFLAGS) -o $(PROGRAM_NAME) $(OBJECTS) $(LIBS)</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @echo " "</FONT></B>
+<B><FONT size=+2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @echo "Compilazione completata!"</FONT></B>
+<B><FONT size=+2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @echo " "</FONT></B>
+<B><FONT size=+2></FONT></B>
+<B><FONT size=+2><FONT color="#009900">clean:</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rm -f *.o</FONT></FONT></B>
+<B><FONT size=+2><FONT color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rm -f core</FONT></FONT></B>
+</PRE>
+	  </TD>
+	</TR>
+      </TABLE>
+    </CENTER>
+    <P>
+    <FONT size=+1>Invocare il target clean comporta la cancellazione di tutti
+    i file oggetto e del file core.&nbsp;</FONT> <BR>
+    <FONT size=+1>&nbsp;</FONT>
+    <CENTER>
+      <TABLE BORDER=0 COLS=1 WIDTH="50%" BGCOLOR="#FFFFFF" NOSAVE >
+	<TR ALIGN=LEFT VALIGN=CENTER NOSAVE>
+	  <TD VALIGN=TOP NOSAVE><PRE><B><FONT size=+2>make clean</FONT></B>
+</PRE>
+	    <PRE><FONT size=+2>rm -f *.o</FONT>
+<FONT size=+2>rm -f core</FONT>
+</PRE>
+	  </TD>
+	</TR>
+      </TABLE>
+    </CENTER>
+  </BLOCKQUOTE>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#controllo"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

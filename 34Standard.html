@@ -1,0 +1,384 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Standard CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Generalit&agrave;
+sulla Libreria Standard del C++
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Campi di
+applicazione</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Red"><B>Libreria Standard del C++</B></FONT> &egrave;
+  costituita da un vasto numero di <FONT COLOR="Green"><B>classi</B></FONT>
+  e <FONT COLOR="Green"><B>funzioni</B></FONT> che trattano principalmente
+  di:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><I><B>Input-Output</B></I>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>gestione delle <FONT COLOR="Green"><B>stringhe</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>gestione degli <FONT COLOR="Green"><B>oggetti</B></FONT>
+      "<FONT COLOR="Green"><B>contenitori</B></FONT>" di altri
+      <FONT COLOR="Green"><B>oggetti</B></FONT> (detti:
+      <FONT COLOR="Green"><B>elementi</B></FONT>), quali: gli
+      <FONT COLOR="Green"><B>array</B></FONT>, le
+      <FONT COLOR="Green"><B>liste</B></FONT>, le
+      <FONT COLOR="Green"><B>code</B></FONT>, le
+      <FONT COLOR="Green"><B>mappe</B></FONT>, gli
+      <FONT COLOR="Green"><B>insiemi</B></FONT> ecc...;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>utilizzo degli "<FONT COLOR="Green"><B>iteratori</B></FONT>", per "navigare"
+      attraverso gli <FONT COLOR="Green"><B>elementi</B></FONT> di un
+      <FONT COLOR="Green"><B>contenitore</B></FONT> o i
+      <FONT COLOR="Green"><B>caratteri</B></FONT> di una
+      &nbsp;<FONT COLOR="Green"><B>stringa</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>utilizzo degli "<FONT COLOR="Green"><B>algoritmi</B></FONT>", per eseguire
+      operazioni sui <FONT COLOR="Green"><B>contenitori</B></FONT> e sui loro
+      <FONT COLOR="Green"><B>elementi</B></FONT>, quali: ricerca, conteggio,
+      inserimento, sostituzione, ordinamento, <I><B>merging</B></I> ecc...; sono
+      previste anche operazioni specifiche, eseguite tramite
+      <FONT COLOR="Green"><B>oggetti-funzione</B></FONT> forniti dall'utente o
+      dalla stessa <FONT COLOR="Red"><B>Libreria</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>operazioni numeriche e matematiche su numeri <I><B>reali</B></I> o
+      <I><B>complessi</B></I>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>informazioni riguardanti aspetti del linguaggio che dipendono
+      dall'implementazione (per esempio: il massimo valore di un
+      <FONT COLOR="Blue"><B>float</B></FONT>).</BIG>
+  </UL>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Red"><B>programmazione generica </B></FONT>&egrave;
+  largamente applicata nella <FONT COLOR="Red"><B>Libreria</B></FONT>: infatti,
+  nella grande maggioranza le sue <FONT COLOR="Green"><B>classi</B></FONT>
+  e <FONT COLOR="Green"><B>funzioni</B></FONT> sono
+  <FONT COLOR="Blue"><B>template</B></FONT> (o
+  <FONT COLOR="Green"><B>specializzazioni</B></FONT> di
+  <FONT COLOR="Blue"><B>template</B></FONT>). Questo fa s&igrave; che le stesse
+  operazioni siano applicabili a una vasta variet&agrave; di
+  <FONT COLOR="Green"><B>tipi</B></FONT>, sia <I><B>nativi</B></I> che
+  <I><B>definiti dall'utente</B></I>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>In aggiunta alla <FONT COLOR="Red"><B>Libreria Standard del
+  C++</B></FONT>, la maggior parte delle implementazioni offre librerie di
+  "interfacce grafiche", spesso chiamate anche
+  <FONT COLOR="Red"><B>GUI</B></FONT> (<I><B>graphical user interface</B></I>),
+  con sistemi a "finestre" per l'interazione fra utente e programma. Inoltre,
+  la maggior parte degli ambienti di sviluppo integrati fornisce librerie dette
+  <FONT COLOR="Red"><B>FL</B></FONT>&nbsp;(<I><B>foundation libraries</B></I>),
+  che supportano lo sviluppo di applicazioni in accordo con l'ambiente specifico
+  in cui lavorano (per esempio, la <FONT COLOR="Red"><B>MFC</B></FONT> del
+  <FONT COLOR="Red"><B>Visual</B></FONT>
+  <FONT COLOR="Red"><B>C++</B></FONT>). Sia le
+  <FONT COLOR="Red"><B>GUI</B></FONT> che (ovviamente) le
+  <FONT COLOR="Red"><B>FL</B></FONT> non fanno parte dello standard
+  <FONT COLOR="Red"><B>C++</B></FONT> e quindi non verranno trattate in questo
+  corso. La stessa <FONT COLOR="Red"><B>Libreria Standard</B></FONT> sar&agrave;
+  considerata perlopi&ugrave; "dal punto di vista dell'utente", cio&egrave;
+  <U>l'attenzione sar&agrave; focalizzata sul suo utilizzo</U>, pi&ugrave;
+  che sulla descrizione del suo contenuto.</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Header
+files</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Le <FONT COLOR="Green"><B>classi</B></FONT> e le
+  <FONT COLOR="Green"><B>funzioni</B></FONT> della
+  <FONT COLOR="Red"><B>Libreria Standard</B></FONT> sono raggruppate in una
+  cinquantina di <I><B>header files</B></I>, i cui <B>nomi</B> seguono una
+  particolare convenzione: non hanno estensione (cio&egrave; non hanno
+  <FONT COLOR="Blue"><B>.h</B></FONT>). Per esempio, il principale <I><B>header
+  file</B></I> per le operazioni di <I><B>input-output</B></I> &egrave;
+  <FONT COLOR="Blue"><B>&lt;iostream&gt;</B></FONT> (al posto di
+  <FONT COLOR="Blue"><B>&lt;iostream.h&gt;</B></FONT> della "vecchia"
+  libreria).</BIG>
+  <P ALIGN=Justify>
+  <BIG>In ogni <I><B>header file</B></I> si trova di solito una
+  <FONT COLOR="Green"><B>classe</B></FONT> (con le eventuali
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Green"><B>derivate</B></FONT> se &egrave; presente una gerarchia
+  di <FONT COLOR="Green"><B>classi</B></FONT>), e varie
+  <FONT COLOR="Green"><B>funzioni</B></FONT> esterne di appoggio, soprattutto
+  per la definizione di <FONT COLOR="Green"><B>operatori</B></FONT> in
+  <FONT COLOR="Green"><B>overload</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>A volte un <I><B>header file</B></I> include altri <I><B>header
+  files</B></I>. Tuttavia, all'inizio di ognuno di essi, sono inserite alcune
+  <FONT COLOR="Green"><B>direttive</B></FONT> al
+  <FONT COLOR="Red"><B>preprocessore</B></FONT> che, interrogando opportune
+  <FONT COLOR="Green"><B>costanti predefinite</B></FONT>, controllano l'effettiva
+  inclusione del <I><B>file</B></I> (cio&egrave; non lo includono se &egrave;
+  gi&agrave; stato incluso precedentemente). Questo permette all'utente di
+  inserire tutte le <FONT COLOR="Green"><B>direttive</B></FONT>
+  <FONT COLOR="Blue"><B>#include</B></FONT> che ritiene necessarie, senza
+  preoccuparsi di generare eventuali duplicazioni di <B>nomi</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La <FONT COLOR="Red"><B>Libreria Standard del C++</B></FONT> ingloba
+  la <FONT COLOR="Red"><B>Run Time Library</B></FONT> del
+  <FONT COLOR="Red"><B>C</B></FONT>, i cui <I><B>header files</B></I> possono
+  essere specificati in due modi:</BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>con il loro <B>nome</B> tradizionale, per esempio
+      <FONT COLOR="Blue"><B>&lt;stdio.h&gt;</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>con i <B>nomi</B> della convenzione
+      <FONT COLOR="Red"><B>C++</B></FONT>, senza
+      <FONT COLOR="Blue"><B>.h</B></FONT>, ma con la lettera
+      <FONT COLOR="Blue"><B>c</B></FONT> davanti, per esempio
+      <FONT COLOR="Blue"><B>&lt;cstdio&gt;</B></FONT></BIG>
+  </UL>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Il namespace
+std</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Tutta la <FONT COLOR="Red"><B>Libreria Standard del C++</B></FONT> &egrave;
+  <B>definita</B> in un unico <FONT COLOR="Blue"><B>namespace</B></FONT>, che
+  si chiama: <FONT COLOR="Blue"><B><BIG>std</BIG></B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Pertanto i <B>nomi</B> delle
+  <FONT COLOR="Green"><B>classi</B></FONT>, delle
+  <FONT COLOR="Green"><B>funzioni</B></FONT> e degli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> <B>definiti</B> nella
+  <FONT COLOR="Red"><B>Libreria</B></FONT> devono essere <B>qualificati</B>
+  con il prefisso <FONT COLOR="Blue"><B>std::</B></FONT>. Per esempio, le
+  operazioni di <I><B>ouput</B></I> sul dispostitivo standard vanno
+  scritte:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>std::cout &lt;&lt; </B></FONT>..... &nbsp; &nbsp;
+  invece di : <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cout
+  &lt;&lt; </B></FONT>..... </BIG>
+  <P ALIGN=Justify>
+  <BIG>Va precisato, tuttavia, che alcuni compilatori pi&ugrave; "vecchi" non
+  accettano la <B>qualificazione</B>, e altri, "intermedi", accettano entrambe
+  le forme.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Un'alternativa, anche se sconsigliabile per motivi gi&agrave; detti
+  pi&ugrave; volte, &egrave; quella di trasferire l'intera
+  <FONT COLOR="Red"><B>Libreria</B></FONT> nel
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT>, mediante la
+  <FONT COLOR="Blue"><B>using</B></FONT> <I><B>directive</B></I>:</BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>using</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>namespace</B></FONT>
+  &nbsp;<FONT COLOR="Blue"><B>std;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>la quale rende disponibili tutti i <B>nomi</B> della
+  <FONT COLOR="Red"><B>Libreria</B></FONT> senza bisogno di
+  <B>qualificarli</B>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Per semplicit&agrave;, visto che i nostri programmi di esempio sono
+  in genere molto brevi, e quindi il pericolo di conflitto fra i <B>nomi</B>
+  &egrave; praticamente inesistente, adotteremo questa soluzione.</BIG>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>La Standard Template
+Library</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Un'importante sottinsieme della <FONT COLOR="Red"><B>Libreria Standard
+  del C++</B></FONT> &egrave; la cosidetta <FONT COLOR="Red"><B>Standard Template
+  Library </B></FONT>(<FONT COLOR="Red"><B>STL</B></FONT>), che mette a
+  disposizione degli utenti <FONT COLOR="Green"><B>classi</B></FONT> e
+  <FONT COLOR="Green"><B>funzioni</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT> per la gestione dei
+  <FONT COLOR="Green"><B>contenitori</B></FONT> e degli associati
+  <FONT COLOR="Green"><B>iteratori</B></FONT> e
+  <FONT COLOR="Green"><B>algoritmi</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>La principale caratteristica della
+  <FONT COLOR="Red"><B>STL</B></FONT> &egrave; quella di fornire la massima
+  <FONT COLOR="Red"><B>genericit&agrave;</B></FONT>: i
+  <FONT COLOR="Blue"><B>template</B></FONT> della
+  <FONT COLOR="Red"><B>STL</B></FONT> permettono all'utente di generare la
+  <FONT COLOR="Green"><B>specializzazione</B></FONT> che desidera (fatte salve
+  certe premesse), cio&egrave; di utilizzare la libreria con dati di qualunque
+  <FONT COLOR="Green"><B>tipo</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Fuori dalla <FONT COLOR="Red"><B>STL</B></FONT>, si ritrovano ancora
+  <FONT COLOR="Green"><B>classi</B></FONT> e
+  <FONT COLOR="Green"><B>funzioni</B></FONT>
+  <FONT COLOR="Blue"><B>template</B></FONT>, ma in generale la scelta delle
+  possibili <FONT COLOR="Green"><B>specializzazioni</B></FONT> si esaurisce
+  in ambiti pi&ugrave; ristretti. Per esempio, i
+  <FONT COLOR="Blue"><B>template</B></FONT> che gestiscono le
+  <FONT COLOR="Green"><B>stringhe</B></FONT> e l'<I><B>input-output</B></I>
+  limitano la loro <FONT COLOR="Red"><B>genericit&agrave;</B></FONT> alla scelta
+  della codifica dei <B>caratteri</B> utilizzati. Noi abbiamo sempre trattato
+  (e tratteremo) soltanto di caratteri ASCII di un <I><B>byte</B></I> (il
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>char</B></FONT>), ma &egrave; bene sapere che sono
+  possibili anche caratteri con codifiche diverse (per esempio caratteri
+  giapponesi), che occupano pi&ugrave; di un <I><B>byte</B></I> (i cosidetti
+  <I><B>wide-characters</B></I>, o caratteri estesi). Poich&egrave; noi
+  "conosciamo" solo il <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>char</B></FONT>, quando parleremo di
+  &nbsp;<FONT COLOR="Green"><B>stringhe</B></FONT> e di
+  <I><B>input-output</B></I> ignoreremo il fatto che siano
+  <FONT COLOR="Blue"><B>template</B></FONT>, perch&egrave; in realt&agrave;
+  tratteremo con <FONT COLOR="Blue"><B>template</B></FONT> gi&agrave;
+  <FONT COLOR="Green"><B>specializzati</B></FONT> con
+  <I><B>argomento</B></I>
+  <FONT COLOR="Blue"><B>&lt;char&gt;</B></FONT>.<BR>
+  Un altro esempio: la <FONT COLOR="Green"><B>classe</B></FONT> dei numeri
+  <I><B>complessi</B></I> &egrave; un
+  <FONT COLOR="Blue"><B>template</B></FONT> solo per il fatto che i
+  <FONT COLOR="Green"><B>tipi</B></FONT> delle parti <I><B>reale</B></I> e
+  <I><B>immaginaria</B></I> possono essere
+  <FONT COLOR="Green"><B>specializzati</B></FONT> con
+  <FONT COLOR="Blue"><B>float</B></FONT>,
+  <FONT COLOR="Blue"><B>double</B></FONT> o <FONT COLOR="Blue"><B>long
+  double</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Nelle <FONT COLOR="Green"><B>classi</B></FONT> e
+  <FONT COLOR="Green"><B>funzioni</B></FONT> della
+  <FONT COLOR="Red"><B>STL</B></FONT>, invece, la scelta dei
+  <FONT COLOR="Green"><B>tipi</B></FONT> degli <I><B>argomenti</B></I> &egrave;
+  completamente libera: l'unica condizione, per i
+  <FONT COLOR="Green"><B>tipi</B></FONT> <I><B>definiti dall'utente</B></I>,
+  &egrave; che questi siano forniti di tutti gli
+  <FONT COLOR="Green"><B>operatori</B></FONT> in
+  <FONT COLOR="Green"><B>overload</B></FONT> necessari per eseguire le operazioni
+  previste.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Nel seguito riportiamo, per completezza, l'elenco (in ordine alfabetico)
+  degli <I><B>header files</B></I> che fanno capo alla
+  <FONT COLOR="Red"><B>STL</B></FONT>. Tratteremo solo di alcuni.</BIG>
+  <P ALIGN=Justify>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>&lt;algorithm&gt;</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	<TD><BIG><FONT COLOR="Green"><B>algoritmi</B></FONT> </BIG></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>&lt;deque&gt;</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	<TD><BIG><FONT COLOR="Green"><B>contenitore</B></FONT>:
+	  <I><B>coda</B></I> "bifronte"</BIG></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>&lt;functional&gt;</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	<TD><FONT COLOR="Green"><BIG><B>oggetti-funzione</B></BIG></FONT></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>&lt;iterator&gt;</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	<TD><BIG><FONT COLOR="Green"><B>iteratori</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>&lt;list&gt;</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	<TD><BIG><FONT COLOR="Green"><B>contenitore</B></FONT>: <I><B>double-linked
+	  list</B></I></BIG></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>&lt;map&gt;</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	<TD><BIG><FONT COLOR="Green"><B>contenitore</B></FONT>:
+	  </BIG><FONT COLOR="Green"><B><BIG>array associativo</BIG></B></FONT></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>&lt;memory&gt;</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	<TD><BIG>allocazione di memoria per
+	  <FONT COLOR="Green"><B>contenitori</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>&lt;numeric&gt;</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	<TD><BIG>operazioni numeriche</BIG></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>&lt;queue&gt;</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	<TD><BIG><FONT COLOR="Green"><B>contenitore</B></FONT>:
+	  <I><B>coda</B></I></BIG> (FIFO)</TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>&lt;set&gt;</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	<TD><BIG><FONT COLOR="Green"><B>contenitore</B></FONT>:
+	  <I><B>insieme</B></I></BIG></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>&lt;stack&gt;</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	<TD><BIG><FONT COLOR="Green"><B>contenitore</B></FONT>:
+	  <I><B>pila</B></I></BIG> (LIFO)</TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>&lt;utility&gt;</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	<TD><BIG><I><B>coppie</B></I> di dati e <FONT COLOR="Green"><B>operatori
+	  relazionali</B></FONT></BIG></TD>
+      </TR>
+      <TR>
+	<TD><FONT COLOR="Blue"><BIG><B>&lt;vector&gt;</B></BIG></FONT></TD>
+	<TD>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+	<TD><BIG><FONT COLOR="Green"><B>contenitore</B></FONT>:
+	  </BIG><FONT COLOR="Green"><B><BIG>array
+	  </BIG></B></FONT><BIG><I><B>monodimensionale</B></I></BIG></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+</BLOCKQUOTE>
+<P >
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#stl"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

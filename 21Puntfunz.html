@@ -1,0 +1,447 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Puntatori e Funzioni CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Puntatori e Funzioni
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Funzioni che restituiscono
+puntatori</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Il <B>valore di ritorno </B>restituito da una
+  <FONT COLOR="Green"><B>funzione</B></FONT> pu&ograve; essere di qualsiasi
+  <FONT COLOR="Green"><B>tipo</B></FONT>, compreso il
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Green"><B>puntatore</B></FONT>. </BIG>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD><BIG>Es.: &nbsp; &nbsp; </BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB></B></FONT>
+	<FONT COLOR="Maroon"><B>funz</B></FONT><FONT COLOR="Blue"><B>();</B></FONT></BIG>
+	&nbsp; &nbsp;</TD>
+      <TD><BIG><B>dichiara</B> una <FONT COLOR="Green"><B>funzione</B></FONT>
+	<FONT COLOR="Maroon"><B>funz</B></FONT> che restituisce un valore
+	<FONT COLOR="Green"><B>puntatore</B></FONT> a
+	<FONT COLOR="Blue"><B>int</B></FONT></BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>Come in generale, il <B>valore di ritorno</B>, anche se &eacute; un
+  <FONT COLOR="Green"><B>puntatore</B></FONT>, viene trasmesso <I><B>by
+  value</B></I> e quindi <U>ne viene creata una copia</U> nel <B>programma
+  chiamante</B>; ci&ograve; garantisce che il
+  <FONT COLOR="Green"><B>puntatore</B></FONT> sopravviva alla
+  <FONT COLOR="Green"><B>funzione</B></FONT> anche se &egrave; stato creato
+  all'interno del suo <FONT COLOR="Green"><B>ambito</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Tuttavia la <B>variabile puntata </B><U>potrebbe non sopravvivere</U>
+  alla <FONT COLOR="Green"><B>funzione</B></FONT> (se &eacute; stata creata
+  nel suo <FONT COLOR="Green"><B>ambito</B></FONT> e non dichiarata
+  <FONT COLOR="Blue"><B>static</B></FONT>). Ci&ograve; porterebbe a un errore
+  di <I><B>dangling references</B></I>. Notare l'analogia con il tipo di errore
+  generato quando un <B>valore di ritorno</B>, trasmesso <I><B>by
+  reference</B></I>, corrisponde a una variabile che cessa di esistere: in
+  quel caso tuttavia, il <U>compilatore</U> ha il controllo della situazione
+  e quindi pu&ograve; segnalare l'errore (o almeno un
+  <I><B>warning</B></I>); nel caso di un
+  <FONT COLOR="Green"><B>puntatore</B></FONT>, invece, il suo contenuto (cio&egrave;
+  l'<B>indirizzo</B> della <B>variabile puntata</B>) <U>&eacute; determinato
+  in esecuzione</U> e quindi l'errore non pu&ograve; essere segnalato dal
+  compilatore. Spetta al programmatore fare la massima attenzione a che ci&ograve;
+  non si verifichi. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Il pi&ugrave; frequente uso di
+  <FONT COLOR="Green"><B>funzioni</B></FONT> che restituiscono
+  <FONT COLOR="Green"><B>puntatori</B></FONT> si ha nel caso di
+  <FONT COLOR="Green"><B>puntatori</B></FONT> a
+  <FONT COLOR="Blue"><B>char</B></FONT>, cio&egrave; di
+  <FONT COLOR="Green"><B>stringhe</B></FONT>. Nella stessa libreria
+  <FONT COLOR="Red"><B>Run-time</B></FONT> ci sono molte
+  <FONT COLOR="Green"><B>funzioni</B></FONT> che restituiscono
+  <FONT COLOR="Green"><B>stringhe</B></FONT>. <BR>
+  Esempio di <FONT COLOR="Green"><B>funzione</B></FONT> di libreria: </BIG>
+  <BIG><FONT COLOR="Blue"><B><BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; char<SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Blue"><B>strcat(char<SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Maroon"><B>str1</B></FONT>,
+  <FONT COLOR="Blue"><B>char<SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Maroon"><B>str2</B></FONT><FONT COLOR="Blue"><B>);</B></FONT>
+  &nbsp; </BIG> <BIG><U><BR>
+  concatena</U> la <FONT COLOR="Green"><B>stringa</B></FONT>
+  <FONT COLOR="Maroon"><B>str2</B></FONT> alla
+  <FONT COLOR="Green"><B>stringa</B></FONT>
+  <FONT COLOR="Maroon"><B>str1</B></FONT> e restituisce il risultato sia nella
+  stessa <FONT COLOR="Maroon"><B>str1</B></FONT> che come <B>valore di
+  ritorno</B>. Notare che in questo caso non c'&egrave; pericolo di errore,
+  purch&egrave; lo spazio di memoria per
+  <FONT COLOR="Maroon"><B>str1</B></FONT> sia stato adeguatamente allocato
+  nel <B>programma chiamante</B>.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p33/alfabet.cpp">[p33]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Puntatori a
+Funzione</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> (come in
+  <FONT COLOR="Red"><B>C</B></FONT>) esistono anche i
+  <FONT COLOR="Green"><B>puntatori</B></FONT> a
+  <FONT COLOR="Green"><B>funzione</B></FONT>! Questi servono quando il programma
+  deve scegliere quale <FONT COLOR="Green"><B>funzione</B></FONT> chiamare
+  fra diverse possibili, e la scelta non &eacute; definita a priori ma dipende
+  dai dati del programma stesso. Questo processo si chiama <I><B>late
+  binding</B></I> ("aggancio ritardato"): gli <B>indirizzi</B> delle
+  <FONT COLOR="Green"><B>funzioni</B></FONT> da chiamare <U>non vengono risolti
+  al momento della compilazione</U>, come avviene normalmente (<I><B>early
+  binding</B></I>) ma <U>al momento dell'esecuzione</U>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B>puntatori</B></FONT> a
+  <FONT COLOR="Green"><B>funzione</B></FONT> non devono essere <B>definiti</B>,
+  ma solo <B>dichiarati</B>, come nel seguente esempio: <BR>
+  <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp;int<SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Blue"><B>(<SUB><BIG>*</BIG></SUB></B></FONT><FONT COLOR="Maroon"><B>pfunz</B></FONT><FONT
+      COLOR="Blue"><B>)(double</B></FONT> <FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Blue"><B>char<SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Blue"><B>);</B></FONT> <BR>
+  <B>dichiara</B> un <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>pfunz</B></FONT> che restituisce un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Blue"><B>int</B></FONT> e ha due
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>: il primo &eacute; di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>double</B></FONT>, il secondo &eacute; un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Blue"><B>char</B></FONT>. Notare le <U>parentesi intorno al
+  nome della <FONT COLOR="Green"><B>funzione</B></FONT></U>, in assenza delle
+  quali la <B>dichiarazione</B> sarebbe interpretata in modo diverso (una normale
+  <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>pfunz</B></FONT> che restituisce un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Blue"><B>int</B></FONT>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Nel corso del programma il
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>funzione</B></FONT> deve essere <B>assegnato</B> (o
+  <B>inizializzato</B>) con il nome di una
+  <FONT COLOR="Green"><B>funzione</B></FONT> "vera", che deve essere
+  precedentemente <B>dichiarata</B> con <U>lo stesso
+  <FONT COLOR="Green"><B>tipo</B></FONT> del <B>valore di ritorno</B> e gli
+  stessi <FONT COLOR="Maroon"><B>argomenti</B></FONT> del
+  <FONT COLOR="Green"><B>puntatore</B></FONT></U>. Continuando l'esempio
+  precedente:</BIG>
+  <P ALIGN=Justify>
+  <BIG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Maroon"><B>funz1</B></FONT><FONT COLOR="Blue"><B>(double</B></FONT>
+  <FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Blue"><B>char<SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Blue"><B>);</B></FONT> <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>int<SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Maroon"><B>funz2</B></FONT><FONT COLOR="Blue"><B>(double</B></FONT>
+  <FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Blue"><B>char<SUB><BIG>*</BIG></SUB></B></FONT>
+  <FONT COLOR="Blue"><B>);</B></FONT> <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<FONT COLOR="Blue"><B>if
+  ( </B></FONT><B>......... </B><FONT COLOR="Blue"><B>)</B></FONT>
+  <FONT COLOR="Maroon"><B>pfunz</B></FONT>
+  <FONT COLOR="Blue"><B>=</B></FONT>
+  <FONT COLOR="Maroon"><B>funz1</B></FONT>
+  <FONT COLOR="Blue"><B>;</B></FONT> <FONT COLOR="Blue"><B><BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;else</B></FONT>
+  <FONT COLOR="Maroon"><B>pfunz</B></FONT> =
+  <FONT COLOR="Maroon"><B>funz2</B></FONT><FONT COLOR="Blue"><B>;</B></FONT>
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>notare che i nomi delle <FONT COLOR="Green"><B>funzioni</B></FONT> e
+  del <FONT COLOR="Green"><B>puntatore</B></FONT> vanno indicati <U>da soli</U>,
+  senza i loro <FONT COLOR="Maroon"><B>argomenti</B></FONT> (e senza le parentesi).
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>In una <B>chiamata</B> della
+  <FONT COLOR="Green"><B>funzione</B></FONT>, tutti i testi di
+  <FONT COLOR="Red"><B>C</B></FONT> dicono che il
+  <FONT COLOR="Green"><B>puntatore</B></FONT> va
+  <FONT COLOR="Purple"><B>dereferenziato</B></FONT> (in realt&agrave; non &eacute;
+  necessario): <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Blue"><B>(<SUB><BIG>*</BIG></SUB></B></FONT><FONT COLOR="Maroon"><B>pfunz</B></FONT><FONT
+      COLOR="Blue"><B>)(</B></FONT><FONT COLOR="Maroon"><B>12.3</B></FONT><FONT
+      COLOR="Blue"><B>,</B></FONT><FONT COLOR="Maroon"><B>"Ciao"</B></FONT><FONT
+      COLOR="Blue"><B>);</B></FONT> &nbsp; &nbsp; &nbsp; &nbsp;... ma va bene anche:
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Maroon"><B>pfunz</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>12.3</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT
+      COLOR="Maroon"><B>"Ciao"</B></FONT><FONT COLOR="Blue"><B>);</B></FONT></BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p34/compute.cpp">[p34]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Array di puntatori a
+funzione</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> (come in
+  <FONT COLOR="Red"><B>C</B></FONT>) &egrave; consentito <U><B>dichiarare</B>
+  <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>puntatori</B></FONT> a
+  <FONT COLOR="Green"><B>funzione</B></FONT></U>, nella forma specificata dal
+  seguente esempio: <BR>
+  <FONT COLOR="Blue"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp;double</B></FONT>
+  <FONT COLOR="Blue"><B>(<SUB><BIG>*</BIG></SUB></B></FONT><FONT COLOR="Maroon"><B>apfunz</B></FONT><FONT
+      COLOR="Blue"><B>[</B></FONT><FONT COLOR="Maroon"><B>5</B></FONT><FONT COLOR="Blue"><B>])(int);</B></FONT>
+  <BR>
+  dichiara l'<FONT COLOR="Green"><B>array
+  </B></FONT><FONT COLOR="Maroon"><B>apfunz</B></FONT> di
+  <FONT COLOR="Maroon"><B>5</B></FONT>
+  <FONT COLOR="Green"><B>puntatori</B></FONT> a
+  <FONT COLOR="Green"><B>funzione</B></FONT>, <U>tutti</U> con <B>valore di
+  ritorno </B>di <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>double</B></FONT> e con un
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Blue"><B>int</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>L'<FONT COLOR="Green"><B>array</B></FONT> pu&ograve; essere
+  <B>inizializzato</B> con un elenco di nomi di
+  <FONT COLOR="Green"><B>funzioni</B></FONT>, <U>gi&agrave; <B>dichiarate</B>
+  e condividenti tutte le stesso <FONT COLOR="Green"><B>tipo</B></FONT> di
+  <B>valore di ritorno</B> e gli stessi
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT></U>: </BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>double</B></FONT>
+  <FONT COLOR="Blue"><B>(<SUB><BIG>*</BIG></SUB></B></FONT><FONT COLOR="Maroon"><B>apfunz</B></FONT><FONT
+      COLOR="Blue"><B>[</B></FONT><FONT COLOR="Maroon"><B>5</B></FONT><FONT COLOR="Blue"><B>])(int)</B></FONT>
+  <B><FONT COLOR="Blue">=</FONT>
+  <FONT COLOR="Blue">{</FONT><FONT COLOR="Maroon">f1, f2, f3, f4,
+  f5</FONT></B><FONT COLOR="Blue"><B>} ;</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>dove <B><FONT COLOR="Maroon">f1</FONT></B> ecc... sono tutte
+  <FONT COLOR="Green"><B>funzioni</B></FONT> <B>dichiarate</B>:
+  <FONT COLOR="Blue"><B>double</B></FONT>
+  <B><FONT COLOR="Maroon">f1</FONT></B><FONT COLOR="Blue"><B>(int);</B></FONT>
+  ecc... </BIG>
+  <P ALIGN=Justify>
+  <BIG>I singoli <FONT COLOR="Green"><B>elementi</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT> possono anche essere
+  <FONT COLOR="Purple"><B>assegnati</B></FONT> tramite
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>[</B></FONT> <FONT COLOR="Blue"><B>]</B></FONT>, che
+  funziona come <FONT COLOR="Green"><B>l-value</B></FONT> nel modo consueto:
+  <BR>
+  <FONT COLOR="Maroon"><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp;
+  apfunz</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT COLOR="Maroon"><B>3</B></FONT><FONT
+      COLOR="Blue"><B>]</B></FONT>= <B><FONT COLOR="Maroon">fn</FONT></B>; <BR>
+  dove <B><FONT COLOR="Maroon">fn</FONT></B> &eacute; una
+  <FONT COLOR="Green"><B>funzione</B></FONT> <B>dichiarata</B>:
+  <FONT COLOR="Blue"><B>double</B></FONT>
+  <B><FONT COLOR="Maroon">fn</FONT></B><FONT COLOR="Blue"><B>(int);</B></FONT>
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>Nelle <B>chiamate</B>, si usa ancora
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>[</B></FONT> <FONT COLOR="Blue"><B>]</B></FONT> per
+  selezionare l'<FONT COLOR="Green"><B>elemento</B></FONT> desiderato: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Maroon"><B>apfunz</B></FONT><FONT COLOR="Blue"><B>[</B></FONT><FONT
+      COLOR="Maroon"><B>i</B></FONT><FONT COLOR="Blue"><B>](</B></FONT><B><FONT
+      COLOR="Maroon">n</FONT></B><FONT COLOR="Blue"><B>);</B></FONT> &nbsp; &nbsp;
+  &nbsp; &nbsp; (non &eacute; necessario
+  <FONT COLOR="Purple"><B>dereferenziare</B></FONT> il
+  <FONT COLOR="Green"><B>puntatore</B></FONT>) <BR>
+  dove l'<FONT COLOR="Green"><B>indice</B></FONT>
+  <FONT COLOR="Maroon"><B>i</B></FONT> permette di accedere alla
+  <FONT COLOR="Green"><B>funzione</B></FONT> precedentemente
+  <FONT COLOR="Purple"><B>assegnata</B></FONT>
+  all'<FONT COLOR="Maroon"><B>i-esimo</B></FONT>
+  <FONT COLOR="Green"><B>elemento</B></FONT>
+  dell'<FONT COLOR="Green"><B>array</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Gli <FONT COLOR="Green"><B>array</B></FONT> di
+  <FONT COLOR="Green"><B>puntatori</B></FONT> a
+  <FONT COLOR="Green"><B>funzione</B></FONT> possono essere utili, per esempio,
+  quando la <FONT COLOR="Green"><B>funzione</B></FONT> da eseguire &eacute;
+  selezionata da un <I><B>men&ugrave;</B></I>: in questo caso
+  l'<FONT COLOR="Green"><B>indice</B></FONT>
+  <FONT COLOR="Maroon"><B>i</B></FONT> , corrispondente a una voce di
+  <I><B>men&ugrave;</B></I>, indirizza direttamente la
+  <FONT COLOR="Green"><B>funzione</B></FONT> prescelta, senza bisogno di
+  <B>istruzioni di controllo</B>, come <FONT COLOR="Blue"><B>if</B></FONT>
+  o <FONT COLOR="Blue"><B>switch</B></FONT>, per determinarla. </BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Funzioni con argomenti puntatori a
+funzione</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>E' noto che, quando nella <B>chiamata</B> di una
+  <FONT COLOR="Green"><B>funzione</B></FONT> compare come
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> un'altra
+  <FONT COLOR="Green"><B>funzione</B></FONT>, questa viene eseguita per prima
+  e il suo <B>valore di ritorno</B> &eacute; utilizzato come
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> dalla prima
+  <FONT COLOR="Green"><B>funzione</B></FONT>. Quindi il vero
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> della prima
+  <FONT COLOR="Green"><B>funzione</B></FONT> <U>non &eacute;</U> la seconda
+  <FONT COLOR="Green"><B>funzione</B></FONT>, <U>ma un normale
+  <B>valore</B></U>, che pu&ograve; avere qualsiasi origine (variabile, espressione
+  ecc...), e in particolare in questo caso &egrave; il risultato dell'esecuzione
+  di un'altra <FONT COLOR="Green"><B>funzione</B></FONT> (il cui
+  <FONT COLOR="Green"><B>tipo</B></FONT> di <B>valore di ritorno</B> deve
+  coincidere con il <FONT COLOR="Green"><B>tipo</B></FONT> <B>dichiarato</B>
+  dell'<FONT COLOR="Maroon"><B>argomento</B></FONT>). </BIG>
+  <P ALIGN=Justify>
+  <BIG>Quando invece una <FONT COLOR="Green"><B>funzione</B></FONT>
+  <B>dichiara</B> fra i suoi <FONT COLOR="Maroon"><B>argomenti</B></FONT> un
+  <FONT COLOR="Green"><B>puntatore</B></FONT> a
+  <FONT COLOR="Green"><B>funzione</B></FONT>, allora <U>sono parametrizzate
+  proprio le <FONT COLOR="Green"><B>funzioni</B></FONT></U> e non i loro
+  <B>valori di ritorno</B>. Nelle <B>chiamate</B> &eacute; necessario specificare
+  come <FONT COLOR="Maroon"><B>argomento</B></FONT> il nome di una
+  <FONT COLOR="Green"><B>funzione</B></FONT> "vera", precedentemente
+  <B>dichiarata</B>, che viene sostituito a quello del
+  <FONT COLOR="Green"><B>puntatore</B></FONT>. </BIG>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD><BIG>Es.:</BIG> &nbsp; &nbsp;</TD>
+      <TD><BIG><B>dichiarazioni</B>:</BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>void</B></FONT>
+	<FONT COLOR="Maroon"><B>fsel</B></FONT><FONT COLOR="Blue"><B>(int
+	(<SUB><BIG>*</BIG></SUB>)(float));</B></FONT> <BR>
+	<FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>funz1</B></FONT><FONT COLOR="Blue"><B>(float);</B></FONT></BIG><BR>
+	<BIG><FONT COLOR="Blue"><B>int</B></FONT>
+	<FONT COLOR="Maroon"><B>funz2</B></FONT><FONT COLOR="Blue"><B>(float);</B></FONT></BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><B>chiamate</B>:</BIG></TD>
+      <TD><BIG><FONT COLOR="Maroon"><B>fsel</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Maroon"><B>funz1</B></FONT><FONT COLOR="Blue"><B>);</B></FONT></BIG>
+	<BR>
+	<BIG><FONT COLOR="Maroon"><B>fsel</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Maroon"><B>funz2</B></FONT><FONT COLOR="Blue"><B>);</B></FONT> </BIG></TD>
+    </TR>
+    <TR VALIGN="Top">
+      <TD></TD>
+      <TD><BIG><B>definizione</B> <FONT COLOR="Maroon"><B>fsel</B></FONT>: &nbsp;
+	&nbsp;</BIG></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>void</B></FONT>
+	<FONT COLOR="Maroon"><B>fsel</B></FONT><FONT COLOR="Blue"><B>(int
+	(<SUB><BIG>*</BIG></SUB></B></FONT><FONT COLOR="Maroon"><B>pfunz</B></FONT><FONT
+	    COLOR="Blue"><B>)(float))</B></FONT></BIG><BR>
+	<BIG><FONT COLOR="Blue"><B>{</B></FONT> <B>....
+	</B><FONT COLOR="Maroon"><B>n</B></FONT>
+	<FONT COLOR="Blue"><B>=</B></FONT>
+	<FONT COLOR="Maroon"><B>pfunz</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="Maroon"><B>r</B></FONT><FONT COLOR="Blue"><B>);</B></FONT>
+	<B>.....</B><FONT COLOR="Blue"><B>}</B></FONT></BIG><BR>
+	<BIG>(dove <FONT COLOR="Maroon"><B>n</B></FONT> &eacute; di
+	<FONT COLOR="Green"><B>tipo</B></FONT>
+	<FONT COLOR="Blue"><B>int</B></FONT> e
+	<FONT COLOR="Maroon"><B>r</B></FONT> &eacute; di
+	<FONT COLOR="Green"><B>tipo</B></FONT>
+	<FONT COLOR="Blue"><B>float</B></FONT>) </BIG></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>l'istruzione
+  <FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+      COLOR="Maroon"><B>pfunz</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>r</B></FONT><FONT COLOR="Blue"><B>)</B></FONT> viene sostituita
+  la prima volta con
+  <FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+      COLOR="Maroon"><B>funz1</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>r</B></FONT><FONT COLOR="Blue"><B>)</B></FONT> e la seconda
+  volta con
+  <FONT COLOR="Maroon"><B>n</B></FONT><FONT COLOR="Blue"><B>=</B></FONT><FONT
+      COLOR="Maroon"><B>funz2</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>r</B></FONT><FONT COLOR="Blue"><B>)</B></FONT> . Notare
+  che, nelle <B>chiamate</B>,
+  l'<FONT COLOR="Maroon"><B>argomento</B></FONT>-<FONT COLOR="Green"><B>funzione</B></FONT>
+  deve essere a sua volta specificato <U>senza
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT> e senza le parentesi tonde</U>.
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>Nell'esempio abbiamo supposto che la variabile
+  <FONT COLOR="Maroon"><B>r</B></FONT>,
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> della
+  <FONT COLOR="Maroon"><B>pfunz</B></FONT>, sia creata all'interno della
+  <FONT COLOR="Maroon"><B>fsel</B></FONT>; anche se
+  <FONT COLOR="Maroon"><B>r</B></FONT> fosse passato dal <B>programma
+  chiamante</B>, la forma:
+  <FONT COLOR="Maroon"><B>fsel</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>funz1</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>r</B></FONT><FONT COLOR="Blue"><B>))</B></FONT> sarebbe
+  comunque errata: l'unico modo per passare
+  <FONT COLOR="Maroon"><B>r</B></FONT> potrebbe essere quello di
+  <B>dichiararlo</B> come ulteriore
+  <FONT COLOR="Maroon"><B>argomento</B></FONT> della
+  <FONT COLOR="Maroon"><B>fsel</B></FONT>, cio&egrave;:
+  <FONT COLOR="Blue"><B><BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; void</B></FONT>
+  <FONT COLOR="Maroon"><B>fsel</B></FONT><FONT COLOR="Blue"><B>(float,</B></FONT>
+  <FONT COLOR="Blue"><B>int
+  (<SUB><BIG>*</BIG></SUB></B></FONT><FONT COLOR="Maroon"><B>pfunz</B></FONT><FONT
+      COLOR="Blue"><B>)(float));</B></FONT> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; e nelle <B>chiamate</B> specificare: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Maroon"><B>fsel</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>r</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>funz1</B></FONT><FONT COLOR="Blue"><B>);</B></FONT>
+  &nbsp; &nbsp; &nbsp; &nbsp;...oppure... &nbsp; &nbsp; &nbsp;
+  <FONT COLOR="Maroon"><B>fsel</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="Maroon"><B>r</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>funz2</B></FONT><FONT COLOR="Blue"><B>);</B></FONT>
+  </BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p35/minmax.cpp">[p35]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#puntconst"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>

@@ -1,0 +1,718 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Membri a livello di classe e accesso "friend" CPP </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#000000">
+<P ALIGN=Center>
+<FONT COLOR="Red"><B><BIG><BIG><BIG><BIG><BIG><BIG><BIG><U>Membri a livello
+di classe e accesso "friend"
+</U></BIG></BIG></BIG></BIG></BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp; 
+  <HR SIZE=4 COLOR="#000080">
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Membri di tipo
+enumerato</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Ricordiamo che un <FONT COLOR="Green"><B>oggetto</B></FONT> &eacute;
+  di <FONT COLOR="Green"><B>tipo enumerato</B></FONT> se pu&ograve; assumere
+  solo un definito e limitato insieme di valori
+  <FONT COLOR="Green"><B>interi</B></FONT>, detti
+  <FONT COLOR="Green"><B>enumeratori</B></FONT>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Quando un <FONT COLOR="Green"><B>tipo enumerato</B></FONT> &eacute;
+  definito all'interno di una <FONT COLOR="Green"><B>classe</B></FONT>, il
+  <FONT COLOR="Green"><B>tipo</B></FONT> stesso &eacute; identificato esternamente
+  dal suo <B>nome</B> preceduto dal <B>nome</B> della
+  <FONT COLOR="Green"><B>classe</B></FONT> con il solito
+  <FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>::</B></FONT> di <FONT COLOR="Purple"><B>risoluzione
+  di visibilit&agrave;</B></FONT>. La stessa regola vale quando si accede
+  separatamente a un singolo <FONT COLOR="Green"><B>enumeratore</B></FONT>.
+  </BIG>
+  <P ALIGN=Justify>
+  <BIG>Chiariamo quanto detto con un esempio: <B>definiamo</B> una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, contenente la <B>definizione</B> del
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Green"><B>enumerato</B></FONT>
+  <FONT COLOR="cc0000"><B>festivo</B></FONT>, con
+  <FONT COLOR="Green"><B>enumeratori</B></FONT>
+  <FONT COLOR="Maroon"><B>Sabato</B></FONT> e
+  <FONT COLOR="Maroon"><B>Domenica</B></FONT>, e un
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Maroon"><B>giorno</B></FONT>, di
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="cc0000"><B>festivo</B></FONT>: </BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>class</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> <FONT COLOR="Blue"><B>{ public:
+  enum</B></FONT> <FONT COLOR="cc0000"><B>festivo</B></FONT>
+  <FONT COLOR="Blue"><B>{</B></FONT>
+  <FONT COLOR="Maroon"><B>Sabato</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+  <FONT COLOR="Maroon"><B>Domenica</B></FONT><FONT COLOR="Blue"><B>}</B></FONT>
+  <FONT COLOR="Maroon"><B>giorno</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;
+  }; </B></BIG></FONT>
+  <P ALIGN=Justify>
+  <BIG>vediamo ora vari modi di utilizzo nel programma:</BIG>
+  <OL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="#cc0000"><B>A</B></FONT>::<FONT COLOR="cc0000"><B>festivo</B></FONT>
+      <FONT COLOR="Maroon"><B>oggi</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>=</B></BIG></FONT><BIG>
+      <FONT COLOR="#cc0000"><B>A</B></FONT>::<FONT COLOR="Maroon"><B>Sabato</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT><BIG> <BR>
+      crea l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+      <FONT COLOR="Maroon"><B>oggi</B></FONT>,
+      <FONT COLOR="Green"><B>istanza</B></FONT> del
+      <FONT COLOR="Green"><B>tipo</B></FONT>
+      <FONT COLOR="Green"><B>enumerato</B></FONT>
+      <FONT COLOR="cc0000"><B>festivo</B></FONT> della
+      <FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="#cc0000"><B>A</B></FONT> e lo <B>inizializza</B> con il valore
+      dell'<FONT COLOR="Green"><B>enumeratore</B></FONT>
+      <FONT COLOR="Maroon"><B>Sabato</B></FONT>; </BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="#cc0000"><B>A</B></FONT>
+      <FONT COLOR="Maroon"><B>a</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT><BIG>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp;<FONT COLOR="Maroon"><B>a</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>.</B></BIG></FONT><BIG><FONT
+	  COLOR="Maroon"><B>giorno</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>=</B></BIG></FONT><BIG>
+      <FONT COLOR="#cc0000"><B>A</B></FONT>::<FONT COLOR="Maroon"><B>Sabato</B></FONT></BIG><FONT
+	  COLOR="Blue"><BIG><B>; &nbsp; &nbsp;&nbsp;</B></BIG></FONT><BIG>... oppure
+      ... <FONT COLOR="Maroon"><B>&nbsp;
+      &nbsp;a</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>.</B></BIG></FONT><BIG><FONT
+	  COLOR="Maroon"><B>giorno</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>=</B></BIG></FONT><BIG>
+      <FONT COLOR="Maroon"><B>oggi</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT><BIG><BR>
+      crea l'<FONT COLOR="Green"><B>oggetto</B></FONT>
+      <FONT COLOR="Maroon"><B>a</B></FONT>,
+      <FONT COLOR="Green"><B>istanza</B></FONT> della
+      <FONT COLOR="Green"><B>classe</B></FONT>
+      <FONT COLOR="#cc0000"><B>A</B></FONT> e
+      <FONT COLOR="Purple"><B>assegna</B></FONT> il valore
+      dell'<FONT COLOR="Green"><B>enumeratore</B></FONT>
+      <FONT COLOR="Maroon"><B>Sabato</B></FONT> (oppure
+      dell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+      <FONT COLOR="Maroon"><B>oggi</B></FONT> dell'esempio precedente) al
+      <FONT COLOR="Green"><B>membro</B></FONT>
+      <FONT COLOR="Maroon"><B>giorno</B></FONT>
+      dell'<FONT COLOR="Green"><B>oggetto</B></FONT>
+      <FONT COLOR="Maroon"><B>a</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG><FONT COLOR="Blue"><B>int</B></FONT>
+      <FONT COLOR="Maroon"><B>domani</B></FONT> =
+      <FONT COLOR="#cc0000"><B>A</B></FONT>::<FONT COLOR="Maroon"><B>Domenica</B></FONT>
+      ; <BR>
+      crea l'<FONT COLOR="Green"><B>intero</B></FONT>
+      <FONT COLOR="Maroon"><B>domani</B></FONT> e lo <B>inizializza</B> con il
+      valore dell'<FONT COLOR="Green"><B>enumeratore</B></FONT>
+      <FONT COLOR="Maroon"><B>Domenica</B></FONT> (conversione di
+      <FONT COLOR="Green"><B>tipo</B></FONT> <I><B>implicita</B></I>); questa
+      istruzione &eacute; ammessa anche se non sono state create
+      <FONT COLOR="Green"><B>istanze</B></FONT> di
+      <FONT COLOR="#cc0000"><B>A</B></FONT> o di
+      <FONT COLOR="cc0000"><B>festivo</B></FONT>. </BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <BIG>Da questi esempi si pu&ograve; notare, fra l'altro, che <U>gli
+  <FONT COLOR="Green"><B>enumeratori</B></FONT> sono identificati dalla
+  <FONT COLOR="Green"><B>classe</B></FONT> e non dal
+  <FONT COLOR="Green"><B>tipo</B></FONT>
+  <FONT COLOR="Green"><B>enumerato</B></FONT> a cui appartengono</U>: ne consegue
+  che non possono esistere due
+  <FONT COLOR="Green"><B>enumeratori</B></FONT> con lo stesso <B>nome</B> definiti
+  nella stessa <FONT COLOR="Green"><B>classe</B></FONT> (anche se in due
+  <FONT COLOR="Green"><B>tipi</B></FONT>
+  <FONT COLOR="Green"><B>enumerati</B></FONT> diversi), mentre possono esistere
+  due <FONT COLOR="Green"><B>enumeratori</B></FONT> con lo stesso <B>nome</B>
+  definiti in due <FONT COLOR="Green"><B>classi</B></FONT> diverse. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Notiamo inoltre, esaminando la definizione della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, che: </BIG>
+  <UL>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>il <FONT COLOR="Green"><B>tipo</B></FONT>
+      <FONT COLOR="Green"><B>enumerato</B></FONT>
+      <FONT COLOR="cc0000"><B>festivo</B></FONT> &eacute; stato <B>definito</B>
+      nella sezione <B>pubblica</B>: se cos&igrave; non fosse, sarebbe accessibile,
+      come di regola, solo dai <B>metodi</B> di
+      <FONT COLOR="#cc0000"><B>A</B></FONT>;</BIG>
+    <LI>
+      <P ALIGN=Justify>
+      <BIG>le specificazioni del <FONT COLOR="Green"><B>tipo</B></FONT>
+      <FONT COLOR="Green"><B>enumerato</B></FONT>
+      (<FONT COLOR="cc0000"><B>festivo</B></FONT>) e del
+      <FONT COLOR="Green"><B>membro</B></FONT> di
+      <FONT COLOR="#cc0000"><B>A</B></FONT> di
+      <FONT COLOR="Green"><B>tipo</B></FONT>
+      <FONT COLOR="cc0000"><B>festivo</B></FONT>
+      (<FONT COLOR="Maroon"><B>giorno</B></FONT>) sono <I><B>opzionali</B></I>:
+      si possono omettere quando nel programma si usano solo gli
+      <FONT COLOR="Green"><B>enumeratori</B></FONT> (come nell'esempio 3): <BR>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <FONT COLOR="Blue"><B>class</B></FONT>
+      <FONT COLOR="#cc0000"><B>A</B></FONT> <FONT COLOR="Blue"><B>{ public:
+      enum</B></FONT> <FONT COLOR="Blue"><B>{</B></FONT>
+      <FONT COLOR="Maroon"><B>Sabato</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+      <FONT COLOR="Maroon"><B>Domenica</B></FONT><FONT COLOR="Blue"><B>}</B></FONT>
+      </BIG><FONT COLOR="Blue"><BIG><B>; };<BR>
+      </B></BIG></FONT><BIG>questo &egrave; in realt&agrave; l'uso pi&ugrave; frequente
+      che si fa dei <FONT COLOR="Green"><B>tipi</B></FONT>
+      <FONT COLOR="Green"><B>enumerati</B></FONT> all'interno di una
+      <FONT COLOR="Green"><B>classe</B></FONT>: si <B>definisce</B> e si
+      <B>utilizza</B> una serie di
+      <FONT COLOR="Green"><B>enumeratori</B></FONT>, a livello di
+      <FONT COLOR="Green"><B>classe</B></FONT> e non dei singoli
+      <FONT COLOR="Green"><B>oggetti</B></FONT></BIG>
+  </UL>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p45/enumer.cpp">[p45]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Dati-membro
+statici</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>In <FONT COLOR="Red"><B>C++</B></FONT> la
+  <I><B>parola-chiave</B></I> <FONT COLOR="Blue"><B>static</B></FONT> ha un
+  ulteriore significato: se un
+  <FONT COLOR="Green"><B>dato-membro</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT> &egrave; <B>dichiarato</B>
+  <FONT COLOR="Blue"><B>static</B></FONT>, <U>la variabile &egrave; unica per
+  tutta la <FONT COLOR="Green"><B>classe</B></FONT></U>, indipendentemente
+  dal numero di <FONT COLOR="Green"><B>istanze</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>. In altre parole, il
+  <FONT COLOR="Red"><B>C++</B></FONT> riserva un'area di memoria per ogni
+  <FONT COLOR="Green"><B>oggetto</B></FONT>, salvo per i
+  <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT>, a ciascuno dei quali corrisponde
+  un'unica locazione. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Pertanto i <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT> appartengono alla
+  <FONT COLOR="Green"><B>classe</B></FONT> e non ai singoli
+  <FONT COLOR="Green"><B>oggetti</B></FONT>. Per individuarli si usa il
+  <B>nome</B> della <FONT COLOR="Green"><B>classe</B></FONT> con
+  l'<FONT COLOR="Green"><B>operatore</B></FONT>
+  <FONT COLOR="Blue"><B>::</B></FONT><BR>
+  Esempio: se <FONT COLOR="Maroon"><B>sm</B></FONT> &egrave; un
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, la "variabile"
+  <FONT COLOR="Maroon"><B>sm</B></FONT> &egrave; individuata dal costrutto:
+  <FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+      COLOR="Maroon"><B>sm</B></FONT></BIG>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT> non vengono creati tramite
+  <FONT COLOR="Green"><B>istanze</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT> a cui appartengono, ma devono essere
+  <B>definiti</B> direttamente, nello stesso
+  <FONT COLOR="Green"><B>ambito</B></FONT> in cui &egrave; <B>definita</B>
+  la <FONT COLOR="Green"><B>classe</B></FONT>. Nei rari casi, per&ograve;,
+  in cui la <FONT COLOR="Green"><B>classe</B></FONT> &egrave; <B>definita</B>
+  in un <I><B>block scope</B></I>, i
+  <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT> non sono ammessi. Pertanto un
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT> pu&ograve; essere <B>definito</B>
+  solo in un <FONT COLOR="Blue"><B>namespace</B></FONT> (se la
+  <FONT COLOR="Green"><B>classe</B></FONT> &egrave; <B>definita</B> in quel
+  <FONT COLOR="Blue"><B>namespace</B></FONT>) o nel
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT>. Di <I><B>default</B></I> un
+  <FONT COLOR="Green"><B>membro</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT> &egrave; <B>inizializzato</B> con
+  zero (in modo appropriato al <FONT COLOR="Green"><B>tipo</B></FONT>), come
+  tutte le variabili <FONT COLOR="Green"><B>statiche</B></FONT> e
+  <FONT COLOR="Green"><B>globali</B></FONT>.</BIG><BR>
+  <BIG>Esempio (supponiamo che la <FONT COLOR="Green"><B>classe</B></FONT>
+  sia <B>definita</B> nel <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT>):</BIG>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center" WIDTH="90%">
+      <TR VALIGN="Top">
+	<TD WIDTH="25%"><BIG><FONT COLOR="Blue"><B>class</B></FONT>
+	  <FONT COLOR="#cc0000"><B>A
+	  &nbsp;</B></FONT><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+	<TD></TD>
+      </TR>
+      <TR VALIGN="Top">
+	<TD><BIG>&nbsp; ..................</BIG></TD>
+	<TD ROWSPAN=3><P ALIGN=Justify>
+	  <BIG>(<FONT COLOR="Maroon"><B>sm</B></FONT> &egrave; un
+	  <FONT COLOR="Green"><B>membro</B></FONT>
+	  <FONT COLOR="Blue"><B>static</B></FONT> della
+	  <FONT COLOR="Green"><B>classe</B></FONT>
+	  <FONT COLOR="#cc0000"><B>A</B></FONT>, che</BIG> <BIG>pu&ograve; essere
+	  <B>privato</B> o <B>pubblico</B> ; se &egrave; <B>privato</B>, &egrave; gestibile
+	  solo da un <B>metodo</B> della</BIG>
+	  <BIG><FONT COLOR="Green"><B>classe</B></FONT>
+	  <FONT COLOR="#cc0000"><B>A</B></FONT>, pur essendo una variabile
+	  <FONT COLOR="Green"><B>statica</B></FONT>)</BIG></TD>
+      </TR>
+      <TR VALIGN="Top">
+	<TD>&nbsp; <BIG><FONT COLOR="Blue"><B>static</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>int</B></FONT></BIG>
+	  <BIG><FONT COLOR="Maroon"><B>sm</B></FONT></BIG>
+	  <FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+      </TR>
+      <TR VALIGN="Top">
+	<TD><BIG>&nbsp; ..................</BIG></TD>
+      </TR>
+      <TR VALIGN="Top">
+	<TD><FONT COLOR="Blue"><BIG><B>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	  &nbsp; &nbsp;};</B></BIG></FONT></TD>
+	<TD></TD>
+      </TR>
+      <TR VALIGN="Top">
+	<TD><BIG><FONT COLOR="Blue"><B>int</B></FONT></BIG>
+	  <BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+	      COLOR="Maroon"><B>sm</B></FONT></BIG>
+	  <FONT COLOR="Blue"><BIG><B>=</B></BIG></FONT>
+	  <BIG><FONT COLOR="Maroon"><B>10
+	  </B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	<TD><P ALIGN=Justify>
+	  <BIG>(a questo punto <B>definisce</B> e <B>inizializza</B>, con operazione
+	  nell'<FONT COLOR="Green"><B>ambito</B></FONT>
+	  <FONT COLOR="Green"><B>globale</B></FONT>, la variabile
+	  <FONT COLOR="Green"><B>statica</B></FONT>:
+	  <FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+	      COLOR="Maroon"><B>sm</B></FONT>) </BIG></TD>
+      </TR>
+      <TR VALIGN="Top">
+	<TD><BIG><FONT COLOR="Blue"><B>int</B></FONT></BIG>
+	  <BIG><FONT COLOR="Blue"><B>main ( )</B></FONT></BIG> &nbsp; &nbsp;
+	  &nbsp;<BIG>ecc...</BIG></TD>
+	<TD><P ALIGN=Justify>
+	</TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>I <FONT COLOR="Green"><B>membri</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT> sono molto utili per gestire informazioni
+  comuni a tutti gli <FONT COLOR="Green"><B>oggetti</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT> (per esempio possono fornire i dati
+  di <I><B>default</B></I> per l'<B>inizializzazione</B> degli
+  <FONT COLOR="Green"><B>oggetti</B></FONT>), ma nel contempo, essendo essi
+  stessi <FONT COLOR="Green"><B>membri</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT>, permettono di evitare il ricorso
+  a variabili esterne, salvaguardando cos&igrave; il
+  <FONT COLOR="Red"><I><B>data hiding</B></I></FONT> e l'indipendenza del codice
+  di implementazione della <FONT COLOR="Green"><B>classe</B></FONT> dalle altre
+  parti del programma.</BIG>
+  <P ALIGN=Justify>
+  <B><FONT COLOR="Red"><BIG><U>NOTA</U></BIG></FONT></B><BIG>: la principale
+  differenza di significato dello
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT>, se applicato a un
+  <FONT COLOR="Green"><B><U>membro</U> </B></FONT>o &nbsp;a un
+  <FONT COLOR="Green"><B><U>oggetto</U></B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT>, consiste nel fatto che, nel primo
+  caso, si crea una variabile nell'<FONT COLOR="Green"><B>ambito</B></FONT>
+  di una <FONT COLOR="Green"><B>classe</B></FONT> (che deve appartenere a sua
+  volta a un <FONT COLOR="Blue"><B>namespace</B></FONT> o al
+  <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT>), nel secondo si crea una variabile
+  <FONT COLOR="Green"><B>locale</B></FONT>
+  nell'<FONT COLOR="Green"><B>ambito</B></FONT> di un <B>blocco</B>;&nbsp;in
+  entrambi i casi il <I><B>lifetime</B></I> della variabile persiste fino alla
+  fine del programma. Se invece <FONT COLOR="Blue"><B>static</B></FONT> &egrave;
+  applicato a un <U><FONT COLOR="Green"><B>oggetto</B></FONT> non
+  <FONT COLOR="Green"><B>locale</B></FONT></U> (da evitare, meglio ricorrere
+  al <FONT COLOR="Blue"><B>namespace</B></FONT> <B>anonimo</B>), il suo significato
+  &egrave; completamente diverso
+  (<FONT COLOR="Green"><B>visibilit&agrave;</B></FONT> limitata al <I><B>file
+  scope</B></I>).</BIG>
+  <P ALIGN=Justify>
+  <B><FONT COLOR="Red"><BIG><U>NOTA2</U></BIG></FONT></B><BIG>: per i motivi
+  anzidetti, l'attributo <FONT COLOR="Blue"><B>static</B></FONT> &nbsp;di un
+  <FONT COLOR="Green"><B>membro </B></FONT>di una
+  <FONT COLOR="Green"><B>classe</B></FONT> deve essere specificato
+  <U>soltanto</U> nella <B>dichiarazione</B> <U>e non</U> nella
+  <B>definizione</B>, perch&egrave; in quest'ultima assumerebbe il significato
+  di limitare la sua <FONT COLOR="Green"><B>visibilit&agrave;</B></FONT> al
+  <I><B>file scope</B></I>.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Funzioni-membro
+statiche</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Anche le <FONT COLOR="Green"><B>funzioni-membro </B></FONT>di una
+  <FONT COLOR="Green"><B>classe</B></FONT> possono essere dichiarate
+  <FONT COLOR="Blue"><B>static</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR VALIGN="Top">
+      <TD><BIG>Es.: &nbsp; &nbsp;</BIG></TD>
+      <TD><TABLE BORDER CELLPADDING="2">
+	  <TR VALIGN="Top">
+	    <TD ROWSPAN=3><BIG><FONT COLOR="Blue"><B>class</B></FONT>
+	      <FONT COLOR="#cc0000"><B>A &nbsp;</B></FONT><FONT COLOR="Blue"><B>{
+	      &nbsp;</B></FONT><B>.....</B></BIG> &nbsp;<BR>
+	      <BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp; static</B></FONT></BIG>
+	      <BIG><FONT COLOR="Blue"><B>int</B></FONT></BIG>
+	      <BIG><FONT COLOR="Maroon"><B>conta</B></FONT><FONT COLOR="Blue"><B>(
+	      )</B></FONT></BIG> <FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT> &nbsp;
+	      <BIG>(<B><I>prototipo</I></B>) &nbsp; &nbsp;<BR>
+	      <B>.....</B></BIG>
+	      &nbsp;<FONT COLOR="Blue"><BIG><B>&nbsp;};</B></BIG></FONT> &nbsp;</TD>
+	    <TD>&nbsp;<BIG><FONT COLOR="Blue"><B>int</B></FONT></BIG>
+	      <BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+		  COLOR="Maroon"><B>conta</B></FONT><FONT COLOR="Blue"><B>( ) &nbsp;{
+	      &nbsp;</B></FONT><B>.....</B></BIG>
+	      <FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT> &nbsp;
+	      <BIG>(<B>definizione</B>)</BIG> &nbsp;</TD>
+	  </TR>
+	  <TR>
+	    <TD ROWSPAN=2>&nbsp;<BIG>Nel prog. <B>chiamante</B>:</BIG><BR>
+	      <BIG><FONT COLOR="Blue"><B>&nbsp; &nbsp;int</B></FONT>
+	      <FONT COLOR="Maroon"><B>n</B></FONT>&nbsp;</BIG>
+	      <FONT COLOR="Blue"><BIG><B>=
+	      </B></BIG></FONT><BIG><FONT COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>::</B></FONT><FONT
+		  COLOR="Maroon"><B>conta</B></FONT><FONT COLOR="Blue"><B>(
+	      )</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+	  </TR>
+	  <TR>
+	  </TR>
+	</TABLE>
+      </TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  <BIG>come si pu&ograve; notare dall'esempio, nella <B>chiamata</B> di una
+  <FONT COLOR="Green"><B>funzione-membro</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT>, bisogna <B>qualificare</B> il suo
+  <B>nome</B> con quello della <FONT COLOR="Green"><B>classe</B></FONT> di
+  appartenenza. Notare inoltre che, nella <B>definizione</B> della
+  <FONT COLOR="Green"><B>funzione</B></FONT>, lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT> <U>non va messo</U> (per lo stesso
+  motivo per cui non va messo davanti alla <B>definizione</B> di un
+  <FONT COLOR="Green"><B>dato-membro</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT>).</BIG>
+  <P ALIGN=Justify>
+  <BIG>Una <FONT COLOR="Green"><B>funzione-membro</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT> (che, come tutti gli altri
+  <FONT COLOR="Green"><B>membri</B></FONT>, pu&ograve; essere <B>privata</B>
+  o <B>pubblica</B>), accede ai <FONT COLOR="Green"><B>membri</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT> ma non &egrave; collegata a un
+  <FONT COLOR="Green"><B>oggetto</B></FONT> in particolare e quindi <U>non
+  ha il <FONT COLOR="Green"><B>puntatore</B></FONT> <I><B>nascosto</B></I>
+  <FONT COLOR="Blue"><B>this</B></FONT></U>. Ne consegue che, se deve operare
+  su <FONT COLOR="Green"><B>oggetti</B></FONT>, questi devono essere trasmessi
+  esplicitamente come <FONT COLOR="Maroon"><B>argomenti</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Normalmente i <B>metodi</B> <FONT COLOR="Blue"><B>static</B></FONT>
+  vengono usati per trattare <FONT COLOR="Green"><B>dati-membro</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT> o, in generale, quando non si pone
+  la necessit&agrave; di operare su un singolo
+  <FONT COLOR="Green"><B>oggetto</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT> (cio&egrave; quando la presenza
+  del <FONT COLOR="Green"><B>puntatore</B></FONT> <I><B>nascosto</B></I>
+  <FONT COLOR="Blue"><B>this</B></FONT></BIG> <BIG>sarebbe un sovraccarico
+  inutile). Viceversa, quando un <B>metodo</B> deve operare direttamente su
+  un <FONT COLOR="Green"><B>oggetto</B></FONT> (<U>uno e uno solo</U> alla
+  volta), &egrave; pi&ugrave; conveniente che sia <I><B>incapsulato</B></I>
+  nell'<FONT COLOR="Green"><B>oggetto</B></FONT> stesso e quindi non venga
+  <B>dichiarato</B> <FONT COLOR="Blue"><B>static</B></FONT>.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p46/static.h">[p46]</A><A HREF="p46/static.cpp">[p46]</A>
+<A HREF="p46/staticmain.cpp">[p46]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Funzioni
+friend</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Una normale <B>dichiarazione</B> di un <B>metodo</B> specifica tre cose
+  logicamente distinte:</BIG>
+  <OL>
+    <LI>
+      <BIG>la <FONT COLOR="Green"><B>funzione</B></FONT> pu&ograve; accedere ai
+      <FONT COLOR="Green"><B>membri</B></FONT> <B>privati</B> della
+      <FONT COLOR="Green"><B>classe</B></FONT>;</BIG>
+    <LI>
+      <BIG>la <FONT COLOR="Green"><B>funzione</B></FONT> &egrave; nell'
+      <FONT COLOR="Green"><B>ambito</B></FONT> di
+      <FONT COLOR="Green"><B>visibilit&agrave;</B></FONT> della
+      <FONT COLOR="Green"><B>classe</B></FONT>;</BIG>
+    <LI>
+      <BIG>la <FONT COLOR="Green"><B>funzione</B></FONT> &egrave;
+      <I><B>incapsulata</B></I> negli <FONT COLOR="Green"><B>oggetti</B></FONT>
+      (possiede il <FONT COLOR="Green"><B>puntatore</B></FONT>
+      <FONT COLOR="Blue"><B>this</B></FONT>).</BIG>
+  </OL>
+  <P ALIGN=Justify>
+  <BIG>Abbiamo visto che, dichiarando un <B>metodo</B> con lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>static</B></FONT>, &egrave; possibile fornire alla
+  <FONT COLOR="Green"><B>funzione</B></FONT> le prime due propriet&agrave;,
+  ma non la terza. Se invece <B>dichiariamo</B> una
+  <FONT COLOR="Green"><B>funzione</B></FONT> con lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B><BIG>friend</BIG></B></FONT>, <U>&egrave; possibile
+  fornirle solo la prima propriet&agrave;</U>.</BIG>
+  <P ALIGN=Justify>
+  <BIG>Una <FONT COLOR="Green"><B>funzione</B></FONT> si dice
+  "<FONT COLOR="Blue"><B>friend</B></FONT>" di una
+  <FONT COLOR="Green"><B>classe</B></FONT>, se &egrave; definita in un
+  <FONT COLOR="Green"><B>ambito</B></FONT> diverso da quello della
+  <FONT COLOR="Green"><B>classe</B></FONT>, ma pu&ograve; accedere ai suoi
+  <FONT COLOR="Green"><B>membri</B></FONT> <B>privati</B>. Per ottenere ci&ograve;,
+  bisogna inserire il <I><B>prototipo</B></I> della
+  <FONT COLOR="Green"><B>funzione</B></FONT> nella <B>definizione</B> della
+  <FONT COLOR="Green"><B>classe</B></FONT> (non importa se nella sezione
+  <B>privata</B> o <B>pubblica</B>), facendo precedere lo
+  <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>friend</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <TABLE CELLPADDING="2">
+    <TR>
+      <TD><BIG>Es.: </BIG>&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TH><BIG>DEFINIZIONE CLASSE </BIG></TH>
+      <TD>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</TD>
+      <TH><BIG>DEFINIZIONE FUNZIONE</BIG></TH>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>class</B></FONT> <FONT COLOR="#cc0000"><B>A
+	&nbsp;</B></FONT><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>void
+	</B></FONT><FONT COLOR="Maroon"><B>amica</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>
+	</B></FONT><FONT COLOR="Maroon"><B>ogg</B></FONT><FONT COLOR="Blue"><B>,</B></FONT>
+	.....<FONT COLOR="Blue"><B>)</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; <BIG><FONT COLOR="Blue"><B>int</B></FONT></BIG>
+	<BIG><FONT COLOR="Maroon"><B>mp</B></FONT></BIG>
+	<FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT> <BIG>..........</BIG></TD>
+      <TD></TD>
+      <TD><BIG><FONT COLOR="Blue"><B>{</B></FONT></BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; <BIG><FONT COLOR="Blue"><B>friend</B></FONT></BIG>
+	&nbsp;<BIG><FONT COLOR="Blue"><B>void
+	</B></FONT><FONT COLOR="Maroon"><B>amica</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	    COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>,
+	</B></FONT>.....<FONT COLOR="Blue"><B>)</B></FONT></BIG>
+	<FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT></TD>
+      <TD></TD>
+      <TD><BIG>&nbsp; &nbsp;........</BIG>
+	&nbsp;<BIG><FONT COLOR="Maroon"><B>ogg</B></FONT><FONT COLOR="Blue"><B>.</B></FONT><FONT
+	    COLOR="Maroon"><B>mp</B></FONT></BIG> <BIG>........</BIG></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp; &nbsp; <BIG>........</BIG>
+	<FONT COLOR="Blue"><BIG><B>};</B></BIG></FONT></TD>
+      <TD></TD>
+      <TD><FONT COLOR="Blue"><BIG><B>}</B></BIG></FONT></TD>
+    </TR>
+  </TABLE>
+  <P ALIGN=Justify>
+  l<BIG>a <FONT COLOR="Green"><B>funzione</B></FONT>
+  <FONT COLOR="Maroon"><B>amica</B></FONT>, che non &egrave; un <B>metodo</B>
+  della <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT> (nell'esempio &egrave; <B>definita</B>
+  nel <FONT COLOR="Blue"><B>namespace</B></FONT>
+  <FONT COLOR="Green"><B>globale</B></FONT>), &egrave; tuttavia
+  <B>dichiarata</B> con lo <FONT COLOR="Green"><B>specificatore</B></FONT>
+  <FONT COLOR="Blue"><B>friend</B></FONT> nella <B>definizione</B> della
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, e quindi pu&ograve; accedere al suo
+  <FONT COLOR="Green"><B>membri</B></FONT> <B>privati</B> &nbsp;(nell'esempio,
+  a <FONT COLOR="Maroon"><B>mp</B></FONT>). Notare che la
+  <FONT COLOR="Green"><B>funzione</B></FONT>, essendo priva del
+  <FONT COLOR="Green"><B>puntatore</B></FONT>
+  <FONT COLOR="Blue"><B>this</B></FONT> (come i <B>metodi</B>
+  <FONT COLOR="Blue"><B>static</B></FONT>), pu&ograve; operare sugli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> della
+  <FONT COLOR="Green"><B>classe</B></FONT> solo se gli
+  <FONT COLOR="Green"><B>oggetti</B></FONT> interessati le sono trasmessi come
+  <FONT COLOR="Maroon"><B>argomenti</B></FONT>. </BIG>
+  <P ALIGN=Justify>
+  <BIG>Se una stessa <FONT COLOR="Green"><B>funzione</B></FONT> &egrave;
+  <FONT COLOR="Blue"><B>friend</B></FONT> di due o pi&ugrave;
+  <FONT COLOR="Green"><B>classi</B></FONT>, il suo <I><B>prototipo</B></I>
+  preceduto da <FONT COLOR="Blue"><B>friend</B></FONT> va inserito nelle
+  <B>definizioni</B> di <U>tutte</U> le
+  <FONT COLOR="Green"><B>classi</B></FONT> interessate. Sorge allora un problema,
+  come si pu&ograve; vedere dall'esempio seguente: </BIG>
+  <P ALIGN=Justify>
+  <CENTER>
+    <TABLE CELLPADDING="2" ALIGN="Center">
+      <TR VALIGN="Top">
+	<TD><BIG><FONT COLOR="Blue"><B>class</B></FONT> <FONT COLOR="#cc0000"><B>A
+	  &nbsp;</B></FONT><FONT COLOR="Blue"><B>{</B></FONT>...<FONT COLOR="Blue"><B>friend</B></FONT></BIG>
+	  &nbsp;<BIG><FONT COLOR="Blue"><B>int
+	  </B></FONT><FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	      COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT COLOR="#cc0000"><B>B</B></FONT><FONT
+	      COLOR="Blue"><B>,
+	  </B></FONT>.....<FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT><BIG>...</BIG><FONT
+	      COLOR="Blue"><BIG><B>};</B></BIG></FONT></TD>
+	<TD>&nbsp;&nbsp; &nbsp;</TD>
+	<TD><BIG><B>&lt;---- </B></BIG></TD>
+	<TD><BIG>a questo punto <FONT COLOR="Red"><B>C++</B></FONT> non sa &nbsp;<BR>
+	  ancora che <FONT COLOR="#cc0000"><B>B</B></FONT> &egrave; una
+	  <FONT COLOR="Green"><B>classe</B></FONT> </BIG></TD>
+      </TR>
+      <TR>
+	<TD><BIG><FONT COLOR="Blue"><B>class</B></FONT> <FONT COLOR="#cc0000"><B>B
+	  &nbsp;</B></FONT><FONT COLOR="Blue"><B>{</B></FONT>...<FONT COLOR="Blue"><B>friend</B></FONT></BIG>
+	  &nbsp;<BIG><FONT COLOR="Blue"><B>int
+	  </B></FONT><FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+	      COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>,</B></FONT><FONT COLOR="#cc0000"><B>B</B></FONT><FONT
+	      COLOR="Blue"><B>,
+	  </B></FONT>.....<FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT><BIG>...</BIG><FONT
+	      COLOR="Blue"><BIG><B>};</B></BIG></FONT></TD>
+	<TD></TD>
+	<TD></TD>
+	<TD></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <P ALIGN=Justify>
+  <BIG>Ci sono due possibili soluzioni per far sapere al sistema che
+  <FONT COLOR="#cc0000"><B>B</B></FONT> &egrave; una
+  <FONT COLOR="Green"><B>classe</B></FONT>: o si pone in testa al gruppo di
+  istruzioni la <B>dichiarazione</B> <I><B>anticipata</B></I>: <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>class</B></FONT>
+  <FONT COLOR="#cc0000"><B>B</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT><BIG>
+  <BR>
+  oppure si inserisce, nel <I><B>prototipo</B></I> che potrebbe generare errore,
+  la <I><B>parola-chiave</B></I> <FONT COLOR="Blue"><B>class</B></FONT> <BR>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp;<FONT COLOR="Blue"><B>friend</B></FONT></BIG>
+  &nbsp;<BIG><FONT COLOR="Blue"><B>int
+  </B></FONT><FONT COLOR="Maroon"><B>fun</B></FONT><FONT COLOR="Blue"><B>(</B></FONT><FONT
+      COLOR="#cc0000"><B>A</B></FONT><FONT COLOR="Blue"><B>,class</B></FONT>
+  <FONT COLOR="#cc0000"><B>B</B></FONT><FONT COLOR="Blue"><B>,
+  </B></FONT>.....<FONT COLOR="Blue"><B>)</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT>
+  <P ALIGN=Justify>
+  <BIG>Le <FONT COLOR="Green"><B>funzioni</B></FONT>
+  <FONT COLOR="Blue"><B>friend</B></FONT> sono preferibili ai <B>metodi</B>
+  <FONT COLOR="Blue"><B>static</B></FONT> proprio quando devono accedere a
+  pi&ugrave; <FONT COLOR="Green"><B>classi</B></FONT> e quindi non &egrave;
+  conveniente farli appartenere a una
+  <FONT COLOR="Green"><B>classe</B></FONT> piuttosto che a un'altra. In ogni
+  caso, per favorire la <FONT COLOR="Red"><B>programmazione
+  modulare</B></FONT>, &egrave; consigliabile aggregare in uno stesso
+  <FONT COLOR="Green"><B>ambito</B></FONT> (per esempio in un
+  <FONT COLOR="Blue"><B>namespace</B></FONT>)
+  <FONT COLOR="Green"><B>classi</B></FONT> e
+  <FONT COLOR="Green"><B>funzioni</B></FONT>
+  <FONT COLOR="Blue"><B>friend</B></FONT> collegate.</BIG>
+</BLOCKQUOTE>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<FONT COLOR="Blue"><B><BIG><BIG><BIG>Classi
+friend</BIG></BIG></BIG></B></FONT>
+<P>
+&nbsp;
+<BLOCKQUOTE>
+  <P ALIGN=Justify>
+  <BIG>Quando tutte le <FONT COLOR="Green"><B>funzioni-membro</B></FONT> di
+  una <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>B</B></FONT> sono
+  <FONT COLOR="Blue"><B>friend</B></FONT> di una
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, &egrave; possibile, anzich&eacute;
+  <B>dichiarare</B> ciascuna <FONT COLOR="Green"><B>funzione</B></FONT>
+  individualmente, inserire una sola <B>dichiarazione</B> in
+  <FONT COLOR="#cc0000"><B>A</B></FONT>, indicante che l'intera
+  <FONT COLOR="Green"><B>classe</B></FONT>
+  <FONT COLOR="#cc0000"><B>B</B></FONT> &egrave;
+  <FONT COLOR="Blue"><B>friend</B></FONT>: </BIG>
+  <P ALIGN=Center>
+  <BIG><FONT COLOR="Blue"><B>class</B></FONT> <FONT COLOR="#cc0000"><B>A
+  &nbsp;</B></FONT><FONT COLOR="Blue"><B>{</B></FONT><B>..........</B><FONT
+      COLOR="Blue"><B>friend</B></FONT> <FONT COLOR="Blue"><B>class</B></FONT>
+  <FONT COLOR="#cc0000"><B>B</B></FONT></BIG><FONT COLOR="Blue"><BIG><B>;</B></BIG></FONT><BIG><B>..........</B></BIG><FONT
+      COLOR="Blue"><BIG><B>};</B></BIG></FONT><BIG> </BIG>
+  <P ALIGN=Justify>
+  <BIG>L'uso di <FONT COLOR="Green"><B>funzioni</B></FONT> e
+  <FONT COLOR="Green"><B>classi</B></FONT>
+  <FONT COLOR="Blue"><B>friend</B></FONT> permette al
+  <FONT COLOR="Red"><B>C++</B></FONT> di aggirare il
+  <FONT COLOR="Red"><I><B>data hiding </B></I></FONT>ogni volta che
+  <FONT COLOR="Green"><B>classi</B></FONT> diverse devono interagire strettamente
+  o condividere gli stessi dati, pur restando distinte. </BIG>
+  <P ALIGN=Justify>
+  <BIG>C'&egrave; da dire infine che le relazioni di tipo
+  <FONT COLOR="Blue"><B>friend</B></FONT> non sono
+  <I><B>simmetriche</B></I> (se <FONT COLOR="#cc0000"><B>A</B></FONT> &egrave;
+  <FONT COLOR="Blue"><B>friend</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT> non &egrave; detto che
+  <FONT COLOR="#cc0000"><B>B</B></FONT> sia
+  <FONT COLOR="Blue"><B>friend</B></FONT> di
+  <FONT COLOR="#cc0000"><B>A</B></FONT>), n&eacute;
+  <I><B>transitive</B></I> (se <FONT COLOR="#cc0000"><B>A</B></FONT> &egrave;
+  <FONT COLOR="Blue"><B>friend</B></FONT> di
+  <FONT COLOR="#cc0000"><B>B</B></FONT> e
+  <FONT COLOR="#cc0000"><B>B</B></FONT> &egrave;
+  <FONT COLOR="Blue"><B>friend</B></FONT> di
+  <FONT COLOR="#cc0000"><B>C</B></FONT>, non &egrave; detto che
+  <FONT COLOR="#cc0000"><B>A</B></FONT> sia
+  <FONT COLOR="Blue"><B>friend</B></FONT> di
+  <FONT COLOR="#cc0000"><B>C</B></FONT>). In sostanza ogni relazione deve essere
+  esplicitamente dichiarata.</BIG>
+</BLOCKQUOTE>
+<P ALIGN=Right>
+<BIG><BIG><A HREF="p47/amica.cpp">[p47]</A></BIG></BIG>
+<P>
+&nbsp; 
+  <HR>
+<P>
+&nbsp;
+<P ALIGN=Center>
+<A HREF="01Indice.html#cosdis"><IMG BORDER="0" ALIGN="Middle" ALT="Torna all'Indice"
+    WIDTH="30" HEIGHT="30" SRC="navbprev.gif"></A>
+</BODY></HTML>
